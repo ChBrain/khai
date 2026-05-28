@@ -1,0 +1,32 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 3
+
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      vitest-stack:
+        patterns:
+          - "vitest"
+          - "@vitest/*"
+      test-utils:
+        patterns:
+          - "gray-matter"
+          - "ajv"
+          - "js-yaml"
+          - "@types/js-yaml"
+          - "markdown-it"
+          - "@types/markdown-it"
+      dev-tooling:
+        patterns:
+          - "prettier"
+          - "typescript"
+          - "@types/*"
+          - "husky"
