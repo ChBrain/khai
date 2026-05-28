@@ -72,18 +72,22 @@ function runTypeRulesChecks(filePath: string, data: Record<string, unknown>, bod
     `${filePath}: chapters first-letters "${derived}" must equal mnemonic letters "${letters}"`,
   ).toBe(letters);
 
-  // Rule 4: capitalisation - type name must be uppercase in prose
-  // (except in the lede self-name and own-chapter-name, which we don't enforce here)
-  // We check that prose does NOT use a lower-case form in non-system/element contexts.
-  // Simplified: "the piece" should not appear in a non-piece file's body.
+  // Rule 4: capitalisation - type name must be uppercase in prose.
+  // The capitalisation rule (MVP-9) requires type-name tokens to appear capitalised
+  // in body prose (e.g. "the Persona", "the Place") so a renderer can recognise them.
+  // We catch the wrong case: "the persona" lowercase in a non-persona file. The check
+  // is intentionally case-SENSITIVE: "the Persona" with capital P is the correct form
+  // and must pass; only the lowercase form is a violation.
+  // The lede self-name exception (e.g. piece.md saying "A piece is...") is allowed
+  // because typeLower for that file equals the offending word and is filtered out below.
   const typeVal = data.type as string;
   const typeLower = typeVal.toLowerCase();
   const illegalUsages = ["process", "position", "piece", "place", "persona"].filter(
-    (t) => t !== typeLower && body.toLowerCase().includes(`the ${t}`),
+    (t) => t !== typeLower && body.includes(`the ${t}`),
   );
   expect(
     illegalUsages,
-    `${filePath}: body must not reference other type names as "the <type>": found ${illegalUsages.join(", ")}`,
+    `${filePath}: body must not reference other type names as "the <type>" in lowercase: found ${illegalUsages.join(", ")}`,
   ).toHaveLength(0);
 }
 
@@ -140,7 +144,7 @@ describe("type-rules: invalid fixtures - bad-type-rules-* must fail", () => {
       const typeVal = data.type as string;
       const typeLower = typeVal.toLowerCase();
       const illegalUsages = ["process", "position", "piece", "place", "persona"].filter(
-        (t) => t !== typeLower && body.toLowerCase().includes(`the ${t}`),
+        (t) => t !== typeLower && body.includes(`the ${t}`),
       );
 
       const fails =
