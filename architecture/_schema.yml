@@ -1,0 +1,49 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+title: "khai spec frontmatter"
+description: "Frontmatter schema for the seven typed spec files. The companion file (stack.md) has no frontmatter and is exempt."
+type: object
+required:
+  - id
+  - type
+  - class
+  - mnemonic
+  - chapters
+  - subtitle
+  - status
+  - version
+additionalProperties: false
+properties:
+  id:
+    type: string
+    pattern: "^[a-z][a-z0-9-]*$"
+    description: "lowercase slug, hyphen-separated; must match the filename stem and the type field"
+  type:
+    type: string
+    pattern: "^[a-z][a-z0-9-]*$"
+    description: "for the seven typed specs, equals id; for plot it is also the system-class type"
+  class:
+    type: string
+    enum: [system, element, meta]
+  mnemonic:
+    type: string
+    pattern: "^(TO [A-Z]{4}|[A-Z]{4,6})$"
+    description: "TO + 4 caps (system/element forms) OR 4-6 caps (meta form, e.g. HACKS)"
+  chapters:
+    type: array
+    minItems: 4
+    maxItems: 6
+    items:
+      type: string
+      minLength: 1
+    description: "chapter names; first-letter sequence (skipping TO when present) must reconstruct the mnemonic"
+  subtitle:
+    type: string
+    minLength: 1
+    description: "gerund-form descriptor: 'the X-ing of Y'"
+  status:
+    type: string
+    enum: [draft, published]
+  version:
+    type: string
+    pattern: "^\\d+\\.\\d+\\.\\d+$"
+    description: "semver"

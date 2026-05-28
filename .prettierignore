@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.vitest-cache/
+coverage/
+
+# Intentionally-malformed fixtures — prettier would strip the BOM that the
+# encoding test specifically needs to catch, and reformat fixtures designed
+# to express a specific failure mode.
+tests/fixtures/invalid/

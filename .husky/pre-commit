@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+# META-2 enforcement: rejects commits that mix architecture/ content with
+# tests/, .github/workflows/, or .husky/ tooling in the same staged set.
+# Content changes and tooling changes must land in separate commits.
+
+STAGED=$(git diff --cached --name-only --diff-filter=ACMRD)
+
+HAS_SOURCE=0
+HAS_TEST=0
+
+for f in $STAGED; do
+  case "$f" in
+    architecture/*) HAS_SOURCE=1 ;;
+    tests/*|.github/workflows/*|.husky/*) HAS_TEST=1 ;;
+  esac
+done
+
+if [ "$HAS_SOURCE" -eq 1 ] && [ "$HAS_TEST" -eq 1 ]; then
+  echo "META-2 violation: cannot mix architecture/ content with tests/.github/.husky/ in the same commit."
+  echo "Split into two commits: one for content, one for tooling."
+  exit 1
+fi
+
+exit 0

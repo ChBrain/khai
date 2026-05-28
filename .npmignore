@@ -1,0 +1,9 @@
+tests/
+.github/
+.husky/
+.gitignore
+.npmrc
+.prettierrc
+tsconfig.json
+vitest.config.ts
+node_modules/
