@@ -46,11 +46,7 @@ function bulletBoldLetters(body: string): string[] {
     });
 }
 
-function runTypeRulesChecks(
-  filePath: string,
-  data: Record<string, unknown>,
-  body: string
-): void {
+function runTypeRulesChecks(filePath: string, data: Record<string, unknown>, body: string): void {
   const chapters = data.chapters as string[];
   const mnemonic = data.mnemonic as string;
   const letters = mnemonicLetters(mnemonic);
@@ -59,21 +55,21 @@ function runTypeRulesChecks(
   const bulletCount = countTopLevelBullets(body);
   expect(
     bulletCount,
-    `${filePath}: bullet count (${bulletCount}) must equal chapters.length (${chapters.length})`
+    `${filePath}: bullet count (${bulletCount}) must equal chapters.length (${chapters.length})`,
   ).toBe(chapters.length);
 
   // Rule 2: bold-letter pattern per bullet
   const boldLetters = bulletBoldLetters(body);
   expect(
     boldLetters.length,
-    `${filePath}: each bullet must have a bold initial letter (**X**)`
+    `${filePath}: each bullet must have a bold initial letter (**X**)`,
   ).toBe(chapters.length);
 
   // Rule 3: mnemonic-letter derivation
   const derived = chaptersToMnemonic(chapters);
   expect(
     derived,
-    `${filePath}: chapters first-letters "${derived}" must equal mnemonic letters "${letters}"`
+    `${filePath}: chapters first-letters "${derived}" must equal mnemonic letters "${letters}"`,
   ).toBe(letters);
 
   // Rule 4: capitalisation - type name must be uppercase in prose
@@ -83,20 +79,23 @@ function runTypeRulesChecks(
   const typeVal = data.type as string;
   const typeLower = typeVal.toLowerCase();
   const illegalUsages = ["process", "position", "piece", "place", "persona"].filter(
-    (t) => t !== typeLower && body.toLowerCase().includes(`the ${t}`)
+    (t) => t !== typeLower && body.toLowerCase().includes(`the ${t}`),
   );
   expect(
     illegalUsages,
-    `${filePath}: body must not reference other type names as "the <type>": found ${illegalUsages.join(", ")}`
+    `${filePath}: body must not reference other type names as "the <type>": found ${illegalUsages.join(", ")}`,
   ).toHaveLength(0);
 }
 
 describe("type-rules: architecture/*.md", () => {
   const files = loadArchitectureSpecs(repoRoot);
 
-  it.skipIf(files.length === 0)("loads at least one file (skipped until khai-2 lands spec files)", () => {
-    expect(files.length).toBeGreaterThan(0);
-  });
+  it.skipIf(files.length === 0)(
+    "loads at least one file (skipped until khai-2 lands spec files)",
+    () => {
+      expect(files.length).toBeGreaterThan(0);
+    },
+  );
 
   for (const file of files) {
     if (classify(file) === "companion") continue;
@@ -122,9 +121,7 @@ describe("type-rules: valid fixtures", () => {
 });
 
 describe("type-rules: invalid fixtures - bad-type-rules-* must fail", () => {
-  const files = loadFixtures(repoRoot, "invalid").filter((f) =>
-    f.path.includes("bad-type-rules-")
-  );
+  const files = loadFixtures(repoRoot, "invalid").filter((f) => f.path.includes("bad-type-rules-"));
 
   it("loads at least one bad-type-rules fixture", () => {
     expect(files.length).toBeGreaterThan(0);
@@ -143,7 +140,7 @@ describe("type-rules: invalid fixtures - bad-type-rules-* must fail", () => {
       const typeVal = data.type as string;
       const typeLower = typeVal.toLowerCase();
       const illegalUsages = ["process", "position", "piece", "place", "persona"].filter(
-        (t) => t !== typeLower && body.toLowerCase().includes(`the ${t}`)
+        (t) => t !== typeLower && body.toLowerCase().includes(`the ${t}`),
       );
 
       const fails =
@@ -152,7 +149,9 @@ describe("type-rules: invalid fixtures - bad-type-rules-* must fail", () => {
         boldLetters.some((l) => !l) ||
         illegalUsages.length > 0;
 
-      expect(fails, `${file.path}: expected at least one type-rules failure but all passed`).toBe(true);
+      expect(fails, `${file.path}: expected at least one type-rules failure but all passed`).toBe(
+        true,
+      );
     });
   }
 });

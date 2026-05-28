@@ -14,12 +14,7 @@ const md = new MarkdownIt();
  * in the same directory as the file, and that #anchor targets exist
  * in the rendered HTML.
  */
-function checkLinks(
-  filePath: string,
-  text: string,
-  fileDir: string,
-  html: string
-): string[] {
+function checkLinks(filePath: string, text: string, fileDir: string, html: string): string[] {
   const errors: string[] = [];
 
   // Extract markdown links: [text](target)
@@ -40,7 +35,9 @@ function checkLinks(
       // Relative .md link - check file exists
       const targetPath = join(fileDir, target);
       if (!existsSync(targetPath)) {
-        errors.push(`${filePath}: relative link "${target}" target does not exist at ${targetPath}`);
+        errors.push(
+          `${filePath}: relative link "${target}" target does not exist at ${targetPath}`,
+        );
       }
     }
   }
@@ -65,9 +62,12 @@ describe("markdown: architecture/*.md", () => {
   const files = loadArchitectureSpecs(repoRoot);
   const archDir = join(repoRoot, "architecture");
 
-  it.skipIf(files.length === 0)("loads at least one file (skipped until khai-2 lands spec files)", () => {
-    expect(files.length).toBeGreaterThan(0);
-  });
+  it.skipIf(files.length === 0)(
+    "loads at least one file (skipped until khai-2 lands spec files)",
+    () => {
+      expect(files.length).toBeGreaterThan(0);
+    },
+  );
 
   for (const file of files) {
     it(`${file.path} parses cleanly and has no broken links`, () => {
@@ -89,7 +89,7 @@ describe("markdown: valid fixtures", () => {
 
 describe("markdown: invalid fixtures - bad-markdown-broken.md must fail link check", () => {
   const files = loadFixtures(repoRoot, "invalid").filter((f) =>
-    f.path.includes("bad-markdown-broken")
+    f.path.includes("bad-markdown-broken"),
   );
 
   it("loads bad-markdown-broken fixture", () => {
@@ -104,7 +104,7 @@ describe("markdown: invalid fixtures - bad-markdown-broken.md must fail link che
       const errors = checkLinks(file.path, body, invalidDir, html);
       expect(
         errors.length,
-        `${file.path}: expected broken link errors but found none`
+        `${file.path}: expected broken link errors but found none`,
       ).toBeGreaterThan(0);
     });
   }

@@ -5,30 +5,31 @@ import { loadArchitectureSpecs, loadFixtures, type LoadedFile } from "./helpers/
 
 const repoRoot = join(fileURLToPath(import.meta.url), "..", "..");
 
-const BOM = "\uFEFF";
-const EM_DASH = "\u2014";
-const REPLACEMENT = "\uFFFD";
+const BOM = "﻿";
+const EM_DASH = "—";
+const REPLACEMENT = "�";
 
 function assertEncodingOk(file: LoadedFile): void {
   // No BOM
   expect(
     file.bytes[0] === 0xef && file.bytes[1] === 0xbb && file.bytes[2] === 0xbf,
-    `${file.path}: must not start with UTF-8 BOM`
+    `${file.path}: must not start with UTF-8 BOM`,
   ).toBe(false);
 
   // No U+FFFD replacement character
   expect(file.text, `${file.path}: must not contain U+FFFD replacement character`).not.toContain(
-    REPLACEMENT
+    REPLACEMENT,
   );
 
   // No em-dash
-  expect(file.text, `${file.path}: must not contain em-dash (U+2014); use ' - ' instead`).not.toContain(
-    EM_DASH
-  );
+  expect(
+    file.text,
+    `${file.path}: must not contain em-dash (U+2014); use ' - ' instead`,
+  ).not.toContain(EM_DASH);
 
   // No carriage returns
   expect(file.text, `${file.path}: must not contain CR (\\r); use LF line endings`).not.toContain(
-    "\r"
+    "\r",
   );
 
   // Verify round-trip: bytes decode to the same string (valid UTF-8)
@@ -39,9 +40,12 @@ function assertEncodingOk(file: LoadedFile): void {
 describe("encoding: architecture/*.md", () => {
   const files = loadArchitectureSpecs(repoRoot);
 
-  it.skipIf(files.length === 0)("loads at least one file (skipped until khai-2 lands spec files)", () => {
-    expect(files.length).toBeGreaterThan(0);
-  });
+  it.skipIf(files.length === 0)(
+    "loads at least one file (skipped until khai-2 lands spec files)",
+    () => {
+      expect(files.length).toBeGreaterThan(0);
+    },
+  );
 
   for (const file of files) {
     it(`${file.path} passes encoding checks`, () => {
@@ -65,9 +69,7 @@ describe("encoding: valid fixtures", () => {
 });
 
 describe("encoding: invalid fixtures - bad-encoding-* must fail", () => {
-  const files = loadFixtures(repoRoot, "invalid").filter((f) =>
-    f.path.includes("bad-encoding-")
-  );
+  const files = loadFixtures(repoRoot, "invalid").filter((f) => f.path.includes("bad-encoding-"));
 
   it("loads at least one bad-encoding fixture", () => {
     expect(files.length).toBeGreaterThan(0);
