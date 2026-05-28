@@ -6,18 +6,18 @@ mnemonic: "TO HOLD"
 chapters: [Has, Orders, Loses, Drives]
 subtitle: "the holding of forms"
 status: draft
-version: 0.1.0
+version: 0.0.1
 ---
 
 A position exists before any Persona steps into it and persists after they leave. It belongs to the world, not the character.
 
-* **H**as: What the position brings in place before the Persona: the mandate, the expectation, the weight the room already reads.
+- **H**as: What the position brings in place before the Persona: the mandate, the expectation, the weight the room already reads.
 
-* **O**rders: The one instruction the position gives. The Persona did not negotiate it.
+- **O**rders: The one instruction the position gives. The Persona did not negotiate it.
 
-* **L**oses: What the Persona discovers they cannot keep while holding the position.
+- **L**oses: What the Persona discovers they cannot keep while holding the position.
 
-* **D**rives: What the Persona drives toward because they hold it.
+- **D**rives: What the Persona drives toward because they hold it.
 
 ---
 
