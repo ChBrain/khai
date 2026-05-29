@@ -6,7 +6,7 @@ mnemonic: "TO IDLE"
 chapters: [Initiated by, Direction, Lever, Echo]
 subtitle: "the moving of conditions"
 status: draft
-version: 0.0.1
+version: 0.0.2
 ---
 
 A process is what moves the world. It becomes inevitable once its condition is met and leaves the world changed.

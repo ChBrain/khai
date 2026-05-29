@@ -1,7 +1,0 @@
-# Stack
-
-## Owner
-
-## Platform
-
-## Model
