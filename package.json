@@ -17,6 +17,9 @@
     "LICENSE-CODE",
     "README.md"
   ],
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
