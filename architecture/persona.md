@@ -6,7 +6,7 @@ mnemonic: "TO PAST"
 chapters: [Projection, Action, Shadow, Tell]
 subtitle: "the waking of awareness"
 status: draft
-version: 0.0.1
+version: 0.0.2
 ---
 
 A persona is a specific human carrying a formation they did not choose and cannot fully see.

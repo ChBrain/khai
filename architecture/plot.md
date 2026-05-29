@@ -6,7 +6,7 @@ mnemonic: "TO CAST"
 chapters: [Cue, Action, Stage, Tension]
 subtitle: "the casting of forces"
 status: draft
-version: 0.0.1
+version: 0.0.2
 ---
 
 A plot file is the casting of forces before a word is spoken. It does not describe what will happen; it loads the specific system cargo that makes a collision inevitable the moment the plot starts.

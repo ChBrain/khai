@@ -22,10 +22,10 @@ Configure `.npmrc`:
 
 ## Contents
 
+- `architecture/architecture.md` - the architecture document (KAI HACKS AI canon)
+- `architecture/instructions.md` - the meta type (HACKS method)
 - `architecture/plot.md` - the system type
 - `architecture/process.md`, `position.md`, `piece.md`, `place.md`, `persona.md` - the element types
-- `architecture/instructions.md` - the meta type
-- `architecture/stack.md` - companion file (project-specific dependencies and runtime targets)
 - `architecture/_schema.yml` - JSON Schema for the spec frontmatter
 
 ## Licensing

@@ -6,7 +6,7 @@ mnemonic: "TO HOLD"
 chapters: [Has, Orders, Loses, Drives]
 subtitle: "the holding of forms"
 status: draft
-version: 0.0.1
+version: 0.0.2
 ---
 
 A position exists before any Persona steps into it and persists after they leave. It belongs to the world, not the character.

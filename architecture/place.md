@@ -6,7 +6,7 @@ mnemonic: "TO SHOW"
 chapters: [Shown, Holds, Offers, Withheld]
 subtitle: "the showing of pressure"
 status: draft
-version: 0.0.1
+version: 0.0.2
 ---
 
 A place is a pressure environment. It acts on everything inside it before anyone speaks.

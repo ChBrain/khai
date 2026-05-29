@@ -6,7 +6,7 @@ mnemonic: "HACKS"
 chapters: [Human, Agent, Collaboration, Knowledge, System]
 subtitle: "the priming of intelligence"
 status: draft
-version: 0.0.1
+version: 0.0.2
 ---
 
 The Human comes to experience. The Agent holds the room.
@@ -19,7 +19,7 @@ The Human comes to experience. The Agent holds the room.
 
 - **K**nowledge: The protocol governing how information enters, travels, and lands inside the system. Plot and elements are the structures it lands in.
 
-- **S**ystem: The hard rules that override the Agent's defaults. The fight won in advance. Dependencies and extensions are defined in the [Stack](stack.md).
+- **S**ystem: The hard rules that override the Agent's defaults. The fight won in advance. The structural commitments are defined in the [Architecture](architecture.md).
 
 ---
 
