@@ -4,11 +4,11 @@ A self-describing acronym. The name is the specification.
 
 Three movements:
 
-| Movement | Reads as | Layer |
-|---|---|---|
-| **KAI** | Kais, Architecture, Instructions | the noun: who + what |
+| Movement  | Reads as                                       | Layer                      |
+| --------- | ---------------------------------------------- | -------------------------- |
+| **KAI**   | Kais, Architecture, Instructions               | the noun: who + what       |
 | **HACKS** | Human, Agent, Collaboration, Knowledge, System | the verbs: how it operates |
-| **AI** | Agent, Implemented | the verb: how it runs |
+| **AI**    | Agent, Implemented                             | the verb: how it runs      |
 
 Read forward (KAI → HACKS → AI) it is how you build one. Read backward, it is how you explain one.
 
