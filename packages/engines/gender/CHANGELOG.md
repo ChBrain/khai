@@ -1,8 +1,10 @@
 # @chbrain/khai-engine-gender
 
-## 0.1.1
+## 0.1.0
 
-### Patch Changes
+### Minor Changes
 
-- Updated dependencies [4a679b6]
-  - @chbrain/khai-arch@0.0.3
+- Initial release: the gender domain as a khai engine package — the
+  `position` anchor plus the male and female expressions, with a declarative
+  `khai` manifest and a `compose()` entry point. Depends on
+  `@chbrain/khai-arch`.

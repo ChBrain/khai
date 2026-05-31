@@ -1,8 +1,10 @@
 # @chbrain/khai-tests
 
-## 0.1.1
+## 0.1.0
 
-### Patch Changes
+### Minor Changes
 
-- Updated dependencies [4a679b6]
-  - @chbrain/khai-arch@0.0.3
+- Initial release: the khai conformance kit — rule atoms and
+  `validateContentFile` / `validateEnginePackage` / `discoverEnginePackages`,
+  plus a `khai-tests` CLI, validating content packages against the
+  architecture canon. Depends on `@chbrain/khai-arch`.
