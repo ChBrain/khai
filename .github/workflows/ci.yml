@@ -36,7 +36,14 @@ jobs:
         run: |
           BASE="${{ github.event.pull_request.base.sha }}"
           HEAD="${{ github.event.pull_request.head.sha }}"
-          CHANGED=$(git diff --name-only "$BASE" "$HEAD")
+          # META-2 governs content vs test EDITS, not pure file moves. Pure
+          # renames (R100/C100) change no content, so they are exempt; a
+          # rename-with-edit is judged by its destination path.
+          CHANGED=$(git diff --name-status -M "$BASE" "$HEAD" | awk '
+            $1 == "R100" || $1 == "C100" { next }
+            $1 ~ /^[RC]/ { print $3; next }
+            { print $2 }
+          ')
 
           HAS_SOURCE=0
           HAS_TEST=0
