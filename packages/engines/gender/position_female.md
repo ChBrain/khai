@@ -11,11 +11,11 @@ stamp:
 
 ## Owner
 
-- Project: Cultures
-- Scope: Universal
+- Project: khai
 
 ## Has
 
+A specific [gender](position_gender.md).
 The body that is read as an invitation before it speaks.
 The expectation of accommodation - assumed, not negotiated.
 The attention that arrives unrequested and does not always leave.

@@ -5,7 +5,7 @@ persona is read by the room before it speaks.
 
 ## Anchor
 
-- [Gender](position_gender.md) -- the read itself: a frame the room
+- [Gender](position_gender.md) - the read itself: a frame the room
   applies before consent, which the persona can meet or step sideways
   from but cannot opt out of.
 
@@ -13,9 +13,9 @@ persona is read by the room before it speaks.
 
 Two expressions today, mirrored by social function rather than anatomy:
 
-- [Male](position_male.md) -- the body that arrives as an implicit claim;
+- [Male](position_male.md) - the body that arrives as an implicit claim;
   agency conferred before it is demonstrated.
-- [Female](position_female.md) -- the body that arrives as an implied
+- [Female](position_female.md) - the body that arrives as an implied
   invitation; accommodation assumed before it is requested.
 
 Additional expressions slot in as more sibling files without changing
@@ -23,7 +23,7 @@ the anchor or the existing two.
 
 ## Schema
 
-Each position file -- anchor and expressions alike -- carries the HOLD
+Each position file, anchor and expressions alike, carries the HOLD
 section set (Has / Orders / Loses / Drives) and `Scope: Universal` in
 the Owner block. Engine content, shared by every culture, not scoped
 to one.

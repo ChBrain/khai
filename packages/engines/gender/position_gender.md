@@ -15,8 +15,7 @@ Gender
 
 ## Owner
 
-- Project: Cultures
-- Scope: Universal
+- Project: khai
 
 ---
 
@@ -25,6 +24,7 @@ Gender
 A read that arrives with the body, before any word.
 A frame the room enacts before the persona consents to it.
 The expectation already in motion when the persona walks in.
+[Female](position_female.md) or [Male](position_male.md).
 
 ## Orders
 
