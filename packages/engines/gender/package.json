@@ -1,0 +1,38 @@
+{
+  "name": "@chbrain/khai-engine-gender",
+  "version": "0.1.0",
+  "description": "khai engine content — the gender domain: gender as position, the read the room applies before a persona speaks.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/gender"
+  },
+  "license": "CC-BY-NC-4.0",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "gender",
+    "type": "position",
+    "anchor": "position_gender.md",
+    "expressions": {
+      "male": "position_male.md",
+      "female": "position_female.md"
+    },
+    "wiring": "Always-on positional read. Give a persona exactly one expression; the expression carries the anchor upward, so the anchor need not be linked separately. Read in the first beat of the scene and held continuously underneath every other process the persona runs — it does not pause. The agent never narrates the position; the room enacts it, in who gets the first word and who is read as a claim before they speak."
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.0.2"
+  }
+}

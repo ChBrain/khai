@@ -1,0 +1,47 @@
+{
+  "name": "@chbrain/khai-arch",
+  "version": "0.0.2",
+  "description": "khai architecture spec — type definitions, mnemonics, and chapter rules. Content under CC-BY-NC-SA-4.0; code under MIT.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/khai-arch"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "architecture/",
+    "LICENSE",
+    "LICENSE-CODE",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^14.1.2",
+    "@types/js-yaml": "^4.0.9",
+    "ajv": "^8.17.1",
+    "js-yaml": "^4.1.0",
+    "markdown-it": "^14.1.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.7"
+  }
+}

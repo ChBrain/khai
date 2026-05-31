@@ -1,0 +1,49 @@
+name: release
+
+# Changesets-driven release for the khai workspace.
+#
+# On every push to main:
+#   * If unreleased changeset files exist, the action opens/updates a
+#     "Version Packages" PR that bumps versions, writes CHANGELOGs, and
+#     propagates internal dependency bumps (e.g. an engine that depends on
+#     khai-arch). Merging that PR consumes the changesets.
+#   * If there are no pending changesets (the version PR was just merged),
+#     the action runs `changeset publish`, which publishes every package
+#     whose version is not yet on GitHub Packages and pushes its git tag.
+
+on:
+  push:
+    branches: [main]
+
+concurrency: release-${{ github.ref }}
+
+permissions:
+  contents: write
+  pull-requests: write
+  packages: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          registry-url: "https://npm.pkg.github.com"
+          scope: "@chbrain"
+          cache: "npm"
+      - name: install
+        run: npm ci
+      - name: test
+        run: npm test
+      - name: changesets release
+        uses: changesets/action@v1
+        with:
+          version: npm run version
+          publish: npm run release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
