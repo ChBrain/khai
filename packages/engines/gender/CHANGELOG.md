@@ -1,8 +1,8 @@
 # @chbrain/khai-engine-gender
 
-## 0.1.0
+## 0.0.1
 
-### Minor Changes
+### Patch Changes
 
 - Initial release: the gender domain as a khai engine package — the
   `position` anchor plus the male and female expressions, with a declarative

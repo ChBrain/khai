@@ -1,8 +1,8 @@
 # @chbrain/khai-tests
 
-## 0.1.0
+## 0.0.1
 
-### Minor Changes
+### Patch Changes
 
 - Initial release: the khai conformance kit — rule atoms and
   `validateContentFile` / `validateEnginePackage` / `discoverEnginePackages`,
