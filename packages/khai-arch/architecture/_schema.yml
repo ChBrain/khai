@@ -1,6 +1,6 @@
 $schema: "http://json-schema.org/draft-07/schema#"
 title: "khai spec frontmatter"
-description: "Frontmatter schema for the seven typed spec files. The companion file (stack.md) has no frontmatter and is exempt."
+description: "Frontmatter schema for the eight typed spec files. The companion file (model.md) has no frontmatter and is exempt."
 type: object
 required:
   - id
