@@ -1,7 +1,9 @@
 #!/usr/bin/env sh
-# META-2 enforcement: rejects commits that mix architecture/ content with
-# tests/, .github/workflows/, or .husky/ tooling in the same staged set.
-# Content changes and tooling changes must land in separate commits.
+# Pre-commit guards:
+#   META-2  — content (architecture/) and tooling (tests/.github/.husky) must
+#             not land in the same commit.
+#   khai conformance — any engine package touched by staged .md content must
+#             still conform to the canon (same validator CI runs).
 
 STAGED=$(git diff --cached --name-only --diff-filter=ACMRD)
 
@@ -19,6 +21,11 @@ if [ "$HAS_SOURCE" -eq 1 ] && [ "$HAS_TEST" -eq 1 ]; then
   echo "META-2 violation: cannot mix architecture/ content with tests/.github/.husky/ in the same commit."
   echo "Split into two commits: one for content, one for tooling."
   exit 1
+fi
+
+STAGED_MD=$(echo "$STAGED" | grep -E '\.md$' || true)
+if [ -n "$STAGED_MD" ]; then
+  node packages/khai-tests/src/cli.mjs $STAGED_MD || exit 1
 fi
 
 exit 0
