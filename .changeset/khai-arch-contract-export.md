@@ -1,5 +1,5 @@
 ---
-"@chbrain/khai-arch": minor
+"@chbrain/khai-arch": patch
 ---
 
 Add a machine-readable contract export (`types`, `chaptersFor`), read at
