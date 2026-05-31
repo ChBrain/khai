@@ -64,10 +64,21 @@ function instanceFiles(pkgDir) {
 
 /**
  * Validate a whole engine package: every referenced content file against the
- * canon, manifest<->filesystem consistency, and a compose() smoke test.
+ * canon and manifest<->filesystem consistency. This is the untrusted-safe
+ * surface — it only reads and statically analyses markdown + JSON, and never
+ * executes package code.
+ *
+ * The compose() smoke test executes the package's index.mjs and is therefore
+ * gated behind `{ executeCompose: true }`. Trusted callers (this workspace's
+ * own suite) opt in; callers validating untrusted, user-submitted packages
+ * (e.g. the configuration website) must leave it off, or a malicious index.mjs
+ * would run in their process.
+ *
+ * @param {string} pkgDir
+ * @param {{ executeCompose?: boolean }} [opts]
  * @returns {Promise<FileResult[]>}
  */
-export async function validateEnginePackage(pkgDir) {
+export async function validateEnginePackage(pkgDir, { executeCompose = false } = {}) {
   const results = [];
   const { manifest } = readManifest(pkgDir);
   if (!manifest) return [{ file: pkgDir, errors: ["package.json has no `khai` manifest"] }];
@@ -98,19 +109,21 @@ export async function validateEnginePackage(pkgDir) {
       results.push({ file, errors: [`content file not referenced in manifest: ${file}`] });
   }
 
-  // compose() smoke test
-  try {
-    const mod = await import(pathToFileURL(join(pkgDir, "index.mjs")).href);
-    for (const name of Object.keys(expressions)) {
-      const out = mod.compose({ expression: name });
-      if (!out || typeof out !== "string")
-        results.push({
-          file: "index.mjs",
-          errors: [`compose({expression:"${name}"}) returned no string`],
-        });
+  // compose() smoke test — executes package code; trusted callers only
+  if (executeCompose) {
+    try {
+      const mod = await import(pathToFileURL(join(pkgDir, "index.mjs")).href);
+      for (const name of Object.keys(expressions)) {
+        const out = mod.compose({ expression: name });
+        if (!out || typeof out !== "string")
+          results.push({
+            file: "index.mjs",
+            errors: [`compose({expression:"${name}"}) returned no string`],
+          });
+      }
+    } catch (err) {
+      results.push({ file: "index.mjs", errors: [`compose() smoke failed: ${err.message}`] });
     }
-  } catch (err) {
-    results.push({ file: "index.mjs", errors: [`compose() smoke failed: ${err.message}`] });
   }
 
   return results;

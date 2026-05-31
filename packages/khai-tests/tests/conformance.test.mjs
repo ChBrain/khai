@@ -16,7 +16,8 @@ describe("conformance: engine packages", () => {
 
   for (const dir of pkgs) {
     it(`${relative(root, dir)} conforms`, async () => {
-      expect(flatten(await validateEnginePackage(dir))).toEqual([]);
+      // Trusted: our own workspace packages, so run the compose() smoke test too.
+      expect(flatten(await validateEnginePackage(dir, { executeCompose: true }))).toEqual([]);
     });
   }
 });

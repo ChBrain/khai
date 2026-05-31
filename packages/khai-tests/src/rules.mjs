@@ -89,12 +89,17 @@ export function checkOwner(doc, { expected }) {
   const e = [];
   for (const line of lines) {
     if (!line.trim()) continue;
-    const m = /^- ([A-Za-z][A-Za-z ]*?):\s*(.+?)\s*$/.exec(line);
+    // Split on the first colon, then trim both sides in JS. Avoids lazy
+    // quantifiers + trailing \s*$ (polynomial backtracking on adversarial,
+    // user-submitted markdown).
+    const m = /^-[ \t]+([A-Za-z][A-Za-z ]*):(.*)$/.exec(line);
     if (!m) {
       e.push(`malformed Owner line: "${line.trim()}"`);
       continue;
     }
-    got[m[1]] = m[2];
+    const key = m[1].trimEnd();
+    const value = m[2].trim();
+    got[key] = value;
   }
   const want = Object.keys(expected);
   for (const k of Object.keys(got)) {
@@ -121,7 +126,10 @@ export function checkExtensions(doc, { allowed = new Set() } = {}) {
 // --- links: relative .md targets must resolve ----------------------------
 export function checkLinks(text, baseDir) {
   const e = [];
-  const re = /\[[^\]]*\]\(([^)]+)\)/g;
+  // Single bounded char-class capture for the link target. No adjacent
+  // quantifiers that can match the same input, so the global scan stays
+  // linear on adversarial input like "[[[[..." (CodeQL polynomial-regex).
+  const re = /\]\(([^()\s]+)\)/g;
   let m;
   while ((m = re.exec(text))) {
     const target = m[1].split("#")[0];

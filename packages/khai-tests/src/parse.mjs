@@ -26,8 +26,13 @@ export function parseDoc(text) {
 
   const headers = [];
   body.split("\n").forEach((line, i) => {
-    const h = /^(#{1,6})\s+(.+?)\s*$/.exec(line);
-    if (h) headers.push({ level: h[1].length, text: h[2], line: i + 1 });
+    // Match the hashes and the gap, then take the remainder and trim in JS.
+    // Avoids a lazy quantifier + trailing \s*$ (polynomial backtracking).
+    const h = /^(#{1,6})[ \t]+(.*)$/.exec(line);
+    if (h) {
+      const text = h[2].trim();
+      if (text) headers.push({ level: h[1].length, text, line: i + 1 });
+    }
   });
 
   return { data, ok, error, body, headers };
