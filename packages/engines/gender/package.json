@@ -32,7 +32,15 @@
     },
     "wiring": "Always-on positional read, wired at two altitudes. Declare the law once in the instructions Knowledge chapter (\"personas have a gender\", linking the anchor) so the read applies system-wide and cannot be dropped; then give each persona exactly one expression under Projection, which carries the anchor upward so the anchor need not be linked separately. The law mandates the anchor for all; each Projection resolves it to a concrete expression. Read in the first beat of the scene and held continuously underneath every other process the persona runs — it does not pause. The agent never narrates the position; the room enacts it, in who gets the first word and who is read as a claim before they speak."
   },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
   "dependencies": {
     "@chbrain/khai-arch": "^0.0.3"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.0.1",
+    "vitest": "^4.1.7"
   }
 }
