@@ -12,6 +12,7 @@
 - Add `architecture` as a typed spec (GROW: Ground, Root, Open, Weave) — the
   canon's one deliberately-open type, the extension seam through which builders
   attach engines, content, and extensions without editing the canon. The former
-  overview doc moves to `model.md` (the companion), and `instructions.md` now
-  points its System chapter at `model.md` for the structural commitments. Brings
-  the canon to eight typed specs plus one companion.
+  overview doc moves to `model.md` (the companion). `instructions.md` keeps its
+  System chapter pointed at `architecture.md`, so the Agent reads the seam to
+  find where extensions attach. Brings the canon to eight typed specs plus one
+  companion.

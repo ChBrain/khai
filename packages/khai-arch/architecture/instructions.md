@@ -19,7 +19,7 @@ The Human comes to experience. The Agent holds the room.
 
 - **K**nowledge: The protocol governing how information enters, travels, and lands inside the system. Plot and elements are the structures it lands in.
 
-- **S**ystem: The hard rules that override the Agent's defaults. The fight won in advance. The structural commitments are defined in the [Model](model.md).
+- **S**ystem: The hard rules that override the Agent's defaults. The fight won in advance. The structural commitments are defined in the [Architecture](architecture.md).
 
 ---
 
