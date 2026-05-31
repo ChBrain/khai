@@ -34,10 +34,27 @@ begins.
 
 ## How to use this engine
 
-Instance-specific. Each `khai: persona` file links the gender expression
-the persona holds -- one of [position_male.md](position_male.md) or
-[position_female.md](position_female.md). The persona need not link the
-anchor: the expression carries the anchor upward.
+Wire the engine at two altitudes, and use both together:
+
+1. **The law, declared once.** In the consuming project's
+   `khai: instructions` file, under Knowledge, state that personas carry
+   the read: "Personas have a [gender](position_gender.md)." This links
+   the anchor and makes the read system-wide -- the fight won in advance,
+   so no persona file can quietly drop it. It does not assign an
+   expression; it establishes that the read applies to all.
+
+2. **The expression, chosen per persona.** Each `khai: persona` file
+   links the expression the persona holds, under Projection -- one of
+   [position_male.md](position_male.md) or
+   [position_female.md](position_female.md). Projection is "the read the
+   room receives before anyone speaks," which is exactly what the gender
+   position is. The persona need not link the anchor: the expression
+   carries the anchor upward.
+
+The law mandates the anchor for everyone; each Projection resolves it to
+a concrete expression. Declaring only the law leaves the read on but the
+expression unstated; declaring only the expression makes gender opt-in
+per persona. Both together is the strongest form.
 
 The position is always present. It is read in the first beat of the
 scene and continues underneath every other process the persona runs.
