@@ -24,9 +24,9 @@ the anchor or the existing two.
 ## Schema
 
 Each position file, anchor and expressions alike, carries the HOLD
-section set (Has / Orders / Loses / Drives) and `Scope: Universal` in
-the Owner block. Engine content, shared by every culture, not scoped
-to one.
+section set (Has / Orders / Loses / Drives) and an Owner block naming
+`Project: khai` and `Engine: gender`. Engine content, shared by every
+culture, not scoped to one.
 
 Gender is position-only. There is no gender process because the position
 is held continuously, not run -- the room reads it before any process
