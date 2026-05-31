@@ -10,8 +10,8 @@ HAS_TEST=0
 
 for f in $STAGED; do
   case "$f" in
-    architecture/*) HAS_SOURCE=1 ;;
-    tests/*|.github/workflows/*|.husky/*) HAS_TEST=1 ;;
+    packages/khai-arch/architecture/*) HAS_SOURCE=1 ;;
+    packages/khai-arch/tests/*|.github/workflows/*|.husky/*) HAS_TEST=1 ;;
   esac
 done
 
