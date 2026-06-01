@@ -124,7 +124,11 @@ export function checkExtensions(doc, { allowed = new Set() } = {}) {
 }
 
 // --- links: relative .md targets must resolve ----------------------------
-export function checkLinks(text, baseDir) {
+// `exempt` is a set of basenames that need not resolve in the local tree
+// because they are wiring references into an installed engine (resolved via
+// npm, not co-located) -- e.g. a consumer persona links `position_female.md`,
+// which lives in node_modules, not next to the persona.
+export function checkLinks(text, baseDir, { exempt = new Set() } = {}) {
   const e = [];
   // Single bounded char-class capture for the link target. No adjacent
   // quantifiers that can match the same input, so the global scan stays
@@ -134,6 +138,7 @@ export function checkLinks(text, baseDir) {
   while ((m = re.exec(text))) {
     const target = m[1].split("#")[0];
     if (!target || /^https?:\/\//.test(target)) continue;
+    if (exempt.has(target.split("/").pop())) continue;
     if (target.endsWith(".md") && !existsSync(join(baseDir, target)))
       e.push(`broken link: ${target}`);
   }

@@ -31,7 +31,7 @@ const typeIds = Object.keys(types);
  * consumer's own instance files). The Owner *section* is always required by the
  * canon H2 set; only the value check is conditional.
  */
-export function validateContentFile(text, { type, baseDir, owner, allowed }) {
+export function validateContentFile(text, { type, baseDir, owner, allowed, exemptLinks }) {
   const contract = types[type];
   if (!contract) return [`unknown khai type "${type}" (not in canon)`];
   const doc = parseDoc(text);
@@ -48,7 +48,7 @@ export function validateContentFile(text, { type, baseDir, owner, allowed }) {
   errors.push(...h1Errors);
   errors.push(...checkTitle(doc, { name }));
   if (owner) errors.push(...checkOwner(doc, { expected: owner }));
-  if (baseDir) errors.push(...checkLinks(text, baseDir));
+  if (baseDir) errors.push(...checkLinks(text, baseDir, { exempt: exemptLinks }));
 
   // The declared frontmatter type must match the package's manifest type.
   if (doc.ok && doc.data.khai && doc.data.khai !== type)
@@ -216,7 +216,10 @@ export function validateInstanceFile(text, { baseDir, requirements = [], owner }
   const type = doc.data?.khai;
   if (typeof type !== "string") return ["instance has no `khai:` type in frontmatter"];
 
-  const errors = validateContentFile(text, { type, baseDir, owner });
+  // Links into installed engine content resolve via npm, not the local tree, so
+  // every wiring target is exempt from the local broken-link check.
+  const exemptLinks = new Set(requirements.flatMap((r) => [...r.targets]));
+  const errors = validateContentFile(text, { type, baseDir, owner, exemptLinks });
   for (const req of requirements) {
     if (req.on !== type) continue;
     errors.push(...checkWiring(doc, req));

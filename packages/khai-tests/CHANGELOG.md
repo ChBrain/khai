@@ -9,7 +9,7 @@
   plus a `khai-tests` CLI, validating content packages against the
   architecture canon. Depends on `@chbrain/khai-arch`.
 
-- Add the consumer surface for projects that *use* engines:
+- Add the consumer surface for projects that _use_ engines:
   `validateProject` / `validateInstanceFile` / `wiringRequirements`, plus the
   `checkWiring` rule atom. Engines declare wiring requirements in their manifest
   (`requires: [{ on, section, link }]`); the kit discovers a project's instance
@@ -19,3 +19,12 @@
   arch-declares-types / kit-enforces-them. `validateContentFile` now treats
   `owner` as optional so a consumer's own instances validate structurally
   without asserting khai ownership.
+
+- Add a `--project [dir]` mode to the `khai-tests` CLI for downstream repos:
+  it reads the installed engines' manifests from `node_modules/@chbrain/*`,
+  discovers the repo's instance files by their `khai:` frontmatter, and enforces
+  the canon plus every engine wiring requirement, exiting non-zero on failure
+  (drops straight into CI or a pre-commit hook). The existing file-path mode
+  (engine-package validation) is unchanged. Wiring links into installed engine
+  content are exempt from the local broken-link check, since they resolve via
+  npm rather than being co-located. Adds a README documenting both modes.
