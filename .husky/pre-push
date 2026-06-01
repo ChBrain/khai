@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+# KHAI-Guard: block a push that would mix source and test changes in a single
+# PR range (compare branch tip against its merge-base with origin/main).
+npx khai-guard
