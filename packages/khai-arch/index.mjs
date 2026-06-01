@@ -61,4 +61,58 @@ export function chaptersFor(typeId) {
   return types[typeId]?.chapters ?? null;
 }
 
-export default { types, chaptersFor, playbook };
+/**
+ * WIRES: the chapters of an engine card. An engine instance fills the `engines`
+ * type (WIRE: Wire, Issue, Require, Enforce) and adds one chapter -- Setup, the
+ * instance-specific wiring. Derived from the type so the instance contract can
+ * never drift from the definition: WIRES = engines.chapters + Setup.
+ * @type {string[]}
+ */
+export const wiresChapters = [...(chaptersFor("engines") ?? []), "Setup"];
+
+/**
+ * Build a render-ready WIRES card from an engine's `khai` manifest block (the
+ * `khai` field of its package.json). The card prose is authored under
+ * `manifest.card`, keyed by the lowercased WIRES chapter names (wire, issue,
+ * require, enforce, setup). Returns the normalized card; throws if the engine
+ * slug or any chapter is missing/empty, or an unknown card key appears.
+ *
+ * khai-arch owns this shape (it owns the WIRE type); consumers render the
+ * returned card and khai-tests enforces it on every installed engine.
+ *
+ * @param {{ engine?: string, type?: string, anchor?: string, card?: Record<string,string> }} manifest
+ * @returns {{ id: string, type: string|null, anchor: string|null, mnemonic: "WIRES", chapters: string[], sections: Record<string,string> }}
+ */
+export function engineCard(manifest) {
+  if (!manifest || typeof manifest !== "object")
+    throw new Error("engineCard: an engine manifest (package.json `khai` block) is required");
+  const id = manifest.engine;
+  if (typeof id !== "string" || !id.trim())
+    throw new Error("engineCard: manifest.engine (the engine slug) is required");
+  const card = manifest.card;
+  if (!card || typeof card !== "object")
+    throw new Error(`engineCard(${id}): manifest.card is required -- the WIRES chapters as prose`);
+
+  const allowed = new Set(wiresChapters.map((c) => c.toLowerCase()));
+  for (const k of Object.keys(card))
+    if (!allowed.has(k)) throw new Error(`engineCard(${id}): unknown card key "${k}"`);
+
+  const sections = {};
+  for (const chapter of wiresChapters) {
+    const prose = card[chapter.toLowerCase()];
+    if (typeof prose !== "string" || !prose.trim())
+      throw new Error(`engineCard(${id}): card.${chapter.toLowerCase()} must be non-empty prose`);
+    sections[chapter] = prose.trim();
+  }
+
+  return {
+    id,
+    type: manifest.type ?? null,
+    anchor: manifest.anchor ?? null,
+    mnemonic: "WIRES",
+    chapters: wiresChapters,
+    sections,
+  };
+}
+
+export default { types, chaptersFor, playbook, wiresChapters, engineCard };
