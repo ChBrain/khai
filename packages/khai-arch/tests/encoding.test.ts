@@ -22,9 +22,9 @@ function assertEncodingOk(file: LoadedFile): void {
     REPLACEMENT,
   );
 
-  // No em-dash or en-dash -- the sanctioned mark is a spaced hyphen ' - '.
+  // No em-dash or en-dash - the sanctioned mark is a spaced hyphen ' - '.
   // (Both are forbidden: an em-dash is non-ASCII, and an en-dash is what a
-  // double-hyphen '--' renders to via smartypants -- the disguised dash.)
+  // double-hyphen '--' renders to via smartypants - the disguised dash.)
   expect(
     file.text,
     `${file.path}: must not contain em-dash (U+2014); use ' - ' instead`,
