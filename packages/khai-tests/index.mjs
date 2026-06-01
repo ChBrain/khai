@@ -6,6 +6,9 @@ export {
   validateEnginePackage,
   discoverEnginePackages,
   findEnginePackageFor,
+  validateInstanceFile,
+  validateProject,
+  wiringRequirements,
 } from "./src/validate.mjs";
 export * as rules from "./src/rules.mjs";
 export { parseDoc, sectionBody } from "./src/parse.mjs";

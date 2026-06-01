@@ -1,7 +1,16 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, beforeAll, afterAll } from "vitest";
 import { fileURLToPath } from "node:url";
 import { dirname, join, relative } from "node:path";
-import { discoverEnginePackages, validateEnginePackage, validateContentFile } from "../index.mjs";
+import { mkdirSync, writeFileSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import {
+  discoverEnginePackages,
+  validateEnginePackage,
+  validateContentFile,
+  validateInstanceFile,
+  validateProject,
+  wiringRequirements,
+} from "../index.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
 const pkgs = discoverEnginePackages(root);
@@ -70,5 +79,173 @@ x
   });
   it("flags the undeclared ### extension", () => {
     expect(errors.some((e) => e.includes("undeclared extension"))).toBe(true);
+  });
+});
+
+// --- wiring: engine declares, kit enforces on a consumer instance ---------
+describe("wiring: engine requirements enforced on instances", () => {
+  // The gender engine declares: every persona must link a gender expression
+  // under Projection. We synthesise that requirement and a consumer persona.
+  const genderManifest = {
+    engine: "gender",
+    anchor: "position_gender.md",
+    expressions: { male: "position_male.md", female: "position_female.md" },
+    requires: [{ on: "persona", section: "Projection", link: "expression" }],
+  };
+  const requirements = wiringRequirements([genderManifest]);
+
+  const persona = (projectionBody) => `---
+khai: persona
+license: CC-BY-NC-4.0
+stamp:
+  owner: A Consumer
+  version: v0.1.0
+  date: "2026-01-01"
+---
+
+# Persona: Ada
+
+## Title
+Ada
+
+## Owner
+- Project: someproject
+
+## Projection
+${projectionBody}
+
+## Action
+She ships.
+
+## Shadow
+She cannot see the cost.
+
+## Tell
+Her jaw tightens.
+`;
+
+  it("derives the requirement from the engine manifest", () => {
+    expect(requirements).toEqual([
+      {
+        engine: "gender",
+        on: "persona",
+        section: "Projection",
+        targets: new Set(["position_male.md", "position_female.md"]),
+      },
+    ]);
+  });
+
+  it("passes a persona that links a gender expression in Projection", () => {
+    const text = persona("A woman in a boardroom. [Female](position_female.md)");
+    expect(validateInstanceFile(text, { requirements })).toEqual([]);
+  });
+
+  it("rejects a persona with no gender link (the law is enforced)", () => {
+    const text = persona("A woman in a boardroom.");
+    const errors = validateInstanceFile(text, { requirements });
+    expect(errors.some((e) => e.includes("wiring(gender)") && e.includes("Projection"))).toBe(true);
+  });
+
+  it("rejects a gender link in the wrong section", () => {
+    const text = persona("A woman in a boardroom.").replace(
+      "## Action\nShe ships.",
+      "## Action\nShe ships. [Female](position_female.md)",
+    );
+    const errors = validateInstanceFile(text, { requirements });
+    expect(errors.some((e) => e.includes("wiring(gender)"))).toBe(true);
+  });
+
+  it("does not impose gender wiring on a non-persona instance", () => {
+    const plotLike = persona("x").replace("khai: persona", "khai: persona-but-checked-by-on");
+    // `on: persona` only — a different type is untouched by this requirement.
+    const reqForPlot = wiringRequirements([
+      { ...genderManifest, requires: [{ on: "plot", section: "Cast", link: "expression" }] },
+    ]);
+    const text = persona("No gender here.");
+    // The plot-scoped requirement must not fire on a persona.
+    expect(
+      validateInstanceFile(text, { requirements: reqForPlot }).some((e) => e.includes("wiring")),
+    ).toBe(false);
+  });
+
+  it("exempts the wiring link from the local broken-link check", () => {
+    // The gender file lives in node_modules, not next to the persona, so the
+    // wiring link must not be reported as a broken local link. baseDir points
+    // at a real dir with no such file; only the exemption keeps it green.
+    const text = persona("A woman. [Female](position_female.md)");
+    const errors = validateInstanceFile(text, { baseDir: root, requirements });
+    expect(errors).toEqual([]);
+  });
+});
+
+// --- project mode: discover + validate a consuming repo on disk -----------
+describe("project: validateProject discovers and enforces", () => {
+  // Build a throwaway consumer project in a temp dir: gender "installed" via a
+  // node_modules manifest, two persona instances (one wired, one not).
+  const fixtureRoot = join(tmpdir(), `khai-proj-${process.pid}`);
+  const contentDir = join(fixtureRoot, "content");
+  const engineDir = join(fixtureRoot, "node_modules", "@chbrain", "khai-engine-gender");
+
+  const personaFile = (name, projection) => `---
+khai: persona
+license: CC-BY-NC-4.0
+stamp:
+  owner: Demo
+  version: v0.1.0
+  date: "2026-01-01"
+---
+
+# Persona: ${name}
+
+## Title
+${name}
+
+## Owner
+- Project: demo
+
+## Projection
+${projection}
+
+## Action
+They move.
+
+## Shadow
+They cannot see the cost.
+
+## Tell
+A held breath.
+`;
+
+  beforeAll(() => {
+    mkdirSync(contentDir, { recursive: true });
+    mkdirSync(engineDir, { recursive: true });
+    // Minimal installed-engine manifest carrying the gender requirement.
+    writeFileSync(
+      join(engineDir, "package.json"),
+      JSON.stringify({
+        name: "@chbrain/khai-engine-gender",
+        khai: {
+          engine: "gender",
+          type: "position",
+          anchor: "position_gender.md",
+          expressions: { male: "position_male.md", female: "position_female.md" },
+          requires: [{ on: "persona", section: "Projection", link: "expression" }],
+        },
+      }),
+    );
+    writeFileSync(
+      join(contentDir, "ada.md"),
+      personaFile("Ada", "A woman. [Female](position_female.md)"),
+    );
+    writeFileSync(join(contentDir, "sam.md"), personaFile("Sam", "Someone, ungendered."));
+  });
+
+  afterAll(() => rmSync(fixtureRoot, { recursive: true, force: true }));
+
+  it("flags only the persona missing its gender wiring", () => {
+    const results = validateProject({ root: fixtureRoot });
+    const failing = results.map((r) => r.file.split("/").pop());
+    expect(failing).toEqual(["sam.md"]);
+    expect(results[0].errors.some((e) => e.includes("wiring(gender)"))).toBe(true);
   });
 });

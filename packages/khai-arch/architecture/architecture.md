@@ -1,42 +1,30 @@
-# KAI HACKS AI
+---
+id: architecture
+type: architecture
+class: meta
+mnemonic: "GROW"
+chapters: [Ground, Root, Open, Weave]
+subtitle: "the growing of the world"
+status: draft
+version: 0.0.3
+---
 
-A self-describing acronym. The name is the specification.
+The canon is fixed. This is where it grows.
 
-Three movements:
+- **G**round: What stays mine. The types, their shape, their guardrails -- the
+  base you build on and do not edit. The canon does not move.
 
-| Movement  | Reads as                                       | Layer                      |
-| --------- | ---------------------------------------------- | -------------------------- |
-| **KAI**   | Kais, Architecture, Instructions               | the noun: who + what       |
-| **HACKS** | Human, Agent, Collaboration, Knowledge, System | the verbs: how it operates |
-| **AI**    | Agent, Implemented                             | the verb: how it runs      |
+- **R**oot: Where your work attaches. The anchor point through which your
+  engines, content, and extensions connect to the canon.
 
-Read forward (KAI → HACKS → AI) it is how you build one. Read backward, it is how you explain one.
+- **O**pen: The one permission in the spec. Extend any way you like -- this is
+  the seam built to be opened, not the wall built to hold.
 
-## Model
+- **W**eave: What results. Your stuff and the canon running as one whole, the
+  join invisible at the point of use.
 
-A Play is the production. A Plot is one scene inside it. The elements (Process, Position, Piece, Place, Persona) are the cargo each Plot carries. Infrastructure is the runtime. Architecture and Instructions prime it before the session begins.
+---
 
-```
-1 Play has
-  0..n Plots, each having
-    0..n Processes
-    0..n Positions
-    0..n Pieces
-    0..n Places
-    0..n Personas
-
-Primed by:
-  0..1 Architecture
-  0..1 Instructions
-```
-
-## Types
-
-- **Plot**: the scene. Loads and places the elements.
-- **Process**: what moves inside the scene.
-- **Position**: what the world demands of whoever holds it.
-- **Piece**: what carries more weight than it shows.
-- **Place**: the pressure environment. The source of the ambient conditions the Plot's Cue draws from.
-- **Persona**: the specific human the scene runs through.
-- **Architecture**: this document. The design intent before the runtime starts.
-- **Instructions**: the HACKS method. The fight won in advance.
+Ground and Root are the anchor. Open and Weave are the freedom. An architecture
+file succeeds when the seam holds: what you build connects without touching the
+canon, and the two run as one.

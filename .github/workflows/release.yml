@@ -41,7 +41,6 @@ jobs:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-          # Use PAT for tag push; GITHUB_TOKEN suppresses workflows on Version PR
           token: ${{ secrets.RELEASE_TOKEN }}
       - uses: actions/setup-node@v6
         with:
@@ -53,27 +52,17 @@ jobs:
         run: npm ci
       - name: test
         run: npm test
-<<<<<<< HEAD
-      - name: configure git for tag push
-        run: |
-          # Belt-and-suspenders: ensure git remote has PAT credentials for tag push.
-          # Checkout token sets credentials, but changesets may reconfigure git.
-          git remote set-url origin "https://x-access-token:${{ secrets.RELEASE_TOKEN }}@github.com/${{ github.repository }}.git"
+      - name: use PAT for git so tag push passes branch protection
+        run: git remote set-url origin "https://x-access-token:${{ secrets.RELEASE_TOKEN }}@github.com/${{ github.repository }}.git"
       - name: changesets release
         uses: changesets/action@v1
         with:
           version: npm run version
           publish: npm run release
         env:
-<<<<<<< HEAD
           # PAT for opening/updating the Version PR so CI runs on it.
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
           # Publishing to GitHub Packages uses the workflow token's packages
           # scope (the PAT also works, but GITHUB_TOKEN is the least-privilege
           # choice for the publish step).
-=======
-          # PAT for opening/updating the Version PR so CI runs on it
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-          # Publishing to GitHub Packages uses the workflow token's packages scope
->>>>>>> 827fa78 (fix(release): use RELEASE_TOKEN for PAT-authenticated tag push)
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
