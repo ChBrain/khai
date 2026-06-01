@@ -21,16 +21,50 @@ export const DEFAULT_CONFIG = {
   exemptRenames: true,
 };
 
+// Raised by resolveConfig when a consumer's khai-guard.config.json is
+// malformed. The CLI catches it and exits 2 (config error) rather than
+// letting a bad bucket silently match nothing.
+export class ConfigError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "ConfigError";
+  }
+}
+
+function assertGlobList(value, key) {
+  if (!Array.isArray(value) || value.some((g) => typeof g !== "string")) {
+    throw new ConfigError(`"${key}" must be an array of glob strings`);
+  }
+}
+
 // Shallow per-key override: a config file replaces only the keys it sets.
+// Validates the shape so a typo (e.g. source as a bare string) fails loud
+// instead of matching nothing and waving every PR through.
 export function resolveConfig(fileConfig) {
-  return { ...DEFAULT_CONFIG, ...(fileConfig ?? {}) };
+  if (fileConfig == null) return DEFAULT_CONFIG;
+  if (typeof fileConfig !== "object" || Array.isArray(fileConfig)) {
+    throw new ConfigError("config must be a JSON object");
+  }
+  if ("source" in fileConfig) assertGlobList(fileConfig.source, "source");
+  if ("test" in fileConfig) assertGlobList(fileConfig.test, "test");
+  if ("exemptRenames" in fileConfig && typeof fileConfig.exemptRenames !== "boolean") {
+    throw new ConfigError(`"exemptRenames" must be a boolean`);
+  }
+  if ("defaultRef" in fileConfig && typeof fileConfig.defaultRef !== "string") {
+    throw new ConfigError(`"defaultRef" must be a string`);
+  }
+  return { ...DEFAULT_CONFIG, ...fileConfig };
 }
 
 /**
  * Classify changed paths into the source / test buckets.
  * @param {string[]} changed repo-relative paths
  * @param {typeof DEFAULT_CONFIG} config
- * @returns {{source: string[], test: string[], mixed: boolean}}
+ * @returns {{source: string[], test: string[], both: string[], mixed: boolean}}
+ *
+ * `both` holds any path that matches BOTH buckets — that means the
+ * config's globs overlap and the verdict is ambiguous, which the CLI
+ * surfaces as a config error rather than a phantom "mixed".
  */
 export function classify(changed, config = DEFAULT_CONFIG) {
   // dot:true so .github / .husky (dotfiles) match.
@@ -38,11 +72,15 @@ export function classify(changed, config = DEFAULT_CONFIG) {
   const isTest = picomatch(config.test, { dot: true });
   const source = [];
   const test = [];
+  const both = [];
   for (const f of changed) {
-    if (isSource(f)) source.push(f);
-    if (isTest(f)) test.push(f);
+    const s = isSource(f);
+    const t = isTest(f);
+    if (s) source.push(f);
+    if (t) test.push(f);
+    if (s && t) both.push(f);
   }
-  return { source, test, mixed: source.length > 0 && test.length > 0 };
+  return { source, test, both, mixed: source.length > 0 && test.length > 0 };
 }
 
 /**
@@ -62,6 +100,7 @@ export function parseNameStatus(lines, { exemptRenames = true } = {}) {
     const status = parts[0];
     if (exemptRenames && (status === "R100" || status === "C100")) continue;
     // Rename/copy rows are: <status>\t<old>\t<new>; use the destination.
+    // All other statuses (M, A, D, T, …) are: <status>\t<path>.
     if (/^[RC]/.test(status)) out.push(parts[2]);
     else out.push(parts[1]);
   }
