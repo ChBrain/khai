@@ -14,7 +14,7 @@ export function checkEncoding(text) {
   const e = [];
   if (text.charCodeAt(0) === 0xfeff) e.push("BOM present");
   if (/\r\n/.test(text)) e.push("CRLF present");
-  if (/[–—]/.test(text)) e.push("en/em-dash present (use --)");
+  if (/[–—]/.test(text)) e.push("en/em-dash present (use ' - ')");
   if (text.length > 0 && !text.endsWith("\n")) e.push("no LF at EOF");
   return e;
 }
