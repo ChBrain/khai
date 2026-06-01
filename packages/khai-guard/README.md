@@ -44,3 +44,8 @@ with a root `khai-guard.config.json` (override is per-key):
 
 Pure renames/copies (`R100`/`C100`) are exempt by default — moving a file
 changes neither product nor contract.
+
+The config is validated on load: a malformed `source`/`test` (not a glob
+array), or buckets whose globs **overlap** (a path that matches both),
+fail as a config error (exit `2`) rather than silently waving PRs through
+or reporting a phantom mix.
