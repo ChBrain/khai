@@ -38,5 +38,6 @@ Primed by:
 - **Piece**: what carries more weight than it shows.
 - **Place**: the pressure environment. The source of the ambient conditions the Plot's Cue draws from.
 - **Persona**: the specific human the scene runs through.
-- **Architecture**: this document. The design intent before the runtime starts.
+- **Architecture**: the extension seam (GROW). Where builders attach without touching the canon.
 - **Instructions**: the HACKS method. The fight won in advance.
+- **Engines**: what comes through the seam (WIRE). The extensions builders wire in.
