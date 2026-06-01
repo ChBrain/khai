@@ -4,9 +4,9 @@ type: architecture
 class: meta
 mnemonic: "GROW"
 chapters: [Ground, Root, Open, Weave]
-subtitle: "the growing of the world"
+subtitle: "the growing of worlds"
 status: draft
-version: 0.0.3
+version: 0.0.4
 ---
 
 The canon is fixed. This is where it grows.
