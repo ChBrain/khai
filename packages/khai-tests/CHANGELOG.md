@@ -1,5 +1,12 @@
 # @chbrain/khai-tests
 
+## 0.0.2
+
+### Patch Changes
+
+- Updated dependencies [b8549f6]
+  - @chbrain/khai-arch@0.0.4
+
 ## 0.0.1
 
 ### Patch Changes
