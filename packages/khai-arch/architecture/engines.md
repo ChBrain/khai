@@ -4,7 +4,7 @@ type: engines
 class: meta
 mnemonic: "WIRE"
 chapters: [Wire, Issue, Require, Enforce]
-subtitle: "the wiring of power"
+subtitle: "the tooling of parts"
 status: draft
 version: 0.0.1
 ---
