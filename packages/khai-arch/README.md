@@ -3,7 +3,7 @@
 The khai architecture spec - type definitions, mnemonics, and chapter rules
 for the kaihacks system.
 
-This package ships the canonical architecture as 10 markdown files in
+This package ships the canonical architecture as 11 markdown files in
 `architecture/`. The rendered version lives at
 [architecture.kaihacks.ai](https://architecture.kaihacks.ai).
 
@@ -25,7 +25,7 @@ Configure `.npmrc`:
 - `architecture/architecture.md` - the meta type (GROW: the extension seam)
 - `architecture/engines.md` - the meta type (WIRE: the engine contract)
 - `architecture/instructions.md` - the meta type (HACKS method)
-- `architecture/plot.md` - the system type
+- `architecture/play.md`, `plot.md` - the house types (the production and its scenes)
 - `architecture/process.md`, `position.md`, `piece.md`, `place.md`, `persona.md` - the element types
 - `architecture/model.md` - the companion overview (KAI HACKS AI canon), no frontmatter
 - `architecture/_schema.yml` - JSON Schema for the spec frontmatter

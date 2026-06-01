@@ -14,7 +14,7 @@ Read forward (KAI → HACKS → AI) it is how you build one. Read backward, it i
 
 ## Model
 
-A Play is the production. A Plot is one scene inside it. The elements (Process, Position, Piece, Place, Persona) are the cargo each Plot carries. Infrastructure is the runtime. Architecture and Instructions prime it before the session begins.
+A Play is the production. A Plot is one scene inside it. The elements (Process, Position, Piece, Place, Persona) are the cargo each Plot carries. Infrastructure is the runtime. Architecture and Instructions prime it before the session begins; Engines enrich it.
 
 ```
 1 Play has
@@ -28,10 +28,34 @@ A Play is the production. A Plot is one scene inside it. The elements (Process, 
 Primed by:
   0..1 Architecture
   0..1 Instructions
+
+Enriched by:
+  0..n Engines
+```
+
+## Playbook
+
+The playbook spine -- the ordered groups consumers render. The model owns it; nothing downstream re-declares the order or the grouping.
+
+```yaml
+groups:
+  - id: production
+    label: production
+    members: [play, plot]
+  - id: cast
+    label: cast
+    members: [process, position, piece, place, persona]
+  - id: rests-on
+    label: rests on
+    members: [architecture, instructions]
+  - id: enriched-by
+    label: enriched by
+    members: [engines]
 ```
 
 ## Types
 
+- **Play**: the production. Holds the plots and binds them into one telling.
 - **Plot**: the scene. Loads and places the elements.
 - **Process**: what moves inside the scene.
 - **Position**: what the world demands of whoever holds it.

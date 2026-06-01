@@ -18,7 +18,7 @@ const archDir = join(here, "architecture");
 /**
  * @typedef {Object} KhaiType
  * @property {string} id        canonical slug, equals the `khai:` value instances declare
- * @property {"system"|"element"|"meta"} class
+ * @property {"house"|"element"|"meta"} class
  * @property {string} mnemonic
  * @property {string[]} chapters  required `## <chapter>` sections, in canonical order
  * @property {string} subtitle
@@ -42,9 +42,23 @@ export const types = Object.fromEntries(
     ]),
 );
 
+/**
+ * The playbook spine, owned by the canon. model.md declares the ordered groups
+ * (each an ordered list of type ids) in a `groups` yaml block; this reads it so
+ * consumers render the playbook instead of re-declaring its order or grouping.
+ * Parsed via gray-matter by wrapping the block as frontmatter -- no extra yaml
+ * dependency.
+ * @type {{ id: string, label: string, members: string[] }[]}
+ */
+const modelText = readFileSync(join(archDir, "model.md"), "utf8");
+const groupsBlock = modelText.match(/```ya?ml\n([\s\S]*?)```/);
+export const playbook = groupsBlock
+  ? (matter(`---\n${groupsBlock[1]}---\n`).data.groups ?? [])
+  : [];
+
 /** Required `## ` section headers for a type id, in canonical order. */
 export function chaptersFor(typeId) {
   return types[typeId]?.chapters ?? null;
 }
 
-export default { types, chaptersFor };
+export default { types, chaptersFor, playbook };
