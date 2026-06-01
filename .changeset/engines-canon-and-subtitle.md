@@ -13,6 +13,11 @@ Add `engines` as the ninth typed spec and fix the architecture subtitle.
   worlds" to keep the "the X-ing of <bare noun>" beat the other specs share
   (forces, conditions, forms ...); the article in "the world" was the odd one
   out.
+- **instructions.md**: drop the System chapter's `[Architecture](architecture.md)`
+  link -- the only hard link in the canon. It rendered as a dead relative URL on
+  the site, and the cross-reference is redundant now that architecture.md and
+  engines.md are self-describing specs the Agent reads directly. The canon is
+  now link-free.
 - Companion + schema housekeeping: model.md lists Engines and stops calling
   Architecture "this document" (stale since the GROW rename); \_schema.yml and
   the README reflect nine typed specs.
