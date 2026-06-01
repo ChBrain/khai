@@ -124,7 +124,11 @@ export function checkExtensions(doc, { allowed = new Set() } = {}) {
 }
 
 // --- links: relative .md targets must resolve ----------------------------
-export function checkLinks(text, baseDir) {
+// `exempt` is a set of basenames that need not resolve in the local tree
+// because they are wiring references into an installed engine (resolved via
+// npm, not co-located) -- e.g. a consumer persona links `position_female.md`,
+// which lives in node_modules, not next to the persona.
+export function checkLinks(text, baseDir, { exempt = new Set() } = {}) {
   const e = [];
   // Single bounded char-class capture for the link target. No adjacent
   // quantifiers that can match the same input, so the global scan stays
@@ -134,8 +138,39 @@ export function checkLinks(text, baseDir) {
   while ((m = re.exec(text))) {
     const target = m[1].split("#")[0];
     if (!target || /^https?:\/\//.test(target)) continue;
+    if (exempt.has(target.split("/").pop())) continue;
     if (target.endsWith(".md") && !existsSync(join(baseDir, target)))
       e.push(`broken link: ${target}`);
   }
   return e;
+}
+
+// --- wiring: an instance must link a required engine target ---------------
+// Engines declare, in their manifest `requires`, that instances of a given
+// khai type must link one of the engine's files (resolved to basenames) inside
+// a named section -- e.g. gender requires every persona to link one of its
+// expressions under Projection. The kit only enforces what the engine declared;
+// the rule itself lives nowhere but here, so a requirement has one home.
+export function checkWiring(doc, { section, targets, engine }) {
+  const lines = sectionBody(doc.body, section);
+  if (lines === null)
+    return [`wiring(${engine}): missing "## ${section}" section to carry the required link`];
+  const found = linkBasenames(lines.join("\n"));
+  if (found.some((b) => targets.has(b))) return [];
+  const want = [...targets].join(", ");
+  const got = found.length ? found.join(", ") : "no links";
+  return [`wiring(${engine}): "## ${section}" must link one of [${want}]; found [${got}]`];
+}
+
+/** Basenames of every relative markdown link target in a block of text. */
+function linkBasenames(text) {
+  const re = /\]\(([^()\s]+)\)/g;
+  const out = [];
+  let m;
+  while ((m = re.exec(text))) {
+    const target = m[1].split("#")[0];
+    if (!target || /^https?:\/\//.test(target)) continue;
+    out.push(target.split("/").pop());
+  }
+  return out;
 }

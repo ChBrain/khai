@@ -1,0 +1,16 @@
+{
+  "name": "khai-downstream-starter",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Starter for a project that consumes khai engines. Run `npm run validate` to check every instance file against the canon and the installed engines' wiring rules.",
+  "type": "module",
+  "scripts": {
+    "validate": "khai-tests --project ."
+  },
+  "dependencies": {
+    "@chbrain/khai-engine-gender": "^0.0.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.0.1"
+  }
+}

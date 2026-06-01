@@ -1,0 +1,29 @@
+name: validate
+
+on:
+  push:
+  pull_request:
+
+# Least privilege: read the repo, and read GitHub Packages to install the
+# @chbrain engines. No write scope is needed — this workflow only validates.
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          registry-url: "https://npm.pkg.github.com"
+      - name: install
+        run: npm ci
+        env:
+          # GitHub Packages needs auth even for restricted reads. In Actions the
+          # built-in GITHUB_TOKEN can read packages in the same org/owner.
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: validate khai content
+        run: npm run validate
