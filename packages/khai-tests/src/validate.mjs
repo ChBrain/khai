@@ -1,12 +1,12 @@
 // Conformance validator. Pulls the section contract from the canon
 // (@chbrain/khai-arch) so it never restates it, then composes the rule atoms.
 // Exposed for both package mode (one package/file) and suite mode (the whole
-// workspace) — same code, two callers.
+// workspace) - same code, two callers.
 
 import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { pathToFileURL } from "node:url";
-import { types } from "@chbrain/khai-arch";
+import { types, engineCard } from "@chbrain/khai-arch";
 import { parseDoc } from "./parse.mjs";
 import {
   checkEncoding,
@@ -72,7 +72,7 @@ function instanceFiles(pkgDir) {
 /**
  * Validate a whole engine package: every referenced content file against the
  * canon and manifest<->filesystem consistency. This is the untrusted-safe
- * surface — it only reads and statically analyses markdown + JSON, and never
+ * surface - it only reads and statically analyses markdown + JSON, and never
  * executes package code.
  *
  * The compose() smoke test executes the package's index.mjs and is therefore
@@ -89,6 +89,15 @@ export async function validateEnginePackage(pkgDir, { executeCompose = false } =
   const results = [];
   const { manifest } = readManifest(pkgDir);
   if (!manifest) return [{ file: pkgDir, errors: ["package.json has no `khai` manifest"] }];
+
+  // WIRES card: the engine must declare a valid card. khai-arch owns the shape
+  // (engineCard throws on a missing slug, missing/empty chapter, or foreign
+  // key); the kit surfaces that as a package error so a cardless engine fails.
+  try {
+    engineCard(manifest);
+  } catch (err) {
+    results.push({ file: "package.json", errors: [`WIRES card: ${err.message}`] });
+  }
 
   const { type, anchor, expressions = {} } = manifest;
   const referenced = [anchor, ...Object.values(expressions)];
@@ -116,7 +125,7 @@ export async function validateEnginePackage(pkgDir, { executeCompose = false } =
       results.push({ file, errors: [`content file not referenced in manifest: ${file}`] });
   }
 
-  // compose() smoke test — executes package code; trusted callers only
+  // compose() smoke test - executes package code; trusted callers only
   if (executeCompose) {
     try {
       const mod = await import(pathToFileURL(join(pkgDir, "index.mjs")).href);

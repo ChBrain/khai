@@ -249,3 +249,33 @@ A held breath.
     expect(results[0].errors.some((e) => e.includes("wiring(gender)"))).toBe(true);
   });
 });
+
+// --- WIRES card: every engine must declare a valid card -------------------
+// The canon owns the card shape (khai-arch engineCard); validateEnginePackage
+// surfaces it, so an engine whose manifest carries no card fails the kit.
+describe("engine card: validateEnginePackage enforces a valid WIRES card", () => {
+  const cardlessDir = join(tmpdir(), `khai-cardless-${process.pid}`);
+
+  beforeAll(() => {
+    mkdirSync(cardlessDir, { recursive: true });
+    writeFileSync(
+      join(cardlessDir, "package.json"),
+      JSON.stringify({
+        name: "@chbrain/khai-engine-nocard",
+        khai: {
+          engine: "nocard",
+          type: "position",
+          anchor: "position_nocard.md",
+          expressions: {},
+        },
+      }),
+    );
+  });
+
+  afterAll(() => rmSync(cardlessDir, { recursive: true, force: true }));
+
+  it("flags an engine whose manifest carries no card", async () => {
+    const errors = flatten(await validateEnginePackage(cardlessDir));
+    expect(errors.some((e) => e.includes("WIRES card"))).toBe(true);
+  });
+});
