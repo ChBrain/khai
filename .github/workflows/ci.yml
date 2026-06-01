@@ -32,8 +32,12 @@ jobs:
     # `changeset status --since` exits non-zero if a package changed without
     # an accompanying changeset. For changes that genuinely need no release
     # (tests, tooling), add an empty changeset: `npx changeset add --empty`.
+    #
+    # Version PRs are exempt: changesets opens them on changeset-release/* and
+    # they intentionally consume the changeset while bumping packages, which
+    # would otherwise trip this gate and make every release unmergeable.
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' && !startsWith(github.head_ref, 'changeset-release/')
     steps:
       - uses: actions/checkout@v6
         with:
