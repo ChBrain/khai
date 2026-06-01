@@ -1,6 +1,6 @@
 $schema: "http://json-schema.org/draft-07/schema#"
 title: "khai spec frontmatter"
-description: "Frontmatter schema for the nine typed spec files. The companion file (model.md) has no frontmatter and is exempt."
+description: "Frontmatter schema for the ten typed spec files. The companion file (model.md) has no frontmatter and is exempt."
 type: object
 required:
   - id
@@ -20,14 +20,14 @@ properties:
   type:
     type: string
     pattern: "^[a-z][a-z0-9-]*$"
-    description: "for the eight typed specs, equals id; for plot it is also the system-class type"
+    description: "equals id for every typed spec"
   class:
     type: string
-    enum: [system, element, meta]
+    enum: [house, element, meta, system]
   mnemonic:
     type: string
     pattern: "^(TO [A-Z]{4}|[A-Z]{4,6})$"
-    description: "TO + 4 caps (system/element forms) OR 4-6 caps (meta form, e.g. HACKS)"
+    description: "either TO + 4 caps (e.g. TO CAST) or 4-6 bare caps (e.g. HACKS, ENACTS)"
   chapters:
     type: array
     minItems: 4

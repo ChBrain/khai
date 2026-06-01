@@ -1,7 +1,7 @@
 ---
 id: plot
 type: plot
-class: system
+class: house
 mnemonic: "TO CAST"
 chapters: [Cue, Action, Stage, Tension]
 subtitle: "the casting of forces"
