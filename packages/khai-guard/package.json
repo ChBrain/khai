@@ -1,0 +1,49 @@
+{
+  "name": "@chbrain/khai-guard",
+  "version": "0.0.1",
+  "description": "KHAI-Guard: the source/test separation gate. A PR may change the product or its verifiers, never both — split them, tests first.",
+  "keywords": [
+    "ci",
+    "governance",
+    "monorepo",
+    "tests-first",
+    "guard"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/khai-guard"
+  },
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "khai-guard": "./bin/khai-guard.mjs"
+  },
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "bin/",
+    "index.mjs",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "picomatch": "^4.0.2"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.7"
+  }
+}
