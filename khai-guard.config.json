@@ -1,5 +1,14 @@
 {
-  "source": ["packages/khai-arch/architecture/**"],
-  "test": ["packages/khai-arch/tests/**", ".github/workflows/**", ".husky/**"],
+  "source": [
+    "packages/khai-arch/architecture/**",
+    "packages/khai-guard/index.mjs",
+    "packages/khai-guard/bin/**"
+  ],
+  "test": [
+    "packages/khai-arch/tests/**",
+    "packages/khai-guard/tests/**",
+    ".github/workflows/**",
+    ".husky/**"
+  ],
   "exemptRenames": true
 }
