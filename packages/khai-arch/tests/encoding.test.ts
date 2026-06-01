@@ -7,6 +7,7 @@ const repoRoot = join(fileURLToPath(import.meta.url), "..", "..");
 
 const BOM = "﻿";
 const EM_DASH = "—";
+const EN_DASH = "–";
 const REPLACEMENT = "�";
 
 function assertEncodingOk(file: LoadedFile): void {
@@ -21,11 +22,17 @@ function assertEncodingOk(file: LoadedFile): void {
     REPLACEMENT,
   );
 
-  // No em-dash
+  // No em-dash or en-dash - the sanctioned mark is a spaced hyphen ' - '.
+  // (Both are forbidden: an em-dash is non-ASCII, and an en-dash is what a
+  // double-hyphen '--' renders to via smartypants - the disguised dash.)
   expect(
     file.text,
     `${file.path}: must not contain em-dash (U+2014); use ' - ' instead`,
   ).not.toContain(EM_DASH);
+  expect(
+    file.text,
+    `${file.path}: must not contain en-dash (U+2013); use ' - ' instead`,
+  ).not.toContain(EN_DASH);
 
   // No carriage returns
   expect(file.text, `${file.path}: must not contain CR (\\r); use LF line endings`).not.toContain(
@@ -79,10 +86,11 @@ describe("encoding: invalid fixtures - bad-encoding-* must fail", () => {
     it(`${file.path} is detected as encoding-bad`, () => {
       const hasBom = file.bytes[0] === 0xef && file.bytes[1] === 0xbb && file.bytes[2] === 0xbf;
       const hasEmDash = file.text.includes(EM_DASH);
+      const hasEnDash = file.text.includes(EN_DASH);
       const hasReplacement = file.text.includes(REPLACEMENT);
       const hasCr = file.text.includes("\r");
 
-      const isBad = hasBom || hasEmDash || hasReplacement || hasCr;
+      const isBad = hasBom || hasEmDash || hasEnDash || hasReplacement || hasCr;
       expect(isBad, `${file.path}: expected at least one encoding violation`).toBe(true);
     });
   }
