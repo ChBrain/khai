@@ -139,3 +139,33 @@ export function checkLinks(text, baseDir) {
   }
   return e;
 }
+
+// --- wiring: an instance must link a required engine target ---------------
+// Engines declare, in their manifest `requires`, that instances of a given
+// khai type must link one of the engine's files (resolved to basenames) inside
+// a named section -- e.g. gender requires every persona to link one of its
+// expressions under Projection. The kit only enforces what the engine declared;
+// the rule itself lives nowhere but here, so a requirement has one home.
+export function checkWiring(doc, { section, targets, engine }) {
+  const lines = sectionBody(doc.body, section);
+  if (lines === null)
+    return [`wiring(${engine}): missing "## ${section}" section to carry the required link`];
+  const found = linkBasenames(lines.join("\n"));
+  if (found.some((b) => targets.has(b))) return [];
+  const want = [...targets].join(", ");
+  const got = found.length ? found.join(", ") : "no links";
+  return [`wiring(${engine}): "## ${section}" must link one of [${want}]; found [${got}]`];
+}
+
+/** Basenames of every relative markdown link target in a block of text. */
+function linkBasenames(text) {
+  const re = /\]\(([^()\s]+)\)/g;
+  const out = [];
+  let m;
+  while ((m = re.exec(text))) {
+    const target = m[1].split("#")[0];
+    if (!target || /^https?:\/\//.test(target)) continue;
+    out.push(target.split("/").pop());
+  }
+  return out;
+}

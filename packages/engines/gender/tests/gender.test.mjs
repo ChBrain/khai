@@ -36,6 +36,16 @@ describe("gender: manifest", () => {
     expect(manifest.wiring).toContain("Knowledge");
     expect(manifest.wiring).toContain("Projection");
   });
+
+  it("declares the enforceable wiring requirement: persona -> gender in Projection", () => {
+    // The engine owns the contract; the kit enforces it. Here we assert the
+    // engine actually ships the machine-readable requirement.
+    expect(manifest.requires).toContainEqual({
+      on: "persona",
+      section: "Projection",
+      link: "expression",
+    });
+  });
 });
 
 // --- behavior: compose() carries the anchor upward ------------------------
