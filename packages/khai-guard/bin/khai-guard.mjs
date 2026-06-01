@@ -7,15 +7,32 @@
 //
 // Config: ./khai-guard.config.json in the repo root, override-only;
 // falls back to the package defaults.
+//
+// Exit 0 = clean, 1 = source/test mixed, 2 = config/usage error.
 
 import { execFileSync } from "node:child_process";
 import { readFileSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
-import { classify, resolveConfig, parseNameStatus, DEFAULT_CONFIG } from "../index.mjs";
+import {
+  classify,
+  resolveConfig,
+  parseNameStatus,
+  DEFAULT_CONFIG,
+  ConfigError,
+} from "../index.mjs";
 
+// Return the value following `name`, but only if it looks like a value
+// (not the next flag and not missing). `--base --head x` must NOT treat
+// "--head" as the base SHA.
 function flag(name) {
   const i = process.argv.indexOf(name);
-  return i >= 0 ? process.argv[i + 1] : undefined;
+  if (i < 0) return undefined;
+  const value = process.argv[i + 1];
+  if (value === undefined || value.startsWith("--")) {
+    console.error(`KHAI-Guard: ${name} requires a value.`);
+    process.exit(2);
+  }
+  return value;
 }
 
 function git(args) {
@@ -25,11 +42,21 @@ function git(args) {
 function loadConfig() {
   const path = resolve(process.cwd(), "khai-guard.config.json");
   if (!existsSync(path)) return DEFAULT_CONFIG;
+  let parsed;
   try {
-    return resolveConfig(JSON.parse(readFileSync(path, "utf8")));
+    parsed = JSON.parse(readFileSync(path, "utf8"));
   } catch (err) {
-    console.error(`KHAI-Guard: cannot read khai-guard.config.json — ${err.message}`);
+    console.error(`KHAI-Guard: cannot parse khai-guard.config.json — ${err.message}`);
     process.exit(2);
+  }
+  try {
+    return resolveConfig(parsed);
+  } catch (err) {
+    if (err instanceof ConfigError) {
+      console.error(`KHAI-Guard: invalid khai-guard.config.json — ${err.message}`);
+      process.exit(2);
+    }
+    throw err;
   }
 }
 
@@ -65,7 +92,19 @@ if (changed === null) {
   process.exit(0);
 }
 
-const { source, test, mixed } = classify(changed, config);
+const { source, test, both, mixed } = classify(changed, config);
+
+if (both.length > 0) {
+  // A path matched BOTH buckets: the config's globs overlap, so any
+  // verdict here is ambiguous. Fail as a config error, not a violation.
+  console.error(
+    "::error::KHAI-Guard: config buckets overlap — these paths match both source and test:",
+  );
+  console.error(`  ${both.join("\n  ")}`);
+  console.error("");
+  console.error("  Fix khai-guard.config.json so source and test don't intersect.");
+  process.exit(2);
+}
 
 if (mixed) {
   // `::error::` is a GitHub Actions annotation; harmless locally.
