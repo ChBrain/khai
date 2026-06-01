@@ -17,6 +17,11 @@ name: release
 # required checks (test, meta-2) permanently pending and unmergeable. A PAT is
 # a real identity, so CI fires on the Version PR and it merges green through
 # normal branch protection — no admin bypass.
+#
+# Tag push: `changeset publish` pushes git tags after publishing. The checkout
+# token sets git credentials, but the changesets action may override them.
+# Setting the remote URL explicitly with the PAT guarantees the push
+# authenticates as the PAT user and clears branch protection.
 
 on:
   push:
@@ -47,6 +52,8 @@ jobs:
         run: npm ci
       - name: test
         run: npm test
+      - name: use PAT for git so tag push passes branch protection
+        run: git remote set-url origin "https://x-access-token:${{ secrets.RELEASE_TOKEN }}@github.com/${{ github.repository }}.git"
       - name: changesets release
         uses: changesets/action@v1
         with:
