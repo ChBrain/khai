@@ -11,17 +11,26 @@ name: release
 #     the action runs `changeset publish`, which publishes every package
 #     whose version is not yet on GitHub Packages and pushes its git tag.
 #
-# The Version PR is opened with RELEASE_TOKEN (a PAT), not the default
-# GITHUB_TOKEN. GitHub deliberately suppresses workflow runs on commits made
-# by GITHUB_TOKEN (anti-recursion), which would leave the Version PR's
-# required checks (test, meta-2) permanently pending and unmergeable. A PAT is
-# a real identity, so CI fires on the Version PR and it merges green through
-# normal branch protection — no admin bypass.
+# ── Token requirements (READ THIS before debugging a 403) ───────────────────
+# Every git operation here runs as RELEASE_TOKEN (set on checkout, below):
+#   * version run  -> pushes the changeset-release/main branch + opens the PR
+#   * publish run  -> pushes the git tags after npm publish
+# So RELEASE_TOKEN must be a PAT with BOTH:
+#   * Contents: Read and write   (push branches + tags)
+#   * Pull requests: Read and write   (open the Version PR)
+# A fine-grained PAT must also list ChBrain/khai in its repository access.
 #
-# Tag push: `changeset publish` pushes git tags after publishing. The checkout
-# token sets git credentials, but the changesets action may override them.
-# Setting the remote URL explicitly with the PAT guarantees the push
-# authenticates as the PAT user and clears branch protection.
+# If RELEASE_TOKEN lacks Contents: write you get, on EVERY git push:
+#     remote: Permission to ChBrain/khai.git denied to <token-owner>.  (403)
+# npm publish still succeeds in that case (it uses NODE_AUTH_TOKEN, not git),
+# so the packages go live but the branch/tag push fails. The fix is the token
+# scope, not this file.
+#
+# Why a PAT and not the built-in GITHUB_TOKEN: GitHub suppresses workflow runs
+# on commits/PRs made by GITHUB_TOKEN (anti-recursion). A bot-authored Version
+# PR would never trigger CI, leaving its required checks permanently pending
+# and the PR unmergeable. A PAT is a real identity, so CI fires and the PR
+# merges green through normal branch protection — no admin bypass.
 
 on:
   push:
@@ -41,6 +50,9 @@ jobs:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
+          # Persists RELEASE_TOKEN as the git credential for all later pushes
+          # (branch + tags). This is the single source of git auth — no manual
+          # remote-url rewrite needed.
           token: ${{ secrets.RELEASE_TOKEN }}
       - uses: actions/setup-node@v6
         with:
@@ -52,17 +64,15 @@ jobs:
         run: npm ci
       - name: test
         run: npm test
-      - name: use PAT for git so tag push passes branch protection
-        run: git remote set-url origin "https://x-access-token:${{ secrets.RELEASE_TOKEN }}@github.com/${{ github.repository }}.git"
       - name: changesets release
         uses: changesets/action@v1
         with:
           version: npm run version
           publish: npm run release
         env:
-          # PAT for opening/updating the Version PR so CI runs on it.
+          # PAT for the action's git pushes and for opening the Version PR so
+          # CI runs on it. Needs Contents: write + Pull requests: write.
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-          # Publishing to GitHub Packages uses the workflow token's packages
-          # scope (the PAT also works, but GITHUB_TOKEN is the least-privilege
-          # choice for the publish step).
+          # npm publish to GitHub Packages uses the built-in token's packages
+          # scope — least privilege, and independent of the git-push auth above.
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
