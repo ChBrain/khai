@@ -76,7 +76,12 @@ function changedPaths(config) {
   }
   let raw;
   try {
-    raw = git(["diff", "--name-status", "-M", base, head]);
+    // Three-dot range: merge-base(base, head)..head — exactly what THIS
+    // branch changed. Two-dot (base..head) would also surface files the
+    // base branch advanced past since the PR branched off, misfiring the
+    // gate on any branch that has fallen behind. (In local mode `base` is
+    // already the merge-base, so three-dot is a harmless no-op there.)
+    raw = git(["diff", "--name-status", "-M", `${base}...${head}`]);
   } catch (err) {
     console.error(`KHAI-Guard: git diff failed — ${err.message}`);
     process.exit(2);
