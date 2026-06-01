@@ -11,6 +11,7 @@ If you discover a security vulnerability, misconfiguration, or advisory affectin
 ## Security Finding Workflow
 
 Every security finding must be attached to a PR before it's resolved. This ensures:
+
 - Audit trail of who fixed it and when
 - Peer review of the remediation
 - Clear documentation of the security rationale
@@ -44,6 +45,7 @@ Every security finding must be attached to a PR before it's resolved. This ensur
 **PR Title:** `security(ci): add explicit permissions to ci.yml workflow`
 
 **Code change:**
+
 ```yaml
 # Explicit permissions follow the principle of least privilege.
 # This workflow needs to read repository contents for checkout and test execution.
@@ -66,15 +68,15 @@ All security fixes must adhere to least privilege:
 
 **Common permissions for khai workflows:**
 
-| Permission | Use Case |
-|---|---|
-| `contents: read` | Checkout repo, run tests, read files |
-| `contents: write` | Push commits, create tags (release workflows only) |
-| `pull-requests: write` | Create or update PRs (automation workflows) |
-| `packages: read` | Install from GitHub Packages |
-| `packages: write` | Publish to GitHub Packages |
-| `security-events: write` | CodeQL analysis workflow |
-| `actions: read` | Read workflow metadata (CodeQL) |
+| Permission               | Use Case                                           |
+| ------------------------ | -------------------------------------------------- |
+| `contents: read`         | Checkout repo, run tests, read files               |
+| `contents: write`        | Push commits, create tags (release workflows only) |
+| `pull-requests: write`   | Create or update PRs (automation workflows)        |
+| `packages: read`         | Install from GitHub Packages                       |
+| `packages: write`        | Publish to GitHub Packages                         |
+| `security-events: write` | CodeQL analysis workflow                           |
+| `actions: read`          | Read workflow metadata (CodeQL)                    |
 
 ## Governance
 
