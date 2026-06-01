@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-gender",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "khai engine content — the gender domain: gender as position, the read the room applies before a persona speaks.",
   "type": "module",
   "main": "./index.mjs",
@@ -45,10 +45,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.0.6"
+    "@chbrain/khai-arch": "^0.0.7"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.0.4",
+    "@chbrain/khai-tests": "^0.0.5",
     "vitest": "^4.1.7"
   }
 }
