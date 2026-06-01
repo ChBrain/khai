@@ -25,6 +25,30 @@ jobs:
       - name: vitest
         run: npm test
 
+  changeset:
+    # Require a changeset whenever a publishable package changes, so the
+    # registry can never drift behind source again (the GROW restructure
+    # reached main with no version bump and shipped a stale khai-arch@0.0.3).
+    # `changeset status --since` exits non-zero if a package changed without
+    # an accompanying changeset. For changes that genuinely need no release
+    # (tests, tooling), add an empty changeset: `npx changeset add --empty`.
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: "npm"
+      - name: install
+        run: npm ci
+      - name: fetch base branch
+        run: git fetch origin ${{ github.event.pull_request.base.ref }}
+      - name: require a changeset for package changes
+        run: npx changeset status --since=origin/${{ github.event.pull_request.base.ref }}
+
   meta-2:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
