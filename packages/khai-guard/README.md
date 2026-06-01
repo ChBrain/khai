@@ -49,3 +49,26 @@ The config is validated on load: a malformed `source`/`test` (not a glob
 array), or buckets whose globs **overlap** (a path that matches both),
 fail as a config error (exit `2`) rather than silently waving PRs through
 or reporting a phantom mix.
+
+## Doctor
+
+```bash
+npx khai-guard doctor
+```
+
+`doctor` diagnoses a repo's **adoption** instead of judging a diff — for
+when the config looks right but the gate isn't actually catching anything.
+It reports:
+
+- the **resolved config** (which file, or the package defaults) and the buckets;
+- whether the **globs overlap** on the real tracked tree (it classifies
+  `git ls-files` and lists any path matching both buckets) — a definite
+  misconfiguration, **exit `2`**;
+- whether a **CI workflow** references `khai-guard` (and warns about a stale
+  inline/`meta-2` gate left behind);
+- whether **`.husky/pre-push`** invokes it.
+
+It **cannot** read branch protection, so it prints a reminder to confirm the
+_required_ status check is still named `khai-guard` — a renamed-away job stops
+gating while every PR keeps showing green. Exit `0` healthy, `2` on a definite
+misconfiguration; warnings print but never fail.
