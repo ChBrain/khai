@@ -10,6 +10,7 @@
   "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
   "workspaces": [
     "packages/khai-arch",
+    "packages/khai-guard",
     "packages/khai-tests",
     "packages/engines/*"
   ],
