@@ -4,6 +4,12 @@ on:
   push:
   pull_request:
 
+# Least privilege: read the repo, and read GitHub Packages to install the
+# @chbrain engines. No write scope is needed — this workflow only validates.
+permissions:
+  contents: read
+  packages: read
+
 jobs:
   validate:
     runs-on: ubuntu-latest
