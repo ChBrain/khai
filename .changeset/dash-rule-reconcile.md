@@ -2,7 +2,7 @@
 "@chbrain/khai-tests": patch
 ---
 
-Encoding rule: the sanctioned dash is the spaced hyphen ` - `, never `--`.
+Encoding rule: the sanctioned dash is the spaced hyphen `-`, never `--`.
 `checkEncoding` already rejected en/em-dashes but pointed authors at `--`,
 which markdown renders back into an en-dash (the disguised dash). The guidance
 now reads `use ' - '`, matching the canon's own encoding rule. (khai-arch's
