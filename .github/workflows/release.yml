@@ -10,6 +10,18 @@ name: release
 #   * If there are no pending changesets (the version PR was just merged),
 #     the action runs `changeset publish`, which publishes every package
 #     whose version is not yet on GitHub Packages and pushes its git tag.
+#
+# The Version PR is opened with RELEASE_TOKEN (a PAT), not the default
+# GITHUB_TOKEN. GitHub deliberately suppresses workflow runs on commits made
+# by GITHUB_TOKEN (anti-recursion), which would leave the Version PR's
+# required checks (test, meta-2) permanently pending and unmergeable. A PAT is
+# a real identity, so CI fires on the Version PR and it merges green through
+# normal branch protection — no admin bypass.
+#
+# Tag push: `changeset publish` pushes git tags after publishing. The checkout
+# token sets git credentials, but the changesets action may override them.
+# Setting the remote URL explicitly with the PAT guarantees the push
+# authenticates as the PAT user and clears branch protection.
 
 on:
   push:
@@ -29,6 +41,7 @@ jobs:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
+          token: ${{ secrets.RELEASE_TOKEN }}
       - uses: actions/setup-node@v6
         with:
           node-version-file: .nvmrc
@@ -39,11 +52,17 @@ jobs:
         run: npm ci
       - name: test
         run: npm test
+      - name: use PAT for git so tag push passes branch protection
+        run: git remote set-url origin "https://x-access-token:${{ secrets.RELEASE_TOKEN }}@github.com/${{ github.repository }}.git"
       - name: changesets release
         uses: changesets/action@v1
         with:
           version: npm run version
           publish: npm run release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # PAT for opening/updating the Version PR so CI runs on it.
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+          # Publishing to GitHub Packages uses the workflow token's packages
+          # scope (the PAT also works, but GITHUB_TOKEN is the least-privilege
+          # choice for the publish step).
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
