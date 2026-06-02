@@ -93,4 +93,175 @@ export const mockJudge = async ({ prose }) => {
   return { verdict: "flag", suggestion: tighter, reason: "removable filler" };
 };
 
-export default { rubrics, review, reviewCard, mockJudge };
+/**
+ * A finding is a risk; its `treatment` is the human's risk decision, in the
+ * classic vocabulary; `status` is derived by the collector from the treatment
+ * and whether the content still flags.
+ *
+ *   treatment:
+ *     null       untreated: a human must still decide (the open comment).
+ *     "accept"   acknowledged, left as is. The content may still flag; that is
+ *                the accepted risk. The model cannot refute a decision.
+ *     "reduce"   a claim that the content was fixed. VERIFIABLE: the next run
+ *                checks it actually stopped flagging.
+ *     "transfer" the risk is owned elsewhere (another engine, a sibling PR, a
+ *                downstream world); `resolution` says where.
+ *   status (derived):
+ *     "open"        untreated and still flagging, OR a "reduce" that still flags
+ *                   (the anti-cheat reopen: the claimed fix did not land).
+ *     "accepted" / "transferred"   the treatment, respected.
+ *     "reduced"     a "reduce" the re-run confirms no longer flags. Solved for real.
+ *     "cleared"     untreated, no longer flagging (an incidental fix, no decision).
+ *
+ * @typedef {"accept"|"reduce"|"transfer"|null} Treatment
+ * @typedef {{ id: string, engine?: string, where?: string, rubric?: string,
+ *   reason?: string|null, suggestion?: string|null, treatment?: Treatment,
+ *   status?: "open"|"accepted"|"transferred"|"reduced"|"cleared", resolution?: string|null }} LedgerEntry
+ */
+
+/**
+ * The collector: reconcile a fresh review against the known ledger. Pure (no IO,
+ * no clock), so it tests deterministically; the CLI reads/writes around it. It
+ * does three jobs:
+ *   1. dedup     a finding already in the ledger is not raised again (`added`
+ *                holds only genuinely new findings, which need a comment).
+ *   2. treat     each known finding keeps its human treatment (accept/transfer),
+ *                its review text refreshed to the latest.
+ *   3. verify    a "reduce" is checked against the content: gone -> "reduced"
+ *                (solved for real); still flagging -> reopened to "open" (the
+ *                claimed fix did not land). This is the anti-cheat.
+ *
+ * @param {LedgerEntry[]} prior  the committed ledger (the collector's memory)
+ * @param {{id:string,engine?:string,where?:string,rubric?:string,reason?:string|null,suggestion?:string|null}[]} fresh
+ * @returns {{ ledger: LedgerEntry[], added: LedgerEntry[], reopened: LedgerEntry[] }}
+ */
+export function collect(prior = [], fresh = []) {
+  const priorById = new Map(prior.map((e) => [e.id, e]));
+  const freshById = new Map(fresh.map((f) => [f.id, f]));
+  const ledger = [];
+  const added = [];
+  const reopened = [];
+
+  // Known findings: carry the human treatment, refresh the text, derive status.
+  for (const e of prior) {
+    const latest = freshById.get(e.id);
+    const stillFlags = latest !== undefined;
+    const base = latest
+      ? { ...e, reason: latest.reason ?? null, suggestion: latest.suggestion ?? null }
+      : { ...e };
+    let status;
+    if (e.treatment === "accept") status = "accepted";
+    else if (e.treatment === "transfer") status = "transferred";
+    else if (e.treatment === "reduce") status = stillFlags ? "open" : "reduced";
+    else status = stillFlags ? "open" : "cleared"; // untreated
+    const entry = { ...base, status };
+    ledger.push(entry);
+    if (e.treatment === "reduce" && stillFlags) reopened.push(entry); // anti-cheat
+  }
+
+  // Brand-new findings: untreated, open, and the only ones that need a comment.
+  for (const f of fresh) {
+    if (priorById.has(f.id)) continue;
+    const entry = {
+      id: f.id,
+      engine: f.engine,
+      where: f.where,
+      rubric: f.rubric,
+      reason: f.reason ?? null,
+      suggestion: f.suggestion ?? null,
+      treatment: null,
+      status: "open",
+      resolution: null,
+    };
+    ledger.push(entry);
+    added.push(entry);
+  }
+
+  return { ledger, added, reopened };
+}
+
+// The reply contract appended to the rubric: the model must answer as one JSON
+// object, so the verdict is machine-readable. Kept separate from the rubric so a
+// rubric stays pure criterion (what to judge), not transport (how to answer).
+const RESPONSE_CONTRACT =
+  'Reply with exactly one JSON object, no prose around it: {"verdict":"pass"|"flag","suggestion":string,"reason":string}. ' +
+  'Use "flag" only if the passage clearly meets the rubric for a finding; then "suggestion" is the rewrite and "reason" is one short clause. ' +
+  'Otherwise "verdict" is "pass" and the other fields may be empty.';
+
+/** Pull the verdict out of a model reply. Tolerant: a model may wrap the JSON in
+ * prose or a code fence, so grab the first balanced object; on any parse failure
+ * degrade to `pass` (this lane advises, so a flaky reply must not break a run). */
+function parseVerdict(content) {
+  const text = typeof content === "string" ? content : "";
+  const start = text.indexOf("{");
+  const end = text.lastIndexOf("}");
+  if (start === -1 || end <= start) return { verdict: "pass" };
+  let obj;
+  try {
+    obj = JSON.parse(text.slice(start, end + 1));
+  } catch {
+    return { verdict: "pass" };
+  }
+  if (obj.verdict !== "flag") return { verdict: "pass" };
+  return {
+    verdict: "flag",
+    suggestion: typeof obj.suggestion === "string" ? obj.suggestion : undefined,
+    reason: typeof obj.reason === "string" ? obj.reason : undefined,
+  };
+}
+
+/**
+ * The production judge: the model-backed counterpart to `mockJudge`, behind the
+ * same Judge interface. It calls an OpenAI-compatible chat-completions endpoint
+ * (GitHub Models / `openai/gpt-4o-mini` by default), has the model apply the
+ * rubric to the prose, and parses a structured verdict. Native fetch, no SDK, so
+ * the package keeps zero runtime dependencies; the network call is what keeps it
+ * out of the test suite, which uses `mockJudge`. `fetchImpl` is injectable so a
+ * test can stub the transport and stay offline + reproducible.
+ *
+ * A token and network are required at call time (CI, dry runs), not at import.
+ * Reads config from the environment so a world wires it with secrets, not code:
+ *   KHAI_REVIEW_TOKEN (or GITHUB_TOKEN), KHAI_REVIEW_ENDPOINT, KHAI_REVIEW_MODEL.
+ *
+ * @param {{ token?: string, endpoint?: string, model?: string, temperature?: number, fetchImpl?: typeof fetch }} [opts]
+ * @returns {Judge}
+ */
+export function createModelJudge({
+  token = process.env.KHAI_REVIEW_TOKEN ?? process.env.GITHUB_TOKEN,
+  endpoint = process.env.KHAI_REVIEW_ENDPOINT ??
+    "https://models.github.ai/inference/chat/completions",
+  model = process.env.KHAI_REVIEW_MODEL ?? "openai/gpt-4o-mini",
+  temperature = 0,
+  fetchImpl = globalThis.fetch,
+} = {}) {
+  return async function modelJudge({ prose, rubric }) {
+    if (!token)
+      throw new Error("createModelJudge: no token (set KHAI_REVIEW_TOKEN or GITHUB_TOKEN)");
+    if (typeof fetchImpl !== "function")
+      throw new Error("createModelJudge: no fetch available (Node >=18, or pass fetchImpl)");
+
+    const res = await fetchImpl(endpoint, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model,
+        temperature, // 0: as reproducible as a model gets (the lane is still advisory)
+        response_format: { type: "json_object" },
+        messages: [
+          { role: "system", content: `${rubric.instruction}\n\n${RESPONSE_CONTRACT}` },
+          { role: "user", content: prose },
+        ],
+      }),
+    });
+    if (!res.ok) {
+      const body = await res.text().catch(() => "");
+      throw new Error(
+        `modelJudge: ${model} returned ${res.status} ${res.statusText} ${body}`.trim(),
+      );
+    }
+    const data = await res.json();
+    return parseVerdict(data?.choices?.[0]?.message?.content);
+  };
+}
+
+export default { rubrics, review, reviewCard, mockJudge, createModelJudge, collect };

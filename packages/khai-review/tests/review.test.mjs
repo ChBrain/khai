@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { review, reviewCard, rubrics, mockJudge } from "../index.mjs";
+import { review, reviewCard, rubrics, mockJudge, createModelJudge, collect } from "../index.mjs";
 
 describe("review - harness over a pluggable judge", () => {
   it("returns the judge's verdict + suggestion as a finding (flag)", async () => {
@@ -55,5 +55,174 @@ describe("reviewCard - rubrics over a card's chapters", () => {
 
   it("returns nothing for a clean card (advisory, never throws on content)", async () => {
     expect(await reviewCard({ card: { wire: "clean prose here." } }, mockJudge)).toEqual([]);
+  });
+});
+
+describe("createModelJudge - the production, model-backed judge", () => {
+  // A canned chat-completions response, the OpenAI-compatible shape the endpoint
+  // returns. fetchImpl is stubbed, so these tests never touch the network.
+  const reply = (content) => ({
+    ok: true,
+    status: 200,
+    statusText: "OK",
+    json: async () => ({ choices: [{ message: { content } }] }),
+  });
+
+  it("requires a token at call time, not import time", async () => {
+    const judge = createModelJudge({ token: undefined, fetchImpl: async () => reply("{}") });
+    await expect(judge({ prose: "x", rubric: rubrics.conciseness })).rejects.toThrow(/token/);
+  });
+
+  it("parses a flag verdict (suggestion + reason) from the model reply", async () => {
+    const judge = createModelJudge({
+      token: "t",
+      fetchImpl: async () => reply('{"verdict":"flag","suggestion":"tighter","reason":"padded"}'),
+    });
+    const out = await judge({ prose: "wordy passage", rubric: rubrics.conciseness });
+    expect(out).toEqual({ verdict: "flag", suggestion: "tighter", reason: "padded" });
+  });
+
+  it("parses a pass verdict", async () => {
+    const judge = createModelJudge({
+      token: "t",
+      fetchImpl: async () => reply('{"verdict":"pass"}'),
+    });
+    expect(await judge({ prose: "lean", rubric: rubrics.conciseness })).toEqual({
+      verdict: "pass",
+    });
+  });
+
+  it("is tolerant: pulls the JSON out of a fenced / chatty reply", async () => {
+    const judge = createModelJudge({
+      token: "t",
+      fetchImpl: async () =>
+        reply('Sure!\n```json\n{"verdict":"flag","suggestion":"s","reason":"r"}\n```'),
+    });
+    expect((await judge({ prose: "x", rubric: rubrics.conciseness })).verdict).toBe("flag");
+  });
+
+  it("degrades to pass on an unparseable reply (advisory never breaks a run)", async () => {
+    const judge = createModelJudge({ token: "t", fetchImpl: async () => reply("not json at all") });
+    expect(await judge({ prose: "x", rubric: rubrics.conciseness })).toEqual({ verdict: "pass" });
+  });
+
+  it("throws on an HTTP error, surfacing status", async () => {
+    const judge = createModelJudge({
+      token: "t",
+      fetchImpl: async () => ({
+        ok: false,
+        status: 401,
+        statusText: "Unauthorized",
+        text: async () => "bad token",
+      }),
+    });
+    await expect(judge({ prose: "x", rubric: rubrics.conciseness })).rejects.toThrow(/401/);
+  });
+});
+
+describe("collect - the risk register: dedup, treat, verify", () => {
+  const finding = (id, extra = {}) => ({
+    id,
+    engine: "gender",
+    where: "card.setup",
+    rubric: "conciseness",
+    reason: "padded",
+    suggestion: "tighter",
+    ...extra,
+  });
+  const known = (id, treatment, extra = {}) => ({
+    ...finding(id),
+    treatment,
+    resolution: null,
+    ...extra,
+  });
+
+  // 1. dedup ----------------------------------------------------------------
+  it("adds a genuinely new finding as open + untreated (only these need a comment)", () => {
+    const { ledger, added } = collect([], [finding("a")]);
+    expect(added.map((e) => e.id)).toEqual(["a"]);
+    expect(ledger[0]).toMatchObject({ status: "open", treatment: null });
+  });
+
+  it("does NOT re-add a finding already in the ledger", () => {
+    const { added } = collect([known("a", null)], [finding("a")]);
+    expect(added).toEqual([]);
+  });
+
+  it("only the new ones are added when some are known and some are new", () => {
+    const { added } = collect([known("a", null)], [finding("a"), finding("b")]);
+    expect(added.map((e) => e.id)).toEqual(["b"]);
+  });
+
+  it("refreshes the latest review text on a carried finding", () => {
+    const { ledger } = collect(
+      [known("a", null, { suggestion: "old", reason: "old" })],
+      [finding("a", { suggestion: "new", reason: "new" })],
+    );
+    expect(ledger[0]).toMatchObject({ suggestion: "new", reason: "new" });
+  });
+
+  // 2. treat (Accept / Transfer are respected, content cannot refute) --------
+  it("an accepted risk stays accepted even while the content still flags", () => {
+    const { ledger, added, reopened } = collect([known("a", "accept")], [finding("a")]);
+    expect(ledger[0].status).toBe("accepted");
+    expect(added).toEqual([]);
+    expect(reopened).toEqual([]);
+  });
+
+  it("a transferred risk stays transferred", () => {
+    const { ledger } = collect([known("a", "transfer", { resolution: "#80" })], [finding("a")]);
+    expect(ledger[0]).toMatchObject({ status: "transferred", resolution: "#80" });
+  });
+
+  // 3. verify (Reduce is a claim about the content; the re-run checks it) -----
+  it("a Reduce that no longer flags is verified: status reduced (solved for real)", () => {
+    const { ledger, reopened } = collect([known("a", "reduce")], []); // gone from fresh
+    expect(ledger[0].status).toBe("reduced");
+    expect(reopened).toEqual([]);
+  });
+
+  it("a Reduce that still flags is reopened: the claimed fix did not land (anti-cheat)", () => {
+    const { ledger, reopened } = collect([known("a", "reduce")], [finding("a")]);
+    expect(ledger[0].status).toBe("open");
+    expect(reopened.map((e) => e.id)).toEqual(["a"]);
+  });
+
+  // untreated lifecycle ------------------------------------------------------
+  it("an untreated finding that no longer flags is cleared (incidental fix)", () => {
+    const { ledger, added } = collect([known("a", null)], []);
+    expect(ledger[0].status).toBe("cleared");
+    expect(added).toEqual([]);
+  });
+});
+
+describe("createModelJudge - prompt assembly", () => {
+  const reply = (content) => ({
+    ok: true,
+    status: 200,
+    statusText: "OK",
+    json: async () => ({ choices: [{ message: { content } }] }),
+  });
+
+  it("sends the rubric instruction and prose to the configured model + endpoint", async () => {
+    let captured;
+    const judge = createModelJudge({
+      token: "secret",
+      endpoint: "https://example.test/chat",
+      model: "openai/gpt-4o-mini",
+      fetchImpl: async (url, init) => {
+        captured = { url, init };
+        return reply('{"verdict":"pass"}');
+      },
+    });
+    await judge({ prose: "the prose under review", rubric: rubrics.conciseness });
+    expect(captured.url).toBe("https://example.test/chat");
+    expect(captured.init.headers.Authorization).toBe("Bearer secret");
+    const body = JSON.parse(captured.init.body);
+    expect(body.model).toBe("openai/gpt-4o-mini");
+    expect(body.temperature).toBe(0);
+    expect(body.response_format).toEqual({ type: "json_object" });
+    expect(body.messages[0].content).toContain(rubrics.conciseness.instruction);
+    expect(body.messages[1].content).toBe("the prose under review");
   });
 });
