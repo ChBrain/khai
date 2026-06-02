@@ -1,5 +1,13 @@
 import { describe, it, expect } from "vitest";
-import { review, reviewCard, rubrics, mockJudge, createModelJudge, collect } from "../index.mjs";
+import {
+  review,
+  reviewCard,
+  rubrics,
+  mockJudge,
+  createModelJudge,
+  collect,
+  reconcile,
+} from "../index.mjs";
 
 describe("review - harness over a pluggable judge", () => {
   it("returns the judge's verdict + suggestion as a finding (flag)", async () => {
@@ -193,6 +201,66 @@ describe("collect - the risk register: dedup, treat, verify", () => {
     const { ledger, added } = collect([known("a", null)], []);
     expect(ledger[0].status).toBe("cleared");
     expect(added).toEqual([]);
+  });
+});
+
+describe("reconcile - the consistency gate: table must agree with the comments", () => {
+  const entry = (id, status, treatment, extra = {}) => ({
+    id,
+    where: "card.setup",
+    status,
+    treatment,
+    resolution: null,
+    ...extra,
+  });
+
+  it("passes when every settled finding's treatment matches a resolved comment", () => {
+    const ledger = [entry("a", "accepted", "accept"), entry("b", "reduced", "reduce")];
+    const decisions = [
+      { id: "a", treatment: "accept", resolved: true },
+      { id: "b", treatment: "reduce", resolved: true },
+    ];
+    expect(reconcile(ledger, decisions)).toEqual({ ok: true, blocks: [] });
+  });
+
+  it("blocks an open finding with no recorded treatment (undecided)", () => {
+    const { ok, blocks } = reconcile([entry("a", "open", null)], []);
+    expect(ok).toBe(false);
+    expect(blocks[0]).toMatchObject({ id: "a", reason: /no recorded treatment/ });
+  });
+
+  it("blocks when the table and the comment disagree on the treatment", () => {
+    const ledger = [entry("a", "accepted", "accept")];
+    const decisions = [{ id: "a", treatment: "transfer", resolved: true }];
+    const { ok, blocks } = reconcile(ledger, decisions);
+    expect(ok).toBe(false);
+    expect(blocks[0].reason).toMatch(/table says "accept", comment says "transfer"/);
+  });
+
+  it("blocks the anti-cheat case: comment claims reduce, but the table reopened it to open", () => {
+    // the model reopened a Reduce that still flags; the table shows open while the
+    // comment says reduce -> they diverge, so the PR is held.
+    const ledger = [entry("a", "open", null)];
+    const decisions = [{ id: "a", treatment: "reduce", resolved: true }];
+    const { ok, blocks } = reconcile(ledger, decisions);
+    expect(ok).toBe(false);
+    expect(blocks[0].reason).toMatch(/still shows it open/);
+  });
+
+  it("blocks a settled finding whose comment thread is left unresolved", () => {
+    const ledger = [entry("a", "accepted", "accept")];
+    const decisions = [{ id: "a", treatment: "accept", resolved: false }];
+    expect(reconcile(ledger, decisions).blocks[0].reason).toMatch(/unresolved/);
+  });
+
+  it("blocks a comment decision that references no finding in the table", () => {
+    const { ok, blocks } = reconcile([], [{ id: "ghost", treatment: "accept", resolved: true }]);
+    expect(ok).toBe(false);
+    expect(blocks[0]).toMatchObject({ id: "ghost", reason: /not in the table/ });
+  });
+
+  it("ignores a cleared finding (incidental fix needs no decision)", () => {
+    expect(reconcile([entry("a", "cleared", null)], [])).toEqual({ ok: true, blocks: [] });
   });
 });
 

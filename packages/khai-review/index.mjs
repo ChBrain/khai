@@ -180,6 +180,68 @@ export function collect(prior = [], fresh = []) {
   return { ledger, added, reopened };
 }
 
+/**
+ * The consistency gate. The model's findings are advisory, but this is
+ * deterministic and MEANT to gate: the committed ledger must agree with the
+ * treatment each finding's PR comment thread records. It blocks when the record
+ * and the conversation diverge, so neither can drift from the other.
+ *
+ * `decisions` are parsed from the audit PR's comment threads by the workflow:
+ * one per finding id, carrying the treatment the human stated and whether the
+ * thread is resolved. Pure, so the gate logic tests without GitHub.
+ *
+ * Blocks when:
+ *   - an `open` finding has no recorded treatment (undecided), or a comment
+ *     treats it while the table still shows it open (the table did not update,
+ *     e.g. the anti-cheat reopened a Reduce the comment claims done);
+ *   - a settled finding (accepted/transferred/reduced) has no comment decision,
+ *     a comment whose treatment differs, or an unresolved thread;
+ *   - a comment decision references a finding not in the table.
+ *
+ * @param {LedgerEntry[]} ledger
+ * @param {{id:string, treatment?:Treatment, resolved?:boolean}[]} decisions
+ * @returns {{ ok: boolean, blocks: {id:string, reason:string}[] }}
+ */
+export function reconcile(ledger = [], decisions = []) {
+  const decById = new Map(decisions.map((d) => [d.id, d]));
+  const inLedger = new Set(ledger.map((e) => e.id));
+  const blocks = [];
+
+  for (const e of ledger) {
+    const d = decById.get(e.id);
+    if (e.status === "open") {
+      if (!d || !d.treatment)
+        blocks.push({ id: e.id, reason: "open finding has no recorded treatment" });
+      else
+        blocks.push({
+          id: e.id,
+          reason: `comment treats it "${d.treatment}" but the table still shows it open`,
+        });
+      continue;
+    }
+    // settled: accepted / transferred / reduced / cleared
+    if (e.status === "cleared") continue; // incidental fix, no decision needed
+    if (!d || !d.treatment)
+      blocks.push({
+        id: e.id,
+        reason: `table shows "${e.treatment}" but no comment records a decision`,
+      });
+    else if (d.treatment !== e.treatment)
+      blocks.push({
+        id: e.id,
+        reason: `table says "${e.treatment}", comment says "${d.treatment}"`,
+      });
+    else if (d.resolved === false)
+      blocks.push({ id: e.id, reason: "decision recorded but the comment thread is unresolved" });
+  }
+
+  for (const d of decisions)
+    if (!inLedger.has(d.id))
+      blocks.push({ id: d.id, reason: "comment decision for a finding not in the table" });
+
+  return { ok: blocks.length === 0, blocks };
+}
+
 // The reply contract appended to the rubric: the model must answer as one JSON
 // object, so the verdict is machine-readable. Kept separate from the rubric so a
 // rubric stays pure criterion (what to judge), not transport (how to answer).
@@ -264,4 +326,4 @@ export function createModelJudge({
   };
 }
 
-export default { rubrics, review, reviewCard, mockJudge, createModelJudge, collect };
+export default { rubrics, review, reviewCard, mockJudge, createModelJudge, collect, reconcile };

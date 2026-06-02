@@ -56,11 +56,35 @@ deterministically; the CLI reads and writes the ledger around it.
 
 ## The gate
 
-The review never gates a build: the CI job is advisory and always exits 0. The
-gate is GitHub's "require conversation resolution before merging" on the base
-branch: the audit PR cannot close while a finding comment is unresolved. The
-model proposes; the human disposes; the unresolved conversation, not a red X, is
-what holds the PR.
+Two gates hold the audit PR, and neither is the model.
+
+The review itself never gates: the model is advisory, so the review job always
+exits 0. What holds the PR is, first, GitHub's "require conversation resolution
+before merging": the audit PR cannot close while a finding comment is open.
+
+Second, the consistency gate (`reconcile`), a deterministic required check: the
+committed ledger must agree with the treatment each finding's comment records. If
+a comment treats a finding "accept" while the table still shows it open, or the
+table says "reduced" while no comment records the decision, the check fails and
+the PR is blocked. This keeps the record and the conversation from drifting
+apart, and it composes with the anti-cheat: a Reduce the collector reopened shows
+`open` in the table, so a comment claiming it done will mismatch and block.
+
+The model proposes; the human disposes by treating each finding in its comment;
+the conversation-resolution rule and the consistency check, not a red X from the
+review, are what hold the PR.
+
+## Branch protection
+
+The protection lives on `main` (the base of every audit PR), keyed by branch
+name, not tied to any branch's lifespan, so the ephemeral audit branch is fully
+compatible. Two rules carry the gate:
+
+- require conversation resolution before merging;
+- require the audit consistency check to pass.
+
+Both are evaluated per PR at merge time, so they govern an audit branch cut
+minutes ago and deleted after merge exactly as they would a standing one.
 
 ## Running it
 

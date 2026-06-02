@@ -13,6 +13,9 @@ Make the review lane runnable as an audit. Adds:
   review against a ledger: dedup (only new findings need a comment), carry (a
   known finding keeps its treatment), and verify (a Reduce that still flags
   reopens, the anti-cheat). Treatments are Accept, Reduce, Transfer.
+- `reconcile` - the consistency gate, also pure: the committed ledger must agree
+  with the treatment each finding's PR comment records, or the audit PR is
+  blocked. The findings are advisory; this is deterministic and gates.
 - a CLI (`khai-review --manifest audit/<id>/audit.json`) that drives an audit
   from its manifest, writes the ledger and the human log, and emits the new
   findings for a workflow to post as inline comments. Always exits 0; the audit
