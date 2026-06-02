@@ -174,3 +174,47 @@ function linkBasenames(text) {
   }
   return out;
 }
+
+// --- link text: never a technical filename --------------------------------
+// A link's *text* is read literally by an LLM, so it must carry meaning, not a
+// token: `[gender](position_gender.md)` is good; `[position_gender.md](...)`
+// injects a noisy filename, and `[](...)` injects nothing. Flag any link whose
+// text is empty or looks like a filename (ends in a known extension, or equals
+// the target's basename). External (http) links are exempt.
+export function checkLinkText(text) {
+  const e = [];
+  const re = /\[([^\]]*)\]\(([^()\s]+)\)/g;
+  let m;
+  while ((m = re.exec(text))) {
+    const label = m[1].trim();
+    const target = m[2].split("#")[0];
+    if (/^https?:\/\//.test(target)) continue;
+    const base = target.split("/").pop();
+    if (!label) e.push(`empty link text for "${target}"; use a natural name`);
+    else if (/\.(md|mjs|json|ts|js)$/i.test(label) || label === base)
+      e.push(`link text "${label}" is a filename; use a natural name (e.g. [gender](${base}))`);
+  }
+  return e;
+}
+
+// --- connectivity: no file hangs loose ------------------------------------
+// The engine's docs should form one link graph (the Obsidian view): no orphan.
+// Given [{ name, text }], build an undirected graph from the relative markdown
+// links between the named files and return the names with no edge to any other
+// file in the set. Pure: the package walk that feeds it lives in validate.mjs.
+export function looseFiles(files) {
+  const names = new Set(files.map((f) => f.name));
+  const degree = new Map(files.map((f) => [f.name, 0]));
+  const re = /\]\(([^()\s]+)\)/g;
+  for (const f of files) {
+    let m;
+    while ((m = re.exec(f.text))) {
+      const target = m[1].split("#")[0].split("/").pop();
+      if (target && names.has(target) && target !== f.name) {
+        degree.set(f.name, degree.get(f.name) + 1);
+        degree.set(target, degree.get(target) + 1);
+      }
+    }
+  }
+  return files.filter((f) => degree.get(f.name) === 0).map((f) => f.name);
+}
