@@ -1,5 +1,5 @@
 {
-  "id": "engine-gender",
+  "id": "gender-conciseness",
   "review": {
     "rubrics": ["conciseness"],
     "targets": ["packages/engines/gender"]
