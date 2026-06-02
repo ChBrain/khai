@@ -38,9 +38,9 @@ describe("renderEngineReadme - generated, pointer-only README", () => {
     const out = renderEngineReadme(genderPkg);
     expect(out.startsWith("# Gender\n")).toBe(true);
     expect(out).toContain("single source of truth");
-    expect(out).toContain("[gender](position_gender.md) - position (anchor)");
-    expect(out).toContain("[male](position_male.md) - position");
-    expect(out).toContain("[female](position_female.md) - position");
+    expect(out).toContain("[gender](position_gender.md): position (anchor)");
+    expect(out).toContain("[male](position_male.md): position");
+    expect(out).toContain("[female](position_female.md): position");
     expect(out).toContain("[sources and attribution](REFERENCES.md)");
     expect(out).toContain("License: CC-BY-NC-4.0");
     expect(out.endsWith("\n")).toBe(true);
@@ -55,10 +55,11 @@ describe("renderEngineReadme - generated, pointer-only README", () => {
     expect(out).not.toMatch(/\[[^\]]*\.(md|json)\]\(/);
   });
 
-  it("normalizes em/en-dashes in the tagline to ' - '", () => {
+  it("normalizes an em/en-dash in the tagline to a comma (house voice)", () => {
     const out = renderEngineReadme(genderPkg);
     expect(out).not.toMatch(/[–—]/);
-    expect(out).toContain("khai engine content - the gender domain");
+    expect(out).not.toMatch(/\S - \S/); // no clause dash either
+    expect(out).toContain("khai engine content, the gender domain");
   });
 
   it("is a pointer, not a copy: never reproduces card prose", () => {
@@ -75,8 +76,8 @@ describe("renderEngineReadme - generated, pointer-only README", () => {
   it("uses an explicit title and renders a multi-type members tree", () => {
     const out = renderEngineReadme(languagePkg);
     expect(out.startsWith("# Language\n")).toBe(true);
-    expect(out).toContain("[using language](process_using_language.md) - process (anchor)");
-    expect(out).toContain("[business english](position_business_english.md) - position");
+    expect(out).toContain("[using language](process_using_language.md): process (anchor)");
+    expect(out).toContain("[business english](position_business_english.md): position");
   });
 
   it("prefers khai.tagline over the package description", () => {

@@ -229,7 +229,7 @@ export function engineCard(manifest) {
 const capitalize = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : s);
 // Linear, not /\s*[–—]\s*/g: that backtracks O(n) per position on long space
 // runs (CodeQL polynomial-regex). Replace the dash, then collapse the seam.
-const normalizeDashes = (s) => s.replace(/[–—]/g, " - ").replace(/ {2,}/g, " ");
+const normalizeDashes = (s) => s.replace(/[–—]/g, ", ").replace(/ {2,}/g, " ").replace(/ ,/g, ",");
 
 /**
  * A natural-language label for a member file, for use as link *text* -- never
@@ -252,9 +252,9 @@ const memberLabel = (file) =>
  * composition tree, root marked as the anchor), and where the real sources of
  * truth live (the manifest / WIRES card, and REFERENCES.md). The kit regenerates
  * and diffs this, so a hand-edited or drifted README fails -- the README can
- * never disagree with the manifest. Output is newline-terminated; em/en-dashes
- * in the tagline are normalized to the sanctioned " - " so the result is
- * encoding-clean.
+ * never disagree with the manifest. Output is newline-terminated; an em/en-dash
+ * in the tagline becomes a comma, so the result follows the house voice
+ * ( , ; : () ) instead of the dash family.
  *
  * @param {{ name?: string, description?: string, license?: string, khai: object }} pkg
  * @returns {string} the README markdown
@@ -279,7 +279,7 @@ export function renderEngineReadme(pkg) {
   const files = members
     .map(
       (m) =>
-        `- [${memberLabel(m.file)}](${m.file}) - ${m.type}${m.file === rootFile ? " (anchor)" : ""}`,
+        `- [${memberLabel(m.file)}](${m.file}): ${m.type}${m.file === rootFile ? " (anchor)" : ""}`,
     )
     .join("\n");
 
@@ -287,8 +287,8 @@ export function renderEngineReadme(pkg) {
     `# ${title}\n\n` +
     (tagline ? `${tagline}\n\n` : "") +
     "This engine is defined by its [manifest](package.json), which the canon renders as the WIRES " +
-    "card. The manifest is the single source of truth; this README is generated - do not edit it " +
-    "by hand.\n\n" +
+    "card. The manifest is the single source of truth; this README is generated, not edited by " +
+    "hand.\n\n" +
     `## Files\n\n${files}\n\n` +
     "See [sources and attribution](REFERENCES.md).\n\n" +
     `License: ${license}\n`
