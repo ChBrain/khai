@@ -1,0 +1,57 @@
+[
+  {
+    "id": "engine-gender:gender:card.wire:conciseness",
+    "engine": "gender",
+    "where": "card.wire",
+    "rubric": "conciseness",
+    "reason": "Removed unnecessary words for clarity and conciseness.",
+    "suggestion": "Attaches at Position. The anchor (position_gender.md) defines gender as a position assigned by the room, not a trait owned by the persona, and the system-wide law mandates that every persona carries it.",
+    "treatment": null,
+    "status": "open",
+    "resolution": null
+  },
+  {
+    "id": "engine-gender:gender:card.issue:conciseness",
+    "engine": "gender",
+    "where": "card.issue",
+    "rubric": "conciseness",
+    "reason": "Removed filler and redundancy.",
+    "suggestion": "Two expressions a persona may hold: male and female. Each is a full position file the build composes onto the anchor, allowing the persona to read the room, not just a label. More expressions slot in as sibling files without moving the anchor.",
+    "treatment": null,
+    "status": "open",
+    "resolution": null
+  },
+  {
+    "id": "engine-gender:gender:card.require:conciseness",
+    "engine": "gender",
+    "where": "card.require",
+    "rubric": "conciseness",
+    "reason": "Removed filler and redundancy.",
+    "suggestion": "Two altitudes. The law, declared in the project's Instructions Knowledge chapter ('personas have a gender'), holds system-wide and no persona can drop it. The link per persona: the read the room receives lives under Projection. A persona may also hold a different, even contradicting, read under Shadow: the gap between what is shown and hidden is the character, not a contradiction to reject.",
+    "treatment": null,
+    "status": "open",
+    "resolution": null
+  },
+  {
+    "id": "engine-gender:gender:card.enforce:conciseness",
+    "engine": "gender",
+    "where": "card.enforce",
+    "rubric": "conciseness",
+    "reason": "Redundant phrases and filler words were removed.",
+    "suggestion": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, and each persona carries a gender read under Projection. Whether a Projection and a Shadow read cohere into a true persona is semantic, taught and reviewed, never failed by the suite. The engine ships its own structural tests; the reading is guided, not gated.",
+    "treatment": null,
+    "status": "open",
+    "resolution": null
+  },
+  {
+    "id": "engine-gender:gender:card.setup:conciseness",
+    "engine": "gender",
+    "where": "card.setup",
+    "rubric": "conciseness",
+    "reason": "Redundant phrases and unnecessary words were removed.",
+    "suggestion": "Declare the law once in the Instructions Knowledge chapter ('personas have a gender', linking the anchor) for system-wide application. Then assign each persona the read the room receives under Projection: one expression that elevates the anchor. If a persona conceals a different read, place it under Shadow; the room perceives Projection while the truth remains hidden. Read in the first beat and maintain it throughout every process the persona runs; the room enacts it, never narrates it.",
+    "treatment": null,
+    "status": "open",
+    "resolution": null
+  }
+]
