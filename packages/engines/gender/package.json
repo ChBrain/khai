@@ -24,6 +24,7 @@
   ],
   "khai": {
     "engine": "gender",
+    "tagline": "Gender as position: the read the room applies to a persona before it speaks.",
     "type": "position",
     "anchor": "position_gender.md",
     "expressions": {
