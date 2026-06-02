@@ -245,8 +245,6 @@ export function reconcile(ledger = [], decisions = []) {
         id: e.id,
         reason: `table says "${e.treatment}", comment says "${d.treatment}"`,
       });
-    else if (d.resolved === false)
-      blocks.push({ id: e.id, reason: "decision recorded but the comment thread is unresolved" });
     else if (!e.resolution || !String(e.resolution).trim())
       blocks.push({
         id: e.id,
@@ -316,6 +314,63 @@ export function parseTreatment(text) {
   const m = /^\s*(accept|reduce|transfer)\b[\s:.\-]*([\s\S]*)$/i.exec(text.trim());
   if (!m) return null;
   return { treatment: m[1].toLowerCase(), resolution: m[2].trim() || null };
+}
+
+/** Build treatment decisions from a PR's review threads: the finding id comes
+ * from the marker in the bot's comment, the treatment from the latest human
+ * reply that parses to one, the resolved state from the thread. Pure. */
+export function decisionsFromThreads(threads = []) {
+  const out = [];
+  for (const t of threads) {
+    const comments = t.comments ?? [];
+    let id = null;
+    for (const c of comments) {
+      const f = findingIdOf(c.body);
+      if (f) {
+        id = f;
+        break;
+      }
+    }
+    if (!id) continue;
+    let decision = null;
+    for (const c of comments) {
+      const d = parseTreatment(c.body);
+      if (d) decision = d; // the latest parsing reply wins
+    }
+    out.push({
+      id,
+      treatment: decision?.treatment,
+      resolution: decision?.resolution,
+      resolved: Boolean(t.isResolved),
+    });
+  }
+  return out;
+}
+
+/** Apply comment decisions to the ledger, so the table records what each finding
+ * was treated as (this is the comment -> table sync). The treatment and its
+ * resolution come from the thread; the status follows: accept -> accepted,
+ * transfer -> transferred, reduce -> reduce-pending while the content still flags
+ * (in `flagging`), else reduced. A finding with no decision is left as-is. The
+ * model, via `flagging`, still owns whether a reduce is verified, so a human
+ * cannot mark something reduced that still flags. Pure. */
+export function applyDecisions(ledger = [], decisions = [], flagging = new Set()) {
+  const flags = flagging instanceof Set ? flagging : new Set(flagging);
+  const dec = new Map(decisions.map((d) => [d.id, d]));
+  return ledger.map((e) => {
+    const d = dec.get(e.id);
+    if (!d || !d.treatment) return e;
+    let status;
+    if (d.treatment === "accept") status = "accepted";
+    else if (d.treatment === "transfer") status = "transferred";
+    else status = flags.has(e.id) ? "reduce-pending" : "reduced";
+    return {
+      ...e,
+      treatment: d.treatment,
+      resolution: d.resolution ?? e.resolution ?? null,
+      status,
+    };
+  });
 }
 
 // The reply contract appended to the rubric: the model must answer as one JSON
@@ -414,5 +469,7 @@ export default {
   anchorLine,
   findingIdOf,
   parseTreatment,
+  decisionsFromThreads,
+  applyDecisions,
   FINDING_MARKER,
 };

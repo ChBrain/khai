@@ -13,7 +13,7 @@
 //   Transfer); resolved from the thread.
 
 import { readFileSync } from "node:fs";
-import { findingIdOf, parseTreatment, reconcile } from "../../packages/khai-review/index.mjs";
+import { decisionsFromThreads, reconcile } from "../../packages/khai-review/index.mjs";
 
 const [threadsPath, ...ledgerPaths] = process.argv.slice(2);
 if (!threadsPath || !ledgerPaths.length) {
@@ -21,32 +21,7 @@ if (!threadsPath || !ledgerPaths.length) {
   process.exit(2);
 }
 
-const threads = JSON.parse(readFileSync(threadsPath, "utf8"));
-const decisions = [];
-for (const t of threads) {
-  const comments = t.comments ?? [];
-  let id = null;
-  for (const c of comments) {
-    const f = findingIdOf(c.body);
-    if (f) {
-      id = f;
-      break;
-    }
-  }
-  if (!id) continue; // not a finding thread
-  let decision = null;
-  for (const c of comments) {
-    const d = parseTreatment(c.body);
-    if (d) decision = d; // the latest parsing reply wins
-  }
-  decisions.push({
-    id,
-    treatment: decision?.treatment,
-    resolution: decision?.resolution,
-    resolved: Boolean(t.isResolved),
-  });
-}
-
+const decisions = decisionsFromThreads(JSON.parse(readFileSync(threadsPath, "utf8")));
 const ledger = ledgerPaths.flatMap((p) => JSON.parse(readFileSync(p, "utf8")));
 const { ok, blocks } = reconcile(ledger, decisions);
 

@@ -23,6 +23,7 @@ import {
   mockJudge,
   createModelJudge,
   collect,
+  applyDecisions,
   commentBody,
   anchorLine,
 } from "./index.mjs";
@@ -132,7 +133,13 @@ async function main() {
 
   // The collector: dedup, carry treatments, and verify Reduce claims.
   const prior = readJson(ledgerPath, []);
-  const { ledger, added, reopened } = collect(prior, fresh);
+  let { ledger, added, reopened } = collect(prior, fresh);
+
+  // Sync the table from the PR's comment treatments (the comment -> table step),
+  // so what a human decided in a thread is recorded in the ledger. The set of
+  // ids the review still flags decides reduce-pending vs reduced.
+  const decisions = flag("--decisions") ? readJson(resolve(flag("--decisions")), []) : [];
+  if (decisions.length) ledger = applyDecisions(ledger, decisions, new Set(fresh.map((f) => f.id)));
 
   writeFileSync(ledgerPath, JSON.stringify(ledger, null, 2) + "\n");
   const log = renderLog(auditId, ledger);
