@@ -40,10 +40,11 @@ The engine does not reproduce quotes; it translates sociological concepts into t
 
 ## Known Engine Constraints
 
-The engine intentionally isolates gender as a standalone structural vector. Two major realities of gender sociology are deliberately excluded from this specific package to maintain engine modularity:
+The engine intentionally isolates gender as a standalone structural vector. Three major realities of gender sociology are deliberately constrained to maintain engine modularity:
 
 1.  **Intersectionality (Crenshaw, Hill Collins):** The engine assumes a generic "room" applying a universal "read." In reality, gender is an entangled matrix read alongside race, class, and culture. The `khai` architecture explicitly delegates this tint to the `Cultures` packages. (e.g. `gender: female` + `culture: jordan` calculates the intersection organically at the persona level).
 2.  **Marked vs. Unmarked Asymmetry (de Beauvoir):** Structurally, society treats Male as the default ("unmarked") human experience, while Female is the specified ("marked") experience. The engine models them as symmetric expression files for codebase stability, handling the asymmetry instead through the specific pressures defined in each file's `Has` and `Loses` blocks.
+3.  **Relational Friction (Manne, Connell):** Theory views the male and female positions as a locked structural system where the female accommodation subsidizes the male claim. However, the engine leaves the expression files perfectly symmetric and structurally unlinked to each other. This preserves the `khai` Open/Closed rule (allowing future sibling expressions without rewriting the existing ones). The theoretical friction emerges dynamically through the shared anchor (the room enforcing the read), not through direct cross-linking.
 
 ## Authorship Note
 
