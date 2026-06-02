@@ -1,5 +1,25 @@
 # @chbrain/khai-tests
 
+## 0.0.11
+
+### Patch Changes
+
+- 77f514f: Close two engine-self gaps. `validateEnginePackage` now regenerates each engine's
+  README from its manifest (via the canon's `renderEngineReadme`) and gates on
+  drift: a missing or hand-edited README is an error, so the pointer can never
+  disagree with the source of truth (deterministic, the answer is in the bytes).
+  The advisory docs lane also now flags an en/em-dash in a README or REFERENCES
+  doc, holding those files to the house voice ( , ; : () ) the way checkEncoding
+  already holds content instances.
+- 8803e6c: Add a severity model to wiring enforcement. Each requirement now resolves to a
+  level: `audit` (note), `warn` (nudge), or `fail` (gate, the only level that
+  exits non-zero). The engine declares its default per requirement
+  (`requires[].level`, defaulting to `fail` for back-compat); a world overrides it
+  per requirement id via `levels`. `validateInstanceFile` returns leveled findings
+  and `validateProject` buckets them into errors / warnings / audit. The CLI prints
+  `✖` for failures, `⚠` for warnings, and `·` for audit notes, exiting only on
+  failures. This is the same kit invoked three ways: audit, self-audit, or CI.
+
 ## 0.0.10
 
 ### Patch Changes

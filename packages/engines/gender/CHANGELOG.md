@@ -1,5 +1,18 @@
 # @chbrain/khai-engine-gender
 
+## 0.0.9
+
+### Patch Changes
+
+- 278b423: Make gender's two wiring altitudes machine-readable, each at its level. The
+  manifest now declares the law (the world's Instructions Knowledge chapter must
+  link the anchor) alongside the per-persona read under Projection, both at `fail`
+  (the structural floor the card's Enforce chapter describes). The engine now
+  declares how it is enabled, not just how each persona carries it.
+- 77f514f: Add a voice-clean `khai.tagline` to the manifest as the canonical one-liner for
+  the engine, and switch the README to the canon-generated shape (regenerated from
+  the manifest, not hand-edited).
+
 ## 0.0.8
 
 ### Patch Changes

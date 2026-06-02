@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-review",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "khai NLP-review lane — the judged, advisory counterpart to the conformance kit. Where only meaning can decide (conciseness, coherence, voice), a pluggable judge reviews and suggests; it never gates.",
   "type": "module",
   "main": "./index.mjs",
