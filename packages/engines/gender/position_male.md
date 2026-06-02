@@ -22,7 +22,7 @@ Male
 
 A specific [gender](position_gender.md).
 The body that is read as a claim before it speaks.
-The assumption of agency - conferred, not requested.
+The assumption of agency, conferred, not requested.
 The space that opens without asking.
 
 ## Orders
