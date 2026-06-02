@@ -233,6 +233,15 @@ export function reconcile(ledger = [], decisions = []) {
       });
     else if (d.resolved === false)
       blocks.push({ id: e.id, reason: "decision recorded but the comment thread is unresolved" });
+    else if (!e.resolution || !String(e.resolution).trim())
+      blocks.push({
+        id: e.id,
+        reason: `treatment "${e.treatment}" recorded with no resolution detail`,
+      });
+    // The resolution is free text and may name a PR not yet raised; the gate
+    // checks only that a detail is present, never that the PR exists. A Reduce
+    // whose fix has not landed is still `open` (not settled), so it is held by
+    // the open-finding branch above, not released by an IOU here.
   }
 
   for (const d of decisions)

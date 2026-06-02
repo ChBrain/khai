@@ -70,6 +70,14 @@ the PR is blocked. This keeps the record and the conversation from drifting
 apart, and it composes with the anti-cheat: a Reduce the collector reopened shows
 `open` in the table, so a comment claiming it done will mismatch and block.
 
+Every treatment must carry a resolution detail, so no finding closes without a
+written reason: the fixing PR for a Reduce, where it is owned for a Transfer, the
+rationale for an Accept. The detail is free text and may name a PR not yet
+raised; the gate checks only that a detail is present, never that the PR exists.
+A Reduce whose fix has not landed is still `open` (the content still flags), so a
+promised-but-unraised PR cannot release the audit: only a fix the re-run verifies
+flips it to `reduced`.
+
 The model proposes; the human disposes by treating each finding in its comment;
 the conversation-resolution rule and the consistency check, not a red X from the
 review, are what hold the PR.

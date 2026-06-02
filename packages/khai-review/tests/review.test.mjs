@@ -214,13 +214,30 @@ describe("reconcile - the consistency gate: table must agree with the comments",
     ...extra,
   });
 
-  it("passes when every settled finding's treatment matches a resolved comment", () => {
-    const ledger = [entry("a", "accepted", "accept"), entry("b", "reduced", "reduce")];
+  it("passes when every settled finding has a matching, resolved comment + a resolution", () => {
+    const ledger = [
+      entry("a", "accepted", "accept", { resolution: "kept terse on purpose" }),
+      entry("b", "reduced", "reduce", { resolution: "#80" }),
+    ];
     const decisions = [
       { id: "a", treatment: "accept", resolved: true },
       { id: "b", treatment: "reduce", resolved: true },
     ];
     expect(reconcile(ledger, decisions)).toEqual({ ok: true, blocks: [] });
+  });
+
+  it("blocks a settled finding with no resolution detail", () => {
+    const ledger = [entry("a", "accepted", "accept", { resolution: null })];
+    const decisions = [{ id: "a", treatment: "accept", resolved: true }];
+    const { ok, blocks } = reconcile(ledger, decisions);
+    expect(ok).toBe(false);
+    expect(blocks[0].reason).toMatch(/no resolution detail/);
+  });
+
+  it("accepts a resolution that names a not-yet-raised PR (text only, no existence check)", () => {
+    const ledger = [entry("b", "reduced", "reduce", { resolution: "PR to be raised" })];
+    const decisions = [{ id: "b", treatment: "reduce", resolved: true }];
+    expect(reconcile(ledger, decisions).ok).toBe(true);
   });
 
   it("blocks an open finding with no recorded treatment (undecided)", () => {
