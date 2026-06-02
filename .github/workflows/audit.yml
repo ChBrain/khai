@@ -69,15 +69,23 @@ jobs:
 
       - run: npm ci
 
-      - name: Run the changed audits
+      - name: Run the audits
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMENT_BODY: ${{ github.event.comment.body }}
         run: |
           mkdir -p /tmp/audit-new
-          git fetch origin "${{ steps.ctx.outputs.base_ref }}" --depth=1
-          changed=$(git diff --name-only "origin/${{ steps.ctx.outputs.base_ref }}...HEAD" -- 'audit/*/audit.json' || true)
-          if [ -z "$changed" ]; then echo "no changed audit manifests"; exit 0; fi
-          for m in $changed; do
+          # "/audit <id>" runs that named audit on demand, regardless of the diff;
+          # otherwise run whatever audit manifest the PR changed.
+          named=$(printf '%s' "$COMMENT_BODY" | sed -n 's#^/audit[[:space:]]\+\([A-Za-z0-9._-]\+\).*#\1#p')
+          if [ -n "$named" ] && [ -f "audit/$named/audit.json" ]; then
+            manifests="audit/$named/audit.json"
+          else
+            git fetch origin "${{ steps.ctx.outputs.base_ref }}" --depth=1
+            manifests=$(git diff --name-only "origin/${{ steps.ctx.outputs.base_ref }}...HEAD" -- 'audit/*/audit.json' || true)
+          fi
+          if [ -z "$manifests" ]; then echo "no audits to run"; exit 0; fi
+          for m in $manifests; do
             id=$(basename "$(dirname "$m")")
             node packages/khai-review/cli.mjs --manifest "$m" --new "/tmp/audit-new/$id.json"
           done

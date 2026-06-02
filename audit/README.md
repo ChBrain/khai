@@ -112,8 +112,8 @@ that proves the wiring but does not judge meaning.
 ## In CI
 
 `.github/workflows/audit.yml` runs the loop. The review job (the model calls)
-runs on PR open, on a `/audit` comment, or on manual dispatch; it reviews each
-changed audit, commits the ledger and log, and posts new findings as inline
-comments. The consistency job runs on every PR event with no model calls: it
+runs on PR open, or on a `/audit <id>` comment that runs that named audit on
+demand (regardless of the diff); it reviews each audit, commits the ledger and
+log, and posts new findings as inline comments. The consistency job runs on every PR event with no model calls: it
 reads the comment threads and the ledger and fails when they disagree
 (`.github/scripts/audit-consistency.mjs`). That job is the required check.
