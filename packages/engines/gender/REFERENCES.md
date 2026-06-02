@@ -1,10 +1,10 @@
-# Gender - References & Source Attribution
-
-**Authorship:** KAI HACKS AI with AI-assisted drafting
-**Content Model:** Theoretical Synthesis + Original Expression
-**Last Updated:** June 2, 2026
-
 ---
+authorship: KAI HACKS AI with AI-assisted drafting
+content_model: Theoretical Synthesis + Original Expression
+updated: "2026-06-02"
+---
+
+# Gender: References and Source Attribution
 
 ## Domain
 
@@ -28,13 +28,13 @@ The gender engine's architecture applies structural sociology directly into code
 
 The engine does not reproduce quotes; it translates sociological concepts into the `HOLD` constraint schema.
 
-- **`position_gender.md` (The Anchor)**
+- **[gender](position_gender.md) (The Anchor)**
   - _Constraint mapped:_ Gender as a structural read that arrives with the body; held continuously rather than run as a process.
   - _Anchored by:_ West and Zimmerman (Accountability), Barbara Risman (Gender as Social Structure).
-- **`position_female.md` (The Expression)**
+- **[female](position_female.md) (The Expression)**
   - _Constraint mapped:_ The expectation of accommodation / "Hold the room together."
   - _Anchored by:_ Kate Manne (The "Human Giver" framework / structural obligation to accommodate).
-- **`position_male.md` (The Expression)**
+- **[male](position_male.md) (The Expression)**
   - _Constraint mapped:_ The assumption of agency / the space that opens without asking.
   - _Anchored by:_ Raewyn Connell (The patriarchal dividend), Pierre Bourdieu (Public space organized as default male).
 
