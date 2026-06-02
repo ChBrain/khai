@@ -60,8 +60,17 @@ function renderLog(auditId, ledger) {
   ];
   if (!ledger.length)
     return head.concat("No findings: every reviewed card reads lean.", "").join("\n") + "\n";
+  // Escape a free-text value for a markdown table cell: the backslash FIRST (so
+  // it does not double-escape the pipe we add next), then the pipe, then collapse
+  // newlines that would break the row. Order matters; escaping the pipe without
+  // first escaping the backslash is incomplete (CWE-116).
+  const cell = (s) =>
+    String(s ?? "")
+      .replace(/\\/g, "\\\\")
+      .replace(/\|/g, "\\|")
+      .replace(/\r?\n/g, " ");
   const row = (e) =>
-    `| \`${e.id}\` | ${e.where ?? ""} | ${(e.reason ?? "").replace(/\|/g, "\\|")} | ${e.treatment ?? "—"} | ${e.status} | ${e.resolution ?? "—"} |`;
+    `| \`${cell(e.id)}\` | ${cell(e.where)} | ${cell(e.reason)} | ${cell(e.treatment) || "—"} | ${cell(e.status)} | ${cell(e.resolution) || "—"} |`;
   return (
     head
       .concat(
