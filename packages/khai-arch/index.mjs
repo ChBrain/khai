@@ -71,6 +71,106 @@ export function chaptersFor(typeId) {
 export const wiresChapters = [...(chaptersFor("engines") ?? []), "Setup"];
 
 /**
+ * Normalize an engine manifest into a flat list of typed members arranged on a
+ * composition tree. Each member is { file, type, parent } where `parent` is the
+ * file of the member it hangs beneath (null at the root). Two manifest shapes
+ * desugar to the same model, so the canon reads one thing:
+ *
+ *   - explicit:  manifest.members = [{ file, type, parent? }, ...]
+ *   - shorthand: manifest.{type, anchor, expressions} -- the anchor is the root,
+ *     every expression hangs beneath it, all of the engine's single type.
+ *
+ * khai-arch owns this shape (it owns the WIRE type); the kit and engine loaders
+ * consume the normalized members instead of re-deriving the tree, so the
+ * "deeper carries shallower upward" rule lives in exactly one place. Throws on a
+ * member with no file, a duplicate file, an unknown type, a dangling parent, no
+ * root, more than one root, or a cycle.
+ *
+ * @param {object} manifest  the package.json `khai` block
+ * @returns {{ file: string, type: string, parent: string|null }[]}
+ */
+export function engineMembers(manifest) {
+  if (!manifest || typeof manifest !== "object")
+    throw new Error("engineMembers: an engine manifest is required");
+  const id = manifest.engine ?? "engine";
+
+  let members;
+  if (Array.isArray(manifest.members)) {
+    members = manifest.members.map((m) => ({
+      file: m?.file,
+      type: m?.type,
+      parent: m?.parent ?? null,
+    }));
+  } else {
+    const { type, anchor, expressions = {} } = manifest;
+    if (typeof anchor !== "string" || !anchor.trim())
+      throw new Error(`engineMembers(${id}): manifest needs "members" or an "anchor"`);
+    members = [
+      { file: anchor, type, parent: null },
+      ...Object.values(expressions).map((file) => ({ file, type, parent: anchor })),
+    ];
+  }
+
+  const byFile = new Map();
+  for (const m of members) {
+    if (typeof m.file !== "string" || !m.file.trim())
+      throw new Error(`engineMembers(${id}): every member needs a "file"`);
+    if (byFile.has(m.file))
+      throw new Error(`engineMembers(${id}): duplicate member file "${m.file}"`);
+    if (typeof m.type !== "string" || !types[m.type])
+      throw new Error(`engineMembers(${id}): member "${m.file}" has unknown type "${m.type}"`);
+    byFile.set(m.file, m);
+  }
+
+  const roots = members.filter((m) => m.parent === null);
+  if (roots.length !== 1)
+    throw new Error(
+      `engineMembers(${id}): exactly one root (parent: null) is required, found ${roots.length}`,
+    );
+  for (const m of members)
+    if (m.parent !== null && !byFile.has(m.parent))
+      throw new Error(
+        `engineMembers(${id}): member "${m.file}" names parent "${m.parent}", which is not a member`,
+      );
+  // every member must reach the root within N hops (catches cycles)
+  for (const m of members) {
+    let cur = m;
+    for (let hops = 0; cur.parent !== null; hops++) {
+      cur = byFile.get(cur.parent);
+      if (hops > members.length)
+        throw new Error(`engineMembers(${id}): cycle detected reaching the root from "${m.file}"`);
+    }
+  }
+  return members;
+}
+
+/**
+ * The composition chains of an engine: for every leaf member (one no other
+ * member hangs beneath), the ordered list of files from the root down to that
+ * leaf. This is the canon's "carry upward" rule made concrete -- composing a
+ * leaf emits its whole chain, root first, so the deeper member carries the
+ * shallower ones upward. gender's depth-1 tree yields [anchor, expression]; a
+ * process ladder yields [root, channel, width].
+ *
+ * @param {object} manifest
+ * @returns {Record<string, string[]>}  leaf file -> [root, ..., leaf]
+ */
+export function compositionOrder(manifest) {
+  const members = engineMembers(manifest);
+  const byFile = new Map(members.map((m) => [m.file, m]));
+  const parents = new Set(members.map((m) => m.parent).filter((p) => p !== null));
+  const chainOf = (file) => {
+    const chain = [];
+    for (let cur = byFile.get(file); cur; cur = cur.parent ? byFile.get(cur.parent) : null)
+      chain.unshift(cur.file);
+    return chain;
+  };
+  return Object.fromEntries(
+    members.filter((m) => !parents.has(m.file)).map((m) => [m.file, chainOf(m.file)]),
+  );
+}
+
+/**
  * Build a render-ready WIRES card from an engine's `khai` manifest block (the
  * `khai` field of its package.json). The card prose is authored under
  * `manifest.card`, keyed by the lowercased WIRES chapter names (wire, issue,
@@ -105,14 +205,33 @@ export function engineCard(manifest) {
     sections[chapter] = prose.trim();
   }
 
+  // type/anchor default to the explicit fields (legacy shorthand); when an
+  // engine declares `members` instead, derive them from the root member so the
+  // rendered card still names the engine's seam and kind.
+  let type = manifest.type ?? null;
+  let anchor = manifest.anchor ?? null;
+  if ((type === null || anchor === null) && Array.isArray(manifest.members)) {
+    const root = engineMembers(manifest).find((m) => m.parent === null);
+    type = type ?? root.type;
+    anchor = anchor ?? root.file;
+  }
+
   return {
     id,
-    type: manifest.type ?? null,
-    anchor: manifest.anchor ?? null,
+    type,
+    anchor,
     mnemonic: "WIRES",
     chapters: wiresChapters,
     sections,
   };
 }
 
-export default { types, chaptersFor, playbook, wiresChapters, engineCard };
+export default {
+  types,
+  chaptersFor,
+  playbook,
+  wiresChapters,
+  engineMembers,
+  compositionOrder,
+  engineCard,
+};
