@@ -2,6 +2,10 @@
 // strings (empty = pass). They are pure and composable: the same atoms run in
 // package mode (one file) and suite mode (every file), so a rule has exactly
 // one home. Lifting a check = adding an atom here and wiring it into validate.
+//
+// Pure and canon-agnostic: a checker that needs the architecture (a type's
+// chapters, the known type ids) takes that contract as an argument. Nothing
+// here imports the canon, so khai-arch and khai-tests both pull down into here.
 
 import { existsSync } from "node:fs";
 import { join } from "node:path";
@@ -10,12 +14,33 @@ import { sectionBody } from "./parse.mjs";
 const proper = (typeId) => typeId.charAt(0).toUpperCase() + typeId.slice(1);
 
 // --- encoding -------------------------------------------------------------
+// Guards what the reader (and the model) sees: the bytes inside the file.
 export function checkEncoding(text) {
   const e = [];
   if (text.charCodeAt(0) === 0xfeff) e.push("BOM present");
   if (/\r\n/.test(text)) e.push("CRLF present");
   if (/[–—]/.test(text)) e.push("en/em-dash present (use ' - ')");
+  // U+FFFD is the scar a bad decode leaves (wrong encoding, mojibake, a
+  // truncated multibyte sequence): a character was already lost.
+  if (/�/.test(text)) e.push("U+FFFD replacement character present (a bad decode lost a character)");
+  // A literal escape sequence (the six characters of `—`) means a
+  // serialization layer leaked into prose: the reader sees the escape, not the
+  // glyph.
+  if (/\\u[0-9a-fA-F]{4}/.test(text))
+    e.push("literal unicode escape present (e.g. \\u2014); write the character, not the escape");
   if (text.length > 0 && !text.endsWith("\n")) e.push("no LF at EOF");
+  return e;
+}
+
+// --- filename: a structured identifier, ASCII, underscores not hyphens -----
+// Guards that the file can be found and parsed at all. The filename is a key:
+// tooling parses `<type>_<descriptor>.md` and links resolve by it. Non-ASCII
+// breaks portability (filesystems normalise Unicode differently, git and URLs
+// mangle it); a hyphen breaks the underscore-delimited grammar.
+export function checkFilename(name) {
+  const e = [];
+  if (!/^[\x20-\x7e]+$/.test(name)) e.push(`non-ASCII filename "${name}"; use ASCII characters only`);
+  if (name.includes("-")) e.push(`hyphen in filename "${name}"; use an underscore`);
   return e;
 }
 
