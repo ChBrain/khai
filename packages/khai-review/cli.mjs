@@ -16,8 +16,16 @@
 // for a local dry run with the deterministic mockJudge (wiring proof only).
 
 import { readFileSync, existsSync, writeFileSync, statSync, appendFileSync } from "node:fs";
-import { resolve, join, basename, dirname } from "node:path";
-import { reviewCard, rubrics, mockJudge, createModelJudge, collect } from "./index.mjs";
+import { resolve, join, basename, dirname, relative } from "node:path";
+import {
+  reviewCard,
+  rubrics,
+  mockJudge,
+  createModelJudge,
+  collect,
+  commentBody,
+  anchorLine,
+} from "./index.mjs";
 
 const argv = process.argv.slice(2);
 const useMock = process.env.KHAI_REVIEW_MOCK === "1";
@@ -120,7 +128,18 @@ async function main() {
   writeFileSync(ledgerPath, JSON.stringify(ledger, null, 2) + "\n");
   const log = renderLog(auditId, ledger);
   writeFileSync(logPath, log);
-  if (newPath) writeFileSync(newPath, JSON.stringify(added, null, 2) + "\n");
+  // New findings, ready for the workflow to post as inline comments: each
+  // carries the body (with the finding-id marker) and the log line to anchor to.
+  if (newPath) {
+    const logRel = relative(repoRoot, logPath);
+    const comments = added.map((f) => ({
+      id: f.id,
+      path: logRel,
+      line: anchorLine(log, f.id),
+      body: commentBody(f),
+    }));
+    writeFileSync(newPath, JSON.stringify(comments, null, 2) + "\n");
+  }
 
   const open = ledger.filter((e) => e.status === "open").length;
   const pending = ledger.filter((e) => e.status === "reduce-pending").length;

@@ -7,6 +7,10 @@ import {
   createModelJudge,
   collect,
   reconcile,
+  commentBody,
+  anchorLine,
+  findingIdOf,
+  parseTreatment,
 } from "../index.mjs";
 
 describe("review - harness over a pluggable judge", () => {
@@ -292,6 +296,53 @@ describe("reconcile - the consistency gate: table must agree with the comments",
 
   it("ignores a cleared finding (incidental fix needs no decision)", () => {
     expect(reconcile([entry("a", "cleared", null)], [])).toEqual({ ok: true, blocks: [] });
+  });
+});
+
+describe("PR surface - comment body, anchor, marker, treatment parsing", () => {
+  const f = {
+    id: "gender-conciseness:gender:card.setup:conciseness",
+    rubric: "conciseness",
+    reason: "padded",
+    suggestion: "tighter",
+  };
+
+  it("a comment body carries the finding-id marker and the treatment menu", () => {
+    const body = commentBody(f);
+    expect(findingIdOf(body)).toBe(f.id);
+    expect(body).toContain("tighter");
+    expect(body).toMatch(/Accept:.*Reduce:.*Transfer:/s);
+  });
+
+  it("findingIdOf returns null when no marker is present", () => {
+    expect(findingIdOf("just a human comment")).toBeNull();
+  });
+
+  it("anchorLine finds the 1-based row of a finding id in the log", () => {
+    const log = `# Audit log\n\n| id |\n| -- |\n| \`${f.id}\` |\n`;
+    expect(anchorLine(log, f.id)).toBe(5);
+    expect(anchorLine(log, "absent")).toBeNull();
+  });
+
+  it("parseTreatment reads Accept / Reduce / Transfer + resolution", () => {
+    expect(parseTreatment("Accept: known tradeoff")).toEqual({
+      treatment: "accept",
+      resolution: "known tradeoff",
+    });
+    expect(parseTreatment("Reduce #80")).toEqual({ treatment: "reduce", resolution: "#80" });
+    expect(parseTreatment("Transfer: language engine")).toEqual({
+      treatment: "transfer",
+      resolution: "language engine",
+    });
+  });
+
+  it("parseTreatment is case-insensitive and tolerates no detail", () => {
+    expect(parseTreatment("REDUCE")).toEqual({ treatment: "reduce", resolution: null });
+  });
+
+  it("parseTreatment returns null for a reply that records no treatment", () => {
+    expect(parseTreatment("looks fine to me")).toBeNull();
+    expect(parseTreatment("")).toBeNull();
   });
 });
 

@@ -20,3 +20,7 @@ Make the review lane runnable as an audit. Adds:
   from its manifest, writes the ledger and the human log, and emits the new
   findings for a workflow to post as inline comments. Always exits 0; the audit
   PR's conversation-resolution rule is the gate, not CI.
+- the PR-surface helpers (`commentBody`, `anchorLine`, `findingIdOf`,
+  `parseTreatment`): pure functions that build a finding's comment, anchor it to
+  its log row, and read the treatment back out of a reply, so the workflow's
+  GitHub glue stays thin and the parsing is unit-tested.

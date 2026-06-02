@@ -1,0 +1,167 @@
+# Audit lane. Drives the NLP review as an audit PR (see audit/README.md).
+#
+# Two jobs, two lanes:
+#   review       calls the model (cost), so it runs only on PR open/reopen, a
+#                `/audit` comment, or manual dispatch. It reviews each changed
+#                audit, commits the ledger + log, and posts NEW findings as inline
+#                comments. Advisory: it never fails the build.
+#   consistency  the deterministic required check. Runs on every PR event,
+#                including each push, with no model calls: it reads the comment
+#                threads + the ledger and fails if the table and the comments
+#                disagree. This, plus "require conversation resolution", is what
+#                holds the audit PR until the table is ok.
+#
+# First pass: the GitHub wiring (comment posting, thread parsing) needs a live
+# dry-run on a real audit PR to shake out. The logic it calls is unit-tested in
+# @chbrain/khai-review.
+
+name: audit
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    paths: ["audit/**"]
+  issue_comment:
+    types: [created]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  models: read
+
+jobs:
+  review:
+    name: review (model, advisory)
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'pull_request' && github.event.action != 'synchronize') ||
+      (github.event_name == 'issue_comment' && github.event.issue.pull_request != null &&
+       startsWith(github.event.comment.body, '/audit'))
+    runs-on: ubuntu-latest
+    steps:
+      - name: Resolve PR context
+        id: ctx
+        uses: actions/github-script@v7
+        with:
+          script: |
+            let pr = context.payload.pull_request;
+            if (!pr && context.payload.issue) {
+              const { data } = await github.rest.pulls.get({
+                owner: context.repo.owner, repo: context.repo.repo,
+                pull_number: context.payload.issue.number,
+              });
+              pr = data;
+            }
+            if (!pr) { core.setFailed("no PR context"); return; }
+            core.setOutput("number", pr.number);
+            core.setOutput("head_ref", pr.head.ref);
+            core.setOutput("base_ref", pr.base.ref);
+
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.ctx.outputs.head_ref }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - run: npm ci
+
+      - name: Run the changed audits
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p /tmp/audit-new
+          git fetch origin "${{ steps.ctx.outputs.base_ref }}" --depth=1
+          changed=$(git diff --name-only "origin/${{ steps.ctx.outputs.base_ref }}...HEAD" -- 'audit/*/audit.json' || true)
+          if [ -z "$changed" ]; then echo "no changed audit manifests"; exit 0; fi
+          for m in $changed; do
+            id=$(basename "$(dirname "$m")")
+            node packages/khai-review/cli.mjs --manifest "$m" --new "/tmp/audit-new/$id.json"
+          done
+
+      - name: Commit ledger + log
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add audit/
+          if git diff --cached --quiet; then
+            echo "nothing to commit"
+          else
+            git commit -m "audit: update ledger + log"
+            git push origin HEAD:"${{ steps.ctx.outputs.head_ref }}"
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Post new findings as inline comments
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+            const dir = "/tmp/audit-new";
+            if (!fs.existsSync(dir)) return;
+            const commit_id = "${{ steps.commit.outputs.sha }}";
+            const pull_number = Number("${{ steps.ctx.outputs.number }}");
+            for (const file of fs.readdirSync(dir)) {
+              const comments = JSON.parse(fs.readFileSync(`${dir}/${file}`, "utf8"));
+              for (const c of comments) {
+                if (!c.line) continue;
+                try {
+                  await github.rest.pulls.createReviewComment({
+                    owner: context.repo.owner, repo: context.repo.repo,
+                    pull_number, commit_id, path: c.path, line: c.line, side: "RIGHT",
+                    body: c.body,
+                  });
+                } catch (err) {
+                  core.warning(`could not post comment for ${c.id}: ${err.message}`);
+                }
+              }
+            }
+
+  consistency:
+    name: consistency (required)
+    if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - run: npm ci
+
+      - name: Fetch review threads
+        if: github.event.pull_request != null
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const q = `query($owner:String!,$repo:String!,$num:Int!){
+              repository(owner:$owner,name:$repo){
+                pullRequest(number:$num){
+                  reviewThreads(first:100){ nodes { isResolved comments(first:50){ nodes { body } } } }
+                }
+              }
+            }`;
+            const r = await github.graphql(q, {
+              owner: context.repo.owner, repo: context.repo.repo,
+              num: context.payload.pull_request.number,
+            });
+            const threads = r.repository.pullRequest.reviewThreads.nodes.map((t) => ({
+              isResolved: t.isResolved,
+              comments: t.comments.nodes.map((c) => ({ body: c.body })),
+            }));
+            require("fs").writeFileSync("/tmp/threads.json", JSON.stringify(threads));
+
+      - name: Reconcile the table against the comments
+        run: |
+          [ -f /tmp/threads.json ] || echo "[]" > /tmp/threads.json
+          ledgers=$(ls audit/*/ledger.json 2>/dev/null || true)
+          if [ -z "$ledgers" ]; then echo "no ledgers yet; nothing to reconcile"; exit 0; fi
+          node .github/scripts/audit-consistency.mjs /tmp/threads.json $ledgers

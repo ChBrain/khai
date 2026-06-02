@@ -265,6 +265,59 @@ export function reconcile(ledger = [], decisions = []) {
   return { ok: blocks.length === 0, blocks };
 }
 
+// ---------------------------------------------------------------------------
+// The PR surface: pure helpers the workflow uses to post findings as inline
+// comments and to read treatments back out of the comment threads. The GitHub
+// API calls stay in the workflow; these (anchoring, comment body, parsing) are
+// here so they test without GitHub.
+// ---------------------------------------------------------------------------
+
+/** A hidden marker carried in a finding's comment body, so a later run can map a
+ * comment thread back to its finding id. */
+export const FINDING_MARKER = "khai-finding";
+const marker = (id) => `<!-- ${FINDING_MARKER}: ${id} -->`;
+
+/** Pull the finding id out of a comment body that carries the marker, else null. */
+export function findingIdOf(commentBody) {
+  const m = new RegExp(`<!--\\s*${FINDING_MARKER}:\\s*([^\\s]+)\\s*-->`).exec(
+    typeof commentBody === "string" ? commentBody : "",
+  );
+  return m ? m[1] : null;
+}
+
+/** The inline-comment body for a new finding: the marker, the suggestion, and
+ * how to treat it. The marker lets the consistency run find this thread again. */
+export function commentBody(f) {
+  return [
+    marker(f.id),
+    `**${f.rubric ?? "review"} finding** ${f.reason ? `(${f.reason})` : ""}`.trim(),
+    f.suggestion ? `\nSuggested rewrite:\n> ${f.suggestion}` : "",
+    "\nTreat this finding by replying, then resolve this thread:",
+    "`Accept: <why>` | `Reduce: <fixing PR or note>` | `Transfer: <where>`",
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
+/** The 1-based line in the log where a finding's row sits, for anchoring an
+ * inline comment to a line that is in the audit PR diff. null if not found. */
+export function anchorLine(logText, id) {
+  const i = String(logText)
+    .split("\n")
+    .findIndex((l) => l.includes(id));
+  return i >= 0 ? i + 1 : null;
+}
+
+/** Parse a human reply into a treatment decision: a leading Accept / Reduce /
+ * Transfer, then the resolution detail (free text, may name a not-yet-raised
+ * PR). Returns null if the reply records no treatment. */
+export function parseTreatment(text) {
+  if (typeof text !== "string") return null;
+  const m = /^\s*(accept|reduce|transfer)\b[\s:.\-]*([\s\S]*)$/i.exec(text.trim());
+  if (!m) return null;
+  return { treatment: m[1].toLowerCase(), resolution: m[2].trim() || null };
+}
+
 // The reply contract appended to the rubric: the model must answer as one JSON
 // object, so the verdict is machine-readable. Kept separate from the rubric so a
 // rubric stays pure criterion (what to judge), not transport (how to answer).
@@ -349,4 +402,17 @@ export function createModelJudge({
   };
 }
 
-export default { rubrics, review, reviewCard, mockJudge, createModelJudge, collect, reconcile };
+export default {
+  rubrics,
+  review,
+  reviewCard,
+  mockJudge,
+  createModelJudge,
+  collect,
+  reconcile,
+  commentBody,
+  anchorLine,
+  findingIdOf,
+  parseTreatment,
+  FINDING_MARKER,
+};
