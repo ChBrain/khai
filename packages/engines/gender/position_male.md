@@ -30,16 +30,17 @@ The space that opens without asking.
 Carry it.
 The position does not ask whether the weight is deserved.
 It is already on the shoulders.
+If he drops the claim, the room penalizes the abdication, reading it as weakness or incompetence.
 
 ## Loses
 
-The option of not being seen as one.
-The persona discovers that the position arrives before they do
+The option of occupying space without being expected to direct it.
+The persona discovers that the weight arrives before they do
 and stays after they have tried to leave it.
 
 ## Drives
 
 On the loss of that option:
-occupies the position deliberately
-or pretends it is not there.
+steps into the space and wields the momentum as his own,
+or steps back from the claim and absorbs the room's penalty.
 The position does not disappear either way.
