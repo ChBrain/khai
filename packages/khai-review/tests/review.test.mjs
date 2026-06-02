@@ -190,9 +190,17 @@ describe("collect - the risk register: dedup, treat, verify", () => {
     expect(reopened).toEqual([]);
   });
 
-  it("a Reduce that still flags is reopened: the claimed fix did not land (anti-cheat)", () => {
-    const { ledger, reopened } = collect([known("a", "reduce")], [finding("a")]);
-    expect(ledger[0].status).toBe("open");
+  it("a Reduce that still flags is a tracked promise: reduce-pending, not reopened", () => {
+    const { ledger, reopened, added } = collect([known("a", "reduce")], [finding("a")]);
+    expect(ledger[0].status).toBe("reduce-pending");
+    expect(reopened).toEqual([]); // a promise, re-checked next run; not an alarm
+    expect(added).toEqual([]);
+  });
+
+  it("a once-reduced finding that flags again is reopened as a regression", () => {
+    const prior = [{ ...finding("a"), treatment: "reduce", status: "reduced", resolution: "#80" }];
+    const { ledger, reopened } = collect(prior, [finding("a")]);
+    expect(ledger[0]).toMatchObject({ status: "open", treatment: null }); // undecided again
     expect(reopened.map((e) => e.id)).toEqual(["a"]);
   });
 
@@ -238,6 +246,12 @@ describe("reconcile - the consistency gate: table must agree with the comments",
     const ledger = [entry("b", "reduced", "reduce", { resolution: "PR to be raised" })];
     const decisions = [{ id: "b", treatment: "reduce", resolved: true }];
     expect(reconcile(ledger, decisions).ok).toBe(true);
+  });
+
+  it("a reduce-pending promise satisfies the table (released, re-checked next run)", () => {
+    const ledger = [entry("b", "reduce-pending", "reduce", { resolution: "#80, lands next week" })];
+    const decisions = [{ id: "b", treatment: "reduce", resolved: true }];
+    expect(reconcile(ledger, decisions)).toEqual({ ok: true, blocks: [] });
   });
 
   it("blocks an open finding with no recorded treatment (undecided)", () => {

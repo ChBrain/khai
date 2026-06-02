@@ -123,7 +123,8 @@ async function main() {
   if (newPath) writeFileSync(newPath, JSON.stringify(added, null, 2) + "\n");
 
   const open = ledger.filter((e) => e.status === "open").length;
-  const summary = `khai-review[${auditId}]: ${added.length} new, ${reopened.length} reopened (Reduce not verified), ${open} open, ${ledger.length} tracked.\n`;
+  const pending = ledger.filter((e) => e.status === "reduce-pending").length;
+  const summary = `khai-review[${auditId}]: ${added.length} new, ${reopened.length} regressed, ${pending} reduce-pending, ${open} open, ${ledger.length} tracked.\n`;
   process.stdout.write(summary + log);
   if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, log);
 }

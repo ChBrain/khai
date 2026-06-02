@@ -106,17 +106,21 @@ export const mockJudge = async ({ prose }) => {
  *                checks it actually stopped flagging.
  *     "transfer" the risk is owned elsewhere (another engine, a sibling PR, a
  *                downstream world); `resolution` says where.
- *   status (derived):
- *     "open"        untreated and still flagging, OR a "reduce" that still flags
- *                   (the anti-cheat reopen: the claimed fix did not land).
+ *   status (derived by the collector, never by a human):
+ *     "open"            untreated and still flagging, OR a regression (a finding
+ *                       once "reduced" that flags again). Blocks: needs a decision.
  *     "accepted" / "transferred"   the treatment, respected.
- *     "reduced"     a "reduce" the re-run confirms no longer flags. Solved for real.
- *     "cleared"     untreated, no longer flagging (an incidental fix, no decision).
+ *     "reduce-pending"  a "reduce" whose fix has not landed yet (the content still
+ *                       flags). A promise: it satisfies the table and releases the
+ *                       audit, and is re-checked on the next run. Auditable.
+ *     "reduced"         a "reduce" the re-run confirms no longer flags. For real.
+ *     "cleared"         untreated, no longer flagging (an incidental fix, no decision).
  *
  * @typedef {"accept"|"reduce"|"transfer"|null} Treatment
  * @typedef {{ id: string, engine?: string, where?: string, rubric?: string,
  *   reason?: string|null, suggestion?: string|null, treatment?: Treatment,
- *   status?: "open"|"accepted"|"transferred"|"reduced"|"cleared", resolution?: string|null }} LedgerEntry
+ *   status?: "open"|"accepted"|"transferred"|"reduce-pending"|"reduced"|"cleared",
+ *   resolution?: string|null }} LedgerEntry
  */
 
 /**
@@ -128,8 +132,10 @@ export const mockJudge = async ({ prose }) => {
  *   2. treat     each known finding keeps its human treatment (accept/transfer),
  *                its review text refreshed to the latest.
  *   3. verify    a "reduce" is checked against the content: gone -> "reduced"
- *                (solved for real); still flagging -> reopened to "open" (the
- *                claimed fix did not land). This is the anti-cheat.
+ *                (solved for real); still flagging -> "reduce-pending" (a tracked
+ *                promise, re-checked next run); a once-"reduced" finding that
+ *                flags again -> reopened to "open" (a regression). The status is
+ *                the collector's, never a human's, so a fix cannot be faked.
  *
  * @param {LedgerEntry[]} prior  the committed ledger (the collector's memory)
  * @param {{id:string,engine?:string,where?:string,rubric?:string,reason?:string|null,suggestion?:string|null}[]} fresh
@@ -143,20 +149,28 @@ export function collect(prior = [], fresh = []) {
   const reopened = [];
 
   // Known findings: carry the human treatment, refresh the text, derive status.
+  // Only the collector sets `reduced`, and only when the content is actually
+  // clean, so a human can never falsely claim a fix; the worst they can record is
+  // `reduce`, which the run reads as a promise until it verifies.
   for (const e of prior) {
     const latest = freshById.get(e.id);
     const stillFlags = latest !== undefined;
     const base = latest
       ? { ...e, reason: latest.reason ?? null, suggestion: latest.suggestion ?? null }
       : { ...e };
-    let status;
-    if (e.treatment === "accept") status = "accepted";
-    else if (e.treatment === "transfer") status = "transferred";
-    else if (e.treatment === "reduce") status = stillFlags ? "open" : "reduced";
-    else status = stillFlags ? "open" : "cleared"; // untreated
-    const entry = { ...base, status };
+    let entry;
+    if (e.treatment === "accept") entry = { ...base, status: "accepted" };
+    else if (e.treatment === "transfer") entry = { ...base, status: "transferred" };
+    else if (e.treatment === "reduce") {
+      if (!stillFlags)
+        entry = { ...base, status: "reduced" }; // verified clean
+      else if (e.status === "reduced") {
+        // was verified, flags again: a regression. Reopen, undecided, re-ping.
+        entry = { ...base, status: "open", treatment: null, resolution: null };
+        reopened.push(entry);
+      } else entry = { ...base, status: "reduce-pending" }; // the promise, not yet verified
+    } else entry = { ...base, status: stillFlags ? "open" : "cleared" }; // untreated
     ledger.push(entry);
-    if (e.treatment === "reduce" && stillFlags) reopened.push(entry); // anti-cheat
   }
 
   // Brand-new findings: untreated, open, and the only ones that need a comment.

@@ -39,9 +39,13 @@ vocabulary:
 
 - Accept: acknowledged, left as is. The content may still flag; that is the
   accepted risk.
-- Reduce: a claim that the content was fixed. This is the only treatment the
-  re-run can verify: if the content still flags, the finding reopens. You cannot
-  close a finding by asserting a fix that did not land.
+- Reduce: a commitment to fix the content. Only the collector marks it solved,
+  and only when the content actually stops flagging, so a fix cannot be faked.
+  Until then the finding is reduce-pending: a promise that satisfies the table
+  and releases the audit, carrying a resolution (the fixing PR, which may not be
+  raised yet). The next run re-checks it: clean becomes reduced; a once-reduced
+  finding that flags again reopens as a regression. The promise is auditable
+  because it is re-verified, not because the PR exists.
 - Transfer: the risk is owned elsewhere (a sibling PR, another engine, a
   downstream world); the resolution records where.
 
