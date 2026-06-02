@@ -1,5 +1,23 @@
 # @chbrain/khai-tests
 
+## 0.0.10
+
+### Patch Changes
+
+- c78f4cd: `engineDocChecks` now voice-checks the WIRES card prose too. The card lives in
+  `package.json` (JSON), outside the `.md` doc-checks, yet it is what the website
+  renders, so a dirty card (clause dash or em/en-dash) previously slipped through
+  and had to be caught by hand. It is now an advisory warning per chapter
+  (`package.json#card.<chapter>`), so "cards stay clean" is self-enforcing for
+  every engine instead of manual. Gender (already clean) stays at zero warnings.
+- cebda9f: `checkClauseDash` no longer flags a spaced hyphen between two numbers
+  (`400 - 500`, `2006 - 2012`): the CVI sanctions it for numeric ranges. A
+  spaced hyphen anywhere else (including number-to-word) is still flagged as a
+  clause dash.
+- Updated dependencies [e4d7aef]
+- Updated dependencies [cebda9f]
+  - @chbrain/khai-arch@0.0.10
+
 ## 0.0.9
 
 ### Patch Changes

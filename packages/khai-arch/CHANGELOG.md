@@ -1,5 +1,19 @@
 # @chbrain/khai-arch
 
+## 0.0.10
+
+### Patch Changes
+
+- e4d7aef: Canon voice: the canon now practices the house voice it asks of engines. The
+  " - " clause dash is gone from the type prose ( , ; : () instead): 15
+  occurrences across engines.md, architecture.md, model.md, and play.md. Prose
+  only, no contract change (chapters, mnemonics, and type rules are unchanged).
+- cebda9f: `renderEngineReadme` now emits the house voice. The Files list uses `:` instead
+  of `" - "` (`[gender](position_gender.md): position (anchor)`), the pointer prose
+  drops its clause dash ("generated, not edited by hand"), and an em/en-dash in a
+  fallback tagline normalizes to a comma rather than `" - "`. The generator no
+  longer produces a mark the standard bans.
+
 ## 0.0.9
 
 ### Patch Changes
