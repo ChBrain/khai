@@ -1,5 +1,5 @@
 ---
-"@chbrain/khai-review": minor
+"@chbrain/khai-review": patch
 ---
 
 New package: the NLP-review lane, the judged, advisory counterpart to the
