@@ -37,14 +37,12 @@
         "link": "expression"
       }
     ],
-    "wiring": "Always-on positional read, wired at two altitudes. Declare the law once in the instructions Knowledge chapter (\"personas have a gender\", linking the anchor) so the read applies system-wide and cannot be dropped; then give each persona exactly one expression under Projection, which carries the anchor upward so the anchor need not be linked separately. The law mandates the anchor for all; each Projection resolves it to a concrete expression. Read in the first beat of the scene and held continuously underneath every other process the persona runs — it does not pause. The agent never narrates the position; the room enacts it, in who gets the first word and who is read as a claim before they speak.",
-    "requirement": "Every persona must link one gender expression under its Projection section. The engine declares this; @chbrain/khai-tests enforces it on any project that installs the engine.",
     "card": {
-      "wire": "Attaches at Position. The anchor (position_gender.md) declares gender as a position the room assigns - not a trait the persona owns - and every Persona must carry it.",
-      "issue": "Two ready expressions a persona may hold: male and female. Each is a full position file the build composes onto the anchor, so the persona gets a read of the room, not a label.",
-      "require": "Every persona links exactly one gender expression under its Projection section. None and the persona is unread; two and the room contradicts itself.",
-      "enforce": "The engine ships its own tests, and @chbrain/khai-tests enforces the one-expression rule on any project that installs it - a missing or doubled gender fails the suite.",
-      "setup": "Declare the law once in the Instructions Knowledge chapter ('personas have a gender', linking the anchor) so it holds system-wide and cannot be dropped; then give each persona one expression under Projection, which carries the anchor upward. Read in the first beat of the scene and held under every process the persona runs - the room enacts it, never narrates it."
+      "wire": "Attaches at Position. The anchor (position_gender.md) declares gender as a position the room assigns - not a trait the persona owns - and the system-wide law makes every persona carry it.",
+      "issue": "Two ready expressions a persona may hold: male and female. Each is a full position file the build composes onto the anchor, so the persona gets a read of the room, not a label. More expressions slot in as sibling files without moving the anchor.",
+      "require": "Two altitudes. The law, declared once in the consuming project's Instructions Knowledge chapter ('personas have a gender'), so the read holds system-wide and no persona can drop it. The link, carried per persona: the read the room receives lives under Projection. A persona may also hold a different, even contradicting, read under Shadow - the gap between what is shown and what is hidden is the character, not a contradiction to reject.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor - the law is declared, and each persona carries a gender read under Projection. Whether a Projection and a Shadow read cohere into a true persona is semantic, so it is taught and reviewed, never failed by the suite. The engine ships its own structural tests; the reading is guided, not gated.",
+      "setup": "Declare the law once in the Instructions Knowledge chapter ('personas have a gender', linking the anchor) so it holds system-wide. Then give each persona the read the room receives under Projection - one expression, which carries the anchor upward. Where a persona conceals a different read, put it under Shadow; the room sees Projection while the truth may sit unseen. Read in the first beat and held under every process the persona runs - the room enacts it, never narrates it."
     }
   },
   "scripts": {

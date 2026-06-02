@@ -20,15 +20,15 @@ Gender
 
 ## Has
 
-A read that arrives with the body, before any word.
+A structural read that arrives with the body, before any word.
 A frame the room enacts before the persona consents to it.
-The expectation already in motion when the persona walks in.
+The gravity already in motion when the persona walks in.
 
 ## Orders
 
-Be read.
-The position does not ask whether the read is accurate.
-The room acts on it from the first beat.
+Carry the read to be [female](position_female.md) or [male](position_male.md).
+The position does not ask whether the assignment is accurate.
+The room acts on it from the first beat and applies friction to any contradiction.
 
 ## Loses
 
@@ -40,5 +40,6 @@ and continues underneath everything they choose to do about it.
 
 On the loss of that option:
 takes the read up and inhabits the expression,
-or steps sideways from it and pays the cost of being read against the grain.
-The read continues either way.
+or refuses the assignment and triggers the room's enforcement.
+The room does not simply fail to understand the deviation; it actively corrects it.
+The read holds either way.

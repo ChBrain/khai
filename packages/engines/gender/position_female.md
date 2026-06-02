@@ -22,14 +22,14 @@ Female
 
 A specific [gender](position_gender.md).
 The body that is read as an invitation before it speaks.
-The expectation of accommodation - assumed, not negotiated.
+The expectation of accommodation, assumed, not negotiated.
 The attention that arrives unrequested and does not always leave.
 
 ## Orders
 
 Hold the room together.
 The position does not explain that this is what is being asked.
-It is simply what happens when she doesn't.
+It is simply what happens when she doesn't; the room turns its friction directly onto her, reading the refusal as hostility or a failure of duty.
 
 ## Loses
 
@@ -41,5 +41,5 @@ and shaped what was possible before she opened her mouth.
 
 On the loss of that certainty:
 names it
-or works around it so fluently
+or anticipates the friction and maps the detours so fluently
 that she forgets the detour is not the road.

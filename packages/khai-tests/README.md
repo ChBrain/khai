@@ -89,6 +89,56 @@ Read: every `persona` instance must link one of the engine's `expression` files
 under its `## Projection` section. `link` is `"anchor"`, `"expression"`, or
 `"any"`. The kit resolves these to filenames and checks each consumer instance.
 
+## Enforcement model
+
+The kit is a **linter for worlds**. Engines are plugins — a world installs
+`@chbrain/khai-engine-*`, and its dependency graph _is_ the set of laws in
+force. Each requirement runs at a **level** the world picks, and findings come
+from one of two lanes. Nobody has to learn a new model: it's ESLint, `npm
+audit`, and NLP review, wearing one hat.
+
+### Levels — like ESLint and `npm audit`
+
+- **audit** — report only ("tell me"); exit code untouched.
+- **warn** — surfaced as a warning; exit code untouched.
+- **fail** — hard error; non-zero exit, breaks CI.
+
+The engine declares a default (the canon: _the engine declares the rule and its
+level_); the world overrides per rule. A strict world sets gender's law to
+`fail`; a travesty-show world sets it to `audit`.
+
+### Two lanes — linter and reviewer
+
+- **Linter lane (structural).** Deterministic, binary, cheap. _Is the law
+  declared? Does the persona link a gender under `## Projection`?_ It checks the
+  **declaration** — this is `checkWiring` plus the canon structural rules, and
+  runs at any level.
+- **NLP-review lane (semantic).** A reviewer, not a compiler. _Does the prose
+  carry the read it links? Does Shadow contradict Projection into depth, or sit
+  flat?_ It checks the **embodiment**, on a ladder from cheap NLP (embeddings,
+  NLI, zero-shot classification) up to an LLM-as-judge. Its output is graded, so
+  it **caps at `warn`** — never `fail`.
+
+The linter sees that a link is present; only the reviewer sees whether the text
+behind it means anything. A persona that links `position_female.md` but reads
+with no female register passes the linter and is caught by NLP.
+
+### Two altitudes
+
+The model applies wherever an engine wires (the canon's Require):
+
+- **The law, once per world** — declared in the `khai: instructions` file:
+  `{ "on": "instructions", "section": "Knowledge", "link": "anchor" }`.
+- **The link, per instance** — carried by each persona:
+  `{ "on": "persona", "section": "Projection", "link": "expression" }`.
+
+### Status
+
+Today the kit implements the **linter lane** only, at one implicit level — every
+failure is `fail` (see the CLI output above). The **level** dimension
+(audit/warn/fail; engine default + world override) and the **NLP-review lane**
+are the target this section describes, not yet the kit's behavior.
+
 ## Licensing
 
 - **Code** — [MIT](../khai-arch/LICENSE-CODE)

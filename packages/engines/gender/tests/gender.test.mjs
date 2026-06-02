@@ -32,9 +32,11 @@ describe("gender: manifest", () => {
     expect(Object.keys(manifest.expressions).sort()).toEqual(["female", "male"]);
   });
 
-  it("documents both wiring altitudes (Knowledge law + Projection expression)", () => {
-    expect(manifest.wiring).toContain("Knowledge");
-    expect(manifest.wiring).toContain("Projection");
+  it("teaches both wiring altitudes in the card (Knowledge law + Projection)", () => {
+    // Teaching lives in the WIRES card now (single source); the legacy
+    // free-text `wiring`/`requirement` fields were removed.
+    expect(manifest.card.setup).toContain("Knowledge");
+    expect(manifest.card.setup).toContain("Projection");
   });
 
   it("declares the enforceable wiring requirement: persona -> gender in Projection", () => {
