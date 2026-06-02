@@ -71,7 +71,7 @@ export async function reviewCard(manifest, judge, checks = [rubrics.conciseness]
     if (typeof prose !== "string" || !prose.trim()) continue;
     for (const rubric of checks) {
       const f = await review(prose, rubric, judge);
-      if (f.verdict === "flag") flags.push({ where: `card.${chapter}`, ...f });
+      if (f.verdict === "flag") flags.push({ where: `card.${chapter}`, current: prose, ...f });
     }
   }
   return flags;
@@ -288,8 +288,10 @@ export function findingIdOf(commentBody) {
 export function commentBody(f) {
   return [
     marker(f.id),
-    `**${f.rubric ?? "review"} finding** ${f.reason ? `(${f.reason})` : ""}`.trim(),
-    f.suggestion ? `\nSuggested rewrite:\n> ${f.suggestion}` : "",
+    `**Finding** (${f.rubric ?? "review"})`,
+    f.current ? `\n**Current**\n> ${f.current}` : "",
+    f.suggestion ? `\n**Suggestion**\n> ${f.suggestion}` : "",
+    f.reason ? `\n**Reasoning:** ${f.reason}` : "",
     "\nTreat this finding by replying, then resolve this thread:",
     "`Accept: <why>` | `Reduce: <fixing PR or note>` | `Transfer: <where>`",
   ]

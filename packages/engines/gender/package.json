@@ -1,7 +1,7 @@
 {
   "name": "@chbrain/khai-engine-gender",
   "version": "0.0.9",
-  "description": "khai engine content — the gender domain: gender as position, the read the room applies before a persona speaks.",
+  "description": "khai engine content, the gender domain: gender as position, the read the room applies before a persona speaks.",
   "type": "module",
   "main": "./index.mjs",
   "exports": {
@@ -48,9 +48,9 @@
     "card": {
       "wire": "Attaches at Position. The anchor (position_gender.md) declares gender as a position the room assigns (not a trait the persona owns), and the system-wide law makes every persona carry it.",
       "issue": "Two ready expressions a persona may hold: male and female. Each is a full position file the build composes onto the anchor, so the persona gets a read of the room, not a label. More expressions slot in as sibling files without moving the anchor.",
-      "require": "Two altitudes. The law, declared once in the consuming project's Instructions Knowledge chapter ('personas have a gender'), so the read holds system-wide and no persona can drop it. The link, carried per persona: the read the room receives lives under Projection. A persona may also hold a different, even contradicting, read under Shadow: the gap between what is shown and what is hidden is the character, not a contradiction to reject.",
+      "require": "Two altitudes must hold. One, the law: declared once in the project's Instructions Knowledge chapter ('personas have a gender'), so the read holds system-wide and no persona can drop it. Two, the link: each persona carries its read under Projection. A persona may also hold a different, even contradicting, read under Shadow; the gap between shown and hidden is the character, not a contradiction to reject.",
       "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, and each persona carries a gender read under Projection. Whether a Projection and a Shadow read cohere into a true persona is semantic, so it is taught and reviewed, never failed by the suite. The engine ships its own structural tests; the reading is guided, not gated.",
-      "setup": "Declare the law once in the Instructions Knowledge chapter ('personas have a gender', linking the anchor) so it holds system-wide. Then give each persona the read the room receives under Projection: one expression, which carries the anchor upward. Where a persona conceals a different read, put it under Shadow; the room sees Projection while the truth may sit unseen. Read in the first beat and held under every process the persona runs; the room enacts it, never narrates it."
+      "setup": "Two steps. Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give each persona its read under Projection: one expression, which carries the anchor upward. Where a persona conceals a different read, put it under Shadow. Read it in the first beat, hold it under every process; the room enacts it, never narrates it."
     }
   },
   "scripts": {

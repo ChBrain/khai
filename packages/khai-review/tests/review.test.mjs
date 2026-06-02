@@ -299,14 +299,17 @@ describe("PR surface - comment body, anchor, marker, treatment parsing", () => {
   const f = {
     id: "gender-conciseness:gender:card.setup:conciseness",
     rubric: "conciseness",
+    current: "the wordy original prose",
     reason: "padded",
     suggestion: "tighter",
   };
 
-  it("a comment body carries the finding-id marker and the treatment menu", () => {
+  it("a comment body shows current, suggestion, reasoning, the marker, and the menu", () => {
     const body = commentBody(f);
     expect(findingIdOf(body)).toBe(f.id);
-    expect(body).toContain("tighter");
+    expect(body).toMatch(/\*\*Current\*\*\n> the wordy original prose/);
+    expect(body).toMatch(/\*\*Suggestion\*\*\n> tighter/);
+    expect(body).toMatch(/\*\*Reasoning:\*\* padded/);
     expect(body).toMatch(/Accept:.*Reduce:.*Transfer:/s);
   });
 
