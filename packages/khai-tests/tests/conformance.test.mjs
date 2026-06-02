@@ -10,12 +10,15 @@ import {
   validateInstanceFile,
   validateProject,
   wiringRequirements,
+  engineDocChecks,
 } from "../index.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
 const pkgs = discoverEnginePackages(root);
 
 const flatten = (results) => results.flatMap((r) => r.errors.map((e) => `${r.file}: ${e}`));
+const flattenWarnings = (results) =>
+  results.flatMap((r) => (r.warnings ?? []).map((w) => `${r.file}: ${w}`));
 
 // --- suite mode: every engine package must conform to the canon ----------
 describe("conformance: engine packages", () => {
@@ -26,9 +29,37 @@ describe("conformance: engine packages", () => {
   for (const dir of pkgs) {
     it(`${relative(root, dir)} conforms`, async () => {
       // Trusted: our own workspace packages, so run the compose() smoke test too.
-      expect(flatten(await validateEnginePackage(dir, { executeCompose: true }))).toEqual([]);
+      const results = await validateEnginePackage(dir, { executeCompose: true });
+      expect(flatten(results)).toEqual([]);
+      // Our own engines hold to the docs standard with zero advisory warnings
+      // too (downstream consumers get these as warnings, not failures).
+      expect(flattenWarnings(results)).toEqual([]);
     });
   }
+});
+
+// --- engine docs standard: the advisory lane surfaces, and bites on drift -
+describe("engineDocChecks: advisory docs-standard lane", () => {
+  const dir = join(tmpdir(), `khai-docs-${process.pid}`);
+  beforeAll(() => {
+    mkdirSync(dir, { recursive: true });
+    // A REFERENCES with no frontmatter, a backticked (unlinked) member, and a
+    // clause dash - three docs-standard violations, zero canon errors.
+    writeFileSync(
+      join(dir, "REFERENCES.md"),
+      "# Refs\n\n**Authorship:** someone\n\nMaps `position_x.md` - the anchor.\n",
+    );
+  });
+  afterAll(() => rmSync(dir, { recursive: true, force: true }));
+
+  it("reports docs-standard violations as warnings, never errors", () => {
+    const results = engineDocChecks(dir);
+    const warnings = results.flatMap((r) => r.warnings);
+    expect(results.every((r) => r.errors.length === 0)).toBe(true);
+    expect(warnings.some((w) => /clause dash/.test(w))).toBe(true);
+    expect(warnings.some((w) => /frontmatter/.test(w))).toBe(true);
+    expect(warnings.some((w) => /loose file/.test(w))).toBe(true);
+  });
 });
 
 // --- the guardrails actually bite ----------------------------------------

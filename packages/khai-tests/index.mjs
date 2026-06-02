@@ -9,6 +9,7 @@ export {
   validateInstanceFile,
   validateProject,
   wiringRequirements,
+  engineDocChecks,
 } from "./src/validate.mjs";
 export * as rules from "./src/rules.mjs";
 export { parseDoc, sectionBody } from "./src/parse.mjs";
