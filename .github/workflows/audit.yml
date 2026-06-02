@@ -1,22 +1,22 @@
 # Audit lane. Drives the NLP review as an audit PR (see audit/README.md).
 #
-# Two jobs, two lanes:
+# Both jobs post the verdict as a `consistency` COMMIT STATUS on the head commit,
+# rather than relying on a job conclusion or a workflow re-trigger (a commit
+# pushed by GITHUB_TOKEN does not re-fire workflows, and a PAT push is unreliable
+# for that). The required branch-protection check is the `consistency` status.
+#
 #   review       calls the model (cost), so it runs only on PR open/reopen, a
 #                `/audit` comment, or manual dispatch. It reviews each audit, reads
 #                the PR's comment treatments into the ledger (the comment -> table
-#                sync), commits ledger + log + meta, and posts NEW findings as
-#                inline comments. Advisory: it never fails the build. Re-running
-#                `/audit` after treating findings is what syncs and re-checks them.
-#   consistency  the deterministic required check, no model calls. Runs on each
-#                push (so it re-fires after the review's PAT commit). It gates on
-#                freshness (the audit ran against current content) and on the
-#                table agreeing with the comments. This, plus GitHub's "require
+#                sync), commits ledger + log + meta, posts NEW findings as inline
+#                comments, then posts the `consistency` status on its commit. So
+#                the gate updates the moment the review syncs, no re-trigger.
+#   audit checks runs on each push and on dispatch, with no model calls; it posts
+#                the same `consistency` status (freshness + table-vs-comments) for
+#                the PR-open and human-push cases. This, plus GitHub's "require
 #                conversation resolution", holds the audit PR until the table is ok.
 #
-# The review job checks out and pushes with the KHAI PAT, not GITHUB_TOKEN: a
-# GITHUB_TOKEN push does not trigger further runs, so the consistency check would
-# never re-fire after the review commits. The logic both jobs call is unit-tested
-# in @chbrain/khai-review.
+# The logic both jobs call is unit-tested in @chbrain/khai-review.
 
 name: audit
 
@@ -32,6 +32,7 @@ permissions:
   contents: write
   pull-requests: write
   models: read
+  statuses: write
 
 jobs:
   review:
@@ -123,8 +124,6 @@ jobs:
 
       - name: Commit ledger + log
         id: commit
-        env:
-          KHAI: ${{ secrets.KHAI }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -133,17 +132,7 @@ jobs:
             echo "nothing to commit"
           else
             git commit -m "audit: update ledger + log"
-            # Push with the KHAI PAT so the commit re-fires the consistency check
-            # (a GITHUB_TOKEN push does not trigger further runs). If KHAI is not
-            # set, fall back to the default push: it lands, but you must re-run
-            # /audit or dispatch consistency to re-check.
-            if [ -n "$KHAI" ]; then
-              git push "https://x-access-token:${KHAI}@github.com/${{ github.repository }}.git" \
-                HEAD:"${{ steps.ctx.outputs.head_ref }}"
-            else
-              echo "::warning::KHAI secret not set; pushing with the default token (consistency will not auto-re-fire)"
-              git push origin HEAD:"${{ steps.ctx.outputs.head_ref }}"
-            fi
+            git push origin HEAD:"${{ steps.ctx.outputs.head_ref }}"
           fi
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
@@ -172,8 +161,47 @@ jobs:
               }
             }
 
+      # Post the consistency verdict directly as a commit status on the commit we
+      # just made. This is what makes the gate live without depending on a
+      # workflow re-trigger: the review job is the authority right after it syncs
+      # the table, so it reports the status itself.
+      - name: Consistency gate
+        id: gate
+        run: |
+          base="${{ steps.ctx.outputs.base_ref }}"
+          git fetch origin "$base" --depth=1 || true
+          manifests=""
+          for id in $(git diff --name-only "origin/$base...HEAD" -- 'audit/**' 2>/dev/null \
+            | sed -n 's#^audit/\([^/]*\)/.*#\1#p' | sort -u); do
+            [ -f "audit/$id/audit.json" ] && manifests="$manifests audit/$id/audit.json"
+          done
+          [ -f /tmp/threads.json ] || echo "[]" > /tmp/threads.json
+          if [ -z "$manifests" ]; then
+            echo "ok=true" >> "$GITHUB_OUTPUT"; echo "summary=no audits touched" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          node .github/scripts/audit-gate.mjs /tmp/threads.json $manifests > /tmp/gate.json
+          cat /tmp/gate.json
+          echo "ok=$(jq -r .ok /tmp/gate.json)" >> "$GITHUB_OUTPUT"
+          echo "summary=$(jq -r .summary /tmp/gate.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Post consistency status
+        uses: actions/github-script@v7
+        env:
+          GATE_OK: ${{ steps.gate.outputs.ok }}
+          GATE_SUMMARY: ${{ steps.gate.outputs.summary }}
+          GATE_SHA: ${{ steps.commit.outputs.sha }}
+        with:
+          script: |
+            await github.rest.repos.createCommitStatus({
+              owner: context.repo.owner, repo: context.repo.repo,
+              sha: process.env.GATE_SHA,
+              state: process.env.GATE_OK === "true" ? "success" : "failure",
+              context: "consistency",
+              description: (process.env.GATE_SUMMARY || "").slice(0, 140),
+            });
+
   consistency:
-    name: consistency (required)
+    name: audit checks
     if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
@@ -200,16 +228,6 @@ jobs:
           echo "ids=$ids" >> "$GITHUB_OUTPUT"
           echo "audits on this PR: ${ids:-<none>}"
 
-      - name: Freshness — every audit ran against the current content
-        if: steps.scope.outputs.ids != ''
-        run: |
-          manifests=""
-          for id in ${{ steps.scope.outputs.ids }}; do
-            [ -f "audit/$id/audit.json" ] && manifests="$manifests audit/$id/audit.json"
-          done
-          [ -z "$manifests" ] && { echo "no audit manifests touched"; exit 0; }
-          node .github/scripts/audit-freshness.mjs $manifests
-
       - name: Fetch review threads
         if: github.event.pull_request != null
         uses: actions/github-script@v7
@@ -232,13 +250,34 @@ jobs:
             }));
             require("fs").writeFileSync("/tmp/threads.json", JSON.stringify(threads));
 
-      - name: Reconcile the table against the comments
-        if: steps.scope.outputs.ids != ''
+      - name: Consistency gate
+        id: gate
         run: |
           [ -f /tmp/threads.json ] || echo "[]" > /tmp/threads.json
-          ledgers=""
+          manifests=""
           for id in ${{ steps.scope.outputs.ids }}; do
-            [ -f "audit/$id/ledger.json" ] && ledgers="$ledgers audit/$id/ledger.json"
+            [ -f "audit/$id/audit.json" ] && manifests="$manifests audit/$id/audit.json"
           done
-          [ -z "$ledgers" ] && { echo "no ledgers touched; nothing to reconcile"; exit 0; }
-          node .github/scripts/audit-consistency.mjs /tmp/threads.json $ledgers
+          if [ -z "$manifests" ]; then
+            echo "ok=true" >> "$GITHUB_OUTPUT"; echo "summary=no audits touched" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          node .github/scripts/audit-gate.mjs /tmp/threads.json $manifests > /tmp/gate.json
+          cat /tmp/gate.json
+          echo "ok=$(jq -r .ok /tmp/gate.json)" >> "$GITHUB_OUTPUT"
+          echo "summary=$(jq -r .summary /tmp/gate.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Post consistency status
+        uses: actions/github-script@v7
+        env:
+          GATE_OK: ${{ steps.gate.outputs.ok }}
+          GATE_SUMMARY: ${{ steps.gate.outputs.summary }}
+          GATE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        with:
+          script: |
+            await github.rest.repos.createCommitStatus({
+              owner: context.repo.owner, repo: context.repo.repo,
+              sha: process.env.GATE_SHA,
+              state: process.env.GATE_OK === "true" ? "success" : "failure",
+              context: "consistency",
+              description: (process.env.GATE_SUMMARY || "").slice(0, 140),
+            });

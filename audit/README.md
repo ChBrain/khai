@@ -36,8 +36,9 @@ audit.json  ──►  audit PR
 ```
 
 Treating findings happens in the comments; re-running `/audit <id>` is the sync
-point that reads them into the table and re-checks. The review job pushes with a
-PAT (not the Actions token), so its commit re-fires the consistency check.
+point that reads them into the table and re-checks. The run posts the verdict as
+a `consistency` commit status on its own commit, so the gate updates immediately,
+with no second workflow run to wait on.
 
 A finding is a risk. Its treatment is the human's decision, in the classic
 vocabulary:
@@ -71,21 +72,19 @@ The review itself never gates: the model is advisory, so the review job always
 exits 0. What holds the PR is, first, GitHub's "require conversation resolution
 before merging": the audit PR cannot close while a finding comment is open.
 
-Second, the consistency gate (`reconcile`), a deterministic required check: the
-committed ledger must agree with the treatment each finding's comment records. If
-a comment treats a finding "accept" while the table still shows it open, or the
-table says "reduced" while no comment records the decision, the check fails and
-the PR is blocked. This keeps the record and the conversation from drifting
-apart, and it composes with the anti-cheat: a Reduce the collector reopened shows
-`open` in the table, so a comment claiming it done will mismatch and block.
+Second, the `consistency` commit status, a deterministic required check posted on
+the head commit by both jobs (`audit-gate.mjs`). It fails on two counts. Freshness:
+every audit the PR touches must have run against the current content, proven by a
+meta.json stamp of each reviewed target's git tree; a missing stamp (the audit
+never ran, a seed-only PR) or a changed tree (stale) fails it. Reconcile: the
+committed ledger must agree with the treatment each finding's comment records; a
+comment that treats a finding "accept" while the table still shows it open, or a
+table that claims a decision no comment records, fails it. It composes with the
+anti-cheat: a Reduce the collector reopened shows `open`, so a comment claiming it
+done will mismatch and block.
 
-The same required check first runs a freshness gate: every audit the PR touches
-must have actually run against the current content. The review job stamps
-meta.json with the git tree of each reviewed target; the check fails if that
-stamp is missing (the audit never ran, a seed-only PR) or no longer matches (the
-content changed since the review, so the findings are stale). Either way the fix
-is to comment /audit <id> and re-run. This is what stops an un-run or stale audit
-from merging.
+The status is posted directly by the job (via the API), so the gate updates the
+moment the review syncs the table, with no dependence on a workflow re-trigger.
 
 Every treatment must carry a resolution detail, so no finding closes without a
 written reason: the fixing PR for a Reduce, where it is owned for a Transfer, the
@@ -106,7 +105,7 @@ name, not tied to any branch's lifespan, so the ephemeral audit branch is fully
 compatible. Two rules carry the gate:
 
 - require conversation resolution before merging;
-- require the audit consistency check to pass.
+- require the `consistency` status check to pass.
 
 Both are evaluated per PR at merge time, so they govern an audit branch cut
 minutes ago and deleted after merge exactly as they would a standing one.
@@ -126,7 +125,9 @@ that proves the wiring but does not judge meaning.
 
 `.github/workflows/audit.yml` runs the loop. The review job (the model calls)
 runs on PR open, or on a `/audit <id>` comment that runs that named audit on
-demand (regardless of the diff); it reviews each audit, commits the ledger and
-log, and posts new findings as inline comments. The consistency job runs on every PR event with no model calls: it
-reads the comment threads and the ledger and fails when they disagree
-(`.github/scripts/audit-consistency.mjs`). That job is the required check.
+demand (regardless of the diff); it reviews each audit, syncs the comment
+treatments into the ledger, commits, posts new findings as inline comments, then
+posts the `consistency` status on its commit. The audit-checks job runs on every
+push and on dispatch, with no model calls, and posts the same status for the
+PR-open and human-push cases (`.github/scripts/audit-gate.mjs`). The `consistency`
+status is the required check.
