@@ -1,5 +1,15 @@
 # @chbrain/khai-engine-gender
 
+## 0.0.10
+
+### Patch Changes
+
+- 31edc88: Tighten the WIRES card's Require and Setup chapters and stop explaining the wiring
+  twice. Require now states the contract (the two altitudes that must hold, and
+  why); Setup gives the procedure (the steps), without re-justifying it. The wiring
+  is explained once and enacted once, so the two chapters have distinct jobs.
+  Also drop a stray em-dash from the package description, for the house voice.
+
 ## 0.0.9
 
 ### Patch Changes
