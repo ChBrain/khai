@@ -226,6 +226,75 @@ export function engineCard(manifest) {
   };
 }
 
+const capitalize = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : s);
+// Linear, not /\s*[–—]\s*/g: that backtracks O(n) per position on long space
+// runs (CodeQL polynomial-regex). Replace the dash, then collapse the seam.
+const normalizeDashes = (s) => s.replace(/[–—]/g, " - ").replace(/ {2,}/g, " ");
+
+/**
+ * A natural-language label for a member file, for use as link *text* -- never
+ * the technical filename. A link's text is read literally by an LLM, so
+ * `[gender](position_gender.md)` injects "gender" (meaning) while
+ * `[position_gender.md](...)` injects a noisy token. Strip the type prefix and
+ * extension, underscores to spaces: position_gender.md -> "gender".
+ */
+const memberLabel = (file) =>
+  file
+    .replace(/\.md$/, "")
+    .replace(/^(position|process|piece|place|play|plot|persona)_/, "")
+    .replace(/_/g, " ");
+
+/**
+ * Render an engine's README from its package.json -- the single, generated shape
+ * every engine shares. The README is a pointer, never a second copy of the card:
+ * it names the engine, its one-line tagline (`khai.tagline`, else the package
+ * `description`), its member files (from the
+ * composition tree, root marked as the anchor), and where the real sources of
+ * truth live (the manifest / WIRES card, and REFERENCES.md). The kit regenerates
+ * and diffs this, so a hand-edited or drifted README fails -- the README can
+ * never disagree with the manifest. Output is newline-terminated; em/en-dashes
+ * in the tagline are normalized to the sanctioned " - " so the result is
+ * encoding-clean.
+ *
+ * @param {{ name?: string, description?: string, license?: string, khai: object }} pkg
+ * @returns {string} the README markdown
+ */
+export function renderEngineReadme(pkg) {
+  if (!pkg || typeof pkg !== "object" || !pkg.khai)
+    throw new Error("renderEngineReadme: a package.json object with a `khai` block is required");
+  const manifest = pkg.khai;
+  const members = engineMembers(manifest);
+  const rootFile = members.find((m) => m.parent === null).file;
+
+  const title =
+    typeof manifest.title === "string" && manifest.title.trim()
+      ? manifest.title.trim()
+      : capitalize(manifest.engine ?? "engine");
+  const taglineSource =
+    typeof manifest.tagline === "string" && manifest.tagline.trim()
+      ? manifest.tagline
+      : (pkg.description ?? "");
+  const tagline = normalizeDashes(taglineSource.trim());
+  const license = pkg.license ?? "UNLICENSED";
+  const files = members
+    .map(
+      (m) =>
+        `- [${memberLabel(m.file)}](${m.file}) - ${m.type}${m.file === rootFile ? " (anchor)" : ""}`,
+    )
+    .join("\n");
+
+  return (
+    `# ${title}\n\n` +
+    (tagline ? `${tagline}\n\n` : "") +
+    "This engine is defined by its [manifest](package.json), which the canon renders as the WIRES " +
+    "card. The manifest is the single source of truth; this README is generated - do not edit it " +
+    "by hand.\n\n" +
+    `## Files\n\n${files}\n\n` +
+    "See [sources and attribution](REFERENCES.md).\n\n" +
+    `License: ${license}\n`
+  );
+}
+
 export default {
   types,
   chaptersFor,
@@ -234,4 +303,5 @@ export default {
   engineMembers,
   compositionOrder,
   engineCard,
+  renderEngineReadme,
 };
