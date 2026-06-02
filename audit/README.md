@@ -74,6 +74,14 @@ the PR is blocked. This keeps the record and the conversation from drifting
 apart, and it composes with the anti-cheat: a Reduce the collector reopened shows
 `open` in the table, so a comment claiming it done will mismatch and block.
 
+The same required check first runs a freshness gate: every audit the PR touches
+must have actually run against the current content. The review job stamps
+meta.json with the git tree of each reviewed target; the check fails if that
+stamp is missing (the audit never ran, a seed-only PR) or no longer matches (the
+content changed since the review, so the findings are stale). Either way the fix
+is to comment /audit <id> and re-run. This is what stops an un-run or stale audit
+from merging.
+
 Every treatment must carry a resolution detail, so no finding closes without a
 written reason: the fixing PR for a Reduce, where it is owned for a Transfer, the
 rationale for an Accept. The detail is free text and may name a PR not yet
