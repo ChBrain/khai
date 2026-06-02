@@ -21,7 +21,7 @@ instance of a type the canon defines.
 
 - **R**equire: What the engine asks back. The contract every consumer must meet, declared once in the system and then honoured at the altitude the engine names - a link each instance carries, or a single invocation that turns the engine on for the whole world.
 
-- **E**nforce: What the engine guarantees. The tests it owns, proving its own conformance - the engine declares the rule, the kit makes it hold.
+- **E**nforce: What the engine guarantees. The tests it owns, proving its own conformance - its own parts hold without exception, while the contract it lays on consumers can bind at the strength the engine sets: a rule that fails the build, or one that only warns while the world catches up. The engine declares the rule and its level; the kit holds it there.
 
 ---
 
