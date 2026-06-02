@@ -74,6 +74,16 @@ describe("renderEngineReadme - generated, pointer-only README", () => {
     );
   });
 
+  it("prefers khai.tagline over the package description", () => {
+    const withTagline = {
+      ...genderPkg,
+      khai: { ...genderPkg.khai, tagline: "Gender as position: the read before a word." },
+    };
+    const out = renderEngineReadme(withTagline);
+    expect(out).toContain("Gender as position: the read before a word.");
+    expect(out).not.toContain("khai engine content");
+  });
+
   it("throws without a khai block", () => {
     expect(() => renderEngineReadme({ description: "x" })).toThrow(/khai/);
   });
