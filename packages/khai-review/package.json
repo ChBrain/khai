@@ -4,6 +4,9 @@
   "description": "khai NLP-review lane — the judged, advisory counterpart to the conformance kit. Where only meaning can decide (conciseness, coherence, voice), a pluggable judge reviews and suggests; it never gates.",
   "type": "module",
   "main": "./index.mjs",
+  "bin": {
+    "khai-review": "./cli.mjs"
+  },
   "exports": {
     ".": "./index.mjs",
     "./package.json": "./package.json"
@@ -19,7 +22,8 @@
     "access": "restricted"
   },
   "files": [
-    "index.mjs"
+    "index.mjs",
+    "cli.mjs"
   ],
   "engines": {
     "node": ">=22.12.0"
