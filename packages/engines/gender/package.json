@@ -33,9 +33,16 @@
     },
     "requires": [
       {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
         "on": "persona",
         "section": "Projection",
-        "link": "expression"
+        "link": "expression",
+        "level": "fail"
       }
     ],
     "card": {
