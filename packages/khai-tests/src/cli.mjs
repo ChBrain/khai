@@ -24,14 +24,15 @@ const argv = process.argv.slice(2);
 
 function printResults(results, cwd) {
   let failed = false;
-  for (const { file, errors = [], warnings = [] } of results) {
+  for (const { file, errors = [], warnings = [], audit = [] } of results) {
     const where = typeof file === "string" ? relative(cwd, file) || file : file;
     for (const err of errors) {
       failed = true;
       console.error(`✖ ${where}: ${err}`);
     }
-    // Advisory docs-standard findings: reported, never fatal.
+    // Advisory: reported, never fatal. `warn` nudges; `audit` just notes.
     for (const warn of warnings) console.error(`⚠ ${where}: ${warn}`);
+    for (const note of audit) console.error(`· ${where}: ${note}`);
   }
   return failed;
 }

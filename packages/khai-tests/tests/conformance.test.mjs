@@ -175,12 +175,14 @@ She cannot see the cost.
 Her jaw tightens.
 `;
 
-  it("derives the requirement from the engine manifest", () => {
+  it("derives the requirement from the engine manifest (with id + default level)", () => {
     expect(requirements).toEqual([
       {
+        id: "gender:persona:Projection",
         engine: "gender",
         on: "persona",
         section: "Projection",
+        level: "fail",
         targets: new Set(["position_male.md", "position_female.md"]),
       },
     ]);
@@ -191,10 +193,13 @@ Her jaw tightens.
     expect(validateInstanceFile(text, { requirements })).toEqual([]);
   });
 
-  it("rejects a persona with no gender link (the law is enforced)", () => {
+  it("rejects a persona with no gender link (default level: fail)", () => {
     const text = persona("A woman in a boardroom.");
-    const errors = validateInstanceFile(text, { requirements });
-    expect(errors.some((e) => e.includes("wiring(gender)") && e.includes("Projection"))).toBe(true);
+    const findings = validateInstanceFile(text, { requirements });
+    const f = findings.find((x) => x.message.includes("wiring(gender)"));
+    expect(f).toBeDefined();
+    expect(f.message).toContain("Projection");
+    expect(f.level).toBe("fail");
   });
 
   it("rejects a gender link in the wrong section", () => {
@@ -202,30 +207,93 @@ Her jaw tightens.
       "## Action\nShe ships.",
       "## Action\nShe ships. [Female](position_female.md)",
     );
-    const errors = validateInstanceFile(text, { requirements });
-    expect(errors.some((e) => e.includes("wiring(gender)"))).toBe(true);
+    const findings = validateInstanceFile(text, { requirements });
+    expect(findings.some((f) => f.message.includes("wiring(gender)"))).toBe(true);
   });
 
   it("does not impose gender wiring on a non-persona instance", () => {
-    const plotLike = persona("x").replace("khai: persona", "khai: persona-but-checked-by-on");
     // `on: persona` only — a different type is untouched by this requirement.
     const reqForPlot = wiringRequirements([
       { ...genderManifest, requires: [{ on: "plot", section: "Cast", link: "expression" }] },
     ]);
     const text = persona("No gender here.");
-    // The plot-scoped requirement must not fire on a persona.
     expect(
-      validateInstanceFile(text, { requirements: reqForPlot }).some((e) => e.includes("wiring")),
+      validateInstanceFile(text, { requirements: reqForPlot }).some((f) =>
+        f.message.includes("wiring"),
+      ),
     ).toBe(false);
   });
 
   it("exempts the wiring link from the local broken-link check", () => {
-    // The gender file lives in node_modules, not next to the persona, so the
-    // wiring link must not be reported as a broken local link. baseDir points
-    // at a real dir with no such file; only the exemption keeps it green.
     const text = persona("A woman. [Female](position_female.md)");
-    const errors = validateInstanceFile(text, { baseDir: root, requirements });
-    expect(errors).toEqual([]);
+    expect(validateInstanceFile(text, { baseDir: root, requirements })).toEqual([]);
+  });
+
+  it("the engine's declared level rides through, and a world override wins", () => {
+    const text = persona("A woman in a boardroom."); // missing the link -> the requirement fires
+    // engine declares warn: the missing link is advisory, not a failure
+    const warnReqs = wiringRequirements([
+      {
+        ...genderManifest,
+        requires: [{ on: "persona", section: "Projection", link: "expression", level: "warn" }],
+      },
+    ]);
+    expect(validateInstanceFile(text, { requirements: warnReqs })[0].level).toBe("warn");
+    // world overrides that same requirement to audit (by id)
+    const overridden = validateInstanceFile(text, {
+      requirements: warnReqs,
+      levels: { "gender:persona:Projection": "audit" },
+    });
+    expect(overridden[0].level).toBe("audit");
+  });
+
+  it("an engine's instructions-altitude requirement rides at its declared level", () => {
+    // An engine declares how it is enabled: a link to its anchor under the
+    // world's Knowledge section. Declared `audit`, so a missing link only notes.
+    const reqs = wiringRequirements([
+      {
+        engine: "demo",
+        anchor: "anchor.md",
+        requires: [{ on: "instructions", section: "Knowledge", link: "anchor", level: "audit" }],
+      },
+    ]);
+    // A structurally valid instructions instance (full canon H2 set) that simply
+    // never links the engine anchor, so only the wiring requirement fires.
+    const instructions = `---
+khai: instructions
+license: CC-BY-NC-4.0
+stamp:
+  owner: A World
+  version: v0.1.0
+  date: "2026-01-01"
+---
+
+# Instructions: World
+
+## Title
+World
+
+## Owner
+- Project: w
+
+## Human
+The human sets intent.
+
+## Agent
+The agent executes.
+
+## Collaboration
+They iterate together.
+
+## Knowledge
+Nothing linked here.
+
+## System
+The runtime hosts it.
+`;
+    const findings = validateInstanceFile(instructions, { requirements: reqs });
+    expect(findings.length).toBeGreaterThan(0); // the missing anchor link fired
+    expect(findings.every((f) => f.level === "audit")).toBe(true); // never a failure
   });
 });
 
