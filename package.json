@@ -12,6 +12,7 @@
     "packages/khai-arch",
     "packages/khai-guard",
     "packages/khai-tests",
+    "packages/khai-review",
     "packages/engines/*"
   ],
   "engines": {
