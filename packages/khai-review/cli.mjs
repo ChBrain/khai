@@ -148,11 +148,14 @@ async function main() {
   // carries the body (with the finding-id marker) and the log line to anchor to.
   if (newPath) {
     const logRel = relative(repoRoot, logPath);
-    const comments = added.map((f) => ({
-      id: f.id,
+    // Build the comment from the fresh finding (it carries `current`, the
+    // original prose), not the ledger entry which does not store it.
+    const freshById = new Map(fresh.map((f) => [f.id, f]));
+    const comments = added.map((e) => ({
+      id: e.id,
       path: logRel,
-      line: anchorLine(log, f.id),
-      body: commentBody(f),
+      line: anchorLine(log, e.id),
+      body: commentBody(freshById.get(e.id) ?? e),
     }));
     writeFileSync(newPath, JSON.stringify(comments, null, 2) + "\n");
   }
