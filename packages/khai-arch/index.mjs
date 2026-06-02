@@ -227,7 +227,9 @@ export function engineCard(manifest) {
 }
 
 const capitalize = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : s);
-const normalizeDashes = (s) => s.replace(/\s*[–—]\s*/g, " - ");
+// Linear, not /\s*[–—]\s*/g: that backtracks O(n) per position on long space
+// runs (CodeQL polynomial-regex). Replace the dash, then collapse the seam.
+const normalizeDashes = (s) => s.replace(/[–—]/g, " - ").replace(/ {2,}/g, " ");
 
 /**
  * A natural-language label for a member file, for use as link *text* -- never
