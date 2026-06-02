@@ -38,12 +38,21 @@ describe("renderEngineReadme - generated, pointer-only README", () => {
     const out = renderEngineReadme(genderPkg);
     expect(out.startsWith("# Gender\n")).toBe(true);
     expect(out).toContain("single source of truth");
-    expect(out).toContain("[position_gender.md](position_gender.md) - position (anchor)");
-    expect(out).toContain("[position_male.md](position_male.md) - position");
-    expect(out).toContain("[position_female.md](position_female.md) - position");
-    expect(out).toContain("[REFERENCES.md](REFERENCES.md)");
+    expect(out).toContain("[gender](position_gender.md) - position (anchor)");
+    expect(out).toContain("[male](position_male.md) - position");
+    expect(out).toContain("[female](position_female.md) - position");
+    expect(out).toContain("[sources and attribution](REFERENCES.md)");
     expect(out).toContain("License: CC-BY-NC-4.0");
     expect(out.endsWith("\n")).toBe(true);
+  });
+
+  it("uses natural link text, never the technical filename", () => {
+    // [gender](position_gender.md) injects meaning; [position_gender.md](...)
+    // injects a noisy token an LLM reads literally. No link text may be a
+    // filename (end in .md/.json) anywhere in the generated README.
+    const out = renderEngineReadme(genderPkg);
+    expect(out).toContain("[gender](position_gender.md)");
+    expect(out).not.toMatch(/\[[^\]]*\.(md|json)\]\(/);
   });
 
   it("normalizes em/en-dashes in the tagline to ' - '", () => {
@@ -66,12 +75,8 @@ describe("renderEngineReadme - generated, pointer-only README", () => {
   it("uses an explicit title and renders a multi-type members tree", () => {
     const out = renderEngineReadme(languagePkg);
     expect(out.startsWith("# Language\n")).toBe(true);
-    expect(out).toContain(
-      "[process_using_language.md](process_using_language.md) - process (anchor)",
-    );
-    expect(out).toContain(
-      "[position_business_english.md](position_business_english.md) - position",
-    );
+    expect(out).toContain("[using language](process_using_language.md) - process (anchor)");
+    expect(out).toContain("[business english](position_business_english.md) - position");
   });
 
   it("prefers khai.tagline over the package description", () => {

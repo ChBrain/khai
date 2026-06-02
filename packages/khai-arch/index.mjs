@@ -230,6 +230,19 @@ const capitalize = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : s);
 const normalizeDashes = (s) => s.replace(/\s*[–—]\s*/g, " - ");
 
 /**
+ * A natural-language label for a member file, for use as link *text* -- never
+ * the technical filename. A link's text is read literally by an LLM, so
+ * `[gender](position_gender.md)` injects "gender" (meaning) while
+ * `[position_gender.md](...)` injects a noisy token. Strip the type prefix and
+ * extension, underscores to spaces: position_gender.md -> "gender".
+ */
+const memberLabel = (file) =>
+  file
+    .replace(/\.md$/, "")
+    .replace(/^(position|process|piece|place|play|plot|persona)_/, "")
+    .replace(/_/g, " ");
+
+/**
  * Render an engine's README from its package.json -- the single, generated shape
  * every engine shares. The README is a pointer, never a second copy of the card:
  * it names the engine, its one-line tagline (`khai.tagline`, else the package
@@ -262,17 +275,20 @@ export function renderEngineReadme(pkg) {
   const tagline = normalizeDashes(taglineSource.trim());
   const license = pkg.license ?? "UNLICENSED";
   const files = members
-    .map((m) => `- [${m.file}](${m.file}) - ${m.type}${m.file === rootFile ? " (anchor)" : ""}`)
+    .map(
+      (m) =>
+        `- [${memberLabel(m.file)}](${m.file}) - ${m.type}${m.file === rootFile ? " (anchor)" : ""}`,
+    )
     .join("\n");
 
   return (
     `# ${title}\n\n` +
     (tagline ? `${tagline}\n\n` : "") +
-    "This engine is defined by its `khai` manifest in [`package.json`](package.json), which the " +
-    "canon renders as the WIRES card. The manifest is the single source of truth; this README is " +
-    "generated - do not edit it by hand.\n\n" +
+    "This engine is defined by its [manifest](package.json), which the canon renders as the WIRES " +
+    "card. The manifest is the single source of truth; this README is generated - do not edit it " +
+    "by hand.\n\n" +
     `## Files\n\n${files}\n\n` +
-    "See [REFERENCES.md](REFERENCES.md) for sources and attribution.\n\n" +
+    "See [sources and attribution](REFERENCES.md).\n\n" +
     `License: ${license}\n`
   );
 }
