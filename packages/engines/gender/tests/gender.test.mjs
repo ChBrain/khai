@@ -39,13 +39,22 @@ describe("gender: manifest", () => {
     expect(manifest.card.setup).toContain("Projection");
   });
 
-  it("declares the enforceable wiring requirement: persona -> gender in Projection", () => {
-    // The engine owns the contract; the kit enforces it. Here we assert the
-    // engine actually ships the machine-readable requirement.
+  it("declares both enforceable wiring altitudes, each at its level", () => {
+    // The engine owns the contract; the kit enforces it. Two altitudes (the card
+    // teaches them): the law, declared once in the world's Instructions Knowledge
+    // chapter (links the anchor), and the per-persona read under Projection. Both
+    // are the structural floor, so both are declared `fail`.
+    expect(manifest.requires).toContainEqual({
+      on: "instructions",
+      section: "Knowledge",
+      link: "anchor",
+      level: "fail",
+    });
     expect(manifest.requires).toContainEqual({
       on: "persona",
       section: "Projection",
       link: "expression",
+      level: "fail",
     });
   });
 });
