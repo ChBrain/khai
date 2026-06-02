@@ -5,15 +5,17 @@
 #                `/audit` comment, or manual dispatch. It reviews each changed
 #                audit, commits the ledger + log, and posts NEW findings as inline
 #                comments. Advisory: it never fails the build.
-#   consistency  the deterministic required check. Runs on every PR event,
-#                including each push, with no model calls: it reads the comment
-#                threads + the ledger and fails if the table and the comments
-#                disagree. This, plus "require conversation resolution", is what
-#                holds the audit PR until the table is ok.
+#   consistency  the deterministic required check, no model calls. Runs on every
+#                push AND on a thread reply or resolution, so it re-evaluates as
+#                the conversation changes. It gates on freshness (the audit ran
+#                against current content) and on the table agreeing with the
+#                comments. This, plus "require conversation resolution", holds the
+#                audit PR until the table is ok.
 #
-# First pass: the GitHub wiring (comment posting, thread parsing) needs a live
-# dry-run on a real audit PR to shake out. The logic it calls is unit-tested in
-# @chbrain/khai-review.
+# The review job checks out and pushes with the KHAI PAT, not GITHUB_TOKEN: a
+# GITHUB_TOKEN push does not trigger further runs, so the consistency check would
+# never re-fire after the review commits. The logic both jobs call is unit-tested
+# in @chbrain/khai-review.
 
 name: audit
 
@@ -23,6 +25,12 @@ on:
     paths: ["audit/**"]
   issue_comment:
     types: [created]
+  # Treating a finding (a thread reply) or resolving its thread must re-run the
+  # consistency check, so the gate reflects the conversation as it changes.
+  pull_request_review_comment:
+    types: [created, edited]
+  pull_request_review_thread:
+    types: [resolved, unresolved]
   workflow_dispatch:
 
 permissions:
@@ -58,10 +66,15 @@ jobs:
             core.setOutput("head_ref", pr.head.ref);
             core.setOutput("base_ref", pr.base.ref);
 
+      # Check out (and later push) with the KHAI PAT, not GITHUB_TOKEN: a commit
+      # pushed by GITHUB_TOKEN does NOT trigger further workflow runs, so the
+      # consistency check would never re-run after the review commits meta + log.
+      # The PAT push fires the synchronize event, so consistency re-evaluates.
       - uses: actions/checkout@v4
         with:
           ref: ${{ steps.ctx.outputs.head_ref }}
           fetch-depth: 0
+          token: ${{ secrets.KHAI }}
 
       - uses: actions/setup-node@v4
         with:
@@ -134,7 +147,11 @@ jobs:
 
   consistency:
     name: consistency (required)
-    if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
+    if: >
+      github.event_name == 'pull_request' ||
+      github.event_name == 'pull_request_review_comment' ||
+      github.event_name == 'pull_request_review_thread' ||
+      github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
