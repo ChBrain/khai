@@ -12,6 +12,7 @@ import {
   wiringRequirements,
   engineDocChecks,
 } from "../index.mjs";
+import { renderEngineReadme } from "@chbrain/khai-arch";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
 const pkgs = discoverEnginePackages(root);
@@ -43,11 +44,11 @@ describe("engineDocChecks: advisory docs-standard lane", () => {
   const dir = join(tmpdir(), `khai-docs-${process.pid}`);
   beforeAll(() => {
     mkdirSync(dir, { recursive: true });
-    // A REFERENCES with no frontmatter, a backticked (unlinked) member, and a
-    // clause dash - three docs-standard violations, zero canon errors.
+    // A REFERENCES with no frontmatter, a backticked (unlinked) member, a clause
+    // dash, and an em-dash - four docs-standard violations, zero canon errors.
     writeFileSync(
       join(dir, "REFERENCES.md"),
-      "# Refs\n\n**Authorship:** someone\n\nMaps `position_x.md` - the anchor.\n",
+      "# Refs\n\n**Authorship:** someone\n\nMaps `position_x.md` - the anchor — really.\n",
     );
     // A card whose prose carries the LLM dash family (the website renders this).
     writeFileSync(
@@ -65,6 +66,7 @@ describe("engineDocChecks: advisory docs-standard lane", () => {
     const warnings = results.flatMap((r) => r.warnings);
     expect(results.every((r) => r.errors.length === 0)).toBe(true);
     expect(warnings.some((w) => /clause dash/.test(w))).toBe(true);
+    expect(warnings.some((w) => /en\/em-dash/.test(w))).toBe(true);
     expect(warnings.some((w) => /frontmatter/.test(w))).toBe(true);
     expect(warnings.some((w) => /loose file/.test(w))).toBe(true);
   });
@@ -396,5 +398,55 @@ describe("engine card: validateEnginePackage enforces a valid WIRES card", () =>
   it("flags an engine whose manifest carries no card", async () => {
     const errors = flatten(await validateEnginePackage(cardlessDir));
     expect(errors.some((e) => e.includes("WIRES card"))).toBe(true);
+  });
+});
+
+// --- README: generated, never hand-edited; the kit regenerates and diffs ----
+describe("engine README: validateEnginePackage enforces the generated README", () => {
+  const dir = join(tmpdir(), `khai-readme-${process.pid}`);
+  const pkg = {
+    name: "@chbrain/khai-engine-demo",
+    description: "a demo engine",
+    license: "CC-BY-NC-4.0",
+    khai: {
+      engine: "demo",
+      tagline: "Demo as position: it shows the shape.",
+      type: "position",
+      anchor: "position_demo.md",
+      expressions: {},
+      card: {
+        wire: "binds at Position",
+        issue: "one ready read",
+        require: "declared once, carried per instance",
+        enforce: "structure checked, meaning reviewed",
+        setup: "declare it, then carry it",
+      },
+    },
+  };
+
+  beforeAll(() => {
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(join(dir, "package.json"), JSON.stringify(pkg));
+  });
+  afterAll(() => rmSync(dir, { recursive: true, force: true }));
+
+  const readmeErrors = async () =>
+    (await validateEnginePackage(dir))
+      .filter((r) => r.file === "README.md")
+      .flatMap((r) => r.errors);
+
+  it("flags a missing README", async () => {
+    rmSync(join(dir, "README.md"), { force: true });
+    expect((await readmeErrors()).some((e) => /missing/.test(e))).toBe(true);
+  });
+
+  it("flags a README that drifted from the manifest", async () => {
+    writeFileSync(join(dir, "README.md"), "# Demo\n\nhand-edited, wrong.\n");
+    expect((await readmeErrors()).some((e) => /drifted/.test(e))).toBe(true);
+  });
+
+  it("passes a README rendered from the manifest (no README error)", async () => {
+    writeFileSync(join(dir, "README.md"), renderEngineReadme(pkg));
+    expect(await readmeErrors()).toEqual([]);
   });
 });

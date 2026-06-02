@@ -6,7 +6,7 @@
 import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { pathToFileURL } from "node:url";
-import { types, engineCard } from "@chbrain/khai-arch";
+import { types, engineCard, renderEngineReadme } from "@chbrain/khai-arch";
 import { parseDoc } from "./parse.mjs";
 import {
   checkEncoding,
@@ -49,6 +49,11 @@ export function engineDocChecks(pkgDir) {
       ...checkNoFooter(text),
       ...(f === "REFERENCES.md" ? checkHasFrontmatter(text) : []),
     ];
+    // These docs (README, REFERENCES) are not content instances, so checkEncoding
+    // never runs over them; hold them to the house voice here. em/en-dash is the
+    // LLM's tell and is never sanctioned in prose (the CVI's numeric-range
+    // exception is for " - " only, caught by checkClauseDash above).
+    if (/[–—]/.test(text)) warnings.push("en/em-dash present; use , ; : or ()");
     if (warnings.length) out.push({ file: f, errors: [], warnings });
   }
   const loose = looseFiles(
@@ -151,6 +156,25 @@ export async function validateEnginePackage(pkgDir, { executeCompose = false } =
     engineCard(manifest);
   } catch (err) {
     results.push({ file: "package.json", errors: [`WIRES card: ${err.message}`] });
+  }
+
+  // README: generated, never hand-edited. The canon renders it from the manifest
+  // (renderEngineReadme), so a missing or drifted README is a real error -- the
+  // pointer must never disagree with the source of truth. Deterministic: the
+  // answer is in the bytes, so this gates (unlike the advisory docs lane).
+  try {
+    const pkg = JSON.parse(readFileSync(join(pkgDir, "package.json"), "utf8"));
+    const expected = renderEngineReadme(pkg);
+    const readmePath = join(pkgDir, "README.md");
+    if (!existsSync(readmePath))
+      results.push({ file: "README.md", errors: ["missing; run the canon's renderEngineReadme"] });
+    else if (readFileSync(readmePath, "utf8") !== expected)
+      results.push({
+        file: "README.md",
+        errors: ["drifted from the manifest; regenerate with the canon's renderEngineReadme"],
+      });
+  } catch (err) {
+    results.push({ file: "README.md", errors: [`cannot render from manifest: ${err.message}`] });
   }
 
   const { type, anchor, expressions = {} } = manifest;
