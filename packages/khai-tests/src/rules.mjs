@@ -218,3 +218,39 @@ export function looseFiles(files) {
   }
   return files.filter((f) => degree.get(f.name) === 0).map((f) => f.name);
 }
+
+// --- clause dash: the LLM's favourite punctuation, not the house voice -----
+// em/en-dash are caught by checkEncoding; this catches the *spaced hyphen*
+// " - " used as a clause separator (the em-dash in disguise). The house voice
+// uses , ; : ( ) instead. A line-start list marker ("- ") and a "---" fence are
+// not clause dashes and are exempt.
+export function checkClauseDash(text) {
+  const e = [];
+  text.split("\n").forEach((line, i) => {
+    if (/^\s*-{3,}\s*$/.test(line)) return; // --- fence / thematic rule
+    const body = line.replace(/^\s*[-*]\s+/, ""); // drop a leading bullet marker
+    if (/\S \- \S/.test(body))
+      e.push(`line ${i + 1}: spaced hyphen " - " as a clause dash; use , ; : or ()`);
+  });
+  return e;
+}
+
+// --- footer: no trailing version/attribution stamp ------------------------
+// Lifted files carry footers like "_v0.3.0 - KAI Cultures_"; metadata belongs
+// in YAML frontmatter, not a footer. Flag a trailing italic-underscore line.
+export function checkNoFooter(text) {
+  const lines = text.replace(/\s+$/, "").split("\n");
+  const last = (lines[lines.length - 1] ?? "").trim();
+  if (/^_.+_$/.test(last))
+    return [`trailing footer "${last}"; put metadata in YAML frontmatter, not a footer`];
+  return [];
+}
+
+// --- frontmatter present: metadata lives in YAML, not prose ---------------
+// A doc whose metadata must be machine-readable (e.g. REFERENCES) needs a
+// leading "---" YAML block, not a "**Bold:**" header that no validator can read.
+export function checkHasFrontmatter(text) {
+  return /^---\n[\s\S]*?\n---\n/.test(text)
+    ? []
+    : ["missing YAML frontmatter (a leading --- block); metadata must not live in prose"];
+}
