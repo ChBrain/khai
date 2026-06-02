@@ -18,11 +18,50 @@ import {
   checkExtensions,
   checkLinks,
   checkWiring,
+  checkClauseDash,
+  checkLinkText,
+  checkNoFooter,
+  checkHasFrontmatter,
+  looseFiles,
 } from "./rules.mjs";
 
 const typeIds = Object.keys(types);
 
-/** @typedef {{ file: string, errors: string[] }} FileResult */
+/** @typedef {{ file: string, errors: string[], warnings?: string[] }} FileResult */
+
+/**
+ * The engine docs standard, run over a package's own `.md` files (excluding the
+ * changeset-generated CHANGELOG). These are advisory by nature: they surface as
+ * `warnings`, never `errors`, so a downstream consumer is informed but not
+ * failed while the world migrates. Our own suite holds engines to zero warnings.
+ * Pure file analysis; never executes package code.
+ * @param {string} pkgDir
+ * @returns {{ file: string, errors: string[], warnings: string[] }[]}
+ */
+export function engineDocChecks(pkgDir) {
+  const out = [];
+  const mds = readdirSync(pkgDir).filter((f) => f.endsWith(".md") && f !== "CHANGELOG.md");
+  for (const f of mds) {
+    const text = readFileSync(join(pkgDir, f), "utf8");
+    const warnings = [
+      ...checkClauseDash(text),
+      ...checkLinkText(text),
+      ...checkNoFooter(text),
+      ...(f === "REFERENCES.md" ? checkHasFrontmatter(text) : []),
+    ];
+    if (warnings.length) out.push({ file: f, errors: [], warnings });
+  }
+  const loose = looseFiles(
+    mds.map((f) => ({ name: f, text: readFileSync(join(pkgDir, f), "utf8") })),
+  );
+  if (loose.length)
+    out.push({
+      file: pkgDir,
+      errors: [],
+      warnings: loose.map((f) => `loose file: "${f}" has no link into the engine graph`),
+    });
+  return out;
+}
 
 /**
  * Validate one content file's text against a type contract. `owner` pins the
@@ -141,6 +180,9 @@ export async function validateEnginePackage(pkgDir, { executeCompose = false } =
       results.push({ file: "index.mjs", errors: [`compose() smoke failed: ${err.message}`] });
     }
   }
+
+  // Engine docs standard: advisory warnings, never fatal (see engineDocChecks).
+  results.push(...engineDocChecks(pkgDir));
 
   return results;
 }
