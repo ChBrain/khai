@@ -11,17 +11,17 @@ version: 0.0.1
 
 A play is the whole production: many plots run inside it, and one arc binds them into a single telling. It does not play out a scene; it sets what every plot inherits and what they all add up to.
 
-- **E**state: Who holds the play and answers for it - the production it belongs to, the owner of the whole run.
+- **E**state: Who holds the play and answers for it: the production it belongs to, the owner of the whole run.
 
-- **N**ame: What the play is called - the title its plots run under.
+- **N**ame: What the play is called: the title its plots run under.
 
-- **A**rc: The overarching story. How the plots interweave into one telling - the bend that makes ten plots a shape and not a list.
+- **A**rc: The overarching story. How the plots interweave into one telling: the bend that makes ten plots a shape and not a list.
 
-- **C**ompany: The cast the play may field - its Personas and what they carry: the Pieces, Places, Processes, and Positions in play. A plot draws only from here; reach past the Company and it has gone off the play.
+- **C**ompany: The cast the play may field, its Personas and what they carry: the Pieces, Places, Processes, and Positions in play. A plot draws only from here; reach past the Company and it has gone off the play.
 
-- **T**riggers: The conditions that chain the plots. Each plot starts when its entry fires and runs until its exit - one plot's close is the next one's cue.
+- **T**riggers: The conditions that chain the plots. Each plot starts when its entry fires and runs until its exit; one plot's close is the next one's cue.
 
-- **S**takes: What the whole production is fighting over. The pressure every plot must raise - what makes the seventh plot weigh more than the second.
+- **S**takes: What the whole production is fighting over. The pressure every plot must raise: what makes the seventh plot weigh more than the second.
 
 ---
 

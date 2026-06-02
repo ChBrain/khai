@@ -35,7 +35,7 @@ Enriched by:
 
 ## Playbook
 
-The playbook spine - the ordered groups consumers render. The model owns it; nothing downstream re-declares the order or the grouping.
+The playbook spine: the ordered groups consumers render. The model owns it; nothing downstream re-declares the order or the grouping.
 
 ```yaml
 groups:
