@@ -80,6 +80,11 @@ describe("checkClauseDash - the spaced hyphen is the LLM's disguised em-dash", (
     expect(checkClauseDash("a well-known 1-2 punch")).toEqual([]);
   });
 
+  it("exempts a spaced numeric range (CVI-sanctioned), still flags number-word", () => {
+    expect(checkClauseDash("set light (400 - 500), the years 2006 - 2012")).toEqual([]);
+    expect(checkClauseDash("from 500 - mother tongue")[0]).toMatch(/clause dash/);
+  });
+
   it("still flags an inline clause dash inside a list item", () => {
     expect(checkClauseDash("* one - and a clause dash")).toHaveLength(1);
   });

@@ -228,8 +228,10 @@ export function checkClauseDash(text) {
   const e = [];
   text.split("\n").forEach((line, i) => {
     if (/^\s*-{3,}\s*$/.test(line)) return; // --- fence / thematic rule
-    const body = line.replace(/^\s*[-*]\s+/, ""); // drop a leading bullet marker
-    if (/\S \- \S/.test(body))
+    // drop a leading bullet marker, then numeric ranges (the CVI sanctions a
+    // spaced hyphen between numbers, e.g. "400 - 500").
+    const body = line.replace(/^\s*[-*]\s+/, "").replace(/\d - \d/g, " ");
+    if (/\S - \S/.test(body))
       e.push(`line ${i + 1}: spaced hyphen " - " as a clause dash; use , ; : or ()`);
   });
   return e;
