@@ -16,27 +16,27 @@ models the structural function a persona occupies in a room.
 
 The gender engine's architecture applies structural sociology directly into code constraints.
 
-| Source | Key Work | Scope | Trust Level |
-|---|---|---|---|
-| **Barbara Risman** | *Gender as a Social Structure* (2004) | Gender as an exogenous social structure, not an internalized identity process. | ⭐⭐⭐⭐⭐ |
-| **West & Zimmerman** | *"Doing Gender"* (1987) | The "read" as accountability; the room enforcing the frame before the persona acts. | ⭐⭐⭐⭐⭐ |
-| **Kate Manne** | *Down Girl: The Logic of Misogyny* (2017) | The "Human Giver" framework; the structural expectation of uncompensated accommodation. | ⭐⭐⭐⭐⭐ |
-| **Raewyn Connell** | *Gender and Power* (1987) | Hegemonic masculinity; the patriarchal dividend; agency conferred automatically by position. | ⭐⭐⭐⭐⭐ |
-| **Pierre Bourdieu** | *Masculine Domination* (1998) | Male agency as the unspoken, neutral default of public space (*habitus*). | ⭐⭐⭐⭐⭐ |
+| Source               | Key Work                                  | Scope                                                                                        | Trust Level |
+| -------------------- | ----------------------------------------- | -------------------------------------------------------------------------------------------- | ----------- |
+| **Barbara Risman**   | _Gender as a Social Structure_ (2004)     | Gender as an exogenous social structure, not an internalized identity process.               | ⭐⭐⭐⭐⭐  |
+| **West & Zimmerman** | _"Doing Gender"_ (1987)                   | The "read" as accountability; the room enforcing the frame before the persona acts.          | ⭐⭐⭐⭐⭐  |
+| **Kate Manne**       | _Down Girl: The Logic of Misogyny_ (2017) | The "Human Giver" framework; the structural expectation of uncompensated accommodation.      | ⭐⭐⭐⭐⭐  |
+| **Raewyn Connell**   | _Gender and Power_ (1987)                 | Hegemonic masculinity; the patriarchal dividend; agency conferred automatically by position. | ⭐⭐⭐⭐⭐  |
+| **Pierre Bourdieu**  | _Masculine Domination_ (1998)             | Male agency as the unspoken, neutral default of public space (_habitus_).                    | ⭐⭐⭐⭐⭐  |
 
 ## Structural Mapping by File
 
 The engine does not reproduce quotes; it translates sociological concepts into the `HOLD` constraint schema.
 
-*   **`position_gender.md` (The Anchor)**
-    *   *Constraint mapped:* Gender as a structural read that arrives with the body; held continuously rather than run as a process.
-    *   *Anchored by:* West and Zimmerman (Accountability), Barbara Risman (Gender as Social Structure).
-*   **`position_female.md` (The Expression)**
-    *   *Constraint mapped:* The expectation of accommodation / "Hold the room together."
-    *   *Anchored by:* Kate Manne (The "Human Giver" framework / structural obligation to accommodate).
-*   **`position_male.md` (The Expression)**
-    *   *Constraint mapped:* The assumption of agency / the space that opens without asking.
-    *   *Anchored by:* Raewyn Connell (The patriarchal dividend), Pierre Bourdieu (Public space organized as default male).
+- **`position_gender.md` (The Anchor)**
+  - _Constraint mapped:_ Gender as a structural read that arrives with the body; held continuously rather than run as a process.
+  - _Anchored by:_ West and Zimmerman (Accountability), Barbara Risman (Gender as Social Structure).
+- **`position_female.md` (The Expression)**
+  - _Constraint mapped:_ The expectation of accommodation / "Hold the room together."
+  - _Anchored by:_ Kate Manne (The "Human Giver" framework / structural obligation to accommodate).
+- **`position_male.md` (The Expression)**
+  - _Constraint mapped:_ The assumption of agency / the space that opens without asking.
+  - _Anchored by:_ Raewyn Connell (The patriarchal dividend), Pierre Bourdieu (Public space organized as default male).
 
 ## Known Engine Constraints
 
@@ -53,4 +53,3 @@ The `position_male.md` and `position_female.md` files model the structural
 read (what the room assigns), not the lived inner experience. They are
 intentionally symmetric in schema so that any persona may hold either, or
 navigate the gap between them.
-
