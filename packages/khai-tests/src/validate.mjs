@@ -60,6 +60,21 @@ export function engineDocChecks(pkgDir) {
       errors: [],
       warnings: loose.map((f) => `loose file: "${f}" has no link into the engine graph`),
     });
+
+  // Card prose lives in package.json (JSON), outside the .md checks above, yet
+  // it is what the website renders. Hold it to the same voice: no clause dash,
+  // no em/en-dash. (em/en is checkEncoding's job for .md content files, but the
+  // card is neither, so it is checked here.)
+  const pkgPath = join(pkgDir, "package.json");
+  if (existsSync(pkgPath)) {
+    const card = (JSON.parse(readFileSync(pkgPath, "utf8")).khai ?? {}).card ?? {};
+    for (const [chapter, prose] of Object.entries(card)) {
+      if (typeof prose !== "string") continue;
+      const warnings = checkClauseDash(prose).map((w) => w.replace(/^line \d+: /, ""));
+      if (/[–—]/.test(prose)) warnings.push("en/em-dash present; use , ; : or ()");
+      if (warnings.length) out.push({ file: `package.json#card.${chapter}`, errors: [], warnings });
+    }
+  }
   return out;
 }
 

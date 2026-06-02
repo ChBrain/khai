@@ -49,6 +49,14 @@ describe("engineDocChecks: advisory docs-standard lane", () => {
       join(dir, "REFERENCES.md"),
       "# Refs\n\n**Authorship:** someone\n\nMaps `position_x.md` - the anchor.\n",
     );
+    // A card whose prose carries the LLM dash family (the website renders this).
+    writeFileSync(
+      join(dir, "package.json"),
+      JSON.stringify({
+        name: "x",
+        khai: { engine: "x", card: { wire: "binds at Position - the seam", issue: "two — three" } },
+      }),
+    );
   });
   afterAll(() => rmSync(dir, { recursive: true, force: true }));
 
@@ -59,6 +67,18 @@ describe("engineDocChecks: advisory docs-standard lane", () => {
     expect(warnings.some((w) => /clause dash/.test(w))).toBe(true);
     expect(warnings.some((w) => /frontmatter/.test(w))).toBe(true);
     expect(warnings.some((w) => /loose file/.test(w))).toBe(true);
+  });
+
+  it("holds the WIRES card prose to the voice (clause dash + em/en)", () => {
+    const results = engineDocChecks(dir);
+    const cardFindings = results.filter((r) => r.file.startsWith("package.json#card."));
+    expect(cardFindings.some((r) => /card\.wire/.test(r.file))).toBe(true); // " - " clause dash
+    expect(
+      cardFindings.some(
+        (r) => r.file.includes("card.issue") && r.warnings.some((w) => /em-dash/.test(w)),
+      ),
+    ).toBe(true);
+    expect(cardFindings.every((r) => r.errors.length === 0)).toBe(true);
   });
 });
 
