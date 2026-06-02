@@ -61,15 +61,10 @@ jobs:
             core.setOutput("head_ref", pr.head.ref);
             core.setOutput("base_ref", pr.base.ref);
 
-      # Check out (and later push) with the KHAI PAT, not GITHUB_TOKEN: a commit
-      # pushed by GITHUB_TOKEN does NOT trigger further workflow runs, so the
-      # consistency check would never re-run after the review commits meta + log.
-      # The PAT push fires the synchronize event, so consistency re-evaluates.
       - uses: actions/checkout@v4
         with:
           ref: ${{ steps.ctx.outputs.head_ref }}
           fetch-depth: 0
-          token: ${{ secrets.KHAI }}
 
       - uses: actions/setup-node@v4
         with:
@@ -128,6 +123,8 @@ jobs:
 
       - name: Commit ledger + log
         id: commit
+        env:
+          KHAI: ${{ secrets.KHAI }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -136,7 +133,17 @@ jobs:
             echo "nothing to commit"
           else
             git commit -m "audit: update ledger + log"
-            git push origin HEAD:"${{ steps.ctx.outputs.head_ref }}"
+            # Push with the KHAI PAT so the commit re-fires the consistency check
+            # (a GITHUB_TOKEN push does not trigger further runs). If KHAI is not
+            # set, fall back to the default push: it lands, but you must re-run
+            # /audit or dispatch consistency to re-check.
+            if [ -n "$KHAI" ]; then
+              git push "https://x-access-token:${KHAI}@github.com/${{ github.repository }}.git" \
+                HEAD:"${{ steps.ctx.outputs.head_ref }}"
+            else
+              echo "::warning::KHAI secret not set; pushing with the default token (consistency will not auto-re-fire)"
+              git push origin HEAD:"${{ steps.ctx.outputs.head_ref }}"
+            fi
           fi
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
