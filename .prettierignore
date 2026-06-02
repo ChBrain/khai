@@ -3,6 +3,13 @@ dist/
 .vitest-cache/
 coverage/
 
+# Generated audit artifacts: the audit workflow commits these (the human log,
+# the ledger, the freshness stamp); they are machine-written, not hand-formatted,
+# so prettier must not gate a PR on their style.
+audit/*/ledger.json
+audit/*/log.md
+audit/*/meta.json
+
 # Intentionally-malformed fixtures — prettier would strip the BOM that the
 # encoding test specifically needs to catch, and reformat fixtures designed
 # to express a specific failure mode.
