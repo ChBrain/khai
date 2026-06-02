@@ -1,5 +1,48 @@
 # @chbrain/khai-tests
 
+## 0.0.9
+
+### Patch Changes
+
+- 363ba52: Add structural rule atoms for the engine docs standard (not yet wired into
+  `validateEnginePackage` - they land with the severity dimension so they can ramp
+  from advisory to fail without breaking installed engines):
+  - `rules.checkLinkText(text)` - a link's text is read literally by an LLM, so it
+    must be a natural name, never a filename. Flags empty link text and any label
+    that ends in a file extension or equals the target's basename
+    (`[position_gender.md](...)` fails; `[gender](position_gender.md)` passes).
+  - `rules.looseFiles(files)` - the "no file hangs loose" check (the Obsidian
+    graph): given `[{ name, text }]`, returns the files with no markdown-link edge
+    to any other file in the set. Backtick mentions are not edges, which is why
+    REFERENCES must _link_ the member files, not name them in backticks.
+  - `rules.checkClauseDash(text)` - the spaced hyphen " - " is the LLM's em-dash in
+    disguise, not the house voice ( , ; : () ). Flags the inline clause dash while
+    exempting line-start list markers (`*` and `-`) and `---` fences. (em/en-dash
+    stay in `checkEncoding`.)
+  - `rules.checkNoFooter(text)` - flags a trailing `_..._` version/attribution
+    stamp; metadata belongs in YAML frontmatter, not a footer.
+  - `rules.checkHasFrontmatter(text)` - a doc whose metadata must be machine-
+    readable needs a leading `---` YAML block, not a `**Bold:**` header.
+
+- 51cfc02: Wire the engine docs standard into `validateEnginePackage` as an advisory lane.
+  `engineDocChecks(pkgDir)` runs the five doc-check atoms (clause-dash, link-text,
+  no-footer, frontmatter, loose-file) over a package's own `.md` files and
+  surfaces them as `warnings`, never `errors`: a downstream consumer is informed,
+  not failed, while the world migrates (the audit/warn level of the enforcement
+  model). `FileResult` gains an optional `warnings` field; the CLI prints them
+  with a `⚠` marker and never exits non-zero on them. Our own conformance suite
+  holds engines to zero warnings, so gender (already compliant) proves the wiring.
+- 295d0c3: Document the enforcement model in the README: the kit as a "linter for worlds"
+  (engines are plugins, the dependency graph is the law set), the audit/warn/fail
+  level axis (ESLint / `npm audit` vocabulary, engine default + world override),
+  and the two lanes - a structural linter lane (checks the declaration) and an
+  NLP-review lane (checks the embodiment, caps at warn). Doc only; clearly marks
+  what the kit does today (linter lane, single implicit `fail` level) vs the
+  target it describes.
+- Updated dependencies [9f0dc51]
+- Updated dependencies [abf5cdb]
+  - @chbrain/khai-arch@0.0.9
+
 ## 0.0.8
 
 ### Patch Changes
