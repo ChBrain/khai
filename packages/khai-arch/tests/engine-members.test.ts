@@ -43,9 +43,9 @@ describe("engineMembers - normalize to a typed composition tree", () => {
   });
 
   it("throws on an unknown member type", () => {
-    expect(() => engineMembers({ engine: "x", members: [{ file: "a.md", type: "bogus" }] })).toThrow(
-      /unknown type/,
-    );
+    expect(() =>
+      engineMembers({ engine: "x", members: [{ file: "a.md", type: "bogus" }] }),
+    ).toThrow(/unknown type/);
   });
 
   it("throws on a dangling parent", () => {
