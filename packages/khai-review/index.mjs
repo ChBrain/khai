@@ -27,7 +27,7 @@ export const rubrics = {
   conciseness: {
     id: "conciseness",
     instruction:
-      "You are a ruthless editor. Could this passage say the same thing in materially fewer words (aim for at least 20% shorter)? If yes, reply FLAG with a tighter rewrite; if it is already lean, reply PASS. Cut filler, hedging, redundancy, and restating. Keep the meaning, the specific terms, and the house voice ( , ; : () , never a dash). Do not invent or drop content.",
+      "You are a careful editor with a HIGH BAR for raising a flag. FLAG a passage only if it is clearly padded: at least a quarter of it could go with no loss of meaning, no lost specific term, and no shift in voice. Reply PASS when the passage is already lean, when the only available cuts are marginal, when a cut would drop a load-bearing word, or when the change is a lateral reword rather than a real reduction. A tie goes to PASS. When you do FLAG, give a tighter rewrite that keeps the meaning, the specific terms, and the house voice ( , ; : () , never a dash), and never invents or drops content.",
   },
 };
 
