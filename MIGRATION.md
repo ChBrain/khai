@@ -62,6 +62,70 @@ instead of prose a human runs by hand.
 
 ---
 
+## Boundary: one canon, two engines, pulled
+
+A type is **defined once, in khai-arch.** Two type-agnostic engines
+validate against that single definition — they do not know what a
+"persona" is until they read it from the canon.
+
+| Layer | Owner |
+| --- | --- |
+| **Definition** (structure + criteria) | `khai-arch` — e.g. `persona.md` |
+| **Test cases** (a valid persona; a `bad-persona-shadow-restates-projection`) | `khai-arch` — they pin what the definition *means* |
+| **Deterministic mechanism** (chapters present, ordered, encoding) | `khai-tests` |
+| **Judged / NLP mechanism** (is **Shadow** a real blind spot?) | `khai-review` |
+
+`persona.md` already holds both halves the engines need: its
+**frontmatter** is the structural facts khai-tests charges; its **prose**
+(what each chapter should achieve) is the rubric khai-review charges.
+Add an 8th type tomorrow and both engines validate it with zero code
+change — the only place a type exists is khai-arch.
+
+### Direction: **pull**
+
+The arrow points one way: `khai-tests → khai-arch` and
+`khai-review → khai-arch`. khai-arch is inert: it declares, it never
+invokes. The engine *charges itself from* the canon — it pulls.
+
+```js
+// khai-tests/src/validate.mjs
+import { types, chaptersFor } from "@chbrain/khai-arch";   // the pull
+```
+
+khai-arch's `index.mjs` imports nothing back. The only back-edge is
+dev-only — khai-arch's *tests* pull the checker from khai-tests to
+validate its own spec files; that is still a pull, in test scope.
+
+Why pull, never push:
+
+1. keeps khai-arch dependency-free (runtime deps stay `gray-matter` only);
+2. dependency points toward the stable thing (the canon), not away from it;
+3. a new consumer (a third engine, website, construction) just pulls — no
+   edit to the canon;
+4. the canon must not need to know who reads it.
+
+**The proof the boundary holds:** after the refactor, khai-arch's runtime
+dependency list is `gray-matter` and nothing else.
+
+### Ownership split of the current khai-arch contents
+
+| khai-arch item | Verdict |
+| --- | --- |
+| `architecture/*.md`, `_schema.yml`, `model.md` | **stay** — the canon |
+| `index.mjs` canon accessors (`types`, `chaptersFor`, `playbook`, `wiresChapters`, `engine*`) | **stay** |
+| `index.mjs` `renderEngineReadme` | **borderline** — presentation, flag for a consumer |
+| `tests/encoding.test.ts`, `markdown.test.ts`, `frontmatter.test.ts` | **logic → khai-tests**; the canon's self-test pulls it back |
+| `tests/type-rules.test.ts` | **stays** (validates khai-arch's own declarations) but **calls khai-tests**, stops reimplementing |
+| `fixtures/bad-encoding-*`, `bad-markdown-*` | **→ khai-tests** (generic) |
+| `fixtures/bad-frontmatter-*`, `bad-type-rules-*`, `minimal-*` | **stay** (they define the type rules) |
+| `tests/engine-*.test.ts` | **stay** — unit tests of khai-arch's own API |
+| devDeps `ajv`, `js-yaml`, `markdown-it` | **→ khai-tests** (they exist only to power validation) |
+
+> Open: keep the dev-only back-edge (2 packages) or extract a zero-dep
+> `khai-rules` core so the graph is acyclic even in dev (3 packages).
+
+---
+
 ## The three lifts
 
 > *"arch was the first lift, but building worlds, assessing compliance is
