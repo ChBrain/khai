@@ -1,5 +1,51 @@
 # @chbrain/khai-review
 
+## 0.0.2
+
+### Patch Changes
+
+- bdbe552: Show the original prose in a finding's comment. `reviewCard` now carries the
+  reviewed text as `current`, and `commentBody` renders a finding as Current ->
+  Suggestion -> Reasoning, so a reviewer sees the before, the after, and the why at
+  a glance instead of just the rewrite.
+- 757694f: Bias the conciseness rubric toward PASS. The old instruction was a ruthless
+  editor that always found a cut, so it flagged even already-lean prose with
+  marginal or voice-degrading rewrites, which trains a reviewer to rubber-stamp.
+  The rubric now raises the bar: FLAG only clearly padded prose (about a quarter
+  removable with no loss of meaning, term, or voice), PASS lean, marginal, or
+  lateral-reword cases, and a tie goes to PASS. The lane surfaces real bloat
+  instead of crying wolf.
+- 465f314: Add the comment-to-table sync for the audit lane. `decisionsFromThreads` reads a
+  PR's review threads into treatment decisions (finding id from the marker, the
+  treatment from the latest reply, the resolved state from the thread), and
+  `applyDecisions` records each decision into the ledger: the finding carries its
+  treatment and resolution, and the status follows (accept, transfer, and reduce
+  becomes reduce-pending while the content still flags, else reduced). The model
+  still owns the reduce verification, so a fix cannot be faked. The redundant
+  resolved-thread check is dropped from `reconcile`; GitHub's conversation
+  resolution owns that gate.
+- 5aa143a: Make the review lane runnable as an audit. Adds:
+  - `createModelJudge` - the production, model-backed judge (the counterpart to
+    `mockJudge`), behind the same Judge interface. Calls an OpenAI-compatible
+    chat-completions endpoint (GitHub Models / gpt-4o-mini by default) via native
+    fetch, no SDK; `fetchImpl` is injectable so the suite stays offline. A token
+    and network are needed at call time (CI), never at import.
+  - `collect` - the audit collector, a pure risk register. It reconciles a fresh
+    review against a ledger: dedup (only new findings need a comment), carry (a
+    known finding keeps its treatment), and verify (a Reduce that still flags
+    reopens, the anti-cheat). Treatments are Accept, Reduce, Transfer.
+  - `reconcile` - the consistency gate, also pure: the committed ledger must agree
+    with the treatment each finding's PR comment records, or the audit PR is
+    blocked. The findings are advisory; this is deterministic and gates.
+  - a CLI (`khai-review --manifest audit/<id>/audit.json`) that drives an audit
+    from its manifest, writes the ledger and the human log, and emits the new
+    findings for a workflow to post as inline comments. Always exits 0; the audit
+    PR's conversation-resolution rule is the gate, not CI.
+  - the PR-surface helpers (`commentBody`, `anchorLine`, `findingIdOf`,
+    `parseTreatment`): pure functions that build a finding's comment, anchor it to
+    its log row, and read the treatment back out of a reply, so the workflow's
+    GitHub glue stays thin and the parsing is unit-tested.
+
 ## 0.0.1
 
 ### Patch Changes
