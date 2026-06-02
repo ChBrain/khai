@@ -2,15 +2,16 @@
 #
 # Two jobs, two lanes:
 #   review       calls the model (cost), so it runs only on PR open/reopen, a
-#                `/audit` comment, or manual dispatch. It reviews each changed
-#                audit, commits the ledger + log, and posts NEW findings as inline
-#                comments. Advisory: it never fails the build.
-#   consistency  the deterministic required check, no model calls. Runs on every
-#                push AND on a thread reply or resolution, so it re-evaluates as
-#                the conversation changes. It gates on freshness (the audit ran
-#                against current content) and on the table agreeing with the
-#                comments. This, plus "require conversation resolution", holds the
-#                audit PR until the table is ok.
+#                `/audit` comment, or manual dispatch. It reviews each audit, reads
+#                the PR's comment treatments into the ledger (the comment -> table
+#                sync), commits ledger + log + meta, and posts NEW findings as
+#                inline comments. Advisory: it never fails the build. Re-running
+#                `/audit` after treating findings is what syncs and re-checks them.
+#   consistency  the deterministic required check, no model calls. Runs on each
+#                push (so it re-fires after the review's PAT commit). It gates on
+#                freshness (the audit ran against current content) and on the
+#                table agreeing with the comments. This, plus GitHub's "require
+#                conversation resolution", holds the audit PR until the table is ok.
 #
 # The review job checks out and pushes with the KHAI PAT, not GITHUB_TOKEN: a
 # GITHUB_TOKEN push does not trigger further runs, so the consistency check would
@@ -25,12 +26,6 @@ on:
     paths: ["audit/**"]
   issue_comment:
     types: [created]
-  # Treating a finding (a thread reply) or resolving its thread must re-run the
-  # consistency check, so the gate reflects the conversation as it changes.
-  pull_request_review_comment:
-    types: [created, edited]
-  pull_request_review_thread:
-    types: [resolved, unresolved]
   workflow_dispatch:
 
 permissions:
@@ -82,12 +77,36 @@ jobs:
 
       - run: npm ci
 
+      # Read the PR's comment treatments, so the review can sync them into the
+      # ledger (Accept / Reduce / Transfer the human recorded on each finding).
+      - name: Fetch review threads
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const q = `query($owner:String!,$repo:String!,$num:Int!){
+              repository(owner:$owner,name:$repo){
+                pullRequest(number:$num){
+                  reviewThreads(first:100){ nodes { isResolved comments(first:50){ nodes { body } } } }
+                }
+              }
+            }`;
+            const r = await github.graphql(q, {
+              owner: context.repo.owner, repo: context.repo.repo,
+              num: Number("${{ steps.ctx.outputs.number }}"),
+            });
+            const threads = r.repository.pullRequest.reviewThreads.nodes.map((t) => ({
+              isResolved: t.isResolved,
+              comments: t.comments.nodes.map((c) => ({ body: c.body })),
+            }));
+            require("fs").writeFileSync("/tmp/threads.json", JSON.stringify(threads));
+
       - name: Run the audits
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COMMENT_BODY: ${{ github.event.comment.body }}
         run: |
           mkdir -p /tmp/audit-new
+          node .github/scripts/audit-decisions.mjs /tmp/threads.json > /tmp/decisions.json
           # "/audit <id>" runs that named audit on demand, regardless of the diff;
           # otherwise run whatever audit manifest the PR changed.
           named=$(printf '%s' "$COMMENT_BODY" | sed -n 's#^/audit[[:space:]]\+\([A-Za-z0-9._-]\+\).*#\1#p')
@@ -100,7 +119,8 @@ jobs:
           if [ -z "$manifests" ]; then echo "no audits to run"; exit 0; fi
           for m in $manifests; do
             id=$(basename "$(dirname "$m")")
-            node packages/khai-review/cli.mjs --manifest "$m" --new "/tmp/audit-new/$id.json"
+            node packages/khai-review/cli.mjs --manifest "$m" \
+              --decisions /tmp/decisions.json --new "/tmp/audit-new/$id.json"
             # Stamp meta.json with the content just reviewed, so the freshness
             # gate can prove this audit ran against the current content.
             node .github/scripts/audit-stamp.mjs "$m"
@@ -147,11 +167,7 @@ jobs:
 
   consistency:
     name: consistency (required)
-    if: >
-      github.event_name == 'pull_request' ||
-      github.event_name == 'pull_request_review_comment' ||
-      github.event_name == 'pull_request_review_thread' ||
-      github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

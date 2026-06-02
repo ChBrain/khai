@@ -30,9 +30,14 @@ which rubrics.
 audit.json  ──►  audit PR
       the PR carries each new finding as an inline comment
       a comment is answered with a treatment (Accept, Reduce, Transfer)
-      the audit re-runs and verifies; the ledger and log update
-      all comments resolved  ──►  the audit PR can close
+      comment /audit <id> again: the run reads those treatments into the table,
+        re-reviews, and re-stamps; the consistency check re-fires on its commit
+      table is consistent and all comments resolved  ──►  the audit PR can close
 ```
+
+Treating findings happens in the comments; re-running `/audit <id>` is the sync
+point that reads them into the table and re-checks. The review job pushes with a
+PAT (not the Actions token), so its commit re-fires the consistency check.
 
 A finding is a risk. Its treatment is the human's decision, in the classic
 vocabulary:

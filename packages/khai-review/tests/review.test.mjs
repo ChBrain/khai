@@ -11,6 +11,8 @@ import {
   anchorLine,
   findingIdOf,
   parseTreatment,
+  decisionsFromThreads,
+  applyDecisions,
 } from "../index.mjs";
 
 describe("review - harness over a pluggable judge", () => {
@@ -282,12 +284,6 @@ describe("reconcile - the consistency gate: table must agree with the comments",
     expect(blocks[0].reason).toMatch(/still shows it open/);
   });
 
-  it("blocks a settled finding whose comment thread is left unresolved", () => {
-    const ledger = [entry("a", "accepted", "accept")];
-    const decisions = [{ id: "a", treatment: "accept", resolved: false }];
-    expect(reconcile(ledger, decisions).blocks[0].reason).toMatch(/unresolved/);
-  });
-
   it("blocks a comment decision that references no finding in the table", () => {
     const { ok, blocks } = reconcile([], [{ id: "ghost", treatment: "accept", resolved: true }]);
     expect(ok).toBe(false);
@@ -343,6 +339,74 @@ describe("PR surface - comment body, anchor, marker, treatment parsing", () => {
   it("parseTreatment returns null for a reply that records no treatment", () => {
     expect(parseTreatment("looks fine to me")).toBeNull();
     expect(parseTreatment("")).toBeNull();
+  });
+});
+
+describe("decisionsFromThreads + applyDecisions - the comment -> table sync", () => {
+  const thread = (id, reply, resolved) => ({
+    isResolved: resolved,
+    comments: [
+      { body: `<!-- khai-finding: ${id} -->\n**conciseness finding**` },
+      ...(reply ? [{ body: reply }] : []),
+    ],
+  });
+
+  it("reads the finding id, the latest treatment, and the resolved state", () => {
+    const out = decisionsFromThreads([thread("x", "Reduce: #80", true)]);
+    expect(out).toEqual([{ id: "x", treatment: "reduce", resolution: "#80", resolved: true }]);
+  });
+
+  it("skips a thread with no finding marker, and reports an untreated thread", () => {
+    const out = decisionsFromThreads([
+      { isResolved: false, comments: [{ body: "just chatting" }] },
+      thread("y", null, false),
+    ]);
+    expect(out).toEqual([
+      { id: "y", treatment: undefined, resolution: undefined, resolved: false },
+    ]);
+  });
+
+  it("writes the treatment + status into the ledger (accept / transfer)", () => {
+    const ledger = [
+      { id: "a", status: "open", treatment: null, resolution: null },
+      { id: "b", status: "open", treatment: null, resolution: null },
+    ];
+    const out = applyDecisions(ledger, [
+      { id: "a", treatment: "accept", resolution: "terse on purpose" },
+      { id: "b", treatment: "transfer", resolution: "language engine" },
+    ]);
+    expect(out[0]).toMatchObject({
+      status: "accepted",
+      treatment: "accept",
+      resolution: "terse on purpose",
+    });
+    expect(out[1]).toMatchObject({
+      status: "transferred",
+      treatment: "transfer",
+      resolution: "language engine",
+    });
+  });
+
+  it("reduce is reduce-pending while it still flags, reduced once it does not", () => {
+    const ledger = [
+      { id: "a", status: "open", treatment: null, resolution: null },
+      { id: "b", status: "open", treatment: null, resolution: null },
+    ];
+    const out = applyDecisions(
+      ledger,
+      [
+        { id: "a", treatment: "reduce", resolution: "#80" },
+        { id: "b", treatment: "reduce", resolution: "#81" },
+      ],
+      new Set(["a"]), // only "a" still flags
+    );
+    expect(out[0].status).toBe("reduce-pending");
+    expect(out[1].status).toBe("reduced");
+  });
+
+  it("leaves a finding with no decision untouched", () => {
+    const ledger = [{ id: "a", status: "open", treatment: null, resolution: null }];
+    expect(applyDecisions(ledger, [])).toEqual(ledger);
   });
 });
 
