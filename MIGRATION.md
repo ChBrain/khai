@@ -119,10 +119,41 @@ dependency list is `gray-matter` and nothing else.
 | `fixtures/bad-encoding-*`, `bad-markdown-*` | **→ khai-tests** (generic) |
 | `fixtures/bad-frontmatter-*`, `bad-type-rules-*`, `minimal-*` | **stay** (they define the type rules) |
 | `tests/engine-*.test.ts` | **stay** — unit tests of khai-arch's own API |
-| devDeps `ajv`, `js-yaml`, `markdown-it` | **→ khai-tests** (they exist only to power validation) |
+| devDeps `ajv`, `js-yaml`, `markdown-it` | **→ khai-rules** (they exist only to power validation) |
 
-> Open: keep the dev-only back-edge (2 packages) or extract a zero-dep
-> `khai-rules` core so the graph is acyclic even in dev (3 packages).
+### Decided: extract a zero-dep `khai-rules` core (3 packages)
+
+The pure validation mechanism lives in its own leaf package so the graph
+is acyclic even in dev. `khai-rules` knows nothing about which types
+exist — its checkers take the contract as an argument.
+
+```
+khai-rules     depends on: nothing            — how to check (pure)
+khai-arch      depends on: gray-matter,        — the canon; self-validates by
+                           khai-rules            passing its own defs to khai-rules
+khai-tests     depends on: khai-rules,         — glue: pulls the contract from
+                           khai-arch             arch, feeds it to rules, runs on content
+khai-review    depends on: khai-arch (+ judge) — the judged engine
+```
+
+`khai-rules` is a leaf everyone points down to: no cycle, even in tests.
+The proof still holds — khai-arch's *runtime* deps are `gray-matter` only.
+
+### Engines declare; the engines pull (same rule, one level out)
+
+A content engine (e.g. `khai-engine-gender`) declares an *instance + its
+contract*; it must not carry validation or review machinery — exactly as
+khai-arch must not. **Content declares, engines pull, all the way down.**
+
+| `khai-engine-gender` item | Verdict |
+| --- | --- |
+| `*.md` content, `index.mjs` `compose()` | **stay** — engine content + behavior |
+| `package.json#khai` (`type`, `anchor`, `expressions`, `requires`, `card`) | **stay** — the engine's declared contract (pulled by the kit) |
+| `tests/` compose() unit tests | **stay** — the engine's own API |
+| `tests/` self-conformance (`validateEnginePackage`) | **thin** — one helper pulled from khai-tests, not hand-rolled |
+| `tests/` manifest re-assertions | **trim** — the kit enforces `requires`; do not restate it |
+| `tests/` drift/guardrail tests (mutate `position_female.md`, expect failures) | **→ khai-tests** — these prove the *kit*, using gender as a fixture |
+| `audit/engine-gender/*`, `card.enforce` action | **khai-review** — review is not engine content |
 
 ---
 
