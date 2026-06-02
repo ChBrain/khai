@@ -88,6 +88,9 @@ jobs:
           for m in $manifests; do
             id=$(basename "$(dirname "$m")")
             node packages/khai-review/cli.mjs --manifest "$m" --new "/tmp/audit-new/$id.json"
+            # Stamp meta.json with the content just reviewed, so the freshness
+            # gate can prove this audit ran against the current content.
+            node .github/scripts/audit-stamp.mjs "$m"
           done
 
       - name: Commit ledger + log
@@ -145,6 +148,28 @@ jobs:
 
       - run: npm ci
 
+      # Scope every gate below to only the audits this PR touches, so one audit's
+      # PR is never blocked by another audit's state.
+      - name: Determine audits on this PR
+        id: scope
+        run: |
+          base="${{ github.event.pull_request.base.ref || 'main' }}"
+          git fetch origin "$base" --depth=1 || true
+          ids=$(git diff --name-only "origin/$base...HEAD" -- 'audit/**' 2>/dev/null \
+            | sed -n 's#^audit/\([^/]*\)/.*#\1#p' | sort -u | tr '\n' ' ')
+          echo "ids=$ids" >> "$GITHUB_OUTPUT"
+          echo "audits on this PR: ${ids:-<none>}"
+
+      - name: Freshness — every audit ran against the current content
+        if: steps.scope.outputs.ids != ''
+        run: |
+          manifests=""
+          for id in ${{ steps.scope.outputs.ids }}; do
+            [ -f "audit/$id/audit.json" ] && manifests="$manifests audit/$id/audit.json"
+          done
+          [ -z "$manifests" ] && { echo "no audit manifests touched"; exit 0; }
+          node .github/scripts/audit-freshness.mjs $manifests
+
       - name: Fetch review threads
         if: github.event.pull_request != null
         uses: actions/github-script@v7
@@ -168,8 +193,12 @@ jobs:
             require("fs").writeFileSync("/tmp/threads.json", JSON.stringify(threads));
 
       - name: Reconcile the table against the comments
+        if: steps.scope.outputs.ids != ''
         run: |
           [ -f /tmp/threads.json ] || echo "[]" > /tmp/threads.json
-          ledgers=$(ls audit/*/ledger.json 2>/dev/null || true)
-          if [ -z "$ledgers" ]; then echo "no ledgers yet; nothing to reconcile"; exit 0; fi
+          ledgers=""
+          for id in ${{ steps.scope.outputs.ids }}; do
+            [ -f "audit/$id/ledger.json" ] && ledgers="$ledgers audit/$id/ledger.json"
+          done
+          [ -z "$ledgers" ] && { echo "no ledgers touched; nothing to reconcile"; exit 0; }
           node .github/scripts/audit-consistency.mjs /tmp/threads.json $ledgers
