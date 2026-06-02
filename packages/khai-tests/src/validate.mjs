@@ -244,6 +244,29 @@ export function findEnginePackageFor(file) {
  * ("anchor", "expression", or "any"). The kit resolves these to basenames and
  * enforces that a matching link is present.
  */
+/** The severity levels, weakest to strongest. Only `fail` gates (non-zero
+ * exit); `warn` and `audit` report. The engine declares a default per
+ * requirement (`requires[].level`); a world overrides per requirement id. */
+export const LEVELS = new Set(["audit", "warn", "fail"]);
+
+/** A world override (by requirement id) wins over the engine's declared
+ * default; an unknown value falls back to the engine default. */
+function resolveLevel(req, levels) {
+  const o = levels && levels[req.id];
+  return LEVELS.has(o) ? o : req.level;
+}
+
+/** Bucket leveled findings into the print/return shape (fail -> errors,
+ * warn -> warnings, audit -> audit), so the CLI renders one way. */
+function bucket(findings) {
+  const out = { errors: [], warnings: [], audit: [] };
+  for (const f of findings) {
+    const key = f.level === "fail" ? "errors" : f.level === "warn" ? "warnings" : "audit";
+    out[key].push(f.message);
+  }
+  return out;
+}
+
 function requirementsFromEngine(manifest) {
   const reqs = [];
   for (const r of [].concat(manifest.requires ?? [])) {
@@ -255,9 +278,13 @@ function requirementsFromEngine(manifest) {
           ? Object.values(manifest.expressions ?? {})
           : [manifest.anchor, ...Object.values(manifest.expressions ?? {})];
     reqs.push({
+      // Stable id for world-override + reporting: engine, instance type, section.
+      id: `${manifest.engine}:${r.on}:${r.section}`,
       engine: manifest.engine,
       on: r.on,
       section: r.section,
+      // The engine declares how hard it asks; default fail (back-compat).
+      level: LEVELS.has(r.level) ? r.level : "fail",
       targets: new Set(files.filter(Boolean).map((f) => f.split("/").pop())),
     });
   }
@@ -273,24 +300,34 @@ export function wiringRequirements(manifests) {
  * Validate one consumer instance file: structure against its canon type, plus
  * any wiring requirements whose `on` matches the instance's declared khai type.
  *
+ * Structural conformance is always `fail` (an instance must match its canon
+ * type). Wiring findings carry the requirement's resolved level, so a world can
+ * tune how hard each engine's contract binds (the engine default, overridden by
+ * `levels`). Returns leveled findings; empty = clean.
+ *
  * @param {string} text  the instance file contents
- * @param {{ baseDir?: string, requirements?: object[], owner?: object }} opts
- * @returns {string[]} errors (empty = pass)
+ * @param {{ baseDir?: string, requirements?: object[], owner?: object, levels?: Record<string,string> }} opts
+ * @returns {{ level: "audit"|"warn"|"fail", message: string }[]}
  */
-export function validateInstanceFile(text, { baseDir, requirements = [], owner } = {}) {
+export function validateInstanceFile(text, { baseDir, requirements = [], owner, levels } = {}) {
   const doc = parseDoc(text);
   const type = doc.data?.khai;
-  if (typeof type !== "string") return ["instance has no `khai:` type in frontmatter"];
+  if (typeof type !== "string")
+    return [{ level: "fail", message: "instance has no `khai:` type in frontmatter" }];
 
   // Links into installed engine content resolve via npm, not the local tree, so
   // every wiring target is exempt from the local broken-link check.
   const exemptLinks = new Set(requirements.flatMap((r) => [...r.targets]));
-  const errors = validateContentFile(text, { type, baseDir, owner, exemptLinks });
+  const findings = validateContentFile(text, { type, baseDir, owner, exemptLinks }).map((m) => ({
+    level: "fail",
+    message: m,
+  }));
   for (const req of requirements) {
     if (req.on !== type) continue;
-    errors.push(...checkWiring(doc, req));
+    const level = resolveLevel(req, levels);
+    for (const m of checkWiring(doc, req)) findings.push({ level, message: m });
   }
-  return errors;
+  return findings;
 }
 
 /** Read the `khai` manifest from each installed engine under node_modules. */
@@ -323,19 +360,24 @@ function findInstanceFiles(dir) {
  * it has installed. `contentDir` is where the consumer's own `.md` instances
  * live; `root` is where node_modules (the installed engines) resolves from.
  *
- * @param {{ root: string, contentDir?: string, owner?: object }} opts
- * @returns {FileResult[]}
+ * `levels` overrides a requirement's level by its id (the world's call on how
+ * hard each engine's contract binds). Each result buckets the file's findings
+ * into errors (fail) / warnings (warn) / audit.
+ *
+ * @param {{ root: string, contentDir?: string, owner?: object, levels?: Record<string,string> }} opts
+ * @returns {{ file: string, errors: string[], warnings: string[], audit: string[] }[]}
  */
-export function validateProject({ root, contentDir = root, owner } = {}) {
+export function validateProject({ root, contentDir = root, owner, levels } = {}) {
   const requirements = wiringRequirements(installedEngineManifests(root));
   const results = [];
   for (const file of findInstanceFiles(contentDir)) {
-    const errors = validateInstanceFile(readFileSync(file, "utf8"), {
+    const findings = validateInstanceFile(readFileSync(file, "utf8"), {
       baseDir: dirname(file),
       requirements,
       owner,
+      levels,
     });
-    if (errors.length) results.push({ file, errors });
+    if (findings.length) results.push({ file, ...bucket(findings) });
   }
   return results;
 }
