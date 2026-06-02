@@ -62,10 +62,17 @@ jobs:
             core.setOutput("head_ref", pr.head.ref);
             core.setOutput("base_ref", pr.base.ref);
 
+      # Check out with RELEASE_TOKEN so the review job's commit push is a real
+      # identity, not GITHUB_TOKEN. A GITHUB_TOKEN push does not trigger further
+      # workflow runs (anti-recursion), so ci.yml (test, khai-guard) would never
+      # run on the audit commit and its required checks would stay stale on the
+      # head. This mirrors release.yml, which uses RELEASE_TOKEN for the same
+      # reason. The consistency status is still posted directly by this job.
       - uses: actions/checkout@v4
         with:
           ref: ${{ steps.ctx.outputs.head_ref }}
           fetch-depth: 0
+          token: ${{ secrets.RELEASE_TOKEN }}
 
       - uses: actions/setup-node@v4
         with:
