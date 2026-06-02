@@ -37,7 +37,7 @@
     "engine": "gender",
     "where": "card.enforce",
     "rubric": "conciseness",
-    "reason": "Redundant phrases and filler words were removed.",
+    "reason": "Removed redundant phrases and tightened language.",
     "suggestion": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, and each persona carries a gender read under Projection. Whether a Projection and a Shadow read cohere into a true persona is semantic, taught and reviewed, never failed by the suite. The engine ships its own structural tests; the reading is guided, not gated.",
     "treatment": null,
     "status": "open",
