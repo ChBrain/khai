@@ -1,5 +1,13 @@
 # @chbrain/khai-engine-gender
 
+## 0.0.8
+
+### Patch Changes
+
+- Updated dependencies [e4d7aef]
+- Updated dependencies [cebda9f]
+  - @chbrain/khai-arch@0.0.10
+
 ## 0.0.7
 
 ### Patch Changes
