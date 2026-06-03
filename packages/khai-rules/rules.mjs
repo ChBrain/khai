@@ -210,7 +210,8 @@ function linkBasenames(text) {
 // the target's basename). External (http) links are exempt.
 export function checkLinkText(text) {
   const e = [];
-  const re = /\[([^\]]*)\]\(([^()\s]+)\)/g;
+  // Fix: Avoid polynomial ReDoS on malicious input; use negated char class without nested brackets (CodeQL #215).
+  const re = /\[([^\[\]\n]*)\]\(([^()\s]+)\)/g;
   let m;
   while ((m = re.exec(text))) {
     const label = m[1].trim();
@@ -268,7 +269,8 @@ export function checkClauseDash(text) {
 // Lifted files carry footers like "_v0.3.0 - KAI Cultures_"; metadata belongs
 // in YAML frontmatter, not a footer. Flag a trailing italic-underscore line.
 export function checkNoFooter(text) {
-  const lines = text.replace(/\s+$/, "").split("\n");
+  // Fix: Avoid polynomial ReDoS in /\s+$/ by using trimEnd() instead (CodeQL: polynomial-redos).
+  const lines = text.trimEnd().split("\n");
   const last = (lines[lines.length - 1] ?? "").trim();
   if (/^_.+_$/.test(last))
     return [`trailing footer "${last}"; put metadata in YAML frontmatter, not a footer`];
