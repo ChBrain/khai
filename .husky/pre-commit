@@ -7,6 +7,12 @@
 # A per-commit check was the wrong granularity — it tripped on legitimate
 # multi-commit branches that split content and tooling across commits.
 
+# Guard: reject any staged tarballs (should never be committed)
+if git diff --cached --name-only | grep -E '\.(tgz|tar\.gz)$'; then
+  echo "❌ Error: Tarball files (.tgz/.tar.gz) should not be committed. Use a registry instead."
+  exit 1
+fi
+
 STAGED=$(git diff --cached --name-status -M --diff-filter=ACMR | awk '
   $1 == "R100" || $1 == "C100" { next }
   $1 ~ /^[RC]/ { print $3; next }
