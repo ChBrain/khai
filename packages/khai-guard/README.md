@@ -6,6 +6,27 @@ repo can adopt it.
 > A pull request may change the **product** (`source`) **or** its
 > **verifiers** (`test`), never both. Split them — **tests first**.
 
+## The idea: payback, not cost
+
+A gate like this isn't a tax you pay for safety — it's _generative_. It blocks
+only the dishonest move (bending a test to the code, widening a branch past its
+subject, editing the rules that judge it), so the work that passes comes out
+better-_shaped_, not merely safer. A capable contributor — human or agent — is
+shaped by that constraint rather than slowed by it.
+
+What makes it more than a written convention:
+
+- **Enforced** — a CI check that fails the build, not a Markdown request.
+- **Repo-side** — the policy lives in the repository and binds _any_ actor
+  (human, agent, or bot), not one tool's settings.
+- **Diff-time** — it judges the _shape_ of a change (mixed source/test, an
+  out-of-lane edit), not a runtime command.
+- **Self-governing** — the config sits in the lane it governs, so the gate
+  cannot be weakened from inside a branch that needs it to pass.
+
+The two gates below — **source/test separation** and **branch scope** — are the
+same principle at two altitudes.
+
 ## Why
 
 Editing code and the test that judges it in the same PR makes it easy to
