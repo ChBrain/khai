@@ -14,6 +14,7 @@
     "packages/khai-guard",
     "packages/khai-tests",
     "packages/khai-review",
+    "packages/khai-skills",
     "packages/engines/*"
   ],
   "engines": {
@@ -21,6 +22,9 @@
   },
   "scripts": {
     "test": "npm test --workspaces --if-present",
+    "build:skills": "npm run build -w @chbrain/khai-skills",
+    "check:skills": "npm run check -w @chbrain/khai-skills",
+    "drift:skills": "npm run drift -w @chbrain/khai-skills",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "changeset": "changeset",

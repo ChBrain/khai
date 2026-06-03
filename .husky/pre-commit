@@ -24,4 +24,13 @@ if [ -n "$STAGED_MD" ]; then
   node packages/khai-tests/src/cli.mjs $STAGED_MD || exit 1
 fi
 
+# khai-skills: on the next touch of any skill, enforce the two-tier guard
+# (agentskills standard + khai neutrality + provenance) and print the standard
+# drift notice. The check blocks a non-conformant skill; drift is advisory and
+# never blocks (silent when offline).
+if echo "$STAGED" | grep -q '^packages/khai-skills/'; then
+  node packages/khai-skills/bin/khai-skills.mjs check || exit 1
+  node packages/khai-skills/bin/khai-skills.mjs drift || true
+fi
+
 exit 0
