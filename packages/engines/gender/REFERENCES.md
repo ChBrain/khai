@@ -1,6 +1,4 @@
 ---
-authorship: KAI HACKS AI with AI-assisted drafting
-content_model: Theoretical Synthesis + Original Expression
 updated: "2026-06-03"
 ---
 
@@ -28,25 +26,18 @@ Structural sociology, applied directly as code constraints.
 
 What the engine refuses to model, and to whom it delegates.
 
-### Intersectionality
-
-(Crenshaw, Hill Collins) The engine assumes a generic "room" applying a
-universal read. Gender is really read alongside race, class, and culture; the
-architecture **delegates that tint to the Cultures packages** (`gender: female`
-with `culture: jordan` intersect at the persona level).
-
-### Marked vs. unmarked
-
-(de Beauvoir) Society treats male as the default and female as the marked case.
-The engine models them as **symmetric expression files** for stability, carrying
-the asymmetry inside each file's `Has` and `Loses` blocks instead.
-
-### Relational friction
-
-(Manne, Connell) Theory locks the positions into one system where female
-accommodation subsidizes the male claim. The engine keeps the expressions
-symmetric and **structurally unlinked** (Open/Closed); the friction emerges
-through the shared anchor, not through cross-links.
+- **Intersectionality** (Crenshaw, Hill Collins) The engine assumes a generic
+  "room" applying a universal read. Gender is really read alongside race, class,
+  and culture; the architecture **delegates that tint to the Cultures packages**
+  (`gender: female` with `culture: jordan` intersect at the persona level).
+- **Marked vs. unmarked** (de Beauvoir) Society treats male as the default and
+  female as the marked case. The engine models them as **symmetric expression
+  files** for stability, carrying the asymmetry inside each file's `Has` and
+  `Loses` blocks instead.
+- **Relational friction** (Manne, Connell) Theory locks the positions into one
+  system where female accommodation subsidizes the male claim. The engine keeps
+  the expressions symmetric and **structurally unlinked** (Open/Closed); the
+  friction emerges through the shared anchor, not through cross-links.
 
 ## Encoding
 
