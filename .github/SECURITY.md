@@ -24,7 +24,12 @@ Every security finding must be attached to a PR before it's resolved. This ensur
    - Link the GitHub alert
    - Describe scope and severity
    - Outline the fix plan
-3. **Create a feature branch:** `security/<issue-id>-<slug>`
+3. **Create a feature branch** — the name depends on which lane the fix touches:
+   - **Engine security fix** (e.g., CVE in `@chbrain/khai-engine-gender`): `engine/<name>/security-<issue-id>-<slug>`
+   - **Governance security fix** (e.g., workflow permissions, guard rules): `governance/security-<issue-id>-<slug>`
+   - **Architecture security fix** (e.g., schema validation): `arch/security-<issue-id>-<slug>`
+   - **General/infra security fix** (e.g., root-level configs): `chore/security-<issue-id>-<slug>`
+   - **Multi-lane fix**: Ask the advisor `npx khai-guard advise --files <paths>` and split into per-lane branches; merge in order (architecture → governance → solution)
 4. **Implement the fix**
    - Test locally: `npm test`
    - Verify build: `npm run build` (if applicable)
@@ -40,7 +45,7 @@ Every security finding must be attached to a PR before it's resolved. This ensur
 
 **Issue:** GitHub alert: "Workflow `ci.yml` lacks explicit permissions block"
 
-**Branch:** `security/github-actions-permissions-ci`
+**Branch:** `governance/security-actions-permissions-ci`
 
 **PR Title:** `security(ci): add explicit permissions to ci.yml workflow`
 
@@ -80,7 +85,11 @@ All security fixes must adhere to least privilege:
 
 ## Governance
 
-- **Branch naming:** Follow `security/<issue-id>-<slug>` pattern
+- **Branch naming:** Follow khai's branch-scope rules (see [docs/BRANCHING.md](../docs/BRANCHING.md))
+  - Governance-layer security (workflows, rules, tests): `governance/security-<issue-id>-<slug>`
+  - Engine-specific security: `engine/<name>/security-<issue-id>-<slug>`
+  - Architecture-layer security: `arch/security-<issue-id>-<slug>`
+  - General/infra security: `chore/security-<issue-id>-<slug>`
 - **Commit message:** Use `security: ...` prefix (or `fix(security): ...` if fixing an existing feature)
 - **PR review:** At least one approval before merge
 - **Automation:** GitHub Actions validate the fix; PRs may be auto-merged if they pass all checks (configure in repo settings if desired)
