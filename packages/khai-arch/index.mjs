@@ -7,13 +7,14 @@
 // Consumers (khai-tests, the configurator website) import `types` instead of
 // re-parsing markdown, collapsing N drift points to zero.
 
-import { readFileSync, readdirSync } from "node:fs";
+import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import matter from "gray-matter";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const archDir = join(here, "architecture");
+const templatesDir = join(here, "templates");
 
 /**
  * @typedef {Object} KhaiType
@@ -40,6 +41,34 @@ export const types = Object.fromEntries(
         subtitle: d.subtitle,
       },
     ]),
+);
+
+/**
+ * @typedef {Object} KhaiTemplate
+ * @property {string} type  the khai type id the template instantiates
+ * @property {string} file  path relative to the package, e.g. "templates/template_process.md"
+ * @property {string} text  the template's full text
+ */
+
+/**
+ * Authoring templates: one fillable skeleton per type, keyed by type id. Each
+ * is a valid content instance (the kit proves this in khai-tests) whose section
+ * bodies carry one-line guidance; `create` swaps the guidance and `[brackets]`
+ * for real content. Read at runtime from the canon's own templates/ dir, so the
+ * skeleton can never drift from the type contract it is built against.
+ *
+ * @type {Record<string, KhaiTemplate>}
+ */
+export const templates = Object.fromEntries(
+  (existsSync(templatesDir) ? readdirSync(templatesDir) : [])
+    .filter((f) => f.endsWith(".md"))
+    .map((f) => {
+      const text = readFileSync(join(templatesDir, f), "utf8");
+      return [
+        matter(text).data.khai,
+        { type: matter(text).data.khai, file: `templates/${f}`, text },
+      ];
+    }),
 );
 
 /**
@@ -370,6 +399,7 @@ export function renderEngineReadme(pkg) {
 
 export default {
   types,
+  templates,
   chaptersFor,
   playbook,
   wiresChapters,

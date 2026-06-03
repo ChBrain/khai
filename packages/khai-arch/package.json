@@ -21,6 +21,7 @@
   "files": [
     "index.mjs",
     "architecture/",
+    "templates/",
     "LICENSE",
     "LICENSE-CODE",
     "README.md"
