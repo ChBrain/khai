@@ -1,5 +1,78 @@
 # @chbrain/khai-arch
 
+## 0.1.0
+
+### Minor Changes
+
+- 01e4e73: Introduce the **LORE** reference standard. Every component's `REFERENCES.md`
+  now carries four fixed canon chapters, in order, the warrant for the component
+  to exist:
+  - **L — Line of Work** — what it models, and what it isn't
+  - **O — Origin** — the sources it rests on
+  - **R — Restrictions** — what it refuses to claim, and to whom it delegates
+  - **E — Encoding** — source to constraint, per file
+
+  khai-arch gains `referenceChapters` and `referenceCard(text)` (sibling to
+  `engineCard`): it validates the four chapters are present and in order,
+  collects any author `### ` subchapters under each (the renderer paginates one
+  (sub)chapter per snap), and returns `{ mnemonic, chapters, sections, coda }`.
+  gender's `REFERENCES.md` is restructured as the first conformer.
+
+  khai-tests gains the teeth: `validateEnginePackage` runs `referenceCard` over
+  every engine's `REFERENCES.md`, so a missing or non-conforming warrant fails the
+  suite. The standard is documented as a canon companion in
+  `architecture/reference.md`.
+
+### Patch Changes
+
+- 95f4264: Add the house-type authoring templates: `plot` (CAST: Cue / Action / Stage /
+  Tension) and `play` (ENACTS: Estate / Name / Arc / Company / Triggers / Stakes),
+  authored fresh from the canon specs. Friction-first like the element set: plot's
+  test lives in Tension (no Tension, no plot), play's in Stakes (stakes that never
+  move are no stakes).
+
+  Both conform to the section contract: `plot` is a TO-type, so it carries the
+  `Taxonomy` (the group above -- the Play it sits within) / `Owner` prefix ahead of
+  its chapters; `play` is non-TO (ENACTS does not begin with "TO "), so it carries
+  no generic prefix at all -- `Estate` (whose) and `Name` (what it is called) are
+  its own first two chapters, not a re-name of the standard Owner/Title. This
+  settles the earlier overlap question: there is no Owner/Title to collide with.
+
+- 34c6d7b: khai-arch's encoding test pulls `checkEncoding` from `@chbrain/khai-rules`
+  instead of reimplementing it (BOM/em-dash/replacement-char constants and the
+  `assertEncodingOk` helper removed). No change to the canon content; the only
+  published delta is the added devDependency.
+- 2d29311: Persona `type:` field. The canon declares `frontmatterExtras(persona) = { type:
+[real, archetype, fictional] }` (its real-world exposure class: Real carries
+  legal/reputational exposure, Archetype is drawn from life but anonymised,
+  Fictional is invented), and the persona template gains `type: fictional`. The
+  kit (already shipped) pulls this and enforces the enum.
+- 67e7925: Persona `type:` is now required. `frontmatterExtras(persona)` declares
+  `{ type: { values: [real, archetype, fictional], required: true } }`, so every
+  persona must state its real-world exposure class. The template and the kit's
+  fixture personas already declare it; a persona without `type:` now fails
+  validation ("missing required key: type").
+- 7ebebf0: Add authoring templates for the element types under `templates/`, one fillable
+  skeleton per type, each a valid content instance (proven by khai-tests). Section
+  guidance is friction-first: every chapter carries a self-test, and relational
+  sections add a modeling checkpoint ("link it where it already has a file; where
+  it does not, ask whether it should use a khai type"). Expose a `templates`
+  accessor on the canon (keyed by type id) and ship the `templates/` dir.
+- 1996d77: Title -> Taxonomy: the canon side. The "T" of a "TO \_\_\_" type is the group
+  above (what the file is one of), not a re-name of the H1. The canon now declares
+  the prefix vocabulary through `toPrefix(typeId)` (the single source the kit
+  pulls), and the five house templates (persona, position, process, piece, place)
+  carry a `## Taxonomy` section in place of the dead `## Title` echo. Its guidance
+  is question-shaped friction, never a hard link: name the group above, then ask
+  whether it already has a khai file (link it), or whether it should (a gap to
+  build). Owner stays the origin stamp.
+
+  Also corrects `architecture` from `GROW` to `TO GROW`: it is a TO-type (it grows
+  from the canon above it), so it carries the Taxonomy/Owner prefix. The chapters
+  still spell GROW, so the mnemonic lock is unaffected. Fixes the process template
+  Direction note to point a child process at its parent through Taxonomy, not
+  Owner.
+
 ## 0.0.10
 
 ### Patch Changes
