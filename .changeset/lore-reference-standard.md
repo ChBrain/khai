@@ -1,5 +1,6 @@
 ---
 "@chbrain/khai-arch": minor
+"@chbrain/khai-tests": minor
 "@chbrain/khai-engine-gender": patch
 ---
 
@@ -17,3 +18,8 @@ khai-arch gains `referenceChapters` and `referenceCard(text)` (sibling to
 collects any author `### ` subchapters under each (the renderer paginates one
 (sub)chapter per snap), and returns `{ mnemonic, chapters, sections, coda }`.
 gender's `REFERENCES.md` is restructured as the first conformer.
+
+khai-tests gains the teeth: `validateEnginePackage` runs `referenceCard` over
+every engine's `REFERENCES.md`, so a missing or non-conforming warrant fails the
+suite. The standard is documented as a canon companion in
+`architecture/reference.md`.

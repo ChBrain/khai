@@ -6,7 +6,7 @@
 import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { pathToFileURL } from "node:url";
-import { types, engineCard, renderEngineReadme } from "@chbrain/khai-arch";
+import { types, engineCard, referenceCard, renderEngineReadme } from "@chbrain/khai-arch";
 import { parseDoc } from "./parse.mjs";
 import {
   checkEncoding,
@@ -175,6 +175,24 @@ export async function validateEnginePackage(pkgDir, { executeCompose = false } =
       });
   } catch (err) {
     results.push({ file: "README.md", errors: [`cannot render from manifest: ${err.message}`] });
+  }
+
+  // Reference warrant: every engine ships a REFERENCES.md conforming to the LORE
+  // standard. khai-arch owns the shape (referenceCard throws on a missing,
+  // misordered, foreign, or empty chapter); the kit surfaces that so a
+  // non-conforming warrant fails -- the same teeth as the WIRES card.
+  const refPath = join(pkgDir, "REFERENCES.md");
+  if (!existsSync(refPath))
+    results.push({
+      file: "REFERENCES.md",
+      errors: ["missing; every engine carries a LORE reference"],
+    });
+  else {
+    try {
+      referenceCard(readFileSync(refPath, "utf8"));
+    } catch (err) {
+      results.push({ file: "REFERENCES.md", errors: [`reference (LORE): ${err.message}`] });
+    }
   }
 
   const { type, anchor, expressions = {} } = manifest;

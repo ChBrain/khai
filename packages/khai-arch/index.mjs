@@ -271,7 +271,10 @@ export function referenceCard(text) {
     seen.push(name);
     // Subchapters are `### ` blocks; the text before the first is the chapter
     // body (an intro, or the whole chapter when it has no subchapters).
-    const subParts = lines.slice(1).join("\n").split(/\n(?=###\s)/);
+    const subParts = lines
+      .slice(1)
+      .join("\n")
+      .split(/\n(?=###\s)/);
     const intro = /^###\s/.test(subParts[0].trim()) ? "" : subParts[0].trim();
     const subchapters = subParts
       .filter((s) => /^###\s/.test(s.trim()))

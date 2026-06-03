@@ -401,6 +401,48 @@ describe("engine card: validateEnginePackage enforces a valid WIRES card", () =>
   });
 });
 
+// --- reference (LORE): every engine must ship a conforming REFERENCES.md ----
+// The canon owns the shape (khai-arch referenceCard); validateEnginePackage
+// surfaces it, so an engine whose warrant breaks the LORE chapter set fails.
+describe("reference: validateEnginePackage enforces the LORE standard", () => {
+  const dir = join(tmpdir(), `khai-lore-${process.pid}`);
+
+  beforeAll(() => {
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(
+      join(dir, "package.json"),
+      JSON.stringify({
+        name: "@chbrain/khai-engine-noref",
+        khai: {
+          engine: "noref",
+          type: "position",
+          anchor: "position_noref.md",
+          expressions: {},
+          card: {
+            wire: "binds at Position",
+            issue: "one ready read a persona may hold",
+            require: "declared once, carried per instance",
+            enforce: "structure is checked, coherence is judged",
+            setup: "declare the law, then carry the read",
+          },
+        },
+      }),
+    );
+    // Present, but not the LORE chapter set -- the old free-form headings.
+    writeFileSync(
+      join(dir, "REFERENCES.md"),
+      "---\nupdated: x\n---\n\n# Refs\n\n## Domain\n\nfoo\n\n## Sources\n\nbar\n",
+    );
+  });
+
+  afterAll(() => rmSync(dir, { recursive: true, force: true }));
+
+  it("flags a REFERENCES.md whose chapters are not LORE", async () => {
+    const errors = flatten(await validateEnginePackage(dir));
+    expect(errors.some((e) => e.includes("reference (LORE)"))).toBe(true);
+  });
+});
+
 // --- README: generated, never hand-edited; the kit regenerates and diffs ----
 describe("engine README: validateEnginePackage enforces the generated README", () => {
   const dir = join(tmpdir(), `khai-readme-${process.pid}`);
