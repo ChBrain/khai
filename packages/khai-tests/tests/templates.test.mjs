@@ -5,8 +5,8 @@
 //
 // Validated with no `owner` (the Owner section is required, its placeholder
 // values are not pinned), so the check is structural: frontmatter, H1, the
-// exact `["Title","Owner",...chapters]` H2 set in order, Title == name,
-// encoding, extensions.
+// exact `["Taxonomy","Owner",...chapters]` H2 set in order (the T slot is the
+// group above, not a re-name of the H1), encoding, extensions.
 
 import { describe, it, expect } from "vitest";
 import { templates } from "@chbrain/khai-arch";

@@ -114,18 +114,13 @@ export function validateContentFile(text, { type, baseDir, owner, allowed, exemp
     typeof khaiArch.toPrefix === "function"
       ? khaiArch.toPrefix(type)
       : contract.mnemonic.startsWith("TO ")
-        ? ["Title", "Owner"]
+        ? ["Taxonomy", "Owner"]
         : [];
 
-  // Migration tolerance: the T slot is being renamed Title -> Taxonomy, and the
-  // canon, this kit's fixtures, and the engine fixtures land that rename in
-  // separate lane-clean PRs. Accept the legacy "Title" spelling of the first
-  // slot until the rename has landed end to end; then this fallback is dropped
-  // and the canon word stands alone. (No-op while the canon still says Title.)
-  const checkSet = (expected) => checkH2SetAndOrder(doc, { expected });
-  let h2Errors = checkSet([...prefix, ...contract.chapters]);
-  if (h2Errors.length && prefix[0] && prefix[0] !== "Title")
-    h2Errors = checkSet(["Title", ...prefix.slice(1), ...contract.chapters]).length ? h2Errors : [];
+  // The Title -> Taxonomy rename has landed end to end (canon, this kit's
+  // fixtures, the engine content), so the T slot is the canon word and stands
+  // alone -- no migration tolerance for the legacy "Title" spelling.
+  const h2Errors = checkH2SetAndOrder(doc, { expected: [...prefix, ...contract.chapters] });
 
   const errors = [
     ...checkEncoding(text),
