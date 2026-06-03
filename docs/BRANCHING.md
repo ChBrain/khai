@@ -102,24 +102,22 @@ npx khai-guard branch-check          # enforce: exit 1 on a violation
 npx khai-guard branch-check --warn   # advisory: print violations, exit 0
 ```
 
-### Advisory-first
+### Enforced
 
-While the live `claude/*` branches are still being renamed to the lane scheme,
-`branch-check` runs in **advisory** mode: it prints violations but exits 0, so
-it never blocks a push or a build. Advisory mode is on when `--warn` is passed
-or `KHAI_GUARD_BRANCH_ADVISORY=1` is set; both the pre-push hook and the CI step
-ship with it on today.
+`branch-check` runs in **hard-fail** mode: a branch whose name does not classify
+into a lane, or whose diff range strays outside its lane, exits 1 and fails. The
+pre-push hook (`.husky/pre-push`) and the CI `branch-scope` job both run it
+without `--warn` and without `KHAI_GUARD_BRANCH_ADVISORY`. Pick the lane with
+`khai-guard advise --files <paths>` before `git checkout -b`; a `claude/*` (or
+any unclassified) branch is now rejected.
 
-To **flip to hard-fail** once the branches are renamed:
+Advisory mode still exists for local experiments: pass `--warn`, or set
+`KHAI_GUARD_BRANCH_ADVISORY=1`, to print violations but exit 0. Nothing in
+`@chbrain/khai-guard` changed to enforce: enforce is simply "advisory off".
 
-1. Drop `--warn` from `.husky/pre-push` (the `branch-check` line).
-2. Drop `--warn` (and the `KHAI_GUARD_BRANCH_ADVISORY` env) from the
-   `branch-scope` step in `.github/workflows/ci.yml`.
-3. Make the `branch-scope` CI job a **required** status check in branch
-   protection.
-
-Nothing in `@chbrain/khai-guard` changes to enforce: enforce is simply
-"advisory off". The exit-1 path is already wired.
+**Remaining repo-admin step:** add the `branch-scope` CI job to the **required**
+status checks in branch protection, so a violation also blocks merge (CI cannot
+set its own required-check status).
 
 ## Config
 
