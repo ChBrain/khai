@@ -27,7 +27,7 @@ What collapses if this piece is removed. Remove it: if only its absence shows an
 
 ## Apparent
 
-What the piece looks like: physical, present tense, concrete. If it states what the piece means rather than what is plainly there, that belongs in Load Bearing, not here.
+What the piece looks like: physical, present tense, concrete. If it states what the piece means rather than what is plainly there, that belongs in Load Bearing, not here. Where a visible part carries its own weight, link it if it already has a file, or ask whether the piece should be split and that part become its own piece.
 
 ## Yearbook
 
