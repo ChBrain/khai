@@ -1,19 +1,17 @@
-// The gender engine guards its own rules — the way khai-arch guards the canon.
-// It self-certifies against the canon through the shared conformance kit
-// (@chbrain/khai-tests), then locks in the behavior that is gender-specific:
-// the manifest contract, compose() output, the anchor carried upward, and
-// guardrails that bite on the engine's real content. An engine installed
-// standalone proves itself with this suite alone.
+// The gender engine tests only what is gender-specific: that the package
+// conforms to the canon through the shared conformance kit (@chbrain/khai-tests),
+// its manifest contract, and its compose() behavior. The kit's own drift
+// detection - a dropped chapter, an invented Owner key, an undeclared extension -
+// is proved in khai-tests against its own fixture, not re-proved here through
+// gender's files.
 
 import { describe, it, expect } from "vitest";
-import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
-import { validateEnginePackage, validateContentFile } from "@chbrain/khai-tests";
+import { validateEnginePackage } from "@chbrain/khai-tests";
 import { manifest, compose, anchor, expressions } from "../index.mjs";
 
 const pkgDir = join(dirname(fileURLToPath(import.meta.url)), "..");
-const owner = { Project: "khai", Engine: "gender" };
 const flatten = (results) => results.flatMap((r) => r.errors.map((e) => `${r.file}: ${e}`));
 
 // --- self-conformance: gender certifies itself against the canon ----------
@@ -77,30 +75,5 @@ describe("gender: compose()", () => {
 
   it("rejects a missing expression", () => {
     expect(() => compose({})).toThrow();
-  });
-});
-
-// --- guardrails bite on the engine's real content -------------------------
-describe("gender: guardrails reject drift", () => {
-  const female = readFileSync(join(pkgDir, "position_female.md"), "utf8");
-  const check = (text) => validateContentFile(text, { type: "position", baseDir: pkgDir, owner });
-
-  it("the unmodified female expression passes clean", () => {
-    expect(check(female)).toEqual([]);
-  });
-
-  it("rejects an invented Owner key (Scope creep)", () => {
-    const drifted = female.replace("- Engine: gender", "- Engine: gender\n- Scope: Universal");
-    expect(check(drifted).some((e) => e.includes("unknown Owner key: Scope"))).toBe(true);
-  });
-
-  it("rejects a dropped HOLD chapter", () => {
-    const drifted = female.replace("## Drives", "## Drifted");
-    expect(check(drifted).some((e) => e.includes("H2 sections must be exactly"))).toBe(true);
-  });
-
-  it("rejects an undeclared ### extension", () => {
-    const drifted = female.replace("## Drives", "### sneaky\nx\n\n## Drives");
-    expect(check(drifted).some((e) => e.includes("undeclared extension"))).toBe(true);
   });
 });
