@@ -9,3 +9,8 @@ npx khai-guard
 # To enforce: drop the --warn flag below (see docs/BRANCHING.md "flip to
 # hard-fail"). No change to khai-guard is needed; enforce is "advisory off".
 npx khai-guard branch-check --warn
+
+# KHAI-Guard bump-scope: flag a non-patch release scope. minor/major is the
+# maintainer's call; this prints the loud banner locally so you see it before
+# the PR exists. Advisory -- never blocks the push (CI stamps the label).
+npx khai-guard bump-check
