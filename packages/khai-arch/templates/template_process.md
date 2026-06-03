@@ -3,7 +3,7 @@ khai: process
 license: CC-BY-NC-4.0
 stamp:
   owner: KAI HACKS AI
-  version: v0.1.0
+  version: v0.0.1
   date: "2026-06-03"
 ---
 
@@ -19,16 +19,16 @@ stamp:
 
 ## Initiated by
 
-The condition that makes the process inevitable. Name the positions, pieces, and places that must be present.
+The condition that makes the process inevitable. Name what must be present; link it where it is defined in a file. If it is not, ask whether it should be its own khai type.
 
 ## Direction
 
-Where the process moves once started. One vector: not the Lever, not the Echo.
+Where the process moves once started: one vector. If it forks or carries decision points, break it into child processes that name this one as parent in their Owner, chained so each Echo feeds the next process's Initiated by.
 
 ## Lever
 
-The force the process carries meeting the resistance it encounters. Remove either side and the process produces gesture, not technique.
+The force of moving meeting the resistance of not moving. Remove either side and the process produces gesture, not technique.
 
 ## Echo
 
-What the next process inherits: what is different in the world once the process has run.
+What is different in the world once the process has run. Name what changed; link it where it is defined in a file.
