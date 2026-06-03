@@ -1,48 +1,15 @@
 import { describe, it, expect } from "vitest";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { loadArchitectureSpecs, loadFixtures, type LoadedFile } from "./helpers/load-spec.js";
+import { checkEncoding } from "@chbrain/khai-rules";
+import { loadArchitectureSpecs, loadFixtures } from "./helpers/load-spec.js";
 
 const repoRoot = join(fileURLToPath(import.meta.url), "..", "..");
 
-const BOM = "﻿";
-const EM_DASH = "—";
-const EN_DASH = "–";
-const REPLACEMENT = "�";
-
-function assertEncodingOk(file: LoadedFile): void {
-  // No BOM
-  expect(
-    file.bytes[0] === 0xef && file.bytes[1] === 0xbb && file.bytes[2] === 0xbf,
-    `${file.path}: must not start with UTF-8 BOM`,
-  ).toBe(false);
-
-  // No U+FFFD replacement character
-  expect(file.text, `${file.path}: must not contain U+FFFD replacement character`).not.toContain(
-    REPLACEMENT,
-  );
-
-  // No em-dash or en-dash - the sanctioned mark is a spaced hyphen ' - '.
-  // (Both are forbidden: an em-dash is non-ASCII, and an en-dash is what a
-  // double-hyphen '--' renders to via smartypants - the disguised dash.)
-  expect(
-    file.text,
-    `${file.path}: must not contain em-dash (U+2014); use ' - ' instead`,
-  ).not.toContain(EM_DASH);
-  expect(
-    file.text,
-    `${file.path}: must not contain en-dash (U+2013); use ' - ' instead`,
-  ).not.toContain(EN_DASH);
-
-  // No carriage returns
-  expect(file.text, `${file.path}: must not contain CR (\\r); use LF line endings`).not.toContain(
-    "\r",
-  );
-
-  // Verify round-trip: bytes decode to the same string (valid UTF-8)
-  const decoded = Buffer.from(file.text, "utf-8").toString("utf-8");
-  expect(decoded, `${file.path}: must be valid UTF-8`).toBe(file.text);
-}
+// The encoding mechanism lives in khai-rules. The canon pulls it to prove its
+// own spec files (and fixtures) are clean, instead of reimplementing the checks
+// here. This is a dev/test pull: khai-arch's runtime dependency stays
+// gray-matter only.
 
 describe("encoding: architecture/*.md", () => {
   const files = loadArchitectureSpecs(repoRoot);
@@ -56,7 +23,7 @@ describe("encoding: architecture/*.md", () => {
 
   for (const file of files) {
     it(`${file.path} passes encoding checks`, () => {
-      assertEncodingOk(file);
+      expect(checkEncoding(file.text), file.path).toEqual([]);
     });
   }
 });
@@ -70,7 +37,7 @@ describe("encoding: valid fixtures", () => {
 
   for (const file of files) {
     it(`${file.path} passes encoding checks`, () => {
-      assertEncodingOk(file);
+      expect(checkEncoding(file.text), file.path).toEqual([]);
     });
   }
 });
@@ -84,14 +51,7 @@ describe("encoding: invalid fixtures - bad-encoding-* must fail", () => {
 
   for (const file of files) {
     it(`${file.path} is detected as encoding-bad`, () => {
-      const hasBom = file.bytes[0] === 0xef && file.bytes[1] === 0xbb && file.bytes[2] === 0xbf;
-      const hasEmDash = file.text.includes(EM_DASH);
-      const hasEnDash = file.text.includes(EN_DASH);
-      const hasReplacement = file.text.includes(REPLACEMENT);
-      const hasCr = file.text.includes("\r");
-
-      const isBad = hasBom || hasEmDash || hasEnDash || hasReplacement || hasCr;
-      expect(isBad, `${file.path}: expected at least one encoding violation`).toBe(true);
+      expect(checkEncoding(file.text).length, file.path).toBeGreaterThan(0);
     });
   }
 });
