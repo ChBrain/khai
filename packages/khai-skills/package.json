@@ -41,6 +41,7 @@
   },
   "dependencies": {
     "@chbrain/khai-arch": "^0.1.0",
+    "@chbrain/khai-pack": "^0.0.1",
     "gray-matter": "^4.0.3"
   },
   "devDependencies": {

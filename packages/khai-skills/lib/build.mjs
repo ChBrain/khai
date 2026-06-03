@@ -21,7 +21,7 @@ import { dirname, join, relative, posix } from "node:path";
 import { createRequire } from "node:module";
 import matter from "gray-matter";
 import arch from "@chbrain/khai-arch";
-import { zipStore } from "./zip.mjs";
+import { packBundle } from "@chbrain/khai-pack";
 import { sha256, validateSkillMd, validateNeutrality, validateProvenance } from "./guard.mjs";
 
 const require = createRequire(import.meta.url);
@@ -139,6 +139,29 @@ export function composeSkill(srcDir) {
   return { name, files, errors, warnings, injected };
 }
 
+/**
+ * Split a composed file set into the cultures layout khai-pack expects: root
+ * files are overhead, files under one subfolder are the content. An agentskills
+ * skill is SKILL.md (root) + references/ (the one content dir); more than one
+ * content subfolder is not representable in the cultures layout yet.
+ */
+function culturesLayout(name, files) {
+  const overhead = files
+    .filter((f) => !f.name.includes("/"))
+    .map((f) => ({ path: f.name, data: f.data }));
+  const subFiles = files.filter((f) => f.name.includes("/"));
+  const dirs = new Set(subFiles.map((f) => f.name.split("/")[0]));
+  if (dirs.size > 1)
+    throw new Error(
+      `${name}: bundle has multiple content subfolders [${[...dirs].join(", ")}]; the cultures layout expects one`,
+    );
+  const dir = [...dirs][0];
+  const content = dir
+    ? { dir, files: subFiles.map((f) => ({ path: f.name.slice(dir.length + 1), data: f.data })) }
+    : undefined;
+  return { overhead, content };
+}
+
 /** Compose + validate (+ optionally write dist/ and zips). */
 export function buildAll({ root = pkgRoot, write = false } = {}) {
   const srcRoot = join(root, "src");
@@ -159,13 +182,29 @@ export function buildAll({ root = pkgRoot, write = false } = {}) {
 
   for (const skill of skills) {
     const r = composeSkill(join(srcRoot, skill));
-    const zip = zipStore(r.files.map((f) => ({ name: `${r.name}/${f.name}`, data: f.data })));
-    // Hash the raw zip bytes (Buffer) — sha256() ignores encoding for a Buffer,
-    // so this equals `sha256sum <file>`. NOT zip.toString("latin1"), which would
-    // re-encode bytes >=0x80 as UTF-8 and produce a hash that matches no file.
-    const zipSha = sha256(zip);
 
-    if (write) {
+    // Pack via the serve engine: it owns the zip writer, the cultures layout,
+    // and the content-hash. khai-skills supplies the files and the stamp; the
+    // skill conformance guard already ran in composeSkill.
+    let zip = null;
+    let zipSha = null;
+    if (r.files.length > 0) {
+      const { overhead, content } = culturesLayout(r.name, r.files);
+      const packed = packBundle({
+        name: r.name,
+        overhead,
+        content,
+        stamp: {
+          kind: "skills",
+          standard: `${PIN.standard}@${PIN.spec.sha256.slice(0, 12)}`,
+          validator: `${PIN.validator.package}@${PIN.validator.version}`,
+        },
+      });
+      zip = packed.zip;
+      zipSha = packed.zipSha256;
+    }
+
+    if (write && zip) {
       for (const f of r.files) {
         const dest = join(distRoot, r.name, ...f.name.split("/"));
         mkdirSync(dirname(dest), { recursive: true });
