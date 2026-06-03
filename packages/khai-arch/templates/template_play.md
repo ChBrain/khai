@@ -9,21 +9,13 @@ stamp:
 
 # Play: [name]
 
-## Title
-
-[name]
-
-## Owner
-
-- Project: [project]
-
 ## Estate
 
 Who holds the whole run and answers for it: the production this play belongs to. If no one answers for the run, it is not yet a production. Link the production where it has a file; where it does not, ask whether it should use a khai type.
 
 ## Name
 
-The title the production runs under: what every plot inside it is billed beneath and inherits. This is the run's name as a work, not the file's Title above (which only identifies this file). If the plots do not share one name, they are not one play.
+The title the production runs under: what every plot inside it is billed beneath and inherits. This is the run's name as a work, not the H1 above (which only identifies this file). If the plots do not share one name, they are not one play.
 
 ## Arc
 

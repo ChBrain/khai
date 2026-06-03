@@ -9,9 +9,9 @@ stamp:
 
 # Plot: [name]
 
-## Title
+## Taxonomy
 
-[name]
+The group above this plot: the larger telling it sits within. Name it, then ask whether that whole already exists as a Play with its own file. If it does, link it; if it does not, ask whether it should be. This is what the plot is one of, not its own name (the H1 carries that) and not its origin (Owner carries that).
 
 ## Owner
 
