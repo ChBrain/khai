@@ -2,3 +2,10 @@
 # KHAI-Guard: block a push that would mix source and test changes in a single
 # PR range (compare branch tip against its merge-base with origin/main).
 npx khai-guard
+
+# KHAI-Guard branch-scope: the branch NAME must classify into a lane, and the
+# branch's diff range must stay inside that lane. ADVISORY for now (--warn
+# prints violations but exits 0) while the live claude/* branches are renamed.
+# To enforce: drop the --warn flag below (see docs/BRANCHING.md "flip to
+# hard-fail"). No change to khai-guard is needed; enforce is "advisory off".
+npx khai-guard branch-check --warn
