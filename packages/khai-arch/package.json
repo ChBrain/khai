@@ -37,7 +37,7 @@
     "gray-matter": "^4.0.3"
   },
   "devDependencies": {
-    "@chbrain/khai-rules": "^0.0.2",
+    "@chbrain/khai-rules": "^0.1.0",
     "@types/markdown-it": "^14.1.2",
     "@types/js-yaml": "^4.0.9",
     "ajv": "^8.17.1",
