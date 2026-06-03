@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-guard",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "KHAI-Guard: the source/test separation gate. A PR may change the product or its verifiers, never both — split them, tests first.",
   "keywords": [
     "ci",
