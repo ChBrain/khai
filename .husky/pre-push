@@ -4,11 +4,10 @@
 npx khai-guard
 
 # KHAI-Guard branch-scope: the branch NAME must classify into a lane, and the
-# branch's diff range must stay inside that lane. ADVISORY for now (--warn
-# prints violations but exits 0) while the live claude/* branches are renamed.
-# To enforce: drop the --warn flag below (see docs/BRANCHING.md "flip to
-# hard-fail"). No change to khai-guard is needed; enforce is "advisory off".
-npx khai-guard branch-check --warn
+# branch's diff range must stay inside that lane. ENFORCED (exit 1 on a
+# violation). Pick the lane with `khai-guard advise --files <paths>` before
+# `git checkout -b`; see docs/BRANCHING.md.
+npx khai-guard branch-check
 
 # KHAI-Guard bump-scope: flag a non-patch release scope. minor/major is the
 # maintainer's call; this prints the loud banner locally so you see it before
