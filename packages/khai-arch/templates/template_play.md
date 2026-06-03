@@ -1,0 +1,34 @@
+---
+khai: play
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.0.1
+  date: "2026-06-03"
+---
+
+# Play: [name]
+
+## Estate
+
+Who holds the whole run and answers for it: the production this play belongs to. If no one answers for the run, it is not yet a production. Link the production where it has a file; where it does not, ask whether it should use a khai type.
+
+## Name
+
+The title the production runs under: what every plot inside it is billed beneath and inherits. This is the run's name as a work, not the H1 above (which only identifies this file). If the plots do not share one name, they are not one play.
+
+## Arc
+
+The overarching story: the bend that makes the plots one telling and not a list. If you could reorder the plots with nothing lost, there is no Arc. The plots are their own files; here you name the shape they make.
+
+## Company
+
+The closed cast the play may field: the personas and what they carry, the pieces, places, processes, and positions in play. A plot draws only from here; reach past it and the plot has gone off the play. Link each where it has a file; where it does not, ask whether it should use a khai type.
+
+## Triggers
+
+The clockwork that chains the plots: each starts when its entry fires and runs to its exit, and one plot's close is the next one's cue. If the plots do not hand off, the play is a pile of scenes, not a run.
+
+## Stakes
+
+What the whole production is fighting over: every plot must move it, so each earns its place. The shape may rise, fall, or turn (a climax or an anticlimax is the story's own choice); what fails is a plot that leaves the stakes exactly as it found them. Link what is at stake where it has a file; where it does not, ask whether it should use a khai type.
