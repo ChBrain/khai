@@ -9,9 +9,9 @@ stamp:
 
 # Position: Female
 
-## Title
+## Taxonomy
 
-Female
+[Gender](position_gender.md): the read this position is one expression of.
 
 ## Owner
 

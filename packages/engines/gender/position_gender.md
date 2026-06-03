@@ -9,9 +9,9 @@ stamp:
 
 # Position: Gender
 
-## Title
+## Taxonomy
 
-Gender
+Social structure: the read a room places on a body before it speaks, not an internalized identity. No file of its own yet.
 
 ## Owner
 
