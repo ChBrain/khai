@@ -9,9 +9,9 @@ stamp:
 
 # Position: [name]
 
-## Title
+## Taxonomy
 
-[name]
+The group above this position: the unit it sits within. Name it, then ask whether that unit is itself a Position with its own file. If it is, link it; if it is not, ask whether it should be. This is the seat this one reports into, not this seat's own name (the H1 carries that) and not its origin (Owner carries that).
 
 ## Owner
 

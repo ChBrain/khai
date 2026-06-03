@@ -2,11 +2,11 @@
 id: architecture
 type: architecture
 class: meta
-mnemonic: "GROW"
+mnemonic: "TO GROW"
 chapters: [Ground, Root, Open, Weave]
 subtitle: "the growing of worlds"
 status: draft
-version: 0.0.4
+version: 0.0.5
 ---
 
 The canon is fixed. This is where it grows.
