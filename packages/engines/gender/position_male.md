@@ -11,7 +11,7 @@ stamp:
 
 ## Taxonomy
 
-[Gender](position_gender.md): the read this position is one expression of.
+[Gender](position_gender.md)
 
 ## Owner
 
