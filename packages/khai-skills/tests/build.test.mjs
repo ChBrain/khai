@@ -2,6 +2,8 @@ import { describe, it, expect } from "vitest";
 import { buildAll, composeSkill, PIN } from "../lib/build.mjs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
 import arch from "@chbrain/khai-arch";
 
 const pkgRoot = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -43,6 +45,16 @@ describe("buildAll", () => {
     const a = buildAll({ write: false }).manifest.skills.find((s) => s.name === "creating-a-play");
     const b = buildAll({ write: false }).manifest.skills.find((s) => s.name === "creating-a-play");
     expect(a.zipSha256).toBe(b.zipSha256);
+  });
+
+  it("MANIFEST zipSha256 equals the written zip file's sha256", () => {
+    buildAll({ write: true });
+    const man = JSON.parse(readFileSync(join(pkgRoot, "dist", "MANIFEST.json"), "utf8"));
+    const entry = man.skills.find((s) => s.name === "creating-a-play");
+    const fileSha = createHash("sha256")
+      .update(readFileSync(join(pkgRoot, "dist", entry.zip)))
+      .digest("hex");
+    expect(entry.zipSha256).toBe(fileSha);
   });
 });
 

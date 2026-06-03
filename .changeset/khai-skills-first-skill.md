@@ -1,5 +1,5 @@
 ---
-"@chbrain/khai-skills": minor
+"@chbrain/khai-skills": patch
 ---
 
 Add `@chbrain/khai-skills`: portable, vendor-neutral Agent Skills built from the

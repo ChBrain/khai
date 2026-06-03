@@ -160,7 +160,10 @@ export function buildAll({ root = pkgRoot, write = false } = {}) {
   for (const skill of skills) {
     const r = composeSkill(join(srcRoot, skill));
     const zip = zipStore(r.files.map((f) => ({ name: `${r.name}/${f.name}`, data: f.data })));
-    const zipSha = sha256(zip.toString("latin1"));
+    // Hash the raw zip bytes (Buffer) — sha256() ignores encoding for a Buffer,
+    // so this equals `sha256sum <file>`. NOT zip.toString("latin1"), which would
+    // re-encode bytes >=0x80 as UTF-8 and produce a hash that matches no file.
+    const zipSha = sha256(zip);
 
     if (write) {
       for (const f of r.files) {
