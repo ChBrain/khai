@@ -64,7 +64,10 @@ export const templates = Object.fromEntries(
     .filter((f) => f.endsWith(".md"))
     .map((f) => {
       const text = readFileSync(join(templatesDir, f), "utf8");
-      return [matter(text).data.khai, { type: matter(text).data.khai, file: `templates/${f}`, text }];
+      return [
+        matter(text).data.khai,
+        { type: matter(text).data.khai, file: `templates/${f}`, text },
+      ];
     }),
 );
 
