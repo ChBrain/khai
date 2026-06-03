@@ -91,7 +91,19 @@ jobs:
         # On a PR, actions/checkout leaves a detached HEAD (the merge commit),
         # so pass the PR head ref via --branch for the lane classification and
         # the PR base/head as the diff range (matching the source/test gate).
-        run: npx khai-guard branch-check --branch "${{ github.head_ref }}" --base "${{ github.event.pull_request.base.sha }}" --head "${{ github.event.pull_request.head.sha }}"
+        #
+        # EXEMPT the changesets Version PR. `changeset-release/*` is release
+        # automation, not a developer change: it bumps EVERY released package's
+        # package.json + CHANGELOG, which is inherently cross-lane and can never
+        # satisfy deny-by-default ownership (no allow-list fixes it -- the paths
+        # are owned by their own lanes). The job still runs and exits 0, so a
+        # required check stays satisfied; it just skips the lane gate.
+        run: |
+          if [[ "${{ github.head_ref }}" == changeset-release/* ]]; then
+            echo "changeset-release/*: release automation, exempt from lane scoping."
+            exit 0
+          fi
+          npx khai-guard branch-check --branch "${{ github.head_ref }}" --base "${{ github.event.pull_request.base.sha }}" --head "${{ github.event.pull_request.head.sha }}"
 
   bump-scope:
     # Release-scope flag (the third khai-guard rule; see the bump-check
