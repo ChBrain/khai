@@ -21,8 +21,8 @@ A play is the whole production: many plots run inside it, and one arc binds them
 
 - **T**riggers: The conditions that chain the plots. Each plot starts when its entry fires and runs until its exit; one plot's close is the next one's cue.
 
-- **S**takes: What the whole production is fighting over. The pressure every plot must raise: what makes the seventh plot weigh more than the second.
+- **S**takes: What the whole production is fighting over. The pressure every plot must move: each earns its place by changing what is at stake, in whatever shape the telling takes (rise, fall, or turn).
 
 ---
 
-Estate and Name are whose it is and what it is called. Company and Triggers are its cast and its clockwork. Arc and Stakes are its shape and its pressure. A play file succeeds when the plots, fired in turn from one Company, raise the Stakes the Arc was built to resolve.
+Estate and Name are whose it is and what it is called. Company and Triggers are its cast and its clockwork. Arc and Stakes are its shape and its pressure. A play file succeeds when the plots, fired in turn from one Company, move the Stakes the Arc was built to resolve.

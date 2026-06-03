@@ -23,7 +23,7 @@ Who holds the whole run and answers for it: the production this play belongs to.
 
 ## Name
 
-What the play is called: the title every plot inside it runs under. If its plots do not share one name, they are not one play.
+The title the production runs under: what every plot inside it is billed beneath and inherits. This is the run's name as a work, not the file's Title above (which only identifies this file). If the plots do not share one name, they are not one play.
 
 ## Arc
 
