@@ -154,6 +154,7 @@ stamp:
   owner: A Consumer
   version: v0.1.0
   date: "2026-01-01"
+type: fictional
 ---
 
 # Persona: Ada
@@ -314,6 +315,7 @@ stamp:
   owner: Demo
   version: v0.1.0
   date: "2026-01-01"
+type: fictional
 ---
 
 # Persona: ${name}
