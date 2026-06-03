@@ -12,13 +12,27 @@
 // config, bucket overlap on the tracked tree, CI + hook wiring) instead of
 // judging a diff.
 //
-// Exit 0 = clean, 1 = source/test mixed, 2 = config/usage error.
+// Subcommand: `khai-guard branch-check` enforces the branch-scope rule — the
+// current branch's NAME must classify into a lane, and its diff-range paths
+// must all be in that lane. Advisory-first: pass `--warn` (or set
+// KHAI_GUARD_BRANCH_ADVISORY=1) to print violations but still exit 0 while the
+// live branches are renamed.
+//
+// Subcommand: `khai-guard advise --files <paths...>` prints the correct
+// branch(es) for a set of changed paths, including the ordered split when the
+// set spans lanes.
+//
+// Exit 0 = clean, 1 = source/test mixed (or branch-scope violation in
+// enforce mode), 2 = config/usage error.
 
 import { execFileSync } from "node:child_process";
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { resolve, join } from "node:path";
 import {
   classify,
+  classifyBranch,
+  checkBranchScope,
+  advise,
   resolveConfig,
   parseNameStatus,
   DEFAULT_CONFIG,
@@ -37,6 +51,19 @@ function flag(name) {
     process.exit(2);
   }
   return value;
+}
+
+// Collect every token after `name` up to the next `--flag` (or end of argv).
+// `advise --files a b c` -> ["a", "b", "c"]. Empty list if the flag is absent.
+function flagList(name) {
+  const i = process.argv.indexOf(name);
+  if (i < 0) return [];
+  const out = [];
+  for (let j = i + 1; j < process.argv.length; j++) {
+    if (process.argv[j].startsWith("--")) break;
+    out.push(process.argv[j]);
+  }
+  return out;
 }
 
 function git(args) {
@@ -234,7 +261,91 @@ function runDoctor() {
   process.exit(0);
 }
 
+// `branch-check`: the branch-scope gate. Classify the CURRENT branch by name,
+// diff its range against origin/main (the same three-dot range the source/test
+// gate uses), and require every changed path to be in the branch's lane.
+//
+// Advisory-first. While the live claude/* branches are still being renamed to
+// the lane scheme, a violation must NOT block. Advisory mode is on when either
+// `--warn` is passed or KHAI_GUARD_BRANCH_ADVISORY=1 is set; it prints the
+// violations and exits 0. Once the branches are renamed, FLIP TO HARD-FAIL by
+// removing the advisory wiring (drop --warn from .husky/pre-push and the CI
+// step, unset KHAI_GUARD_BRANCH_ADVISORY) and making the CI job a *required*
+// status check. Nothing in this file needs to change to enforce — enforce is
+// simply "advisory off"; the exit-1 path below is already wired.
+function runBranchCheck() {
+  const config = loadConfig();
+  const advisory =
+    process.argv.includes("--warn") || process.env.KHAI_GUARD_BRANCH_ADVISORY === "1";
+
+  // `--branch <name>` is for CI: on a PR, actions/checkout leaves a detached
+  // HEAD (the merge commit), so rev-parse can't name the branch. CI passes the
+  // PR head ref explicitly. Locally we read the current branch from git.
+  let branch = flag("--branch");
+  if (!branch) {
+    try {
+      branch = git(["rev-parse", "--abbrev-ref", "HEAD"]).trim();
+    } catch (err) {
+      console.error(`KHAI-Guard: cannot resolve current branch — ${err.message}`);
+      process.exit(2);
+    }
+    if (branch === "HEAD" || branch.length === 0) {
+      console.log("KHAI-Guard branch-check: detached HEAD and no --branch; skipping.");
+      process.exit(0);
+    }
+  }
+
+  const changed = changedPaths(config);
+  if (changed === null) {
+    console.log("KHAI-Guard branch-check: no comparison base found; skipping (local).");
+    process.exit(0);
+  }
+
+  const klass = classifyBranch(branch, config);
+  const { ok, violations } = checkBranchScope(branch, changed, config);
+
+  if (ok) {
+    const where = klass ? `${klass.lane} lane (${klass.layer})` : "lane";
+    console.log(
+      `KHAI-Guard branch-check OK: "${branch}" is in ${where}; ` +
+        `${changed.length} changed path(s) all in lane.`,
+    );
+    process.exit(0);
+  }
+
+  const head = advisory
+    ? "::warning::KHAI-Guard branch-check (advisory): branch-scope violations:"
+    : "::error::KHAI-Guard branch-check: branch-scope violations:";
+  (advisory ? console.warn : console.error)(head);
+  for (const v of violations) (advisory ? console.warn : console.error)(`  ${v}`);
+
+  if (advisory) {
+    console.warn("");
+    console.warn("  Advisory mode: not blocking yet. Rename the branch to clear this.");
+    process.exit(0);
+  }
+  console.error("");
+  console.error("  Fix: rename the branch to its lane, or split per `khai-guard advise`.");
+  process.exit(1);
+}
+
+// `advise --files <paths...>`: print the correct branch(es) for a set of paths.
+// Pure advice — always exits 0 (it answers a question, it doesn't gate).
+function runAdvise() {
+  const config = loadConfig();
+  const files = flagList("--files");
+  if (files.length === 0) {
+    console.error("KHAI-Guard: advise requires --files <paths...>.");
+    process.exit(2);
+  }
+  const { lines } = advise({ files }, config);
+  for (const line of lines) console.log(line);
+  process.exit(0);
+}
+
 // argv[2] is the first positional. `khai-guard --base …` leaves it as a flag,
-// which falls through to the gate; only an explicit `doctor` diverts.
+// which falls through to the gate; only an explicit subcommand diverts.
 if (process.argv[2] === "doctor") runDoctor();
+else if (process.argv[2] === "branch-check") runBranchCheck();
+else if (process.argv[2] === "advise") runAdvise();
 else runGate();
