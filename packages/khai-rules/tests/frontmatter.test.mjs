@@ -50,3 +50,22 @@ describe("checkFrontmatter: per-type extra keys", () => {
     );
   });
 });
+
+describe("checkFrontmatter: a required extra key ({ values, required })", () => {
+  const extra = { type: { values: ["real", "archetype", "fictional"], required: true } };
+
+  it("accepts a valid value", () => {
+    expect(checkFrontmatter(doc(`${BASE}\ntype: real`), { typeIds: TYPE_IDS, extra })).toEqual([]);
+  });
+
+  it("rejects the key being absent", () => {
+    expect(checkFrontmatter(doc(BASE), { typeIds: TYPE_IDS, extra })).toContain(
+      "frontmatter missing required key: type",
+    );
+  });
+
+  it("still enum-checks the value", () => {
+    const errs = checkFrontmatter(doc(`${BASE}\ntype: bogus`), { typeIds: TYPE_IDS, extra });
+    expect(errs.some((e) => e.includes('frontmatter "type" must be one of'))).toBe(true);
+  });
+});

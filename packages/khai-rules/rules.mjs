@@ -76,8 +76,12 @@ export function checkFrontmatter(doc, { typeIds, extra = {} }) {
       if (!stamp[k]) e.push(`stamp missing ${k}`);
     }
   }
-  // Enum-check each extra key's value when present (the key itself is optional).
-  for (const [k, values] of Object.entries(extra)) {
+  // Each extra key declares its allowed enum and whether it is required. A bare
+  // array is shorthand for an optional key with that enum.
+  for (const [k, spec] of Object.entries(extra)) {
+    const values = Array.isArray(spec) ? spec : spec?.values;
+    const required = Array.isArray(spec) ? false : Boolean(spec?.required);
+    if (required && !(k in doc.data)) e.push(`frontmatter missing required key: ${k}`);
     if (k in doc.data && Array.isArray(values) && !values.includes(doc.data[k]))
       e.push(`frontmatter "${k}" must be one of [${values.join(", ")}], got "${doc.data[k]}"`);
   }
