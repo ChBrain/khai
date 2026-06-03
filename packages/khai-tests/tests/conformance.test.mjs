@@ -135,6 +135,50 @@ x
   });
 });
 
+// --- section contract: Title/Owner track the "TO ___" mnemonic ------------
+describe("section contract: Title and Owner track the TO mnemonic", () => {
+  // The full section list spells the mnemonic. A "TO ___" type carries Title
+  // (T) and Owner (O) ahead of its chapters; a type whose mnemonic does not
+  // begin with "TO " (instructions=HACKS, play=ENACTS, engines=WIRE) carries
+  // neither -- its chapters spell the whole word. The kit derives this from the
+  // canon, so it must not demand Title/Owner of a non-TO type.
+  const front = `---
+khai: instructions
+license: CC-BY-NC-4.0
+stamp:
+  owner: A World
+  version: v0.1.0
+  date: "2026-01-01"
+---
+`;
+  const chapters = `## Human
+The human sets intent.
+
+## Agent
+The agent executes.
+
+## Collaboration
+They iterate together.
+
+## Knowledge
+Nothing linked here.
+
+## System
+The runtime hosts it.
+`;
+
+  it("a non-TO type is valid with no Title or Owner", () => {
+    const text = `${front}\n# Instructions: World\n\n${chapters}`;
+    expect(validateContentFile(text, { type: "instructions" })).toEqual([]);
+  });
+
+  it("a non-TO type carrying Title/Owner is rejected as drift", () => {
+    const text = `${front}\n# Instructions: World\n\n## Title\nWorld\n\n## Owner\n- Project: w\n\n${chapters}`;
+    const errors = validateContentFile(text, { type: "instructions" });
+    expect(errors.some((e) => e.includes("H2 sections must be exactly"))).toBe(true);
+  });
+});
+
 // --- wiring: engine declares, kit enforces on a consumer instance ---------
 describe("wiring: engine requirements enforced on instances", () => {
   // The gender engine declares: every persona must link a gender expression
@@ -272,12 +316,6 @@ stamp:
 ---
 
 # Instructions: World
-
-## Title
-World
-
-## Owner
-- Project: w
 
 ## Human
 The human sets intent.

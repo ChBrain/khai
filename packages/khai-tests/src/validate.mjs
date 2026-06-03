@@ -14,7 +14,6 @@ import {
   checkFrontmatter,
   checkH1,
   checkH2SetAndOrder,
-  checkTitle,
   checkOwner,
   checkExtensions,
   checkLinks,
@@ -102,18 +101,43 @@ export function validateContentFile(text, { type, baseDir, owner, allowed, exemp
   const extra =
     typeof khaiArch.frontmatterExtras === "function" ? khaiArch.frontmatterExtras(type) : {};
 
+  // The full H2 list spells the type's mnemonic. A "TO ___" type carries a two
+  // section prefix ahead of its chapters: the "T" (the group above) and the "O"
+  // (Owner, the origin). A type whose mnemonic does not begin with "TO "
+  // (instructions=HACKS, play=ENACTS, engines=WIRE) carries neither -- its
+  // chapters spell the whole word. The canon owns the prefix vocabulary; the
+  // kit pulls it (guarded so it keeps working against a canon that has not yet
+  // shipped the declaration). The T slot is the group, never a re-name of the
+  // H1, so there is no Title==H1 echo check -- presence in the H2 set is the
+  // whole contract for it.
+  const prefix =
+    typeof khaiArch.toPrefix === "function"
+      ? khaiArch.toPrefix(type)
+      : contract.mnemonic.startsWith("TO ")
+        ? ["Title", "Owner"]
+        : [];
+
+  // Migration tolerance: the T slot is being renamed Title -> Taxonomy, and the
+  // canon, this kit's fixtures, and the engine fixtures land that rename in
+  // separate lane-clean PRs. Accept the legacy "Title" spelling of the first
+  // slot until the rename has landed end to end; then this fallback is dropped
+  // and the canon word stands alone. (No-op while the canon still says Title.)
+  const checkSet = (expected) => checkH2SetAndOrder(doc, { expected });
+  let h2Errors = checkSet([...prefix, ...contract.chapters]);
+  if (h2Errors.length && prefix[0] && prefix[0] !== "Title")
+    h2Errors = checkSet(["Title", ...prefix.slice(1), ...contract.chapters]).length ? h2Errors : [];
+
   const errors = [
     ...checkEncoding(text),
     ...checkFrontmatter(doc, { typeIds, extra }),
-    ...checkH2SetAndOrder(doc, {
-      expected: ["Title", "Owner", ...contract.chapters],
-    }),
+    ...h2Errors,
     ...checkExtensions(doc, { allowed: new Set(allowed ?? []) }),
   ];
-  const { name, errors: h1Errors } = checkH1(doc, { type });
-  errors.push(...h1Errors);
-  errors.push(...checkTitle(doc, { name }));
-  if (owner) errors.push(...checkOwner(doc, { expected: owner }));
+  errors.push(...checkH1(doc, { type }).errors);
+  // Owner (the "O") is the origin stamp; pin its value only when the caller
+  // asserts whose the content is (engine content). The T slot carries no value
+  // check -- it is the group above, enforced solely by the H2 set.
+  if (prefix.length && owner) errors.push(...checkOwner(doc, { expected: owner }));
   if (baseDir) errors.push(...checkLinks(text, baseDir, { exempt: exemptLinks }));
 
   // The declared frontmatter type must match the package's manifest type.
