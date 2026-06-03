@@ -19,7 +19,7 @@ stamp:
 
 ## Initiated by
 
-The condition that makes the process inevitable. Name what must be present; link it where it is defined in a file. If it is not, ask whether it should be its own khai type.
+The condition that makes the process inevitable. Name what must be present; link it where it already has a file; where it does not, ask whether it should use a khai type.
 
 ## Direction
 
@@ -31,4 +31,4 @@ The force of moving meeting the resistance of not moving. Remove either side and
 
 ## Echo
 
-What is different in the world once the process has run. Name what changed; link it where it is defined in a file.
+What is different in the world once the process has run. Name what changed; link it where it already has a file; where it does not, ask whether it should use a khai type.
