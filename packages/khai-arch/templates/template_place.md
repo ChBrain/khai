@@ -23,11 +23,11 @@ What the place shows whoever enters: the place is the actor here, presenting its
 
 ## Holds
 
-The props the place provides for a persona to use, fixed or moveable: named, not described. If you are describing one rather than naming it, it wants its own file: link it where it has one, or make it a piece.
+The props the place provides, fixed or moveable, there for a persona to take up and use: named, not described. Free to reach for, but inert until someone does. If you are describing one rather than naming it, it wants its own file: link it where it has one, or make it a piece.
 
 ## Offers
 
-What a persona may do here, with no enforcement (a dojo Holds the mat; it Offers stepping onto it to do judo). If it is the prop rather than what a persona may do with it, that is Holds; if it is compelled rather than available, it is not an Offer. Link what it opens where that has a file; where it does not, ask whether it should use a khai type.
+What a persona may do here freely, with no enforcement and no real loss (a dojo Holds the mat; it Offers stepping onto it to do judo). If it is the prop rather than the doing, that is Holds; if reaching it costs the persona something real, that is Withheld. Link what it opens where that has a file; where it does not, ask whether it should use a khai type.
 
 ## Withheld
 
