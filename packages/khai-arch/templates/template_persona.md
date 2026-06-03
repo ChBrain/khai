@@ -1,0 +1,34 @@
+---
+khai: persona
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.0.1
+  date: "2026-06-03"
+---
+
+# Persona: [name]
+
+## Title
+
+[name]
+
+## Owner
+
+- Project: [project]
+
+## Projection
+
+How the character appears in the body: physical, present tense, not what it believes. It must bite the Shadow: if what it shows and what it hides do not conflict, there is no persona, only a label. Link the positions and pieces it carries where they have a file; where they do not, ask whether they should use a khai type.
+
+## Action
+
+What the character does: one move, not a list, producing a cue the session can answer. Deliberate and physical, it must be different from the Tell: if the chosen move and the involuntary leak are the same, nothing is hidden. Link what it touches where that has a file; where it does not, ask whether it should use a khai type.
+
+## Shadow
+
+The one thing the character cannot see in itself: constitutive, so remove it and they are a different person. It must bite the Projection or the Action; a Shadow that agrees with the shown self is not a Shadow, and a persona without one is just a role. Keep it the persona's own blindness, not the linked position's Loses restated. Link what it hides where that has a file; where it does not, ask whether it should use a khai type.
+
+## Tell
+
+The involuntary physical sign at the point of blindness, one line: it lets another persona, and the reader, know something is off, not what. It must be different from the Action: if the leak matches the chosen move, the Shadow never surfaces. Link any position or piece it involves where that has a file; where it does not, ask whether it should use a khai type.
