@@ -23,7 +23,7 @@ The condition that makes the process inevitable. Name what must be present; link
 
 ## Direction
 
-Where the process moves once started: one vector. If it forks or carries decision points, break it into child processes that name this one as parent in their Owner, chained so each Echo feeds the next process's Initiated by.
+Where the process moves once started: one vector. A fork or decision point is a granularity choice: hold it here as one vector, or layer it into child processes that name this one as parent in their Owner, each Echo chained to the next process's Initiated by.
 
 ## Lever
 
