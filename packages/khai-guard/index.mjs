@@ -14,6 +14,13 @@
 //      defendant") so the gate that judges a change can never be weakened
 //      inside the same branch that needs it to pass.
 //
+//   3. bump scope (parseChangeset / bumpScope): a changeset may bump patch
+//      freely, but minor/major widen the published release and are the
+//      maintainer's call, not the agent's. The gate can't HARD-lock that (the
+//      bot runs with the maintainer's own credentials), so its teeth are
+//      LOUDNESS: every non-patch bump is detected, named, and flagged, so an
+//      escalation can never ship silently or by accident.
+//
 // This module is pure and dependency-light (one matcher) so it unit-
 // tests cleanly; bin/khai-guard.mjs wraps it with git + process exit.
 
@@ -93,6 +100,28 @@ function assertBranchScope(value) {
   });
 }
 
+// The release levels a changeset may declare, in widening order. patch is the
+// floor; anything past the configured freeLevel is an escalation.
+const BUMP_LEVELS = ["patch", "minor", "major"];
+
+// Validate the bumpScope section: the release-scope gate. `freeLevel` (default
+// "patch") is the bump any change may take unsupervised; wider levels are the
+// maintainer's call and get flagged. `labels` (optional) maps a level to the PR
+// label the bot stamps, so the escalation shows in the GitHub UI, not just logs.
+function assertBumpScope(value) {
+  if (typeof value !== "object" || value == null || Array.isArray(value)) {
+    throw new ConfigError(`"bumpScope" must be an object`);
+  }
+  if ("freeLevel" in value && !BUMP_LEVELS.includes(value.freeLevel)) {
+    throw new ConfigError(`"bumpScope.freeLevel" must be one of [${BUMP_LEVELS.join(", ")}]`);
+  }
+  if ("labels" in value) {
+    if (typeof value.labels !== "object" || value.labels == null || Array.isArray(value.labels)) {
+      throw new ConfigError(`"bumpScope.labels" must be an object`);
+    }
+  }
+}
+
 // Shallow per-key override: a config file replaces only the keys it sets.
 // Validates the shape so a typo (e.g. source as a bare string) fails loud
 // instead of matching nothing and waving every PR through.
@@ -110,6 +139,7 @@ export function resolveConfig(fileConfig) {
     throw new ConfigError(`"defaultRef" must be a string`);
   }
   if ("branchScope" in fileConfig) assertBranchScope(fileConfig.branchScope);
+  if ("bumpScope" in fileConfig) assertBumpScope(fileConfig.bumpScope);
   return { ...DEFAULT_CONFIG, ...fileConfig };
 }
 
@@ -452,4 +482,55 @@ export function advise({ files = [] }, config = DEFAULT_CONFIG) {
   }
 
   return { lanes, split, unowned, lines };
+}
+
+// --- bump scope: flag a non-patch release loudly --------------------------
+// Changesets declare a release level per package in their frontmatter:
+//
+//   ---
+//   "@scope/pkg": minor
+//   ---
+//
+// patch is the free, default level: any change may take it. minor and major
+// widen the published contract (new API, a break) and are the maintainer's
+// call. We can't HARD-lock that from here (the bot runs with the maintainer's
+// own credentials), so the teeth are LOUDNESS: every non-patch bump is
+// detected, named, and flagged, so escalation can never ship silently.
+
+// Parse a changeset's frontmatter into [{ package, level }]. The leading ---
+// block lists `"name": level` lines; the body after the closing --- is the
+// human summary and is ignored.
+export function parseChangeset(text) {
+  const m = /^---\r?\n([\s\S]*?)\r?\n---/.exec(text);
+  if (!m) return [];
+  const out = [];
+  for (const line of m[1].split(/\r?\n/)) {
+    const lm = /^\s*["']?(@?[\w./-]+)["']?\s*:\s*([A-Za-z]+)\s*$/.exec(line);
+    if (lm) out.push({ package: lm[1], level: lm[2].toLowerCase() });
+  }
+  return out;
+}
+
+// Given parsed changesets [{ file, entries }], return the bumps that exceed the
+// free level and the highest level present (major > minor > null). `ok` is true
+// when nothing exceeds the free level.
+export function bumpScope(changesets, config = DEFAULT_CONFIG) {
+  const free = config.bumpScope?.freeLevel ?? "patch";
+  const freeRank = BUMP_LEVELS.indexOf(free);
+  const escalations = [];
+  let highestRank = -1;
+  for (const { file, entries } of changesets) {
+    for (const { package: pkg, level } of entries) {
+      const rank = BUMP_LEVELS.indexOf(level);
+      if (rank > freeRank) {
+        escalations.push({ file, package: pkg, level });
+        if (rank > highestRank) highestRank = rank;
+      }
+    }
+  }
+  return {
+    ok: escalations.length === 0,
+    escalations,
+    highest: highestRank >= 0 ? BUMP_LEVELS[highestRank] : null,
+  };
 }

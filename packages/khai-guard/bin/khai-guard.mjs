@@ -22,17 +22,24 @@
 // branch(es) for a set of changed paths, including the ordered split when the
 // set spans lanes.
 //
+// Subcommand: `khai-guard bump-check` flags a non-patch release. It reads the
+// .changeset/ dir and, if any changeset declares minor/major (beyond the
+// configured freeLevel), prints a LOUD banner and emits the level so CI can
+// stamp a label. Advisory by default (exit 0); pass `--enforce` to exit 1.
+//
 // Exit 0 = clean, 1 = source/test mixed (or branch-scope violation in
 // enforce mode), 2 = config/usage error.
 
 import { execFileSync } from "node:child_process";
-import { readFileSync, readdirSync, existsSync } from "node:fs";
+import { readFileSync, readdirSync, existsSync, appendFileSync } from "node:fs";
 import { resolve, join } from "node:path";
 import {
   classify,
   classifyBranch,
   checkBranchScope,
   advise,
+  parseChangeset,
+  bumpScope,
   resolveConfig,
   parseNameStatus,
   DEFAULT_CONFIG,
@@ -343,9 +350,70 @@ function runAdvise() {
   process.exit(0);
 }
 
+// `bump-check`: the release-scope flag. Read every changeset, and if any bump
+// exceeds the free level (patch), print a loud, unmissable banner naming the
+// escalation. minor/major is the maintainer's call; this guarantees it can't
+// merge unnoticed. We do NOT hard-fail by default -- a hard lock is impossible
+// when the bot holds the maintainer's own credentials, so the honest teeth are
+// visibility: the banner in the log, a `::warning::` in the Actions UI, and the
+// level handed to the workflow (GITHUB_OUTPUT) so the bot stamps a label.
+// `--enforce` turns it red (exit 1) for repos that want CI to block as well.
+function readChangesets() {
+  const dir = resolve(process.cwd(), ".changeset");
+  if (!existsSync(dir)) return [];
+  return readdirSync(dir)
+    .filter((f) => f.endsWith(".md") && f.toLowerCase() !== "readme.md")
+    .map((f) => ({
+      file: `.changeset/${f}`,
+      entries: parseChangeset(readFileSync(join(dir, f), "utf8")),
+    }));
+}
+
+function runBumpCheck() {
+  const config = loadConfig();
+  const { ok, escalations, highest } = bumpScope(readChangesets(), config);
+
+  if (ok) {
+    console.log("KHAI-Guard bump-check OK: every changeset is patch (the free level).");
+    process.exit(0);
+  }
+
+  // Loud and unmissable. A non-patch release is the maintainer's decision; the
+  // banner makes it impossible to wave through by reflex.
+  const label = config.bumpScope?.labels?.[highest] ?? `bump:${highest}`;
+  console.log(
+    `::warning title=Release scope: ${highest}::Non-patch changeset(s) detected -- ` +
+      `declaring ${highest} is the maintainer's call.`,
+  );
+  const banner = [
+    "",
+    "############################################################",
+    `##  RELEASE SCOPE FLAGGED:  ${highest.toUpperCase()}`,
+    "##",
+    "##  This PR's changesets widen the release beyond patch.",
+    `##  Declaring ${highest} is the maintainer's call, not the agent's.`,
+    "##",
+    ...escalations.map((e) => `##    - ${e.package}: ${e.level}   (${e.file})`),
+    "##",
+    `##  The bot will stamp the label "${label}".`,
+    "##  Merge ONLY if you intend this release scope.",
+    "############################################################",
+    "",
+  ];
+  for (const line of banner) console.log(line);
+
+  // Hand the level + label to the workflow so the bot can stamp the PR.
+  if (process.env.GITHUB_OUTPUT) {
+    appendFileSync(process.env.GITHUB_OUTPUT, `bump_level=${highest}\nbump_label=${label}\n`);
+  }
+
+  process.exit(process.argv.includes("--enforce") ? 1 : 0);
+}
+
 // argv[2] is the first positional. `khai-guard --base …` leaves it as a flag,
 // which falls through to the gate; only an explicit subcommand diverts.
 if (process.argv[2] === "doctor") runDoctor();
 else if (process.argv[2] === "branch-check") runBranchCheck();
 else if (process.argv[2] === "advise") runAdvise();
+else if (process.argv[2] === "bump-check") runBumpCheck();
 else runGate();

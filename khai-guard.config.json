@@ -10,6 +10,13 @@
     ".github/workflows/**",
     ".husky/**"
   ],
+  "bumpScope": {
+    "freeLevel": "patch",
+    "labels": {
+      "minor": "bump:minor",
+      "major": "bump:major"
+    }
+  },
   "exemptRenames": true,
   "branchScope": {
     "shared": [".changeset/**"],
