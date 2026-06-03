@@ -27,7 +27,7 @@ What the position orders the persona to do while holding it: the conduct it impo
 
 ## Loses
 
-What holding the position strips from the persona, the reverse of Orders: what they can no longer keep while in it (a lifeguard gives up their ordinary clothes; the sharper losses are mental, not physical). If the persona keeps everything they brought, the position costs nothing. Link what it strips where that has a file; where it does not, ask whether it should use a khai type.
+What holding the position strips from the persona, the reverse of Orders: what they can no longer keep while in it (a lifeguard gives up their ordinary clothes; the sharper losses are mental, not physical). Every position costs something: if nothing is stripped, it is not a position yet. Link what it strips where that has a file; where it does not, ask whether it should use a khai type.
 
 ## Drives
 
