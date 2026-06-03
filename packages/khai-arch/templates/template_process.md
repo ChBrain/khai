@@ -19,11 +19,11 @@ stamp:
 
 ## Initiated by
 
-The condition that makes the process inevitable. Name what must be present; link it where it already has a file; where it does not, ask whether it should use a khai type.
+The condition that makes the process inevitable: if it can be present and the process still not start, it is a setting, not the trigger. Name what must be present; link it where it already has a file; where it does not, ask whether it should use a khai type.
 
 ## Direction
 
-Where the process moves once started: one vector. A fork or decision point is a granularity choice: hold it here as one vector, or layer it into child processes that name this one as parent in their Owner, each Echo chained to the next process's Initiated by.
+Where the process moves once started: one vector. If it reads as the force (Lever) or the result (Echo), it is not the Direction. A fork is a granularity choice: hold it here as one vector, or layer it into child processes that name this one as parent in their Owner, each Echo chained to the next process's Initiated by.
 
 ## Lever
 
@@ -31,4 +31,4 @@ The force of moving meeting the resistance of not moving. Remove either side and
 
 ## Echo
 
-What is different in the world once the process has run. Name what changed; link it where it already has a file; where it does not, ask whether it should use a khai type.
+What is different in the world once the process has run: if it reads the same as before, there is no Echo. Name what changed; link it where it already has a file; where it does not, ask whether it should use a khai type.
