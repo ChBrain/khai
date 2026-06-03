@@ -100,7 +100,7 @@ export function chaptersFor(typeId) {
  * @returns {Record<string, string[]>}
  */
 const FRONTMATTER_EXTRAS = {
-  persona: { type: ["real", "archetype", "fictional"] },
+  persona: { type: { values: ["real", "archetype", "fictional"], required: true } },
 };
 export function frontmatterExtras(typeId) {
   return FRONTMATTER_EXTRAS[typeId] ?? {};
