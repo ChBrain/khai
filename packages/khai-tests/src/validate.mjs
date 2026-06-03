@@ -7,6 +7,7 @@ import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { pathToFileURL } from "node:url";
 import { types, engineCard, referenceCard, renderEngineReadme } from "@chbrain/khai-arch";
+import * as khaiArch from "@chbrain/khai-arch";
 import {
   parseDoc,
   checkEncoding,
@@ -95,9 +96,15 @@ export function validateContentFile(text, { type, baseDir, owner, allowed, exemp
   if (!contract) return [`unknown khai type "${type}" (not in canon)`];
   const doc = parseDoc(text);
 
+  // Per-type extra frontmatter keys (e.g. persona's `type:`) are owned by the
+  // canon. Pull them when khai-arch declares them; guarded so this kit keeps
+  // working against a canon that has not yet shipped the declaration.
+  const extra =
+    typeof khaiArch.frontmatterExtras === "function" ? khaiArch.frontmatterExtras(type) : {};
+
   const errors = [
     ...checkEncoding(text),
-    ...checkFrontmatter(doc, { typeIds }),
+    ...checkFrontmatter(doc, { typeIds, extra }),
     ...checkH2SetAndOrder(doc, {
       expected: ["Title", "Owner", ...contract.chapters],
     }),
