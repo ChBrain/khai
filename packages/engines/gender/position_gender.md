@@ -11,7 +11,7 @@ stamp:
 
 ## Taxonomy
 
-Social structure: the read a room places on a body before it speaks, not an internalized identity. No file of its own yet.
+Social structure (no khai file of its own yet).
 
 ## Owner
 
