@@ -99,3 +99,42 @@ jobs:
         # so pass the PR head ref via --branch for the lane classification and
         # the PR base/head as the diff range (matching the source/test gate).
         run: npx khai-guard branch-check --branch "${{ github.head_ref }}" --base "${{ github.event.pull_request.base.sha }}" --head "${{ github.event.pull_request.head.sha }}"
+
+  bump-scope:
+    # Release-scope flag (the third khai-guard rule; see the bump-check
+    # subcommand). patch is free; a changeset declaring minor/major widens the
+    # published release and is the maintainer's call. The bot holds the
+    # maintainer's credentials, so a hard lock is impossible -- the teeth are
+    # LOUDNESS: bump-check prints an unmissable banner + a ::warning::, and this
+    # job stamps a bump:minor / bump:major label so the escalation is visible on
+    # the PR itself. Advisory: it never fails the build; the banner and label
+    # ARE the signal. Release PRs consume changesets, so they're exempt.
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && !startsWith(github.head_ref, 'changeset-release/')
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: "npm"
+      - name: install
+        run: npm ci
+      - name: flag non-patch release scope
+        id: bump
+        run: npx khai-guard bump-check
+      - name: stamp the release-scope label
+        if: steps.bump.outputs.bump_label != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create "${{ steps.bump.outputs.bump_label }}" \
+            --repo "${{ github.repository }}" \
+            --color FBCA04 \
+            --description "Release scope flagged by khai-guard bump-scope (maintainer's call)" \
+            --force || true
+          gh pr edit "${{ github.event.pull_request.number }}" \
+            --repo "${{ github.repository }}" \
+            --add-label "${{ steps.bump.outputs.bump_label }}"
