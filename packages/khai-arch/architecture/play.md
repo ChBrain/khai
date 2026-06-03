@@ -25,4 +25,4 @@ A play is the whole production: many plots run inside it, and one arc binds them
 
 ---
 
-Estate and Name are whose it is and what it is called. Company and Triggers are its cast and its clockwork. Arc and Stakes are its shape and its pressure. A play file succeeds when the plots, fired in turn from one Company, move the Stakes the Arc was built to resolve.
+Estate and Name are whose it is and what it is called, so a play carries no generic `## Owner` or `## Taxonomy` prefix: it is a non-TO type, and those first two chapters already say the whose and the what in its own, richer terms. The mnemonic spells ENACTS rather than borrowing the generic slots; adding `Owner` or a `Title` back is not a fix but a break: eight H2s that no longer spell. Company and Triggers are its cast and its clockwork. Arc and Stakes are its shape and its pressure. A play file succeeds when the plots, fired in turn from one Company, move the Stakes the Arc was built to resolve.
