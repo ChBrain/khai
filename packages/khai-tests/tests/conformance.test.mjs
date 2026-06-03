@@ -98,7 +98,7 @@ stamp:
 
 # Position: Broken
 
-## Title
+## Taxonomy
 Broken
 
 ## Owner
@@ -135,13 +135,14 @@ x
   });
 });
 
-// --- section contract: Title/Owner track the "TO ___" mnemonic ------------
-describe("section contract: Title and Owner track the TO mnemonic", () => {
-  // The full section list spells the mnemonic. A "TO ___" type carries Title
-  // (T) and Owner (O) ahead of its chapters; a type whose mnemonic does not
-  // begin with "TO " (instructions=HACKS, play=ENACTS, engines=WIRE) carries
-  // neither -- its chapters spell the whole word. The kit derives this from the
-  // canon, so it must not demand Title/Owner of a non-TO type.
+// --- section contract: Taxonomy/Owner track the "TO ___" mnemonic ---------
+describe("section contract: Taxonomy and Owner track the TO mnemonic", () => {
+  // The full section list spells the mnemonic. A "TO ___" type carries Taxonomy
+  // (T, the group above) and Owner (O) ahead of its chapters; a type whose
+  // mnemonic does not begin with "TO " (instructions=HACKS, play=ENACTS,
+  // engines=WIRE) carries neither -- its chapters spell the whole word. The kit
+  // derives this from the canon, so it must not demand Taxonomy/Owner of a
+  // non-TO type.
   const front = `---
 khai: instructions
 license: CC-BY-NC-4.0
@@ -167,15 +168,39 @@ Nothing linked here.
 The runtime hosts it.
 `;
 
-  it("a non-TO type is valid with no Title or Owner", () => {
+  it("a non-TO type is valid with no Taxonomy or Owner", () => {
     const text = `${front}\n# Instructions: World\n\n${chapters}`;
     expect(validateContentFile(text, { type: "instructions" })).toEqual([]);
   });
 
-  it("a non-TO type carrying Title/Owner is rejected as drift", () => {
-    const text = `${front}\n# Instructions: World\n\n## Title\nWorld\n\n## Owner\n- Project: w\n\n${chapters}`;
+  it("a non-TO type carrying Taxonomy/Owner is rejected as drift", () => {
+    const text = `${front}\n# Instructions: World\n\n## Taxonomy\nWorld\n\n## Owner\n- Project: w\n\n${chapters}`;
     const errors = validateContentFile(text, { type: "instructions" });
     expect(errors.some((e) => e.includes("H2 sections must be exactly"))).toBe(true);
+  });
+
+  // The Title -> Taxonomy rename has landed end to end, so the migration
+  // tolerance that accepted the legacy "Title" spelling of the T slot is gone:
+  // a TO type must now spell the slot "Taxonomy", and "Title" is drift.
+  it("a TO type using the legacy Title spelling is rejected (tolerance retired)", () => {
+    const personaFront = `---
+khai: persona
+license: CC-BY-NC-4.0
+stamp:
+  owner: A World
+  version: v0.1.0
+  date: "2026-01-01"
+type: fictional
+---
+`;
+    const persona = (slot) =>
+      `${personaFront}\n# Persona: Ada\n\n## ${slot}\nAda\n\n## Owner\n- Project: w\n\n## Projection\nx\n\n## Action\nx\n\n## Shadow\nx\n\n## Tell\nx\n`;
+    expect(validateContentFile(persona("Taxonomy"), { type: "persona" })).toEqual([]);
+    expect(
+      validateContentFile(persona("Title"), { type: "persona" }).some((e) =>
+        e.includes("H2 sections must be exactly"),
+      ),
+    ).toBe(true);
   });
 });
 
@@ -203,7 +228,7 @@ type: fictional
 
 # Persona: Ada
 
-## Title
+## Taxonomy
 Ada
 
 ## Owner
@@ -358,7 +383,7 @@ type: fictional
 
 # Persona: ${name}
 
-## Title
+## Taxonomy
 ${name}
 
 ## Owner
