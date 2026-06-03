@@ -110,17 +110,6 @@ export function checkH2SetAndOrder(doc, { expected }) {
   ];
 }
 
-// --- Title: present, non-empty, equals the H1 name ------------------------
-export function checkTitle(doc, { name }) {
-  const lines = sectionBody(doc.body, "Title");
-  if (lines === null) return ["missing `## Title` section"];
-  const value = lines.join("\n").trim();
-  if (!value) return ["`## Title` is empty"];
-  if (name && value !== name)
-    return [`\`## Title\` ("${value}") must match the H1 name ("${name}")`];
-  return [];
-}
-
 // --- Owner: bullets, closed key whitelist, expected values ----------------
 export function checkOwner(doc, { expected }) {
   const lines = sectionBody(doc.body, "Owner");
