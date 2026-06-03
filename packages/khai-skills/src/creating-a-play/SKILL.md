@@ -1,15 +1,21 @@
 ---
 name: creating-a-play
-description: Creates a khai "play" component, the whole production that binds many plots into one telling via the ENACTS chapters (Estate, Name, Arc, Company, Triggers, Stakes). Use when building or scaffolding a play, defining a KAI World production arc, company, triggers, or stakes, or when asked to create, draft, or write a play file.
+description: Creates a khai "play", read two ways. Mode A authors a single play file (the ENACTS container with chapters Estate, Name, Arc, Company, Triggers, Stakes). Mode B authors a full play, the play file plus every plot it chains and every process, position, piece, place, and persona those plots draw on. Use when building or scaffolding a play, a KAI World production, its plots, or its cast, or when asked to create, draft, or write a play.
 license: CC-BY-NC-4.0
 ---
 
 # Creating a play
 
-A **play** is the whole production. Many plots run inside it, and one arc
-binds them into a single telling. A play does not act out a scene: it sets
-what every plot inherits and what they all add up to. Build a play when you
-need the container above a set of plots, not the scenes themselves.
+A **play** is the whole production: many plots run inside it, and one arc binds
+them into a single telling. A play is read two ways, and this skill does both:
+
+- **Mode A, a play file** : the ENACTS container on its own.
+- **Mode B, a full play** : the play file plus every plot it chains, plus every
+  element those plots draw on.
+
+Decide the mode first. Mode B always builds Mode A as its first step.
+
+## The play file (both modes start here)
 
 A play file has six chapters, in order. Their first letters spell **ENACTS**:
 
@@ -22,76 +28,114 @@ A play file has six chapters, in order. Their first letters spell **ENACTS**:
 | **T**riggers | The clockwork chaining the plots: each plot's close is the next one's cue.          |
 | **S**takes   | What the whole production is fighting over: every plot must move it.                |
 
-The full per-chapter guidance is in
-[references/template_play.md](references/template_play.md). Load it before
-drafting. Do not paraphrase it from memory: it is the canonical template.
+Author it from [references/template_play.md](references/template_play.md). Open
+with the YAML frontmatter the template carries (at minimum `khai: play` plus the
+stamp). Use the six `## ` headers exactly, in order: the H2 sequence must spell
+ENACTS. Interview one chapter at a time; stop when there is enough. Link each
+Company member and each stake where a file exists; where it does not, name it.
 
-## Workflow
-
-Copy this checklist and tick each item as you go:
-
-```
-Play build:
-- [ ] 1. Orient: confirm a play is what is needed (a production over plots)
-- [ ] 2. Interview the six ENACTS chapters, one at a time
-- [ ] 3. Draft the file from references/template_play.md
-- [ ] 4. Self-check against the checklist below
-- [ ] 5. Confirm with the requester, then output
-```
-
-**1. Orient.** A play is a container above plots. If the request is a single
-scene or a step-by-step run, that is a plot, not a play. If no one answers for
-the whole run, there is no production yet: surface that before continuing.
-
-**2. Interview.** Ask only what is needed to fill the template, one question at
-a time, and stop when there is enough. Take the chapters in ENACTS order:
-Estate, then Name, Arc, Company, Triggers, Stakes. Company is a closed cast:
-list every persona, piece, place, process, and position the plots may draw
-from, and nothing else.
-
-**3. Draft.** Produce the complete file using
-[references/template_play.md](references/template_play.md). Open with the YAML
-frontmatter block the template carries (at minimum `khai: play` plus the stamp
-block). Use the six `## ` chapter headers exactly as named, in order: the H2
-sequence must still spell ENACTS. Link each Company member and each stake where
-a file exists; where it does not, name it without a link and ask whether it
-should become its own khai component.
-
-**4. Self-check.** Run every line before showing the draft:
+**Self-check the play file:**
 
 ```
-- [ ] Frontmatter declares khai: play and carries the stamp block
-- [ ] Exactly six chapters: Estate, Name, Arc, Company, Triggers, Stakes, in order
-- [ ] Estate names who answers for the whole run (the production)
-- [ ] Name is the run's billed title, distinct from the H1 file heading
+- [ ] Frontmatter declares khai: play and carries the stamp
+- [ ] Six chapters, in ENACTS order, no generic Owner/Title chapter added
+- [ ] Estate names who answers for the whole run
 - [ ] Arc is a bend, not a list: reordering the plots would lose something
-- [ ] Company is closed: a plot reaching past it has gone off the play
+- [ ] Company is a closed cast (the set every plot draws from)
 - [ ] Triggers chain: each plot's close is the next plot's cue
-- [ ] Stakes move: a plot that leaves them unchanged does not earn its place
-- [ ] References to existing files are linked; missing ones are named, not linked
+- [ ] Stakes are something every plot can move
 ```
 
-**5. Confirm and output.** Show the draft, wait for approval, then deliver the
-file named `play_[name].md`.
+If the mode is A, deliver `play_[name].md` and stop here.
+
+## Mode B, the full play
+
+The hierarchy. The play sets the boundary; the plots cast forces inside it; the
+elements are what the plots cast:
+
+```
+play  (ENACTS)        the production: Company is the closed cast, Triggers the plot chain
+ └─ plot  (TO CAST)   Cue, Action, Stage, Tension : draws elements only from the Company
+      └─ process, position, piece, place, persona  : the cast a plot casts
+```
+
+A plot file has chapters Cue, Action, Stage, Tension (mnemonic **CAST**, under a
+`## Taxonomy` and `## Owner` prefix). Cue draws a place; Action draws processes,
+positions, and personas; Stage draws personas and pieces; Tension draws a piece.
+
+**Build sequence:**
+
+1. **Author the play** (above). Its Company is the closed cast; its Triggers name
+   the plots and their order.
+2. **For each plot the Triggers chain**, author it from
+   [references/template_plot.md](references/template_plot.md), drawing every
+   Cue / Action / Stage / Tension element **only from the play's Company**.
+3. **For each Company element a plot draws on that has no file yet**, author it,
+   in this fixed order: process, then position, piece, place, persona. Templates:
+   [process](references/template_process.md),
+   [position](references/template_position.md),
+   [piece](references/template_piece.md),
+   [place](references/template_place.md),
+   [persona](references/template_persona.md).
+
+### Staying in lane (what the play defines, the plot may not exceed)
+
+The play defines what is in the production. A plot must stay in that lane:
+
+- **A plot draws from the Company, and only the Company.** It need not use every
+  member, but it may use no element the Company does not name. An element a plot
+  references that is **not in the Company** has gone off the play: **stop**.
+  Either add it to the Company (amend the play) or drop it from the plot. This is
+  the bite: what the play leaves undefined cannot appear in a plot.
+- **A Company member a plot references but that has no file** is an obligation
+  the plot inherits: author it (step 3) before the plot is done.
+
+**Two kinds of check, do not confuse them:**
+
+- **Existence, mechanical.** Every element a plot names resolves to a Company
+  member with a file. This is testable by structure alone (a tool-capable runtime
+  runs the khai conformance kit; running solo, confirm each reference resolves).
+- **Judgement, by review.** That each plot **moves the Stakes**, that the
+  **Tension** genuinely blocks the Action, that the **Arc** actually bends across
+  the plots, that the **Triggers** chain close to cue. Structure cannot settle
+  these; flag them for review. A model running solo must self-check them and say
+  so, not assume them passed.
+
+### Output
+
+One zip carrying the whole production in the world layout:
+
+```
+[play-name]/
+  play_[name].md
+  plot_[name].md            (one per plot the Triggers chain)
+  process_[name].md         (every element a plot draws on)
+  position_[name].md
+  piece_[name].md
+  place_[name].md
+  persona_[name].md
+```
 
 ## Quality rules
 
-- **The H2s must spell ENACTS.** Adding a generic `Owner` or `Title` chapter
-  breaks the mnemonic. Estate and Name already carry the whose and the what.
-- **A play is not a plot.** If it acts out one run of scenes, it is a plot.
-- **No arc, no play.** If the plots could be reordered with nothing lost, the
-  Arc is missing.
-- **Closed Company.** The cast is a fixed set; a plot may draw only from it.
-- **House voice.** Do not use em-dashes or en-dashes in the output file. Use
-  colons, ellipses (...), or line breaks instead.
+- **The play H2s spell ENACTS; the plot H2s spell CAST** (under Taxonomy/Owner).
+  Adding a generic chapter to either breaks the mnemonic.
+- **A play is not a plot.** The play sets what every plot inherits; a plot casts
+  one collision of forces inside it.
+- **Closed Company, subset plots.** The cast is fixed at the play; each plot uses
+  some of it, never more than it.
+- **House voice.** No em-dashes or en-dashes in output files. Use colons,
+  ellipses (...), or line breaks instead.
 
 ## Failure modes to watch for
 
-- **Plots that do not hand off.** Without Triggers chaining close to cue, the
-  play is a pile of scenes, not a run.
-- **Inert Stakes.** A production whose stakes end where they began has no
-  pressure: every plot must move them, in whatever shape the telling takes.
-- **A list pretending to be an Arc.** If nothing breaks when the plots are
-  reordered, name the bend or admit there is none.
-- **An open Company.** A cast that grows as plots demand is not a Company: it is
-  a sign the play's boundary was never set.
+- **A plot off the play.** An element appears in a plot that the Company never
+  named: the lane was broken. Amend the play or cut it.
+- **A list pretending to be an Arc.** Reorder the plots and nothing is lost: name
+  the bend or admit there is none.
+- **Plots that do not hand off.** Triggers that do not chain close to cue leave a
+  pile of scenes, not a run.
+- **Inert Stakes.** A plot that leaves the Stakes where it found them did not earn
+  its place.
+- **A plot with no Tension.** If the Action could run cleanly to its end, the plot
+  is a list of events, not a plot.

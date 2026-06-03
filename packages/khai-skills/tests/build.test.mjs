@@ -21,6 +21,15 @@ describe("compose: creating-a-play", () => {
     expect(tpl.data.toString("utf8")).toBe(arch.templates.play.text);
   });
 
+  it("injects the full play+plot+element template set from canon (Mode B)", () => {
+    const types = ["play", "plot", "process", "position", "piece", "place", "persona"];
+    for (const t of types) {
+      const tpl = r.files.find((f) => f.name === `references/template_${t}.md`);
+      expect(tpl, `template_${t}.md should be injected`).toBeTruthy();
+      expect(tpl.data.toString("utf8")).toBe(arch.templates[t].text);
+    }
+  });
+
   it("stamps standard + canon provenance into SKILL.md metadata", () => {
     const skill = r.files.find((f) => f.name === "SKILL.md").data.toString("utf8");
     expect(skill).toMatch(/standard: agentskills@/);
