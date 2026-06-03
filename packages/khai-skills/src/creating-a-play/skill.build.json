@@ -1,0 +1,4 @@
+{
+  "type": "play",
+  "inject": [{ "to": "references/template_play.md", "from": "template:play" }]
+}

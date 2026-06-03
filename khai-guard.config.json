@@ -46,6 +46,11 @@
         "allow": ["packages/engines/{name}/**"]
       },
       {
+        "pattern": "skills/*",
+        "layer": "solution",
+        "allow": ["packages/khai-skills/**", "docs/SKILLS.md"]
+      },
+      {
         "pattern": "repo/*",
         "layer": "infra",
         "allow": []
