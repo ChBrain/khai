@@ -10,7 +10,11 @@ When a security finding (Dependabot, GitHub Advisory, code review, or audit) arr
    - Severity
    - Fix plan
 
-2. **Create a feature branch:** `security/<issue-id>-<slug>`
+2. **Create a feature branch** using khai's branch-scope rules:
+   - Governance-layer fix (workflows, rules): `governance/security-<issue-id>-<slug>`
+   - Engine-specific fix: `engine/<name>/security-<issue-id>-<slug>`
+   - Architecture fix: `arch/security-<issue-id>-<slug>`
+   - General/infra fix: `chore/security-<issue-id>-<slug>`
 
 3. **Implement the fix:**
    - Add explicit `permissions` blocks to workflows
