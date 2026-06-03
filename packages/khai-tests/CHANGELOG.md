@@ -1,5 +1,85 @@
 # @chbrain/khai-tests
 
+## 0.1.0
+
+### Minor Changes
+
+- 01e4e73: Introduce the **LORE** reference standard. Every component's `REFERENCES.md`
+  now carries four fixed canon chapters, in order, the warrant for the component
+  to exist:
+  - **L — Line of Work** — what it models, and what it isn't
+  - **O — Origin** — the sources it rests on
+  - **R — Restrictions** — what it refuses to claim, and to whom it delegates
+  - **E — Encoding** — source to constraint, per file
+
+  khai-arch gains `referenceChapters` and `referenceCard(text)` (sibling to
+  `engineCard`): it validates the four chapters are present and in order,
+  collects any author `### ` subchapters under each (the renderer paginates one
+  (sub)chapter per snap), and returns `{ mnemonic, chapters, sections, coda }`.
+  gender's `REFERENCES.md` is restructured as the first conformer.
+
+  khai-tests gains the teeth: `validateEnginePackage` runs `referenceCard` over
+  every engine's `REFERENCES.md`, so a missing or non-conforming warrant fails the
+  suite. The standard is documented as a canon companion in
+  `architecture/reference.md`.
+
+### Patch Changes
+
+- 185dc90: Section contract: derive the TO-prefix from the canon instead of hardcoding it.
+  The full H2 list spells the type's mnemonic, so a "TO \_\_\_" type carries a two
+  section prefix ahead of its chapters (the "T", the group above, and the "O",
+  Owner, the origin), while a type whose mnemonic does not begin with "TO "
+  (instructions=HACKS, play=ENACTS, engines=WIRE) carries neither -- its chapters
+  spell the whole word.
+
+  The kit now pulls the prefix vocabulary from khai-arch (`toPrefix`, guarded with
+  a fallback), drops the dead `checkTitle` echo (the T slot is the group above,
+  never a re-name of the H1, so its only contract is presence in the H2 set), and
+  keeps the Owner value check for engine content. A migration tolerance accepts
+  the legacy "Title" spelling of the T slot until the Title -> Taxonomy rename
+  lands end to end. Also drops the stray Title/Owner from the instructions wiring
+  fixture and adds a regression test for the contract.
+
+- c2f86b5: KAIHACKS retirement: migration ledger + khai-rules core (Loop 1: encoding)
+- ad5cd0c: Frontmatter: support per-type extra keys. `checkFrontmatter` now accepts an
+  `extra` map (key -> allowed enum) beyond the base `khai/license/stamp`, and
+  `validateContentFile` pulls it from the canon (`khaiArch.frontmatterExtras`,
+  guarded) per instance type. Backward-compatible: with no extras, behavior is
+  unchanged. This is the kit-side permission that lets the canon add persona's
+  `type:` (real/archetype/fictional) next.
+- 73f5f9d: Frontmatter: support a `required` flag on per-type extra keys. `checkFrontmatter`
+  now accepts `{ values, required }` (a bare array stays shorthand for an optional
+  key) and flags a missing required key. The fixture personas declare `type:` ahead
+  of the canon flipping persona's `type:` to required (next, in the arch lane).
+- 7443622: Retire the Title -> Taxonomy migration tolerance: the kit goes strict. The
+  rename has landed end to end (canon, this kit's fixtures, the gender engine
+  content), so `validateContentFile` no longer accepts the legacy `Title`
+  spelling of a "TO \_\_\_" type's first slot -- the T slot is `Taxonomy`, the group
+  above, and `Title` is now drift. Drops the tolerance branch and flips the
+  guarded `toPrefix` fallback to `["Taxonomy", "Owner"]`. The kit's own fixtures
+  move to `## Taxonomy`, and a regression test pins the strictness (a persona
+  spelling the slot `Title` is rejected; `Taxonomy` passes). Stale "Title (T)"
+  comments are corrected. The orphaned `checkTitle` echo in khai-rules is left for
+  a separate follow-up.
+- 88be37f: Add the template conformance test: assert every authoring template shipped by
+  `@chbrain/khai-arch` is a valid content instance (`validateContentFile`, no
+  `owner` so the check is structural). The loop closes — the kit proves the
+  canon's templates, and the templates feed the kit's notion of a valid `<type>`.
+- Updated dependencies [ab4667c]
+- Updated dependencies [95f4264]
+- Updated dependencies [c2f86b5]
+- Updated dependencies [34c6d7b]
+- Updated dependencies [01e4e73]
+- Updated dependencies [2d29311]
+- Updated dependencies [ad5cd0c]
+- Updated dependencies [67e7925]
+- Updated dependencies [73f5f9d]
+- Updated dependencies [f17e74e]
+- Updated dependencies [7ebebf0]
+- Updated dependencies [1996d77]
+  - @chbrain/khai-rules@0.0.2
+  - @chbrain/khai-arch@0.1.0
+
 ## 0.0.11
 
 ### Patch Changes

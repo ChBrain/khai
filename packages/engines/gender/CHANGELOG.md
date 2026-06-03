@@ -1,5 +1,49 @@
 # @chbrain/khai-engine-gender
 
+## 0.0.11
+
+### Patch Changes
+
+- a2f9442: Remove the gender engine's "guardrails reject drift" tests: they re-proved the
+  kit's own rules (dropped chapter, invented Owner key, undeclared extension)
+  through gender's content. That proof lives in khai-tests against its own
+  fixture; the engine now tests only what is gender-specific (conformance,
+  manifest, compose). Test-only; the published artifact is unchanged.
+- dc27f9a: Title -> Taxonomy: the gender engine's position content. Each `## Title` (the
+  dead H1 echo) becomes `## Taxonomy`, the group above. Male and Female point up
+  to their anchor, `[Gender](position_gender.md)` -- the read they are each one
+  expression of (the shared-anchor relation the warrant already endorses). Gender
+  itself, the engine's anchor, names its group above as social structure (the read
+  a room places on a body before it speaks, not an internalized identity, per
+  Risman and West & Zimmerman), with no file of its own yet.
+- 01e4e73: Introduce the **LORE** reference standard. Every component's `REFERENCES.md`
+  now carries four fixed canon chapters, in order, the warrant for the component
+  to exist:
+  - **L — Line of Work** — what it models, and what it isn't
+  - **O — Origin** — the sources it rests on
+  - **R — Restrictions** — what it refuses to claim, and to whom it delegates
+  - **E — Encoding** — source to constraint, per file
+
+  khai-arch gains `referenceChapters` and `referenceCard(text)` (sibling to
+  `engineCard`): it validates the four chapters are present and in order,
+  collects any author `### ` subchapters under each (the renderer paginates one
+  (sub)chapter per snap), and returns `{ mnemonic, chapters, sections, coda }`.
+  gender's `REFERENCES.md` is restructured as the first conformer.
+
+  khai-tests gains the teeth: `validateEnginePackage` runs `referenceCard` over
+  every engine's `REFERENCES.md`, so a missing or non-conforming warrant fails the
+  suite. The standard is documented as a canon companion in
+  `architecture/reference.md`.
+
+- Updated dependencies [95f4264]
+- Updated dependencies [34c6d7b]
+- Updated dependencies [01e4e73]
+- Updated dependencies [2d29311]
+- Updated dependencies [67e7925]
+- Updated dependencies [7ebebf0]
+- Updated dependencies [1996d77]
+  - @chbrain/khai-arch@0.1.0
+
 ## 0.0.10
 
 ### Patch Changes
