@@ -19,7 +19,7 @@
   },
   "exemptRenames": true,
   "branchScope": {
-    "shared": [".changeset/**"],
+    "shared": [".changeset/**", "package.json", "package-lock.json"],
     "lanes": [
       {
         "pattern": "arch/*",
@@ -33,6 +33,7 @@
           "packages/khai-guard/**",
           "packages/khai-tests/**",
           "packages/khai-rules/**",
+          "packages/khai-pack/**",
           ".github/**",
           ".husky/**",
           "khai-guard.config.json",

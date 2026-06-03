@@ -30,13 +30,13 @@ cannot rewrite the rules. A wrong name fails fast, before any path is examined.
 
 ## Lanes
 
-| Branch pattern                                  | Layer        | May touch                                                                                                                                              |
-| ----------------------------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `arch/<change>`                                 | architecture | `packages/khai-arch/**`                                                                                                                                |
-| `governance/<change>`                           | governance   | `packages/khai-guard/**`, `packages/khai-tests/**`, `packages/khai-rules/**`, `.github/**`, `.husky/**`, `khai-guard.config.json`, `docs/BRANCHING.md` |
-| `engine/<name>/<change>`                        | solution     | `packages/engines/<name>/**` (the `<name>` segment must equal the engine dir)                                                                          |
-| `repo/<change>`                                 | infra        | only **unowned** + **shared** paths (root configs, `README.md`, ...); owns nothing                                                                     |
-| `chore/<change>` `fix/<change>` `docs/<change>` | general      | only **unowned** + **shared** paths; owns nothing                                                                                                      |
+| Branch pattern                                  | Layer        | May touch                                                                                                                                                                       |
+| ----------------------------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `arch/<change>`                                 | architecture | `packages/khai-arch/**`                                                                                                                                                         |
+| `governance/<change>`                           | governance   | `packages/khai-guard/**`, `packages/khai-tests/**`, `packages/khai-rules/**`, `packages/khai-pack/**`, `.github/**`, `.husky/**`, `khai-guard.config.json`, `docs/BRANCHING.md` |
+| `engine/<name>/<change>`                        | solution     | `packages/engines/<name>/**` (the `<name>` segment must equal the engine dir)                                                                                                   |
+| `repo/<change>`                                 | infra        | only **unowned** + **shared** paths (root configs, `README.md`, ...); owns nothing                                                                                              |
+| `chore/<change>` `fix/<change>` `docs/<change>` | general      | only **unowned** + **shared** paths; owns nothing                                                                                                                               |
 
 `<change>` is a free kebab-case topic. The layer is derived from the prefix.
 
@@ -55,9 +55,12 @@ use a `repo/` or `chore/` branch.
 
 ### Shared metadata
 
-`branchScope.shared` (today `.changeset/**`) is unowned safe metadata that
-**any** lane may touch, since every change ships a changeset that travels with
-it. Shared paths are never offenders and are never attributed to an owner.
+`branchScope.shared` (today `.changeset/**`, `package.json`, `package-lock.json`)
+is unowned safe metadata that **any** lane may touch. Changesets travel with
+every change; the root `package.json` workspace list and the lockfile are
+repo-wide plumbing that registering or removing any package must touch,
+regardless of which lane owns that package. Shared paths are never offenders and
+are never attributed to an owner.
 
 ### The solution layer fans out per engine
 
