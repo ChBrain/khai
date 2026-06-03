@@ -389,10 +389,16 @@ const LAYER_ORDER = ["architecture", "governance", "solution", "infra", "general
  */
 export function advise({ files = [] }, config = DEFAULT_CONFIG) {
   const lanesCfg = config.branchScope?.lanes ?? [];
+  // Shared metadata (e.g. .changeset/**) belongs on any lane by design, so the
+  // enforcer (checkBranchScope) waves it through. advise must do the same: it is
+  // not "unowned" and must not be reported as needing a branchScope extension.
+  const sharedGlobs = config.branchScope?.shared ?? [];
+  const isShared = sharedGlobs.length > 0 ? picomatch(sharedGlobs, { dot: true }) : () => false;
   const byKey = new Map();
   const unowned = [];
 
   for (const path of files) {
+    if (isShared(path)) continue;
     const owner = laneForPath(path, config);
     if (owner == null) {
       unowned.push(path);
