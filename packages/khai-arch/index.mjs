@@ -91,6 +91,22 @@ export function chaptersFor(typeId) {
 }
 
 /**
+ * Per-type extra frontmatter keys beyond the base {khai, license, stamp}, each
+ * mapped to its allowed enum. Persona alone carries `type:` -- its real-world
+ * exposure class (Real carries legal/reputational exposure; Archetype is drawn
+ * from life but anonymised; Fictional is invented). The canon owns the values;
+ * the kit pulls this and enforces it (frontmatterExtras stays the single source).
+ * @param {string} typeId
+ * @returns {Record<string, string[]>}
+ */
+const FRONTMATTER_EXTRAS = {
+  persona: { type: ["real", "archetype", "fictional"] },
+};
+export function frontmatterExtras(typeId) {
+  return FRONTMATTER_EXTRAS[typeId] ?? {};
+}
+
+/**
  * WIRES: the chapters of an engine card. An engine instance fills the `engines`
  * type (WIRE: Wire, Issue, Require, Enforce) and adds one chapter -- Setup, the
  * instance-specific wiring. Derived from the type so the instance contract can
@@ -401,6 +417,7 @@ export default {
   types,
   templates,
   chaptersFor,
+  frontmatterExtras,
   playbook,
   wiresChapters,
   referenceChapters,

@@ -5,6 +5,7 @@ stamp:
   owner: KAI HACKS AI
   version: v0.0.1
   date: "2026-06-03"
+type: fictional
 ---
 
 # Persona: [name]
