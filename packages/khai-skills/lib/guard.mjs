@@ -88,7 +88,10 @@ export function validateFrontmatter(data, dirName) {
 /** Relative, in-bundle link targets from markdown (skips http(s), anchors, mailto). */
 export function localLinks(md) {
   const out = [];
-  const re = /\]\(([^)]+)\)/g;
+  // [^()]+ (not [^)]+) so a run of "(" fails fast instead of backtracking
+  // O(n) per "](" start — kills the polynomial-ReDoS (js/polynomial-redos).
+  // Link targets carry no parens, so matches are unchanged.
+  const re = /\]\(([^()]+)\)/g;
   let m;
   while ((m = re.exec(md))) {
     const target = m[1].trim().split(/\s+/)[0];

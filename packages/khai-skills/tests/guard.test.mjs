@@ -90,6 +90,12 @@ describe("Tier 1 — SKILL.md document", () => {
       "references/t.md",
     ]);
   });
+  it("is linear on adversarial '](((((' input (no polynomial ReDoS)", () => {
+    const evil = "](" + "(".repeat(200000);
+    const start = Date.now();
+    expect(localLinks(evil)).toEqual([]);
+    expect(Date.now() - start).toBeLessThan(500);
+  });
 });
 
 describe("Tier 2 — khai neutrality policy (stricter than the standard)", () => {
