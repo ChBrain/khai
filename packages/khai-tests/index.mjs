@@ -11,5 +11,5 @@ export {
   wiringRequirements,
   engineDocChecks,
 } from "./src/validate.mjs";
-export * as rules from "./src/rules.mjs";
-export { parseDoc, sectionBody } from "./src/parse.mjs";
+export * as rules from "@chbrain/khai-rules";
+export { parseDoc, sectionBody } from "@chbrain/khai-rules";
