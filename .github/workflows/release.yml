@@ -46,6 +46,14 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
+    # The changesets bot commits + pushes `changeset-release/main` mechanically.
+    # HUSKY=0 keeps `npm ci` from installing the dev git hooks, so the release
+    # automation is NOT gated by the (now-enforced) branch-check / source-test
+    # split -- those gate human/agent PRs, not the version-bump commit. Without
+    # this, the bot's push fails branch-check (changeset-release/* is the bot's
+    # branch) and releases lock out. See docs/BRANCHING.md "flip to hard-fail".
+    env:
+      HUSKY: "0"
     steps:
       - uses: actions/checkout@v6
         with:
