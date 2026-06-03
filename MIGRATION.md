@@ -1,9 +1,9 @@
 # khai core migration ledger — KAIHACKS retirement
 
-*Status: planning. Nothing here is executed yet. It is the inventory +
+_Status: planning. Nothing here is executed yet. It is the inventory +
 loop plan for lifting the **generic, world-agnostic** KAI HACKS AI
 structure out of the retiring `chbrain/kaihacks` repo into `chbrain/khai`
-as npm packages.*
+as npm packages._
 
 ---
 
@@ -14,8 +14,8 @@ as npm packages.*
 architecture canon, the world-construction tooling, and the multi-level
 compliance checks.
 
-This is a *step-wise lift*, not a port-and-pray. KAIHACKS is reference
-material we lift *from*; khai is built on its own terms and verified by
+This is a _step-wise lift_, not a port-and-pray. KAIHACKS is reference
+material we lift _from_; khai is built on its own terms and verified by
 its own fixtures. We do **not** build a cross-repo comparison harness.
 The past is past; we lift with care.
 
@@ -32,13 +32,13 @@ calls universal, with no world-specific naming. Everything Cultures-
 flavored is out of scope and stays the Cultures repo's own migration, on
 its own timeline.
 
-| Migrate (khai core) | Out of scope (a world's own concern) |
-| --- | --- |
-| type canon — `khai-arch` ✅ | Hofstede marker-set, scores, ±5 reference |
-| encoding, links, language *engine* | culture completeness (8-file layout) |
-| per-type structure (the 7 content types) | phrase-denylist plagiarism (world-seeded) |
-| per-type judged rubrics ("good persona") | `khai-cultures-review`, branch-scope |
-| generic construction (`khai-create`, templates) | `khai-cultures-create` and siblings |
+| Migrate (khai core)                             | Out of scope (a world's own concern)      |
+| ----------------------------------------------- | ----------------------------------------- |
+| type canon — `khai-arch` ✅                     | Hofstede marker-set, scores, ±5 reference |
+| encoding, links, language _engine_              | culture completeness (8-file layout)      |
+| per-type structure (the 7 content types)        | phrase-denylist plagiarism (world-seeded) |
+| per-type judged rubrics ("good persona")        | `khai-cultures-review`, branch-scope      |
+| generic construction (`khai-create`, templates) | `khai-cultures-create` and siblings       |
 
 khai core has no external world to depend on. That is the point.
 
@@ -48,14 +48,14 @@ khai core has no external world to depend on. That is the point.
 
 Every unit re-homes as an **npm package in khai**, routed by nature:
 
-| Nature | Destination package | Form |
-| --- | --- | --- |
-| **Deterministic** (encoding, links, structure, filenames, schema) | `@chbrain/khai-tests` | rule atoms with `audit \| warn \| fail` severity |
-| **Judged / NLP** (voice, coherence, "what good looks like") | `@chbrain/khai-review` | rubrics on the injectable-judge + ledger loop |
-| **Type canon** | `@chbrain/khai-arch` | machine-readable frontmatter + `_schema.yml` |
-| **World construction** ("building worlds") | new package, TBD (`khai-create`) | templates + authoring guidance |
+| Nature                                                            | Destination package              | Form                                             |
+| ----------------------------------------------------------------- | -------------------------------- | ------------------------------------------------ |
+| **Deterministic** (encoding, links, structure, filenames, schema) | `@chbrain/khai-tests`            | rule atoms with `audit \| warn \| fail` severity |
+| **Judged / NLP** (voice, coherence, "what good looks like")       | `@chbrain/khai-review`           | rubrics on the injectable-judge + ledger loop    |
+| **Type canon**                                                    | `@chbrain/khai-arch`             | machine-readable frontmatter + `_schema.yml`     |
+| **World construction** ("building worlds")                        | new package, TBD (`khai-create`) | templates + authoring guidance                   |
 
-The judged layer is where the KAIHACKS *checklists* ("what a good persona
+The judged layer is where the KAIHACKS _checklists_ ("what a good persona
 constitutes") get an executable home: the `checklist_*.md` heuristics
 become khai-review **rubrics**, one per type (or per chapter-test),
 instead of prose a human runs by hand.
@@ -68,12 +68,12 @@ A type is **defined once, in khai-arch.** Two type-agnostic engines
 validate against that single definition — they do not know what a
 "persona" is until they read it from the canon.
 
-| Layer | Owner |
-| --- | --- |
-| **Definition** (structure + criteria) | `khai-arch` — e.g. `persona.md` |
-| **Test cases** (a valid persona; a `bad-persona-shadow-restates-projection`) | `khai-arch` — they pin what the definition *means* |
-| **Deterministic mechanism** (chapters present, ordered, encoding) | `khai-tests` |
-| **Judged / NLP mechanism** (is **Shadow** a real blind spot?) | `khai-review` |
+| Layer                                                                        | Owner                                              |
+| ---------------------------------------------------------------------------- | -------------------------------------------------- |
+| **Definition** (structure + criteria)                                        | `khai-arch` — e.g. `persona.md`                    |
+| **Test cases** (a valid persona; a `bad-persona-shadow-restates-projection`) | `khai-arch` — they pin what the definition _means_ |
+| **Deterministic mechanism** (chapters present, ordered, encoding)            | `khai-tests`                                       |
+| **Judged / NLP mechanism** (is **Shadow** a real blind spot?)                | `khai-review`                                      |
 
 `persona.md` already holds both halves the engines need: its
 **frontmatter** is the structural facts khai-tests charges; its **prose**
@@ -85,15 +85,15 @@ change — the only place a type exists is khai-arch.
 
 The arrow points one way: `khai-tests → khai-arch` and
 `khai-review → khai-arch`. khai-arch is inert: it declares, it never
-invokes. The engine *charges itself from* the canon — it pulls.
+invokes. The engine _charges itself from_ the canon — it pulls.
 
 ```js
 // khai-tests/src/validate.mjs
-import { types, chaptersFor } from "@chbrain/khai-arch";   // the pull
+import { types, chaptersFor } from "@chbrain/khai-arch"; // the pull
 ```
 
 khai-arch's `index.mjs` imports nothing back. The only back-edge is
-dev-only — khai-arch's *tests* pull the checker from khai-tests to
+dev-only — khai-arch's _tests_ pull the checker from khai-tests to
 validate its own spec files; that is still a pull, in test scope.
 
 Why pull, never push:
@@ -109,17 +109,17 @@ dependency list is `gray-matter` and nothing else.
 
 ### Ownership split of the current khai-arch contents
 
-| khai-arch item | Verdict |
-| --- | --- |
-| `architecture/*.md`, `_schema.yml`, `model.md` | **stay** — the canon |
-| `index.mjs` canon accessors (`types`, `chaptersFor`, `playbook`, `wiresChapters`, `engine*`) | **stay** |
-| `index.mjs` `renderEngineReadme` | **borderline** — presentation, flag for a consumer |
-| `tests/encoding.test.ts`, `markdown.test.ts`, `frontmatter.test.ts` | **logic → khai-tests**; the canon's self-test pulls it back |
-| `tests/type-rules.test.ts` | **stays** (validates khai-arch's own declarations) but **calls khai-tests**, stops reimplementing |
-| `fixtures/bad-encoding-*`, `bad-markdown-*` | **→ khai-tests** (generic) |
-| `fixtures/bad-frontmatter-*`, `bad-type-rules-*`, `minimal-*` | **stay** (they define the type rules) |
-| `tests/engine-*.test.ts` | **stay** — unit tests of khai-arch's own API |
-| devDeps `ajv`, `js-yaml`, `markdown-it` | **→ khai-rules** (they exist only to power validation) |
+| khai-arch item                                                                               | Verdict                                                                                           |
+| -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `architecture/*.md`, `_schema.yml`, `model.md`                                               | **stay** — the canon                                                                              |
+| `index.mjs` canon accessors (`types`, `chaptersFor`, `playbook`, `wiresChapters`, `engine*`) | **stay**                                                                                          |
+| `index.mjs` `renderEngineReadme`                                                             | **borderline** — presentation, flag for a consumer                                                |
+| `tests/encoding.test.ts`, `markdown.test.ts`, `frontmatter.test.ts`                          | **logic → khai-tests**; the canon's self-test pulls it back                                       |
+| `tests/type-rules.test.ts`                                                                   | **stays** (validates khai-arch's own declarations) but **calls khai-tests**, stops reimplementing |
+| `fixtures/bad-encoding-*`, `bad-markdown-*`                                                  | **→ khai-tests** (generic)                                                                        |
+| `fixtures/bad-frontmatter-*`, `bad-type-rules-*`, `minimal-*`                                | **stay** (they define the type rules)                                                             |
+| `tests/engine-*.test.ts`                                                                     | **stay** — unit tests of khai-arch's own API                                                      |
+| devDeps `ajv`, `js-yaml`, `markdown-it`                                                      | **→ khai-rules** (they exist only to power validation)                                            |
 
 ### Decided: extract a zero-dep `khai-rules` core (3 packages)
 
@@ -137,36 +137,36 @@ khai-review    depends on: khai-arch (+ judge) — the judged engine
 ```
 
 `khai-rules` is a leaf everyone points down to: no cycle, even in tests.
-The proof still holds — khai-arch's *runtime* deps are `gray-matter` only.
+The proof still holds — khai-arch's _runtime_ deps are `gray-matter` only.
 
 ### Engines declare; the engines pull (same rule, one level out)
 
-A content engine (e.g. `khai-engine-gender`) declares an *instance + its
-contract*; it must not carry validation or review machinery — exactly as
+A content engine (e.g. `khai-engine-gender`) declares an _instance + its
+contract_; it must not carry validation or review machinery — exactly as
 khai-arch must not. **Content declares, engines pull, all the way down.**
 
-| `khai-engine-gender` item | Verdict |
-| --- | --- |
-| `*.md` content, `index.mjs` `compose()` | **stay** — engine content + behavior |
-| `package.json#khai` (`type`, `anchor`, `expressions`, `requires`, `card`) | **stay** — the engine's declared contract (pulled by the kit) |
-| `tests/` compose() unit tests | **stay** — the engine's own API |
-| `tests/` self-conformance (`validateEnginePackage`) | **thin** — one helper pulled from khai-tests, not hand-rolled |
-| `tests/` manifest re-assertions | **trim** — the kit enforces `requires`; do not restate it |
-| `tests/` drift/guardrail tests (mutate `position_female.md`, expect failures) | **→ khai-tests** — these prove the *kit*, using gender as a fixture |
-| `audit/engine-gender/*`, `card.enforce` action | **khai-review** — review is not engine content |
+| `khai-engine-gender` item                                                     | Verdict                                                             |
+| ----------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `*.md` content, `index.mjs` `compose()`                                       | **stay** — engine content + behavior                                |
+| `package.json#khai` (`type`, `anchor`, `expressions`, `requires`, `card`)     | **stay** — the engine's declared contract (pulled by the kit)       |
+| `tests/` compose() unit tests                                                 | **stay** — the engine's own API                                     |
+| `tests/` self-conformance (`validateEnginePackage`)                           | **thin** — one helper pulled from khai-tests, not hand-rolled       |
+| `tests/` manifest re-assertions                                               | **trim** — the kit enforces `requires`; do not restate it           |
+| `tests/` drift/guardrail tests (mutate `position_female.md`, expect failures) | **→ khai-tests** — these prove the _kit_, using gender as a fixture |
+| `audit/engine-gender/*`, `card.enforce` action                                | **khai-review** — review is not engine content                      |
 
 ---
 
 ## The three lifts
 
-> *"arch was the first lift, but building worlds, assessing compliance is
-> not yet there."*
+> _"arch was the first lift, but building worlds, assessing compliance is
+> not yet there."_
 
-| Lift | What it is | KAIHACKS source | khai destination | State |
-| --- | --- | --- | --- | --- |
-| **1. Arch** | type canon: 10 types, chapters, mnemonics, spine | `ARCHITECTURE.md`, `skills/khai/references/` | `khai-arch` (+ `_schema.yml`, `model.md`) | ✅ **done** (khai is ahead — has `play`, `plot`, meta types KAIHACKS never formalized) |
-| **2. Build worlds** | how you *author* a persona/plot/world (generic) | `skills/khai-create`, `template_*.md` | new npm package (TBD) | ❌ **not started** |
-| **3. Assess compliance** | the generic multi-level checks | `khai_tests` pytest + `review/checks.py` + `checklist_*` | `khai-tests` (deterministic) + `khai-review` (judged) | ⚠️ **partial** — structural atoms exist; judged "what good looks like" layer is still only KAIHACKS skills |
+| Lift                     | What it is                                       | KAIHACKS source                                          | khai destination                                      | State                                                                                                      |
+| ------------------------ | ------------------------------------------------ | -------------------------------------------------------- | ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| **1. Arch**              | type canon: 10 types, chapters, mnemonics, spine | `ARCHITECTURE.md`, `skills/khai/references/`             | `khai-arch` (+ `_schema.yml`, `model.md`)             | ✅ **done** (khai is ahead — has `play`, `plot`, meta types KAIHACKS never formalized)                     |
+| **2. Build worlds**      | how you _author_ a persona/plot/world (generic)  | `skills/khai-create`, `template_*.md`                    | new npm package (TBD)                                 | ❌ **not started**                                                                                         |
+| **3. Assess compliance** | the generic multi-level checks                   | `khai_tests` pytest + `review/checks.py` + `checklist_*` | `khai-tests` (deterministic) + `khai-review` (judged) | ⚠️ **partial** — structural atoms exist; judged "what good looks like" layer is still only KAIHACKS skills |
 
 Order of work: **Lift 3 first** (half-done, and it is what makes a world
 trustworthy), then **Lift 2** (construction), then KAIHACKS's core role
@@ -178,36 +178,36 @@ retires.
 
 ### Types (lift 1 — done; the contract the checks lean on)
 
-| Type | Class | Mnemonic | Content chapters | In khai-arch |
-| --- | --- | --- | --- | --- |
-| process | element | TO IDLE | Initiated by, Direction, Lever, Echo | ✅ |
-| position | element | TO HOLD | Has, Orders, Loses, Drives | ✅ |
-| piece | element | TO PLAY | Place, Load Bearing, Apparent, Yearbook | ✅ |
-| place | element | TO SHOW | Shown, Holds, Offers, Withheld | ✅ |
-| persona | element | TO PAST | Projection, Action, Shadow, Tell | ✅ |
-| plot | house | TO CAST | Cue, Action, Stage, Tension | ✅ |
-| play | house | ENACTS | Estate, Name, Arc, Company, Triggers, Stakes | ✅ |
-| architecture | meta | GROW | — | ✅ |
-| instructions | meta | HACKS | — | ✅ |
-| engines | meta | WIRE | — | ✅ |
+| Type         | Class   | Mnemonic | Content chapters                             | In khai-arch |
+| ------------ | ------- | -------- | -------------------------------------------- | ------------ |
+| process      | element | TO IDLE  | Initiated by, Direction, Lever, Echo         | ✅           |
+| position     | element | TO HOLD  | Has, Orders, Loses, Drives                   | ✅           |
+| piece        | element | TO PLAY  | Place, Load Bearing, Apparent, Yearbook      | ✅           |
+| place        | element | TO SHOW  | Shown, Holds, Offers, Withheld               | ✅           |
+| persona      | element | TO PAST  | Projection, Action, Shadow, Tell             | ✅           |
+| plot         | house   | TO CAST  | Cue, Action, Stage, Tension                  | ✅           |
+| play         | house   | ENACTS   | Estate, Name, Arc, Company, Triggers, Stakes | ✅           |
+| architecture | meta    | GROW     | —                                            | ✅           |
+| instructions | meta    | HACKS    | —                                            | ✅           |
+| engines      | meta    | WIRE     | —                                            | ✅           |
 
 ### Deterministic checks (lift 3 → `khai-tests`)
 
-| Check | KAIHACKS source | khai destination | Severity (proposed) | Loop |
-| --- | --- | --- | --- | --- |
-| encoding + filename rules | `test_khai_encoding.py` | rule atom (partly present) | fail | 1 |
-| relative link integrity | `test_khai_links.py` | rule atom (partly present) | fail | 2 |
-| per-language detection (engine) | `test_khai_language.py` | rule atom / engine | fail | 3 |
-| per-type section structure | `components/test_khai_{type}.py` | khai-arch chapter contract + rule atom | fail | 4 |
-| generic required files | `project/test_khai_required_files.py` | rule atom | warn | 5 |
+| Check                           | KAIHACKS source                       | khai destination                       | Severity (proposed) | Loop |
+| ------------------------------- | ------------------------------------- | -------------------------------------- | ------------------- | ---- |
+| encoding + filename rules       | `test_khai_encoding.py`               | rule atom (partly present)             | fail                | 1    |
+| relative link integrity         | `test_khai_links.py`                  | rule atom (partly present)             | fail                | 2    |
+| per-language detection (engine) | `test_khai_language.py`               | rule atom / engine                     | fail                | 3    |
+| per-type section structure      | `components/test_khai_{type}.py`      | khai-arch chapter contract + rule atom | fail                | 4    |
+| generic required files          | `project/test_khai_required_files.py` | rule atom                              | warn                | 5    |
 
 ### Judged / NLP checks (lift 3 → `khai-review`)
 
-| Rubric | KAIHACKS source | khai destination | Loop |
-| --- | --- | --- | --- |
-| conciseness | (already in khai) | `khai-review` rubric ✅ | — |
-| language quality / fluency | `review/checks.py` | new rubric | 6 |
-| per-type "what good looks like" (e.g. persona: does **Has** survive removing the persona? does **Loses** conflict with **Has**?) | `skills/khai/references/checklist_*.md` | one rubric per type | 7 |
+| Rubric                                                                                                                           | KAIHACKS source                         | khai destination        | Loop |
+| -------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- | ----------------------- | ---- |
+| conciseness                                                                                                                      | (already in khai)                       | `khai-review` rubric ✅ | —    |
+| language quality / fluency                                                                                                       | `review/checks.py`                      | new rubric              | 6    |
+| per-type "what good looks like" (e.g. persona: does **Has** survive removing the persona? does **Loses** conflict with **Has**?) | `skills/khai/references/checklist_*.md` | one rubric per type     | 7    |
 
 ### Construction units (lift 2 → new package, TBD)
 

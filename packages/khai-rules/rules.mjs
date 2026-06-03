@@ -22,7 +22,8 @@ export function checkEncoding(text) {
   if (/[–—]/.test(text)) e.push("en/em-dash present (use ' - ')");
   // U+FFFD is the scar a bad decode leaves (wrong encoding, mojibake, a
   // truncated multibyte sequence): a character was already lost.
-  if (/�/.test(text)) e.push("U+FFFD replacement character present (a bad decode lost a character)");
+  if (/�/.test(text))
+    e.push("U+FFFD replacement character present (a bad decode lost a character)");
   // A literal escape sequence (the six characters of `—`) means a
   // serialization layer leaked into prose: the reader sees the escape, not the
   // glyph.
@@ -39,7 +40,8 @@ export function checkEncoding(text) {
 // mangle it); a hyphen breaks the underscore-delimited grammar.
 export function checkFilename(name) {
   const e = [];
-  if (!/^[\x20-\x7e]+$/.test(name)) e.push(`non-ASCII filename "${name}"; use ASCII characters only`);
+  if (!/^[\x20-\x7e]+$/.test(name))
+    e.push(`non-ASCII filename "${name}"; use ASCII characters only`);
   if (name.includes("-")) e.push(`hyphen in filename "${name}"; use an underscore`);
   return e;
 }
