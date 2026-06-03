@@ -39,4 +39,4 @@ The clockwork that chains the plots: each starts when its entry fires and runs t
 
 ## Stakes
 
-What the whole production is fighting over: the pressure every plot raises, what makes the seventh plot weigh more than the second. If the last plot weighs no more than the first, there are no Stakes, and the play is a sequence, not a build. Link what is at stake where it has a file; where it does not, ask whether it should use a khai type.
+What the whole production is fighting over: every plot must move it, so each earns its place. The shape may rise, fall, or turn (a climax or an anticlimax is the story's own choice); what fails is a plot that leaves the stakes exactly as it found them. Link what is at stake where it has a file; where it does not, ask whether it should use a khai type.
