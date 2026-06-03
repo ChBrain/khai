@@ -1,5 +1,5 @@
 ---
-@chbrain/khai-rules: patch
+"@chbrain/khai-rules": patch
 ---
 
 security: fix polynomial ReDoS vulnerabilities in khai-rules
