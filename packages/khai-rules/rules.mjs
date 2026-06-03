@@ -50,12 +50,16 @@ export function checkFilename(name) {
 const FM_KEYS = ["khai", "license", "stamp"];
 const STAMP_KEYS = ["owner", "version", "date"];
 
-export function checkFrontmatter(doc, { typeIds }) {
+export function checkFrontmatter(doc, { typeIds, extra = {} }) {
   const e = [];
   if (!doc.ok) return [`frontmatter does not parse: ${doc.error}`];
+  // `extra` adds per-type keys beyond the base set (e.g. persona's `type:`),
+  // each mapped to its allowed enum. The canon owns the map; the kit passes it
+  // in, so this stays canon-agnostic.
+  const allowed = [...FM_KEYS, ...Object.keys(extra)];
   const keys = Object.keys(doc.data);
   for (const k of keys) {
-    if (!FM_KEYS.includes(k)) e.push(`unknown frontmatter key: ${k}`);
+    if (!allowed.includes(k)) e.push(`unknown frontmatter key: ${k}`);
   }
   const khai = doc.data.khai;
   if (typeof khai !== "string") e.push("frontmatter missing `khai` type");
@@ -71,6 +75,15 @@ export function checkFrontmatter(doc, { typeIds }) {
     for (const k of STAMP_KEYS) {
       if (!stamp[k]) e.push(`stamp missing ${k}`);
     }
+  }
+  // Each extra key declares its allowed enum and whether it is required. A bare
+  // array is shorthand for an optional key with that enum.
+  for (const [k, spec] of Object.entries(extra)) {
+    const values = Array.isArray(spec) ? spec : spec?.values;
+    const required = Array.isArray(spec) ? false : Boolean(spec?.required);
+    if (required && !(k in doc.data)) e.push(`frontmatter missing required key: ${k}`);
+    if (k in doc.data && Array.isArray(values) && !values.includes(doc.data[k]))
+      e.push(`frontmatter "${k}" must be one of [${values.join(", ")}], got "${doc.data[k]}"`);
   }
   return e;
 }
