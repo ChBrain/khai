@@ -10,5 +10,54 @@
     ".github/workflows/**",
     ".husky/**"
   ],
-  "exemptRenames": true
+  "exemptRenames": true,
+  "branchScope": {
+    "shared": [".changeset/**"],
+    "lanes": [
+      {
+        "pattern": "arch/*",
+        "layer": "architecture",
+        "allow": ["packages/khai-arch/**"]
+      },
+      {
+        "pattern": "governance/*",
+        "layer": "governance",
+        "allow": [
+          "packages/khai-guard/**",
+          "packages/khai-tests/**",
+          "packages/khai-rules/**",
+          ".github/**",
+          ".husky/**",
+          "khai-guard.config.json",
+          "docs/BRANCHING.md"
+        ]
+      },
+      {
+        "pattern": "engine/*/*",
+        "layer": "solution",
+        "unit": 1,
+        "allow": ["packages/engines/{name}/**"]
+      },
+      {
+        "pattern": "repo/*",
+        "layer": "infra",
+        "allow": []
+      },
+      {
+        "pattern": "chore/*",
+        "layer": "general",
+        "allow": []
+      },
+      {
+        "pattern": "fix/*",
+        "layer": "general",
+        "allow": []
+      },
+      {
+        "pattern": "docs/*",
+        "layer": "general",
+        "allow": []
+      }
+    ]
+  }
 }
