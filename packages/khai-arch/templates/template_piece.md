@@ -9,9 +9,9 @@ stamp:
 
 # Piece: [name]
 
-## Title
+## Taxonomy
 
-[name]
+The group above this piece: the set or kit it is one of. Name it, then ask whether that set already has its own file. If it does, link it; if it does not, ask whether it should. This is the collection this piece belongs to, not the piece's own name (the H1 carries that) and not where it came from (Owner carries that).
 
 ## Owner
 

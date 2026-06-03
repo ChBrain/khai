@@ -9,9 +9,9 @@ stamp:
 
 # Process: [name]
 
-## Title
+## Taxonomy
 
-[name]
+The group above this process: the larger process it is a step of. Name it, then ask whether that parent process already has its own file. If it does, link it; if it does not, ask whether it should. This is the run this step belongs to, not the step's own name (the H1 carries that) and not where it came from (Owner carries that).
 
 ## Owner
 
@@ -23,7 +23,7 @@ The condition that makes the process inevitable: if it can be present and the pr
 
 ## Direction
 
-Where the process moves once started: one vector. If it reads as the force (Lever) or the result (Echo), it is not the Direction. A fork is a granularity choice: hold it here as one vector, or layer it into child processes that name this one as parent in their Owner, each Echo chained to the next process's Initiated by.
+Where the process moves once started: one vector. If it reads as the force (Lever) or the result (Echo), it is not the Direction. A fork is a granularity choice: hold it here as one vector, or layer it into child processes that name this one as parent in their Taxonomy, each Echo chained to the next process's Initiated by.
 
 ## Lever
 

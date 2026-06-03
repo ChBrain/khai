@@ -91,6 +91,20 @@ export function chaptersFor(typeId) {
 }
 
 /**
+ * The two section prefix a "TO ___" type carries ahead of its chapters, so the
+ * full H2 list spells the mnemonic: the "T" (Taxonomy, the group above) and the
+ * "O" (Owner, the origin). A type whose mnemonic does not begin with "TO "
+ * (instructions=HACKS, play=ENACTS, engines=WIRE) carries neither -- its
+ * chapters spell the whole word -- so its prefix is empty. This is the single
+ * source of the prefix vocabulary; the kit pulls it rather than restating it.
+ * @param {string} typeId
+ * @returns {string[]}
+ */
+export function toPrefix(typeId) {
+  return types[typeId]?.mnemonic?.startsWith("TO ") ? ["Taxonomy", "Owner"] : [];
+}
+
+/**
  * Per-type extra frontmatter keys beyond the base {khai, license, stamp}, each
  * mapped to its allowed enum. Persona alone carries `type:` -- its real-world
  * exposure class (Real carries legal/reputational exposure; Archetype is drawn
@@ -417,6 +431,7 @@ export default {
   types,
   templates,
   chaptersFor,
+  toPrefix,
   frontmatterExtras,
   playbook,
   wiresChapters,
