@@ -7,8 +7,8 @@ import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { pathToFileURL } from "node:url";
 import { types, engineCard, referenceCard, renderEngineReadme } from "@chbrain/khai-arch";
-import { parseDoc } from "./parse.mjs";
 import {
+  parseDoc,
   checkEncoding,
   checkFrontmatter,
   checkH1,
@@ -23,7 +23,7 @@ import {
   checkNoFooter,
   checkHasFrontmatter,
   looseFiles,
-} from "./rules.mjs";
+} from "@chbrain/khai-rules";
 
 const typeIds = Object.keys(types);
 

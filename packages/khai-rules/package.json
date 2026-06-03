@@ -1,29 +1,28 @@
 {
-  "name": "@chbrain/khai-tests",
-  "version": "0.0.11",
-  "description": "khai conformance kit — validates content packages against the architecture canon. Shared by the workspace and downstream repos.",
+  "name": "@chbrain/khai-rules",
+  "version": "0.0.1",
+  "description": "khai rule atoms — the pure, canon-agnostic validation mechanism. Each checker takes its contract as an argument and knows nothing about which types exist.",
   "type": "module",
   "main": "./index.mjs",
   "exports": {
     ".": "./index.mjs",
     "./package.json": "./package.json"
   },
-  "bin": {
-    "khai-tests": "./src/cli.mjs"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chbrain/khai.git",
-    "directory": "packages/khai-tests"
+    "directory": "packages/khai-rules"
   },
-  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "license": "MIT",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",
     "access": "restricted"
   },
   "files": [
     "index.mjs",
-    "src/"
+    "rules.mjs",
+    "parse.mjs",
+    "README.md"
   ],
   "engines": {
     "node": ">=22.12.0"
@@ -33,8 +32,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.0.10",
-    "@chbrain/khai-rules": "^0.0.1"
+    "gray-matter": "^4.0.3"
   },
   "devDependencies": {
     "vitest": "^4.1.7"
