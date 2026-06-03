@@ -52,6 +52,11 @@
         "allow": ["packages/khai-skills/**", "docs/SKILLS.md"]
       },
       {
+        "pattern": "changeset-release/*",
+        "layer": "infra",
+        "allow": ["packages/**/CHANGELOG.md"]
+      },
+      {
         "pattern": "repo/*",
         "layer": "infra",
         "allow": []
