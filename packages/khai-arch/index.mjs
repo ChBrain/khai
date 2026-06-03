@@ -71,6 +71,17 @@ export function chaptersFor(typeId) {
 export const wiresChapters = [...(chaptersFor("engines") ?? []), "Setup"];
 
 /**
+ * LORE: the reference standard. Every component (an engine, and later every
+ * culture) ships a REFERENCES.md whose top-level chapters are exactly these, in
+ * order -- the warrant for the component to exist. Their first letters spell
+ * LORE. Unlike a type's chapters, this set is fixed canon shared by ALL
+ * components, not derived from a type spec. An author may split a heavy chapter
+ * into `### ` subchapters; the renderer paginates one (sub)chapter per snap.
+ * @type {string[]}
+ */
+export const referenceChapters = ["Line of Work", "Origin", "Restrictions", "Encoding"];
+
+/**
  * Normalize an engine manifest into a flat list of typed members arranged on a
  * composition tree. Each member is { file, type, parent } where `parent` is the
  * file of the member it hangs beneath (null at the root). Two manifest shapes
@@ -226,6 +237,68 @@ export function engineCard(manifest) {
   };
 }
 
+/**
+ * Project a component's REFERENCES.md into a render-ready warrant: the four LORE
+ * chapters in order, each with its prose and any author `### ` subchapters, plus
+ * an optional trailing `---` coda. Mirrors engineCard -- the canon owns the
+ * shape, consumers render it, and khai-tests enforces it on every engine.
+ *
+ * Throws if a chapter is missing, out of order, foreign, or empty -- the same
+ * teeth that make every engine carry a valid WIRES card.
+ *
+ * @param {string} text  the REFERENCES.md file text (YAML frontmatter allowed)
+ * @returns {{ mnemonic: "LORE", chapters: string[], sections: Record<string, { body: string, subchapters: { name: string, body: string }[] }>, coda: string|null }}
+ */
+export function referenceCard(text) {
+  if (typeof text !== "string" || !text.trim())
+    throw new Error("referenceCard: REFERENCES.md text is required");
+  const body = matter(text).content.trim();
+
+  // An optional trailing coda, fenced by a `---` rule (as a spec's coda is).
+  const parts = body.split(/\n---\n/);
+  const main = parts[0];
+  const coda = parts.length > 1 ? parts.slice(1).join("\n---\n").trim() || null : null;
+
+  // Chunks beginning at each `## ` header; anything before the first (the H1 +
+  // preamble) is dropped. `### ` and deeper never start a chunk.
+  const chunks = main.split(/\n(?=## )/).filter((c) => /^##\s/.test(c.trim()));
+
+  const seen = [];
+  const sections = {};
+  for (const chunk of chunks) {
+    const lines = chunk.trim().split("\n");
+    const name = lines[0].replace(/^##\s+/, "").trim();
+    seen.push(name);
+    // Subchapters are `### ` blocks; the text before the first is the chapter
+    // body (an intro, or the whole chapter when it has no subchapters).
+    const subParts = lines
+      .slice(1)
+      .join("\n")
+      .split(/\n(?=###\s)/);
+    const intro = /^###\s/.test(subParts[0].trim()) ? "" : subParts[0].trim();
+    const subchapters = subParts
+      .filter((s) => /^###\s/.test(s.trim()))
+      .map((s) => {
+        const sl = s.trim().split("\n");
+        return { name: sl[0].replace(/^###\s+/, "").trim(), body: sl.slice(1).join("\n").trim() };
+      });
+    sections[name] = { body: intro, subchapters };
+  }
+
+  // The canon contract: exactly the LORE chapters, in order, nothing foreign.
+  if (seen.length !== referenceChapters.length || seen.some((n, i) => n !== referenceChapters[i]))
+    throw new Error(
+      `referenceCard: REFERENCES.md chapters must be exactly [${referenceChapters.join(", ")}] ` +
+        `in order (LORE); got [${seen.join(", ")}]`,
+    );
+  // Every chapter must carry content -- body prose or at least one subchapter.
+  for (const name of referenceChapters)
+    if (!sections[name].body && sections[name].subchapters.length === 0)
+      throw new Error(`referenceCard: chapter "${name}" is empty`);
+
+  return { mnemonic: "LORE", chapters: referenceChapters, sections, coda };
+}
+
 const capitalize = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : s);
 // Linear, not /\s*[–—]\s*/g: that backtracks O(n) per position on long space
 // runs (CodeQL polynomial-regex). Replace the dash, then collapse the seam.
@@ -300,8 +373,10 @@ export default {
   chaptersFor,
   playbook,
   wiresChapters,
+  referenceChapters,
   engineMembers,
   compositionOrder,
   engineCard,
+  referenceCard,
   renderEngineReadme,
 };

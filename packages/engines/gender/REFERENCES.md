@@ -1,56 +1,69 @@
 ---
 authorship: KAI HACKS AI with AI-assisted drafting
 content_model: Theoretical Synthesis + Original Expression
-updated: "2026-06-02"
+updated: "2026-06-03"
 ---
 
-# Gender: References and Source Attribution
+# Gender: Reference
 
-## Domain
+## Line of Work
 
-The gender domain models gender as position: the social read placed on a
-body before it speaks. The domain does not model anatomy or identity; it
-models the structural function a persona occupies in a room.
+Gender as **position**: the social read placed on a body before it speaks. The
+domain does not model anatomy or identity; it models the structural function a
+persona occupies in a room.
 
-## Source Registry: Theoretical Foundations
+## Origin
 
-The gender engine's architecture applies structural sociology directly into code constraints.
+Structural sociology, applied directly as code constraints.
 
-| Source               | Key Work                                  | Scope                                                                                        | Trust Level |
-| -------------------- | ----------------------------------------- | -------------------------------------------------------------------------------------------- | ----------- |
-| **Barbara Risman**   | _Gender as a Social Structure_ (2004)     | Gender as an exogenous social structure, not an internalized identity process.               | ⭐⭐⭐⭐⭐  |
-| **West & Zimmerman** | _"Doing Gender"_ (1987)                   | The "read" as accountability; the room enforcing the frame before the persona acts.          | ⭐⭐⭐⭐⭐  |
-| **Kate Manne**       | _Down Girl: The Logic of Misogyny_ (2017) | The "Human Giver" framework; the structural expectation of uncompensated accommodation.      | ⭐⭐⭐⭐⭐  |
-| **Raewyn Connell**   | _Gender and Power_ (1987)                 | Hegemonic masculinity; the patriarchal dividend; agency conferred automatically by position. | ⭐⭐⭐⭐⭐  |
-| **Pierre Bourdieu**  | _Masculine Domination_ (1998)             | Male agency as the unspoken, neutral default of public space (_habitus_).                    | ⭐⭐⭐⭐⭐  |
+| Source               | Key Work                              | Scope                                                                              |
+| -------------------- | ------------------------------------- | ---------------------------------------------------------------------------------- |
+| **Barbara Risman**   | _Gender as a Social Structure_ (2004) | Gender as an exogenous social structure, not an internalized identity process.     |
+| **West & Zimmerman** | _"Doing Gender"_ (1987)               | The "read" as accountability; the room enforces the frame before the persona acts. |
+| **Kate Manne**       | _Down Girl_ (2017)                    | The "Human Giver"; the structural expectation of uncompensated accommodation.      |
+| **Raewyn Connell**   | _Gender and Power_ (1987)             | Hegemonic masculinity; the patriarchal dividend; agency conferred by position.     |
+| **Pierre Bourdieu**  | _Masculine Domination_ (1998)         | Male agency as the unspoken, neutral default of public space (_habitus_).          |
 
-## Structural Mapping by File
+## Restrictions
 
-The engine does not reproduce quotes; it translates sociological concepts into the `HOLD` constraint schema.
+What the engine refuses to model, and to whom it delegates.
 
-- **[gender](position_gender.md) (The Anchor)**
-  - _Constraint mapped:_ Gender as a structural read that arrives with the body; held continuously rather than run as a process.
-  - _Anchored by:_ West and Zimmerman (Accountability), Barbara Risman (Gender as Social Structure).
-- **[female](position_female.md) (The Expression)**
-  - _Constraint mapped:_ The expectation of accommodation / "Hold the room together."
-  - _Anchored by:_ Kate Manne (The "Human Giver" framework / structural obligation to accommodate).
-- **[male](position_male.md) (The Expression)**
-  - _Constraint mapped:_ The assumption of agency / the space that opens without asking.
-  - _Anchored by:_ Raewyn Connell (The patriarchal dividend), Pierre Bourdieu (Public space organized as default male).
+### Intersectionality
 
-## Known Engine Constraints
+(Crenshaw, Hill Collins) The engine assumes a generic "room" applying a
+universal read. Gender is really read alongside race, class, and culture; the
+architecture **delegates that tint to the Cultures packages** (`gender: female`
+with `culture: jordan` intersect at the persona level).
 
-The engine intentionally isolates gender as a standalone structural vector. Three major realities of gender sociology are deliberately constrained to maintain engine modularity:
+### Marked vs. unmarked
 
-1.  **Intersectionality (Crenshaw, Hill Collins):** The engine assumes a generic "room" applying a universal "read." In reality, gender is an entangled matrix read alongside race, class, and culture. The `khai` architecture explicitly delegates this tint to the `Cultures` packages. (e.g. `gender: female` + `culture: jordan` calculates the intersection organically at the persona level).
-2.  **Marked vs. Unmarked Asymmetry (de Beauvoir):** Structurally, society treats Male as the default ("unmarked") human experience, while Female is the specified ("marked") experience. The engine models them as symmetric expression files for codebase stability, handling the asymmetry instead through the specific pressures defined in each file's `Has` and `Loses` blocks.
-3.  **Relational Friction (Manne, Connell):** Theory views the male and female positions as a locked structural system where the female accommodation subsidizes the male claim. However, the engine leaves the expression files perfectly symmetric and structurally unlinked to each other. This preserves the `khai` Open/Closed rule (allowing future sibling expressions without rewriting the existing ones). The theoretical friction emerges dynamically through the shared anchor (the room enforcing the read), not through direct cross-linking.
+(de Beauvoir) Society treats male as the default and female as the marked case.
+The engine models them as **symmetric expression files** for stability, carrying
+the asymmetry inside each file's `Has` and `Loses` blocks instead.
 
-## Authorship Note
+### Relational friction
 
-The framing draws on the sociological tradition of gender as structure, but the engine positions are original expression translated into constraint-based architecture. They do not reproduce claims or quote directly from any specific paper.
+(Manne, Connell) Theory locks the positions into one system where female
+accommodation subsidizes the male claim. The engine keeps the expressions
+symmetric and **structurally unlinked** (Open/Closed); the friction emerges
+through the shared anchor, not through cross-links.
 
-The `position_male.md` and `position_female.md` files model the structural
-read (what the room assigns), not the lived inner experience. They are
-intentionally symmetric in schema so that any persona may hold either, or
-navigate the gap between them.
+## Encoding
+
+Source to constraint, per file.
+
+- **[gender](position_gender.md)** (the anchor): gender as a structural read
+  that arrives with the body, held continuously rather than run as a process.
+  Anchored by West and Zimmerman (accountability) and Risman (gender as social
+  structure).
+- **[female](position_female.md)** (expression): the expectation of
+  accommodation, "hold the room together". Anchored by Kate Manne (the "Human
+  Giver" framework).
+- **[male](position_male.md)** (expression): the assumption of agency, the space
+  that opens without asking. Anchored by Raewyn Connell (the patriarchal
+  dividend) and Pierre Bourdieu (public space as default-male).
+
+---
+
+_Authored by KAI HACKS AI: original constraint-based expression in the
+gender-as-structure tradition; it does not reproduce claims or quote directly._
