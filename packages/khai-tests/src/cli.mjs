@@ -7,6 +7,8 @@
 //                                   instance file in a consuming repo against
 //                                   the canon AND the wiring requirements of the
 //                                   engines it has installed.
+//   khai-tests pack <engine-dir>    package a conforming engine as a portable
+//                                   zip (the engine kind of the serve engine).
 //
 // Both share the same validators as the test suite — the CLI is just a caller.
 
@@ -16,8 +18,9 @@ import {
   validateProject,
   wiringRequirements,
 } from "./validate.mjs";
+import { packEngine } from "./pack.mjs";
 import { resolve, relative } from "node:path";
-import { readFileSync, existsSync, readdirSync } from "node:fs";
+import { readFileSync, existsSync, readdirSync, writeFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
 
 const argv = process.argv.slice(2);
@@ -85,5 +88,29 @@ function projectMode(args) {
   console.log("khai-tests: all instance files conform.");
 }
 
-if (argv.includes("--project")) projectMode(argv);
+// `pack <engine-dir> [--out <dir>]`: package a conforming engine into a zip.
+async function packMode(args) {
+  const dir = args[1] && !args[1].startsWith("--") ? resolve(args[1]) : null;
+  if (!dir) {
+    console.error("khai-tests pack <engine-dir> [--out <dir>]");
+    process.exit(2);
+  }
+  const r = await packEngine(dir);
+  if (!r.ok) {
+    for (const e of r.errors) console.error(`✖ ${r.name}: ${e}`);
+    console.error("\nkhai-tests pack: engine does not conform; not packaged.");
+    process.exit(1);
+  }
+  for (const w of r.warnings) console.error(`⚠ ${r.name}: ${w}`);
+  const outIdx = args.indexOf("--out");
+  const outDir = outIdx !== -1 && args[outIdx + 1] ? resolve(args[outIdx + 1]) : join(dir, "dist");
+  mkdirSync(outDir, { recursive: true });
+  writeFileSync(join(outDir, `${r.name}.zip`), r.zip);
+  console.log(
+    `khai-tests pack: ${r.name}.zip (${r.files.length} files) -> ${relative(process.cwd(), join(outDir, `${r.name}.zip`))}, sha256 ${r.zipSha256.slice(0, 12)}`,
+  );
+}
+
+if (argv[0] === "pack") await packMode(argv);
+else if (argv.includes("--project")) projectMode(argv);
 else await engineMode(argv);
