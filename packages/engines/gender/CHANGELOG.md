@@ -1,5 +1,12 @@
 # @chbrain/khai-engine-gender
 
+## 0.1.1
+
+### Patch Changes
+
+- 56146ac: refs(gender): Restrictions as a bullet list (author's edit) + drop duplicate frontmatter. The three `### ` Restrictions subchapters collapse into one `## Restrictions` with three bullets (renders as one snap, not three). Authorship lives once in the coda (the LORE-sanctioned home), so the duplicating `authorship` / `content_model` frontmatter keys are removed.
+- 8bc8bbe: fix(gender): conform the `## Taxonomy` fields to the position template — a name (linked where the parent has a file), not a sentence. The anchor reports into `Social structure` (no khai file of its own yet); the female/male expressions report into `[Gender]`. Drops the descriptive prose the template ("name it") never sanctioned.
+
 ## 0.1.0
 
 ### Minor Changes
