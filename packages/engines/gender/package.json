@@ -13,7 +13,7 @@
     "url": "git+https://github.com/chbrain/khai.git",
     "directory": "packages/engines/gender"
   },
-  "license": "CC-BY-NC-4.0",
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",
     "access": "restricted"

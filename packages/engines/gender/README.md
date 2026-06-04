@@ -12,4 +12,4 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 
 See [sources and attribution](REFERENCES.md).
 
-License: CC-BY-NC-4.0
+License: SEE LICENSE IN LICENSE and LICENSE-CODE
