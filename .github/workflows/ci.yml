@@ -36,8 +36,14 @@ jobs:
     # Version PRs are exempt: changesets opens them on changeset-release/* and
     # they intentionally consume the changeset while bumping packages, which
     # would otherwise trip this gate and make every release unmergeable.
+    # Dependabot PRs are exempt: the bot never writes changesets, and its
+    # dep bumps are scoped by the dependabot/* lane (khai-guard.config.json)
+    # so they cannot smuggle package changes that need a release entry.
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' && !startsWith(github.head_ref, 'changeset-release/')
+    if: >-
+      github.event_name == 'pull_request' &&
+      !startsWith(github.head_ref, 'changeset-release/') &&
+      github.actor != 'dependabot[bot]'
     steps:
       - uses: actions/checkout@v6
         with:
