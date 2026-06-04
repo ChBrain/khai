@@ -2,41 +2,88 @@
 
 khai has two architectural concerns. They are peers, not a hierarchy.
 
-**Solution** (`khai-arch`) — the conceptual model: what an engine is, how personas
-carry gender, what a skill delivers, how methods structure a retrospective. The
+**Content** (`khai-arch`, `khai-engines`) — the canon and its instances: what an
+engine is, what a skill delivers, how methods structure a process. The
 architecture of the thing being built.
 
-**Delivery** (this document) — the engineering system that ships it: how source is
-guarded, how packages are versioned and published, how the registry is kept
-honest. The architecture of the system doing the building.
+**Delivery** (this document) — the engineering system that ships it: how content
+is registered, validated, packaged, and published. The architecture of the system
+doing the building.
 
-This document describes the delivery concern. It does not describe what the
+This document describes the delivery concern only. It does not describe what the
 packages contain; `khai-arch` does that.
 
 ---
 
-## Components
+## Content packages
+
+These are the only purely content-side packages. Everything else is delivery.
+
+| Package        | What it is                                             |
+| -------------- | ------------------------------------------------------ |
+| `khai-arch`    | The canon — type definitions, chapter rules, mnemonics |
+| `khai-engines` | Engine instances derived from the canon                |
+
+---
+
+## Delivery packages
+
+### khai-skills
+
+Skill registry. Self-contained, vendor-neutral agent skills built to the
+agentskills.io standard. Content may derive from `khai-arch` or from any other
+credible source — the registry does not require khai origin, only structure and
+attribution.
+
+### khai-methods
+
+Method registry. Structured process definitions codified from wherever the
+practice originated — a book, a team, a tradition. Attribution is recorded via
+`invented_by` and `source`; khai packages and credits, never claims.
 
 ### khai-guard
 
-The enforcement kernel. A single package (`packages/khai-guard/`) that runs
-three gates:
+The enforcement kernel. Runs four gates:
 
-| Gate          | What it enforces                                               |
-| ------------- | -------------------------------------------------------------- |
-| source/test   | A branch may touch source OR tests, never both in the same PR. |
-| branch-scope  | A branch name declares a lane; the diff must stay inside it.   |
-| bump-scope    | A changeset declaring minor/major is the maintainer's call.    |
-| license-check | Every package and skill must declare the house dual-license.   |
+| Gate            | What it enforces                                               |
+| --------------- | -------------------------------------------------------------- |
+| `source/test`   | A branch may touch source OR tests, never both in the same PR. |
+| `branch-scope`  | A branch name declares a lane; the diff must stay inside it.   |
+| `bump-scope`    | A changeset declaring minor/major is the maintainer's call.    |
+| `license-check` | Every package and skill must declare the house dual-license.   |
 
-The guard runs locally (pre-push hook) and in CI (required checks). A push that
-skips the hook is not done — CI rejects it anyway.
+Runs locally (pre-push hook) and in CI (required checks). A push that skips the
+hook is not done — CI rejects it anyway.
 
-### Lane system
+### khai-rules
+
+Validation atoms. Pure, canon-agnostic rule infrastructure. Each checker takes
+its contract as an argument and knows nothing about which types exist. Used by
+`khai-tests` and `khai-guard`.
+
+### khai-tests
+
+Conformance kit. Validates content packages against the architecture canon.
+Shared by the workspace and by downstream consumer repos. Runs in CI.
+
+### khai-review
+
+Advisory NLP review lane. Where only meaning can decide — conciseness,
+coherence, voice — a pluggable judge reviews and suggests. It never gates; it
+informs.
+
+### khai-pack
+
+Packaging. Turns a typed engine bundle into a deterministic, guarded zip in the
+khai cultures layout (overhead at root, flat content in a subfolder). The serve
+step in the delivery pipeline.
+
+---
+
+## Lane system
 
 Every branch belongs to a lane. The lane declares what paths the branch may
-touch. Ownership is deny-by-default: a path not in the current lane's allow list
-is a violation.
+touch. Ownership is deny-by-default.
 
 | Lane           | Layer        | Owns                                      |
 | -------------- | ------------ | ----------------------------------------- |
@@ -55,70 +102,22 @@ Layer order governs merge sequence when a change spans layers:
 architecture → governance → solution → infra → general.
 
 The lane topology is computed, not judged. `npx khai-guard branch <topic>` reads
-the diff and runs `git checkout -b` for you. A branch name typed by hand is a
-guess.
+the diff and runs `git checkout -b` for you.
 
-### Publish pipeline
+---
 
-Every package change must be accompanied by a changeset. The pipeline:
+## External dependencies
 
-```
-changeset file (.changeset/*.md)
-  └─ Version Packages PR (changesets bot bumps versions + writes CHANGELOGs)
-       └─ merge to main → changeset publish (GitHub Packages registry)
-```
+khai-native components only. Everything else is a dependency.
 
-Patch bumps are free. Minor and major are the maintainer's call — the guard flags
-them; the maintainer stamps the label. No self-escalation.
-
-### Registry
-
-All packages publish to GitHub Packages under the `@chbrain` scope. The registry
-requires a token with `read:packages` / `write:packages`. The token lives in
-GitHub Actions secrets only — never in the session environment.
-
-Consumers install via `.npmrc`:
-
-```
-@chbrain:registry=https://npm.pkg.github.com
-```
-
-### CI gates
-
-Five required checks on every PR:
-
-| Check          | Tool                    | Blocks merge |
-| -------------- | ----------------------- | ------------ |
-| `test`         | vitest (all workspaces) | yes          |
-| `khai-guard`   | source/test split       | yes          |
-| `branch-scope` | lane ownership          | yes          |
-| `changeset`    | changeset present       | yes          |
-| `bump-scope`   | escalation flag         | advisory     |
-
-CodeQL runs independently (security scanning, not a delivery gate).
-
-### Hook layer
-
-Two hooks enforce the delivery contract locally before a push reaches CI:
-
-| Hook         | Runs      | Does                                                |
-| ------------ | --------- | --------------------------------------------------- |
-| `pre-commit` | on commit | prettier auto-format staged files; khai conformance |
-| `pre-push`   | on push   | source/test split; branch-scope; bump-scope         |
-
-The pre-push hook is the local mirror of CI. If it passes locally, CI passes.
-
-### License enforcement
-
-Every package declares the house dual-license:
-`SEE LICENSE IN LICENSE and LICENSE-CODE`
-
-Content (architecture, methods, skills, engine prose) — CC-BY-NC-SA 4.0
-(`LICENSE`). Code (`.mjs`, configs, build scripts) — MIT (`LICENSE-CODE`).
-
-`khai-guard license-check` reads `licensePolicy` in `khai-guard.config.json`
-and rejects any package or skill that declares a bare permissive license. The
-policy is computed, not reviewed.
+| Dependency      | Role                                  |
+| --------------- | ------------------------------------- |
+| changesets      | version management + publish pipeline |
+| GitHub Actions  | CI platform                           |
+| GitHub Packages | `@chbrain` npm registry               |
+| husky           | git hook runner                       |
+| vitest          | test runner                           |
+| prettier        | formatter                             |
 
 ---
 
@@ -126,7 +125,7 @@ policy is computed, not reviewed.
 
 It is not a branching guide (see `docs/BRANCHING.md`).
 It is not agent instructions (see `CLAUDE.md`).
-It is not a description of what the packages do (see `khai-arch`).
+It is not a description of what the packages contain (see `khai-arch`).
 
-It is the map of the system that ships khai — a peer concern to the solution
+It is the map of the system that ships khai — a peer concern to the content
 architecture, maintained alongside it.
