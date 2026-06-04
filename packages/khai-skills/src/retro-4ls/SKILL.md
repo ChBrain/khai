@@ -1,7 +1,7 @@
 ---
 name: retro-4ls
 description: Facilitates a 4 L's retrospective (Liked, Learned, Lacked, Longed for) on a completed period of work. Surfaces what energised, what expanded capability, what constrained, and what to wish for next time. Use after any sprint, project, session, or review.
-license: CC-BY-4.0
+license: CC-BY-NC-4.0
 ---
 
 # 4 L's Retrospective
