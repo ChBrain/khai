@@ -275,3 +275,76 @@ describe.skipIf(DORMANT)("resolveConfig branchScope validation", () => {
     ).toThrow(ConfigError);
   });
 });
+
+// The {name}-binding fix (bindName): a fan-out lane recovers {name} by MATCHING
+// each allow glob, not slicing a literal prefix -- so ownership is correct after
+// a literal prefix, a `**`, a bracketed dynamic route, or across several
+// group-specific globs, and surfaces gain distinct identities (mutual
+// isolation). Exercised on a synthetic two-group fan-out (the website's shape),
+// since khai's own engine lane has a single literal prefix.
+const FANOUT = DORMANT
+  ? null
+  : resolveConfig({
+      source: ["src/**"],
+      test: ["tests/**"],
+      branchScope: {
+        shared: [],
+        lanes: [
+          {
+            pattern: "surface/*/*",
+            layer: "solution",
+            unit: 1,
+            allow: ["src/pages/main/{name}/**", "src/pages/architecture/{name}/**"],
+          },
+          { pattern: "chassis/*", layer: "architecture", allow: ["src/components/**"] },
+          { pattern: "chore/*", layer: "general", allow: [] },
+        ],
+      },
+    });
+
+describe.skipIf(DORMANT)("name binding across group prefixes (bindName)", () => {
+  it("owns a page under either group prefix, binding {name} to the surface", () => {
+    expect(
+      checkBranchScope("surface/privacy/x", ["src/pages/main/privacy/index.astro"], FANOUT).ok,
+    ).toBe(true);
+    expect(
+      checkBranchScope(
+        "surface/enginebooks/x",
+        ["src/pages/architecture/enginebooks/index.astro"],
+        FANOUT,
+      ).ok,
+    ).toBe(true);
+  });
+
+  it("captures the surface segment after a bracketed dynamic route, not the bracket", () => {
+    expect(
+      checkBranchScope(
+        "surface/enginebooks/x",
+        ["src/pages/architecture/enginebooks/[engine]/index.astro"],
+        FANOUT,
+      ).ok,
+    ).toBe(true);
+  });
+
+  it("gives each surface a distinct identity -> mutual isolation", () => {
+    const r = checkBranchScope(
+      "surface/enginebooks/x",
+      ["src/pages/main/privacy/index.astro"],
+      FANOUT,
+    );
+    expect(r.ok).toBe(false);
+    expect(r.violations[0]).toContain('owned by lane "surface/privacy"');
+  });
+
+  it("still blocks a surface branch from the chassis (layer isolation holds)", () => {
+    expect(checkBranchScope("surface/privacy/x", ["src/components/Book.astro"], FANOUT).ok).toBe(
+      false,
+    );
+  });
+
+  it("advise resolves the surface lane + bound unit (what `branch` uses)", () => {
+    const { lanes } = advise({ files: ["src/pages/main/cvi/index.astro"] }, FANOUT);
+    expect(lanes).toHaveLength(1);
+    expect(lanes[0]).toMatchObject({ lane: "surface", unit: "cvi", layer: "solution" });
+  });
+});
