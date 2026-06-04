@@ -25,4 +25,4 @@ A play is the whole production: many plots run inside it, and one arc binds them
 
 ---
 
-Arc and Stakes are its shape and its pressure. A play file succeeds when the plots, fired in turn from one Company, move the Stakes the Arc was built to resolve.
+Estate and Name are whose it is and what it is called. Company and Triggers are its cast and its clockwork. Arc and Stakes are its shape and its pressure. A play file succeeds when the plots, fired in turn from one Company, move the Stakes the Arc was built to resolve.
