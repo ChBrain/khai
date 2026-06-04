@@ -153,6 +153,14 @@ export const VENDOR_DENYLIST = [
   /google drive/i,
 ];
 
+// House writing rule: em-dashes and en-dashes are banned repo-wide. Consumer
+// surfaces render skill prose verbatim, so a dash that slips past here becomes
+// a brand violation wherever the skill is surfaced.
+export const STYLE_DENYLIST = [
+  { re: /—/, label: "em-dash (—)" },
+  { re: /–/, label: "en-dash (–)" },
+];
+
 export function validateNeutrality(text, { label = "content" } = {}) {
   const errors = [];
   for (const re of VENDOR_DENYLIST) {
@@ -161,6 +169,10 @@ export function validateNeutrality(text, { label = "content" } = {}) {
       errors.push(
         `${label}: vendor/runtime reference "${hit[0]}" — khai skills must be LLM-agnostic; name a role, not a product`,
       );
+  }
+  for (const { re, label: charLabel } of STYLE_DENYLIST) {
+    if (re.test(text))
+      errors.push(`${label}: ${charLabel} is banned; use parentheses, a colon, or a plain hyphen`);
   }
   return errors;
 }
