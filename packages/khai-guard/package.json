@@ -14,7 +14,7 @@
     "url": "git+https://github.com/chbrain/khai.git",
     "directory": "packages/khai-guard"
   },
-  "license": "MIT",
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
   "type": "module",
   "bin": {
     "khai-guard": "./bin/khai-guard.mjs"
