@@ -1,5 +1,12 @@
 # @chbrain/khai-arch
 
+## 0.1.2
+
+### Patch Changes
+
+- 9d0674d: Move playbookTagline source from model.md yaml block to package.json khai.tagline, consistent with khai-methods and khai-skills. model.md stays pure architecture.
+- d2307ba: Add `playbookTagline` export, sourced from a new `tagline` key in model.md's playbook block, so a consumer surface can print the canon's own description of the playbook verbatim instead of authoring its own copy.
+
 ## 0.1.1
 
 ### Patch Changes
