@@ -1,5 +1,12 @@
 # @chbrain/khai-skills
 
+## 0.0.6
+
+### Patch Changes
+
+- 58934d6: Add em-dash and en-dash to the khai-skills style denylist in `lib/guard.mjs`. The check runs via `validateNeutrality` on every text file in a skill bundle at pre-commit and CI, so a dash in any README or SKILL.md now blocks the commit rather than slipping through to a consumer surface.
+- 61ab1b2: Remove em-dashes from the creating-a-play and retro-4ls skill READMEs (Problem/Solution/What you get sections), rewriting the parentheticals with parentheses and a colon. Brings the skill prose in line with the house no-em-dash writing rule so consumer surfaces rendering it verbatim stay brand-clean.
+
 ## 0.0.5
 
 ### Patch Changes
