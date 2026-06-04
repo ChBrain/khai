@@ -1,5 +1,13 @@
 # @chbrain/khai-skills
 
+## 0.0.4
+
+### Patch Changes
+
+- 5d1fd1b: Add retro-4ls skill: 4 L's Retrospective facilitator (Liked, Learned, Lacked, Longed for). Attributed to Gorman and Gottesdiener (2012).
+- Updated dependencies [c9eff7b]
+  - @chbrain/khai-pack@0.0.3
+
 ## 0.0.3
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-skills",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "khai skills kit — self-contained, vendor-neutral Agent Skills built from the khai-arch canon, so cheaper or non-code-aware models can do khai work to the agentskills.io standard.",
   "repository": {
     "type": "git",
@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@chbrain/khai-arch": "^0.1.0",
-    "@chbrain/khai-pack": "^0.0.2",
+    "@chbrain/khai-pack": "^0.0.3",
     "gray-matter": "^4.0.3"
   },
   "devDependencies": {
