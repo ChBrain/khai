@@ -81,18 +81,18 @@ export const templates = Object.fromEntries(
  */
 const modelText = readFileSync(join(archDir, "model.md"), "utf8");
 const groupsBlock = modelText.match(/```ya?ml\n([\s\S]*?)```/);
-const playbookData = groupsBlock ? matter(`---\n${groupsBlock[1]}---\n`).data : {};
-export const playbook = playbookData.groups ?? [];
+export const playbook = groupsBlock
+  ? (matter(`---\n${groupsBlock[1]}---\n`).data.groups ?? [])
+  : [];
 
 /**
- * The canon's own one-line description of the bound playbook, authored beside
- * the groups it describes (model.md, the `tagline` key). A consumer surface --
- * the website's playbook card -- prints this verbatim instead of composing its
- * own copy, so the description can never drift from the spec. Null when the
- * canon omits it.
+ * The canon's own one-line description of the bound playbook. Lives in
+ * package.json `khai.tagline`, the same slot khai-methods and khai-skills use,
+ * so all three packages share the same shape. Null when absent.
  * @type {string|null}
  */
-export const playbookTagline = playbookData.tagline ?? null;
+import pkg from "./package.json" with { type: "json" };
+export const playbookTagline = pkg.tagline ?? null;
 
 /** Required `## ` section headers for a type id, in canonical order. */
 export function chaptersFor(typeId) {
