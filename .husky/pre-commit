@@ -1,4 +1,11 @@
 #!/usr/bin/env sh
+# Auto-format staged files so prettier never fails CI on a forgotten --write.
+STAGED=$(git diff --cached --name-only --diff-filter=ACMR)
+if [ -n "$STAGED" ]; then
+  echo "$STAGED" | xargs npx prettier --write --ignore-unknown 2>/dev/null || true
+  echo "$STAGED" | xargs git add
+fi
+
 # Pre-commit guard: khai conformance — any engine/canon .md staged must
 # still conform to the canon (the same validator CI runs).
 #
