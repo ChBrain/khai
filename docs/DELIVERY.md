@@ -50,11 +50,10 @@ The enforcement kernel. Runs four gates:
 | `source/test`   | A branch may touch source OR tests, never both in the same PR. | hook + CI     |
 | `branch-scope`  | A branch name declares a lane; the diff must stay inside it.   | hook + CI     |
 | `bump-scope`    | A changeset declaring minor/major is the maintainer's call.    | CI (advisory) |
-| `license-check` | Every package and skill must declare the house dual-license.   | hook only     |
+| `license-check` | Every package and skill must declare the house dual-license.   | hook + CI     |
 
-`source/test` and `branch-scope` are required CI checks; a push that skips the
-hook is not done — CI rejects it anyway. `license-check` runs via the pre-push
-hook only and is not yet a CI gate.
+All four gates run locally (pre-push hook) and in CI (required checks). A push
+that skips the hook is not done — CI rejects it anyway.
 
 ### khai-rules
 
