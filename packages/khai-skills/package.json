@@ -8,6 +8,7 @@
     "directory": "packages/khai-skills"
   },
   "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "tagline": "Self-contained skill bundles built from the khai-arch canon. Drop one into any project and the agent knows how to use it.",
   "type": "module",
   "main": "./lib/guard.mjs",
   "exports": {
