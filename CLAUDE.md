@@ -1,0 +1,75 @@
+# CLAUDE.md — khai monorepo
+
+_Read this before you touch anything. These are imperatives, not background.
+The depth lives in [docs/BRANCHING.md](docs/BRANCHING.md); this file is the
+short, executable contract every agent (Claude, Copilot, any model) follows._
+
+## The one rule that removes the guesswork
+
+**Do not choose a branch by hand.** Make your edits in the working tree first,
+then let the guard compute the lane from the diff:
+
+```
+npx khai-guard branch <topic>
+```
+
+`<topic>` is a kebab-case change name (`add-axis`, `fix-colons`). The guard
+reads `git diff` + untracked files, finds the lane that owns those paths, and
+runs `git checkout -b <lane>[/<unit>]/<topic>` for you. If the change spans two
+lanes it **refuses** and tells you how to split. A branch name you typed
+yourself is a guess; this is not.
+
+If you want to know the lane _before_ editing (or to plan a split), ask the
+advisor — **this repo's own advisor**, not a neighbouring repo's:
+
+```
+npx khai-guard advise --files <paths>
+```
+
+> Do **not** reach for `tests/branch_scope.py` or any helper from the Cultures
+> repo. It does not exist here. khai's advisor is `khai-guard advise`.
+
+## Hard rules — non-negotiable
+
+1. **Never `--no-verify`.** The pre-push hook runs the guard. If it fails, the
+   change is in the wrong lane — fix the lane, never bypass the gate. A push
+   that skipped the hook is not "done"; the required CI checks (`test`,
+   `khai-guard`, `branch-scope`) will reject it anyway.
+2. **Engine content stays in its engine lane.** Anything under
+   `packages/engines/<name>/**` — including `REFERENCES.md` and other prose —
+   is owned by `engine/<name>`. It never rides a `docs/*` or `chore/*` branch.
+   `branch-check` will reject it; that rejection is correct.
+3. **Source and tests are separate PRs.** A change to `packages/*/index.mjs`
+   (or `bin/**`) and a change to `packages/*/tests/**` cannot share a branch.
+   Land source first; tests are dormant (`describe.skipIf(DORMANT)`) until it does.
+4. **Every PR needs a changeset.** A package change needs a real changeset;
+   patch is free, but **minor/major** require the `bump:minor` / `bump:major`
+   label (the maintainer's call — do not self-escalate). A tooling/docs PR that
+   ships no package change still needs an **empty** changeset:
+   `npx changeset add --empty`.
+5. **Never merge.** Open the PR and stop. Merging is the maintainer's.
+
+## Lanes at a glance (the full table is in docs/BRANCHING.md)
+
+| You changed…                                                                             | Lane                    |
+| ---------------------------------------------------------------------------------------- | ----------------------- |
+| `packages/khai-arch/**`                                                                  | `arch/<topic>`          |
+| `packages/khai-guard/**`, `.github/**`, `.husky/**`, `khai-guard.config.json`, this file | `governance/<topic>`    |
+| `packages/engines/<name>/**`                                                             | `engine/<name>/<topic>` |
+| `packages/khai-skills/**`, `docs/SKILLS.md`                                              | `skills/<topic>`        |
+| an unowned top-level file only                                                           | `chore/<topic>`         |
+
+Lane identity is the first segment of the pattern, so two surfaces sharing a
+prefix are **not** mutually isolated unless the lane fans out per unit. What the
+guard guarantees and what it does not is spelled out in
+[docs/BRANCHING.md](docs/BRANCHING.md) — read it before assuming isolation you
+don't have.
+
+## Why this file is imperative
+
+Different models have different judgement. A generic "consider the branch
+scope" prose note is read differently by a strong and a weak model — the weak
+one improvises (e.g. picks `docs/` for an engine file and claims the gate
+passed). So the lane is **computed, not judged**: run `khai-guard branch`, obey
+the hook, let the required CI check be the wall. Follow the commands above
+literally and the scope takes care of itself.
