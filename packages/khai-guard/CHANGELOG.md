@@ -1,5 +1,12 @@
 # @chbrain/khai-guard
 
+## 0.1.3
+
+### Patch Changes
+
+- c222817: feat(cli): `khai-guard branch <topic>` -- deterministic lane selection. Reads the working-tree changes, resolves their lane via `advise`, and creates `<lane>[/<unit>]/<topic>` (or `chore/<topic>` for unowned, or refuses a multi-lane change with the split). The lane is computed from the diff, never chosen by hand -- so a weaker agent cannot land engine content on a docs branch. Pairs with the enforced pre-push/CI branch-check (the wall): the helper gets it right up front; the gate is the backstop.
+- 928bc73: fix(branchScope): bind `{name}` by matching the glob, not slicing a literal prefix. `laneForPath` recovered a fan-out lane's `{name}` by slicing the path at the prefix length, landing on the wrong segment whenever a `**` or a group-specific prefix preceded `{name}` -- so those paths came back UNOWNED (a repo with a `**`-prefix surface fan-out never actually owned its pages). `bindName` compiles each `{name}` glob to an anchored regex with `{name}` as a single-segment capture: correct after a literal prefix, a `**`, or across several group globs, which enables true per-unit ownership/isolation. khai engines (literal prefix) unchanged; 63 guard tests pass.
+
 ## 0.1.2
 
 ### Patch Changes
