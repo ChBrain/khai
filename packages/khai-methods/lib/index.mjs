@@ -33,7 +33,6 @@ const methodsDir = join(__dirname, "..", "methods");
  * @property {MethodAttribution[]} invented_by
  * @property {number|null} [year]
  * @property {MethodSource|null} [source]
- * @property {string|null} [license]
  * @property {MethodPrompt[]} prompts
  * @property {string} body             - the markdown description (body, post-frontmatter)
  */

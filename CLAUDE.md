@@ -66,6 +66,26 @@ guard guarantees and what it does not is spelled out in
 [docs/BRANCHING.md](docs/BRANCHING.md) — read it before assuming isolation you
 don't have.
 
+## Lanes of protection (what licence covers what)
+
+Branch lanes decide _where code lands_; protection lanes decide _how it is
+licensed_. The principle: **khai's concepts are NonCommercial — nobody takes the
+architecture and resells it — while the code stays open.** Every package is
+backed by khai content, so every package declares the same dual licence.
+
+| The work…                                                       | Licence                             | Why                                                             |
+| --------------------------------------------------------------- | ----------------------------------- | --------------------------------------------------------------- |
+| khai **content** — canon, engine content, methods, skill guides | **CC-BY-NC-SA 4.0** (`LICENSE`)     | the concepts are not free: no commercial resale                 |
+| khai **code** — every package's `.mjs`, configs, build scripts  | **MIT** (`LICENSE-CODE`)            | the mechanism is open                                           |
+| **others' work** khai incorporates (e.g. the 4 L's, Starfish)   | not ours to licence — **credit** it | `invented_by` + `source`: we package and attribute, never claim |
+
+So **every `package.json` declares `SEE LICENSE IN LICENSE and LICENSE-CODE`**
+(content NC + code MIT in one), and **every `SKILL.md` declares a NonCommercial
+CC licence** (`CC-BY-NC-4.0` / `CC-BY-NC-SA-4.0`). This is computed, not judged:
+`khai-guard license-check` reads the `licensePolicy` in `khai-guard.config.json`
+and rejects a bare permissive licence that would let the concepts walk free. A
+plain-MIT package declaration is a finding, not a style choice.
+
 ## Why this file is imperative
 
 Different models have different judgement. A generic "consider the branch

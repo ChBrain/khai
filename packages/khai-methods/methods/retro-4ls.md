@@ -9,7 +9,6 @@ year: 2012
 source:
   title: "Discover to Deliver"
   published: 2012
-license: attributed
 prompts:
   - key: liked
     label: Liked

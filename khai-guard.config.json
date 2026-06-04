@@ -17,6 +17,12 @@
       "major": "bump:major"
     }
   },
+  "licensePolicy": {
+    "packages": ["packages/*/package.json", "packages/engines/*/package.json"],
+    "packageLicenses": ["SEE LICENSE IN LICENSE and LICENSE-CODE"],
+    "skills": ["packages/khai-skills/src/*/SKILL.md"],
+    "skillLicenses": ["CC-BY-NC-4.0", "CC-BY-NC-SA-4.0"]
+  },
   "exemptRenames": true,
   "branchScope": {
     "shared": [".changeset/**", "package.json", "package-lock.json"],

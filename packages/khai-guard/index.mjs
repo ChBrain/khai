@@ -54,6 +54,12 @@ function assertGlobList(value, key) {
   }
 }
 
+function assertStringList(value, key) {
+  if (!Array.isArray(value) || value.some((s) => typeof s !== "string")) {
+    throw new ConfigError(`"${key}" must be an array of strings`);
+  }
+}
+
 // Validate the branchScope section: a list of lanes, each binding a branch-
 // name pattern to the paths that lane may touch. A malformed lane is a config
 // error (throw) rather than a silent hole that waves an out-of-lane change
@@ -122,6 +128,25 @@ function assertBumpScope(value) {
   }
 }
 
+// Validate the licensePolicy section: the license-scope gate. Every khai
+// package carries NonCommercial content (the architecture concepts), so its
+// package.json must declare an allowed license (`packageLicenses`); skills ship
+// as content, so each SKILL.md must declare a NonCommercial license
+// (`skillLicenses`). `packages` and `skills` are the path globs the CLI scans.
+// A malformed policy is a config error (throw) rather than a silent hole that
+// would let a bare permissive license through and the concepts walk free.
+function assertLicensePolicy(value) {
+  if (typeof value !== "object" || value == null || Array.isArray(value)) {
+    throw new ConfigError(`"licensePolicy" must be an object`);
+  }
+  if ("packages" in value) assertGlobList(value.packages, "licensePolicy.packages");
+  if ("skills" in value) assertGlobList(value.skills, "licensePolicy.skills");
+  if ("packageLicenses" in value)
+    assertStringList(value.packageLicenses, "licensePolicy.packageLicenses");
+  if ("skillLicenses" in value)
+    assertStringList(value.skillLicenses, "licensePolicy.skillLicenses");
+}
+
 // Shallow per-key override: a config file replaces only the keys it sets.
 // Validates the shape so a typo (e.g. source as a bare string) fails loud
 // instead of matching nothing and waving every PR through.
@@ -140,6 +165,7 @@ export function resolveConfig(fileConfig) {
   }
   if ("branchScope" in fileConfig) assertBranchScope(fileConfig.branchScope);
   if ("bumpScope" in fileConfig) assertBumpScope(fileConfig.bumpScope);
+  if ("licensePolicy" in fileConfig) assertLicensePolicy(fileConfig.licensePolicy);
   return { ...DEFAULT_CONFIG, ...fileConfig };
 }
 
@@ -568,4 +594,37 @@ export function bumpScope(changesets, config = DEFAULT_CONFIG) {
     escalations,
     highest: highestRank >= 0 ? BUMP_LEVELS[highestRank] : null,
   };
+}
+
+// The license-scope gate. khai's concepts are NonCommercial: every package
+// carries that content, so its declared license must be in `packageLicenses`
+// (the dual-license string — content under LICENSE = CC-BY-NC-SA, code under
+// LICENSE-CODE = MIT — not a bare permissive license that would let someone
+// resell the concepts). A skill ships as content, so its SKILL.md license must
+// be a NonCommercial variant in `skillLicenses`. Pure: it takes the gathered
+// declarations [{ path, license }] and returns findings; the file IO that reads
+// package.json + SKILL.md frontmatter lives in the CLI. `ok` is true when every
+// declaration is allowed; with no licensePolicy configured there is nothing to
+// check and `ok` is true.
+export function checkLicenses({ packages = [], skills = [] } = {}, config = DEFAULT_CONFIG) {
+  const policy = config.licensePolicy;
+  const errors = [];
+  if (!policy) return { ok: true, errors };
+  const pkgAllow = policy.packageLicenses ?? [];
+  const skillAllow = policy.skillLicenses ?? [];
+  for (const { path, license } of packages) {
+    if (!pkgAllow.includes(license))
+      errors.push(
+        `${path}: license ${license == null ? "(missing)" : `"${license}"`} is not allowed — ` +
+          `declare one of [${pkgAllow.join(", ")}] so the package's khai content stays NonCommercial`,
+      );
+  }
+  for (const { path, license } of skills) {
+    if (!skillAllow.includes(license))
+      errors.push(
+        `${path}: skill license ${license == null ? "(missing)" : `"${license}"`} must be ` +
+          `NonCommercial — use one of [${skillAllow.join(", ")}]`,
+      );
+  }
+  return { ok: errors.length === 0, errors };
 }

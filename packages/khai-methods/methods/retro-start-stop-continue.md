@@ -7,7 +7,6 @@ year: null
 source:
   title: "Traditional agile practice"
   url: null
-license: none
 prompts:
   - key: start
     label: Start
