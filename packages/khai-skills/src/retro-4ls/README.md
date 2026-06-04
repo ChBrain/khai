@@ -6,10 +6,10 @@ Completed work disappears without review. Teams repeat the same friction, miss w
 
 ## Solution
 
-This skill facilitates the 4 L's framework (Liked, Learned, Lacked, Longed for) in sequence. For each lens it asks the prompt question, waits for a response, and probes once if the answer is thin. The sequence is fixed: setup first, then the four lenses in order, then compilation. The output is reported, not interpreted.
+This skill runs the 4 L's framework (Liked, Learned, Lacked, Longed for) in two modes. Mode A is facilitated: the AI asks each lens in turn, waits for the human's response, probes once if an answer is thin, and compiles. Mode B is self-diagnosis: the AI reads the available session context and fills all four lenses itself, with no questions asked. Mode is detected from the request.
 
 Attributed to Mary Gorman and Ellen Gottesdiener, _Discover to Deliver_ (2012).
 
 ## What you get
 
-A compiled retrospective document with one section per lens, one bullet per item, ready to carry into planning. No editorialising: what was said is what is recorded.
+A compiled retrospective document with one section per lens, one bullet per item, ready to carry into planning. In Mode A: what the human said, reported not interpreted. In Mode B: what the AI observed from context, with inferred items labelled as such.
