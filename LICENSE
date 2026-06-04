@@ -1,5 +1,9 @@
-This license applies to the content in architecture/*.md.
-For the source code (tests, configs, build scripts), see LICENSE-CODE.
+This license applies to all khai content: architecture definitions
+(packages/khai-arch/architecture/**), method definitions
+(packages/khai-methods/methods/**), skill guides
+(packages/khai-skills/src/*/SKILL.md), and engine content
+(packages/engines/**).
+For the source code (.mjs files, configs, build scripts), see LICENSE-CODE.
 
 ==========================================================================
 
