@@ -15,9 +15,9 @@ The spine is the communication ladder popularly attributed to Konrad Lorenz:
 _thought is not said, said is not heard, heard is not understood, understood is
 not agreed._ Each arrow is a place the meaning can crack. The engine takes that
 chain literally and gives each channel its own loop, so the loss is recorded
-where it happens — what was heard is not what was understood, what was
-understood is not what was said — and widens for a persona who must cross it in a
-language that is not yet the body.
+where it happens (what was heard is not what was understood, what was understood
+is not what was said), and widens for a persona who must cross it in a language
+that is not yet the body.
 
 ## Origin
 
@@ -64,13 +64,13 @@ Source to constraint, per file.
   running its own loop in one direction; what one channel loses, another does not
   recover.
 - **the widths** (Borrowed/Decoded/Copied up to Mother Tongue): the size of the
-  gap the channel must cross. Anchored by Gile — under pressure the finite
+  gap the channel must cross. Anchored by Gile (under pressure the finite
   capacity gives, and the persona slides down the widths toward the language that
-  needs no reaching — and by Jakobson, since the gap is set by how far _that_
+  needs no reaching) and by Jakobson, since the gap is set by how far _that_
   language sits from the body.
 - **[thinking](process_thinking.md)** (the internal channel, only the two
   deepest widths): the persona's use of language with itself, never reaching the
-  room. Anchored by Vygotsky — thought needs a language already close to the
+  room. Anchored by Vygotsky: thought needs a language already close to the
   body, so only Worn and Mother Tongue can carry it.
 
 ---
