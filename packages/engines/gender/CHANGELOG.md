@@ -1,5 +1,11 @@
 # @chbrain/khai-engine-gender
 
+## 0.1.3
+
+### Patch Changes
+
+- 9a97247: fix(REFERENCES.md): add missing colon after author attribution in Restrictions bullets
+
 ## 0.1.2
 
 ### Patch Changes
