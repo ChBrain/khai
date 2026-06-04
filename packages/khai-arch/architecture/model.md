@@ -35,9 +35,10 @@ Enriched by:
 
 ## Playbook
 
-The playbook spine: the ordered groups consumers render. The model owns it; nothing downstream re-declares the order or the grouping.
+The playbook spine: the ordered groups consumers render. The model owns it; nothing downstream re-declares the order or the grouping. The `tagline` is the canon's own one-line description of the bound book, so a consumer surface prints it rather than authoring its own.
 
 ```yaml
+tagline: "The bound specification: Plot, the five elements that Plot casts, and the two substrate files everything rests on."
 groups:
   - id: production
     label: production
