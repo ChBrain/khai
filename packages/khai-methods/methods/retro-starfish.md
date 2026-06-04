@@ -8,7 +8,6 @@ year: 2006
 source:
   title: "Retrospective Coaching Cards"
   url: "https://www.thekua.com/rant/2006/03/the-retrospective-starfish/"
-license: attributed
 prompts:
   - key: keep
     label: Keep doing
