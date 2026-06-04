@@ -22,6 +22,11 @@
 // branch(es) for a set of changed paths, including the ordered split when the
 // set spans lanes.
 //
+// Subcommand: `khai-guard branch <topic>` reads the working-tree changes,
+// resolves their lane, and CREATES the correctly-named branch (or refuses a
+// multi-lane change with the split). The lane is computed, never chosen — run
+// this instead of picking a branch name by hand.
+//
 // Subcommand: `khai-guard bump-check` flags a non-patch release. It reads the
 // .changeset/ dir and, if any changeset declares minor/major (beyond the
 // configured freeLevel), prints a LOUD banner and emits the level so CI can
@@ -410,10 +415,64 @@ function runBumpCheck() {
   process.exit(process.argv.includes("--enforce") ? 1 : 0);
 }
 
+// `branch <topic>`: deterministic lane selection. Reads the working-tree
+// changes, resolves their lane via `advise`, and CREATES the correctly-named
+// branch -- so the lane is never a judgement call. A clean single lane becomes
+// `<lane>[/<unit>]/<topic>`; an unowned-only change becomes `chore/<topic>`; a
+// change that spans lanes (or mixes an owned lane with unowned paths) is
+// REFUSED with the split, so engine content can't silently land on a docs
+// branch. The one command a weaker model should run instead of choosing a lane.
+function runBranch() {
+  const config = loadConfig();
+  const topic = process.argv[3];
+  if (!topic || !/^[a-z0-9][a-z0-9-]*$/.test(topic)) {
+    console.error("KHAI-Guard: `branch <topic>` needs a kebab-case change name (e.g. add-axis).");
+    process.exit(2);
+  }
+  let files;
+  try {
+    const tracked = git(["diff", "--name-only", "HEAD"]).split("\n");
+    const untracked = git(["ls-files", "--others", "--exclude-standard"]).split("\n");
+    files = [...new Set([...tracked, ...untracked].map((s) => s.trim()).filter(Boolean))];
+  } catch (err) {
+    console.error(`KHAI-Guard branch: could not read working-tree changes — ${err.message}`);
+    process.exit(2);
+  }
+  if (files.length === 0) {
+    console.error("KHAI-Guard branch: no uncommitted changes to put on a branch.");
+    process.exit(2);
+  }
+  const { lanes, unowned, lines } = advise({ files }, config);
+  let name;
+  if (lanes.length === 1 && unowned.length === 0) {
+    const l = lanes[0];
+    name = l.unit == null ? `${l.lane}/${topic}` : `${l.lane}/${l.unit}/${topic}`;
+  } else if (lanes.length === 0 && unowned.length > 0) {
+    name = `chore/${topic}`; // unowned remainder: a general lane owns nothing
+  } else {
+    for (const line of lines) console.error(line);
+    console.error(
+      "\nKHAI-Guard branch: this change is not one lane — split it per the advice above " +
+        "(not auto-creating a branch).",
+    );
+    process.exit(1);
+  }
+  try {
+    git(["checkout", "-b", name]);
+  } catch (err) {
+    console.error(`KHAI-Guard branch: \`git checkout -b ${name}\` failed — ${err.message}`);
+    process.exit(2);
+  }
+  console.log(
+    `KHAI-Guard branch: on "${name}" (${files.length} file(s)). Commit + push; branch-check will pass.`,
+  );
+}
+
 // argv[2] is the first positional. `khai-guard --base …` leaves it as a flag,
 // which falls through to the gate; only an explicit subcommand diverts.
 if (process.argv[2] === "doctor") runDoctor();
 else if (process.argv[2] === "branch-check") runBranchCheck();
 else if (process.argv[2] === "advise") runAdvise();
 else if (process.argv[2] === "bump-check") runBumpCheck();
+else if (process.argv[2] === "branch") runBranch();
 else runGate();
