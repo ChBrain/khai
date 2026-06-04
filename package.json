@@ -16,6 +16,7 @@
     "packages/khai-review",
     "packages/khai-skills",
     "packages/khai-pack",
+    "packages/khai-methods",
     "packages/engines/*"
   ],
   "engines": {
