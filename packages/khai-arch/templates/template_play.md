@@ -35,8 +35,8 @@ What the whole production is fighting over: every plot must move it, so each ear
 
 ---
 
-**Builder note (template only — not rendered):**
+**Builder note (template only - not rendered):**
 
-A play is a non-TO type: it carries no generic `## Owner` or `## Taxonomy` prefix. Estate already says whose it is; Name already says what it is called — in richer, production-specific terms. Do not add Owner or Taxonomy back; doing so breaks the mnemonic (ENACTS becomes eight H2s that no longer spell).
+A play is a non-TO type: it carries no generic `## Owner` or `## Taxonomy` prefix. Estate already says whose it is; Name already says what it is called - in richer, production-specific terms. Do not add Owner or Taxonomy back; doing so breaks the mnemonic (ENACTS becomes eight H2s that no longer spell).
 
 The mnemonic is the load-bearing device: every chapter's first letter must reconstruct it in order. If you rename a chapter, verify the initials still spell ENACTS. If you need a chapter the mnemonic cannot hold, it belongs in a different type, not here.
