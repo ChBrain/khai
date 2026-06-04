@@ -54,6 +54,11 @@
         "allow": ["packages/khai-skills/**", "docs/SKILLS.md"]
       },
       {
+        "pattern": "methods/*",
+        "layer": "solution",
+        "allow": ["packages/khai-methods/**", "docs/METHODS.md"]
+      },
+      {
         "pattern": "repo/*",
         "layer": "infra",
         "allow": []
