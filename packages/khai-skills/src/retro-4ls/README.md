@@ -6,7 +6,7 @@ Completed work disappears without review. Teams repeat the same friction, miss w
 
 ## Solution
 
-This skill facilitates the 4 L's framework — Liked, Learned, Lacked, Longed for — in sequence. For each lens it asks the prompt question, waits for a response, and probes once if the answer is thin. The sequence is fixed: setup first, then the four lenses in order, then compilation. The output is reported, not interpreted.
+This skill facilitates the 4 L's framework (Liked, Learned, Lacked, Longed for) in sequence. For each lens it asks the prompt question, waits for a response, and probes once if the answer is thin. The sequence is fixed: setup first, then the four lenses in order, then compilation. The output is reported, not interpreted.
 
 Attributed to Mary Gorman and Ellen Gottesdiener, _Discover to Deliver_ (2012).
 
