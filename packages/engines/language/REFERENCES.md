@@ -55,9 +55,9 @@ What the engine refuses to model, and to whom it delegates.
 Source to constraint, per file.
 
 - **[using language](process_using_language.md)** (the root): the loop of the
-  whole ladder — meaning moves out, in, or stays inside, and the loss is filed
-  per channel. Anchored by Lorenz (the chain) and Shannon & Weaver (the channel
-  and its noise).
+  whole ladder, where meaning moves out, in, or stays inside, and the loss is
+  filed per channel. Anchored by Lorenz (the chain) and Shannon & Weaver (the
+  channel and its noise).
 - **the four I/O channels** ([speaking](process_speaking.md),
   [writing](process_writing.md) out; [hearing](process_hearing.md),
   [reading](process_reading.md) in): each a channel in the Shannon sense,
