@@ -111,6 +111,26 @@ jobs:
           fi
           npx khai-guard branch-check --branch "${{ github.head_ref }}" --base "${{ github.event.pull_request.base.sha }}" --head "${{ github.event.pull_request.head.sha }}"
 
+  license-check:
+    # Hard gate: every package.json must declare the dual license and every
+    # SKILL.md a NonCommercial CC license. This is the IP protection wall —
+    # it stops a bare permissive license (plain MIT, Apache-2.0) from letting
+    # khai's concepts ship without the NonCommercial restriction. The hook
+    # catches it locally; this gate catches anything that skipped the hook.
+    # Policy is in khai-guard.config.json licensePolicy; no diff range needed
+    # — license-check scans the full working tree statically.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: "npm"
+      - name: install
+        run: npm ci
+      - name: license gate
+        run: npx khai-guard license-check
+
   bump-scope:
     # Release-scope flag (the third khai-guard rule; see the bump-check
     # subcommand). patch is free; a changeset declaring minor/major widens the
