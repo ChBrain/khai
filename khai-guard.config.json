@@ -37,7 +37,9 @@
           ".github/**",
           ".husky/**",
           "khai-guard.config.json",
-          "docs/BRANCHING.md"
+          "docs/BRANCHING.md",
+          "CLAUDE.md",
+          ".github/copilot-instructions.md"
         ]
       },
       {
