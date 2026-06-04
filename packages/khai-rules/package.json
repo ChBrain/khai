@@ -13,7 +13,7 @@
     "url": "git+https://github.com/chbrain/khai.git",
     "directory": "packages/khai-rules"
   },
-  "license": "MIT",
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",
     "access": "restricted"

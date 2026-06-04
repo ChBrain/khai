@@ -45,11 +45,13 @@ import {
   advise,
   parseChangeset,
   bumpScope,
+  checkLicenses,
   resolveConfig,
   parseNameStatus,
   DEFAULT_CONFIG,
   ConfigError,
 } from "../index.mjs";
+import picomatch from "picomatch";
 
 // Return the value following `name`, but only if it looks like a value
 // (not the next flag and not missing). `--base --head x` must NOT treat
@@ -468,6 +470,71 @@ function runBranch() {
   );
 }
 
+// Pull the `license:` value out of a SKILL.md (or any) YAML frontmatter block.
+// Deliberately tiny — no gray-matter dep in the guard — and unquotes a bare
+// scalar. Returns null when there is no frontmatter or no license line.
+function frontmatterLicense(text) {
+  const m = /^---\r?\n([\s\S]*?)\r?\n---/.exec(text);
+  if (!m) return null;
+  const lm = /^license:\s*(.+)$/m.exec(m[1]);
+  return lm ? lm[1].trim().replace(/^["']|["']$/g, "") : null;
+}
+
+// Subcommand: `khai-guard license-check` enforces the license-scope rule. Every
+// package carries khai's NonCommercial concepts, so each package.json must
+// declare an allowed license; every SKILL.md must declare a NonCommercial one.
+// Scans the tracked tree (not a diff) like doctor, applies the licensePolicy,
+// and exits 1 on a violation so the concepts can't walk free under a bare
+// permissive license. No policy configured = nothing to check (exit 0).
+function runLicenseCheck() {
+  const config = loadConfig();
+  const policy = config.licensePolicy;
+  if (!policy) {
+    console.log("KHAI-Guard license-check: no licensePolicy configured; nothing to check.");
+    return;
+  }
+  let tracked;
+  try {
+    tracked = git(["ls-files"])
+      .split("\n")
+      .map((s) => s.trim())
+      .filter(Boolean);
+  } catch (err) {
+    console.error(`KHAI-Guard license-check: could not list tracked files — ${err.message}`);
+    process.exit(2);
+  }
+  const matchPkg = picomatch(policy.packages ?? [], { dot: true });
+  const matchSkill = picomatch(policy.skills ?? [], { dot: true });
+  const packages = [];
+  const skills = [];
+  for (const f of tracked) {
+    try {
+      if (matchPkg(f)) {
+        const license = JSON.parse(readFileSync(resolve(process.cwd(), f), "utf8")).license ?? null;
+        packages.push({ path: f, license });
+      } else if (matchSkill(f)) {
+        const license = frontmatterLicense(readFileSync(resolve(process.cwd(), f), "utf8"));
+        skills.push({ path: f, license });
+      }
+    } catch (err) {
+      console.error(`KHAI-Guard license-check: cannot read ${f} — ${err.message}`);
+      process.exit(2);
+    }
+  }
+  const { ok, errors } = checkLicenses({ packages, skills }, config);
+  if (!ok) {
+    console.error("::error::KHAI-Guard license-check: license-scope violations:");
+    for (const e of errors) console.error(`  ${e}`);
+    console.error(
+      "\n  Fix: declare an allowed NonCommercial license so khai concepts can't be resold.",
+    );
+    process.exit(1);
+  }
+  console.log(
+    `KHAI-Guard license-check OK: ${packages.length} package(s) + ${skills.length} skill(s) conform.`,
+  );
+}
+
 // argv[2] is the first positional. `khai-guard --base …` leaves it as a flag,
 // which falls through to the gate; only an explicit subcommand diverts.
 if (process.argv[2] === "doctor") runDoctor();
@@ -475,4 +542,5 @@ else if (process.argv[2] === "branch-check") runBranchCheck();
 else if (process.argv[2] === "advise") runAdvise();
 else if (process.argv[2] === "bump-check") runBumpCheck();
 else if (process.argv[2] === "branch") runBranch();
+else if (process.argv[2] === "license-check") runLicenseCheck();
 else runGate();

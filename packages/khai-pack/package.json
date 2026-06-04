@@ -7,7 +7,7 @@
     "url": "git+https://github.com/chbrain/khai.git",
     "directory": "packages/khai-pack"
   },
-  "license": "MIT",
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
   "type": "module",
   "main": "./lib/index.mjs",
   "exports": {
