@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-pack",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "khai-pack: the serve engine. Turns a typed bundle spec into a deterministic, guarded zip in the khai 'cultures' layout (overhead at root, flat content in a subfolder). Kind-agnostic: consumers register what their bundle carries and how it is checked.",
   "repository": {
     "type": "git",

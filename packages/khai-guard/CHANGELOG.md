@@ -1,5 +1,12 @@
 # @chbrain/khai-guard
 
+## 0.1.4
+
+### Patch Changes
+
+- 4e617a7: Add dependabot/\* lane with cross-lane allow pass so Dependabot dependency bumps clear branch-scope without renaming.
+- c9eff7b: Add the `license-check` subcommand and `licensePolicy` config: every package must declare an allowed (NonCommercial) license and every SKILL.md a NonCommercial CC license, so khai's concepts can't be resold under a bare permissive license. Relicense khai-guard, khai-pack, and khai-rules from plain MIT to the dual-license string (`SEE LICENSE IN LICENSE and LICENSE-CODE`) — content NonCommercial, code MIT — to comply.
+
 ## 0.1.3
 
 ### Patch Changes

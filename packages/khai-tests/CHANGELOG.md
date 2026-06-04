@@ -1,5 +1,13 @@
 # @chbrain/khai-tests
 
+## 0.1.3
+
+### Patch Changes
+
+- Updated dependencies [c9eff7b]
+  - @chbrain/khai-pack@0.0.3
+  - @chbrain/khai-rules@0.1.1
+
 ## 0.1.2
 
 ### Patch Changes
