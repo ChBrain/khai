@@ -65,6 +65,14 @@
         "allow": ["packages/khai-methods/**", "docs/METHODS.md"]
       },
       {
+        "pattern": "dependabot/*",
+        "layer": "deps",
+        "allow": [
+          "**/package.json",
+          ".github/workflows/**"
+        ]
+      },
+      {
         "pattern": "repo/*",
         "layer": "infra",
         "allow": []

@@ -399,10 +399,14 @@ function laneForPath(path, config) {
  * Otherwise ownership decides, deny-by-default: a path owned by a protected
  * lane may be touched ONLY by that lane; a shared path (branchScope.shared) is
  * fine on any lane; an unowned path is fine ONLY on a general/infra lane (a
- * protected lane such as arch/ may touch nothing but what it owns). Out-of-lane
- * paths produce a prescriptive message; when offenders are owned by more than
- * one distinct lane the report ends with SPLIT REQUIRED, since a multi-lane
- * change must be split into per-lane branches that merge in layer order.
+ * protected lane such as arch/ may touch nothing but what it owns). Exception:
+ * a lane may also touch paths that match its own explicit `allow` list, even if
+ * those paths are owned by another protected lane — this is a targeted cross-lane
+ * pass used by automation lanes (e.g. dependabot/*) whose scope is defined by
+ * file shape (manifests, workflows), not by ownership. Out-of-lane paths produce
+ * a prescriptive message; when offenders are owned by more than one distinct lane
+ * the report ends with SPLIT REQUIRED, since a multi-lane change must be split
+ * into per-lane branches that merge in layer order.
  */
 export function checkBranchScope(branchName, changedPaths, config = DEFAULT_CONFIG) {
   const matched = findLane(branchName, config);
@@ -426,10 +430,18 @@ export function checkBranchScope(branchName, changedPaths, config = DEFAULT_CONF
   const shared = config.branchScope?.shared ?? [];
   const isShared = shared.length > 0 ? picomatch(shared, { dot: true }) : () => false;
 
+  // A lane's own explicit allow list grants a cross-lane pass: if a path
+  // matches the current lane's allow globs it is permitted regardless of which
+  // protected lane owns it. This lets automation lanes (e.g. dependabot/*)
+  // define their scope by file shape rather than by ownership hierarchy.
+  const myGlobs = resolveAllow(lane, unit);
+  const isAllowedByLane = myGlobs.length > 0 ? picomatch(myGlobs, { dot: true }) : () => false;
+
   const wanted = new Set();
   const violations = [];
   for (const p of changedPaths) {
     if (isShared(p)) continue;
+    if (isAllowedByLane(p)) continue; // cross-lane pass: lane's own allow overrides ownership
     const owner = laneForPath(p, config); // a protected owner, or null (unowned)
     if (owner != null) {
       // A path owned by a protected lane is locked to that lane.
