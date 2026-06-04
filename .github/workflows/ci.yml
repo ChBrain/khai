@@ -43,7 +43,7 @@ jobs:
     if: >-
       github.event_name == 'pull_request' &&
       !startsWith(github.head_ref, 'changeset-release/') &&
-      github.actor != 'dependabot[bot]'
+      !startsWith(github.head_ref, 'dependabot/')
     steps:
       - uses: actions/checkout@v6
         with:
