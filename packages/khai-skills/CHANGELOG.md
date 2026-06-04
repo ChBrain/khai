@@ -1,5 +1,15 @@
 # @chbrain/khai-skills
 
+## 0.0.5
+
+### Patch Changes
+
+- 345af83: Add README.md to creating-a-play and retro-4ls with Problem / Solution / What you get structure.
+- d4ff1d2: Add a `khai.tagline` to package.json, a house-voice one-line description of the skills kit, so a consumer surface prints it verbatim instead of authoring its own copy.
+- Updated dependencies [9d0674d]
+- Updated dependencies [d2307ba]
+  - @chbrain/khai-arch@0.1.2
+
 ## 0.0.4
 
 ### Patch Changes

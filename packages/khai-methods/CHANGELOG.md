@@ -1,5 +1,11 @@
 # @chbrain/khai-methods
 
+## 0.0.3
+
+### Patch Changes
+
+- fb56e30: Add a `khai.tagline` to package.json, a house-voice one-line description of the methods registry, so a consumer surface prints it verbatim instead of authoring its own copy.
+
 ## 0.0.2
 
 ### Patch Changes
