@@ -8,6 +8,7 @@
     "directory": "packages/khai-methods"
   },
   "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "tagline": "Retrospectives, planning frameworks, and reviews: each method attributed to its origin, each one ready to run.",
   "type": "module",
   "main": "./lib/index.mjs",
   "exports": {
