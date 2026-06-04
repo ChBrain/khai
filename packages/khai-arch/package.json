@@ -8,6 +8,7 @@
     "directory": "packages/khai-arch"
   },
   "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "tagline": "The bound specification: Plot, the five elements that Plot casts, and the two substrate files everything rests on.",
   "type": "module",
   "main": "./index.mjs",
   "exports": {

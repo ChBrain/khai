@@ -85,6 +85,15 @@ export const playbook = groupsBlock
   ? (matter(`---\n${groupsBlock[1]}---\n`).data.groups ?? [])
   : [];
 
+/**
+ * The canon's own one-line description of the bound playbook. Lives in
+ * package.json `khai.tagline`, the same slot khai-methods and khai-skills use,
+ * so all three packages share the same shape. Null when absent.
+ * @type {string|null}
+ */
+import pkg from "./package.json" with { type: "json" };
+export const playbookTagline = pkg.tagline ?? null;
+
 /** Required `## ` section headers for a type id, in canonical order. */
 export function chaptersFor(typeId) {
   return types[typeId]?.chapters ?? null;
@@ -434,6 +443,7 @@ export default {
   toPrefix,
   frontmatterExtras,
   playbook,
+  playbookTagline,
   wiresChapters,
   referenceChapters,
   engineMembers,
