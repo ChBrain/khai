@@ -287,6 +287,39 @@ function findLane(branchName, config) {
   return null;
 }
 
+// Recover the {name} a fan-out lane binds for a path. A lane may list several
+// {name} globs (one per page group, say); each is compiled to an anchored regex
+// with {name} as a single-segment capture and tried against the path. Correct
+// regardless of what precedes {name} -- a literal prefix, a `**`, or a distinct
+// group prefix -- which the old literal-prefix slice was not. Returns the bound
+// name (the first glob that shapes this path) or null. Use literal prefixes
+// before {name} to keep the segment unambiguous; a `**` before {name} captures
+// greedily and is discouraged (see docs/BRANCHING.md).
+function bindName(allow, path) {
+  for (const glob of allow) {
+    if (!glob.includes("{name}")) continue;
+    let src = "^";
+    for (let i = 0; i < glob.length; ) {
+      if (glob.startsWith("{name}", i)) {
+        src += "([^/]+)";
+        i += "{name}".length;
+      } else if (glob.startsWith("**", i)) {
+        src += ".*";
+        i += 2;
+      } else if (glob[i] === "*") {
+        src += "[^/]*";
+        i += 1;
+      } else {
+        src += glob[i].replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        i += 1;
+      }
+    }
+    const m = path.match(new RegExp(src + "$"));
+    if (m) return m[1];
+  }
+  return null;
+}
+
 // Which PROTECTED lane OWNS a given path? Ownership is deny-by-default: only
 // architecture / governance / solution lanes own paths, and a path owned by a
 // protected lane may be touched by that lane alone. Walks the lanes and returns
@@ -309,14 +342,16 @@ function laneForPath(path, config) {
     if (lane.layer === "general" || lane.layer === "infra") continue;
     let unit = null;
     if ("unit" in lane) {
-      // Derive the would-be name from the path: a {name} glob like
-      // packages/engines/{name}/** binds {name} to the path's matching
-      // segment. Recover it by matching the literal prefix.
-      const probe = lane.allow.find((g) => g.includes("{name}"));
-      const prefix = probe.slice(0, probe.indexOf("{name}"));
-      if (path.startsWith(prefix)) {
-        unit = path.slice(prefix.length).split("/")[0];
-      }
+      // Derive the would-be name from the path. A {name} glob (e.g.
+      // packages/engines/{name}/** or src/pages/main/{name}/**) binds {name} to
+      // one path segment; recover it by MATCHING the glob, not by slicing a
+      // literal prefix. The slice broke whenever anything globby preceded
+      // {name} (a `**`, or a different prefix per page group) -- it sliced at
+      // the prefix's character length and landed on the wrong segment, so the
+      // path came back unowned. bindName compiles each {name} glob to a regex
+      // with {name} as a single-segment capture, so extraction is correct after
+      // a literal prefix, a `**`, or across several group-specific globs.
+      unit = bindName(lane.allow, path);
     }
     const globs = resolveAllow(lane, unit);
     if (picomatch(globs, { dot: true })(path)) {
