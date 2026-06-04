@@ -45,15 +45,16 @@ practice originated — a book, a team, a tradition. Attribution is recorded via
 
 The enforcement kernel. Runs four gates:
 
-| Gate            | What it enforces                                               |
-| --------------- | -------------------------------------------------------------- |
-| `source/test`   | A branch may touch source OR tests, never both in the same PR. |
-| `branch-scope`  | A branch name declares a lane; the diff must stay inside it.   |
-| `bump-scope`    | A changeset declaring minor/major is the maintainer's call.    |
-| `license-check` | Every package and skill must declare the house dual-license.   |
+| Gate            | What it enforces                                               | Where         |
+| --------------- | -------------------------------------------------------------- | ------------- |
+| `source/test`   | A branch may touch source OR tests, never both in the same PR. | hook + CI     |
+| `branch-scope`  | A branch name declares a lane; the diff must stay inside it.   | hook + CI     |
+| `bump-scope`    | A changeset declaring minor/major is the maintainer's call.    | CI (advisory) |
+| `license-check` | Every package and skill must declare the house dual-license.   | hook only     |
 
-Runs locally (pre-push hook) and in CI (required checks). A push that skips the
-hook is not done — CI rejects it anyway.
+`source/test` and `branch-scope` are required CI checks; a push that skips the
+hook is not done — CI rejects it anyway. `license-check` runs via the pre-push
+hook only and is not yet a CI gate.
 
 ### khai-rules
 
@@ -70,7 +71,8 @@ Shared by the workspace and by downstream consumer repos. Runs in CI.
 
 Advisory NLP review lane. Where only meaning can decide — conciseness,
 coherence, voice — a pluggable judge reviews and suggests. It never gates; it
-informs.
+informs. No branch lane is assigned; `governance/*` must be extended before
+changes to this package can land.
 
 ### khai-pack
 
@@ -85,18 +87,18 @@ step in the delivery pipeline.
 Every branch belongs to a lane. The lane declares what paths the branch may
 touch. Ownership is deny-by-default.
 
-| Lane           | Layer        | Owns                                      |
-| -------------- | ------------ | ----------------------------------------- |
-| `arch/*`       | architecture | `packages/khai-arch/**`                   |
-| `governance/*` | governance   | guard, CI, hooks, config                  |
-| `engine/*/*`   | solution     | `packages/engines/<name>/**`              |
-| `skills/*`     | solution     | `packages/khai-skills/**`                 |
-| `methods/*`    | solution     | `packages/khai-methods/**`                |
-| `dependabot/*` | deps         | `**/package.json`, `.github/workflows/**` |
-| `repo/*`       | infra        | (unowned paths)                           |
-| `chore/*`      | general      | (unowned paths)                           |
-| `docs/*`       | general      | (unowned paths)                           |
-| `fix/*`        | general      | (unowned paths)                           |
+| Lane           | Layer        | Owns                                         |
+| -------------- | ------------ | -------------------------------------------- |
+| `arch/*`       | architecture | `packages/khai-arch/**`                      |
+| `governance/*` | governance   | guard, tests, rules, pack, CI, hooks, config |
+| `engine/*/*`   | solution     | `packages/engines/<name>/**`                 |
+| `skills/*`     | solution     | `packages/khai-skills/**`                    |
+| `methods/*`    | solution     | `packages/khai-methods/**`                   |
+| `dependabot/*` | deps         | `**/package.json`, `.github/workflows/**`    |
+| `repo/*`       | infra        | (unowned paths)                              |
+| `chore/*`      | general      | (unowned paths)                              |
+| `docs/*`       | general      | (unowned paths)                              |
+| `fix/*`        | general      | (unowned paths)                              |
 
 Layer order governs merge sequence when a change spans layers:
 architecture → governance → solution → infra → general.
