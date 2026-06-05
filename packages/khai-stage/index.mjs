@@ -33,7 +33,7 @@ const title = (s) =>
 // restores them. A .tmpl suffix marks a file the toolchain must not pick up here
 // (a test that would otherwise run); the stamp drops it.
 function housePath(rel) {
-  let p = rel.replace(/\.tmpl$/, "");
+  let p = rel.replace(/\.tmpl$/, "").replace(/\\/g, "/");
   if (p === "npmrc" || p === "gitignore" || p === "nvmrc") return "." + p;
   if (p.startsWith("github/") || p.startsWith("husky/")) return "." + p;
   return p;
