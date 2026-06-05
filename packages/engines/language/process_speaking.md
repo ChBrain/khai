@@ -24,6 +24,8 @@ The room turns to the persona and waits.
 A channel of [Using Language](process_using_language.md):
 the persona must answer aloud, in the language the room is already using,
 at the moment the room hands them.
+The answer is drawn from the Echo of their [Thinking](process_thinking.md),
+forcing a real-time translation if the thinking ran in a deeper language.
 
 ## Direction
 

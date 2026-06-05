@@ -50,3 +50,5 @@ What got inside before the persona could hold it off.
 What they missed, they do not know they missed.
 The room moves on at its own speed, carrying the part the persona lost,
 and does not return it.
+What survived the channel is passed inward to [Thinking](process_thinking.md), 
+and the persona reacts to the fragment as if it were the whole.

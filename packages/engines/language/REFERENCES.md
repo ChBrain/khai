@@ -71,7 +71,9 @@ Source to constraint, per file.
 - **[thinking](process_thinking.md)** (the internal channel, only the two
   deepest widths): the persona's use of language with itself, never reaching the
   room. Anchored by Vygotsky: thought needs a language already close to the
-  body, so only Worn and Mother Tongue can carry it.
+  body, so only Worn and Mother Tongue can carry it. The translation loop is
+  anchored by Gile: the Echo's self-reference models the finite capacity and
+  cognitive cost of translating before speaking.
 
 ---
 

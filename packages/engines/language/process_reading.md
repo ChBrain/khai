@@ -48,5 +48,5 @@ which reaches the persona before they let it.
 
 Meaning the persona reached by themselves,
 or a meaning they built wrong and cannot tell from a right one.
-The misreading leaves the room with the persona
-and is carried forward as if it were the text.
+The misreading leaves the object with the persona
+and is carried forward into [Thinking](process_thinking.md) as if it were the text.

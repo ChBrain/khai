@@ -20,16 +20,15 @@ stamp:
 
 ## Initiated by
 
-The persona is awake.
-A channel of [Using Language](process_using_language.md):
-the language the persona uses inside themselves, continuously, without a room.
-Nothing initiates it because nothing stops it.
+Nothing initiates it because nothing stops [Thinking](process_thinking.md).
+The channel is always on to receive from [Hearing](process_hearing.md),
+[Reading](process_reading.md), or its own Echo.
 
 ## Direction
 
-Inward, with no exit.
-The persona does not produce thinking the way they produce speech.
-The thinking is the persona thinking.
+The [language](process_using_language.md) the persona uses inside themselves,
+continuously, without a room while awake or dreaming.
+Existing thoughts and ideas collide with input received from the outside.
 
 ## Lever
 
@@ -40,8 +39,9 @@ Below Worn, thinking in this language is explicitly lost.
 The persona is thinking in another language while running the outward channel, and the difference is what forces translation.
 
 ## Echo
-
-What was thought does not surface.
-The room sees [speaking](process_speaking.md) and [writing](process_writing.md); it does not see what the persona was thinking while producing those.
-A persona thinking in mother tongue while speaking in any wider width is producing a translation of their own thought, not an expression of it.
-The gap between what was thought and what came out is the persona's own to carry, and the room cannot ask about it without breaking the channel.
+The result of a thought process, which becomes the input for the next channel.
+If the thought is a reaction in a language deeper than the room's,
+the Echo is passed back to [Thinking](process_thinking.md) to be translated.
+If the thought is ready for the room, the Echo is passed outward
+to [Speaking](process_speaking.md) or [Writing](process_writing.md),
+carrying the cost of any translation loops that produced it.

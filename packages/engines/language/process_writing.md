@@ -24,6 +24,8 @@ Something must be fixed outside the persona.
 A channel of [Using Language](process_using_language.md):
 a letter, a sign, a record. The persona has the time
 the spoken channels deny them, and must use it on an object.
+The material comes from the Echo of their [Thinking](process_thinking.md),
+translated and assembled at whatever width they hold for permanence.
 
 ## Direction
 

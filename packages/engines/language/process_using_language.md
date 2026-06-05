@@ -11,7 +11,7 @@ stamp:
 
 ## Taxonomy
 
-Communication, the persona's traffic in meaning. It has no khai file of its own yet; this process is its root, and the channels below are its movements.
+Communication.
 
 ## Owner
 
@@ -20,7 +20,7 @@ Communication, the persona's traffic in meaning. It has no khai file of its own 
 
 ## Initiated by
 
-A persona uses language at every moment they are awake.
+A persona uses language at every moment they are awake or dreaming.
 Most of the time, with themselves, in whatever language the mind has settled into.
 Some of the time, with the room, in whatever language the room is using.
 The room chooses which language is outward. The persona's own default decides which language is inward.
