@@ -1,10 +1,11 @@
 // khai-plays: the play registry. khai holds the bill, not the productions.
 //
-// Each card registers a house: a khai-plays-<source> collection published as a
-// package. khai is the source of truth for which houses exist (the bill); the
-// plays live in the houses. khai knows the house by its card; the website knows
-// it from khai and pulls the card's package to read that house's plays. Pure
-// node, no canon dependency: a card is metadata, not khai content.
+// Each card names a house and its programme: the house is the khai-plays-<source>
+// repository, the programme is the package it publishes. khai is the source of
+// truth for which houses exist (the bill); the plays live in the houses. khai
+// knows the house by its card; the website knows it from khai and pulls the
+// programme to read that house's plays. Pure node, no canon dependency: a card
+// is metadata, not khai content.
 
 import { readdirSync, readFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -27,8 +28,9 @@ const isPackage = (s) =>
 
 /**
  * Validate one registry card (a house). `id` pins it to its filename when loaded
- * from disk. Returns error strings; empty means valid. A house registers a
- * package (the website pulls it for the plays); repo is an optional human link.
+ * from disk. Returns error strings; empty means valid. The card names the house
+ * (its repo) and the programme (the package the website pulls for the plays);
+ * both are required, because the repo is the house and the package is its bill.
  */
 export function validateEntry(entry, { id } = {}) {
   if (!entry || typeof entry !== "object") return ["card is not an object"];
@@ -39,8 +41,8 @@ export function validateEntry(entry, { id } = {}) {
   if (!isPackage(entry.package))
     e.push(`package must be an npm name, got ${JSON.stringify(entry.package)}`);
   if (typeof entry.blurb !== "string" || !entry.blurb.trim()) e.push("blurb is required");
-  if (entry.repo !== undefined && !/^https?:\/\//.test(String(entry.repo)))
-    e.push("repo, if present, must be an http(s) URL");
+  if (typeof entry.repo !== "string" || !/^https?:\/\//.test(entry.repo))
+    e.push("repo is required and must be an http(s) URL (the house)");
   return e;
 }
 
@@ -74,10 +76,10 @@ export function renderReadme(houses) {
     "# khai-plays",
     "",
     "The play registry: the bill. khai holds the index of the houses, not the",
-    "productions. Each card registers a house (a `khai-plays-<source>` collection)",
-    "and the package the website pulls to read that house's plays. khai knows the",
-    "house by its card; the website knows it from khai and pulls the package for the",
-    "rest.",
+    "productions. Each card names a house and its programme: the house is the",
+    "`khai-plays-<source>` repository, and the programme is the package the website",
+    "pulls to read that house's plays. khai knows the house by its card; the website",
+    "knows it from khai and pulls the programme for the rest.",
     "",
     "Generated from the registry, never hand-edited. Run",
     '`npx @chbrain/khai-plays register <source> --blurb "..."` to add a card (its',
@@ -89,16 +91,14 @@ export function renderReadme(houses) {
   const body =
     houses.length === 0
       ? ["None registered yet."]
-      : houses.map((h) => {
-          const link = h.repo ? ` ([source](${h.repo}))` : "";
-          return `- **${h.title}** (\`${h.package}\`): ${h.blurb}${link}`;
-        });
+      : houses.map((h) => `- **[${h.title}](${h.repo})** (programme \`${h.package}\`): ${h.blurb}`);
   const tail = [
     "",
     "## Reading the bill",
     "",
     "`loadRegistry()` and `houses` return the validated cards, sorted by id. The",
-    "website renders them and pulls each card's package to read that house's plays.",
+    "website renders them, links each house, and pulls its programme to read that",
+    "house's plays.",
     "",
   ];
   return [...head, ...body, ...tail].join("\n");
