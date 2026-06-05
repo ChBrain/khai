@@ -20,6 +20,7 @@ import {
   checkEncoding,
   checkFrontmatter,
   checkH1,
+  checkTitle,
   checkH2SetAndOrder,
   checkOwner,
   checkExtensions,
@@ -136,6 +137,10 @@ export function validateContentFile(text, { type, baseDir, owner, allowed, exemp
     ...checkExtensions(doc, { allowed: new Set(allowed ?? []) }),
   ];
   errors.push(...checkH1(doc, { type }).errors);
+  // The frontmatter `title` must be present and echo the body's name (the H1,
+  // or `## Name` for a play). One pattern for every instance -- including the
+  // content surfaces will generate downstream.
+  errors.push(...checkTitle(doc, { type }));
   // Owner (the "O") is the origin stamp; pin its value only when the caller
   // asserts whose the content is (engine content). The T slot carries no value
   // check -- it is the group above, enforced solely by the H2 set.

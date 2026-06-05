@@ -145,6 +145,7 @@ describe("section contract: Taxonomy and Owner track the TO mnemonic", () => {
   // non-TO type.
   const front = `---
 khai: instructions
+title: World
 license: CC-BY-NC-4.0
 stamp:
   owner: A World
@@ -185,6 +186,7 @@ The runtime hosts it.
   it("a TO type using the legacy Title spelling is rejected (tolerance retired)", () => {
     const personaFront = `---
 khai: persona
+title: Ada
 license: CC-BY-NC-4.0
 stamp:
   owner: A World
@@ -219,6 +221,7 @@ describe("wiring: engine requirements enforced on instances", () => {
 
   const persona = (projectionBody) => `---
 khai: persona
+title: Ada
 license: CC-BY-NC-4.0
 stamp:
   owner: A Consumer
@@ -359,6 +362,7 @@ Her jaw tightens.
     // never links the engine anchor, so only the wiring requirement fires.
     const instructions = `---
 khai: instructions
+title: World
 license: CC-BY-NC-4.0
 stamp:
   owner: A World
@@ -399,6 +403,7 @@ describe("project: validateProject discovers and enforces", () => {
 
   const personaFile = (name, projection) => `---
 khai: persona
+title: ${name}
 license: CC-BY-NC-4.0
 stamp:
   owner: Demo
