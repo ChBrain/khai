@@ -65,6 +65,16 @@
         "allow": ["packages/khai-methods/**", "docs/METHODS.md"]
       },
       {
+        "pattern": "stage/*",
+        "layer": "solution",
+        "allow": ["packages/khai-stage/**"]
+      },
+      {
+        "pattern": "plays/*",
+        "layer": "solution",
+        "allow": ["packages/khai-plays/**"]
+      },
+      {
         "pattern": "dependabot/*",
         "layer": "deps",
         "allow": ["**/package.json", ".github/workflows/**"]
