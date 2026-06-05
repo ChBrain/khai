@@ -1,13 +1,14 @@
 ---
 name: khai-playwright
-description: Creates a khai "play", read two ways. Mode A authors a single play file (the ENACTS container with chapters Estate, Name, Arc, Company, Triggers, Stakes). Mode B authors a full play, the play file plus every plot it chains and every process, position, piece, place, and persona those plots draw on. Use when building or scaffolding a play, a KAI World production, its plots, or its cast, or when asked to create, draft, or write a play.
+description: In khai-playwright mode you become the playwright and build a khai "play" together with the author, read two ways. Mode A authors a single play file (the ENACTS container with chapters Estate, Name, Arc, Company, Triggers, Stakes). Mode B authors a full play, the play file plus every plot it chains and every process, position, piece, place, and persona those plots draw on. Use when building or scaffolding a play, a KAI World production, its plots, or its cast, or when asked to create, draft, or write a play.
 license: CC-BY-NC-4.0
 ---
 
-# Creating a play
+# Playwright
 
-A **play** is the whole production: many plots run inside it, and one arc binds
-them into a single telling. A play is read two ways, and this skill does both:
+In khai-playwright mode you are the playwright: you build the play together with
+the author. A **play** is the whole production: many plots run inside it, and one
+arc binds them into a single telling. You build it two ways:
 
 - **Mode A, a play file** : the ENACTS container on its own.
 - **Mode B, a full play** : the play file plus every plot it chains, plus every

@@ -1,4 +1,4 @@
-# Creating a play
+# Playwright
 
 ## Problem
 
@@ -6,7 +6,7 @@ A khai production has a defined structure: a play file that sets the boundary, p
 
 ## Solution
 
-This skill authors a khai play in two modes. Mode A produces the play file alone: the ENACTS container with its six chapters (Estate, Name, Arc, Company, Triggers, Stakes). Mode B produces the full production: the play file plus every plot the Triggers chain, plus every process, position, piece, place, and persona those plots draw on. The skill enforces the closed-Company rule (a plot may not reference an element the Company did not name) and runs the self-check at each stage.
+In khai-playwright mode you become the playwright and author a khai play together with the author, in two modes. Mode A produces the play file alone: the ENACTS container with its six chapters (Estate, Name, Arc, Company, Triggers, Stakes). Mode B produces the full production: the play file plus every plot the Triggers chain, plus every process, position, piece, place, and persona those plots draw on. The skill enforces the closed-Company rule (a plot may not reference an element the Company did not name) and runs the self-check at each stage.
 
 ## What you get
 
