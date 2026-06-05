@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
 import { fileURLToPath } from "node:url";
-import { dirname, join, relative } from "node:path";
+import { dirname, join, relative, basename } from "node:path";
 import { mkdirSync, writeFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import {
@@ -461,7 +461,7 @@ A held breath.
 
   it("flags only the persona missing its gender wiring", () => {
     const results = validateProject({ root: fixtureRoot });
-    const failing = results.map((r) => r.file.split("/").pop());
+    const failing = results.map((r) => basename(r.file));
     expect(failing).toEqual(["sam.md"]);
     expect(results[0].errors.some((e) => e.includes("wiring(gender)"))).toBe(true);
   });
