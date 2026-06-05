@@ -1,5 +1,6 @@
 ---
 khai: process
+title: "Hearing, Decoded"
 license: CC-BY-NC-4.0
 stamp:
   owner: KAI HACKS AI
