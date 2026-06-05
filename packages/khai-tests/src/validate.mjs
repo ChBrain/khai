@@ -6,7 +6,14 @@
 import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { pathToFileURL } from "node:url";
-import { types, engineCard, referenceCard, renderEngineReadme } from "@chbrain/khai-arch";
+import {
+  types,
+  engineCard,
+  referenceCard,
+  renderEngineReadme,
+  engineMembers,
+  compositionOrder,
+} from "@chbrain/khai-arch";
 import * as khaiArch from "@chbrain/khai-arch";
 import {
   parseDoc,
@@ -221,42 +228,60 @@ export async function validateEnginePackage(pkgDir, { executeCompose = false } =
     }
   }
 
-  const { type, anchor, expressions = {} } = manifest;
-  const referenced = [anchor, ...Object.values(expressions)];
   const owner = { Project: "khai", Engine: manifest.engine };
 
-  // referenced files exist + conform
-  for (const file of referenced) {
-    const path = join(pkgDir, file);
+  // The composition tree, canon-normalized: the anchor+expressions shorthand and
+  // the explicit `members` array desugar to the same { file, type, parent } list,
+  // so the validator is shape-agnostic -- gender's depth-1 tree and a process
+  // ladder (root -> channel -> width) validate through the identical code. Each
+  // file is checked against its OWN member type, so a mixed-type tree is fine.
+  let members = [];
+  try {
+    members = engineMembers(manifest);
+  } catch (err) {
+    results.push({ file: "package.json", errors: [`manifest members: ${err.message}`] });
+  }
+  const referenced = new Set(members.map((m) => m.file));
+
+  // referenced files exist + conform (each against its declared member type)
+  for (const m of members) {
+    const path = join(pkgDir, m.file);
     if (!existsSync(path)) {
-      results.push({ file, errors: [`manifest references missing file: ${file}`] });
+      results.push({ file: m.file, errors: [`manifest references missing file: ${m.file}`] });
       continue;
     }
     const errors = validateContentFile(readFileSync(path, "utf8"), {
-      type,
+      type: m.type,
       baseDir: pkgDir,
       owner,
-      allowed: (manifest.extensions ?? {})[file],
+      allowed: (manifest.extensions ?? {})[m.file],
     });
-    if (errors.length) results.push({ file, errors });
+    if (errors.length) results.push({ file: m.file, errors });
   }
 
-  // no orphan content: every khai instance file must be referenced
+  // no orphan content: every khai instance file must be a declared member
   for (const file of instanceFiles(pkgDir)) {
-    if (!referenced.includes(file))
+    if (!referenced.has(file))
       results.push({ file, errors: [`content file not referenced in manifest: ${file}`] });
   }
 
-  // compose() smoke test - executes package code; trusted callers only
+  // compose() smoke test - executes package code; trusted callers only. The
+  // composable units are the tree's leaves (canon compositionOrder), general
+  // across shapes. The call shape follows the manifest: an explicit-members
+  // engine composes a leaf file; the anchor+expressions shorthand composes an
+  // expression name (kept so existing engines are unaffected).
   if (executeCompose) {
     try {
       const mod = await import(pathToFileURL(join(pkgDir, "index.mjs")).href);
-      for (const name of Object.keys(expressions)) {
-        const out = mod.compose({ expression: name });
+      const calls = Array.isArray(manifest.members)
+        ? Object.keys(compositionOrder(manifest)).map((leaf) => ({ leaf }))
+        : Object.keys(manifest.expressions ?? {}).map((expression) => ({ expression }));
+      for (const arg of calls) {
+        const out = mod.compose(arg);
         if (!out || typeof out !== "string")
           results.push({
             file: "index.mjs",
-            errors: [`compose({expression:"${name}"}) returned no string`],
+            errors: [`compose(${JSON.stringify(arg)}) returned no string`],
           });
       }
     } catch (err) {
