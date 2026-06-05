@@ -88,17 +88,21 @@ export function checkFrontmatter(doc, { typeIds, extra = {} }) {
   return e;
 }
 
-// --- H1: "# <Type>: <Name>" ----------------------------------------------
+// --- H1: "# <Type>: <Name>", exactly one ---------------------------------
 export function checkH1(doc, { type }) {
   const first = doc.headers[0];
   if (!first || first.level !== 1) return { name: null, errors: ["missing H1 title line"] };
+  // Exactly one H1 (#) per instance -- the title line. By design a khai file
+  // never carries a second first-level header; a second `#` is structural drift.
+  const count = doc.headers.filter((h) => h.level === 1).length;
+  const extra = count > 1 ? [`a khai file has exactly one H1 (#); found ${count}`] : [];
   const m = new RegExp(`^${proper(type)}: (.+)$`).exec(first.text);
   if (!m)
     return {
       name: null,
-      errors: [`H1 must read "# ${proper(type)}: <Name>", got "# ${first.text}"`],
+      errors: [...extra, `H1 must read "# ${proper(type)}: <Name>", got "# ${first.text}"`],
     };
-  return { name: m[1].trim(), errors: [] };
+  return { name: m[1].trim(), errors: extra };
 }
 
 // --- title: present, and echoes the H1 name ------------------------------
