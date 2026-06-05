@@ -1,5 +1,19 @@
 # @chbrain/khai-arch
 
+## 0.1.3
+
+### Patch Changes
+
+- c5cb182: Align every content template's H1 and `title` placeholders on `[title]` (was
+  `[name]`). The H1 (`# Type: [title]`) and the frontmatter `title:` now use one
+  word, so the echo between them is self-evident in the scaffold an author copies.
+- 7dc7952: Rewrite the play template's `## Estate` chapter: the production may be given as
+  a free name, or - preferred - a named repository with a deep link to it. Aligns
+  the chapter with the delivery model, where a production lives in its own
+  external `khai-plays-*` repo.
+- 6bffe4e: Add `title: "[name]"` to every content template's frontmatter, modelling the
+  declared-title shape authors now follow (the H1 name, mirrored in frontmatter).
+
 ## 0.1.2
 
 ### Patch Changes

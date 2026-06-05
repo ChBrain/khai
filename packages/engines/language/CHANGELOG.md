@@ -1,5 +1,17 @@
 # @chbrain/khai-engine-language
 
+## 0.1.2
+
+### Patch Changes
+
+- 0af21a2: Declare a `title` in each engine file's frontmatter, matching the file's H1
+  name (e.g. "Speaking, Borrowed"). Gives consumer surfaces a clean, declared
+  title to render instead of deriving one from the filename.
+- Updated dependencies [c5cb182]
+- Updated dependencies [7dc7952]
+- Updated dependencies [6bffe4e]
+  - @chbrain/khai-arch@0.1.3
+
 ## 0.1.1
 
 ### Patch Changes
