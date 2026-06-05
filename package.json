@@ -18,6 +18,7 @@
     "packages/khai-pack",
     "packages/khai-methods",
     "packages/khai-stage",
+    "packages/khai-plays",
     "packages/engines/*"
   ],
   "engines": {
