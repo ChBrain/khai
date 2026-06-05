@@ -156,10 +156,6 @@
       "setup": "Declare the law in Instructions, anchoring the root. Give each persona its read under Projection, linking the channel ladder files at the widths it holds. Under pressure a persona slides toward the width they hold most firmly, regardless of the room. Read it in the first beat; the room enacts the loss, never narrates it."
     }
   },
-  "scripts": {
-    "test": "vitest run",
-    "test:watch": "vitest"
-  },
   "dependencies": {
     "@chbrain/khai-arch": "^0.1.0"
   },
