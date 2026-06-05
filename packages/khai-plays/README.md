@@ -13,6 +13,7 @@ shape is in `registry/README.md`); it rewrites this file.
 ## Houses
 
 - **[Buechner](https://github.com/ChBrain/khai-plays-buechner)** (programme `@chbrain/khai-plays-buechner`): Fragmentarische Seziermesser-Poesie und die Anatomie des sozialen Leids, übersetzt in das strukturelle Spielfeld von khai.
+- **[Grimm](https://github.com/ChBrain/khai-plays-grimm)** (programme `@chbrain/khai-plays-grimm`): The Grimm production house: 210 plays staged from the Children's and Household Tales in the Margaret Hunt translation, each tale its own ENACTS production.
 
 ## Reading the bill
 
