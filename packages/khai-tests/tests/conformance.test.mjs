@@ -210,6 +210,7 @@ describe("wiring: engine requirements enforced on instances", () => {
   // under Projection. We synthesise that requirement and a consumer persona.
   const genderManifest = {
     engine: "gender",
+    type: "position",
     anchor: "position_gender.md",
     expressions: { male: "position_male.md", female: "position_female.md" },
     requires: [{ on: "persona", section: "Projection", link: "expression" }],
@@ -258,6 +259,30 @@ Her jaw tightens.
         targets: new Set(["position_male.md", "position_female.md"]),
       },
     ]);
+  });
+
+  it("resolves link targets from a members ladder (anchor = root, expression = leaves)", () => {
+    // A process ladder declared with explicit members, not the shorthand: the
+    // resolver must read the tree, so "anchor" is the single root and
+    // "expression" is the leaves only (never the intermediate channel).
+    const ladder = {
+      engine: "demo",
+      type: "process",
+      members: [
+        { file: "process_root.md", type: "process", parent: null },
+        { file: "process_channel.md", type: "process", parent: "process_root.md" },
+        { file: "process_channel_leaf.md", type: "process", parent: "process_channel.md" },
+      ],
+      requires: [
+        { on: "instructions", section: "Knowledge", link: "anchor" },
+        { on: "persona", section: "Projection", link: "expression" },
+      ],
+    };
+    const bySection = Object.fromEntries(
+      wiringRequirements([ladder]).map((r) => [r.section, r.targets]),
+    );
+    expect(bySection.Knowledge).toEqual(new Set(["process_root.md"]));
+    expect(bySection.Projection).toEqual(new Set(["process_channel_leaf.md"]));
   });
 
   it("passes a persona that links a gender expression in Projection", () => {
@@ -325,6 +350,7 @@ Her jaw tightens.
     const reqs = wiringRequirements([
       {
         engine: "demo",
+        type: "position",
         anchor: "anchor.md",
         requires: [{ on: "instructions", section: "Knowledge", link: "anchor", level: "audit" }],
       },
