@@ -61,12 +61,19 @@ houses at once, never in one instance.
 - Apply the branch-protection command khai-stage handed back, once the first run
   has created the check names to require.
 
-### 4. List the house on the bill
+### 4. List the house on the bill (computed, not judged)
 
-Register the house in the `khai-plays` registry: add `registry/<source>.json`
-with the id, the title, the repo, and the blurb you judged. This is the Estate
-identity pointing outward, to the bill the website reads. The impresario does not
-only build the venue; it announces it.
+Register the house in the khai monorepo, where the bill lives:
+
+```
+npx @chbrain/khai-plays register <source> --blurb "..."
+```
+
+It writes the card and rewrites the bill's README. The repo is the house and the
+package is its programme; both default from the slug, so you pass only the blurb
+you judged (`--repo` or `--package` override). Do not hand-write the card or edit
+the README. This is the Estate identity pointing outward, to the bill the website
+reads. The impresario does not only build the venue; it announces it.
 
 ## What you hand back
 
@@ -80,7 +87,7 @@ is staged later, one play at a time, in khai-playwright mode.
 - [ ] khai-stage stamped the house; no invariant file was hand-made or hand-edited
 - [ ] The house README reads as the Estate identity a play can name and resolve
 - [ ] The handoffs are done: install with the token, first run green, branch protection applied
-- [ ] The house is listed in khai-plays with a real card (id, title, repo, blurb)
+- [ ] The house is listed: `khai-plays register <source>` wrote the card (repo the house, package the programme)
 - [ ] No real play is written; the house is handed back empty
 ```
 
