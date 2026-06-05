@@ -83,8 +83,16 @@ describe("createModelJudge - the production, model-backed judge", () => {
   });
 
   it("requires a token at call time, not import time", async () => {
-    const judge = createModelJudge({ token: undefined, fetchImpl: async () => reply("{}") });
-    await expect(judge({ prose: "x", rubric: rubrics.conciseness })).rejects.toThrow(/token/);
+    const saved = { token: process.env.KHAI_REVIEW_TOKEN, github: process.env.GITHUB_TOKEN };
+    delete process.env.KHAI_REVIEW_TOKEN;
+    delete process.env.GITHUB_TOKEN;
+    try {
+      const judge = createModelJudge({ token: undefined, fetchImpl: async () => reply("{}") });
+      await expect(judge({ prose: "x", rubric: rubrics.conciseness })).rejects.toThrow(/token/);
+    } finally {
+      if (saved.token) process.env.KHAI_REVIEW_TOKEN = saved.token;
+      if (saved.github) process.env.GITHUB_TOKEN = saved.github;
+    }
   });
 
   it("parses a flag verdict (suggestion + reason) from the model reply", async () => {
