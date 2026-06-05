@@ -1,0 +1,170 @@
+{
+  "name": "@chbrain/khai-engine-language",
+  "version": "0.1.0",
+  "description": "khai engine content, the language domain: language as process, the gap a persona crosses channel by channel, width by width.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/language"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "language",
+    "tagline": "Language as process: a persona moves meaning across the gap, and what is heard is not what is understood, what is understood is not what is said.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_using_language.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_speaking.md",
+        "type": "process",
+        "parent": "process_using_language.md"
+      },
+      {
+        "file": "process_speaking_borrowed.md",
+        "type": "process",
+        "parent": "process_speaking.md"
+      },
+      {
+        "file": "process_speaking_carried.md",
+        "type": "process",
+        "parent": "process_speaking.md"
+      },
+      {
+        "file": "process_speaking_worn.md",
+        "type": "process",
+        "parent": "process_speaking.md"
+      },
+      {
+        "file": "process_speaking_mother_tongue.md",
+        "type": "process",
+        "parent": "process_speaking.md"
+      },
+      {
+        "file": "process_hearing.md",
+        "type": "process",
+        "parent": "process_using_language.md"
+      },
+      {
+        "file": "process_hearing_decoded.md",
+        "type": "process",
+        "parent": "process_hearing.md"
+      },
+      {
+        "file": "process_hearing_followed.md",
+        "type": "process",
+        "parent": "process_hearing.md"
+      },
+      {
+        "file": "process_hearing_caught.md",
+        "type": "process",
+        "parent": "process_hearing.md"
+      },
+      {
+        "file": "process_hearing_mother_tongue.md",
+        "type": "process",
+        "parent": "process_hearing.md"
+      },
+      {
+        "file": "process_reading.md",
+        "type": "process",
+        "parent": "process_using_language.md"
+      },
+      {
+        "file": "process_reading_deciphered.md",
+        "type": "process",
+        "parent": "process_reading.md"
+      },
+      {
+        "file": "process_reading_followed.md",
+        "type": "process",
+        "parent": "process_reading.md"
+      },
+      {
+        "file": "process_reading_caught.md",
+        "type": "process",
+        "parent": "process_reading.md"
+      },
+      {
+        "file": "process_reading_mother_tongue.md",
+        "type": "process",
+        "parent": "process_reading.md"
+      },
+      {
+        "file": "process_writing.md",
+        "type": "process",
+        "parent": "process_using_language.md"
+      },
+      {
+        "file": "process_writing_copied.md",
+        "type": "process",
+        "parent": "process_writing.md"
+      },
+      {
+        "file": "process_writing_drafted.md",
+        "type": "process",
+        "parent": "process_writing.md"
+      },
+      {
+        "file": "process_writing_polished.md",
+        "type": "process",
+        "parent": "process_writing.md"
+      },
+      {
+        "file": "process_writing_mother_tongue.md",
+        "type": "process",
+        "parent": "process_writing.md"
+      },
+      {
+        "file": "process_thinking.md",
+        "type": "process",
+        "parent": "process_using_language.md"
+      },
+      {
+        "file": "process_thinking_worn.md",
+        "type": "process",
+        "parent": "process_thinking.md"
+      },
+      {
+        "file": "process_thinking_mother_tongue.md",
+        "type": "process",
+        "parent": "process_thinking.md"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_using_language.md) declares language as a loop a persona runs whenever they are awake: meaning moves out, moves in, or stays inside, and the gap between what is meant and what the language gives is recorded per channel.",
+      "issue": "Five channels, each its own loop. Speaking and writing carry meaning out; hearing and reading let it in; thinking runs underneath, never reaching the room. Each input or output channel runs across four widths, from a language gripped as a foreign object up to one that needs no grip because it is the body; thinking runs only the two deepest. One channel may sit at a different width than another in the same language; widths do not move together.",
+      "require": "Two altitudes hold the engine. The law, declared once in the project's Instructions, so every persona is read through the ladder. The link, carried by each persona under Projection: the languages it holds and the width it occupies in each.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the floor: the law is declared and each persona links real ladder files at declared widths. Whether a width is true to the persona is semantic, taught and reviewed, never failed by the suite. The agent does not narrate widths; the width shows in what the persona manages and what they miss.",
+      "setup": "Declare the law in Instructions, anchoring the root. Give each persona its read under Projection, linking the channel ladder files at the widths it holds. Under pressure a persona slides toward the width they hold most firmly, regardless of the room. Read it in the first beat; the room enacts the loss, never narrates it."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.3",
+    "vitest": "^4.1.8"
+  }
+}
