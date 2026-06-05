@@ -8,8 +8,8 @@ import arch from "@chbrain/khai-arch";
 
 const pkgRoot = join(dirname(fileURLToPath(import.meta.url)), "..");
 
-describe("compose: creating-a-play", () => {
-  const r = composeSkill(join(pkgRoot, "src", "creating-a-play"));
+describe("compose: khai-playwright", () => {
+  const r = composeSkill(join(pkgRoot, "src", "khai-playwright"));
 
   it("composes with no guard errors", () => {
     expect(r.errors).toEqual([]);
@@ -51,15 +51,15 @@ describe("buildAll", () => {
   });
 
   it("produces a deterministic zip (stable sha across runs)", () => {
-    const a = buildAll({ write: false }).manifest.skills.find((s) => s.name === "creating-a-play");
-    const b = buildAll({ write: false }).manifest.skills.find((s) => s.name === "creating-a-play");
+    const a = buildAll({ write: false }).manifest.skills.find((s) => s.name === "khai-playwright");
+    const b = buildAll({ write: false }).manifest.skills.find((s) => s.name === "khai-playwright");
     expect(a.zipSha256).toBe(b.zipSha256);
   });
 
   it("MANIFEST zipSha256 equals the written zip file's sha256", () => {
     buildAll({ write: true });
     const man = JSON.parse(readFileSync(join(pkgRoot, "dist", "MANIFEST.json"), "utf8"));
-    const entry = man.skills.find((s) => s.name === "creating-a-play");
+    const entry = man.skills.find((s) => s.name === "khai-playwright");
     const fileSha = createHash("sha256")
       .update(readFileSync(join(pkgRoot, "dist", entry.zip)))
       .digest("hex");
