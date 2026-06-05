@@ -12,7 +12,7 @@ shape is in `registry/README.md`); it rewrites this file.
 
 ## Houses
 
-None registered yet.
+- **[Grimm](https://github.com/ChBrain/khai-plays-grimm)** (programme `@chbrain/khai-plays-grimm`): The Grimm production house: 210 plays staged from the Children's and Household Tales in the Margaret Hunt translation, each tale its own ENACTS production.
 
 ## Reading the bill
 
