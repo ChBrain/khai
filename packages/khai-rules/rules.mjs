@@ -101,6 +101,29 @@ export function checkH1(doc, { type }) {
   return { name: m[1].trim(), errors: [] };
 }
 
+// --- title: present, and echoes the H1 name ------------------------------
+// The frontmatter `title` must be present and must equal the instance's H1 name
+// ("# Type: Name"), so stripping the YAML (e.g. before handing content to an
+// LLM) loses nothing -- the rendered title is recoverable from the markdown
+// alone. This holds for every type, play included: a play's title echoes its
+// H1, not its `## Name` chapter (that chapter carries the production's billed
+// name, a separate concern the validator leaves alone). This is the frontmatter
+// `title` key -- distinct from the retired `## Title` section spelling (now
+// `## Taxonomy`).
+export function checkTitle(doc, { type }) {
+  if (!doc.ok) return []; // a parse failure is reported by checkFrontmatter
+  const title = doc.data?.title;
+  if (typeof title !== "string" || title.trim() === "") return ["frontmatter missing `title`"];
+  // Echo against the H1 name. A malformed/absent H1 is already reported by
+  // checkH1, so when there is no name to echo we stay silent rather than
+  // double-report it.
+  const { name } = checkH1(doc, { type });
+  if (!name) return [];
+  if (title.trim() !== name)
+    return [`frontmatter title "${title}" must match the H1 name "${name}"`];
+  return [];
+}
+
 // --- H2 set: exact, ordered, closed --------------------------------------
 export function checkH2SetAndOrder(doc, { expected }) {
   const got = doc.headers.filter((h) => h.level === 2).map((h) => h.text);
