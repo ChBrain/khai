@@ -41,6 +41,15 @@ Method registry. Structured process definitions codified from wherever the
 practice originated — a book, a team, a tradition. Attribution is recorded via
 `invented_by` and `source`; khai packages and credits, never claims.
 
+### khai-plays
+
+Play registry (planned). The index of khai plays: one card per production, each
+pointing to where the production lives. khai holds the registry, not the
+productions. Plays are authored in khai-playwright mode and live in external
+collection repos (`khai-plays-<source>`); this package is the single anchor the
+website consumes to render them. Peer to `khai-skills` and `khai-methods`: it
+registers, it does not contain.
+
 ### khai-guard
 
 The enforcement kernel. Runs four gates:
@@ -78,6 +87,44 @@ changes to this package can land.
 Packaging. Turns a typed engine bundle into a deterministic, guarded zip in the
 khai cultures layout (overhead at root, flat content in a subfolder). The serve
 step in the delivery pipeline.
+
+---
+
+## Plays: the registry, not the productions
+
+A play is a production authored in khai-playwright mode: a play file, the plots
+it chains, and the elements those plots cast. A play is not an engine and not
+canon. It is an instance built with khai, so khai's job is to register it, never
+to hold it. This is the split that keeps Cultures out of the monorepo, applied
+one layer up:
+
+- **khai owns** the `play` type (`khai-arch`), the conformance kit that validates
+  a play (`khai-tests`), the seal that packages it (`khai-pack`), and the
+  registry that indexes every play as a card (`khai-plays`).
+- **khai does not own** the productions. Each collection is its own external repo
+  keyed by source (`khai-plays-buechner`, `khai-plays-<author>`), consuming khai
+  as Cultures does (canon, kit, guard) and publishing its productions as
+  `khai-play-<production>` packages.
+
+The pipeline, end to end:
+
+| Stage    | Who                                | What                                                                                |
+| -------- | ---------------------------------- | ----------------------------------------------------------------------------------- |
+| author   | `khai-playwright` (mode)           | authors a production, sealed as a zip by `khai-pack`                                |
+| collect  | `khai-plays-<source>` (external)   | validates (`khai-tests`), guards (`khai-guard`), publishes `khai-play-<production>` |
+| register | `khai-plays` (registry, khai owns) | one card per production: title, source, where it lives. The index, not the content  |
+| render   | website                            | reads the registry, renders "khai plays" with a card per production                 |
+
+Website discovery differs from engines on purpose. Engines are installed packages
+the site finds in `node_modules` (`loadEngines`). Plays are external productions
+the site does not install: it reads khai's registry and renders a card per entry,
+each linking out to its production. khai is the source of truth for which plays
+exist; the productions stay where they are made.
+
+Status: the design, not the build. The `khai-plays` registry package and the
+first collection (`khai-plays-buechner`) are forthcoming; this records the
+contract they instantiate. When `khai-plays` lands it takes a `plays/*` lane,
+peer to `skills/*` and `methods/*`.
 
 ---
 
