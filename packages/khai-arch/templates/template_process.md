@@ -1,6 +1,6 @@
 ---
 khai: process
-title: "[name]"
+title: "[title]"
 license: CC-BY-NC-4.0
 stamp:
   owner: KAI HACKS AI
@@ -8,7 +8,7 @@ stamp:
   date: "2026-06-03"
 ---
 
-# Process: [name]
+# Process: [title]
 
 ## Taxonomy
 
