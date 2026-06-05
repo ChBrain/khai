@@ -1,5 +1,17 @@
 # @chbrain/khai-engine-gender
 
+## 0.1.5
+
+### Patch Changes
+
+- 20d7734: Declare a `title` in each engine file's frontmatter (Gender, Male, Female),
+  matching the file's H1 name. Gives consumer surfaces a clean, declared title
+  to render instead of deriving one from the filename.
+- Updated dependencies [c5cb182]
+- Updated dependencies [7dc7952]
+- Updated dependencies [6bffe4e]
+  - @chbrain/khai-arch@0.1.3
+
 ## 0.1.4
 
 ### Patch Changes

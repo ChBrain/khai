@@ -1,5 +1,31 @@
 # @chbrain/khai-tests
 
+## 0.1.5
+
+### Patch Changes
+
+- b5ab771: Require a `title` in content frontmatter, and enforce that it echoes the H1
+  name (`# Type: <Name>`). `khai-rules` gains a `checkTitle` atom; `khai-tests`
+  wires it into `validateContentFile`, so every validated instance -- engine
+  content, consumer instances, and content surfaces generate downstream -- must
+  carry a `title` that matches its H1. One pattern, recoverable from the markdown
+  alone when the YAML is stripped.
+
+  `checkH1` also now enforces that an instance carries **exactly one** H1 (`#`):
+  by design a khai file has a single first-level header, so a second `#` is drift.
+
+  Note: this is a stricter gate. Downstream content without a matching `title`, or
+  with a second H1, will now fail validation; bump accordingly if releasing to
+  external consumers.
+
+- Updated dependencies [c5cb182]
+- Updated dependencies [7dc7952]
+- Updated dependencies [8ab94b7]
+- Updated dependencies [b5ab771]
+- Updated dependencies [6bffe4e]
+  - @chbrain/khai-arch@0.1.3
+  - @chbrain/khai-rules@0.1.2
+
 ## 0.1.4
 
 ### Patch Changes

@@ -1,5 +1,32 @@
 # @chbrain/khai-skills
 
+## 0.0.8
+
+### Patch Changes
+
+- 72bbc7d: Thin khai-impresario to orchestrate khai-stage and khai-plays. The skill now
+  stays fat where it judges (the source, its rights, the card) and collapses to a
+  pointer where the house is computed: run khai-stage to stamp the invariant house,
+  finish the handoffs, then list the house on the khai-plays bill. The wiring is no
+  longer described file by file in prose; it is stamped, so it cannot drift between
+  houses or between models.
+- f527b57: Point khai-impresario step 4 at the `khai-plays register` command instead of a
+  hand-written card. The repo is the house and the package is its programme; both
+  default from the slug, so the impresario passes only the blurb it judged. This
+  follows khai-plays gaining a `register` CLI and requiring `repo`: the skill stays
+  fat where it judges (the source) and a thin pointer where the bill is computed.
+- 6cba198: Add the khai-impresario skill: the source-agnostic guide for raising a khai
+  production house. In khai-impresario mode you stand up a khai-plays-<source>
+  collection repository, wired to the four pillars, gated, protected on both faces,
+  seeded with a fixture for a green first run, and listed in the khai-plays
+  registry. It mints the house's Estate identity (the owner every play logs in its
+  Estate) and hands back an empty venue; the plays are written separately, in
+  khai-playwright mode.
+- Updated dependencies [c5cb182]
+- Updated dependencies [7dc7952]
+- Updated dependencies [6bffe4e]
+  - @chbrain/khai-arch@0.1.3
+
 ## 0.0.7
 
 ### Patch Changes
