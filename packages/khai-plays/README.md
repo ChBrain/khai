@@ -1,14 +1,20 @@
 # khai-plays
 
-The play registry: the bill. khai holds the index of houses, not the
-productions. Each house (a `khai-plays-<source>` collection) registers one entry
-under `registry/`; the website reads them and renders one card per house, with
-its productions underneath.
+The play registry: the bill. khai holds the index of the houses, not the
+productions. Each card registers a house (a `khai-plays-<source>` collection)
+and the package the website pulls to read that house's plays. khai knows the
+house by its card; the website knows it from khai and pulls the package for the
+rest.
 
-- `registry/<source>.json` is a house card (see `registry/README.md` for the shape).
-- `loadRegistry()` reads and validates every entry, sorted by id; a malformed card fails the build.
-- `houses` is the loaded bill.
+Generated from the registry, never hand-edited. Run
+`npx @chbrain/khai-plays register <source> --blurb "..."` to add a card (its
+shape is in `registry/README.md`); it rewrites this file.
 
-khai owns this registry; the productions live in the external houses, raised by
-`khai-stage` and written in `khai-playwright` mode. The impresario lists a house
-here when it raises it.
+## Houses
+
+None registered yet.
+
+## Reading the bill
+
+`loadRegistry()` and `houses` return the validated cards, sorted by id. The
+website renders them and pulls each card's package to read that house's plays.

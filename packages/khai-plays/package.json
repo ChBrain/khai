@@ -8,6 +8,9 @@
     ".": "./index.mjs",
     "./package.json": "./package.json"
   },
+  "bin": {
+    "khai-plays": "./bin/khai-plays.mjs"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chbrain/khai.git",
@@ -20,6 +23,7 @@
   },
   "files": [
     "index.mjs",
+    "bin/**",
     "registry/**"
   ],
   "scripts": {
