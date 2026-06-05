@@ -56,8 +56,8 @@ function register(args) {
     title: flags.title ?? source,
     package: flags.package ?? `@chbrain/khai-plays-${id}`,
     blurb: flags.blurb ?? "",
+    repo: flags.repo ?? `https://github.com/ChBrain/khai-plays-${id}`,
   };
-  if (flags.repo !== undefined) entry.repo = flags.repo;
 
   const errors = validateEntry(entry, { id });
   if (errors.length) fail(`card for "${id}": ${errors.join("; ")}`);

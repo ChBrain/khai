@@ -28,9 +28,9 @@ describe("khai-plays: entry validation", () => {
     expect(validateEntry(good, { id: "buechner" })).toEqual([]);
   });
 
-  it("accepts a card without the optional repo", () => {
+  it("requires repo (the house) and rejects a card without it", () => {
     const { repo, ...noRepo } = good;
-    expect(validateEntry(noRepo, { id: "buechner" })).toEqual([]);
+    expect(validateEntry(noRepo, { id: "buechner" }).some((e) => e.includes("repo"))).toBe(true);
   });
 
   it("flags a bad slug, a bad package, a non-URL repo, missing fields, and a filename mismatch", () => {
@@ -51,7 +51,13 @@ describe("khai-plays: loading", () => {
 
   it("loads entries sorted by id and throws on a malformed one", () => {
     const dir = mkdtempSync(join(tmpdir(), "khai-plays-"));
-    const card = (id) => ({ id, title: id, package: `@chbrain/khai-plays-${id}`, blurb: id });
+    const card = (id) => ({
+      id,
+      title: id,
+      package: `@chbrain/khai-plays-${id}`,
+      blurb: id,
+      repo: `https://github.com/ChBrain/khai-plays-${id}`,
+    });
     writeFileSync(join(dir, "zeta.json"), JSON.stringify(card("zeta")));
     writeFileSync(join(dir, "alpha.json"), JSON.stringify(card("alpha")));
     expect(loadRegistry(dir).map((h) => h.id)).toEqual(["alpha", "zeta"]);
@@ -72,11 +78,10 @@ describe("khai-plays: render", () => {
     expect(md).toContain("None registered yet.");
   });
 
-  it("lists each house with its package, and links the repo when present", () => {
-    const { repo, ...noRepo } = good;
-    const md = renderReadme([good, noRepo]);
-    expect(md).toContain("`@chbrain/khai-plays-buechner`");
-    expect(md).toContain("([source](https://github.com/ChBrain/khai-plays-buechner))");
+  it("links each house and shows its programme package", () => {
+    const md = renderReadme([good]);
+    expect(md).toContain("[Buechner](https://github.com/ChBrain/khai-plays-buechner)");
+    expect(md).toContain("programme `@chbrain/khai-plays-buechner`");
   });
 
   it("is free of em/en-dashes and the clause dash (house voice)", () => {
