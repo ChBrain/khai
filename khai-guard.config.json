@@ -75,6 +75,11 @@
         "allow": ["packages/khai-plays/**"]
       },
       {
+        "pattern": "examples/*",
+        "layer": "solution",
+        "allow": ["examples/**"]
+      },
+      {
         "pattern": "dependabot/*",
         "layer": "deps",
         "allow": ["**/package.json", ".github/workflows/**"]
