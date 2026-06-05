@@ -148,12 +148,26 @@
         "parent": "process_thinking.md"
       }
     ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
     "card": {
       "wire": "Attaches at Process. The root (process_using_language.md) declares language as a loop a persona runs whenever they are awake: meaning moves out, moves in, or stays inside, and the gap between what is meant and what the language gives is recorded per channel.",
       "issue": "Five channels, each its own loop. Speaking and writing carry meaning out; hearing and reading let it in; thinking runs underneath, never reaching the room. Each input or output channel runs across four widths, from a language gripped as a foreign object up to one that needs no grip because it is the body; thinking runs only the two deepest. One channel may sit at a different width than another in the same language; widths do not move together.",
-      "require": "Two altitudes hold the engine. The law, declared once in the project's Instructions, so every persona is read through the ladder. The link, carried by each persona under Projection: the languages it holds and the width it occupies in each.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the ladder reads system-wide and no persona escapes it. The link: each persona carries, under Projection, the languages it holds, linking the channel and the width it occupies in each.",
       "enforce": "Structure is checked; the read is judged. The kit verifies the floor: the law is declared and each persona links real ladder files at declared widths. Whether a width is true to the persona is semantic, taught and reviewed, never failed by the suite. The agent does not narrate widths; the width shows in what the persona manages and what they miss.",
-      "setup": "Declare the law in Instructions, anchoring the root. Give each persona its read under Projection, linking the channel ladder files at the widths it holds. Under pressure a persona slides toward the width they hold most firmly, regardless of the room. Read it in the first beat; the room enacts the loss, never narrates it."
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each persona its read under Projection: for each language it holds, link the channel ladder files at the widths it occupies. Under pressure a persona slides toward the width they hold most firmly, regardless of the room. Read it in the first beat; the room enacts the loss, never narrates it."
     }
   },
   "dependencies": {
