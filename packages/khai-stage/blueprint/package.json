@@ -1,0 +1,22 @@
+{
+  "name": "@chbrain/khai-plays-{{SOURCE}}",
+  "private": true,
+  "version": "0.0.0",
+  "description": "khai plays: the {{SOURCE_TITLE}} production house. Plays staged with khai; the source is credited where it is in the public domain.",
+  "type": "module",
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "scripts": {
+    "test": "vitest run",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@chbrain/khai-arch": "^0.1.0",
+    "@chbrain/khai-tests": "^0.1.0",
+    "@chbrain/khai-guard": "^0.1.0",
+    "@chbrain/khai-pack": "^0.0.3",
+    "vitest": "^4.1.8",
+    "prettier": "^3.3.0",
+    "husky": "^9.1.0"
+  }
+}
