@@ -362,14 +362,18 @@ function bucket(findings) {
 
 function requirementsFromEngine(manifest) {
   const reqs = [];
+  // Resolve link targets from the canon-normalized member tree, so `link` is
+  // shape-agnostic: "anchor" is the root member, "expression" is every leaf (the
+  // composable units a consumer links), "any" is the whole tree. The shorthand
+  // (root = anchor, leaves = expressions) and an explicit ladder resolve the same.
+  const members = engineMembers(manifest);
+  const root = members.find((m) => m.parent === null)?.file;
+  const parentFiles = new Set(members.map((m) => m.parent).filter(Boolean));
+  const leaves = members.filter((m) => !parentFiles.has(m.file)).map((m) => m.file);
   for (const r of [].concat(manifest.requires ?? [])) {
     const which = r.link ?? "any";
     const files =
-      which === "anchor"
-        ? [manifest.anchor]
-        : which === "expression"
-          ? Object.values(manifest.expressions ?? {})
-          : [manifest.anchor, ...Object.values(manifest.expressions ?? {})];
+      which === "anchor" ? [root] : which === "expression" ? leaves : members.map((m) => m.file);
     reqs.push({
       // Stable id for world-override + reporting: engine, instance type, section.
       id: `${manifest.engine}:${r.on}:${r.section}`,
