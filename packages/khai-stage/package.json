@@ -1,0 +1,36 @@
+{
+  "name": "@chbrain/khai-stage",
+  "version": "0.0.0",
+  "description": "Stamp a khai production house from the codified blueprint: the computed half of raising a khai-plays-<source> collection, run by the khai-impresario skill.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "khai-stage": "bin/khai-stage.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/khai-stage"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "bin/**",
+    "blueprint/**"
+  ],
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.8"
+  }
+}

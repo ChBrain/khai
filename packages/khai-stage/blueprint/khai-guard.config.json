@@ -1,0 +1,23 @@
+{
+  "source": ["plays/**"],
+  "test": ["tests/**", ".github/workflows/**", ".husky/**"],
+  "exemptRenames": true,
+  "licensePolicy": {
+    "packages": ["package.json"],
+    "packageLicenses": ["SEE LICENSE IN LICENSE and LICENSE-CODE"]
+  },
+  "branchScope": {
+    "shared": [".changeset/**", "package.json", "package-lock.json"],
+    "lanes": [
+      { "pattern": "play/*", "layer": "solution", "allow": ["plays/**"] },
+      {
+        "pattern": "governance/*",
+        "layer": "governance",
+        "allow": [".github/**", ".husky/**", "khai-guard.config.json", "tests/**"]
+      },
+      { "pattern": "chore/*", "layer": "general", "allow": [] },
+      { "pattern": "fix/*", "layer": "general", "allow": [] },
+      { "pattern": "docs/*", "layer": "general", "allow": [] }
+    ]
+  }
+}
