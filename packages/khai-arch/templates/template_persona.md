@@ -1,6 +1,6 @@
 ---
 khai: persona
-title: "[name]"
+title: "[title]"
 license: CC-BY-NC-4.0
 stamp:
   owner: KAI HACKS AI
@@ -9,7 +9,7 @@ stamp:
 type: fictional
 ---
 
-# Persona: [name]
+# Persona: [title]
 
 ## Taxonomy
 
