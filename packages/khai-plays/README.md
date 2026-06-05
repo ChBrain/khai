@@ -12,7 +12,7 @@ shape is in `registry/README.md`); it rewrites this file.
 
 ## Houses
 
-None registered yet.
+- **[Buechner](https://github.com/ChBrain/khai-plays-buechner)** (programme `@chbrain/khai-plays-buechner`): Fragmentarische Seziermesser-Poesie und die Anatomie des sozialen Leids, übersetzt in das strukturelle Spielfeld von khai.
 
 ## Reading the bill
 
