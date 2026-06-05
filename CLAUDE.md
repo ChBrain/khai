@@ -48,6 +48,12 @@ npx khai-guard advise --files <paths>
    ships no package change still needs an **empty** changeset:
    `npx changeset add --empty`.
 5. **Never merge.** Open the PR and stop. Merging is the maintainer's.
+6. **A PR with more coming is a draft.** If the change is not whole, open the PR
+   as a **draft** (or label it do-not-merge) and say what is still to land.
+   Never stack a follow-up commit on a PR that is already _ready_: the maintainer
+   may squash-merge it before your commit arrives, and the rest is stranded in
+   the branch. Mark it ready only when the change is complete. The guard cannot
+   see this — draft state lives on GitHub, not in the diff — so it is on you.
 
 ## Lanes at a glance (the full table is in docs/BRANCHING.md)
 
