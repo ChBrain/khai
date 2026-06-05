@@ -39,6 +39,7 @@ Below Worn, thinking in this language is explicitly lost.
 The persona is thinking in another language while running the outward channel, and the difference is what forces translation.
 
 ## Echo
+
 The result of a thought process, which becomes the input for the next channel.
 If the thought is a reaction in a language deeper than the room's,
 the Echo is passed back to [Thinking](process_thinking.md) to be translated.
