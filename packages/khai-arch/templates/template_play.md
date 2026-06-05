@@ -12,7 +12,7 @@ stamp:
 
 ## Estate
 
-Who holds the whole run and answers for it: the production this play belongs to. If no one answers for the run, it is not yet a production. Link the production where it has a file; where it does not, ask whether it should use a khai type.
+Who holds the whole run and answers for it: the production this play belongs to. Give it as a free name, or - preferred - a named repository with a deep link to it (e.g. [khai-plays-buechner](https://github.com/ChBrain/khai-plays-buechner)). If no one answers for the run, it is not yet a production.
 
 ## Name
 
