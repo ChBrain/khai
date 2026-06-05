@@ -1,5 +1,5 @@
 ---
-name: creating-a-play
+name: khai-playwright
 description: Creates a khai "play", read two ways. Mode A authors a single play file (the ENACTS container with chapters Estate, Name, Arc, Company, Triggers, Stakes). Mode B authors a full play, the play file plus every plot it chains and every process, position, piece, place, and persona those plots draw on. Use when building or scaffolding a play, a KAI World production, its plots, or its cast, or when asked to create, draft, or write a play.
 license: CC-BY-NC-4.0
 ---

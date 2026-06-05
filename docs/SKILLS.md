@@ -100,7 +100,7 @@ skill work then rides the `skills/*` lane.
 
 ## Status
 
-- **Built:** `creating-a-play` — the first skill, centred on the `play` house
+- **Built:** `khai-playwright` — the first skill, centred on the `play` house
   type (ENACTS: Estate, Name, Arc, Company, Triggers, Stakes).
 - **Next:** the redesigned authoring/audit surface, settled skill by skill as
   each lands — not lifted wholesale.
