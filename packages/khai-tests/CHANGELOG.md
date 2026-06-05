@@ -1,5 +1,21 @@
 # @chbrain/khai-tests
 
+## 0.1.4
+
+### Patch Changes
+
+- 1306d37: validateEnginePackage now reads an engine's composition tree through the canon
+  (engineMembers / compositionOrder), so an explicit-members ladder engine
+  validates the same way as the anchor+expressions shorthand. Each content file is
+  checked against its own member type, the orphan check runs against the member
+  set, and the compose smoke runs over the tree leaves. No change for shorthand
+  engines (gender normalizes through the identical path).
+- 571d736: requirementsFromEngine now reads an engine's normalized member tree, so the
+  wiring `link` is shape-agnostic: "anchor" resolves to the root member,
+  "expression" to the leaves, "any" to the whole tree. A members ladder (a process
+  root with channels and widths) now enforces its persona and Instructions wiring
+  the same way the anchor+expressions shorthand does.
+
 ## 0.1.3
 
 ### Patch Changes
