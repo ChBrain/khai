@@ -468,6 +468,10 @@ function runBranch() {
   console.log(
     `KHAI-Guard branch: on "${name}" (${files.length} file(s)). Commit + push; branch-check will pass.`,
   );
+  console.log(
+    "KHAI-Guard branch: not finished? Open the PR as a draft, and mark it ready " +
+      "only when the change is whole.",
+  );
 }
 
 // Pull the `license:` value out of a SKILL.md (or any) YAML frontmatter block.
