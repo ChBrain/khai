@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-stress",
+  "version": "0.1.0",
+  "description": "khai engine content, the stress domain: stress response as process, how a persona routes a demand that exceeds its resources.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/stress"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "stress",
+    "tagline": "Stress response as process: how a persona routes a demand that exceeds its resources, fracturing into fight, flight, freeze, or fawn.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_stress.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_fight.md",
+        "type": "process",
+        "parent": "process_stress.md"
+      },
+      {
+        "file": "process_flight.md",
+        "type": "process",
+        "parent": "process_stress.md"
+      },
+      {
+        "file": "process_freeze.md",
+        "type": "process",
+        "parent": "process_stress.md"
+      },
+      {
+        "file": "process_fawn.md",
+        "type": "process",
+        "parent": "process_stress.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_stress.md) declares stress as a threshold breach when demands exceed resources, routing the surge system-wide.",
+      "issue": "Four responses a persona may run: fight, flight, freeze, and fawn. Each is a process file composed under the root, so the action follows the demand. The responses are mutually exclusive at any single moment.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the specific stress response it runs in the scene.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real stress response process. Whether the response is true to the moment is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its read under Projection, linking the specific response. Read it in the first beat; the room enacts it, never narrates it."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.5"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.6",
+    "vitest": "^4.1.8"
+  }
+}
