@@ -42,15 +42,16 @@ things, so that is where to slow down.
 - **The card.** Write the title and the one-line blurb the bill will show. This
   is editorial. The rest is not.
 - **The voice.** Define the house voice brief: the grammatical register, tone, and editorial constraints (no em or en dashes) that every play in this house must default to.
+- **The Manager.** Generate a unique persona for the Manager of the house. This persona must be specific to the house's source (e.g. historical figures, key characters, or thematic archetypes associated with the author or tradition). Define their taxonomy, projection, action, shadow, and tell. They will occupy the standard `Manager` position.
 
 ### 2. Stamp the house (computed, not judged)
 
 Run the generator. It lays the invariant house (the four pillars, the gates, both
 faces of protection, and the README that is the Estate identity), seeds a fixture
-so the first run is green, and prints the handoffs:
+so the first run is green, and prints the handoffs. Pass the manager's name (as a slug) as the third argument:
 
 ```
-npx khai-stage <source>
+npx khai-stage <source> [targetDir] [manager]
 ```
 
 Do not re-create these files by hand. They are identical in every house, so they
@@ -61,6 +62,7 @@ houses at once, never in one instance.
 
 - `npm ci` (needs the registry token), then commit and push. The first run is
   green on the fixture.
+- **Flesh out the Manager's persona.** Write the generated Manager persona details (Taxonomy, Projection, Action, Shadow, and Tell) into `management/persona_<manager>.md` (which was stamped as a template).
 - Apply the branch-protection command khai-stage handed back, once the first run
   has created the check names to require.
 
