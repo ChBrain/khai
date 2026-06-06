@@ -14,6 +14,7 @@
 ## Collaboration
 
 - Nicias and Pericles discuss a plan before they present it to the Human.
+- Personas prefix their speech to indicate who is speaking.
 
 ## Knowledge
 
