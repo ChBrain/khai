@@ -1,5 +1,11 @@
 # @chbrain/khai-plays
 
+## 0.0.4
+
+### Patch Changes
+
+- df131a8: Add management voices: choregos position, Nicias and Pericles personas.
+
 ## 0.0.3
 
 ### Patch Changes
