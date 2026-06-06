@@ -1,5 +1,11 @@
 # @chbrain/khai-stage
 
+## 0.0.3
+
+### Patch Changes
+
+- 584a426: Align house blueprint governance settings: add changeset-release branch scope lane, allow REFERENCE.md and REFERENCES.md in the governance lane, add default REFERENCE.md template with generic language policy, and update the audit workflow to be advisory.
+
 ## 0.0.2
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @chbrain/khai-guard
 
+## 0.1.6
+
+### Patch Changes
+
+- 6d11f95: Add `--staged-only` / `-s` and `--tracked-only` / `-t` options to the `khai-guard branch` CLI command to allow selective change resolution during branch creation when untracked files are present.
+
 ## 0.1.5
 
 ### Patch Changes
