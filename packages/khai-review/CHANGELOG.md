@@ -1,5 +1,14 @@
 # @chbrain/khai-review
 
+## 0.1.1
+
+### Patch Changes
+
+- 622c7f8: Fix token validation test isolation. The test verifies token validation happens at call-time, not import-time. Clear KHAI_REVIEW_TOKEN and GITHUB_TOKEN environment variables before test execution to ensure the test cannot fall back to env vars.
+- b5b82a8: Add the `khai-type` rubric to evaluate per-section-type purposes.
+- af47aaf: Teach the CLI to read H2 section bodies from `.md` files as review targets.
+- eb11a0c: Add the parameterized `voice-conformance` rubric that resolves the effective voice via the override chain.
+
 ## 0.1.0
 
 ### Minor Changes
