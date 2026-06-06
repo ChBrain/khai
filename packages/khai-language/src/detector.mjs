@@ -1,0 +1,330 @@
+import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
+import { join, dirname, resolve, basename } from "node:path";
+import matter from "gray-matter";
+import LanguageDetect from "languagedetect";
+
+const lngDetector = new LanguageDetect();
+
+const ISO_MAP = {
+  en: "english",
+  de: "german",
+  da: "danish",
+};
+
+const DEFAULT_PROSE_SECTIONS = [
+  "projection",
+  "action",
+  "shadow",
+  "arc",
+  "stakes",
+  "yearbook",
+  "tagline",
+  "tell",
+  "withheld",
+  "shown",
+  "offers",
+  "loses",
+  "orders",
+  "apparent",
+  "load bearing",
+];
+
+const DEFAULT_NLP_LANGUAGES = [];
+
+/**
+ * Normalizes a language code or name to the lowercase name expected by languagedetect.
+ */
+function normalizeLanguage(lang) {
+  if (!lang) return "english";
+  const normalized = lang.trim().toLowerCase();
+  return ISO_MAP[normalized] || normalized;
+}
+
+/**
+ * Parses a markdown file's YAML frontmatter.
+ */
+function parseFrontmatter(filePath) {
+  if (!existsSync(filePath)) return {};
+  try {
+    const content = readFileSync(filePath, "utf8");
+    const parsed = matter(content);
+    return parsed.data || {};
+  } catch {
+    return {};
+  }
+}
+
+/**
+ * Finds the play file (declaring khai: play) in the directory of the file or its parents.
+ */
+function findPlayFile(fileDir, projectPath) {
+  let current = resolve(fileDir);
+  const root = resolve(projectPath);
+
+  while (current.startsWith(root)) {
+    if (existsSync(current)) {
+      const files = readdirSync(current);
+      for (const file of files) {
+        if (file.endsWith(".md") && file.startsWith("play_")) {
+          const fullPath = join(current, file);
+          const data = parseFrontmatter(fullPath);
+          if (data.khai === "play") {
+            return fullPath;
+          }
+        }
+      }
+    }
+    const parent = dirname(current);
+    if (parent === current) break;
+    current = parent;
+  }
+  return null;
+}
+
+/**
+ * Resolves the language for a given file based on the inheritance chain:
+ * 1. File frontmatter
+ * 2. Play file frontmatter
+ * 3. House README frontmatter
+ * 4. Fallback: english
+ */
+export function resolveLanguage(filePath, projectPath) {
+  const fileData = parseFrontmatter(filePath);
+  if (fileData.language) {
+    return normalizeLanguage(fileData.language);
+  }
+
+  const playFile = findPlayFile(dirname(filePath), projectPath);
+  if (playFile) {
+    const playData = parseFrontmatter(playFile);
+    if (playData.language) {
+      return normalizeLanguage(playData.language);
+    }
+  }
+
+  const houseReadme = join(projectPath, "README.md");
+  if (existsSync(houseReadme)) {
+    const houseData = parseFrontmatter(houseReadme);
+    if (houseData.language) {
+      return normalizeLanguage(houseData.language);
+    }
+  }
+
+  return "english";
+}
+
+/**
+ * Cleans markdown formatting, links, and blockquotes from prose text.
+ */
+export function cleanProse(text) {
+  // Strip blockquotes: lines starting with >
+  let clean = text.replace(/^\s*>.*$/gm, " ");
+  // Strip Markdown links: [text](url) -> text
+  clean = clean.replace(/\[([^\]]*)\]\([^)]*\)/g, "$1");
+  // Strip inline code blocks, bold, italics, list bullet markers
+  clean = clean.replace(/[`*_~|]|^\s*[-*+]\s+/gm, " ");
+  return clean;
+}
+
+/**
+ * Extracts prose bodies from H2 sections matching the target list (case-insensitive).
+ */
+export function extractProseSections(text, proseSections) {
+  const sections = [];
+  const lines = text.split(/\r?\n/);
+
+  let currentHeader = null;
+  let currentBodyLines = [];
+
+  for (const line of lines) {
+    const headerMatch = /^##\s+(.+)$/.exec(line);
+    if (headerMatch) {
+      if (currentHeader && proseSections.includes(currentHeader.toLowerCase())) {
+        sections.push({
+          header: currentHeader,
+          body: currentBodyLines.join("\n"),
+        });
+      }
+      currentHeader = headerMatch[1].trim();
+      currentBodyLines = [];
+    } else if (/^#\s+/.test(line)) {
+      if (currentHeader && proseSections.includes(currentHeader.toLowerCase())) {
+        sections.push({
+          header: currentHeader,
+          body: currentBodyLines.join("\n"),
+        });
+      }
+      currentHeader = null;
+      currentBodyLines = [];
+    } else {
+      if (currentHeader) {
+        currentBodyLines.push(line);
+      }
+    }
+  }
+
+  if (currentHeader && proseSections.includes(currentHeader.toLowerCase())) {
+    sections.push({
+      header: currentHeader,
+      body: currentBodyLines.join("\n"),
+    });
+  }
+  return sections;
+}
+
+/**
+ * Loads exceptions from language_exceptions.txt files co-located with the file or globally.
+ */
+function loadExceptions(filePath, projectPath) {
+  const exceptions = new Set();
+  const dirs = [dirname(filePath), projectPath];
+
+  for (const dir of dirs) {
+    const excFile = join(dir, "language_exceptions.txt");
+    if (existsSync(excFile)) {
+      try {
+        const lines = readFileSync(excFile, "utf8").split(/\r?\n/);
+        for (const line of lines) {
+          const trimmed = line.trim();
+          if (trimmed && !trimmed.startsWith("#")) {
+            exceptions.add(trimmed.toLowerCase());
+          }
+        }
+      } catch {}
+    }
+  }
+  return Array.from(exceptions);
+}
+
+/**
+ * Scans a file and validates it against its resolved language policy.
+ */
+export function validateLanguageOfFile(filePath, projectPath, options = {}) {
+  const proseSections = (options.proseSections || DEFAULT_PROSE_SECTIONS).map((s) =>
+    s.toLowerCase(),
+  );
+  const nlpLanguages = (options.nlpLanguages || DEFAULT_NLP_LANGUAGES).map((s) => s.toLowerCase());
+  const minSpanWords = options.minSpanWords !== undefined ? options.minSpanWords : 15;
+  const confidenceMargin = options.confidenceMargin !== undefined ? options.confidenceMargin : 0.1;
+
+  if (!existsSync(filePath)) {
+    return [`File not found: ${filePath}`];
+  }
+
+  const resolvedLanguage = resolveLanguage(filePath, projectPath);
+
+  const allowedLangs = new Set([...Object.values(ISO_MAP), ...nlpLanguages]);
+  if (!allowedLangs.has(resolvedLanguage)) {
+    return [
+      `Language '${resolvedLanguage}' is not registered. ` +
+        `Allowed languages: [${Array.from(allowedLangs).join(", ")}]`,
+    ];
+  }
+
+  // NLP Fallback check
+  if (nlpLanguages.includes(resolvedLanguage)) {
+    console.log(
+      `[NLP Fallback] File ${basename(filePath)} resolved to ${resolvedLanguage}. Local check skipped; expectations routed to assistant/LLM verification.`,
+    );
+    return [];
+  }
+
+  let text;
+  try {
+    text = readFileSync(filePath, "utf8");
+  } catch (err) {
+    return [`Could not read file: ${err.message}`];
+  }
+
+  const sections = extractProseSections(text, proseSections);
+  const exceptions = loadExceptions(filePath, projectPath);
+  const errors = [];
+
+  for (const section of sections) {
+    const cleanBody = cleanProse(section.body);
+    // Split by paragraphs
+    const paragraphs = cleanBody
+      .split(/\n\s*\n/)
+      .map((p) => p.trim())
+      .filter(Boolean);
+
+    for (const para of paragraphs) {
+      const words = para.split(/\s+/).filter(Boolean);
+      if (words.length < minSpanWords) continue;
+
+      // Check exceptions
+      const lowerPara = para.toLowerCase();
+      if (exceptions.some((entry) => lowerPara.includes(entry))) continue;
+
+      const detections = lngDetector.detect(para);
+      if (!detections || detections.length === 0) continue;
+
+      const [topLanguage, topScore] = detections[0];
+      if (topLanguage === resolvedLanguage) continue;
+
+      // Re-run check / verify standalone confidence
+      const allowedScore = detections.find((d) => d[0] === resolvedLanguage)?.[1] || 0.0;
+      const diff = topScore - allowedScore;
+
+      if (diff >= confidenceMargin) {
+        const snippet = para.length > 80 ? para.slice(0, 77) + "..." : para;
+        errors.push(
+          `${topLanguage.charAt(0).toUpperCase() + topLanguage.slice(1)} span ` +
+            `(${words.length} words) in ## ${section.header}: '${snippet}' ` +
+            `(expected: ${resolvedLanguage})`,
+        );
+      }
+    }
+  }
+
+  return errors;
+}
+
+/**
+ * Finds all markdown content files under a project directory.
+ */
+function findProjectMarkdownFiles(dir) {
+  const files = [];
+  const entries = readdirSync(dir, { withFileTypes: true });
+  for (const entry of entries) {
+    if (entry.name === "node_modules" || entry.name.startsWith(".")) continue;
+    const fullPath = join(dir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...findProjectMarkdownFiles(fullPath));
+    } else if (entry.name.endsWith(".md") && entry.name !== "CHANGELOG.md") {
+      files.push(fullPath);
+    }
+  }
+  return files;
+}
+
+/**
+ * Validates language policy across an entire project.
+ */
+export function validateProjectLanguages(projectPath, options = {}) {
+  const contentDir = options.contentDir || join(projectPath, "plays");
+  if (!existsSync(contentDir)) {
+    return [];
+  }
+
+  const mdFiles = findProjectMarkdownFiles(contentDir);
+  const results = [];
+
+  for (const file of mdFiles) {
+    // Exclude root infra files if found under plays (shouldn't be, but guard)
+    const name = basename(file);
+    if (name === "README.md" || name === "REFERENCES.md" || name === "REFERENCE.md") {
+      continue;
+    }
+
+    const errors = validateLanguageOfFile(file, projectPath, options);
+    if (errors.length > 0) {
+      results.push({
+        file,
+        errors,
+      });
+    }
+  }
+
+  return results;
+}

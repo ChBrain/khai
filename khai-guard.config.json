@@ -40,6 +40,7 @@
           "packages/khai-tests/**",
           "packages/khai-rules/**",
           "packages/khai-pack/**",
+          "packages/khai-language/**",
           ".github/**",
           ".husky/**",
           "khai-guard.config.json",
