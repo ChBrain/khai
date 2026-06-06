@@ -8,7 +8,7 @@ updated: "{{YEAR}}-01-01"
 
 Staging the works of {{SOURCE_TITLE}} as **systemic systems**: modeling the mechanical, thematic, and dramatic structures of the source. The house represents these works not as conventional character tragedies, but as structured processes operating under system-wide rules.
 
-## Staging Status
+### Staging Status
 
 The current status of the {{SOURCE_TITLE}} productions within this house:
 
