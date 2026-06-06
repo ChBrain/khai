@@ -70,6 +70,11 @@
         "allow": ["packages/khai-stage/**"]
       },
       {
+        "pattern": "review/*",
+        "layer": "solution",
+        "allow": ["packages/khai-review/**"]
+      },
+      {
         "pattern": "plays/*",
         "layer": "solution",
         "allow": ["packages/khai-plays/**"]
