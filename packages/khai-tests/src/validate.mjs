@@ -10,6 +10,8 @@ import {
   types,
   engineCard,
   referenceCard,
+  playCard,
+  orderCard,
   renderEngineReadme,
   engineMembers,
   compositionOrder,
@@ -31,6 +33,7 @@ import {
   checkNoFooter,
   checkHasFrontmatter,
   looseFiles,
+  sectionBody,
 } from "@chbrain/khai-rules";
 
 const typeIds = Object.keys(types);
@@ -136,6 +139,27 @@ export function validateContentFile(text, { type, baseDir, owner, allowed, exemp
     ...h2Errors,
     ...checkExtensions(doc, { allowed: new Set(allowed ?? []) }),
   ];
+  if (type === "play") {
+    try {
+      playCard(text);
+    } catch (err) {
+      errors.push(`play (ENACTS): ${err.message}`);
+    }
+  }
+  if (type === "order") {
+    try {
+      orderCard(text);
+      const targetsBody = sectionBody(doc.body, "Targets");
+      if (targetsBody) {
+        const pendingCount = targetsBody.filter((line) => line.includes("[ ]")).length;
+        if (pendingCount > 0) {
+          errors.push(`order has ${pendingCount} pending target(s) [ ]`);
+        }
+      }
+    } catch (err) {
+      errors.push(`order (DO IT): ${err.message}`);
+    }
+  }
   errors.push(...checkH1(doc, { type }).errors);
   // The frontmatter `title` must be present and echo the body's name (the H1,
   // or `## Name` for a play). One pattern for every instance -- including the

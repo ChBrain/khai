@@ -125,6 +125,7 @@ export function toPrefix(typeId) {
  */
 const FRONTMATTER_EXTRAS = {
   persona: { type: { values: ["real", "archetype", "fictional"], required: true } },
+  play: { description: { required: false } },
 };
 export function frontmatterExtras(typeId) {
   const extra = FRONTMATTER_EXTRAS[typeId] ?? {};
@@ -150,6 +151,19 @@ export const wiresChapters = [...(chaptersFor("engines") ?? []), "Setup"];
  * @type {string[]}
  */
 export const referenceChapters = ["Line of Work", "Origin", "Restrictions", "Encoding"];
+
+/**
+ * ENACTS: the play standard. Every play document (e.g. play_woyzeck.md) must
+ * conform to the ENACTS mnemonic, in order.
+ * @type {string[]}
+ */
+export const playChapters = ["Estate", "Name", "Arc", "Company", "Triggers", "Stakes"];
+
+/**
+ * DO IT: the management order standard.
+ * @type {string[]}
+ */
+export const orderChapters = ["Direction", "Orders", "Implementation", "Targets"];
 
 /**
  * Normalize an engine manifest into a flat list of typed members arranged on a
@@ -369,6 +383,122 @@ export function referenceCard(text) {
   return { mnemonic: "LORE", chapters: referenceChapters, sections, coda };
 }
 
+/**
+ * Project a play document into a render-ready card: the six ENACTS chapters in
+ * order, each with its prose and any author `### ` subchapters, plus an optional
+ * trailing `---` coda.
+ *
+ * Throws if a chapter is missing, out of order, foreign, or empty.
+ *
+ * @param {string} text  the play file text (YAML frontmatter allowed)
+ * @returns {{ mnemonic: "ENACTS", chapters: string[], sections: Record<string, { body: string, subchapters: { name: string, body: string }[] }>, coda: string|null }}
+ */
+export function playCard(text) {
+  if (typeof text !== "string" || !text.trim()) throw new Error("playCard: play text is required");
+  const body = matter(text).content.trim();
+
+  // An optional trailing coda, fenced by a `---` rule (as a play's builder note is).
+  const parts = body.split(/\n---\n/);
+  const main = parts[0];
+  const coda = parts.length > 1 ? parts.slice(1).join("\n---\n").trim() || null : null;
+
+  // Chunks beginning at each `## ` header; anything before the first (the H1 +
+  // preamble) is dropped. `### ` and deeper never start a chunk.
+  const chunks = main.split(/\n(?=## )/).filter((c) => /^##\s/.test(c.trim()));
+
+  const seen = [];
+  const sections = {};
+  for (const chunk of chunks) {
+    const lines = chunk.trim().split("\n");
+    const name = lines[0].replace(/^##\s+/, "").trim();
+    seen.push(name);
+    // Subchapters are `### ` blocks; the text before the first is the chapter
+    // body.
+    const subParts = lines
+      .slice(1)
+      .join("\n")
+      .split(/\n(?=###\s)/);
+    const intro = /^###\s/.test(subParts[0].trim()) ? "" : subParts[0].trim();
+    const subchapters = subParts
+      .filter((s) => /^###\s/.test(s.trim()))
+      .map((s) => {
+        const sl = s.trim().split("\n");
+        return { name: sl[0].replace(/^###\s+/, "").trim(), body: sl.slice(1).join("\n").trim() };
+      });
+    sections[name] = { body: intro, subchapters };
+  }
+
+  // The ENACTS contract: exactly the ENACTS chapters, in order, nothing foreign.
+  if (seen.length !== playChapters.length || seen.some((n, i) => n !== playChapters[i]))
+    throw new Error(
+      `playCard: play chapters must be exactly [${playChapters.join(", ")}] ` +
+        `in order (ENACTS); got [${seen.join(", ")}]`,
+    );
+  // Every chapter must carry content -- body prose or at least one subchapter.
+  for (const name of playChapters)
+    if (!sections[name].body && sections[name].subchapters.length === 0)
+      throw new Error(`playCard: chapter "${name}" is empty`);
+
+  return { mnemonic: "ENACTS", chapters: playChapters, sections, coda };
+}
+
+/**
+ * Project a management order document into a render-ready card: the four DO IT
+ * chapters in order, each with its prose and any author `### ` subchapters, plus
+ * an optional trailing `---` coda.
+ *
+ * Throws if a chapter is missing, out of order, foreign, or empty.
+ *
+ * @param {string} text  the order file text (YAML frontmatter allowed)
+ * @returns {{ mnemonic: "DO IT", chapters: string[], sections: Record<string, { body: string, subchapters: { name: string, body: string }[] }>, coda: string|null }}
+ */
+export function orderCard(text) {
+  if (typeof text !== "string" || !text.trim())
+    throw new Error("orderCard: order text is required");
+  const body = matter(text).content.trim();
+
+  // An optional trailing coda, fenced by a `---` rule.
+  const parts = body.split(/\n---\n/);
+  const main = parts[0];
+  const coda = parts.length > 1 ? parts.slice(1).join("\n---\n").trim() || null : null;
+
+  // Chunks beginning at each `## ` header; anything before the first is dropped.
+  const chunks = main.split(/\n(?=## )/).filter((c) => /^##\s/.test(c.trim()));
+
+  const seen = [];
+  const sections = {};
+  for (const chunk of chunks) {
+    const lines = chunk.trim().split("\n");
+    const name = lines[0].replace(/^##\s+/, "").trim();
+    seen.push(name);
+    const subParts = lines
+      .slice(1)
+      .join("\n")
+      .split(/\n(?=###\s)/);
+    const intro = /^###\s/.test(subParts[0].trim()) ? "" : subParts[0].trim();
+    const subchapters = subParts
+      .filter((s) => /^###\s/.test(s.trim()))
+      .map((s) => {
+        const sl = s.trim().split("\n");
+        return { name: sl[0].replace(/^###\s+/, "").trim(), body: sl.slice(1).join("\n").trim() };
+      });
+    sections[name] = { body: intro, subchapters };
+  }
+
+  // The DO IT contract: exactly the DO IT chapters, in order, nothing foreign.
+  if (seen.length !== orderChapters.length || seen.some((n, i) => n !== orderChapters[i]))
+    throw new Error(
+      `orderCard: order chapters must be exactly [${orderChapters.join(", ")}] ` +
+        `in order (DO IT); got [${seen.join(", ")}]`,
+    );
+  // Every chapter must carry content.
+  for (const name of orderChapters)
+    if (!sections[name].body && sections[name].subchapters.length === 0)
+      throw new Error(`orderCard: chapter "${name}" is empty`);
+
+  return { mnemonic: "DO IT", chapters: orderChapters, sections, coda };
+}
+
 const capitalize = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : s);
 // Linear, not /\s*[–—]\s*/g: that backtracks O(n) per position on long space
 // runs (CodeQL polynomial-regex). Replace the dash, then collapse the seam.
@@ -448,9 +578,13 @@ export default {
   playbookTagline,
   wiresChapters,
   referenceChapters,
+  playChapters,
+  orderChapters,
   engineMembers,
   compositionOrder,
   engineCard,
   referenceCard,
+  playCard,
+  orderCard,
   renderEngineReadme,
 };

@@ -1,5 +1,13 @@
 # @chbrain/khai-tests
 
+## 0.1.6
+
+### Patch Changes
+
+- a38bcf6: governance: integrate order (DOIT) validation and conformance tests
+- Updated dependencies [8435643]
+  - @chbrain/khai-arch@0.1.5
+
 ## 0.1.5
 
 ### Patch Changes
