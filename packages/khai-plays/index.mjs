@@ -40,7 +40,15 @@ export function validateEntry(entry, { id } = {}) {
   if (typeof entry.title !== "string" || !entry.title.trim()) e.push("title is required");
   if (!isPackage(entry.package))
     e.push(`package must be an npm name, got ${JSON.stringify(entry.package)}`);
-  if (typeof entry.blurb !== "string" || !entry.blurb.trim()) e.push("blurb is required");
+  if (typeof entry.blurb !== "string" || !entry.blurb.trim()) {
+    e.push("blurb is required");
+  } else if (
+    /\b(und|der|die|das|ist|für|mit|von|im|zu|dem|den|des|ein|eine|einer|eines|auf|aus|bei|nach|um|vor|gegen|ohne|durch|wie|so|ja|nein)\b/i.test(
+      entry.blurb,
+    )
+  ) {
+    e.push(`blurb must be in English, got ${JSON.stringify(entry.blurb)}`);
+  }
   if (typeof entry.repo !== "string" || !/^https?:\/\//.test(entry.repo))
     e.push("repo is required and must be an http(s) URL (the house)");
   return e;
