@@ -1,5 +1,11 @@
 # @chbrain/khai-stage
 
+## 0.0.5
+
+### Patch Changes
+
+- fa8a028: Add standard Playwright position and template persona to the house blueprint. Rename playwright persona file dynamically on stamp.
+
 ## 0.0.4
 
 ### Patch Changes
