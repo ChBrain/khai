@@ -35,7 +35,8 @@ const title = (s) =>
 function housePath(rel) {
   let p = rel.replace(/\.tmpl$/, "").replace(/\\/g, "/");
   if (p === "npmrc" || p === "gitignore" || p === "nvmrc") return "." + p;
-  if (p.startsWith("github/") || p.startsWith("husky/")) return "." + p;
+  if (p.startsWith("github/") || p.startsWith("husky/") || p.startsWith("changeset/"))
+    return "." + p;
   return p;
 }
 
@@ -80,6 +81,7 @@ export function stageHouse({ source, targetDir } = {}) {
     handoffs: [
       `npm ci  (needs GITHUB_TOKEN for the @chbrain registry), then push; the first CI runs green on the empty house`,
       `branch protection: require PRs and the checks (test, khai-guard, branch-scope) on main, forbid force-push. Apply in Settings > Branches or via gh api, once the first CI run has created the check names.`,
+      `RELEASE_TOKEN secret: a PAT with Contents: write and Pull requests: write, so the release workflow can push the version branch + tags and open the Version PR. Without it the house publishes nothing.`,
       `register the house in khai-plays under its Estate identity (README.md), so it appears on the bill`,
     ],
   };
