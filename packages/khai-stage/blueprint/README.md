@@ -1,3 +1,7 @@
+---
+voice: conformance
+---
+
 # khai plays: {{SOURCE_TITLE}}
 
 The {{SOURCE_TITLE}} production house: a collection of khai plays, each a
