@@ -1,0 +1,39 @@
+{
+  "name": "@chbrain/khai-language",
+  "version": "0.0.1",
+  "description": "khai language validator — deterministic language checks with NLP routing fallback, optimized for plays and staging documents.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/khai-language"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "src/"
+  ],
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "languagedetect": "^2.0.0"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.8"
+  }
+}
