@@ -52,6 +52,8 @@ describe("khai-stage: the stamped house", () => {
       "management/persona_pericles.md",
       "management/position_manager.md",
       "management/persona_manager.md",
+      "management/position_playwright.md",
+      "management/persona_playwright.md",
       "plays/.gitkeep",
       "tests/house.test.mjs",
     ]) {
@@ -80,7 +82,9 @@ describe("khai-stage: the stamped house", () => {
     for (const f of allFiles(dir)) {
       const text = readFileSync(join(dir, f), "utf8");
       expect(
-        /\{\{(SOURCE|SOURCE_TITLE|YEAR|MANAGER_PERSONA|MANAGER_TITLE)\}\}/.test(text),
+        /\{\{(SOURCE|SOURCE_TITLE|YEAR|MANAGER_PERSONA|MANAGER_TITLE|PLAYWRIGHT_PERSONA|PLAYWRIGHT_TITLE)\}\}/.test(
+          text,
+        ),
         `placeholder left in ${f}`,
       ).toBe(false);
     }
