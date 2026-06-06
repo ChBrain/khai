@@ -25,3 +25,4 @@
 - Operates within computed branch lanes.
 - Opens pull requests without merging.
 - Never executes changes in dependent repositories.
+- Does not run research or preload context at startup before dialogue and planning begin.
