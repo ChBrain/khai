@@ -1,5 +1,11 @@
 # @chbrain/khai-arch
 
+## 0.1.4
+
+### Patch Changes
+
+- d4c3079: Add the optional `voice` string field to type definitions and frontmatter schema.
+
 ## 0.1.3
 
 ### Patch Changes

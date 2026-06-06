@@ -1,5 +1,13 @@
 # @chbrain/khai-skills
 
+## 0.0.9
+
+### Patch Changes
+
+- 1b65a9a: Update impresario and playwright skill guides to include voice-authoring instructions for setting house voice in README.md and play voice in the play file.
+- Updated dependencies [d4c3079]
+  - @chbrain/khai-arch@0.1.4
+
 ## 0.0.8
 
 ### Patch Changes

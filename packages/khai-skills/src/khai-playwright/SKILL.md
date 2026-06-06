@@ -30,15 +30,17 @@ A play file has six chapters, in order. Their first letters spell **ENACTS**:
 | **S**takes   | What the whole production is fighting over: every plot must move it.                |
 
 Author it from [references/template_play.md](references/template_play.md). Open
-with the YAML frontmatter the template carries (at minimum `khai: play` plus the
-stamp). Use the six `## ` headers exactly, in order: the H2 sequence must spell
-ENACTS. Interview one chapter at a time; stop when there is enough. Link each
-Company member and each stake where a file exists; where it does not, name it.
+with the YAML frontmatter the template carries (at minimum `khai: play` and the
+stamp, plus an optional play-specific `voice` override brief). Use the six `## `
+headers exactly, in order: the H2 sequence must spell ENACTS. Interview one
+chapter at a time; stop when there is enough. Link each Company member and each
+stake where a file exists; where it does not, name it.
 
 **Self-check the play file:**
 
 ```
 - [ ] Frontmatter declares khai: play and carries the stamp
+- [ ] Frontmatter declares the play-specific voice (optional, overriding the house voice)
 - [ ] Six chapters, in ENACTS order, no generic Owner/Title chapter added
 - [ ] Estate names who answers for the whole run
 - [ ] Arc is a bend, not a list: reordering the plots would lose something
