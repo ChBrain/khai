@@ -12,10 +12,18 @@
     "registry": "https://npm.pkg.github.com",
     "access": "restricted"
   },
+  "files": [
+    "plays/**",
+    "README.md",
+    "LICENSE",
+    "LICENSE-CODE"
+  ],
   "scripts": {
     "test": "vitest run",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "version": "changeset version",
+    "release": "changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.8",

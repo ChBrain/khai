@@ -39,8 +39,10 @@ describe("khai-stage: the stamped house", () => {
       "LICENSE-CODE",
       "khai-guard.config.json",
       ".github/workflows/ci.yml",
+      ".github/workflows/release.yml",
       ".github/CODEOWNERS",
       ".husky/pre-push",
+      ".changeset/config.json",
       "SECURITY.md",
       "CLAUDE.md",
       "README.md",
@@ -49,6 +51,19 @@ describe("khai-stage: the stamped house", () => {
     ]) {
       expect(existsSync(join(dir, f)), `missing ${f}`).toBe(true);
     }
+  });
+
+  it("restores the changeset config to .changeset (dotted), not changeset/", () => {
+    expect(existsSync(join(dir, ".changeset/config.json"))).toBe(true);
+    expect(existsSync(join(dir, "changeset/config.json"))).toBe(false);
+  });
+
+  it("stamps a publishable package: files, version + release scripts, not private", () => {
+    const pkg = JSON.parse(readFileSync(join(dir, "package.json"), "utf8"));
+    expect(pkg.files).toContain("plays/**");
+    expect(pkg.scripts.version).toBe("changeset version");
+    expect(pkg.scripts.release).toBe("changeset publish");
+    expect(pkg.private).toBeUndefined();
   });
 
   it("drops the .tmpl suffix on stamp", () => {
