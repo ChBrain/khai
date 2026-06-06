@@ -135,7 +135,7 @@ async function main() {
   for (const t of targets) {
     let flags = [];
     try {
-      flags = await reviewCard(t.manifest, judge, checks);
+      flags = await reviewCard(t.manifest, judge, checks, repoRoot, t.dir);
       const files = readdirSync(t.dir);
       for (const file of files) {
         if (!file.endsWith(".md") || file === "CHANGELOG.md") continue;
@@ -143,7 +143,8 @@ async function main() {
         try {
           const text = readFileSync(filePath, "utf8");
           if (/^---\r?\n[\s\S]*?\bkhai:/.test(text)) {
-            const mdFlags = await reviewMarkdown(file, text, judge, checks);
+            const relPath = relative(repoRoot, filePath);
+            const mdFlags = await reviewMarkdown(file, text, judge, checks, repoRoot, relPath);
             flags.push(...mdFlags);
           }
         } catch (err) {

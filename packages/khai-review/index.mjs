@@ -10,6 +10,9 @@
 // production -- so this package carries zero model dependencies and the harness
 // stays reproducibly testable. Adding a check is adding a rubric, not plumbing.
 
+import { readFileSync, existsSync, readdirSync } from "node:fs";
+import { dirname, join, resolve, relative } from "node:path";
+
 /**
  * @typedef {{ id: string, instruction: string }} Rubric
  * @typedef {(input: { prose: string, rubric: Rubric }) => Promise<{ verdict: "pass" | "flag", suggestion?: string, reason?: string }>} Judge
@@ -33,6 +36,10 @@ export const rubrics = {
     id: "khai-type",
     instruction:
       "You are a careful editor with a HIGH BAR for raising a flag. Verify if the prose actually does the job its section type demands. Reply PASS if the prose successfully fulfills its purpose. FLAG the passage only if it clearly fails its purpose (for example, if a Shadow section merely restates or repeats the Projection rather than contradicting or revealing a hidden tension behind it, or if a section is completely off-topic). A tie goes to PASS. When you do FLAG, give a rewrite that accomplishes the section's job (e.g., a Shadow that genuinely complicates or contradicts the persona's Projection) and keeps the house voice ( , ; : () , never a dash).",
+  },
+  "voice-conformance": {
+    id: "voice-conformance",
+    instruction: "Conform to the resolved voice brief.",
   },
 };
 
@@ -69,13 +76,138 @@ export async function review(prose, rubric, judge) {
  * @param {Rubric[]} [checks]
  * @returns {Promise<(Finding & { where: string })[]>}
  */
-export async function reviewCard(manifest, judge, checks = [rubrics.conciseness]) {
+/**
+ * Parse simple frontmatter key-value pairs.
+ * @param {string} text
+ * @returns {Record<string, string>}
+ */
+export function parseFrontmatter(text) {
+  const m = /^---\r?\n([\s\S]*?)\r?\n---/.exec(text);
+  if (!m) return {};
+  const data = {};
+  for (const line of m[1].split(/\r?\n/)) {
+    const i = line.indexOf(":");
+    if (i === -1) continue;
+    const k = line.slice(0, i).trim();
+    let v = line.slice(i + 1).trim();
+    if ((v.startsWith('"') && v.endsWith('"')) || (v.startsWith("'") && v.endsWith("'"))) {
+      v = v.slice(1, -1);
+    }
+    data[k] = v;
+  }
+  return data;
+}
+
+/**
+ * Resolve effective voice by walking up the override chain.
+ * @param {string|null} filePath relative file path from repoRoot (or null for card)
+ * @param {string} repoRoot
+ * @returns {string|null}
+ */
+export function resolveVoice(filePath, repoRoot = process.cwd()) {
+  const absRoot = resolve(repoRoot);
+
+  // 1. Element file voice
+  if (filePath) {
+    const absPath = resolve(repoRoot, filePath);
+    if (existsSync(absPath)) {
+      try {
+        const fm = parseFrontmatter(readFileSync(absPath, "utf8"));
+        if (fm.voice) return fm.voice;
+      } catch {
+        // ignore
+      }
+    }
+
+    // 2. Play file voice (starts with play_*.md, walking up from dirname(file) to repoRoot)
+    let dir = dirname(absPath);
+    while (true) {
+      try {
+        const files = readdirSync(dir);
+        const playFile = files.find((f) => f.startsWith("play_") && f.endsWith(".md"));
+        if (playFile) {
+          const fm = parseFrontmatter(readFileSync(join(dir, playFile), "utf8"));
+          if (fm.voice) return fm.voice;
+        }
+      } catch {
+        // ignore
+      }
+      if (dir === absRoot) break;
+      const parent = dirname(dir);
+      if (parent === dir) break;
+      dir = parent;
+    }
+  }
+
+  // 3. House voice (README.md at repoRoot)
+  const readmePath = join(absRoot, "README.md");
+  if (existsSync(readmePath)) {
+    try {
+      const fm = parseFrontmatter(readFileSync(readmePath, "utf8"));
+      if (fm.voice) return fm.voice;
+    } catch {
+      // ignore
+    }
+  }
+
+  return null;
+}
+
+/**
+ * Build a parameterized voice-conformance rubric.
+ * @param {string} voice
+ * @returns {Rubric}
+ */
+export function buildVoiceRubric(voice) {
+  return {
+    id: "voice-conformance",
+    instruction:
+      'You are a careful editor with a HIGH BAR for raising a flag. Verify if the prose conforms to the declared voice: "' +
+      voice +
+      '". Reply PASS if the prose successfully conforms to the voice brief, or if the voice brief is too general or vague to check. FLAG the passage only if it clearly violates the voice brief. A tie goes to PASS. When you do FLAG, give a rewrite that conforms to the voice brief and keeps the meaning, specific terms, and the house voice ( , ; : () , never a dash).',
+  };
+}
+
+/**
+ * Review every chapter of an engine's WIRES card against the given rubrics
+ * (conciseness by default). Returns only the flags, each tagged with its
+ * location, for an advisory PR comment. Pure JSON walk plus the judge.
+ * @param {{ card?: Record<string, string>, voice?: string }} manifest  the package.json `khai` block
+ * @param {Judge} judge
+ * @param {Rubric[]} [checks]
+ * @param {string} [repoRoot]
+ * @param {string|null} [pkgDir]
+ * @returns {Promise<(Finding & { where: string })[]>}
+ */
+export async function reviewCard(
+  manifest,
+  judge,
+  checks = [rubrics.conciseness],
+  repoRoot = process.cwd(),
+  pkgDir = null,
+) {
   const card = (manifest && manifest.card) || {};
   const flags = [];
   for (const [chapter, prose] of Object.entries(card)) {
     if (typeof prose !== "string" || !prose.trim()) continue;
     for (const rubric of checks) {
-      const f = await review(prose, rubric, judge);
+      let activeRubric = rubric;
+      if (rubric.id === "voice-conformance") {
+        let voice = manifest && manifest.voice;
+        if (!voice) {
+          const dummyPath = pkgDir ? join(pkgDir, "dummy.md") : null;
+          const relativeDummy = dummyPath ? relative(repoRoot, dummyPath) : null;
+          voice = resolveVoice(relativeDummy, repoRoot);
+        }
+        if (!voice) {
+          console.warn(
+            `khai-review: skipped voice-conformance for card.${chapter}, no voice brief found.`,
+          );
+          continue;
+        }
+        activeRubric = buildVoiceRubric(voice);
+      }
+      const f = await review(prose, activeRubric, judge);
       if (f.verdict === "flag") flags.push({ where: `card.${chapter}`, current: prose, ...f });
     }
   }
@@ -114,15 +246,35 @@ export function parseH2Sections(text) {
  * @param {string} text content of the markdown file
  * @param {Judge} judge
  * @param {Rubric[]} [checks]
+ * @param {string} [repoRoot]
+ * @param {string} [filePath]
  * @returns {Promise<(Finding & { where: string })[]>}
  */
-export async function reviewMarkdown(filename, text, judge, checks = [rubrics.conciseness]) {
+export async function reviewMarkdown(
+  filename,
+  text,
+  judge,
+  checks = [rubrics.conciseness],
+  repoRoot = process.cwd(),
+  filePath = filename,
+) {
   const sections = parseH2Sections(text);
   const flags = [];
   for (const [title, body] of Object.entries(sections)) {
     if (typeof body !== "string" || !body.trim()) continue;
     for (const rubric of checks) {
-      const f = await review(body, rubric, judge);
+      let activeRubric = rubric;
+      if (rubric.id === "voice-conformance") {
+        const voice = resolveVoice(filePath, repoRoot);
+        if (!voice) {
+          console.warn(
+            `khai-review: skipped voice-conformance for ${filename}#${title}, no voice brief found.`,
+          );
+          continue;
+        }
+        activeRubric = buildVoiceRubric(voice);
+      }
+      const f = await review(body, activeRubric, judge);
       if (f.verdict === "flag") {
         flags.push({ where: `${filename}#${title}`, current: body, ...f });
       }
@@ -519,6 +671,9 @@ export default {
   reviewCard,
   reviewMarkdown,
   parseH2Sections,
+  parseFrontmatter,
+  resolveVoice,
+  buildVoiceRubric,
   mockJudge,
   createModelJudge,
   collect,
