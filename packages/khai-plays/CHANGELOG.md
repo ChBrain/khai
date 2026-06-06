@@ -1,5 +1,12 @@
 # @chbrain/khai-plays
 
+## 0.0.2
+
+### Patch Changes
+
+- 39c5111: Register khai-plays-buechner in the plays registry to make it available in the bill.
+- a29f1e7: Register the Grimm production house in the play registry: add the `grimm` card (programme `@chbrain/khai-plays-grimm`) and rewrite the bill.
+
 ## 0.0.1
 
 ### Patch Changes
