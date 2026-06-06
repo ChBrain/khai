@@ -1,6 +1,6 @@
 ---
 khai: position
-title: "The Manager"
+title: "The Theatre Manager"
 license: CC-BY-NC-SA-4.0
 stamp:
   owner: KAI HACKS AI
@@ -8,7 +8,7 @@ stamp:
   date: "2026-06-06"
 ---
 
-# Position: The Manager
+# Position: The Theatre Manager
 
 ## Taxonomy
 
@@ -24,8 +24,8 @@ Keep the house clean and conformant. Ensure every play staged here fits the Esta
 
 ## Loses
 
-The freedom of independent expansion. A manager cannot decide to change the rules of the monorepo or step outside the boundaries of this specific venue.
+The freedom of independent expansion. A theatre manager cannot decide to change the rules of the monorepo or step outside the boundaries of this specific venue.
 
 ## Drives
 
-The local run. The manager drives the house to be ready for the season, resolving all issues inside the local repository, and aligning upward when the work requires changes that span beyond the house's walls.
+The local run. The theatre manager drives the house to be ready for the season, resolving all issues inside the local repository, and aligning upward when the work requires changes that span beyond the house's walls.
