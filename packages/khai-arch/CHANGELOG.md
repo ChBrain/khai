@@ -1,5 +1,11 @@
 # @chbrain/khai-arch
 
+## 0.1.5
+
+### Patch Changes
+
+- 8435643: arch: define order (DOIT) spec and playCard implementation
+
 ## 0.1.4
 
 ### Patch Changes

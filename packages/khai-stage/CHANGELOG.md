@@ -1,5 +1,11 @@
 # @chbrain/khai-stage
 
+## 0.0.6
+
+### Patch Changes
+
+- bab315f: Rename Manager to Theatre Manager in blueprint, tests, and generator code.
+
 ## 0.0.5
 
 ### Patch Changes
