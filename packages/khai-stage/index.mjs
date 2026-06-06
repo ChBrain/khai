@@ -37,7 +37,7 @@ function housePath(rel, { managerSlug, playwrightSlug } = {}) {
   if (p === "npmrc" || p === "gitignore" || p === "nvmrc") return "." + p;
   if (p.startsWith("github/") || p.startsWith("husky/") || p.startsWith("changeset/"))
     return "." + p;
-  if (managerSlug && p === "management/persona_manager.md") {
+  if (managerSlug && p === "management/persona_theatre_manager.md") {
     return `management/persona_${managerSlug}.md`;
   }
   if (playwrightSlug && p === "management/persona_playwright.md") {

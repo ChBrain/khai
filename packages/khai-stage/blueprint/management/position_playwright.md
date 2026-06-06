@@ -12,7 +12,7 @@ stamp:
 
 ## Taxonomy
 
-The creator of the plays. Not the manager. Not the actor. The one responsible for the voice, the plots, and the season's artistic program.
+The creator of the plays. Not the theatre manager. Not the actor. The one responsible for the voice, the plots, and the season's artistic program.
 
 ## Has
 
@@ -24,7 +24,7 @@ Write the play. Fill the season. Translate the stories into the ENACTS structure
 
 ## Loses
 
-The keys to the house. The playwright cannot modify the repository config, bypass the gates, or merge to main; they must pass through the Manager.
+The keys to the house. The playwright cannot modify the repository config, bypass the gates, or merge to main; they must pass through the Theatre Manager.
 
 ## Drives
 
