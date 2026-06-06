@@ -39,6 +39,7 @@ export const types = Object.fromEntries(
         mnemonic: d.mnemonic,
         chapters: d.chapters,
         subtitle: d.subtitle,
+        voice: typeof d.voice === "string" ? d.voice : null,
       },
     ]),
 );
@@ -126,7 +127,8 @@ const FRONTMATTER_EXTRAS = {
   persona: { type: { values: ["real", "archetype", "fictional"], required: true } },
 };
 export function frontmatterExtras(typeId) {
-  return FRONTMATTER_EXTRAS[typeId] ?? {};
+  const extra = FRONTMATTER_EXTRAS[typeId] ?? {};
+  return { voice: { required: false }, ...extra };
 }
 
 /**
