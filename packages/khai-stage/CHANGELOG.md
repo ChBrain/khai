@@ -1,5 +1,11 @@
 # @chbrain/khai-stage
 
+## 0.0.4
+
+### Patch Changes
+
+- 1f13fec: Add standard Manager position, local copies of Choregos, Nicias, and Pericles, and a GEMINI.md template to the house blueprint. Rename manager persona file dynamically on stamp.
+
 ## 0.0.3
 
 ### Patch Changes

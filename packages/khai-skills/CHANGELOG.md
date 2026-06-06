@@ -1,5 +1,11 @@
 # @chbrain/khai-skills
 
+## 0.0.10
+
+### Patch Changes
+
+- d19a342: Update impresario skill guide to instruct on generating and authoring a unique Manager persona for each house.
+
 ## 0.0.9
 
 ### Patch Changes
