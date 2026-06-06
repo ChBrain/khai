@@ -26,6 +26,9 @@
 // resolves their lane, and CREATES the correctly-named branch (or refuses a
 // multi-lane change with the split). The lane is computed, never chosen — run
 // this instead of picking a branch name by hand.
+// Flags:
+//   --staged-only, -s   only read staged changes
+//   --tracked-only, -t  only read tracked changes (ignore untracked files)
 //
 // Subcommand: `khai-guard bump-check` flags a non-patch release. It reads the
 // .changeset/ dir and, if any changeset declares minor/major (beyond the
@@ -426,22 +429,40 @@ function runBumpCheck() {
 // branch. The one command a weaker model should run instead of choosing a lane.
 function runBranch() {
   const config = loadConfig();
-  const topic = process.argv[3];
+  const stagedOnly = process.argv.includes("--staged-only") || process.argv.includes("-s");
+  const trackedOnly = process.argv.includes("--tracked-only") || process.argv.includes("-t");
+
+  const branchIdx = process.argv.indexOf("branch");
+  const topic = process.argv.slice(branchIdx + 1).find((arg) => !arg.startsWith("-"));
+
   if (!topic || !/^[a-z0-9][a-z0-9-]*$/.test(topic)) {
     console.error("KHAI-Guard: `branch <topic>` needs a kebab-case change name (e.g. add-axis).");
     process.exit(2);
   }
   let files;
   try {
-    const tracked = git(["diff", "--name-only", "HEAD"]).split("\n");
-    const untracked = git(["ls-files", "--others", "--exclude-standard"]).split("\n");
-    files = [...new Set([...tracked, ...untracked].map((s) => s.trim()).filter(Boolean))];
+    if (stagedOnly) {
+      files = git(["diff", "--name-only", "--cached"])
+        .split("\n")
+        .map((s) => s.trim())
+        .filter(Boolean);
+    } else if (trackedOnly) {
+      files = git(["diff", "--name-only", "HEAD"])
+        .split("\n")
+        .map((s) => s.trim())
+        .filter(Boolean);
+    } else {
+      const tracked = git(["diff", "--name-only", "HEAD"]).split("\n");
+      const untracked = git(["ls-files", "--others", "--exclude-standard"]).split("\n");
+      files = [...new Set([...tracked, ...untracked].map((s) => s.trim()).filter(Boolean))];
+    }
   } catch (err) {
     console.error(`KHAI-Guard branch: could not read working-tree changes — ${err.message}`);
     process.exit(2);
   }
   if (files.length === 0) {
-    console.error("KHAI-Guard branch: no uncommitted changes to put on a branch.");
+    const type = stagedOnly ? "staged " : trackedOnly ? "tracked " : "uncommitted ";
+    console.error(`KHAI-Guard branch: no ${type}changes to put on a branch.`);
     process.exit(2);
   }
   const { lanes, unowned, lines } = advise({ files }, config);
