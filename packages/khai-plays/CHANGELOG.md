@@ -1,5 +1,11 @@
 # @chbrain/khai-plays
 
+## 0.0.3
+
+### Patch Changes
+
+- 87a4126: governance: enforce English language validation for play registry blurbs and convert Büchner blurb to English.
+
 ## 0.0.2
 
 ### Patch Changes
