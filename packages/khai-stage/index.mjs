@@ -32,13 +32,16 @@ const title = (s) =>
 // inert in this repo (no stray hook fires, no nested workflow runs); the stamp
 // restores them. A .tmpl suffix marks a file the toolchain must not pick up here
 // (a test that would otherwise run); the stamp drops it.
-function housePath(rel, { managerSlug } = {}) {
+function housePath(rel, { managerSlug, playwrightSlug } = {}) {
   let p = rel.replace(/\.tmpl$/, "").replace(/\\/g, "/");
   if (p === "npmrc" || p === "gitignore" || p === "nvmrc") return "." + p;
   if (p.startsWith("github/") || p.startsWith("husky/") || p.startsWith("changeset/"))
     return "." + p;
   if (managerSlug && p === "management/persona_manager.md") {
     return `management/persona_${managerSlug}.md`;
+  }
+  if (playwrightSlug && p === "management/persona_playwright.md") {
+    return `management/persona_${playwrightSlug}.md`;
   }
   return p;
 }
@@ -55,9 +58,9 @@ const walk = (dir, base = dir) =>
  * cannot do itself (branch protection needs the check names to exist; the
  * registry listing is a separate step). It never reaches the network.
  *
- * @param {{ source: string, targetDir: string }} opts
+ * @param {{ source: string, targetDir: string, manager?: string }} opts
  */
-export function stageHouse({ source, targetDir, manager } = {}) {
+export function stageHouse({ source, targetDir, manager, playwright } = {}) {
   const s = slug(source);
   if (!s)
     throw new Error("khai-stage: a source is required, e.g. stageHouse({ source: 'buechner' })");
@@ -66,21 +69,26 @@ export function stageHouse({ source, targetDir, manager } = {}) {
   const m = manager ? slug(manager) : "manager";
   const mTitle = manager ? title(manager) : "Manager";
 
+  const p = playwright ? slug(playwright) : s;
+  const pTitle = playwright ? title(playwright) : title(source);
+
   const tokens = {
     "{{SOURCE_TITLE}}": title(source),
     "{{SOURCE}}": s,
     "{{YEAR}}": String(new Date().getUTCFullYear()),
     "{{MANAGER_PERSONA}}": m,
     "{{MANAGER_TITLE}}": mTitle,
+    "{{PLAYWRIGHT_PERSONA}}": p,
+    "{{PLAYWRIGHT_TITLE}}": pTitle,
   };
   const fill = (text) => Object.entries(tokens).reduce((t, [k, v]) => t.split(k).join(v), text);
 
   const written = [];
   for (const rel of walk(BLUEPRINT)) {
-    const out = join(targetDir, housePath(rel, { managerSlug: m }));
+    const out = join(targetDir, housePath(rel, { managerSlug: m, playwrightSlug: p }));
     mkdirSync(dirname(out), { recursive: true });
     writeFileSync(out, fill(readFileSync(join(BLUEPRINT, rel), "utf8")));
-    written.push(housePath(rel, { managerSlug: m }).split("\\").join("/"));
+    written.push(housePath(rel, { managerSlug: m, playwrightSlug: p }).split("\\").join("/"));
   }
 
   return {
