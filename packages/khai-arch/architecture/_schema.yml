@@ -47,3 +47,6 @@ properties:
     type: string
     pattern: "^\\d+\\.\\d+\\.\\d+$"
     description: "semver"
+  voice:
+    type: string
+    description: "optional voice description"
