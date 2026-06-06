@@ -15,10 +15,18 @@
 // GITHUB_TOKEN, KHAI_REVIEW_ENDPOINT, KHAI_REVIEW_MODEL). Set KHAI_REVIEW_MOCK=1
 // for a local dry run with the deterministic mockJudge (wiring proof only).
 
-import { readFileSync, existsSync, writeFileSync, statSync, appendFileSync } from "node:fs";
+import {
+  readFileSync,
+  existsSync,
+  writeFileSync,
+  statSync,
+  appendFileSync,
+  readdirSync,
+} from "node:fs";
 import { resolve, join, basename, dirname, relative } from "node:path";
 import {
   reviewCard,
+  reviewMarkdown,
   rubrics,
   mockJudge,
   createModelJudge,
@@ -45,7 +53,11 @@ function engineAt(arg, root) {
   if (!existsSync(pkgPath)) return null;
   const pkg = JSON.parse(readFileSync(pkgPath, "utf8"));
   if (!pkg.khai || !pkg.khai.card) return null;
-  return { engine: pkg.khai.engine ?? basename(dirname(pkgPath)), manifest: pkg.khai };
+  return {
+    engine: pkg.khai.engine ?? basename(dirname(pkgPath)),
+    manifest: pkg.khai,
+    dir: dirname(pkgPath),
+  };
 }
 
 const readJson = (p, fallback) => (existsSync(p) ? JSON.parse(readFileSync(p, "utf8")) : fallback);
@@ -124,6 +136,25 @@ async function main() {
     let flags = [];
     try {
       flags = await reviewCard(t.manifest, judge, checks);
+      const files = readdirSync(t.dir);
+      for (const file of files) {
+        if (!file.endsWith(".md") || file === "CHANGELOG.md") continue;
+        const filePath = join(t.dir, file);
+        try {
+          const text = readFileSync(filePath, "utf8");
+          if (/^---\r?\n[\s\S]*?\bkhai:/.test(text)) {
+            const mdFlags = await reviewMarkdown(file, text, judge, checks);
+            flags.push(...mdFlags);
+          }
+        } catch (err) {
+          flags.push({
+            where: `${file} (failed)`,
+            rubric: "n/a",
+            reason: err.message,
+            suggestion: null,
+          });
+        }
+      }
     } catch (err) {
       flags = [{ where: "(review failed)", rubric: "n/a", reason: err.message, suggestion: null }];
     }
