@@ -588,3 +588,68 @@ describe("engine README: validateEnginePackage enforces the generated README", (
     expect(await readmeErrors()).toEqual([]);
   });
 });
+
+// --- play contract: ENACTS chapter structure validated ---------------------
+describe("play contract: ENACTS chapter structure validated", () => {
+  const front = `---
+khai: play
+title: Woyzeck
+license: CC-BY-NC-SA-4.0
+stamp:
+  owner: Buechner
+  version: v0.0.1
+  date: "2026-06-06"
+---
+`;
+  const validPlay = `${front}\n# Play: Woyzeck\n\n## Estate\nbuechner\n\n## Name\nWoyzeck\n\n## Arc\narc\n\n## Company\ncompany\n\n## Triggers\ntriggers\n\n## Stakes\nstakes\n`;
+
+  it("passes a play file with correct ENACTS chapters", () => {
+    expect(validateContentFile(validPlay, { type: "play" })).toEqual([]);
+  });
+
+  it("rejects a play file with missing chapters", () => {
+    const brokenPlay = validPlay.replace("## Stakes\nstakes\n", "");
+    const errors = validateContentFile(brokenPlay, { type: "play" });
+    expect(errors.some((e) => e.includes("play (ENACTS):"))).toBe(true);
+  });
+
+  it("rejects a play file with foreign chapters", () => {
+    const brokenPlay = `${validPlay}\n## Synopsis\nSynopsis content\n`;
+    const errors = validateContentFile(brokenPlay, { type: "play" });
+    expect(errors.some((e) => e.includes("play (ENACTS):"))).toBe(true);
+  });
+});
+
+// --- order contract: DO IT chapter structure and pending checklist validated
+describe("order contract: DO IT chapter structure and pending checklist validated", () => {
+  const front = `---
+khai: order
+title: "Stage Dantons Tod"
+license: CC-BY-NC-SA-4.0
+stamp:
+  owner: Choregos (Nicias and Pericles)
+  version: v1.0.0
+  date: "2026-06-06"
+---
+`;
+  const validOrder = `${front}\n# Order: Stage Dantons Tod\n\n## Direction\nvision\n\n## Orders\ncommands\n\n## Implementation\nguidelines\n\n## Targets\n- [x] Target 1\n- [F] Target 2\n- [W] Target 3\n`;
+
+  it("passes a completed order with all targets checked off", () => {
+    expect(validateContentFile(validOrder, { type: "order" })).toEqual([]);
+  });
+
+  it("rejects an order with pending targets", () => {
+    const pendingOrder = `${validOrder}- [ ] Target 4\n`;
+    const errors = validateContentFile(pendingOrder, { type: "order" });
+    expect(errors.some((e) => e.includes("order has 1 pending target"))).toBe(true);
+  });
+
+  it("rejects an order with missing chapters", () => {
+    const brokenOrder = validOrder.replace(
+      "## Targets\n- [x] Target 1\n- [F] Target 2\n- [W] Target 3\n",
+      "",
+    );
+    const errors = validateContentFile(brokenOrder, { type: "order" });
+    expect(errors.some((e) => e.includes("order (DO IT):"))).toBe(true);
+  });
+});
