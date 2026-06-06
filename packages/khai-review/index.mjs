@@ -78,6 +78,55 @@ export async function reviewCard(manifest, judge, checks = [rubrics.conciseness]
 }
 
 /**
+ * Extract H2 section bodies from markdown.
+ * @param {string} text
+ * @returns {Record<string, string>}
+ */
+export function parseH2Sections(text) {
+  if (typeof text !== "string") return {};
+  const sections = {};
+  const parts = text.split(/^##\s+/m);
+  for (let i = 1; i < parts.length; i++) {
+    const part = parts[i];
+    const firstNewLine = part.indexOf("\n");
+    if (firstNewLine === -1) continue;
+    const title = part.slice(0, firstNewLine).trim();
+    let body = part.slice(firstNewLine).trim();
+    const h1Index = body.search(/^#\s+/m);
+    if (h1Index !== -1) {
+      body = body.slice(0, h1Index).trim();
+    }
+    if (title && body) {
+      sections[title] = body;
+    }
+  }
+  return sections;
+}
+
+/**
+ * Review H2 section bodies in a markdown file.
+ * @param {string} filename relative filename (e.g., position_female.md)
+ * @param {string} text content of the markdown file
+ * @param {Judge} judge
+ * @param {Rubric[]} [checks]
+ * @returns {Promise<(Finding & { where: string })[]>}
+ */
+export async function reviewMarkdown(filename, text, judge, checks = [rubrics.conciseness]) {
+  const sections = parseH2Sections(text);
+  const flags = [];
+  for (const [title, body] of Object.entries(sections)) {
+    if (typeof body !== "string" || !body.trim()) continue;
+    for (const rubric of checks) {
+      const f = await review(body, rubric, judge);
+      if (f.verdict === "flag") {
+        flags.push({ where: `${filename}#${title}`, current: body, ...f });
+      }
+    }
+  }
+  return flags;
+}
+
+/**
  * A deterministic stand-in for a model, for tests and dry runs. It does NOT
  * judge meaning; it only proves the harness wiring (a real model-backed judge
  * replaces it behind the same interface). Flags prose with obvious filler.
@@ -463,6 +512,8 @@ export default {
   rubrics,
   review,
   reviewCard,
+  reviewMarkdown,
+  parseH2Sections,
   mockJudge,
   createModelJudge,
   collect,
