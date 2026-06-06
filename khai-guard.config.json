@@ -46,6 +46,7 @@
           "khai-guard.config.json",
           "docs/BRANCHING.md",
           "CLAUDE.md",
+          "GEMINI.md",
           ".github/copilot-instructions.md"
         ]
       },
