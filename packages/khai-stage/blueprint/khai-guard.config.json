@@ -19,9 +19,11 @@
           "khai-guard.config.json",
           "tests/**",
           "README.md",
+          "GEMINI.md",
           "CLAUDE.md",
           "REFERENCE.md",
           "REFERENCES.md",
+          "management/**",
           "audit/**"
         ]
       },

@@ -1,16 +1,20 @@
 #!/usr/bin/env node
-// khai-stage <source> [targetDir]
+// khai-stage <source> [targetDir] [manager]
 // Stamp a khai production house. The impresario judges the source; this stamps.
 
 import { stageHouse } from "../index.mjs";
 
 const source = process.argv[2];
 if (!source) {
-  console.error("usage: khai-stage <source> [targetDir]   e.g. khai-stage buechner");
+  console.error("usage: khai-stage <source> [targetDir] [manager]   e.g. khai-stage buechner");
   process.exit(1);
 }
 
-const result = stageHouse({ source, targetDir: process.argv[3] ?? `khai-plays-${source}` });
+const result = stageHouse({
+  source,
+  targetDir: process.argv[3] || `khai-plays-${source}`,
+  manager: process.argv[4],
+});
 
 console.log(`raised ${result.repo} (${result.written.length} files):`);
 for (const f of result.written) console.log(`  ${f}`);

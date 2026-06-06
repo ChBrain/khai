@@ -32,11 +32,14 @@ const title = (s) =>
 // inert in this repo (no stray hook fires, no nested workflow runs); the stamp
 // restores them. A .tmpl suffix marks a file the toolchain must not pick up here
 // (a test that would otherwise run); the stamp drops it.
-function housePath(rel) {
+function housePath(rel, { managerSlug } = {}) {
   let p = rel.replace(/\.tmpl$/, "").replace(/\\/g, "/");
   if (p === "npmrc" || p === "gitignore" || p === "nvmrc") return "." + p;
   if (p.startsWith("github/") || p.startsWith("husky/") || p.startsWith("changeset/"))
     return "." + p;
+  if (managerSlug && p === "management/persona_manager.md") {
+    return `management/persona_${managerSlug}.md`;
+  }
   return p;
 }
 
@@ -54,25 +57,30 @@ const walk = (dir, base = dir) =>
  *
  * @param {{ source: string, targetDir: string }} opts
  */
-export function stageHouse({ source, targetDir } = {}) {
+export function stageHouse({ source, targetDir, manager } = {}) {
   const s = slug(source);
   if (!s)
     throw new Error("khai-stage: a source is required, e.g. stageHouse({ source: 'buechner' })");
   if (!targetDir) throw new Error("khai-stage: a targetDir is required");
 
+  const m = manager ? slug(manager) : "manager";
+  const mTitle = manager ? title(manager) : "Manager";
+
   const tokens = {
     "{{SOURCE_TITLE}}": title(source),
     "{{SOURCE}}": s,
     "{{YEAR}}": String(new Date().getUTCFullYear()),
+    "{{MANAGER_PERSONA}}": m,
+    "{{MANAGER_TITLE}}": mTitle,
   };
   const fill = (text) => Object.entries(tokens).reduce((t, [k, v]) => t.split(k).join(v), text);
 
   const written = [];
   for (const rel of walk(BLUEPRINT)) {
-    const out = join(targetDir, housePath(rel));
+    const out = join(targetDir, housePath(rel, { managerSlug: m }));
     mkdirSync(dirname(out), { recursive: true });
     writeFileSync(out, fill(readFileSync(join(BLUEPRINT, rel), "utf8")));
-    written.push(housePath(rel).split("\\").join("/"));
+    written.push(housePath(rel, { managerSlug: m }).split("\\").join("/"));
   }
 
   return {
