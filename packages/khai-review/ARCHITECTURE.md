@@ -29,11 +29,11 @@ model.
 
 Rubrics in use:
 
-| Rubric | Scope | What it checks |
-| --- | --- | --- |
-| `conciseness` | universal | at least a quarter of a passage could go with no loss of meaning |
-| `khai-type` | universal | the prose actually does the job the section demands (e.g. Shadow contradicts Projection rather than restating it) |
-| `voice-conformance` | per content unit | the prose conforms to the voice the file declares |
+| Rubric              | Scope            | What it checks                                                                                                    |
+| ------------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `conciseness`       | universal        | at least a quarter of a passage could go with no loss of meaning                                                  |
+| `khai-type`         | universal        | the prose actually does the job the section demands (e.g. Shadow contradicts Projection rather than restating it) |
+| `voice-conformance` | per content unit | the prose conforms to the voice the file declares                                                                 |
 
 `voice-conformance` is parameterised at runtime: the harness reads the effective
 voice declaration for the file under review and builds the rubric instruction from
