@@ -46,6 +46,12 @@ describe("khai-stage: the stamped house", () => {
       "SECURITY.md",
       "CLAUDE.md",
       "README.md",
+      "GEMINI.md",
+      "management/position_choregos.md",
+      "management/persona_nicias.md",
+      "management/persona_pericles.md",
+      "management/position_manager.md",
+      "management/persona_manager.md",
       "plays/.gitkeep",
       "tests/house.test.mjs",
     ]) {
@@ -73,9 +79,10 @@ describe("khai-stage: the stamped house", () => {
   it("leaves no unfilled placeholder anywhere", () => {
     for (const f of allFiles(dir)) {
       const text = readFileSync(join(dir, f), "utf8");
-      expect(/\{\{(SOURCE|SOURCE_TITLE|YEAR)\}\}/.test(text), `placeholder left in ${f}`).toBe(
-        false,
-      );
+      expect(
+        /\{\{(SOURCE|SOURCE_TITLE|YEAR|MANAGER_PERSONA|MANAGER_TITLE)\}\}/.test(text),
+        `placeholder left in ${f}`,
+      ).toBe(false);
     }
   });
 
