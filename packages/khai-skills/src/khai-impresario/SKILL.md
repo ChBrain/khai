@@ -25,6 +25,8 @@ link resolves. The house README is that Estate identity: the single, linkable
 owner every play names, and the same handle you put on the bill. Ownership is
 recorded in band, inside each play file, never on the side.
 
+The house voice brief is set at the top of the README in a YAML frontmatter block (e.g. `voice: "sparse, working-class register"`). All plays in this house inherit this voice unless they explicitly override it.
+
 ## Raising the house
 
 `<source>` is the one input. Most of the house is computed; you judge only a few
@@ -39,6 +41,7 @@ things, so that is where to slow down.
   on, stop here.
 - **The card.** Write the title and the one-line blurb the bill will show. This
   is editorial. The rest is not.
+- **The voice.** Define the house voice brief: the grammatical register, tone, and editorial constraints (no em or en dashes) that every play in this house must default to.
 
 ### 2. Stamp the house (computed, not judged)
 
@@ -84,6 +87,7 @@ is staged later, one play at a time, in khai-playwright mode.
 
 ```
 - [ ] The source is free to build on; it is credited, and only the khai layer is claimed
+- [ ] The house voice brief is defined in the frontmatter of README.md
 - [ ] khai-stage stamped the house; no invariant file was hand-made or hand-edited
 - [ ] The house README reads as the Estate identity a play can name and resolve
 - [ ] The handoffs are done: install with the token, first run green, branch protection applied
