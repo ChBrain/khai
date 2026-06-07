@@ -1,5 +1,11 @@
 # @chbrain/khai-language
 
+## 0.1.1
+
+### Patch Changes
+
+- 7aa9796: Register French (`fr`) as a natively supported language in the ENACTS language detector.
+
 ## 0.1.0
 
 ### Minor Changes
