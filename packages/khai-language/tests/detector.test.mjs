@@ -6,6 +6,7 @@ import {
   extractProseSections,
   resolveLanguage,
   validateLanguageOfFile,
+  validateProjectLanguages,
 } from "../src/detector.mjs";
 
 const FIXTURES_DIR = join(import.meta.dirname || __dirname, "fixtures");
@@ -271,5 +272,50 @@ khai: persona
     const errors = validateLanguageOfFile(fileUnknown, projectDir);
     expect(errors).toHaveLength(1);
     expect(errors[0]).toContain("Language 'es' is not registered");
+  });
+
+  it("validateProjectLanguages resolves nlpLanguages dynamically from package.json", () => {
+    const projectDir = join(FIXTURES_DIR, "dynamic-package-project");
+    const playDir = join(projectDir, "plays", "igbo-play");
+    mkdirSync(playDir, { recursive: true });
+
+    // Setup package.json with khai.languages: ["ig"]
+    writeFileSync(
+      join(projectDir, "package.json"),
+      JSON.stringify({
+        name: "test-house",
+        version: "1.0.0",
+        khai: {
+          languages: ["ig"],
+        },
+      }),
+    );
+
+    // Setup house README (Igbo)
+    writeFileSync(
+      join(projectDir, "README.md"),
+      `---
+language: ig
+---
+`,
+    );
+
+    const fileIgbo = join(playDir, "persona_igbo.md");
+    writeFileSync(
+      fileIgbo,
+      `---
+khai: persona
+---
+# Persona: Igbo
+
+## Projection
+Kedu ka ị mere? Obi ụtọ na-arụ ọrụ a.
+`,
+    );
+
+    // When validateProjectLanguages is run without options.nlpLanguages,
+    // it should read "ig" from package.json and skip library checks (meaning 0 errors).
+    const results = validateProjectLanguages(projectDir);
+    expect(results).toHaveLength(0);
   });
 });

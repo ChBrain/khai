@@ -308,6 +308,23 @@ export function validateProjectLanguages(projectPath, options = {}) {
     return [];
   }
 
+  // Load languages from package.json if not provided in options
+  let nlpLanguages = options.nlpLanguages;
+  if (!nlpLanguages) {
+    const pkgPath = join(projectPath, "package.json");
+    if (existsSync(pkgPath)) {
+      try {
+        const pkg = JSON.parse(readFileSync(pkgPath, "utf8"));
+        nlpLanguages = pkg.khai?.languages || [];
+      } catch {
+        nlpLanguages = [];
+      }
+    } else {
+      nlpLanguages = [];
+    }
+  }
+  const mergedOptions = { ...options, nlpLanguages };
+
   const mdFiles = findProjectMarkdownFiles(contentDir);
   const results = [];
 
@@ -318,7 +335,7 @@ export function validateProjectLanguages(projectPath, options = {}) {
       continue;
     }
 
-    const errors = validateLanguageOfFile(file, projectPath, options);
+    const errors = validateLanguageOfFile(file, projectPath, mergedOptions);
     if (errors.length > 0) {
       results.push({
         file,
