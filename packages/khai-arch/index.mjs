@@ -126,6 +126,7 @@ export function toPrefix(typeId) {
 const FRONTMATTER_EXTRAS = {
   persona: { type: { values: ["real", "archetype", "fictional"], required: true } },
   play: { description: { required: false } },
+  plan: { status: { values: ["draft", "active", "closed"], required: true } },
 };
 export function frontmatterExtras(typeId) {
   const extra = FRONTMATTER_EXTRAS[typeId] ?? {};
@@ -160,10 +161,13 @@ export const referenceChapters = ["Line of Work", "Origin", "Restrictions", "Enc
 export const playChapters = ["Estate", "Name", "Arc", "Company", "Triggers", "Stakes"];
 
 /**
- * DO IT: the management order standard.
+ * TO DO IT: the management plan standard chapters (excluding Taxonomy/Owner prefix).
  * @type {string[]}
  */
-export const orderChapters = ["Direction", "Orders", "Implementation", "Targets"];
+export const planChapters = ["Direction", "Orders", "Implementation", "Targets"];
+
+/** @deprecated use planChapters */
+export const orderChapters = planChapters;
 
 /**
  * Normalize an engine manifest into a flat list of typed members arranged on a
@@ -443,18 +447,17 @@ export function playCard(text) {
 }
 
 /**
- * Project a management order document into a render-ready card: the four DO IT
+ * Project a management plan document into a render-ready card: the six TO DO IT
  * chapters in order, each with its prose and any author `### ` subchapters, plus
  * an optional trailing `---` coda.
  *
  * Throws if a chapter is missing, out of order, foreign, or empty.
  *
- * @param {string} text  the order file text (YAML frontmatter allowed)
- * @returns {{ mnemonic: "DO IT", chapters: string[], sections: Record<string, { body: string, subchapters: { name: string, body: string }[] }>, coda: string|null }}
+ * @param {string} text  the plan file text (YAML frontmatter allowed)
+ * @returns {{ mnemonic: "TO DO IT", chapters: string[], sections: Record<string, { body: string, subchapters: { name: string, body: string }[] }>, coda: string|null }}
  */
-export function orderCard(text) {
-  if (typeof text !== "string" || !text.trim())
-    throw new Error("orderCard: order text is required");
+export function planCard(text) {
+  if (typeof text !== "string" || !text.trim()) throw new Error("planCard: plan text is required");
   const body = matter(text).content.trim();
 
   // An optional trailing coda, fenced by a `---` rule.
@@ -485,19 +488,24 @@ export function orderCard(text) {
     sections[name] = { body: intro, subchapters };
   }
 
-  // The DO IT contract: exactly the DO IT chapters, in order, nothing foreign.
-  if (seen.length !== orderChapters.length || seen.some((n, i) => n !== orderChapters[i]))
+  const expectedChapters = ["Taxonomy", "Owner", ...planChapters];
+
+  // The TO DO IT contract: exactly the TO DO IT chapters, in order, nothing foreign.
+  if (seen.length !== expectedChapters.length || seen.some((n, i) => n !== expectedChapters[i]))
     throw new Error(
-      `orderCard: order chapters must be exactly [${orderChapters.join(", ")}] ` +
-        `in order (DO IT); got [${seen.join(", ")}]`,
+      `planCard: plan chapters must be exactly [${expectedChapters.join(", ")}] ` +
+        `in order (TO DO IT); got [${seen.join(", ")}]`,
     );
   // Every chapter must carry content.
-  for (const name of orderChapters)
+  for (const name of expectedChapters)
     if (!sections[name].body && sections[name].subchapters.length === 0)
-      throw new Error(`orderCard: chapter "${name}" is empty`);
+      throw new Error(`planCard: chapter "${name}" is empty`);
 
-  return { mnemonic: "DO IT", chapters: orderChapters, sections, coda };
+  return { mnemonic: "TO DO IT", chapters: expectedChapters, sections, coda };
 }
+
+/** @deprecated use planCard */
+export const orderCard = planCard;
 
 const capitalize = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : s);
 // Linear, not /\s*[–—]\s*/g: that backtracks O(n) per position on long space
@@ -579,12 +587,14 @@ export default {
   wiresChapters,
   referenceChapters,
   playChapters,
+  planChapters,
   orderChapters,
   engineMembers,
   compositionOrder,
   engineCard,
   referenceCard,
   playCard,
+  planCard,
   orderCard,
   renderEngineReadme,
 };
