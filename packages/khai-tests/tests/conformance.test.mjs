@@ -620,6 +620,47 @@ stamp:
   });
 });
 
+// --- plan contract: TO DO IT chapter structure and pending checklist validated
+describe("plan contract: TO DO IT chapter structure and pending checklist validated", () => {
+  const front = `---
+khai: plan
+title: "Stage Dantons Tod"
+license: CC-BY-NC-SA-4.0
+stamp:
+  owner: Choregos (Nicias and Pericles)
+  version: v1.0.0
+  date: "2026-06-06"
+status: active
+---
+`;
+  const validPlan = `${front}\n# Plan: Stage Dantons Tod\n\n## Taxonomy\nstaging\n\n## Owner\n- Project: buechner\n\n## Direction\nvision\n\n## Orders\ncommands\n\n## Implementation\nguidelines\n\n## Targets\n- [x] Target 1\n- [F] Target 2\n- [W] Target 3\n`;
+
+  it("passes a completed plan with all targets checked off", () => {
+    expect(validateContentFile(validPlan, { type: "plan" })).toEqual([]);
+  });
+
+  it("rejects a plan with pending targets", () => {
+    const pendingPlan = `${validPlan}- [ ] Target 4\n`;
+    const errors = validateContentFile(pendingPlan, { type: "plan" });
+    expect(errors.some((e) => e.includes("plan has 1 pending target"))).toBe(true);
+  });
+
+  it("rejects a plan with missing chapters", () => {
+    const brokenPlan = validPlan.replace(
+      "## Targets\n- [x] Target 1\n- [F] Target 2\n- [W] Target 3\n",
+      "",
+    );
+    const errors = validateContentFile(brokenPlan, { type: "plan" });
+    expect(errors.some((e) => e.includes("plan (TO DO IT):"))).toBe(true);
+  });
+
+  it("rejects a plan with invalid status", () => {
+    const brokenPlan = validPlan.replace("status: active", "status: invalid");
+    const errors = validateContentFile(brokenPlan, { type: "plan" });
+    expect(errors.some((e) => e.includes('frontmatter "status" must be one of'))).toBe(true);
+  });
+});
+
 // --- order contract: DO IT chapter structure and pending checklist validated
 describe("order contract: DO IT chapter structure and pending checklist validated", () => {
   const front = `---
