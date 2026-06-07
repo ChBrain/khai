@@ -6,7 +6,7 @@ stamp:
   owner: KAI HACKS AI
   version: v0.0.1
   date: "2026-06-03"
-status: draft
+status: active
 ---
 
 # Plan: [title]
@@ -17,9 +17,7 @@ The kind of plan being directed: e.g. governance, play-staging, release, or char
 
 ## Owner
 
-- Project: [project]
-- Choregos: [issuing Choregos, e.g. Choregos (Nicias and Pericles)]
-- House: [receiving house, e.g. buechner, grimm, or website]
+- Owner: [The entity holding the plan: e.g. a Persona (persona_leonce.md), a Position (position_monarch.md), or a Project/House]
 
 ## Direction
 
@@ -27,7 +25,7 @@ The artistic and civic intent behind this plan: the overarching goal, context, a
 
 ## Orders
 
-The specific directives issued to named personas in the house or project: e.g. the Playwright, the Theatre Manager, or the Literary Manager.
+The specific directives issued to named personas, positions, or roles: e.g. the Theatre Manager, the Monarch, or a specific character.
 
 ## Implementation
 
