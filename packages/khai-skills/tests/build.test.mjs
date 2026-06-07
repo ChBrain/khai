@@ -22,7 +22,7 @@ describe("compose: khai-playwright", () => {
   });
 
   it("injects the full play+plot+element template set from canon (Mode B)", () => {
-    const types = ["play", "plot", "process", "position", "piece", "place", "persona"];
+    const types = ["play", "plot", "process", "position", "piece", "place", "persona", "plan"];
     for (const t of types) {
       const tpl = r.files.find((f) => f.name === `references/template_${t}.md`);
       expect(tpl, `template_${t}.md should be injected`).toBeTruthy();
