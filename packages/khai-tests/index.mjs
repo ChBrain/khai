@@ -8,6 +8,7 @@ export {
   findEnginePackageFor,
   validateInstanceFile,
   validateProject,
+  validatePlayhouseRegistry,
   wiringRequirements,
   engineDocChecks,
 } from "./src/validate.mjs";
