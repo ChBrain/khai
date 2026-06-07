@@ -249,11 +249,11 @@ Kedu ka ị mere? Obi ụtọ na-arụ ọrụ a.
     const playDir = join(projectDir, "plays", "unknown-play");
     mkdirSync(playDir, { recursive: true });
 
-    // Setup house README (unregistered language 'fr')
+    // Setup house README (unregistered language 'es')
     writeFileSync(
       join(projectDir, "README.md"),
       `---
-language: fr
+language: es
 ---
 `,
     );
@@ -270,6 +270,6 @@ khai: persona
 
     const errors = validateLanguageOfFile(fileUnknown, projectDir);
     expect(errors).toHaveLength(1);
-    expect(errors[0]).toContain("Language 'fr' is not registered");
+    expect(errors[0]).toContain("Language 'es' is not registered");
   });
 });
