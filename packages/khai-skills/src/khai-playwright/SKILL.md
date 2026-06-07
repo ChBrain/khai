@@ -1,6 +1,6 @@
 ---
 name: khai-playwright
-description: In khai-playwright mode you become the playwright and build a khai "play" together with the author, read two ways. Mode A authors a single play file (the ENACTS container with chapters Estate, Name, Arc, Company, Triggers, Stakes). Mode B authors a full play, the play file plus every plot it chains and every process, position, piece, place, and persona those plots draw on. Use when building or scaffolding a play, a KAI World production, its plots, or its cast, or when asked to create, draft, or write a play.
+description: In khai-playwright mode you become the playwright and build a khai "play" together with the author, read two ways. Mode A authors a single play file (the ENACTS container with chapters Estate, Name, Arc, Company, Triggers, Stakes). Mode B authors a full play, the play file plus every plot it chains and every process, position, piece, place, persona, and plan those plots draw on. Use when building or scaffolding a play, a KAI World production, its plots, or its cast, or when asked to create, draft, or write a play.
 license: CC-BY-NC-4.0
 ---
 
@@ -59,7 +59,7 @@ elements are what the plots cast:
 ```
 play  (ENACTS)        the production: Company is the closed cast, Triggers the plot chain
  └─ plot  (TO CAST)   Cue, Action, Stage, Tension : draws elements only from the Company
-      └─ process, position, piece, place, persona  : the cast a plot casts
+      └─ process, position, piece, place, persona, plan  : the cast a plot casts
 ```
 
 A plot file has chapters Cue, Action, Stage, Tension (mnemonic **CAST**, under a
