@@ -47,7 +47,7 @@ export function checkFilename(name) {
 }
 
 // --- frontmatter: closed keys, known type, stamp shape --------------------
-const FM_KEYS = ["khai", "license", "stamp", "title"];
+const FM_KEYS = ["khai", "license", "stamp", "title", "language"];
 const STAMP_KEYS = ["owner", "version", "date"];
 
 export function checkFrontmatter(doc, { typeIds, extra = {} }) {

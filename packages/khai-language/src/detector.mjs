@@ -9,6 +9,7 @@ const ISO_MAP = {
   en: "english",
   de: "german",
   da: "danish",
+  fr: "french",
 };
 
 const DEFAULT_PROSE_SECTIONS = [
