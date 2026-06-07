@@ -508,6 +508,168 @@ function findInstanceFiles(dir) {
  * @param {{ root: string, contentDir?: string, owner?: object, levels?: Record<string,string> }} opts
  * @returns {{ file: string, errors: string[], warnings: string[], audit: string[] }[]}
  */
+export function validatePlayhouseRegistry(root) {
+  const errors = [];
+  const registryPath = join(root, "registry.json");
+  const playsDir = join(root, "plays");
+
+  if (!existsSync(registryPath)) {
+    return [{ file: registryPath, errors: ["missing registry.json at root"] }];
+  }
+
+  let registryText;
+  try {
+    registryText = readFileSync(registryPath, "utf8");
+  } catch (err) {
+    return [{ file: registryPath, errors: [`failed to read registry.json: ${err.message}`] }];
+  }
+
+  let registry;
+  try {
+    registry = JSON.parse(registryText);
+  } catch (err) {
+    return [{ file: registryPath, errors: [`failed to parse registry.json: ${err.message}`] }];
+  }
+
+  if (typeof registry !== "object" || registry === null) {
+    return [{ file: registryPath, errors: ["registry.json must be a JSON object"] }];
+  }
+
+  if (typeof registry.name !== "string" || !registry.name.trim()) {
+    errors.push("registry.json must have a non-empty string 'name'");
+  }
+  if (typeof registry.version !== "string" || !registry.version.trim()) {
+    errors.push("registry.json must have a non-empty string 'version'");
+  }
+  if (!Array.isArray(registry.plays)) {
+    errors.push("registry.json must have a 'plays' array");
+  }
+
+  if (errors.length > 0) {
+    return [{ file: registryPath, errors }];
+  }
+
+  // Check plays array items
+  const registryPlays = registry.plays;
+  const playIds = new Set();
+
+  for (let i = 0; i < registryPlays.length; i++) {
+    const play = registryPlays[i];
+    if (typeof play !== "object" || play === null) {
+      errors.push(`plays[${i}] must be an object`);
+      continue;
+    }
+    if (typeof play.id !== "string" || !/^[a-z0-9_]+$/.test(play.id)) {
+      errors.push(`plays[${i}] id must match pattern ^[a-z0-9_]+$, got ${JSON.stringify(play.id)}`);
+      continue;
+    }
+    if (playIds.has(play.id)) {
+      errors.push(`duplicate play id in registry: "${play.id}"`);
+    }
+    playIds.add(play.id);
+
+    if (typeof play.title !== "string" || !play.title.trim()) {
+      errors.push(`play "${play.id}" must have a non-empty title`);
+    }
+
+    if (typeof play.description !== "string") {
+      errors.push(`play "${play.id}" must have a description string`);
+    } else {
+      const desc = play.description;
+      if (desc.length < 10 || desc.length > 120) {
+        errors.push(
+          `play "${play.id}" description must be between 10 and 120 characters (got ${desc.length})`,
+        );
+      }
+
+      // Check blurb constraints: one sentence, ending in period, no HTML, no markdown except inline code
+      const plain = desc.replace(/`[^`]+`/g, "");
+      if (!plain.endsWith(".") || plain.endsWith("..")) {
+        errors.push(
+          `play "${play.id}" description must consist of exactly one sentence ending in a period`,
+        );
+      } else {
+        const periodCount = (plain.match(/\./g) || []).length;
+        const qCount = (plain.match(/\?/g) || []).length;
+        const eCount = (plain.match(/\!/g) || []).length;
+        if (periodCount !== 1 || qCount > 0 || eCount > 0) {
+          errors.push(
+            `play "${play.id}" description must consist of exactly one sentence (ending in a period ".")`,
+          );
+        }
+      }
+
+      if (/<[^>]+>/.test(plain)) {
+        errors.push(`play "${play.id}" description must not contain HTML tags`);
+      }
+      if (/\*\*|__|\*|_|\[|\]/.test(plain)) {
+        errors.push(
+          `play "${play.id}" description must not contain markdown formatting (other than inline code formatting if needed)`,
+        );
+      }
+    }
+  }
+
+  // Directory bidirectional sync
+  let subdirs = [];
+  if (existsSync(playsDir)) {
+    try {
+      subdirs = readdirSync(playsDir, { withFileTypes: true })
+        .filter((e) => e.isDirectory() && !e.name.startsWith("."))
+        .map((e) => e.name);
+    } catch (err) {
+      errors.push(`failed to read plays directory: ${err.message}`);
+    }
+  }
+
+  // Rule A: For every subdirectory under plays/ (excluding hidden/ignored folders),
+  // there must be a corresponding item in registry.json where id matches the directory name.
+  for (const subdir of subdirs) {
+    if (!playIds.has(subdir)) {
+      errors.push(`play subdirectory "${subdir}" has no corresponding entry in registry.json`);
+    }
+  }
+
+  // Rule B: For every item in the plays array of registry.json,
+  // there must be a corresponding directory under plays/ with that name.
+  for (const id of playIds) {
+    if (!subdirs.includes(id)) {
+      errors.push(`registry.json declares play "${id}" but directory "plays/${id}" is missing`);
+    }
+  }
+
+  // Title Alignment:
+  // Parse the playbook frontmatter (`plays/<id>/play_<id>.md`) and verify that `title`
+  // in frontmatter matches the `title` defined for that play in `registry.json`.
+  for (const play of registryPlays) {
+    if (!play || typeof play.id !== "string" || !play.id) continue;
+    const playFile = join(playsDir, play.id, `play_${play.id}.md`);
+    if (existsSync(playFile)) {
+      try {
+        const text = readFileSync(playFile, "utf8");
+        const doc = parseDoc(text);
+        if (doc.ok && doc.data) {
+          const fmTitle = doc.data.title;
+          if (fmTitle !== play.title) {
+            errors.push(
+              `play "${play.id}": title in playbook frontmatter ("${fmTitle}") does not match title in registry.json ("${play.title}")`,
+            );
+          }
+        } else {
+          errors.push(`play "${play.id}": failed to parse frontmatter of ${playFile}`);
+        }
+      } catch (err) {
+        errors.push(`play "${play.id}": failed to read playbook ${playFile}: ${err.message}`);
+      }
+    }
+  }
+
+  if (errors.length > 0) {
+    return [{ file: registryPath, errors, warnings: [], audit: [] }];
+  }
+  return [];
+}
+
 export function validateProject({ root, contentDir = root, owner, levels } = {}) {
   const requirements = wiringRequirements(installedEngineManifests(root));
   const results = [];
@@ -529,5 +691,12 @@ export function validateProject({ root, contentDir = root, owner, levels } = {})
     });
     if (findings.length) results.push({ file, ...bucket(findings) });
   }
+
+  const playsDir = join(root, "plays");
+  if (existsSync(playsDir) && statSync(playsDir).isDirectory()) {
+    const regResults = validatePlayhouseRegistry(root);
+    if (regResults.length) results.push(...regResults);
+  }
+
   return results;
 }
