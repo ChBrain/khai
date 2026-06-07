@@ -1,5 +1,11 @@
 # @chbrain/khai-arch
 
+## 0.1.7
+
+### Patch Changes
+
+- 4178749: Widen the plan spec and template to support positions, personas, and roles as owners and order targets.
+
 ## 0.1.6
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @chbrain/khai-skills
 
+## 0.0.12
+
+### Patch Changes
+
+- cde3f3f: Update playwright skill instructions in SKILL.md to specify drawing plan in Stage and Tension.
+- Updated dependencies [4178749]
+  - @chbrain/khai-arch@0.1.7
+
 ## 0.0.11
 
 ### Patch Changes
