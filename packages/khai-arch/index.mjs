@@ -166,8 +166,11 @@ export const playChapters = ["Estate", "Name", "Arc", "Company", "Triggers", "St
  */
 export const planChapters = ["Direction", "Orders", "Implementation", "Targets"];
 
-/** @deprecated use planChapters */
-export const orderChapters = planChapters;
+/**
+ * DO IT: the management order standard.
+ * @type {string[]}
+ */
+export const orderChapters = ["Direction", "Orders", "Implementation", "Targets"];
 
 /**
  * Normalize an engine manifest into a flat list of typed members arranged on a
@@ -504,8 +507,62 @@ export function planCard(text) {
   return { mnemonic: "TO DO IT", chapters: expectedChapters, sections, coda };
 }
 
-/** @deprecated use planCard */
-export const orderCard = planCard;
+/**
+ * Project a management order document into a render-ready card: the four DO IT
+ * chapters in order, each with its prose and any author `### ` subchapters, plus
+ * an optional trailing `---` coda.
+ *
+ * Throws if a chapter is missing, out of order, foreign, or empty.
+ *
+ * @param {string} text  the order file text (YAML frontmatter allowed)
+ * @returns {{ mnemonic: "DO IT", chapters: string[], sections: Record<string, { body: string, subchapters: { name: string, body: string }[] }>, coda: string|null }}
+ */
+export function orderCard(text) {
+  if (typeof text !== "string" || !text.trim())
+    throw new Error("orderCard: order text is required");
+  const body = matter(text).content.trim();
+
+  // An optional trailing coda, fenced by a `---` rule.
+  const parts = body.split(/\n---\n/);
+  const main = parts[0];
+  const coda = parts.length > 1 ? parts.slice(1).join("\n---\n").trim() || null : null;
+
+  // Chunks beginning at each `## ` header; anything before the first is dropped.
+  const chunks = main.split(/\n(?=## )/).filter((c) => /^##\s/.test(c.trim()));
+
+  const seen = [];
+  const sections = {};
+  for (const chunk of chunks) {
+    const lines = chunk.trim().split("\n");
+    const name = lines[0].replace(/^##\s+/, "").trim();
+    seen.push(name);
+    const subParts = lines
+      .slice(1)
+      .join("\n")
+      .split(/\n(?=###\s)/);
+    const intro = /^###\s/.test(subParts[0].trim()) ? "" : subParts[0].trim();
+    const subchapters = subParts
+      .filter((s) => /^###\s/.test(s.trim()))
+      .map((s) => {
+        const sl = s.trim().split("\n");
+        return { name: sl[0].replace(/^###\s+/, "").trim(), body: sl.slice(1).join("\n").trim() };
+      });
+    sections[name] = { body: intro, subchapters };
+  }
+
+  // The DO IT contract: exactly the DO IT chapters, in order, nothing foreign.
+  if (seen.length !== orderChapters.length || seen.some((n, i) => n !== orderChapters[i]))
+    throw new Error(
+      `orderCard: order chapters must be exactly [${orderChapters.join(", ")}] ` +
+        `in order (DO IT); got [${seen.join(", ")}]`,
+    );
+  // Every chapter must carry content.
+  for (const name of orderChapters)
+    if (!sections[name].body && sections[name].subchapters.length === 0)
+      throw new Error(`orderCard: chapter "${name}" is empty`);
+
+  return { mnemonic: "DO IT", chapters: orderChapters, sections, coda };
+}
 
 const capitalize = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : s);
 // Linear, not /\s*[–—]\s*/g: that backtracks O(n) per position on long space
