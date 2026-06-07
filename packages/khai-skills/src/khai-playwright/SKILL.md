@@ -64,7 +64,7 @@ play  (ENACTS)        the production: Company is the closed cast, Triggers the p
 
 A plot file has chapters Cue, Action, Stage, Tension (mnemonic **CAST**, under a
 `## Taxonomy` and `## Owner` prefix). Cue draws a place; Action draws processes,
-positions, and personas; Stage draws personas and pieces; Tension draws a piece.
+positions, and personas; Stage draws personas, pieces, and plans; Tension draws a piece, a process, or a plan.
 
 **Build sequence:**
 
