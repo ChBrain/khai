@@ -4,12 +4,12 @@ type: plan
 class: meta
 mnemonic: "TO DOIT"
 chapters: [Direction, Orders, Implementation, Targets]
-subtitle: "the producing of a play"
+subtitle: "the mapping of intent"
 status: published
 version: 0.1.0
 ---
 
-A plan is a forward-looking blueprint for producing a play or directing a major phase of work. It is issued to track intent, ownership, and delivery, ensuring that all directives are resolved.
+A plan is a forward-looking blueprint. It maps intent and action, representing either a production directive or an in-world plan.
 
 - **D**irection: The artistic and civic intent. The overarching goal, context, and vision behind this plan.
 
