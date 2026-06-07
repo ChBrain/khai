@@ -20,14 +20,14 @@ Decide the mode first. Mode B always builds Mode A as its first step.
 
 A play file has six chapters, in order. Their first letters spell **ENACTS**:
 
-| Chapter      | Holds                                                                               |
-| ------------ | ----------------------------------------------------------------------------------- |
-| **E**state   | Who holds the whole run and answers for it: the production this play belongs to.    |
-| **N**ame     | The title the production runs under, that every plot is billed beneath.             |
-| **A**rc      | The overarching story: the bend that makes the plots one telling, not a list.       |
-| **C**ompany  | The closed cast the play may field: personas, pieces, places, processes, positions. |
-| **T**riggers | The clockwork chaining the plots: each plot's close is the next one's cue.          |
-| **S**takes   | What the whole production is fighting over: every plot must move it.                |
+| Chapter      | Holds                                                                                      |
+| ------------ | ------------------------------------------------------------------------------------------ |
+| **E**state   | Who holds the whole run and answers for it: the production this play belongs to.           |
+| **N**ame     | The title the production runs under, that every plot is billed beneath.                    |
+| **A**rc      | The overarching story: the bend that makes the plots one telling, not a list.              |
+| **C**ompany  | The closed cast the play may field: personas, plans, pieces, places, processes, positions. |
+| **T**riggers | The clockwork chaining the plots: each plot's close is the next one's cue.                 |
+| **S**takes   | What the whole production is fighting over: every plot must move it.                       |
 
 Author it from [references/template_play.md](references/template_play.md). Open
 with the YAML frontmatter the template carries (at minimum `khai: play` and the
@@ -74,12 +74,13 @@ positions, and personas; Stage draws personas and pieces; Tension draws a piece.
    [references/template_plot.md](references/template_plot.md), drawing every
    Cue / Action / Stage / Tension element **only from the play's Company**.
 3. **For each Company element a plot draws on that has no file yet**, author it,
-   in this fixed order: process, then position, piece, place, persona. Templates:
+   in this fixed order: process, then position, piece, place, persona, plan. Templates:
    [process](references/template_process.md),
    [position](references/template_position.md),
    [piece](references/template_piece.md),
    [place](references/template_place.md),
-   [persona](references/template_persona.md).
+   [persona](references/template_persona.md),
+   [plan](references/template_plan.md).
 
 ### Staying in lane (what the play defines, the plot may not exceed)
 
@@ -117,6 +118,7 @@ One zip carrying the whole production in the world layout:
   piece_[name].md
   place_[name].md
   persona_[name].md
+  plan_[name].md
 ```
 
 ## Quality rules
