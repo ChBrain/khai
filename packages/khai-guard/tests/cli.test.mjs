@@ -10,12 +10,13 @@
 
 import { describe, it, expect, afterEach } from "vitest";
 import { execFileSync } from "node:child_process";
-import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const binPath = fileURLToPath(new URL("../bin/khai-guard.mjs", import.meta.url));
+const DORMANT = !readFileSync(binPath, "utf8").includes("pre-commit hooks are not installed");
 
 // Temp repos created during a test, torn down afterEach.
 let repos = [];
@@ -169,5 +170,29 @@ describe("khai-guard CLI", () => {
     const r = runGuard(dir, []);
     expect(r.status).toBe(0);
     expect(r.stdout).toContain("skipping");
+  });
+
+  describe.skipIf(DORMANT)("pre-commit hook compliance check", () => {
+    it("fails (exit 1) when pre-commit hook template exists but active hook is missing", () => {
+      const dir = initRepo();
+      write(dir, ".husky/pre-commit", "#!/usr/bin/env sh\nexit 0\n");
+      write(dir, "src/app.js", "v1\n");
+      commitAll(dir, "base");
+
+      const r = runGuard(dir, []);
+      expect(r.status).toBe(1);
+      expect(r.stderr).toContain("pre-commit hooks are not installed");
+    });
+
+    it("passes cleanly when both pre-commit template and active hook exist", () => {
+      const dir = initRepo();
+      write(dir, ".husky/pre-commit", "#!/usr/bin/env sh\nexit 0\n");
+      write(dir, ".husky/_/pre-commit", "#!/usr/bin/env sh\nexit 0\n");
+      write(dir, "src/app.js", "v1\n");
+      commitAll(dir, "base");
+
+      const r = runGuard(dir, []);
+      expect(r.status).toBe(0);
+    });
   });
 });
