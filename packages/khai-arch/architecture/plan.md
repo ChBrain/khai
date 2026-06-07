@@ -5,7 +5,7 @@ class: meta
 mnemonic: "TO DOIT"
 chapters: [Direction, Orders, Implementation, Targets]
 subtitle: "the producing of a play"
-status: draft
+status: published
 version: 0.1.0
 ---
 
