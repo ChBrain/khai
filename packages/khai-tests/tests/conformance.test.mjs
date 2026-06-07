@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll, afterAll, beforeEach, afterEach } from "vitest";
 import { fileURLToPath } from "node:url";
 import { dirname, join, relative, basename } from "node:path";
-import { mkdirSync, writeFileSync, rmSync } from "node:fs";
+import { mkdirSync, writeFileSync, rmSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import {
   discoverEnginePackages,
@@ -10,6 +10,8 @@ import {
   validateInstanceFile,
   validateProject,
   validatePlayhouseRegistry,
+  buildRegistry,
+  verifyRegistry,
   wiringRequirements,
   engineDocChecks,
 } from "../index.mjs";
@@ -880,5 +882,63 @@ stamp:
 `,
     );
     expect(validatePlayhouseRegistry(dir)).toEqual([]);
+  });
+});
+
+describe("conformance: registry utility functions", () => {
+  let dir;
+
+  beforeEach(() => {
+    dir = join(
+      tmpdir(),
+      `khai-registry-util-${process.pid}-${Math.random().toString(36).substring(2)}`,
+    );
+    mkdirSync(dir, { recursive: true });
+    mkdirSync(join(dir, "plays"), { recursive: true });
+  });
+
+  afterEach(() => {
+    rmSync(dir, { recursive: true, force: true });
+  });
+
+  it("builds and verifies a registry.json correctly from plays directory", () => {
+    writeFileSync(
+      join(dir, "package.json"),
+      JSON.stringify({ name: "my-house", version: "2.3.4" }),
+    );
+
+    mkdirSync(join(dir, "plays", "play_a"), { recursive: true });
+    writeFileSync(
+      join(dir, "plays", "play_a", "play_play_a.md"),
+      `---
+khai: play
+title: "Play A Title"
+license: MIT
+stamp:
+  owner: test
+  version: 1.0.0
+  date: 2026-06-07
+---
+# Play A
+
+## Arc
+
+This is a single sentence description.
+`,
+    );
+
+    buildRegistry(dir);
+
+    const registry = JSON.parse(readFileSync(join(dir, "registry.json"), "utf8"));
+    expect(registry.name).toBe("my-house");
+    expect(registry.version).toBe("2.3.4");
+    expect(registry.plays.length).toBe(1);
+    expect(registry.plays[0].id).toBe("play_a");
+    expect(registry.plays[0].title).toBe("Play A Title");
+    expect(registry.plays[0].description).toBe("This is a single sentence description.");
+
+    // Verify also works on build output
+    const verifyRes = verifyRegistry(dir);
+    expect(verifyRes.ok).toBe(true);
   });
 });
