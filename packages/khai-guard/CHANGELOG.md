@@ -1,5 +1,11 @@
 # @chbrain/khai-guard
 
+## 0.1.7
+
+### Patch Changes
+
+- 741d8f5: Integrate automated pre-commit hook verification into the khai-guard CLI.
+
 ## 0.1.6
 
 ### Patch Changes

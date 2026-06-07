@@ -60,6 +60,13 @@ export async function packEngine(pkgDir) {
     },
   ];
 
+  if (existsSync(join(pkgDir, "registry.json"))) {
+    overhead.push({
+      path: "registry.json",
+      data: readFileSync(join(pkgDir, "registry.json"), "utf8"),
+    });
+  }
+
   // Content flat under engine/: the member files only.
   const content = {
     dir: "engine",

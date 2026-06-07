@@ -56,6 +56,24 @@ import {
 } from "../index.mjs";
 import picomatch from "picomatch";
 
+// 0. Pre-commit hook compliance check.
+// If the template pre-commit hook is defined but active hooks are not installed
+// (meaning 'npm install' wasn't run), fail immediately with a non-zero exit code.
+const projectRoot = process.cwd();
+const templateHook = resolve(projectRoot, ".husky/pre-commit");
+const activeHook = resolve(projectRoot, ".husky/_/pre-commit");
+
+if (existsSync(templateHook) && !existsSync(activeHook)) {
+  console.error("::error::KHAI-Guard: pre-commit hooks are not installed.");
+  console.error("");
+  console.error("  Error: The active hook file (.husky/_/pre-commit) is missing.");
+  console.error(
+    "  Fix: Please run 'npm install' to configure and activate the required repository hooks.",
+  );
+  console.error("");
+  process.exit(1);
+}
+
 // Return the value following `name`, but only if it looks like a value
 // (not the next flag and not missing). `--base --head x` must NOT treat
 // "--head" as the base SHA.

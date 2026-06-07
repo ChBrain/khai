@@ -7,7 +7,19 @@ npx khai-guard
 # branch's diff range must stay inside that lane. ENFORCED (exit 1 on a
 # violation). Pick the lane with `khai-guard advise --files <paths>` before
 # `git checkout -b`; see docs/BRANCHING.md.
-npx khai-guard branch-check
+#
+# The hook receives the branch being pushed on stdin.
+# Format: <local ref> <local sha> <remote ref> <remote sha>
+while read local_ref local_sha remote_ref remote_sha
+do
+  case "$local_ref" in
+    refs/heads/*)
+      branch_name="${local_ref#refs/heads/}"
+      echo "KHAI-Guard: checking branch '$branch_name'..."
+      npx khai-guard branch-check --branch "$branch_name"
+      ;;
+  esac
+done
 
 # KHAI-Guard bump-scope: flag a non-patch release scope. minor/major is the
 # maintainer's call; this prints the loud banner locally so you see it before

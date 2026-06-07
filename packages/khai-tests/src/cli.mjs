@@ -19,6 +19,7 @@ import {
   wiringRequirements,
 } from "./validate.mjs";
 import { packEngine } from "./pack.mjs";
+import { buildRegistry, verifyRegistry } from "./registry.mjs";
 import { resolve, relative } from "node:path";
 import { readFileSync, existsSync, readdirSync, writeFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
@@ -111,6 +112,37 @@ async function packMode(args) {
   );
 }
 
+// `registry [build|verify] [dir]`: build or verify playhouse registry.json
+async function registryMode(args) {
+  const sub = args[1];
+  const dirArg = args[2] && !args[2].startsWith("--") ? args[2] : ".";
+  const root = resolve(dirArg);
+
+  if (sub === "build") {
+    try {
+      buildRegistry(root);
+      console.log(`khai-tests registry build: successfully updated registry.json at ${root}`);
+    } catch (err) {
+      console.error(`✖ registry build failed: ${err.message}`);
+      process.exit(1);
+    }
+  } else if (sub === "verify") {
+    const res = verifyRegistry(root);
+    if (!res.ok) {
+      for (const err of res.errors) {
+        console.error(`✖ registry.json: ${err}`);
+      }
+      console.error(`\nkhai-tests registry verify failed.`);
+      process.exit(1);
+    }
+    console.log(`khai-tests registry verify: registry.json at ${root} conforms.`);
+  } else {
+    console.error("khai-tests registry [build|verify] [dir]");
+    process.exit(2);
+  }
+}
+
 if (argv[0] === "pack") await packMode(argv);
+else if (argv[0] === "registry") await registryMode(argv);
 else if (argv.includes("--project")) projectMode(argv);
 else await engineMode(argv);

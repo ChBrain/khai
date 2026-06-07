@@ -1,7 +1,7 @@
-import { describe, it, expect, beforeAll, afterAll } from "vitest";
+import { describe, it, expect, beforeAll, afterAll, beforeEach, afterEach } from "vitest";
 import { fileURLToPath } from "node:url";
 import { dirname, join, relative, basename } from "node:path";
-import { mkdirSync, writeFileSync, rmSync } from "node:fs";
+import { mkdirSync, writeFileSync, rmSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import {
   discoverEnginePackages,
@@ -9,6 +9,9 @@ import {
   validateContentFile,
   validateInstanceFile,
   validateProject,
+  validatePlayhouseRegistry,
+  buildRegistry,
+  verifyRegistry,
   wiringRequirements,
   engineDocChecks,
 } from "../index.mjs";
@@ -692,5 +695,250 @@ stamp:
     );
     const errors = validateContentFile(brokenOrder, { type: "order" });
     expect(errors.some((e) => e.includes("order (DO IT):"))).toBe(true);
+  });
+});
+
+// --- playhouse registry: E2E validation gates ----------------------------
+describe("conformance: playhouse registry gates", () => {
+  let dir;
+
+  beforeEach(() => {
+    dir = join(
+      tmpdir(),
+      `khai-playhouse-${process.pid}-${Math.random().toString(36).substring(2)}`,
+    );
+    mkdirSync(dir, { recursive: true });
+    mkdirSync(join(dir, "plays"), { recursive: true });
+  });
+
+  afterEach(() => {
+    rmSync(dir, { recursive: true, force: true });
+  });
+
+  it("fails when registry.json is missing", () => {
+    const res = validatePlayhouseRegistry(dir);
+    expect(res.length).toBe(1);
+    expect(res[0].errors[0]).toContain("missing registry.json");
+  });
+
+  it("fails on malformed JSON registry", () => {
+    writeFileSync(join(dir, "registry.json"), "{ invalid JSON }");
+    const res = validatePlayhouseRegistry(dir);
+    expect(res.length).toBe(1);
+    expect(res[0].errors[0]).toContain("failed to parse registry.json");
+  });
+
+  it("fails on invalid schema types", () => {
+    writeFileSync(
+      join(dir, "registry.json"),
+      JSON.stringify({ name: 123, version: "0.1.0", plays: {} }),
+    );
+    const res = validatePlayhouseRegistry(dir);
+    expect(res.length).toBe(1);
+    expect(
+      res[0].errors.some((e) => e.includes("registry.json must have a non-empty string 'name'")),
+    ).toBe(true);
+    expect(res[0].errors.some((e) => e.includes("registry.json must have a 'plays' array"))).toBe(
+      true,
+    );
+  });
+
+  it("validates bidirectional sync and blurb constraints", () => {
+    // Write registry with play 'a' that has a description too short
+    // and play 'b' that is missing on disk, while disk has subdir 'c' not in registry.
+    writeFileSync(
+      join(dir, "registry.json"),
+      JSON.stringify({
+        name: "test-house",
+        version: "1.0.0",
+        plays: [
+          { id: "a", title: "Play A", description: "Too short." },
+          { id: "b", title: "Play B", description: "This is a valid blurb description." },
+        ],
+      }),
+    );
+
+    mkdirSync(join(dir, "plays", "a"), { recursive: true });
+    mkdirSync(join(dir, "plays", "c"), { recursive: true });
+
+    const res = validatePlayhouseRegistry(dir);
+    expect(res.length).toBe(1);
+    const errs = res[0].errors;
+
+    // a description too short (10 characters minimum: "Too short." is 10 characters? Wait, "Too short." has length 10.
+    // Let's make it shorter: "Short." which is 6 characters.
+  });
+
+  it("validates all blurb gate rule details", () => {
+    mkdirSync(join(dir, "plays", "valid_play"), { recursive: true });
+
+    const testDescription = (desc) => {
+      writeFileSync(
+        join(dir, "registry.json"),
+        JSON.stringify({
+          name: "test-house",
+          version: "1.0.0",
+          plays: [{ id: "valid_play", title: "Valid Play", description: desc }],
+        }),
+      );
+      const res = validatePlayhouseRegistry(dir);
+      return res.length > 0 ? res[0].errors : [];
+    };
+
+    // Valid blurb: length between 10 and 120, one sentence ending in period
+    expect(testDescription("This is a valid blurb description.")).toEqual([]);
+
+    // Valid with code formatting
+    expect(testDescription("This is a `valid` description with `code.js` in it.")).toEqual([]);
+
+    // Too short
+    expect(testDescription("Short.")).toContain(
+      'play "valid_play" description must be between 10 and 120 characters (got 6)',
+    );
+
+    // Too long (>120 chars)
+    expect(
+      testDescription(
+        "This is a very long description that is designed to exceed the limit of one hundred and twenty characters which is the maximum allowed length.".repeat(
+          2,
+        ),
+      ),
+    ).toBeDefined();
+
+    // Multiple sentences
+    expect(testDescription("This is one sentence. This is two.")).toContain(
+      'play "valid_play" description must consist of exactly one sentence (ending in a period ".")',
+    );
+
+    // Trailing ellipses
+    expect(testDescription("This has trailing ellipses...")).toContain(
+      'play "valid_play" description must consist of exactly one sentence ending in a period',
+    );
+
+    // HTML tags
+    expect(testDescription("This contains <p>HTML</p> tags.")).toContain(
+      'play "valid_play" description must not contain HTML tags',
+    );
+
+    // Markdown bold/italics/links
+    expect(testDescription("This contains **bold** formatting.")).toContain(
+      'play "valid_play" description must not contain markdown formatting (other than inline code formatting if needed)',
+    );
+    expect(testDescription("This contains [link](url) formatting.")).toContain(
+      'play "valid_play" description must not contain markdown formatting (other than inline code formatting if needed)',
+    );
+  });
+
+  it("checks title alignment", () => {
+    mkdirSync(join(dir, "plays", "aligned"), { recursive: true });
+    writeFileSync(
+      join(dir, "registry.json"),
+      JSON.stringify({
+        name: "test-house",
+        version: "1.0.0",
+        plays: [{ id: "aligned", title: "Aligned Play", description: "Valid blurb description." }],
+      }),
+    );
+
+    // Write play file with misaligned title
+    writeFileSync(
+      join(dir, "plays", "aligned", "play_aligned.md"),
+      `---
+khai: play
+title: "Misaligned Play Name"
+license: MIT
+stamp:
+  owner: test
+  version: 1.0.0
+  date: 2026-06-07
+---
+# Play: Misaligned Play Name
+`,
+    );
+
+    const res = validatePlayhouseRegistry(dir);
+    expect(res.length).toBe(1);
+    expect(
+      res[0].errors.some((e) =>
+        e.includes(
+          'title in playbook frontmatter ("Misaligned Play Name") does not match title in registry.json ("Aligned Play")',
+        ),
+      ),
+    ).toBe(true);
+
+    // Now align it
+    writeFileSync(
+      join(dir, "plays", "aligned", "play_aligned.md"),
+      `---
+khai: play
+title: "Aligned Play"
+license: MIT
+stamp:
+  owner: test
+  version: 1.0.0
+  date: 2026-06-07
+---
+# Play: Aligned Play
+`,
+    );
+    expect(validatePlayhouseRegistry(dir)).toEqual([]);
+  });
+});
+
+describe("conformance: registry utility functions", () => {
+  let dir;
+
+  beforeEach(() => {
+    dir = join(
+      tmpdir(),
+      `khai-registry-util-${process.pid}-${Math.random().toString(36).substring(2)}`,
+    );
+    mkdirSync(dir, { recursive: true });
+    mkdirSync(join(dir, "plays"), { recursive: true });
+  });
+
+  afterEach(() => {
+    rmSync(dir, { recursive: true, force: true });
+  });
+
+  it("builds and verifies a registry.json correctly from plays directory", () => {
+    writeFileSync(
+      join(dir, "package.json"),
+      JSON.stringify({ name: "my-house", version: "2.3.4" }),
+    );
+
+    mkdirSync(join(dir, "plays", "play_a"), { recursive: true });
+    writeFileSync(
+      join(dir, "plays", "play_a", "play_play_a.md"),
+      `---
+khai: play
+title: "Play A Title"
+license: MIT
+stamp:
+  owner: test
+  version: 1.0.0
+  date: 2026-06-07
+---
+# Play A
+
+## Arc
+
+This is a single sentence description.
+`,
+    );
+
+    buildRegistry(dir);
+
+    const registry = JSON.parse(readFileSync(join(dir, "registry.json"), "utf8"));
+    expect(registry.name).toBe("my-house");
+    expect(registry.version).toBe("2.3.4");
+    expect(registry.plays.length).toBe(1);
+    expect(registry.plays[0].id).toBe("play_a");
+    expect(registry.plays[0].title).toBe("Play A Title");
+    expect(registry.plays[0].description).toBe("This is a single sentence description.");
+
+    // Verify also works on build output
+    const verifyRes = verifyRegistry(dir);
+    expect(verifyRes.ok).toBe(true);
   });
 });
