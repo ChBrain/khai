@@ -9,11 +9,11 @@ status: draft
 version: 0.1.0
 ---
 
-A plan is a forward-looking blueprint for producing a play or directing a major phase of work. It is issued before work begins to track intent, ownership, and delivery, ensuring that all directives are resolved.
+A plan is a forward-looking blueprint for producing a play or directing a major phase of work. It is issued to track intent, ownership, and delivery, ensuring that all directives are resolved.
 
 - **D**irection: The artistic and civic intent. The overarching goal, context, and vision behind this plan.
 
-- **O**rders: The specific directives. Actionable commands assigned to named personas in the house or project.
+- **O**rders: The specific directives. Actionable commands assigned to named personas, positions, or roles.
 
 - **I**mplementation: The boundaries of execution. Physical and technical constraints of the staging environment (language, layout, engines).
 
