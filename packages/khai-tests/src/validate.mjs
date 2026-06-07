@@ -11,6 +11,7 @@ import {
   engineCard,
   referenceCard,
   playCard,
+  planCard,
   orderCard,
   renderEngineReadme,
   engineMembers,
@@ -144,6 +145,20 @@ export function validateContentFile(text, { type, baseDir, owner, allowed, exemp
       playCard(text);
     } catch (err) {
       errors.push(`play (ENACTS): ${err.message}`);
+    }
+  }
+  if (type === "plan") {
+    try {
+      planCard(text);
+      const targetsBody = sectionBody(doc.body, "Targets");
+      if (targetsBody) {
+        const pendingCount = targetsBody.filter((line) => line.includes("[ ]")).length;
+        if (pendingCount > 0) {
+          errors.push(`plan has ${pendingCount} pending target(s) [ ]`);
+        }
+      }
+    } catch (err) {
+      errors.push(`plan (TO DO IT): ${err.message}`);
     }
   }
   if (type === "order") {
@@ -496,7 +511,16 @@ function findInstanceFiles(dir) {
 export function validateProject({ root, contentDir = root, owner, levels } = {}) {
   const requirements = wiringRequirements(installedEngineManifests(root));
   const results = [];
-  for (const file of findInstanceFiles(contentDir)) {
+  const files = new Set(findInstanceFiles(contentDir));
+
+  const ordersDir = join(root, "management", "orders");
+  if (existsSync(ordersDir)) {
+    for (const file of findInstanceFiles(ordersDir)) {
+      files.add(file);
+    }
+  }
+
+  for (const file of files) {
     const findings = validateInstanceFile(readFileSync(file, "utf8"), {
       baseDir: dirname(file),
       requirements,
