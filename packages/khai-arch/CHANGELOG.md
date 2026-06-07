@@ -1,5 +1,11 @@
 # @chbrain/khai-arch
 
+## 0.1.6
+
+### Patch Changes
+
+- 7cd2eda: Introduce `plan` type (TO DOIT) spec, templates, and card extraction, exporting `planCard` and `planChapters`. Kept `orderCard` and `orderChapters` as deprecated aliases for backwards compatibility.
+
 ## 0.1.5
 
 ### Patch Changes
