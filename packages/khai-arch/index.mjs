@@ -126,6 +126,7 @@ export function toPrefix(typeId) {
 const FRONTMATTER_EXTRAS = {
   persona: { type: { values: ["real", "archetype", "fictional"], required: true } },
   play: { description: { required: false } },
+  plan: { status: { values: ["draft", "active", "closed"], required: true } },
 };
 export function frontmatterExtras(typeId) {
   const extra = FRONTMATTER_EXTRAS[typeId] ?? {};
@@ -158,6 +159,12 @@ export const referenceChapters = ["Line of Work", "Origin", "Restrictions", "Enc
  * @type {string[]}
  */
 export const playChapters = ["Estate", "Name", "Arc", "Company", "Triggers", "Stakes"];
+
+/**
+ * TO DO IT: the management plan standard chapters (excluding Taxonomy/Owner prefix).
+ * @type {string[]}
+ */
+export const planChapters = ["Direction", "Orders", "Implementation", "Targets"];
 
 /**
  * DO IT: the management order standard.
@@ -443,6 +450,64 @@ export function playCard(text) {
 }
 
 /**
+ * Project a management plan document into a render-ready card: the six TO DO IT
+ * chapters in order, each with its prose and any author `### ` subchapters, plus
+ * an optional trailing `---` coda.
+ *
+ * Throws if a chapter is missing, out of order, foreign, or empty.
+ *
+ * @param {string} text  the plan file text (YAML frontmatter allowed)
+ * @returns {{ mnemonic: "TO DO IT", chapters: string[], sections: Record<string, { body: string, subchapters: { name: string, body: string }[] }>, coda: string|null }}
+ */
+export function planCard(text) {
+  if (typeof text !== "string" || !text.trim()) throw new Error("planCard: plan text is required");
+  const body = matter(text).content.trim();
+
+  // An optional trailing coda, fenced by a `---` rule.
+  const parts = body.split(/\n---\n/);
+  const main = parts[0];
+  const coda = parts.length > 1 ? parts.slice(1).join("\n---\n").trim() || null : null;
+
+  // Chunks beginning at each `## ` header; anything before the first is dropped.
+  const chunks = main.split(/\n(?=## )/).filter((c) => /^##\s/.test(c.trim()));
+
+  const seen = [];
+  const sections = {};
+  for (const chunk of chunks) {
+    const lines = chunk.trim().split("\n");
+    const name = lines[0].replace(/^##\s+/, "").trim();
+    seen.push(name);
+    const subParts = lines
+      .slice(1)
+      .join("\n")
+      .split(/\n(?=###\s)/);
+    const intro = /^###\s/.test(subParts[0].trim()) ? "" : subParts[0].trim();
+    const subchapters = subParts
+      .filter((s) => /^###\s/.test(s.trim()))
+      .map((s) => {
+        const sl = s.trim().split("\n");
+        return { name: sl[0].replace(/^###\s+/, "").trim(), body: sl.slice(1).join("\n").trim() };
+      });
+    sections[name] = { body: intro, subchapters };
+  }
+
+  const expectedChapters = ["Taxonomy", "Owner", ...planChapters];
+
+  // The TO DO IT contract: exactly the TO DO IT chapters, in order, nothing foreign.
+  if (seen.length !== expectedChapters.length || seen.some((n, i) => n !== expectedChapters[i]))
+    throw new Error(
+      `planCard: plan chapters must be exactly [${expectedChapters.join(", ")}] ` +
+        `in order (TO DO IT); got [${seen.join(", ")}]`,
+    );
+  // Every chapter must carry content.
+  for (const name of expectedChapters)
+    if (!sections[name].body && sections[name].subchapters.length === 0)
+      throw new Error(`planCard: chapter "${name}" is empty`);
+
+  return { mnemonic: "TO DO IT", chapters: expectedChapters, sections, coda };
+}
+
+/**
  * Project a management order document into a render-ready card: the four DO IT
  * chapters in order, each with its prose and any author `### ` subchapters, plus
  * an optional trailing `---` coda.
@@ -579,12 +644,14 @@ export default {
   wiresChapters,
   referenceChapters,
   playChapters,
+  planChapters,
   orderChapters,
   engineMembers,
   compositionOrder,
   engineCard,
   referenceCard,
   playCard,
+  planCard,
   orderCard,
   renderEngineReadme,
 };
