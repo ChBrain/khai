@@ -1,5 +1,13 @@
 # @chbrain/khai-tests
 
+## 0.1.7
+
+### Patch Changes
+
+- cdfbf09: Add auto-scanning of management orders and plans in validateProject, and restore legacy order type validation to validateContentFile.
+- Updated dependencies [7cd2eda]
+  - @chbrain/khai-arch@0.1.6
+
 ## 0.1.6
 
 ### Patch Changes

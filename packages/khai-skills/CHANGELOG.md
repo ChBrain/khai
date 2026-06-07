@@ -1,5 +1,13 @@
 # @chbrain/khai-skills
 
+## 0.0.11
+
+### Patch Changes
+
+- c556f55: Add plan to the ENACTS playwright skill, injecting the plan template from canon and supporting the plan\_ element.
+- Updated dependencies [7cd2eda]
+  - @chbrain/khai-arch@0.1.6
+
 ## 0.0.10
 
 ### Patch Changes
