@@ -1,5 +1,11 @@
 # @chbrain/khai-tests
 
+## 0.1.8
+
+### Patch Changes
+
+- 5f12684: Implement playhouse registry (registry.json) and play blurb E2E validation gates.
+
 ## 0.1.7
 
 ### Patch Changes
