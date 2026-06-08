@@ -75,6 +75,10 @@ function projectMode(args) {
   const idx = args.indexOf("--project");
   const dirArg = args[idx + 1] && !args[idx + 1].startsWith("--") ? args[idx + 1] : ".";
   const root = resolve(dirArg);
+  if (!existsSync(root)) {
+    console.error(`khai-tests: --project path not found: ${root}`);
+    process.exit(2);
+  }
 
   const engines = installedEngines(root);
   const reqs = wiringRequirements(engines);
@@ -108,7 +112,11 @@ async function packMode(args) {
   }
   for (const w of r.warnings) console.error(`⚠ ${r.name}: ${w}`);
   const outIdx = args.indexOf("--out");
-  const outDir = outIdx !== -1 && args[outIdx + 1] ? resolve(args[outIdx + 1]) : join(dir, "dist");
+  if (outIdx !== -1 && (!args[outIdx + 1] || args[outIdx + 1].startsWith("--"))) {
+    console.error("khai-tests pack: --out needs a directory value.");
+    process.exit(2);
+  }
+  const outDir = outIdx !== -1 ? resolve(args[outIdx + 1]) : join(dir, "dist");
   mkdirSync(outDir, { recursive: true });
   writeFileSync(join(outDir, `${r.name}.zip`), r.zip);
   console.log(
