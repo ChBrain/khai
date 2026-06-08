@@ -647,10 +647,13 @@ export function validatePlayhouseRegistry(root) {
           `play "${play.id}" description must consist of exactly one sentence ending in a period`,
         );
       } else {
-        const periodCount = (plain.match(/\./g) || []).length;
-        const qCount = (plain.match(/\?/g) || []).length;
-        const eCount = (plain.match(/\!/g) || []).length;
-        if (periodCount !== 1 || qCount > 0 || eCount > 0) {
+        // A second sentence shows as a terminator followed by whitespace and a
+        // new capitalized word. Counting raw periods (the old check) false-failed
+        // a single sentence carrying a decimal ("v1.5"), a file name ("Node.js"),
+        // or a lowercase abbreviation ("e.g."), none of which end a sentence.
+        const multiSentence = /[.!?]\s+[A-Z]/.test(plain);
+        const hasQuestionOrBang = /[?!]/.test(plain);
+        if (multiSentence || hasQuestionOrBang) {
           errors.push(
             `play "${play.id}" description must consist of exactly one sentence (ending in a period ".")`,
           );
@@ -660,7 +663,10 @@ export function validatePlayhouseRegistry(root) {
       if (/<[^>]+>/.test(plain)) {
         errors.push(`play "${play.id}" description must not contain HTML tags`);
       }
-      if (/\*\*|__|\*|_|\[|\]/.test(plain)) {
+      // `_` alone is not flagged: an underscore in prose is usually an
+      // identifier (snake_case), not emphasis. Bold/italic markers (** __ *) and
+      // link brackets ([ ]) still are.
+      if (/\*\*|__|\*|\[|\]/.test(plain)) {
         errors.push(
           `play "${play.id}" description must not contain markdown formatting (other than inline code formatting if needed)`,
         );
