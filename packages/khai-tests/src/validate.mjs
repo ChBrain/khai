@@ -173,7 +173,9 @@ export function validateContentFile(
       planCard(text);
       const targetsBody = sectionBody(doc.body, "Targets");
       if (targetsBody) {
-        const pendingCount = targetsBody.filter((line) => line.includes("[ ]")).length;
+        // Only an unchecked task-list item (`- [ ]` / `* [ ]`) is a pending
+        // target; a bare "[ ]" elsewhere in the prose or a code span is not.
+        const pendingCount = targetsBody.filter((line) => /^\s*[-*+]\s+\[ \]/.test(line)).length;
         if (pendingCount > 0) {
           errors.push(`plan has ${pendingCount} pending target(s) [ ]`);
         }
@@ -187,7 +189,9 @@ export function validateContentFile(
       orderCard(text);
       const targetsBody = sectionBody(doc.body, "Targets");
       if (targetsBody) {
-        const pendingCount = targetsBody.filter((line) => line.includes("[ ]")).length;
+        // Only an unchecked task-list item (`- [ ]` / `* [ ]`) is a pending
+        // target; a bare "[ ]" elsewhere in the prose or a code span is not.
+        const pendingCount = targetsBody.filter((line) => /^\s*[-*+]\s+\[ \]/.test(line)).length;
         if (pendingCount > 0) {
           errors.push(`order has ${pendingCount} pending target(s) [ ]`);
         }
