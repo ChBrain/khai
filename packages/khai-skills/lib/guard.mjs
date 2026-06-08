@@ -207,10 +207,19 @@ export function validateProvenance(injected) {
  */
 export function checkDrift(pin, fetched) {
   const notices = [];
-  if (fetched.validatorVersion && fetched.validatorVersion !== pin.validator.version)
-    notices.push(
-      `validator skills-ref moved ${pin.validator.version} -> ${fetched.validatorVersion}`,
-    );
+  // undefined = not fetched (offline), skip. "" = fetched but unreadable, which
+  // must surface rather than read as "still current". A non-empty differing
+  // version is a real move.
+  if (fetched.validatorVersion !== undefined) {
+    if (!fetched.validatorVersion)
+      notices.push(
+        "validator version unreadable from PyPI (info.version missing); cannot confirm pin",
+      );
+    else if (fetched.validatorVersion !== pin.validator.version)
+      notices.push(
+        `validator skills-ref moved ${pin.validator.version} -> ${fetched.validatorVersion}`,
+      );
+  }
   if (fetched.specSha256 && fetched.specSha256 !== pin.spec.sha256)
     notices.push("spec specification.mdx changed (content hash differs from pin)");
   return { moved: notices.length > 0, notices };

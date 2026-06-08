@@ -39,7 +39,10 @@ async function runDrift() {
   let fetched = {};
   try {
     const pypi = JSON.parse(await fetchText(`https://pypi.org/pypi/${PIN.validator.package}/json`));
-    fetched.validatorVersion = pypi?.info?.version;
+    // A reachable PyPI with no `info.version` is "unreadable" (""), distinct
+    // from offline (undefined) where the fetch threw -- so a real upstream move
+    // to an unreadable payload is surfaced, not silently treated as current.
+    fetched.validatorVersion = pypi?.info?.version ?? "";
   } catch {
     /* network-tolerant: a missing signal is simply not checked */
   }
