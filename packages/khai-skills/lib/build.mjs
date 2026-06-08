@@ -136,6 +136,16 @@ export function composeSkill(srcDir) {
     errors.push(...validateNeutrality(f.data.toString("utf8"), { label: `${name}/${f.name}` }));
   errors.push(...validateProvenance(injected));
 
+  // The cultures layout (and the agentskills "references one level from
+  // SKILL.md" rule) represents only SKILL.md plus one content subfolder of flat
+  // files. A file nested deeper (e.g. references/sub/x.md) cannot be packed, so
+  // error here rather than let culturesLayout silently flatten it.
+  for (const f of files)
+    if (f.name.split("/").length > 2)
+      errors.push(
+        `${name}: "${f.name}" is more than one level deep; the cultures layout supports SKILL.md plus one flat content subfolder`,
+      );
+
   return { name, files, errors, warnings, injected };
 }
 
