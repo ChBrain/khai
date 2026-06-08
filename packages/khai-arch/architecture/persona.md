@@ -5,7 +5,7 @@ class: element
 mnemonic: "TO PAST"
 chapters: [Projection, Action, Shadow, Tell]
 subtitle: "the waking of awareness"
-status: draft
+status: published
 version: 0.0.2
 ---
 

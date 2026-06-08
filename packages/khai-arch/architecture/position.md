@@ -5,7 +5,7 @@ class: element
 mnemonic: "TO HOLD"
 chapters: [Has, Orders, Loses, Drives]
 subtitle: "the holding of forms"
-status: draft
+status: published
 version: 0.0.2
 ---
 

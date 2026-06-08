@@ -5,7 +5,7 @@ class: house
 mnemonic: "TO CAST"
 chapters: [Cue, Action, Stage, Tension]
 subtitle: "the casting of forces"
-status: draft
+status: published
 version: 0.0.2
 ---
 

@@ -5,7 +5,7 @@ class: element
 mnemonic: "TO SHOW"
 chapters: [Shown, Holds, Offers, Withheld]
 subtitle: "the showing of pressure"
-status: draft
+status: published
 version: 0.0.2
 ---
 

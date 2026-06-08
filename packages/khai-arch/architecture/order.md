@@ -5,7 +5,7 @@ class: meta
 mnemonic: "DOIT"
 chapters: [Direction, Orders, Implementation, Targets]
 subtitle: "the directing of work"
-status: draft
+status: published
 version: 0.0.1
 ---
 

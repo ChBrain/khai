@@ -5,7 +5,7 @@ class: meta
 mnemonic: "HACKS"
 chapters: [Human, Agent, Collaboration, Knowledge, System]
 subtitle: "the priming of intelligence"
-status: draft
+status: published
 version: 0.0.3
 ---
 
