@@ -40,6 +40,23 @@ import { resolveLanguage } from "@chbrain/khai-language";
 
 const typeIds = Object.keys(types);
 
+/**
+ * Read and JSON-parse a file, returning `fallback` (default null) if it is
+ * missing, unreadable, or malformed. Installed dependencies and consumer files
+ * are untrusted input: a single bad package.json must not crash a gate (the
+ * pre-commit hook, the project validator) with a raw stack trace, so callers
+ * degrade gracefully instead of throwing.
+ * @param {string} path
+ * @param {*} [fallback]
+ */
+export function readJsonOr(path, fallback = null) {
+  try {
+    return JSON.parse(readFileSync(path, "utf8"));
+  } catch {
+    return fallback;
+  }
+}
+
 /** @typedef {{ file: string, errors: string[], warnings?: string[] }} FileResult */
 
 /**
@@ -85,7 +102,7 @@ export function engineDocChecks(pkgDir) {
   // card is neither, so it is checked here.)
   const pkgPath = join(pkgDir, "package.json");
   if (existsSync(pkgPath)) {
-    const card = (JSON.parse(readFileSync(pkgPath, "utf8")).khai ?? {}).card ?? {};
+    const card = ((readJsonOr(pkgPath) ?? {}).khai ?? {}).card ?? {};
     for (const [chapter, prose] of Object.entries(card)) {
       if (typeof prose !== "string") continue;
       const warnings = checkClauseDash(prose).map((w) => w.replace(/^line \d+: /, ""));
@@ -198,7 +215,8 @@ export function validateContentFile(
 
 /** Read an engine package's `khai` manifest from its package.json. */
 function readManifest(pkgDir) {
-  const pkg = JSON.parse(readFileSync(join(pkgDir, "package.json"), "utf8"));
+  const pkg = readJsonOr(join(pkgDir, "package.json"));
+  if (pkg === null) return { manifest: null, name: null, unreadable: true };
   return { manifest: pkg.khai, name: pkg.name };
 }
 
@@ -227,7 +245,8 @@ function instanceFiles(pkgDir) {
  */
 export async function validateEnginePackage(pkgDir, { executeCompose = false } = {}) {
   const results = [];
-  const { manifest } = readManifest(pkgDir);
+  const { manifest, unreadable } = readManifest(pkgDir);
+  if (unreadable) return [{ file: "package.json", errors: ["cannot read or parse package.json"] }];
   if (!manifest) return [{ file: pkgDir, errors: ["package.json has no `khai` manifest"] }];
 
   // WIRES card: the engine must declare a valid card. khai-arch owns the shape
@@ -358,8 +377,10 @@ export function findEnginePackageFor(file) {
   for (let i = 0; i < 8; i++) {
     const pkgPath = join(dir, "package.json");
     if (existsSync(pkgPath)) {
-      const pkg = JSON.parse(readFileSync(pkgPath, "utf8"));
-      if (pkg.khai) return dir;
+      // A malformed package.json mid-walk must not crash the pre-commit gate;
+      // treat it as "no manifest here" and keep walking up.
+      const pkg = readJsonOr(pkgPath);
+      if (pkg && pkg.khai) return dir;
     }
     const parent = dirname(dir);
     if (parent === dir) break;
@@ -488,11 +509,14 @@ export function validateInstanceFile(
 function installedEngineManifests(root) {
   const scopeDir = join(root, "node_modules", "@chbrain");
   if (!existsSync(scopeDir)) return [];
-  return readdirSync(scopeDir)
-    .map((name) => join(scopeDir, name, "package.json"))
-    .filter((p) => existsSync(p))
-    .map((p) => JSON.parse(readFileSync(p, "utf8")).khai)
-    .filter((khai) => khai && khai.engine);
+  return (
+    readdirSync(scopeDir)
+      .map((name) => join(scopeDir, name, "package.json"))
+      .filter((p) => existsSync(p))
+      // An installed dependency with a malformed package.json is skipped, not fatal.
+      .map((p) => readJsonOr(p)?.khai)
+      .filter((khai) => khai && khai.engine)
+  );
 }
 
 /** Every `.md` under a dir tree that declares `khai:` frontmatter. */
