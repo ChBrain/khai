@@ -754,6 +754,42 @@ stamp:
   });
 });
 
+// The pending-target check must count only a real unchecked task-list item, not
+// a "[ ]" mentioned in prose or a code span (PR #287). Dormant until the fix
+// lands on main -- probe src/validate.mjs for it, per the cli.test.mjs convention.
+const PENDING_DORMANT = !readFileSync(
+  join(dirname(fileURLToPath(import.meta.url)), "..", "src", "validate.mjs"),
+  "utf8",
+).includes("unchecked task-list item");
+
+describe.skipIf(PENDING_DORMANT)("conformance: pending-target counts only task-list items", () => {
+  const front = `---
+khai: order
+title: "Stage Dantons Tod"
+license: CC-BY-NC-SA-4.0
+stamp:
+  owner: Choregos
+  version: v1.0.0
+  date: "2026-06-06"
+---
+`;
+  const order = (targets) =>
+    `${front}\n# Order: Stage Dantons Tod\n\n## Direction\nvision\n\n## Orders\ncommands\n\n## Implementation\nguidelines\n\n## Targets\n${targets}\n`;
+
+  it("does not count a '[ ]' that only appears in prose or a code span", () => {
+    const errs = validateContentFile(
+      order("- [x] Target 1\nThe default value is an empty array `[ ]` here."),
+      { type: "order" },
+    );
+    expect(errs.some((e) => e.includes("pending target"))).toBe(false);
+  });
+
+  it("still counts a real unchecked task-list item", () => {
+    const errs = validateContentFile(order("- [x] Target 1\n- [ ] Target 2"), { type: "order" });
+    expect(errs.some((e) => e.includes("order has 1 pending target"))).toBe(true);
+  });
+});
+
 // --- playhouse registry: E2E validation gates ----------------------------
 describe("conformance: playhouse registry gates", () => {
   let dir;
