@@ -137,3 +137,32 @@ never closed
     expect(doc.headers.map((h) => h.text)).toEqual(["Title: X", "Has"]);
   });
 });
+
+// parseDoc and sectionBody must agree on a closed-ATX heading (`## Has ##`)
+// (PR #291). Dormant until the fix lands on main -- probe parse.mjs for it, per
+// the cli.test.mjs convention.
+const ATX_DORMANT = !readFileSync(
+  join(dirname(fileURLToPath(import.meta.url)), "..", "parse.mjs"),
+  "utf8",
+).includes("closed-ATX trailing run");
+
+describe.skipIf(ATX_DORMANT)("closed-ATX headings", () => {
+  const DOC = `# Title: X
+
+## Has ##
+body line
+
+## Note on C#
+kept
+`;
+
+  it("parseDoc strips the trailing run, keeping a non-space `#` as text", () => {
+    const doc = parseDoc(DOC);
+    expect(doc.headers.map((h) => h.text)).toEqual(["Title: X", "Has", "Note on C#"]);
+  });
+
+  it("sectionBody resolves the section under the stripped name", () => {
+    const doc = parseDoc(DOC);
+    expect(sectionBody(doc.body, "Has")).toEqual(["body line", ""]);
+  });
+});
