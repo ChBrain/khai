@@ -12,6 +12,8 @@ import { join } from "node:path";
 import { sectionBody } from "./parse.mjs";
 
 const proper = (typeId) => typeId.charAt(0).toUpperCase() + typeId.slice(1);
+// Escape regex metacharacters before interpolating a value into a RegExp.
+const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 // --- encoding -------------------------------------------------------------
 // Guards what the reader (and the model) sees: the bytes inside the file.
@@ -96,7 +98,7 @@ export function checkH1(doc, { type }) {
   // never carries a second first-level header; a second `#` is structural drift.
   const count = doc.headers.filter((h) => h.level === 1).length;
   const extra = count > 1 ? [`a khai file has exactly one H1 (#); found ${count}`] : [];
-  const m = new RegExp(`^${proper(type)}: (.+)$`).exec(first.text);
+  const m = new RegExp(`^${escapeRe(proper(type))}: (.+)$`).exec(first.text);
   if (!m)
     return {
       name: null,
@@ -300,9 +302,10 @@ export function checkClauseDash(text) {
   text.split("\n").forEach((line, i) => {
     if (/^\s*-{3,}\s*$/.test(line)) return; // --- fence / thematic rule
     // drop a leading bullet marker, then numeric ranges (the CVI sanctions a
-    // spaced hyphen between numbers, e.g. "400 - 500").
-    const body = line.replace(/^\s*[-*]\s+/, "").replace(/\d - \d/g, " ");
-    if (/\S - \S/.test(body))
+    // spaced hyphen between numbers, e.g. "400 - 500"). A tab around the hyphen
+    // is the same clause dash as a space, so match either ([ \t]).
+    const body = line.replace(/^\s*[-*]\s+/, "").replace(/\d[ \t]-[ \t]\d/g, " ");
+    if (/\S[ \t]-[ \t]\S/.test(body))
       e.push(`line ${i + 1}: spaced hyphen " - " as a clause dash; use , ; : or ()`);
   });
   return e;
