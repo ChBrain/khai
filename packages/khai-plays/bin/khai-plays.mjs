@@ -40,7 +40,15 @@ function parseFlags(args, allowed) {
 }
 
 function writeReadme() {
-  const md = renderReadme(loadRegistry());
+  let houses;
+  try {
+    houses = loadRegistry();
+  } catch (err) {
+    // A malformed card blocks (exit 1) with a clear message, instead of crashing
+    // with a stack trace or rendering a partial bill.
+    fail(err.message.replace(/^khai-plays:\s*/, ""));
+  }
+  const md = renderReadme(houses);
   writeFileSync(README, md.endsWith("\n") ? md : `${md}\n`);
 }
 

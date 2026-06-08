@@ -66,7 +66,14 @@ export function loadRegistry(dir = REGISTRY) {
     .filter((n) => n.endsWith(".json"))
     .sort()) {
     const id = file.replace(/\.json$/, "");
-    const entry = JSON.parse(readFileSync(join(dir, file), "utf8"));
+    let entry;
+    try {
+      entry = JSON.parse(readFileSync(join(dir, file), "utf8"));
+    } catch (e) {
+      // Name the file so the block message points at the card to fix (a raw
+      // SyntaxError would not).
+      throw new Error(`khai-plays: ${file}: invalid JSON (${e.message})`);
+    }
     const errors = validateEntry(entry, { id });
     if (errors.length) throw new Error(`khai-plays: ${file}: ${errors.join("; ")}`);
     houses.push(entry);
@@ -112,7 +119,18 @@ export function renderReadme(houses) {
   return [...head, ...body, ...tail].join("\n");
 }
 
-/** The registered houses, the bill the website reads. */
-export const houses = loadRegistry();
+/** The registered houses, the bill the website reads. Resilient at import: a
+ * malformed card must not crash module load (and with it the CLI that imports
+ * this), which would leave no way to run the tool to fix the card. The strict
+ * gate stays in loadRegistry(), which the CLI's render/register path calls and
+ * surfaces as a blocking error -- so a bad card still blocks, it just no longer
+ * throws on import. */
+export const houses = (() => {
+  try {
+    return loadRegistry();
+  } catch {
+    return [];
+  }
+})();
 
 export default { houses, loadRegistry, validateEntry, renderReadme, slug };
