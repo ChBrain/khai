@@ -37,14 +37,18 @@ export function parseDoc(text) {
     // overlap) avoids polynomial backtracking on adversarial input.
     const h = /^(#{1,6})(?=[ \t])/.exec(line);
     if (h) {
-      // Strip a closed-ATX trailing run (`## Has ##` -> "Has"): a space-led run
-      // of `#` at end of line. A lone `#` not preceded by a space (e.g. "C#")
-      // is part of the text and kept. Without this, `## Has ##` indexed as
-      // "Has ##" while sectionBody looked for "Has", desyncing the checks.
-      const text = line
-        .slice(h[1].length)
-        .replace(/\s+#+\s*$/, "")
-        .trim();
+      // Strip a closed-ATX trailing run (`## Has ##` -> "Has"): a run of `#` at
+      // end of line preceded by whitespace. A `#` not preceded by a space (e.g.
+      // "C#") is part of the text and kept. Without this, `## Has ##` indexed as
+      // "Has ##" while sectionBody looked for "Has", desyncing the checks. Done
+      // in JS, not a `\s+...$` regex, to avoid polynomial backtracking (ReDoS)
+      // on a line of many trailing spaces.
+      let text = line.slice(h[1].length).trim();
+      if (text.endsWith("#")) {
+        let j = text.length;
+        while (j > 0 && text[j - 1] === "#") j--;
+        if (j > 0 && /\s/.test(text[j - 1])) text = text.slice(0, j).trimEnd();
+      }
       if (text) headers.push({ level: h[1].length, text, line: i + 1 });
     }
   });
