@@ -1,9 +1,10 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, afterEach } from "vitest";
 import { buildAll, composeSkill, PIN } from "../lib/build.mjs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { createHash } from "node:crypto";
-import { readFileSync } from "node:fs";
+import { readFileSync, mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
 import arch from "@chbrain/khai-arch";
 
 const pkgRoot = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -71,5 +72,31 @@ describe("pin", () => {
   it("anchors the official PyPI validator, not the npm impostor", () => {
     expect(PIN.validator.registry).toBe("pypi");
     expect(PIN.validator.package).toBe("skills-ref");
+  });
+});
+
+// A reference nested deeper than one level must be a blocking error (PR #318).
+// Dormant until the fix lands -- probe build.mjs for the new check.
+const DEEP_DORMANT = !readFileSync(join(pkgRoot, "lib", "build.mjs"), "utf8").includes(
+  "cultures layout supports SKILL.md plus",
+);
+
+describe.skipIf(DEEP_DORMANT)("compose: a deeply-nested reference is blocked", () => {
+  let dir;
+  afterEach(() => rmSync(dir, { recursive: true, force: true }));
+
+  it("errors on a bundle file more than one level deep", () => {
+    dir = mkdtempSync(join(tmpdir(), "khai-skill-deep-"));
+    const name = dir.split(/[\\/]/).pop();
+    mkdirSync(join(dir, "references", "sub"), { recursive: true });
+    writeFileSync(
+      join(dir, "SKILL.md"),
+      `---\nname: ${name}\ndescription: A deep-reference test skill, used by the suite.\n---\n\nBody with enough words to be non-empty.\n`,
+    );
+    writeFileSync(join(dir, "references", "ok.md"), "one level, fine\n");
+    writeFileSync(join(dir, "references", "sub", "deep.md"), "two levels, not representable\n");
+
+    const r = composeSkill(dir);
+    expect(r.errors.some((e) => /more than one level deep/.test(e))).toBe(true);
   });
 });
