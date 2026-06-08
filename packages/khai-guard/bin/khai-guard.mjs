@@ -501,8 +501,20 @@ function runBranch() {
     );
     process.exit(1);
   }
+  // Defence in depth before handing the name to `git checkout -b`: the lane and
+  // unit segments are derived from file paths (the unit via a path capture), so a
+  // segment like "--orphan" (a legal directory name) could reach git as an option
+  // rather than a branch name -- argv injection. Require every segment to be a
+  // plain kebab token.
+  if (!name.split("/").every((seg) => /^[a-z0-9][a-z0-9-]*$/.test(seg))) {
+    console.error(
+      `KHAI-Guard branch: refusing to create "${name}" — a path-derived segment is not a ` +
+        "plain kebab name. Rename the offending file/dir, or create the branch by hand.",
+    );
+    process.exit(2);
+  }
   try {
-    git(["checkout", "-b", name]);
+    git(["checkout", "-b", name, "--"]);
   } catch (err) {
     console.error(`KHAI-Guard branch: \`git checkout -b ${name}\` failed — ${err.message}`);
     process.exit(2);
