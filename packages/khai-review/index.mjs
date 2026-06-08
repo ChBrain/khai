@@ -456,6 +456,11 @@ export function reconcile(ledger = [], decisions = []) {
         id: e.id,
         reason: `treatment "${e.treatment}" recorded with no resolution detail`,
       });
+    else if (!d.resolved)
+      blocks.push({
+        id: e.id,
+        reason: `treatment "${e.treatment}" recorded but the comment thread is unresolved`,
+      });
     // The resolution is free text and may name a PR not yet raised; the gate
     // checks only that a detail is present, never that the PR exists. A Reduce
     // whose fix has not landed is still `open` (not settled), so it is held by
