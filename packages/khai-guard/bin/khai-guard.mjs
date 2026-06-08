@@ -563,8 +563,13 @@ function runLicenseCheck() {
         skills.push({ path: f, license });
       }
     } catch (err) {
+      // A file the policy matches but we cannot read or parse can't be shown to
+      // declare an allowed license. Record it as a violation (license null) and
+      // keep scanning, rather than aborting the whole gate (and masking every
+      // other package's verdict) on one bad file.
       console.error(`KHAI-Guard license-check: cannot read ${f} — ${err.message}`);
-      process.exit(2);
+      if (matchPkg(f)) packages.push({ path: f, license: null });
+      else if (matchSkill(f)) skills.push({ path: f, license: null });
     }
   }
   const { ok, errors } = checkLicenses({ packages, skills }, config);
