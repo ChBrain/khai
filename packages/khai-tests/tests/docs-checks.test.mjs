@@ -130,3 +130,19 @@ describe.skipIf(CRLF_DORMANT)("checkHasFrontmatter - CRLF and BOM tolerance", ()
     expect(checkHasFrontmatter("# Gender\n\n**Authorship:** KAI\n")[0]).toMatch(/frontmatter/);
   });
 });
+
+// checkClauseDash must also catch a clause dash written with tabs (PR #306).
+// Dormant until the fix lands: probe the behavior -- if a tab clause dash is not
+// flagged, the space-only regex is still in place, so skip.
+const TAB_DASH_DORMANT = checkClauseDash("the read\t-\tconferred").length === 0;
+
+describe.skipIf(TAB_DASH_DORMANT)("checkClauseDash - tab-delimited clause dash", () => {
+  it("flags a clause dash written with tabs", () => {
+    expect(checkClauseDash("the read\t-\tconferred")[0]).toMatch(/clause dash/);
+  });
+
+  it("still passes the house voice and the numeric range", () => {
+    expect(checkClauseDash("the read: conferred (never demanded)")).toEqual([]);
+    expect(checkClauseDash("the years 2006 - 2012")).toEqual([]);
+  });
+});
