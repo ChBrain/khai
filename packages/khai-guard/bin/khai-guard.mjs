@@ -147,12 +147,15 @@ function changedPaths(config) {
     // base branch advanced past since the PR branched off, misfiring the
     // gate on any branch that has fallen behind. (In local mode `base` is
     // already the merge-base, so three-dot is a harmless no-op there.)
-    raw = git(["diff", "--name-status", "-M", `${base}...${head}`]);
+    // `-z`: NUL-delimited, paths verbatim. Without it git C-quotes paths with
+    // non-ASCII bytes, quotes, or tabs (and tab-splits the line), so such a
+    // path would match no lane/bucket and silently pass a gate it should fail.
+    raw = git(["diff", "--name-status", "-M", "-z", `${base}...${head}`]);
   } catch (err) {
     console.error(`KHAI-Guard: git diff failed — ${err.message}`);
     process.exit(2);
   }
-  return parseNameStatus(raw.split("\n"), { exemptRenames: config.exemptRenames !== false });
+  return parseNameStatus(raw, { exemptRenames: config.exemptRenames !== false });
 }
 
 // The gate: classify the PR's diff range and exit non-zero on a mix.
