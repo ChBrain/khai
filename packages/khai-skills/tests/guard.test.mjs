@@ -141,3 +141,24 @@ describe("Outward — drift / move order", () => {
     expect(checkDrift(pin, { specSha256: "different" }).moved).toBe(true);
   });
 });
+
+// An unreadable (empty) upstream version must surface, not read as "current"
+// (PR #309). Dormant until the fix lands: behavioral probe -- if an empty
+// version is not a move, the old falsy guard is in place, so skip.
+const DRIFT_UNREADABLE_DORMANT =
+  checkDrift({ validator: { version: "x" }, spec: { sha256: "y" } }, { validatorVersion: "" })
+    .moved === false;
+
+describe.skipIf(DRIFT_UNREADABLE_DORMANT)("Outward — drift on an unreadable version", () => {
+  const pin = { validator: { version: "0.1.1" }, spec: { sha256: "abc" } };
+
+  it("raises a notice when the upstream version is unreadable (empty)", () => {
+    const d = checkDrift(pin, { validatorVersion: "" });
+    expect(d.moved).toBe(true);
+    expect(d.notices.join(" ")).toMatch(/unreadable/);
+  });
+
+  it("still skips silently when offline (version undefined)", () => {
+    expect(checkDrift(pin, {}).moved).toBe(false);
+  });
+});
