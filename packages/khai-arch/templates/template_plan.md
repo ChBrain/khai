@@ -13,11 +13,11 @@ status: active
 
 ## Taxonomy
 
-The kind of plan being directed: e.g. governance, play-staging, release, or character-plan. This is what class of plan this is, not who issued it (Owner carries that) and not its artistic focus (Direction carries that).
+The kind of plan, which follows from what it is for (its Owner): a **personal** scheme (a persona's own intent), a **mandate** (a position: the office acts, not the person, e.g. a warden's plan to put out a fire), a **method** (a process: how a mechanism is run or brought about), a **development** (a place: its becoming, e.g. an empty lot to a tower), a **making** (a piece: its construction), or a **production** directive (the project: staging, release). This is the class of plan, not whose it is (Owner carries that) and not its artistic focus (Direction carries that).
 
 ## Owner
 
-- Owner: [The entity holding the plan: e.g. a Persona (persona_leonce.md), a Position (position_monarch.md), or a Project/House]
+- Owner: [the subject the plan is for, which sets its kind: a persona (persona_leonce.md), a position (position_monarch.md), a process (process_dissection.md), a place (place_garden.md), a piece (piece_engine.md), or the project. The Owner is what the plan is directed at; the agents who carry it out are named in Orders]
 
 ## Direction
 
