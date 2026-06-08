@@ -1,5 +1,11 @@
 # @chbrain/khai-rules
 
+## 0.1.4
+
+### Patch Changes
+
+- 6225576: Allow the optional `language` frontmatter attribute in all ENACTS files.
+
 ## 0.1.3
 
 ### Patch Changes
