@@ -14,6 +14,7 @@ import {
   verifyRegistry,
   wiringRequirements,
   engineDocChecks,
+  findEnginePackageFor,
 } from "../index.mjs";
 import { renderEngineReadme } from "@chbrain/khai-arch";
 
@@ -1122,5 +1123,47 @@ title: "Bare Play"
     expect(Array.isArray(res[0].errors)).toBe(true);
     expect(Array.isArray(res[0].warnings)).toBe(true);
     expect(Array.isArray(res[0].audit)).toBe(true);
+  });
+});
+
+// A malformed package.json must not crash the validator (PR #279). Dormant until
+// the readJsonOr guard lands on main -- probe src/validate.mjs for it, per the
+// cli.test.mjs convention.
+const JSON_DORMANT = !readFileSync(
+  join(dirname(fileURLToPath(import.meta.url)), "..", "src", "validate.mjs"),
+  "utf8",
+).includes("function readJsonOr");
+
+describe.skipIf(JSON_DORMANT)("conformance: malformed package.json is non-fatal", () => {
+  let dir;
+
+  beforeEach(() => {
+    dir = join(tmpdir(), `khai-badpkg-${process.pid}-${Math.random().toString(36).substring(2)}`);
+    mkdirSync(join(dir, "child"), { recursive: true });
+  });
+
+  afterEach(() => rmSync(dir, { recursive: true, force: true }));
+
+  it("findEnginePackageFor walks past a malformed package.json instead of throwing", () => {
+    // Valid engine manifest at the root; a malformed one in the child we start from.
+    writeFileSync(join(dir, "package.json"), JSON.stringify({ name: "e", khai: { engine: "e" } }));
+    writeFileSync(join(dir, "child", "package.json"), "{ not: valid json ]");
+    writeFileSync(join(dir, "child", "persona_x.md"), "---\nkhai: persona\n---\n");
+
+    let found;
+    expect(() => {
+      found = findEnginePackageFor(join(dir, "child", "persona_x.md"));
+    }).not.toThrow();
+    expect(found).toBe(dir);
+  });
+
+  it("validateEnginePackage reports a malformed package.json as a finding, not a crash", async () => {
+    writeFileSync(join(dir, "package.json"), "{ not: valid json ]");
+    let results;
+    expect(async () => {
+      results = await validateEnginePackage(dir);
+    }).not.toThrow();
+    results = await validateEnginePackage(dir);
+    expect(results[0].errors.some((e) => /cannot read or parse package\.json/.test(e))).toBe(true);
   });
 });
