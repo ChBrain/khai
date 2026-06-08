@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-stress",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "khai engine content, the stress domain: stress response as process, how a persona routes a demand that exceeds its resources.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.5"
+    "@chbrain/khai-arch": "^0.1.8"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.6",
+    "@chbrain/khai-tests": "^0.1.10",
     "vitest": "^4.1.8"
   }
 }

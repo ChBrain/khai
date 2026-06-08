@@ -1,5 +1,57 @@
 # @chbrain/khai-tests
 
+## 0.1.10
+
+### Patch Changes
+
+- b470ca2: The playhouse registry blurb gate no longer false-fails a valid one-sentence
+  description. It counted every "." and rejected anything with more than one, so a
+  blurb carrying a decimal ("v1.5"), a file name ("Node.js"), or a lowercase
+  abbreviation ("e.g.") was wrongly flagged as multiple sentences. It now detects
+  a real sentence boundary (a terminator followed by whitespace and a new
+  capitalized word) instead. A lone underscore is also no longer treated as
+  markdown, since an underscore in prose is usually an identifier (snake_case);
+  bold/italic markers and link brackets still are.
+- 549c09b: The CLI now fails loudly on two operator mistakes instead of silently
+  proceeding: `--project <path>` errors (exit 2) when the path does not exist,
+  rather than walking an empty tree and reporting "all instance files conform";
+  and `pack ... --out` with no following value errors instead of silently
+  falling back to `<dir>/dist`.
+- 113d2d6: Add support for declared titles in playbooks, allowing a localized staging H1 title to match a `declared` frontmatter key while keeping `title` in English for the registry.
+- 5f3941d: The plan/order "pending target" check now matches only an actual unchecked
+  task-list item. It tested `line.includes("[ ]")`, so any Targets line that
+  merely mentioned `[ ]` in prose or a code span (e.g. "use an empty array
+  `[ ]`") was miscounted as a pending target and failed a complete plan/order.
+  It now anchors to a list marker: `^\s*[-*+]\s+\[ \]`.
+- a0c0327: The registry gate's "missing registry.json" error now points at the generator
+  (`run khai-tests registry build`), so the (intended) hard requirement is
+  actionable rather than just stated. Behavior is unchanged: a playhouse without
+  a registry.json still fails.
+- 3ab5fdc: The validator no longer crashes on a malformed package.json. readManifest,
+  findEnginePackageFor, installedEngineManifests, the CLI's engine banner, and
+  engineDocChecks all parsed package.json with an unguarded JSON.parse, so a
+  single unreadable or malformed manifest (an installed dependency, or a file
+  mid-walk) threw an uncaught exception and aborted the pre-commit gate / project
+  validator with a raw stack trace. A shared readJsonOr helper now degrades
+  gracefully: a bad installed manifest is skipped, a bad file mid-walk is treated
+  as "no manifest here", and a bad package on the engine surface yields a clean
+  "cannot read or parse package.json" finding.
+- Updated dependencies [ae0c95e]
+- Updated dependencies [9965037]
+- Updated dependencies [bba3d28]
+- Updated dependencies [a837c37]
+- Updated dependencies [113d2d6]
+- Updated dependencies [37f5dbe]
+- Updated dependencies [de6ab9b]
+- Updated dependencies [8984450]
+- Updated dependencies [272d1dc]
+- Updated dependencies [5c0d150]
+- Updated dependencies [f50e14f]
+- Updated dependencies [11425ea]
+  - @chbrain/khai-arch@0.1.8
+  - @chbrain/khai-language@0.1.3
+  - @chbrain/khai-rules@0.1.5
+
 ## 0.1.9
 
 ### Patch Changes

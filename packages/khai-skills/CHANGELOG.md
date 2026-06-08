@@ -1,5 +1,25 @@
 # @chbrain/khai-skills
 
+## 0.0.13
+
+### Patch Changes
+
+- 964dc17: The drift check no longer reads an unreadable upstream validator version as
+  "still current". A reachable PyPI whose payload lacks `info.version` now yields
+  an empty string (distinct from offline, which is undefined), and checkDrift
+  surfaces that as an advisory notice instead of skipping it via a falsy guard.
+  Offline (both signals unreachable) still skips silently.
+- 3fd4d72: composeSkill now errors on a bundled reference nested more than one level deep
+  (e.g. references/sub/x.md). The cultures layout (and the agentskills "references
+  one level from SKILL.md" rule) only represents SKILL.md plus one flat content
+  subfolder; previously such a file was silently flattened by culturesLayout, with
+  only an advisory warning on deep links inside SKILL.md, never on the actual
+  bundled files. It is now a blocking conformance error.
+- Updated dependencies [ae0c95e]
+- Updated dependencies [9965037]
+- Updated dependencies [11425ea]
+  - @chbrain/khai-arch@0.1.8
+
 ## 0.0.12
 
 ### Patch Changes

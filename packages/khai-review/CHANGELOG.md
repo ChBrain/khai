@@ -1,5 +1,43 @@
 # @chbrain/khai-review
 
+## 0.1.2
+
+### Patch Changes
+
+- 525a51a: anchorLine now matches a finding's id cell exactly instead of as a bare
+  substring, so a finding whose id is a prefix of another (e.g. "a:b:c" vs
+  "a:b:cd") no longer anchors its inline comment to the wrong row. The id-cell
+  escaping is now a single shared escapeCell helper used by both renderLog and
+  anchorLine, so the rendered row and the anchor needle can never drift.
+- 4831c0f: reconcile now blocks a settled finding (accepted/transferred/reduced) whose
+  comment thread is still unresolved, as its docstring already promised. The
+  gate previously read only the treatment and resolution detail and ignored the
+  `resolved` flag the decisions carry, so a settled finding could pass with its
+  PR comment thread left open — weakening the "the conversation is the gate"
+  guarantee.
+- 0e6c4ce: The review CLI now upholds its "always exits 0" advisory contract on malformed
+  input. The manifest, target package.json, ledger, and decisions files were all
+  read with an unguarded JSON.parse, so a hand-edited or corrupt file threw an
+  uncaught exception that crashed main() with a non-zero exit — turning the
+  advisory lane into a hard gate. A malformed manifest now reports and exits 0, a
+  malformed target manifest is skipped, readJson returns its fallback on bad JSON,
+  and a top-level catch keeps any unexpected error from gating.
+- ff65c1f: Two small judge-path hardenings. parseVerdict now extracts the first balanced
+  top-level JSON object (string-aware) instead of slicing indexOf("{") to
+  lastIndexOf("}"), so a model reply with trailing prose or a brace inside a
+  quoted value is parsed correctly rather than degrading to pass. mockJudge
+  decides padding from whether the filler strip changed the text, avoiding a
+  stateful `/g`.test() (it was already correct since the regex is function-local;
+  this just removes the footgun).
+- 8320870: The review CLI now discovers `.md` files recursively, so nested element files
+  (e.g. `plays/<id>/play_<id>.md`, nested `persona_*.md`) under a target are
+  reviewed too, not just the top-level ones. It used a flat `readdirSync(t.dir)`,
+  which skipped everything in subdirectories even though the voice-chain resolver
+  is built to walk nested paths. A finding is labelled by its path relative to
+  the target dir, so a top-level file keeps its bare-name id (no churn) while a
+  nested one is disambiguated. node_modules and dot dirs are skipped; order is
+  deterministic.
+
 ## 0.1.1
 
 ### Patch Changes

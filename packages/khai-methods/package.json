@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-methods",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "khai methods registry — structured process definitions with attribution, for retrospectives, planning, and reviews.",
   "repository": {
     "type": "git",
