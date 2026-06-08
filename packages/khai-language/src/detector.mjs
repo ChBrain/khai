@@ -1,5 +1,5 @@
 import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
-import { join, dirname, resolve, basename } from "node:path";
+import { join, dirname, resolve, basename, relative, isAbsolute } from "node:path";
 import matter from "gray-matter";
 import LanguageDetect from "languagedetect";
 
@@ -62,7 +62,12 @@ function findPlayFile(fileDir, projectPath) {
   let current = resolve(fileDir);
   const root = resolve(projectPath);
 
-  while (current.startsWith(root)) {
+  while (true) {
+    // Stay within the project. A raw `current.startsWith(root)` would treat a
+    // sibling like "<root>-old" as in-scope (shared textual prefix) and could
+    // resolve a play/language from a foreign directory; compare by path instead.
+    const rel = relative(root, current);
+    if (rel.startsWith("..") || isAbsolute(rel)) break;
     if (existsSync(current)) {
       const files = readdirSync(current);
       for (const file of files) {
