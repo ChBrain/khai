@@ -1,4 +1,7 @@
 import { describe, it, expect } from "vitest";
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
 import {
   review,
   reviewCard,
@@ -449,5 +452,40 @@ describe("createModelJudge - prompt assembly", () => {
     expect(body.response_format).toEqual({ type: "json_object" });
     expect(body.messages[0].content).toContain(rubrics.conciseness.instruction);
     expect(body.messages[1].content).toBe("the prose under review");
+  });
+});
+
+// reconcile must block a settled finding whose comment thread is still open
+// (PR #270). Dormant until the source fix lands on main -- probe index.mjs for
+// the block reason the fix introduces, per the cli.test.mjs convention.
+const UNRESOLVED_DORMANT = !readFileSync(
+  join(dirname(fileURLToPath(import.meta.url)), "..", "index.mjs"),
+  "utf8",
+).includes("the comment thread is unresolved");
+
+describe.skipIf(UNRESOLVED_DORMANT)("reconcile - unresolved comment threads", () => {
+  const settled = (resolved) => ({
+    ledger: [
+      {
+        id: "a",
+        where: "card.setup",
+        status: "accepted",
+        treatment: "accept",
+        resolution: "kept terse on purpose",
+      },
+    ],
+    decisions: [{ id: "a", treatment: "accept", resolved }],
+  });
+
+  it("blocks a settled finding whose thread is unresolved, even with a matching treatment + resolution", () => {
+    const { ledger, decisions } = settled(false);
+    const { ok, blocks } = reconcile(ledger, decisions);
+    expect(ok).toBe(false);
+    expect(blocks[0]).toMatchObject({ id: "a", reason: /thread is unresolved/ });
+  });
+
+  it("passes the same finding once the thread is resolved", () => {
+    const { ledger, decisions } = settled(true);
+    expect(reconcile(ledger, decisions)).toEqual({ ok: true, blocks: [] });
   });
 });

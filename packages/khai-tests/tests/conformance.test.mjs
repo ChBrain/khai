@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll, afterAll, beforeEach, afterEach } from "vitest";
 import { fileURLToPath } from "node:url";
 import { dirname, join, relative, basename } from "node:path";
-import { mkdirSync, writeFileSync, rmSync, readFileSync } from "node:fs";
+import { mkdirSync, writeFileSync, rmSync, readFileSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import {
   discoverEnginePackages,
@@ -995,5 +995,132 @@ This is a single sentence description.
     // Verify also works on build output
     const verifyRes = verifyRegistry(dir);
     expect(verifyRes.ok).toBe(true);
+  });
+});
+
+// --- build/verify consistency (PR #264) -----------------------------------
+// These assert the build->verify alignment fixes. They are dormant until the
+// source change lands on main: we probe the source text for sentinels that
+// only exist after the fix, mirroring the cli.test.mjs convention.
+const consistencySrcDir = join(dirname(fileURLToPath(import.meta.url)), "..", "src");
+const DORMANT_CONSISTENCY = !(
+  readFileSync(join(consistencySrcDir, "validate.mjs"), "utf8").includes(
+    "doc.data.title || play.id",
+  ) &&
+  readFileSync(join(consistencySrcDir, "registry.mjs"), "utf8").includes(
+    "does not yet pass verification",
+  )
+);
+
+describe.skipIf(DORMANT_CONSISTENCY)("conformance: registry build/verify consistency", () => {
+  let dir;
+
+  beforeEach(() => {
+    dir = join(
+      tmpdir(),
+      `khai-registry-consistency-${process.pid}-${Math.random().toString(36).substring(2)}`,
+    );
+    mkdirSync(dir, { recursive: true });
+    mkdirSync(join(dir, "plays"), { recursive: true });
+    writeFileSync(join(dir, "package.json"), JSON.stringify({ name: "house", version: "1.0.0" }));
+  });
+
+  afterEach(() => {
+    rmSync(dir, { recursive: true, force: true });
+  });
+
+  it("build -> verify is idempotent when frontmatter omits title", () => {
+    // No `title` in frontmatter: buildRegistry falls back to the dir id, and
+    // verify must apply the same fallback rather than comparing against
+    // undefined (which is what regressed before the fix).
+    mkdirSync(join(dir, "plays", "intro"), { recursive: true });
+    writeFileSync(
+      join(dir, "plays", "intro", "play_intro.md"),
+      `---
+khai: play
+---
+# Intro
+
+## Arc
+
+This is a single sentence description of the play.
+`,
+    );
+
+    buildRegistry(dir);
+
+    const registry = JSON.parse(readFileSync(join(dir, "registry.json"), "utf8"));
+    expect(registry.plays[0].title).toBe("intro");
+    expect(verifyRegistry(dir).ok).toBe(true);
+  });
+
+  it("title alignment finds a playbook not named play_<id>.md", () => {
+    // The playbook lives at plays/welcome/play_intro.md, not play_welcome.md.
+    // The old verify hard-coded play_<id>.md and silently skipped the check;
+    // with shared discovery it must catch the title mismatch.
+    mkdirSync(join(dir, "plays", "welcome"), { recursive: true });
+    writeFileSync(
+      join(dir, "plays", "welcome", "play_intro.md"),
+      `---
+khai: play
+title: "Real Title"
+---
+# Welcome
+`,
+    );
+    writeFileSync(
+      join(dir, "registry.json"),
+      JSON.stringify({
+        name: "house",
+        version: "1.0.0",
+        plays: [{ id: "welcome", title: "Wrong Title", description: "Valid blurb description." }],
+      }),
+    );
+
+    const res = validatePlayhouseRegistry(dir);
+    expect(res.length).toBe(1);
+    expect(
+      res[0].errors.some((e) =>
+        e.includes('does not match title in registry.json ("Wrong Title")'),
+      ),
+    ).toBe(true);
+  });
+
+  it("buildRegistry warns (without throwing) when a blurb fails the verify gate", () => {
+    // No `## Arc` section -> empty description -> fails the length gate. Build
+    // must still succeed and surface the would-be verify failure as a warning.
+    mkdirSync(join(dir, "plays", "bare"), { recursive: true });
+    writeFileSync(
+      join(dir, "plays", "bare", "play_bare.md"),
+      `---
+khai: play
+title: "Bare Play"
+---
+# Bare Play
+`,
+    );
+
+    const warnings = [];
+    const originalWarn = console.warn;
+    console.warn = (...args) => warnings.push(args.join(" "));
+    try {
+      expect(() => buildRegistry(dir)).not.toThrow();
+    } finally {
+      console.warn = originalWarn;
+    }
+
+    // registry.json is still written
+    expect(existsSync(join(dir, "registry.json"))).toBe(true);
+    expect(warnings.some((w) => w.includes("does not yet pass verification"))).toBe(true);
+  });
+
+  it("early-return validation results carry the errors/warnings/audit shape", () => {
+    // Missing registry.json: the early return must match the shape the other
+    // validateProject results use, so consumers reading .warnings/.audit are safe.
+    const res = validatePlayhouseRegistry(dir);
+    expect(res.length).toBe(1);
+    expect(Array.isArray(res[0].errors)).toBe(true);
+    expect(Array.isArray(res[0].warnings)).toBe(true);
+    expect(Array.isArray(res[0].audit)).toBe(true);
   });
 });
