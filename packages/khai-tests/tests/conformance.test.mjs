@@ -699,9 +699,12 @@ status: active
     expect(validateContentFile(validPlan, { type: "plan" })).toEqual([]);
   });
 
-  it("rejects a plan with pending targets", () => {
-    const pendingPlan = `${validPlan}- [ ] Target 4\n`;
-    const errors = validateContentFile(pendingPlan, { type: "plan" });
+  // Completion is the `closed` state: only a closed plan must resolve every
+  // target. A draft/active plan is in progress, so its pending targets are not a
+  // finding (the status-gated suite below covers that, once the gate lands).
+  it("rejects a closed plan with pending targets", () => {
+    const closedPending = `${validPlan.replace("status: active", "status: closed")}- [ ] Target 4\n`;
+    const errors = validateContentFile(closedPending, { type: "plan" });
     expect(errors.some((e) => e.includes("plan has 1 pending target"))).toBe(true);
   });
 
@@ -752,6 +755,35 @@ stamp:
     );
     const errors = validateContentFile(brokenOrder, { type: "order" });
     expect(errors.some((e) => e.includes("order (DO IT):"))).toBe(true);
+  });
+});
+
+// Plan completion is gated by status: only a `closed` plan must resolve every
+// target. A draft/active plan (e.g. an in-world plan staged inside a play) holds
+// its targets as forward intent, so a pending [ ] is not a finding. Order has no
+// lifecycle, so its completion stays mandatory. Dormant until the gate lands on
+// main -- probe src/validate.mjs for it, per the cli.test.mjs convention.
+const STATUS_GATE_DORMANT = !readFileSync(
+  join(dirname(fileURLToPath(import.meta.url)), "..", "src", "validate.mjs"),
+  "utf8",
+).includes('status === "closed"');
+
+describe.skipIf(STATUS_GATE_DORMANT)("plan completion is gated by status", () => {
+  const planWith = (status, targets) =>
+    `---\nkhai: plan\ntitle: "Stage Dantons Tod"\nlicense: CC-BY-NC-SA-4.0\nstamp:\n  owner: Choregos\n  version: v1.0.0\n  date: "2026-06-06"\nstatus: ${status}\n---\n\n# Plan: Stage Dantons Tod\n\n## Taxonomy\nstaging\n\n## Owner\n- Project: buechner\n\n## Direction\nvision\n\n## Orders\ncommands\n\n## Implementation\nguidelines\n\n## Targets\n${targets}\n`;
+
+  it("lets an active plan hold pending targets as forward intent", () => {
+    const errs = validateContentFile(planWith("active", "- [x] Done\n- [ ] Pending"), {
+      type: "plan",
+    });
+    expect(errs.some((e) => e.includes("pending target"))).toBe(false);
+  });
+
+  it("still rejects a closed plan that leaves targets pending", () => {
+    const errs = validateContentFile(planWith("closed", "- [x] Done\n- [ ] Pending"), {
+      type: "plan",
+    });
+    expect(errs.some((e) => e.includes("plan has 1 pending target"))).toBe(true);
   });
 });
 
