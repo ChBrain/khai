@@ -574,3 +574,29 @@ describe.skipIf(RECURSIVE_DORMANT)("khai-review CLI - recursive .md discovery", 
     expect(r.stdout).toContain("plays/woyzeck/persona_x.md#Projection");
   });
 });
+
+// parseVerdict must extract the first balanced JSON object, tolerating trailing
+// prose or a stray brace (PR #321). Dormant until the fix lands -- probe
+// index.mjs for the firstJsonObject helper.
+const FIRSTJSON_DORMANT = !readFileSync(
+  join(dirname(fileURLToPath(import.meta.url)), "..", "index.mjs"),
+  "utf8",
+).includes("firstJsonObject");
+
+describe.skipIf(FIRSTJSON_DORMANT)("createModelJudge - tolerant verdict parsing", () => {
+  const reply = (content) => ({
+    ok: true,
+    status: 200,
+    statusText: "OK",
+    json: async () => ({ choices: [{ message: { content } }] }),
+  });
+
+  it("parses the first balanced object despite trailing prose and a stray brace", async () => {
+    const judge = createModelJudge({
+      token: "t",
+      fetchImpl: async () =>
+        reply('Sure! {"verdict":"flag","suggestion":"s","reason":"r"} (done) }'),
+    });
+    expect((await judge({ prose: "x", rubric: rubrics.conciseness })).verdict).toBe("flag");
+  });
+});
