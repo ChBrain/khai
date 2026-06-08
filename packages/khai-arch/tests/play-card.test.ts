@@ -1,4 +1,7 @@
 import { describe, it, expect } from "vitest";
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
 import * as arch from "../index.mjs";
 
 const DORMANT = typeof arch.playCard !== "function";
@@ -84,5 +87,42 @@ describe.skipIf(DORMANT)("playCard - the ENACTS contract", () => {
   it("throws when a chapter is empty", () => {
     const broken = validPlay.replace("Worum gerungen wird.", "   ");
     expect(() => playCard(broken)).toThrow(/chapter "Stakes" is empty/);
+  });
+});
+
+// The coda is the trailing block after a final `---` rule. A `---` thematic rule
+// inside a chapter body, or a `---` inside a fenced code block, must NOT be
+// mistaken for the coda boundary and truncate the chapters (PR #275). Dormant
+// until the fence-aware splitCoda lands on main -- probe index.mjs for it, per
+// the cli.test.mjs convention.
+const CODA_DORMANT = !readFileSync(
+  join(dirname(fileURLToPath(import.meta.url)), "..", "index.mjs"),
+  "utf8",
+).includes("function splitCoda");
+
+describe.skipIf(CODA_DORMANT)("playCard - coda vs intra-chapter and fenced rules", () => {
+  it("a `---` rule inside a chapter body does not truncate the chapters", () => {
+    const intra = validPlay.replace(
+      "Ein armer Mensch wird an Leib und Seele besessen.",
+      "Erster Teil.\n\n---\n\nZweiter Teil nach der Linie.",
+    );
+    const card = playCard(intra);
+    expect(card.chapters).toEqual(playChapters);
+    expect(card.sections.Arc.body).toContain("---");
+    expect(card.coda).toContain("Builder note (template only)");
+  });
+
+  it("a `---` inside a fenced code block does not truncate the chapters", () => {
+    const fenced = validPlay.replace(
+      "Ein armer Mensch wird an Leib und Seele besessen.",
+      "Beispiel:\n\n```yaml\nkhai: x\n---\nfoo: bar\n```",
+    );
+    const card = playCard(fenced);
+    expect(card.chapters).toEqual(playChapters);
+    expect(card.coda).toContain("Builder note (template only)");
+  });
+
+  it("still peels a genuine trailing coda", () => {
+    expect(playCard(validPlay).coda).toContain("Builder note (template only)");
   });
 });
