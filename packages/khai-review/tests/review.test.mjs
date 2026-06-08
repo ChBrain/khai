@@ -537,3 +537,40 @@ describe.skipIf(ANCHOR_DORMANT)("anchorLine - exact id cell, not a substring", (
     expect(anchorLine(ANCHOR_LOG, "absent")).toBeNull();
   });
 });
+
+// The CLI must discover .md recursively, reviewing nested element files (PR
+// #300). Dormant until the fix lands -- probe cli.mjs for the recursive walker.
+const RECURSIVE_DORMANT = !readFileSync(cliPath, "utf8").includes("function mdFilesUnder");
+
+describe.skipIf(RECURSIVE_DORMANT)("khai-review CLI - recursive .md discovery", () => {
+  let dir;
+  afterEach(() => rmSync(dir, { recursive: true, force: true }));
+
+  it("reviews a nested element file, not just the target's top level", () => {
+    dir = join(tmpdir(), `khai-review-rec-${process.pid}-${Math.random().toString(36).slice(2)}`);
+    mkdirSync(join(dir, "audit", "x"), { recursive: true });
+    mkdirSync(join(dir, "eng", "plays", "woyzeck"), { recursive: true });
+    writeFileSync(
+      join(dir, "eng", "package.json"),
+      JSON.stringify({ name: "eng", khai: { engine: "eng", card: { wire: "clean." } } }),
+    );
+    // A NESTED khai .md whose prose the mockJudge flags as padded.
+    writeFileSync(
+      join(dir, "eng", "plays", "woyzeck", "persona_x.md"),
+      "---\nkhai: persona\n---\n# Persona: X\n\n## Projection\nthis is really just filler that the mock judge flags as padded\n",
+    );
+    writeFileSync(
+      join(dir, "audit", "x", "audit.json"),
+      JSON.stringify({ id: "x", review: { rubrics: ["conciseness"], targets: ["eng"] } }),
+    );
+
+    const r = spawnSync(process.execPath, [cliPath, "--manifest", "audit/x/audit.json"], {
+      cwd: dir,
+      encoding: "utf8",
+      env: { ...process.env, KHAI_REVIEW_MOCK: "1" },
+    });
+    expect(r.status).toBe(0);
+    // The nested file is reviewed and labelled by its path under the target dir.
+    expect(r.stdout).toContain("plays/woyzeck/persona_x.md#Projection");
+  });
+});
