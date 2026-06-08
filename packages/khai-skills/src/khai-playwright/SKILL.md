@@ -82,6 +82,23 @@ positions, and personas; Stage draws personas, pieces, and plans; Tension draws 
    [persona](references/template_persona.md),
    [plan](references/template_plan.md).
 
+### The plan element: a scheme caught between done and undone
+
+A `plan` is an in-world blueprint: not dialogue, but a mechanism with order. Who
+acts, in what sequence, to what end, and how far it has got. Its **Orders** name
+the agents (personas, positions, roles); its **Targets** carry a verdict on each
+step, and the verdict is where the drama sits:
+
+- `[ ]` open: no verdict yet, the live edge;
+- `[x]` done; `[F]` failed (attempted, missed); `[W]` waived (dropped or overtaken).
+
+"Resolved" is a verdict, not a success, so a plan may close with failed targets.
+Keep an in-world plan `status: active`, and let the line between `[ ]` and the
+rest mark the moment the scene captures: between decision and execution. The mix
+of `[x]`/`[F]`/`[W]` among the resolved is how the scheme went, and `[F]`/`[W]`
+are where its failures become drama. A plan steers the scene structurally; it
+never dictates the lines.
+
 ### Staying in lane (what the play defines, the plot may not exceed)
 
 The play defines what is in the production. A plot must stay in that lane:
