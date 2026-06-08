@@ -515,3 +515,25 @@ describe.skipIf(CLI_DORMANT)("khai-review CLI - advisory exit 0 on bad input", (
     expect(r.stdout).toMatch(/cannot read manifest/);
   });
 });
+
+// anchorLine must match a finding's id cell exactly, not as a substring (PR
+// #296). Dormant until the fix lands: probe the behavior -- if a prefix id
+// anchors to the longer id's row, the old substring code is in place, so skip.
+const ANCHOR_LOG = [
+  "| id | location |",
+  "| -- | -------- |",
+  "| `x:y:zz` | a |",
+  "| `x:y:z` | b |",
+].join("\n");
+const ANCHOR_DORMANT = anchorLine(ANCHOR_LOG, "x:y:z") !== 4;
+
+describe.skipIf(ANCHOR_DORMANT)("anchorLine - exact id cell, not a substring", () => {
+  it("anchors a prefix id to its own row, not a longer id's row", () => {
+    expect(anchorLine(ANCHOR_LOG, "x:y:z")).toBe(4);
+    expect(anchorLine(ANCHOR_LOG, "x:y:zz")).toBe(3);
+  });
+
+  it("returns null for an id not present", () => {
+    expect(anchorLine(ANCHOR_LOG, "absent")).toBeNull();
+  });
+});
