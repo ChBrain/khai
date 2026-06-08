@@ -142,6 +142,41 @@ its `allow` globs):
 }
 ```
 
+### Riders — a path that rides the change it drives
+
+Some paths are neither owned by one lane nor free metadata: they **accompany**
+whatever change they drive, wherever it lands. A **management order**
+(`management/orders/**`) is the case — an order can direct a change in any lane,
+so the order and its execution are one unit of work that should land in one PR.
+Owning the order (e.g. under governance) forces a two-lane split with the play
+it changes; making it `shared` strands it with no home when it is committed
+alone.
+
+A **rider** is the third class that resolves this. Declared under
+`branchScope.riders` as `{ pattern, fallback }`, a rider:
+
+- **rides** the lane of the change it accompanies — like `shared`, it is never
+  an offender on any lane, and `advise`/`branch` fold it into that lane instead
+  of splitting it off; and
+- **homes** to its `fallback` lane when it rides **alone** (no owned path in the
+  set), so it is never stranded.
+
+```json
+{
+  "branchScope": {
+    "riders": [{ "pattern": "management/orders/**", "fallback": "governance" }],
+    "lanes": [
+      { "pattern": "governance/*", "layer": "governance", "allow": ["management/**"] },
+      { "pattern": "play/*", "layer": "solution", "allow": ["plays/**"] }
+    ]
+  }
+}
+```
+
+With this, an order + the play it changes resolves to a single `play/` branch;
+the same order committed by itself resolves to `governance/`. `fallback` must
+name a declared lane.
+
 Programmatic API: `classifyBranch(name, config)` returns
 `{ lane, layer, unit }` (or `null`); `checkBranchScope(name, paths, config)`
 returns `{ ok, violations }`; `advise({ files }, config)` returns the lane
