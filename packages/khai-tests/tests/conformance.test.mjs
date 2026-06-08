@@ -2,6 +2,7 @@ import { describe, it, expect, beforeAll, afterAll, beforeEach, afterEach } from
 import { fileURLToPath } from "node:url";
 import { dirname, join, relative, basename } from "node:path";
 import { mkdirSync, writeFileSync, rmSync, readFileSync, existsSync } from "node:fs";
+import { spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import {
   discoverEnginePackages,
@@ -1246,5 +1247,31 @@ describe.skipIf(BLURB_DORMANT)("conformance: blurb gate sentence detection", () 
     expect(blurbErrors("This is one sentence. This is two.")).not.toEqual([]);
     expect(blurbErrors("Is this a single declarative line?")).not.toEqual([]);
     expect(blurbErrors("This contains **bold** formatting.")).not.toEqual([]);
+  });
+});
+
+// The CLI must fail loudly on a missing --project path and a value-less --out
+// (PR #312). Dormant until the fix lands -- probe the CLI for the guard message.
+const cliSrcPath = join(dirname(fileURLToPath(import.meta.url)), "..", "src", "cli.mjs");
+const CLI_GUARD_DORMANT = !readFileSync(cliSrcPath, "utf8").includes("--project path not found");
+
+describe.skipIf(CLI_GUARD_DORMANT)("conformance: CLI arg guards", () => {
+  it("exits 2 on a non-existent --project path", () => {
+    const missing = join(
+      tmpdir(),
+      `khai-noproject-${process.pid}-${Math.random().toString(36).slice(2)}`,
+    );
+    const r = spawnSync(process.execPath, [cliSrcPath, "--project", missing], { encoding: "utf8" });
+    expect(r.status).toBe(2);
+    expect(r.stderr).toMatch(/--project path not found/);
+  });
+
+  it("exits 2 on a value-less --out (after a conforming engine)", () => {
+    // pkgs[0] is a conforming engine, so pack reaches the --out check.
+    const r = spawnSync(process.execPath, [cliSrcPath, "pack", pkgs[0], "--out"], {
+      encoding: "utf8",
+    });
+    expect(r.status).toBe(2);
+    expect(r.stderr).toMatch(/--out needs a directory value/);
   });
 });
