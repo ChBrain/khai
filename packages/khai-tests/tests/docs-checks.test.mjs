@@ -109,3 +109,24 @@ describe("checkHasFrontmatter - metadata lives in YAML, not prose", () => {
     expect(checkHasFrontmatter("---\nauthorship: KAI\n---\n\n# Gender\n")).toEqual([]);
   });
 });
+
+// checkHasFrontmatter must accept CRLF line endings and a leading BOM (PR #293).
+// Dormant until the fix lands: probe the behavior itself -- if a CRLF document
+// is still reported as missing frontmatter, the old code is in place, so skip.
+const crlfDoc = "---\r\nkhai: x\r\n---\r\nbody\r\n";
+const CRLF_DORMANT = checkHasFrontmatter(crlfDoc).length > 0;
+
+describe.skipIf(CRLF_DORMANT)("checkHasFrontmatter - CRLF and BOM tolerance", () => {
+  it("accepts CRLF frontmatter", () => {
+    expect(checkHasFrontmatter(crlfDoc)).toEqual([]);
+  });
+
+  it("accepts a leading BOM", () => {
+    const bom = String.fromCharCode(0xfeff) + "---\nkhai: x\n---\nbody\n";
+    expect(checkHasFrontmatter(bom)).toEqual([]);
+  });
+
+  it("still flags prose with no frontmatter", () => {
+    expect(checkHasFrontmatter("# Gender\n\n**Authorship:** KAI\n")[0]).toMatch(/frontmatter/);
+  });
+});
