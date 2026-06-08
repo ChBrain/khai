@@ -104,6 +104,37 @@ function assertBranchScope(value) {
       }
     }
   });
+  // `riders` (optional): a third path class. A rider ATTACHES to the lane of the
+  // change it accompanies — like `shared`, it is never an offender on any lane —
+  // but UNLIKE shared it homes to a declared `fallback` lane when it rides
+  // ALONE, so it is never stranded. A management order (management/orders/**) is
+  // the motivating case: an order can drive a change in any lane, so it rides
+  // that lane in one branch; committed by itself it still has a home. Each rider
+  // names a `pattern` (glob) and a `fallback` (an existing lane's name).
+  if ("riders" in value) {
+    if (!Array.isArray(value.riders)) {
+      throw new ConfigError(`"branchScope.riders" must be an array`);
+    }
+    const laneNames = new Set(value.lanes.map((l) => l.pattern.split("/")[0]));
+    value.riders.forEach((rider, i) => {
+      const at = `branchScope.riders[${i}]`;
+      if (typeof rider !== "object" || rider == null || Array.isArray(rider)) {
+        throw new ConfigError(`"${at}" must be an object`);
+      }
+      if (typeof rider.pattern !== "string" || rider.pattern.length === 0) {
+        throw new ConfigError(`"${at}.pattern" must be a non-empty string`);
+      }
+      if (typeof rider.fallback !== "string" || rider.fallback.length === 0) {
+        throw new ConfigError(`"${at}.fallback" must be a non-empty string`);
+      }
+      if (!laneNames.has(rider.fallback)) {
+        throw new ConfigError(
+          `"${at}.fallback" ("${rider.fallback}") must name a declared lane ` +
+            `(one of: ${[...laneNames].join(", ")})`,
+        );
+      }
+    });
+  }
 }
 
 // The release levels a changeset may declare, in widening order. patch is the
@@ -406,6 +437,29 @@ function laneForPath(path, config) {
   return null;
 }
 
+// Compile branchScope.riders into a matcher: `isRider(path)` tells whether a
+// path is a rider (rides any lane), and `fallbackFor(path)` returns the lane it
+// homes to when it rides alone. A rider takes precedence over ownership for the
+// paths it covers, so an order under a governance-owned tree still rides the
+// lane of the change it accompanies rather than being locked to governance.
+function riderMatcher(config) {
+  const riders = config.branchScope?.riders ?? [];
+  if (riders.length === 0) return { isRider: () => false, fallbackFor: () => null };
+  // One matcher over all rider patterns (the same idiom as `shared`/`allow`), so
+  // the hot path is a single compiled glob; `fallbackFor` walks the riders to
+  // recover which one a path belongs to, matching each glob inline exactly as
+  // laneForPath does. The globs come from config, never from the path under test.
+  const isRider = picomatch(
+    riders.map((r) => r.pattern),
+    { dot: true },
+  );
+  return {
+    isRider,
+    fallbackFor: (p) =>
+      riders.find((r) => picomatch(r.pattern, { dot: true })(p))?.fallback ?? null,
+  };
+}
+
 /**
  * Check that every changed path is allowed by the branch's lane.
  * @param {string} branchName the current branch
@@ -448,6 +502,12 @@ export function checkBranchScope(branchName, changedPaths, config = DEFAULT_CONF
   const shared = config.branchScope?.shared ?? [];
   const isShared = shared.length > 0 ? picomatch(shared, { dot: true }) : () => false;
 
+  // Riders (e.g. management/orders/**) ride the lane of the change they
+  // accompany, so like shared metadata they are never an offender on any lane.
+  // Their home-when-alone is advise()'s concern; the checker only needs to wave
+  // them through here.
+  const { isRider } = riderMatcher(config);
+
   // A lane's own explicit allow list grants a cross-lane pass: if a path
   // matches the current lane's allow globs it is permitted regardless of which
   // protected lane owns it. This lets automation lanes (e.g. dependabot/*)
@@ -459,6 +519,7 @@ export function checkBranchScope(branchName, changedPaths, config = DEFAULT_CONF
   const violations = [];
   for (const p of changedPaths) {
     if (isShared(p)) continue;
+    if (isRider(p)) continue; // riders ride any lane (home only when alone — advise's job)
     if (isAllowedByLane(p)) continue; // cross-lane pass: lane's own allow overrides ownership
     const owner = laneForPath(p, config); // a protected owner, or null (unowned)
     if (owner != null) {
@@ -515,11 +576,17 @@ export function advise({ files = [] }, config = DEFAULT_CONFIG) {
   // not "unowned" and must not be reported as needing a branchScope extension.
   const sharedGlobs = config.branchScope?.shared ?? [];
   const isShared = sharedGlobs.length > 0 ? picomatch(sharedGlobs, { dot: true }) : () => false;
+  const { isRider, fallbackFor } = riderMatcher(config);
   const byKey = new Map();
   const unowned = [];
+  const riderFiles = []; // { path, fallback } — held aside; attached below
 
   for (const path of files) {
     if (isShared(path)) continue;
+    if (isRider(path)) {
+      riderFiles.push({ path, fallback: fallbackFor(path) });
+      continue;
+    }
     const owner = laneForPath(path, config);
     if (owner == null) {
       unowned.push(path);
@@ -527,6 +594,18 @@ export function advise({ files = [] }, config = DEFAULT_CONFIG) {
     }
     if (!byKey.has(owner)) byKey.set(owner, []);
     byKey.get(owner).push(path);
+  }
+
+  // A rider rides the lane of the change it accompanies; alone, it homes to its
+  // fallback. So when NOTHING is owned, fold each rider into its fallback lane —
+  // that becomes the advised home, no split. When an owned lane exists, riders
+  // are attached to it below (after sorting) and never form a lane of their own.
+  const ownedExisted = byKey.size > 0;
+  if (!ownedExisted) {
+    for (const { path, fallback } of riderFiles) {
+      if (!byKey.has(fallback)) byKey.set(fallback, []);
+      byKey.get(fallback).push(path);
+    }
   }
 
   const lanes = [...byKey.entries()].map(([owner, laneFiles]) => {
@@ -548,6 +627,17 @@ export function advise({ files = [] }, config = DEFAULT_CONFIG) {
     const bi = LAYER_ORDER.indexOf(b.layer);
     return (ai < 0 ? LAYER_ORDER.length : ai) - (bi < 0 ? LAYER_ORDER.length : bi);
   });
+
+  // Owned lanes present: each rider rides along on the lane it accompanies —
+  // its fallback lane if that lane is in play, else the first (highest) lane.
+  // It is listed on that branch but never forms a lane of its own, so a rider
+  // can never turn a single-lane change into a split.
+  if (ownedExisted && riderFiles.length > 0) {
+    for (const { path, fallback } of riderFiles) {
+      const target = lanes.find((l) => l.lane === fallback) ?? lanes[0];
+      target.files.push(path);
+    }
+  }
 
   const split = lanes.length > 1;
   const lines = [];
