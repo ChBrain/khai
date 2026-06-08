@@ -127,8 +127,10 @@ export function cleanProse(text) {
   let clean = text.replace(/^\s*>.*$/gm, " ");
   // Strip Markdown links: [text](url) -> text
   clean = clean.replace(/\[([^\]]*)\]\([^)]*\)/g, "$1");
-  // Strip inline code blocks, bold, italics, list bullet markers
-  clean = clean.replace(/[`*_~|]|^\s*[-*+]\s+/gm, " ");
+  // Strip list bullet markers, then inline code/bold/italic/table markers. The
+  // bullet branch comes first so a line-start `*`/`+` marker is consumed whole
+  // (with its trailing space), not one char at a time by the char class.
+  clean = clean.replace(/^\s*[-*+]\s+|[`*_~|]/gm, " ");
   return clean;
 }
 
