@@ -17,11 +17,12 @@ import {
   findEnginePackageFor,
   validateProject,
   wiringRequirements,
+  readJsonOr,
 } from "./validate.mjs";
 import { packEngine } from "./pack.mjs";
 import { buildRegistry, verifyRegistry } from "./registry.mjs";
 import { resolve, relative } from "node:path";
-import { readFileSync, existsSync, readdirSync, writeFileSync, mkdirSync } from "node:fs";
+import { existsSync, readdirSync, writeFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
 
 const argv = process.argv.slice(2);
@@ -60,11 +61,14 @@ async function engineMode(args) {
 function installedEngines(root) {
   const scopeDir = join(root, "node_modules", "@chbrain");
   if (!existsSync(scopeDir)) return [];
-  return readdirSync(scopeDir)
-    .map((name) => join(scopeDir, name, "package.json"))
-    .filter((p) => existsSync(p))
-    .map((p) => JSON.parse(readFileSync(p, "utf8")).khai)
-    .filter((khai) => khai && khai.engine);
+  return (
+    readdirSync(scopeDir)
+      .map((name) => join(scopeDir, name, "package.json"))
+      .filter((p) => existsSync(p))
+      // A malformed installed package.json is skipped, not fatal to the banner.
+      .map((p) => readJsonOr(p)?.khai)
+      .filter((khai) => khai && khai.engine)
+  );
 }
 
 function projectMode(args) {
