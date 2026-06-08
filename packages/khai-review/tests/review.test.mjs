@@ -1,5 +1,7 @@
-import { describe, it, expect } from "vitest";
-import { readFileSync } from "node:fs";
+import { describe, it, expect, afterEach } from "vitest";
+import { readFileSync, writeFileSync, mkdirSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import {
@@ -487,5 +489,29 @@ describe.skipIf(UNRESOLVED_DORMANT)("reconcile - unresolved comment threads", ()
   it("passes the same finding once the thread is resolved", () => {
     const { ledger, decisions } = settled(true);
     expect(reconcile(ledger, decisions)).toEqual({ ok: true, blocks: [] });
+  });
+});
+
+// The CLI is an advisory lane and must ALWAYS exit 0, even on malformed input
+// (PR #281). Dormant until the guard lands on main -- probe cli.mjs for the new
+// manifest-read message, per the cli.test.mjs convention.
+const cliPath = join(dirname(fileURLToPath(import.meta.url)), "..", "cli.mjs");
+const CLI_DORMANT = !readFileSync(cliPath, "utf8").includes("cannot read manifest");
+
+describe.skipIf(CLI_DORMANT)("khai-review CLI - advisory exit 0 on bad input", () => {
+  let dir;
+  afterEach(() => rmSync(dir, { recursive: true, force: true }));
+
+  it("exits 0 with a message on a malformed manifest", () => {
+    dir = join(tmpdir(), `khai-review-cli-${process.pid}-${Math.random().toString(36).slice(2)}`);
+    mkdirSync(dir, { recursive: true });
+    const manifest = join(dir, "audit.json");
+    writeFileSync(manifest, "{ not valid json ]");
+    const r = spawnSync(process.execPath, [cliPath, "--manifest", manifest], {
+      encoding: "utf8",
+      env: { ...process.env, KHAI_REVIEW_MOCK: "1" },
+    });
+    expect(r.status).toBe(0);
+    expect(r.stdout).toMatch(/cannot read manifest/);
   });
 });
