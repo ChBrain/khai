@@ -328,6 +328,60 @@ export function engineCard(manifest) {
   };
 }
 
+// A `---` thematic rule is legal inside a chapter body, and a fenced code block
+// can contain `---` (a YAML example) or `## ` (an example heading). The coda --
+// an optional trailing note after a final `---` rule -- is therefore found by
+// scanning UNFENCED lines only: it begins at the first unfenced `---` rule that
+// has no chapter header (`## `) anywhere after it. Everything before stays in
+// `main`, so an intra-chapter rule never truncates the document (which would
+// drop later chapters and throw a misleading "chapters must be exactly" error).
+function fencedLines(lines) {
+  const fenced = new Array(lines.length).fill(false);
+  let marker = null;
+  for (let i = 0; i < lines.length; i++) {
+    if (marker === null) {
+      const open = /^\s*(`{3,}|~{3,})/.exec(lines[i]);
+      if (open) {
+        marker = open[1];
+        fenced[i] = true;
+      }
+    } else {
+      fenced[i] = true;
+      const close = /^\s*(`{3,}|~{3,})\s*$/.exec(lines[i]);
+      if (close && close[1][0] === marker[0] && close[1].length >= marker.length) marker = null;
+    }
+  }
+  return fenced;
+}
+
+function splitCoda(body) {
+  const lines = body.split("\n");
+  const fenced = fencedLines(lines);
+  const isHeader = (i) => !fenced[i] && /^##\s/.test(lines[i]);
+  for (let i = 0; i < lines.length; i++) {
+    if (fenced[i] || lines[i] !== "---") continue;
+    // A trailing rule: no chapter header follows, so the rest is the coda.
+    let trailing = true;
+    for (let j = i + 1; j < lines.length; j++) {
+      if (isHeader(j)) {
+        trailing = false;
+        break;
+      }
+    }
+    if (trailing) {
+      return {
+        main: lines.slice(0, i).join("\n"),
+        coda:
+          lines
+            .slice(i + 1)
+            .join("\n")
+            .trim() || null,
+      };
+    }
+  }
+  return { main: body, coda: null };
+}
+
 /**
  * Project a component's REFERENCES.md into a render-ready warrant: the four LORE
  * chapters in order, each with its prose and any author `### ` subchapters, plus
@@ -345,10 +399,8 @@ export function referenceCard(text) {
     throw new Error("referenceCard: REFERENCES.md text is required");
   const body = matter(text).content.trim();
 
-  // An optional trailing coda, fenced by a `---` rule (as a spec's coda is).
-  const parts = body.split(/\n---\n/);
-  const main = parts[0];
-  const coda = parts.length > 1 ? parts.slice(1).join("\n---\n").trim() || null : null;
+  // An optional trailing coda after a final `---` rule (as a spec's coda is).
+  const { main, coda } = splitCoda(body);
 
   // Chunks beginning at each `## ` header; anything before the first (the H1 +
   // preamble) is dropped. `### ` and deeper never start a chunk.
@@ -404,10 +456,8 @@ export function playCard(text) {
   if (typeof text !== "string" || !text.trim()) throw new Error("playCard: play text is required");
   const body = matter(text).content.trim();
 
-  // An optional trailing coda, fenced by a `---` rule (as a play's builder note is).
-  const parts = body.split(/\n---\n/);
-  const main = parts[0];
-  const coda = parts.length > 1 ? parts.slice(1).join("\n---\n").trim() || null : null;
+  // An optional trailing coda after a final `---` rule (as a play's builder note is).
+  const { main, coda } = splitCoda(body);
 
   // Chunks beginning at each `## ` header; anything before the first (the H1 +
   // preamble) is dropped. `### ` and deeper never start a chunk.
@@ -463,10 +513,8 @@ export function planCard(text) {
   if (typeof text !== "string" || !text.trim()) throw new Error("planCard: plan text is required");
   const body = matter(text).content.trim();
 
-  // An optional trailing coda, fenced by a `---` rule.
-  const parts = body.split(/\n---\n/);
-  const main = parts[0];
-  const coda = parts.length > 1 ? parts.slice(1).join("\n---\n").trim() || null : null;
+  // An optional trailing coda after a final `---` rule.
+  const { main, coda } = splitCoda(body);
 
   // Chunks beginning at each `## ` header; anything before the first is dropped.
   const chunks = main.split(/\n(?=## )/).filter((c) => /^##\s/.test(c.trim()));
@@ -522,10 +570,8 @@ export function orderCard(text) {
     throw new Error("orderCard: order text is required");
   const body = matter(text).content.trim();
 
-  // An optional trailing coda, fenced by a `---` rule.
-  const parts = body.split(/\n---\n/);
-  const main = parts[0];
-  const coda = parts.length > 1 ? parts.slice(1).join("\n---\n").trim() || null : null;
+  // An optional trailing coda after a final `---` rule.
+  const { main, coda } = splitCoda(body);
 
   // Chunks beginning at each `## ` header; anything before the first is dropped.
   const chunks = main.split(/\n(?=## )/).filter((c) => /^##\s/.test(c.trim()));
