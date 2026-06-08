@@ -291,11 +291,12 @@ export async function reviewMarkdown(
  */
 export const mockJudge = async ({ prose }) => {
   const filler = /\b(?:very|really|just|basically|actually|simply|in order to)\b/gi;
-  if (!filler.test(prose)) return { verdict: "pass" };
-  const tighter = prose
-    .replace(filler, "")
-    .replace(/\s{2,}/g, " ")
-    .trim();
+  // Decide from whether the strip removed anything, not a stateful `/g`.test():
+  // a no-op strip means no filler, so pass. (Collapse spaces only after, so a
+  // double-spaced but filler-free passage is not mistaken for padded.)
+  const stripped = prose.replace(filler, "");
+  if (stripped === prose) return { verdict: "pass" };
+  const tighter = stripped.replace(/\s{2,}/g, " ").trim();
   return { verdict: "flag", suggestion: tighter, reason: "removable filler" };
 };
 
@@ -612,14 +613,40 @@ const RESPONSE_CONTRACT =
 /** Pull the verdict out of a model reply. Tolerant: a model may wrap the JSON in
  * prose or a code fence, so grab the first balanced object; on any parse failure
  * degrade to `pass` (this lane advises, so a flaky reply must not break a run). */
+/** First balanced top-level {...} object in a string, or null. String-aware, so
+ * a "}" inside a quoted value (or trailing prose) doesn't mis-bound the slice
+ * the way indexOf("{")..lastIndexOf("}") would. */
+function firstJsonObject(text) {
+  let depth = 0;
+  let start = -1;
+  let inStr = false;
+  let esc = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (inStr) {
+      if (esc) esc = false;
+      else if (c === "\\") esc = true;
+      else if (c === '"') inStr = false;
+      continue;
+    }
+    if (c === '"') inStr = true;
+    else if (c === "{") {
+      if (depth === 0) start = i;
+      depth++;
+    } else if (c === "}" && depth > 0 && --depth === 0) {
+      return text.slice(start, i + 1);
+    }
+  }
+  return null;
+}
+
 function parseVerdict(content) {
   const text = typeof content === "string" ? content : "";
-  const start = text.indexOf("{");
-  const end = text.lastIndexOf("}");
-  if (start === -1 || end <= start) return { verdict: "pass" };
+  const json = firstJsonObject(text);
+  if (json === null) return { verdict: "pass" };
   let obj;
   try {
-    obj = JSON.parse(text.slice(start, end + 1));
+    obj = JSON.parse(json);
   } catch {
     return { verdict: "pass" };
   }
