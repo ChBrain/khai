@@ -126,3 +126,29 @@ describe.skipIf(CODA_DORMANT)("playCard - coda vs intra-chapter and fenced rules
     expect(playCard(validPlay).coda).toContain("Builder note (template only)");
   });
 });
+
+// The card extractors must split chapters fence-aware and closed-ATX-aware
+// (PR #298). Dormant until the fix lands on main -- probe index.mjs for the
+// shared parseChapters helper, per the cli.test.mjs convention.
+const PARSECHAP_DORMANT = !readFileSync(
+  join(dirname(fileURLToPath(import.meta.url)), "..", "index.mjs"),
+  "utf8",
+).includes("function parseChapters");
+
+describe.skipIf(PARSECHAP_DORMANT)("playCard - fenced and closed-ATX chapter headings", () => {
+  it("does not treat a `## ` inside a fenced code block as a chapter", () => {
+    const fenced = validPlay.replace(
+      "Ein armer Mensch wird an Leib und Seele besessen.",
+      "Beispiel:\n\n```md\n## Drives\nnot a real chapter, just a code sample\n```",
+    );
+    const card = playCard(fenced);
+    expect(card.chapters).toEqual(playChapters);
+    expect(card.sections.Arc.body).toContain("## Drives");
+  });
+
+  it("resolves a closed-ATX chapter heading (`## Arc ##` -> Arc)", () => {
+    const atx = validPlay.replace("## Arc", "## Arc ##");
+    const card = playCard(atx);
+    expect(card.chapters).toEqual(playChapters);
+  });
+});
