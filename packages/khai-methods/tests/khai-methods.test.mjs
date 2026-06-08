@@ -80,3 +80,18 @@ describe.skipIf(METHODS_DORMANT)("khai-methods registry - malformed files", () =
     expect(listMethods().length).toBeGreaterThan(0);
   });
 });
+
+describe("khai-methods style — house voice (no em/en-dash)", () => {
+  // The repo-wide rule the skills side already enforces (STYLE_DENYLIST): em and
+  // en-dashes are banned, since consumer surfaces render this prose verbatim.
+  const DASH = /[—–]/;
+
+  it("no method's name, prompts, or body carries an em-dash or en-dash", () => {
+    for (const m of listMethods()) {
+      const fields = [m.name, m.body, ...m.prompts.flatMap((p) => [p.label, p.question])];
+      for (const field of fields) {
+        expect(DASH.test(String(field ?? "")), `${m.id}: "${field}"`).toBe(false);
+      }
+    }
+  });
+});

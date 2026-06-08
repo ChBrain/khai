@@ -15,8 +15,10 @@ import { compositionOrder } from "@chbrain/khai-arch";
 const here = dirname(fileURLToPath(import.meta.url));
 const read = (file) => readFileSync(join(here, file), "utf8");
 
-/** Strip a leading YAML frontmatter block, leaving the prose body. */
-const body = (md) => md.replace(/^---\n[\s\S]*?\n---\n/, "").trim();
+/** Strip a leading YAML frontmatter block, leaving the prose body. Tolerates
+ * CRLF: content authored on Windows must not leak its YAML into the composed
+ * LLM context just because the delimiters are \r\n rather than \n. */
+const body = (md) => md.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, "").trim();
 
 /** The declarative wiring contract, authored in package.json. */
 export const manifest = JSON.parse(read("package.json")).khai;
