@@ -382,6 +382,64 @@ function splitCoda(body) {
   return { main: body, coda: null };
 }
 
+// Strip a closed-ATX trailing run (`## Origin ##` -> "Origin") from a header
+// whose leading hashes are already removed: a run of `#` at end of line that is
+// preceded by whitespace. A `#` not preceded by a space (e.g. "C#") is kept.
+// Mirrors parseDoc in @chbrain/khai-rules so chapter names resolve identically.
+function stripClosingHashes(text) {
+  let t = text.trim();
+  if (t.endsWith("#")) {
+    let j = t.length;
+    while (j > 0 && t[j - 1] === "#") j--;
+    if (j > 0 && /\s/.test(t[j - 1])) t = t.slice(0, j).trimEnd();
+  }
+  return t;
+}
+
+// Split `main` into ordered chapters and their `### ` subchapters. Fence-aware:
+// a `## `/`### ` inside a fenced code block (e.g. a YAML example in a chapter
+// body) is content, not a header, so it never makes a phantom chapter that would
+// fail the exact-chapters contract on a valid document. Closed-ATX-aware via
+// stripClosingHashes, so names match what parseDoc indexes.
+function parseChapters(main) {
+  const lines = main.split("\n");
+  const fenced = fencedLines(lines);
+  const at = (i, re) => !fenced[i] && re.test(lines[i]);
+
+  const starts = [];
+  for (let i = 0; i < lines.length; i++) if (at(i, /^## /)) starts.push(i);
+
+  const seen = [];
+  const sections = {};
+  for (let c = 0; c < starts.length; c++) {
+    const start = starts[c];
+    const end = c + 1 < starts.length ? starts[c + 1] : lines.length;
+    const name = stripClosingHashes(lines[start].replace(/^##\s+/, ""));
+    seen.push(name);
+
+    const subStarts = [];
+    for (let i = start + 1; i < end; i++) if (at(i, /^###\s/)) subStarts.push(i);
+    const introEnd = subStarts.length ? subStarts[0] : end;
+    const body = lines
+      .slice(start + 1, introEnd)
+      .join("\n")
+      .trim();
+
+    const subchapters = subStarts.map((ss, s) => {
+      const se = s + 1 < subStarts.length ? subStarts[s + 1] : end;
+      return {
+        name: stripClosingHashes(lines[ss].replace(/^###\s+/, "")),
+        body: lines
+          .slice(ss + 1, se)
+          .join("\n")
+          .trim(),
+      };
+    });
+    sections[name] = { body, subchapters };
+  }
+  return { seen, sections };
+}
+
 /**
  * Project a component's REFERENCES.md into a render-ready warrant: the four LORE
  * chapters in order, each with its prose and any author `### ` subchapters, plus
@@ -402,31 +460,9 @@ export function referenceCard(text) {
   // An optional trailing coda after a final `---` rule (as a spec's coda is).
   const { main, coda } = splitCoda(body);
 
-  // Chunks beginning at each `## ` header; anything before the first (the H1 +
-  // preamble) is dropped. `### ` and deeper never start a chunk.
-  const chunks = main.split(/\n(?=## )/).filter((c) => /^##\s/.test(c.trim()));
-
-  const seen = [];
-  const sections = {};
-  for (const chunk of chunks) {
-    const lines = chunk.trim().split("\n");
-    const name = lines[0].replace(/^##\s+/, "").trim();
-    seen.push(name);
-    // Subchapters are `### ` blocks; the text before the first is the chapter
-    // body (an intro, or the whole chapter when it has no subchapters).
-    const subParts = lines
-      .slice(1)
-      .join("\n")
-      .split(/\n(?=###\s)/);
-    const intro = /^###\s/.test(subParts[0].trim()) ? "" : subParts[0].trim();
-    const subchapters = subParts
-      .filter((s) => /^###\s/.test(s.trim()))
-      .map((s) => {
-        const sl = s.trim().split("\n");
-        return { name: sl[0].replace(/^###\s+/, "").trim(), body: sl.slice(1).join("\n").trim() };
-      });
-    sections[name] = { body: intro, subchapters };
-  }
+  // Chapters and their `### ` subchapters; the H1/preamble before the first
+  // `## ` is dropped. Fence-aware and closed-ATX-aware (see parseChapters).
+  const { seen, sections } = parseChapters(main);
 
   // The canon contract: exactly the LORE chapters, in order, nothing foreign.
   if (seen.length !== referenceChapters.length || seen.some((n, i) => n !== referenceChapters[i]))
@@ -459,31 +495,9 @@ export function playCard(text) {
   // An optional trailing coda after a final `---` rule (as a play's builder note is).
   const { main, coda } = splitCoda(body);
 
-  // Chunks beginning at each `## ` header; anything before the first (the H1 +
-  // preamble) is dropped. `### ` and deeper never start a chunk.
-  const chunks = main.split(/\n(?=## )/).filter((c) => /^##\s/.test(c.trim()));
-
-  const seen = [];
-  const sections = {};
-  for (const chunk of chunks) {
-    const lines = chunk.trim().split("\n");
-    const name = lines[0].replace(/^##\s+/, "").trim();
-    seen.push(name);
-    // Subchapters are `### ` blocks; the text before the first is the chapter
-    // body.
-    const subParts = lines
-      .slice(1)
-      .join("\n")
-      .split(/\n(?=###\s)/);
-    const intro = /^###\s/.test(subParts[0].trim()) ? "" : subParts[0].trim();
-    const subchapters = subParts
-      .filter((s) => /^###\s/.test(s.trim()))
-      .map((s) => {
-        const sl = s.trim().split("\n");
-        return { name: sl[0].replace(/^###\s+/, "").trim(), body: sl.slice(1).join("\n").trim() };
-      });
-    sections[name] = { body: intro, subchapters };
-  }
+  // Chapters and their `### ` subchapters; the H1/preamble before the first
+  // `## ` is dropped. Fence-aware and closed-ATX-aware (see parseChapters).
+  const { seen, sections } = parseChapters(main);
 
   // The ENACTS contract: exactly the ENACTS chapters, in order, nothing foreign.
   if (seen.length !== playChapters.length || seen.some((n, i) => n !== playChapters[i]))
@@ -516,28 +530,9 @@ export function planCard(text) {
   // An optional trailing coda after a final `---` rule.
   const { main, coda } = splitCoda(body);
 
-  // Chunks beginning at each `## ` header; anything before the first is dropped.
-  const chunks = main.split(/\n(?=## )/).filter((c) => /^##\s/.test(c.trim()));
-
-  const seen = [];
-  const sections = {};
-  for (const chunk of chunks) {
-    const lines = chunk.trim().split("\n");
-    const name = lines[0].replace(/^##\s+/, "").trim();
-    seen.push(name);
-    const subParts = lines
-      .slice(1)
-      .join("\n")
-      .split(/\n(?=###\s)/);
-    const intro = /^###\s/.test(subParts[0].trim()) ? "" : subParts[0].trim();
-    const subchapters = subParts
-      .filter((s) => /^###\s/.test(s.trim()))
-      .map((s) => {
-        const sl = s.trim().split("\n");
-        return { name: sl[0].replace(/^###\s+/, "").trim(), body: sl.slice(1).join("\n").trim() };
-      });
-    sections[name] = { body: intro, subchapters };
-  }
+  // Chapters and their `### ` subchapters; the H1/preamble before the first
+  // `## ` is dropped. Fence-aware and closed-ATX-aware (see parseChapters).
+  const { seen, sections } = parseChapters(main);
 
   const expectedChapters = ["Taxonomy", "Owner", ...planChapters];
 
@@ -573,28 +568,9 @@ export function orderCard(text) {
   // An optional trailing coda after a final `---` rule.
   const { main, coda } = splitCoda(body);
 
-  // Chunks beginning at each `## ` header; anything before the first is dropped.
-  const chunks = main.split(/\n(?=## )/).filter((c) => /^##\s/.test(c.trim()));
-
-  const seen = [];
-  const sections = {};
-  for (const chunk of chunks) {
-    const lines = chunk.trim().split("\n");
-    const name = lines[0].replace(/^##\s+/, "").trim();
-    seen.push(name);
-    const subParts = lines
-      .slice(1)
-      .join("\n")
-      .split(/\n(?=###\s)/);
-    const intro = /^###\s/.test(subParts[0].trim()) ? "" : subParts[0].trim();
-    const subchapters = subParts
-      .filter((s) => /^###\s/.test(s.trim()))
-      .map((s) => {
-        const sl = s.trim().split("\n");
-        return { name: sl[0].replace(/^###\s+/, "").trim(), body: sl.slice(1).join("\n").trim() };
-      });
-    sections[name] = { body: intro, subchapters };
-  }
+  // Chapters and their `### ` subchapters; the H1/preamble before the first
+  // `## ` is dropped. Fence-aware and closed-ATX-aware (see parseChapters).
+  const { seen, sections } = parseChapters(main);
 
   // The DO IT contract: exactly the DO IT chapters, in order, nothing foreign.
   if (seen.length !== orderChapters.length || seen.some((n, i) => n !== orderChapters[i]))
