@@ -1,5 +1,28 @@
 # @chbrain/khai-guard
 
+## 0.1.8
+
+### Patch Changes
+
+- abbfd25: `khai-guard branch` now validates the full computed branch name before running
+  `git checkout -b`. The lane and unit segments are derived from file paths (the
+  unit via a path capture), so a path segment like `--orphan` (a legal directory
+  name) could reach git as an option rather than a branch name -- argv injection.
+  Every segment must now be a plain kebab token, and the checkout is terminated
+  with `--`. The topic was already validated; this closes the path-derived gap.
+- 43580d1: license-check no longer aborts the whole scan on one unreadable file. A single
+  file matched by the policy glob that failed to read or JSON-parse called
+  process.exit(2) mid-loop, masking the license verdict on every other package.
+  Such a file is now recorded as a violation (its license cannot be confirmed) so
+  the scan completes and exits 1 with the offending path named, while a genuine
+  environment failure (git ls-files) still exits 2.
+- bf263a7: The branch-scope / source-test-mix gate now reads the diff with
+  `git diff --name-status -z` (NUL-delimited) instead of the default tab/newline
+  format. Git C-quotes and tab-splits paths that contain non-ASCII bytes, quotes,
+  or tabs, so such a path matched no lane or bucket and silently passed a gate it
+  should have failed. parseNameStatus parses the NUL stream verbatim (and still
+  accepts the legacy line form), closing that false-pass.
+
 ## 0.1.7
 
 ### Patch Changes

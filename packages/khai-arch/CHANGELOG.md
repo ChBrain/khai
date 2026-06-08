@@ -1,5 +1,30 @@
 # @chbrain/khai-arch
 
+## 0.1.8
+
+### Patch Changes
+
+- ae0c95e: referenceCard / playCard / planCard / orderCard now peel the optional trailing
+  `---` coda correctly. They previously split on the first `\n---\n` and treated
+  everything after it as coda, so a legal `---` thematic rule inside a chapter
+  body (or a `---` inside a fenced code block, e.g. a YAML example) truncated the
+  document and dropped every later chapter, throwing a misleading "chapters must
+  be exactly […]" on a valid document. A shared fence-aware helper now finds the
+  coda only at a trailing `---` rule that has no chapter heading after it.
+- 9965037: The card extractors (referenceCard / playCard / planCard / orderCard) now split
+  chapters fence-aware and closed-ATX-aware, matching parseDoc. They re-scanned
+  raw text with `main.split(/\n(?=## )/)` and a leading-only name strip, so a
+  `## ` or `### ` shown inside a fenced code block in a chapter body (e.g. a YAML
+  example) became a phantom chapter that failed the exact-chapters contract on a
+  valid document, and a closed-ATX chapter heading (`## Origin ##`) produced the
+  name "Origin ##" and mismatched the canon. A shared fence-aware parseChapters
+  helper (reusing the existing fencedLines) now drives all four, and chapter and
+  subchapter names drop a trailing closed-ATX run.
+- 11425ea: The `templates` export now skips a template file whose frontmatter lacks a
+  `khai` key instead of keying it on `undefined` (which would collapse every such
+  file onto a single entry), and parses each file once instead of twice. Behavior
+  is unchanged for canon templates, which all declare `khai`.
+
 ## 0.1.7
 
 ### Patch Changes

@@ -1,5 +1,34 @@
 # @chbrain/khai-language
 
+## 0.1.3
+
+### Patch Changes
+
+- bba3d28: cleanProse now strips a line-start `*` or `+` list marker as a marker (with its
+  trailing space), not one character at a time. The alternation tried the inline
+  char class before the bullet branch, so only `-` bullets were fully stripped;
+  `*`/`+` left a stray space. Reordered so the bullet branch matches first. Affects
+  only the text fed to language detection, so detection results are unchanged.
+- 113d2d6: Add support for declared titles in playbooks, allowing a localized staging H1 title to match a `declared` frontmatter key while keeping `title` in English for the registry.
+- de6ab9b: findPlayFile now stays within the project by comparing paths, not by a raw
+  `current.startsWith(root)`. The string prefix check treated a sibling directory
+  that shares root's textual prefix (e.g. validating a file under `<root>2` with
+  projectPath `<root>`) as in-scope, so it could walk a foreign directory and
+  resolve a play's language from another project. It now stops as soon as the
+  walked directory is outside root (`relative(root, current)` escapes with `..`).
+- 272d1dc: The "which markdown is language-checked" policy is now single-sourced. The skip
+  list (CHANGELOG, README, REFERENCES — infra, not content) lived in two places
+  with different rules: findProjectMarkdownFiles excluded only CHANGELOG, while
+  validateProjectLanguages separately skipped README/REFERENCES by basename. Both
+  now flow through one NON_CONTENT_MD set in the discovery walk, so the two can't
+  diverge. Behavior is unchanged (those files were skipped before and still are).
+- 5c0d150: validateLanguageOfFile now normalizes the configured nlpLanguages through the
+  same ISO map it uses for the resolved language, so an entry given as an ISO code
+  (e.g. "fr") matches the normalized resolved language ("french") and actually
+  routes to the NLP/LLM fallback. Previously the codes were only lowercased, so
+  "fr" could never match "french" and the local detector ran anyway — the
+  opposite of the intent of declaring the language NLP-handled.
+
 ## 0.1.2
 
 ### Patch Changes
