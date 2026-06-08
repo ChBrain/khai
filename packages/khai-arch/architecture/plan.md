@@ -21,4 +21,4 @@ A plan is a forward-looking blueprint. It maps intent and action, representing e
 
 ---
 
-A plan must be fully checked off (no pending `[ ]` targets remain) before it can be merged to main, ensuring that all directives are resolved.
+A plan is completed when all its directives are resolved: no pending `[ ]` targets remain.

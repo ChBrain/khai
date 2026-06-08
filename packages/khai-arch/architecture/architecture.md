@@ -5,7 +5,7 @@ class: meta
 mnemonic: "TO GROW"
 chapters: [Ground, Root, Open, Weave]
 subtitle: "the growing of worlds"
-status: draft
+status: published
 version: 0.0.5
 ---
 

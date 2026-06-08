@@ -5,7 +5,7 @@ class: element
 mnemonic: "TO PLAY"
 chapters: [Place, Load Bearing, Apparent, Yearbook]
 subtitle: "the bearing of history"
-status: draft
+status: published
 version: 0.0.2
 ---
 

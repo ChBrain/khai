@@ -5,7 +5,7 @@ class: meta
 mnemonic: "WIRE"
 chapters: [Wire, Issue, Require, Enforce]
 subtitle: "the tooling of parts"
-status: draft
+status: published
 version: 0.0.2
 ---
 

@@ -5,7 +5,7 @@ class: element
 mnemonic: "TO IDLE"
 chapters: [Initiated by, Direction, Lever, Echo]
 subtitle: "the moving of conditions"
-status: draft
+status: published
 version: 0.0.2
 ---
 

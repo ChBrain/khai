@@ -5,7 +5,7 @@ class: house
 mnemonic: "ENACTS"
 chapters: [Estate, Name, Arc, Company, Triggers, Stakes]
 subtitle: "the staging of tales"
-status: draft
+status: published
 version: 0.0.1
 ---
 
