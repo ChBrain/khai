@@ -1,4 +1,7 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, afterEach } from "vitest";
+import { readFileSync, writeFileSync, rmSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
 import { listMethods, loadMethod, listMethodsByType } from "../lib/index.mjs";
 
 describe("khai-methods registry", () => {
@@ -52,5 +55,28 @@ describe("khai-methods registry", () => {
       const keys = m.prompts.map((p) => p.key);
       expect(new Set(keys).size, `${m.id}: duplicate prompt keys`).toBe(keys.length);
     }
+  });
+});
+
+// parseMethod must drop a malformed file rather than throw, so one bad file
+// cannot take down the whole registry (PR #277). Dormant until the fix lands on
+// main -- probe lib/index.mjs for the guard's comment, per the cli.test.mjs
+// convention.
+const METHODS_DORMANT = !readFileSync(
+  join(dirname(fileURLToPath(import.meta.url)), "..", "lib", "index.mjs"),
+  "utf8",
+).includes("dropped by the .filter(Boolean)");
+
+describe.skipIf(METHODS_DORMANT)("khai-methods registry - malformed files", () => {
+  const methodsDir = join(dirname(fileURLToPath(import.meta.url)), "..", "methods");
+  const badFile = join(methodsDir, "_malformed_test.md");
+  afterEach(() => rmSync(badFile, { force: true }));
+
+  it("skips a file with malformed YAML frontmatter instead of throwing", () => {
+    writeFileSync(badFile, "---\nid: x: y:\n  name: [unclosed\n---\nbody\n");
+    expect(() => listMethods()).not.toThrow();
+    // the bad file is dropped, and the valid registry is still readable
+    expect(listMethods().some((m) => m.id === "_malformed_test")).toBe(false);
+    expect(listMethods().length).toBeGreaterThan(0);
   });
 });
