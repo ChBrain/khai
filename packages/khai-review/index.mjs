@@ -510,12 +510,27 @@ export function commentBody(f) {
     .join("\n");
 }
 
+/** Escape a free-text value for a markdown table cell: the backslash FIRST (so
+ * it does not double-escape the pipe we add next), then the pipe, then collapse
+ * newlines that would break the row. Order matters (CWE-116). Shared so the log
+ * row (renderLog) and anchorLine agree on the exact rendered form of an id. */
+export function escapeCell(s) {
+  return String(s ?? "")
+    .replace(/\\/g, "\\\\")
+    .replace(/\|/g, "\\|")
+    .replace(/\r?\n/g, " ");
+}
+
 /** The 1-based line in the log where a finding's row sits, for anchoring an
  * inline comment to a line that is in the audit PR diff. null if not found. */
 export function anchorLine(logText, id) {
+  // Match the exact backtick-wrapped id cell renderLog emits, not a bare
+  // substring: a finding id that is a prefix of another (e.g. "a:b:c" vs
+  // "a:b:cd") would otherwise anchor to the wrong (earlier) row.
+  const needle = "`" + escapeCell(id) + "`";
   const i = String(logText)
     .split("\n")
-    .findIndex((l) => l.includes(id));
+    .findIndex((l) => l.includes(needle));
   return i >= 0 ? i + 1 : null;
 }
 
