@@ -85,9 +85,17 @@ positions, and personas; Stage draws personas, pieces, and plans; Tension draws 
 ### The plan element: a scheme caught between done and undone
 
 A `plan` is an in-world blueprint: not dialogue, but a mechanism with order. Who
-acts, in what sequence, to what end, and how far it has got. Its **Orders** name
-the agents (personas, positions, roles); its **Targets** carry a verdict on each
-step, and the verdict is where the drama sits:
+acts, in what sequence, to what end, and how far it has got.
+
+Its **Owner** is the subject it is directed at, and the subject sets the kind: a
+**persona** holds a personal scheme; a **position** drives a mandate (the office
+acts, not the person: a warden's plan to put out a fire); a **process** carries a
+method (how a mechanism is run); a **place** a development (its becoming); a
+**piece** a making (its construction); the **project** a production directive. A
+plan **commands, it never copies**: its Orders reference existing elements, so two
+plans may drive one `process` (one poison, two schemers) without duplicating it.
+So the Owner is what the plan is _for_; its **Orders** name the agents who _act_;
+and its **Targets** carry a verdict on each step, where the drama sits:
 
 - `[ ]` open: no verdict yet, the live edge;
 - `[x]` done; `[F]` failed (attempted, missed); `[W]` waived (dropped or overtaken).
