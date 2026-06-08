@@ -204,7 +204,13 @@ export function validateLanguageOfFile(filePath, projectPath, options = {}) {
   const proseSections = (options.proseSections || DEFAULT_PROSE_SECTIONS).map((s) =>
     s.toLowerCase(),
   );
-  const nlpLanguages = (options.nlpLanguages || DEFAULT_NLP_LANGUAGES).map((s) => s.toLowerCase());
+  // Normalize through the same map resolveLanguage uses, so an entry given as an
+  // ISO code (e.g. "fr") matches the normalized resolvedLanguage ("french") and
+  // actually routes to the NLP/LLM fallback. A bare toLowerCase left "fr" unable
+  // to match "french", silently running the local detector anyway.
+  const nlpLanguages = (options.nlpLanguages || DEFAULT_NLP_LANGUAGES)
+    .filter((s) => typeof s === "string" && s.trim())
+    .map((s) => normalizeLanguage(s));
   const minSpanWords = options.minSpanWords !== undefined ? options.minSpanWords : 15;
   const confidenceMargin = options.confidenceMargin !== undefined ? options.confidenceMargin : 0.1;
 
