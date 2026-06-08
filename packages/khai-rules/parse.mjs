@@ -24,8 +24,14 @@ export function parseDoc(text) {
     error = err instanceof Error ? err.message : String(err);
   }
 
+  const lines = body.split("\n");
+  const fenced = fencedLines(lines);
   const headers = [];
-  body.split("\n").forEach((line, i) => {
+  lines.forEach((line, i) => {
+    // A `## ` inside a fenced code block is example text, not structure -- it
+    // must never be indexed as a header, or a doc missing a real section but
+    // showing one in a code sample would validate as correct.
+    if (fenced[i]) return;
     // Match only the leading hashes; slice and trim the remainder in JS.
     // Keeping the regex to a single bounded quantifier (no whitespace-vs-rest
     // overlap) avoids polynomial backtracking on adversarial input.
@@ -40,18 +46,52 @@ export function parseDoc(text) {
 }
 
 /**
+ * Mark which body lines fall inside a fenced code block (``` or ~~~), so a
+ * header scan can skip them. A fence opens on a line of 3+ backticks or tildes
+ * and closes on a line of the same character, at least as long, with only
+ * whitespace after it (CommonMark). The delimiter lines themselves are marked
+ * fenced too -- they never look like headers, and it keeps the walk in one
+ * place. An unclosed fence runs to end-of-document, as Markdown specifies.
+ */
+function fencedLines(lines) {
+  const fenced = new Array(lines.length).fill(false);
+  let marker = null; // the opening run, e.g. "```" or "~~~~"
+  for (let i = 0; i < lines.length; i++) {
+    if (marker === null) {
+      const open = /^\s*(`{3,}|~{3,})/.exec(lines[i]);
+      if (open) {
+        marker = open[1];
+        fenced[i] = true;
+      }
+    } else {
+      fenced[i] = true;
+      const close = /^\s*(`{3,}|~{3,})\s*$/.exec(lines[i]);
+      if (close && close[1][0] === marker[0] && close[1].length >= marker.length) {
+        marker = null;
+      }
+    }
+  }
+  return fenced;
+}
+
+/**
  * Return the lines of the section introduced by the given `## <name>` header,
  * up to the next header of the same-or-shallower level. Empty array if absent.
  */
 export function sectionBody(body, name, level = 2) {
   const lines = body.split("\n");
+  const fenced = fencedLines(lines);
   const open = new RegExp(`^#{${level}}\\s+${escapeRe(name)}\\s*$`);
-  const start = lines.findIndex((l) => open.test(l));
+  const start = lines.findIndex((l, i) => !fenced[i] && open.test(l));
   if (start === -1) return null;
   const out = [];
   for (let i = start + 1; i < lines.length; i++) {
-    const h = /^(#{1,6})\s+/.exec(lines[i]);
-    if (h && h[1].length <= level) break;
+    // Only a real (unfenced) header of the same-or-shallower level ends the
+    // section; a `## ` inside a code sample in the body does not.
+    if (!fenced[i]) {
+      const h = /^(#{1,6})\s+/.exec(lines[i]);
+      if (h && h[1].length <= level) break;
+    }
     out.push(lines[i]);
   }
   return out;
