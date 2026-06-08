@@ -36,6 +36,7 @@ import {
   looseFiles,
   sectionBody,
 } from "@chbrain/khai-rules";
+import { resolveLanguage } from "@chbrain/khai-language";
 
 const typeIds = Object.keys(types);
 
@@ -102,7 +103,10 @@ export function engineDocChecks(pkgDir) {
  * consumer's own instance files). The Owner *section* is always required by the
  * canon H2 set; only the value check is conditional.
  */
-export function validateContentFile(text, { type, baseDir, owner, allowed, exemptLinks }) {
+export function validateContentFile(
+  text,
+  { type, baseDir, owner, allowed, exemptLinks, resolvedLanguage },
+) {
   const contract = types[type];
   if (!contract) return [`unknown khai type "${type}" (not in canon)`];
   const doc = parseDoc(text);
@@ -179,7 +183,7 @@ export function validateContentFile(text, { type, baseDir, owner, allowed, exemp
   // The frontmatter `title` must be present and echo the body's name (the H1,
   // or `## Name` for a play). One pattern for every instance -- including the
   // content surfaces will generate downstream.
-  errors.push(...checkTitle(doc, { type }));
+  errors.push(...checkTitle(doc, { type, resolvedLanguage }));
   // Owner (the "O") is the origin stamp; pin its value only when the caller
   // asserts whose the content is (engine content). The T slot carries no value
   // check -- it is the group above, enforced solely by the H2 set.
@@ -450,7 +454,10 @@ export function wiringRequirements(manifests) {
  * @param {{ baseDir?: string, requirements?: object[], owner?: object, levels?: Record<string,string> }} opts
  * @returns {{ level: "audit"|"warn"|"fail", message: string }[]}
  */
-export function validateInstanceFile(text, { baseDir, requirements = [], owner, levels } = {}) {
+export function validateInstanceFile(
+  text,
+  { baseDir, requirements = [], owner, levels, resolvedLanguage } = {},
+) {
   const doc = parseDoc(text);
   const type = doc.data?.khai;
   if (typeof type !== "string")
@@ -459,7 +466,13 @@ export function validateInstanceFile(text, { baseDir, requirements = [], owner, 
   // Links into installed engine content resolve via npm, not the local tree, so
   // every wiring target is exempt from the local broken-link check.
   const exemptLinks = new Set(requirements.flatMap((r) => [...r.targets]));
-  const findings = validateContentFile(text, { type, baseDir, owner, exemptLinks }).map((m) => ({
+  const findings = validateContentFile(text, {
+    type,
+    baseDir,
+    owner,
+    exemptLinks,
+    resolvedLanguage,
+  }).map((m) => ({
     level: "fail",
     message: m,
   }));
@@ -489,7 +502,10 @@ function findInstanceFiles(dir) {
     if (entry.name === "node_modules" || entry.name.startsWith(".")) continue;
     const full = join(dir, entry.name);
     if (entry.isDirectory()) out.push(...findInstanceFiles(full));
-    else if (entry.name.endsWith(".md") && /^---\n[\s\S]*?\bkhai:/.test(readFileSync(full, "utf8")))
+    else if (
+      entry.name.endsWith(".md") &&
+      /^---\r?\n[\s\S]*?\bkhai:/.test(readFileSync(full, "utf8"))
+    )
       out.push(full);
   }
   return out;
@@ -724,11 +740,13 @@ export function validateProject({ root, contentDir = root, owner, levels } = {})
   }
 
   for (const file of files) {
+    const resolvedLanguage = resolveLanguage(file, root);
     const findings = validateInstanceFile(readFileSync(file, "utf8"), {
       baseDir: dirname(file),
       requirements,
       owner,
       levels,
+      resolvedLanguage,
     });
     if (findings.length) results.push({ file, ...bucket(findings) });
   }

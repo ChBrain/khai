@@ -47,7 +47,7 @@ export function checkFilename(name) {
 }
 
 // --- frontmatter: closed keys, known type, stamp shape --------------------
-const FM_KEYS = ["khai", "license", "stamp", "title", "language"];
+const FM_KEYS = ["khai", "license", "stamp", "title", "language", "declared"];
 const STAMP_KEYS = ["owner", "version", "date"];
 
 export function checkFrontmatter(doc, { typeIds, extra = {} }) {
@@ -114,17 +114,31 @@ export function checkH1(doc, { type }) {
 // name, a separate concern the validator leaves alone). This is the frontmatter
 // `title` key -- distinct from the retired `## Title` section spelling (now
 // `## Taxonomy`).
-export function checkTitle(doc, { type }) {
+export function checkTitle(doc, { type, resolvedLanguage }) {
   if (!doc.ok) return []; // a parse failure is reported by checkFrontmatter
   const title = doc.data?.title;
   if (typeof title !== "string" || title.trim() === "") return ["frontmatter missing `title`"];
+
+  // Enforce presence of `declared` key in frontmatter if language is not "english"
+  const isEnglish = !resolvedLanguage || resolvedLanguage === "english";
+  const declared = doc.data?.declared;
+
+  if (!isEnglish) {
+    if (typeof declared !== "string" || declared.trim() === "") {
+      return ["frontmatter missing `declared` for non-english play"];
+    }
+  }
+
+  // Echo H1 name against declared if present, otherwise against title
+  const expectedMatch = declared !== undefined && declared !== null ? declared : title;
+
   // Echo against the H1 name. A malformed/absent H1 is already reported by
   // checkH1, so when there is no name to echo we stay silent rather than
   // double-report it.
   const { name } = checkH1(doc, { type });
   if (!name) return [];
-  if (title.trim() !== name)
-    return [`frontmatter title "${title}" must match the H1 name "${name}"`];
+  if (expectedMatch.trim() !== name)
+    return [`frontmatter title/declared "${expectedMatch}" must match the H1 name "${name}"`];
   return [];
 }
 
