@@ -496,16 +496,11 @@ function findInstanceFiles(dir) {
 }
 
 /**
- * Validate a consuming project: discover its instance files and check each
- * against the canon and against the wiring requirements declared by the engines
- * it has installed. `contentDir` is where the consumer's own `.md` instances
- * live; `root` is where node_modules (the installed engines) resolves from.
+ * Validate a playhouse's `registry.json` against its `plays/` directory:
+ * schema shape, blurb constraints, bidirectional directory sync, and title
+ * alignment with each play's frontmatter.
  *
- * `levels` overrides a requirement's level by its id (the world's call on how
- * hard each engine's contract binds). Each result buckets the file's findings
- * into errors (fail) / warnings (warn) / audit.
- *
- * @param {{ root: string, contentDir?: string, owner?: object, levels?: Record<string,string> }} opts
+ * @param {string} root playhouse root containing `registry.json` and `plays/`
  * @returns {{ file: string, errors: string[], warnings: string[], audit: string[] }[]}
  */
 export function validatePlayhouseRegistry(root) {
@@ -514,25 +509,48 @@ export function validatePlayhouseRegistry(root) {
   const playsDir = join(root, "plays");
 
   if (!existsSync(registryPath)) {
-    return [{ file: registryPath, errors: ["missing registry.json at root"] }];
+    return [
+      { file: registryPath, errors: ["missing registry.json at root"], warnings: [], audit: [] },
+    ];
   }
 
   let registryText;
   try {
     registryText = readFileSync(registryPath, "utf8");
   } catch (err) {
-    return [{ file: registryPath, errors: [`failed to read registry.json: ${err.message}`] }];
+    return [
+      {
+        file: registryPath,
+        errors: [`failed to read registry.json: ${err.message}`],
+        warnings: [],
+        audit: [],
+      },
+    ];
   }
 
   let registry;
   try {
     registry = JSON.parse(registryText);
   } catch (err) {
-    return [{ file: registryPath, errors: [`failed to parse registry.json: ${err.message}`] }];
+    return [
+      {
+        file: registryPath,
+        errors: [`failed to parse registry.json: ${err.message}`],
+        warnings: [],
+        audit: [],
+      },
+    ];
   }
 
   if (typeof registry !== "object" || registry === null) {
-    return [{ file: registryPath, errors: ["registry.json must be a JSON object"] }];
+    return [
+      {
+        file: registryPath,
+        errors: ["registry.json must be a JSON object"],
+        warnings: [],
+        audit: [],
+      },
+    ];
   }
 
   if (typeof registry.name !== "string" || !registry.name.trim()) {
@@ -546,7 +564,7 @@ export function validatePlayhouseRegistry(root) {
   }
 
   if (errors.length > 0) {
-    return [{ file: registryPath, errors }];
+    return [{ file: registryPath, errors, warnings: [], audit: [] }];
   }
 
   // Check plays array items
@@ -639,28 +657,38 @@ export function validatePlayhouseRegistry(root) {
   }
 
   // Title Alignment:
-  // Parse the playbook frontmatter (`plays/<id>/play_<id>.md`) and verify that `title`
-  // in frontmatter matches the `title` defined for that play in `registry.json`.
+  // Parse the playbook frontmatter (the `play_*.md` under `plays/<id>/`, matching
+  // how buildRegistry discovers it) and verify that its `title` matches the `title`
+  // declared for that play in `registry.json`. buildRegistry falls back to the id
+  // when frontmatter has no title, so the comparison applies the same fallback to
+  // keep build -> verify idempotent.
   for (const play of registryPlays) {
     if (!play || typeof play.id !== "string" || !play.id) continue;
-    const playFile = join(playsDir, play.id, `play_${play.id}.md`);
-    if (existsSync(playFile)) {
-      try {
-        const text = readFileSync(playFile, "utf8");
-        const doc = parseDoc(text);
-        if (doc.ok && doc.data) {
-          const fmTitle = doc.data.title;
-          if (fmTitle !== play.title) {
-            errors.push(
-              `play "${play.id}": title in playbook frontmatter ("${fmTitle}") does not match title in registry.json ("${play.title}")`,
-            );
-          }
-        } else {
-          errors.push(`play "${play.id}": failed to parse frontmatter of ${playFile}`);
+    const playDir = join(playsDir, play.id);
+    if (!existsSync(playDir)) continue;
+    let playFileName;
+    try {
+      playFileName = readdirSync(playDir).find((f) => f.startsWith("play_") && f.endsWith(".md"));
+    } catch {
+      // unreadable dir already surfaced by the bidirectional-sync checks
+    }
+    if (!playFileName) continue;
+    const playFile = join(playDir, playFileName);
+    try {
+      const text = readFileSync(playFile, "utf8");
+      const doc = parseDoc(text);
+      if (doc.ok && doc.data) {
+        const fmTitle = doc.data.title || play.id;
+        if (fmTitle !== play.title) {
+          errors.push(
+            `play "${play.id}": title in playbook frontmatter ("${fmTitle}") does not match title in registry.json ("${play.title}")`,
+          );
         }
-      } catch (err) {
-        errors.push(`play "${play.id}": failed to read playbook ${playFile}: ${err.message}`);
+      } else {
+        errors.push(`play "${play.id}": failed to parse frontmatter of ${playFile}`);
       }
+    } catch (err) {
+      errors.push(`play "${play.id}": failed to read playbook ${playFile}: ${err.message}`);
     }
   }
 
@@ -670,6 +698,19 @@ export function validatePlayhouseRegistry(root) {
   return [];
 }
 
+/**
+ * Validate a consuming project: discover its instance files and check each
+ * against the canon and against the wiring requirements declared by the engines
+ * it has installed. `contentDir` is where the consumer's own `.md` instances
+ * live; `root` is where node_modules (the installed engines) resolves from.
+ *
+ * `levels` overrides a requirement's level by its id (the world's call on how
+ * hard each engine's contract binds). Each result buckets the file's findings
+ * into errors (fail) / warnings (warn) / audit.
+ *
+ * @param {{ root: string, contentDir?: string, owner?: object, levels?: Record<string,string> }} opts
+ * @returns {{ file: string, errors: string[], warnings: string[], audit: string[] }[]}
+ */
 export function validateProject({ root, contentDir = root, owner, levels } = {}) {
   const requirements = wiringRequirements(installedEngineManifests(root));
   const results = [];
