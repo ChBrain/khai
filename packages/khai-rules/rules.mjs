@@ -324,7 +324,11 @@ export function checkNoFooter(text) {
 // A doc whose metadata must be machine-readable (e.g. REFERENCES) needs a
 // leading "---" YAML block, not a "**Bold:**" header that no validator can read.
 export function checkHasFrontmatter(text) {
-  return /^---\n[\s\S]*?\n---\n/.test(text)
+  // Tolerate CRLF line endings and a leading BOM, both of which gray-matter
+  // parses fine: matching only "\n" reported a valid CRLF file as having no
+  // frontmatter (a false positive that contradicted the actual parse).
+  const body = text.charCodeAt(0) === 0xfeff ? text.slice(1) : text;
+  return /^---\r?\n[\s\S]*?\r?\n---\r?\n/.test(body)
     ? []
     : ["missing YAML frontmatter (a leading --- block); metadata must not live in prose"];
 }

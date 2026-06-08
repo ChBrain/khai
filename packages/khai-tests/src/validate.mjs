@@ -554,7 +554,14 @@ export function validatePlayhouseRegistry(root) {
 
   if (!existsSync(registryPath)) {
     return [
-      { file: registryPath, errors: ["missing registry.json at root"], warnings: [], audit: [] },
+      {
+        file: registryPath,
+        // A playhouse (a project with a plays/ dir) must ship a registry.json;
+        // the message points at the generator so the requirement is actionable.
+        errors: ["missing registry.json at root; run `khai-tests registry build` to generate it"],
+        warnings: [],
+        audit: [],
+      },
     ];
   }
 
