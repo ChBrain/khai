@@ -196,3 +196,38 @@ describe("khai-guard CLI", () => {
     });
   });
 });
+
+// license-check must not abort the whole scan on one unreadable file (PR #283).
+// Dormant until the fix lands on main -- probe the bin for its comment, per the
+// convention this suite already uses for the pre-commit feature above.
+const LICENSE_DORMANT = !readFileSync(binPath, "utf8").includes("license: null });");
+
+describe.skipIf(LICENSE_DORMANT)("khai-guard license-check: one bad file does not abort", () => {
+  it("flags an unreadable matched file as a violation (exit 1), not a config abort (exit 2)", () => {
+    const dir = initRepo();
+    write(
+      dir,
+      "khai-guard.config.json",
+      JSON.stringify({
+        licensePolicy: {
+          packages: ["packages/*/package.json"],
+          packageLicenses: ["GOOD-LICENSE"],
+        },
+      }),
+    );
+    // A valid package and a malformed one, both matched by the policy glob.
+    write(
+      dir,
+      "packages/good/package.json",
+      JSON.stringify({ name: "good", license: "GOOD-LICENSE" }),
+    );
+    write(dir, "packages/bad/package.json", "{ name: bad, license: BROKEN ]");
+    commitAll(dir, "init");
+
+    const r = runGuard(dir, ["license-check"]);
+    // exit 1 (violation), NOT 2 (the old abort), and the scan reached the bad file.
+    expect(r.status).toBe(1);
+    expect(r.stderr).toMatch(/packages\/bad\/package\.json/);
+    expect(r.stderr).toMatch(/cannot read/);
+  });
+});
