@@ -21,7 +21,7 @@ export function buildRegistry(root) {
   const subdirs = readdirSync(playsDir, { withFileTypes: true })
     .filter((e) => e.isDirectory() && !e.name.startsWith("."))
     .map((e) => e.name)
-    .sort();
+    .sort((a, b) => a.localeCompare(b));
 
   const plays = [];
   for (const id of subdirs) {
@@ -38,7 +38,7 @@ export function buildRegistry(root) {
     const text = readFileSync(playFile, "utf8");
     const doc = parseDoc(text);
     if (!doc.ok) {
-      throw new Error(`failed to parse playbook frontmatter of plays/${id}/play_${id}.md`);
+      throw new Error(`failed to parse playbook frontmatter of plays/${id}/${playFileName}`);
     }
 
     const title = doc.data?.title || id;
@@ -66,8 +66,8 @@ export function buildRegistry(root) {
     });
   }
 
-  // Sort plays by id alphabetically for deterministic output
-  plays.sort((a, b) => a.id.localeCompare(b.id));
+  // plays are pushed in subdir order, which is already sorted by localeCompare
+  // above, so the output is deterministic without a second sort.
 
   const registryData = {
     $schema: "http://json-schema.org/draft-07/schema#",
@@ -78,6 +78,16 @@ export function buildRegistry(root) {
 
   const registryPath = join(root, "registry.json");
   writeFileSync(registryPath, JSON.stringify(registryData, null, 2) + "\n", "utf8");
+
+  // build extracts blurbs best-effort; surface (without failing) anything the
+  // verify gate will later reject so the author can fix it before committing.
+  const check = verifyRegistry(root);
+  if (!check.ok) {
+    console.warn("Warning: built registry.json does not yet pass verification:");
+    for (const err of check.errors) {
+      console.warn(`  - ${err}`);
+    }
+  }
 }
 
 export function verifyRegistry(root) {
