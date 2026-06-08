@@ -1,4 +1,7 @@
 import { describe, it, expect } from "vitest";
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
 import {
   classify,
   resolveConfig,
@@ -139,5 +142,48 @@ describe("parseNameStatus", () => {
       "src/gone.ts",
       "src/link.ts",
     ]);
+  });
+});
+
+// parseNameStatus must also read the NUL-delimited `-z` stream the CLI now
+// feeds it, so paths with odd bytes survive verbatim (PR #272). Dormant until
+// the source fix lands on main -- probe index.mjs for the `-z` JSDoc it adds,
+// per the cli.test.mjs convention.
+const Z_DORMANT = !readFileSync(
+  join(dirname(fileURLToPath(import.meta.url)), "..", "index.mjs"),
+  "utf8",
+).includes("NUL-delimited");
+
+describe.skipIf(Z_DORMANT)("parseNameStatus - NUL-delimited (-z) stream", () => {
+  // git diff --name-status -z emits status\0path\0 (status\0src\0dst\0 for a
+  // rename), terminated by a trailing NUL.
+  const z = (...records) => records.map((r) => r.join("\0")).join("\0") + "\0";
+
+  it("parses modified and added paths from a -z stream", () => {
+    expect(parseNameStatus(z(["M", "src/a.ts"], ["A", "tests/b.test.ts"]))).toEqual([
+      "src/a.ts",
+      "tests/b.test.ts",
+    ]);
+  });
+
+  it("exempts R100 and judges a rename-with-edit by its destination", () => {
+    expect(
+      parseNameStatus(
+        z(["R100", "src/old.ts", "src/new.ts"], ["R096", "old.ts", "tests/new.test.ts"]),
+      ),
+    ).toEqual(["tests/new.test.ts"]);
+  });
+
+  it("preserves a non-ASCII path and an embedded-tab path verbatim", () => {
+    // These are exactly the paths the default tab/newline format would C-quote
+    // or split apart, making them match no lane and silently pass the gate.
+    expect(parseNameStatus(z(["M", "café.txt"], ["A", "packages/has\ttab.md"]))).toEqual([
+      "café.txt",
+      "packages/has\ttab.md",
+    ]);
+  });
+
+  it("honors exemptRenames:false on a -z rename", () => {
+    expect(parseNameStatus(z(["R100", "old", "new"]), { exemptRenames: false })).toEqual(["new"]);
   });
 });
