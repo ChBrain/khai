@@ -43,10 +43,18 @@ const methodsDir = join(__dirname, "..", "methods");
  * @returns {Method|null}
  */
 function parseMethod(file) {
-  const raw = readFileSync(join(methodsDir, file), "utf8");
-  const { data, content } = matter(raw);
-  if (!data.id || !data.name || !data.type) return null;
-  return { ...data, body: content.trim() };
+  // Returns null (never throws) on a read error or malformed YAML frontmatter,
+  // so one bad file is dropped by the .filter(Boolean) in listMethods rather
+  // than taking down the whole registry. gray-matter throws a YAMLException on
+  // invalid frontmatter, which is exactly the case the contract must absorb.
+  try {
+    const raw = readFileSync(join(methodsDir, file), "utf8");
+    const { data, content } = matter(raw);
+    if (!data.id || !data.name || !data.type) return null;
+    return { ...data, body: content.trim() };
+  } catch {
+    return null;
+  }
 }
 
 /**
