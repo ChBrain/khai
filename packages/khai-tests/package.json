@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "@chbrain/khai-arch": "^0.1.6",
+    "@chbrain/khai-language": "^0.1.2",
     "@chbrain/khai-pack": "^0.0.3",
     "@chbrain/khai-rules": "^0.1.2"
   },

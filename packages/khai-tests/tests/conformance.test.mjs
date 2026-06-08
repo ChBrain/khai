@@ -610,6 +610,61 @@ stamp:
     expect(validateContentFile(validPlay, { type: "play" })).toEqual([]);
   });
 
+  it("requires declared and H1 match for non-english play", () => {
+    const germanPlayWithoutDeclared = `---
+khai: play
+title: "Correspondence"
+license: CC-BY-NC-SA-4.0
+stamp:
+  owner: Buechner
+  version: v0.0.1
+  date: "2026-06-06"
+---
+
+# Play: Briefwechsel
+
+## Estate
+buechner
+
+## Name
+Briefwechsel
+
+## Arc
+arc
+
+## Company
+company
+
+## Triggers
+triggers
+
+## Stakes
+stakes
+`;
+    expect(
+      validateContentFile(germanPlayWithoutDeclared, { type: "play", resolvedLanguage: "german" }),
+    ).toContain("frontmatter missing `declared` for non-english play");
+
+    const germanPlayWithDeclared = germanPlayWithoutDeclared.replace(
+      'title: "Correspondence"',
+      'title: "Correspondence"\ndeclared: "Briefwechsel"',
+    );
+    expect(
+      validateContentFile(germanPlayWithDeclared, { type: "play", resolvedLanguage: "german" }),
+    ).toEqual([]);
+
+    const germanPlayWithMismatchedDeclared = germanPlayWithoutDeclared.replace(
+      'title: "Correspondence"',
+      'title: "Correspondence"\ndeclared: "Mismatched"',
+    );
+    expect(
+      validateContentFile(germanPlayWithMismatchedDeclared, {
+        type: "play",
+        resolvedLanguage: "german",
+      }).some((e) => e.includes('must match the H1 name "Briefwechsel"')),
+    ).toBe(true);
+  });
+
   it("rejects a play file with missing chapters", () => {
     const brokenPlay = validPlay.replace("## Stakes\nstakes\n", "");
     const errors = validateContentFile(brokenPlay, { type: "play" });

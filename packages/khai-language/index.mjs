@@ -1,1 +1,5 @@
-export { validateProjectLanguages, validateLanguageOfFile } from "./src/detector.mjs";
+export {
+  validateProjectLanguages,
+  validateLanguageOfFile,
+  resolveLanguage,
+} from "./src/detector.mjs";
