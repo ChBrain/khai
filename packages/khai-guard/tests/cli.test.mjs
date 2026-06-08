@@ -231,3 +231,40 @@ describe.skipIf(LICENSE_DORMANT)("khai-guard license-check: one bad file does no
     expect(r.stderr).toMatch(/cannot read/);
   });
 });
+
+// `branch` must validate the full computed name before `git checkout -b`, so a
+// path-derived unit segment that looks like a flag can't be argv-injected (PR
+// #304). Dormant until the fix lands -- probe the bin for the guard's message.
+const VALIDATE_DORMANT = !readFileSync(binPath, "utf8").includes("refusing to create");
+
+describe.skipIf(VALIDATE_DORMANT)("khai-guard branch: rejects an option-like computed name", () => {
+  it("refuses when a path-derived unit segment looks like a flag", () => {
+    const dir = initRepo();
+    // An engine lane whose unit (segment 1) is captured from the file path.
+    write(
+      dir,
+      "khai-guard.config.json",
+      JSON.stringify({
+        branchScope: {
+          shared: [".changeset/**"],
+          lanes: [
+            {
+              pattern: "engine/*/*",
+              layer: "solution",
+              unit: 1,
+              allow: ["packages/engines/{name}/**"],
+            },
+          ],
+        },
+      }),
+    );
+    write(dir, "src/base.js", "v1\n");
+    commitAll(dir, "base");
+    // Untracked file under a directory named like a flag -> unit "--orphan".
+    write(dir, "packages/engines/--orphan/x.md", "x\n");
+
+    const r = runGuard(dir, ["branch", "foo"]);
+    expect(r.status).toBe(2);
+    expect(r.stderr).toMatch(/refusing to create/);
+  });
+});
