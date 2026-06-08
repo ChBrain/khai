@@ -34,6 +34,7 @@ import {
   applyDecisions,
   commentBody,
   anchorLine,
+  escapeCell,
 } from "./index.mjs";
 
 const argv = process.argv.slice(2);
@@ -87,15 +88,8 @@ function renderLog(auditId, ledger) {
   ];
   if (!ledger.length)
     return head.concat("No findings: every reviewed card reads lean.", "").join("\n") + "\n";
-  // Escape a free-text value for a markdown table cell: the backslash FIRST (so
-  // it does not double-escape the pipe we add next), then the pipe, then collapse
-  // newlines that would break the row. Order matters; escaping the pipe without
-  // first escaping the backslash is incomplete (CWE-116).
-  const cell = (s) =>
-    String(s ?? "")
-      .replace(/\\/g, "\\\\")
-      .replace(/\|/g, "\\|")
-      .replace(/\r?\n/g, " ");
+  // Shared with anchorLine so the rendered id cell and the anchor needle agree.
+  const cell = escapeCell;
   const row = (e) =>
     `| \`${cell(e.id)}\` | ${cell(e.where)} | ${cell(e.reason)} | ${cell(e.treatment) || "—"} | ${cell(e.status)} | ${cell(e.resolution) || "—"} |`;
   return (
