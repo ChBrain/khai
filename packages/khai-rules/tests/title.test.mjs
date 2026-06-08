@@ -71,3 +71,51 @@ describe("checkTitle: a play echoes its H1, not `## Name`", () => {
     expect(errs.some((e) => e.includes('must match the H1 name "Woyzeck"'))).toBe(true);
   });
 });
+
+describe("checkTitle: declared title support for non-English play", () => {
+  const playWithLanguage = (title, declared, language, h1Name) => {
+    const fm =
+      `khai: play\ntitle: "${title}"` +
+      (declared ? `\ndeclared: "${declared}"` : "") +
+      (language ? `\nlanguage: "${language}"` : "");
+    return doc(
+      fm,
+      `# Play: ${h1Name}\n\n## Estate\nbuechner\n\n## Name\n${h1Name}\n\n## Arc\narc\n\n## Company\ncompany\n\n## Triggers\ntriggers\n\n## Stakes\nstakes`,
+    );
+  };
+
+  it("requires declared title if language is not english", () => {
+    expect(
+      checkTitle(playWithLanguage("Correspondence", null, "german", "Briefwechsel"), {
+        type: "play",
+        resolvedLanguage: "german",
+      }),
+    ).toEqual(["frontmatter missing `declared` for non-english play"]);
+  });
+
+  it("accepts play if declared matches German H1 name", () => {
+    expect(
+      checkTitle(playWithLanguage("Correspondence", "Briefwechsel", "german", "Briefwechsel"), {
+        type: "play",
+        resolvedLanguage: "german",
+      }),
+    ).toEqual([]);
+  });
+
+  it("rejects if declared does not match German H1 name", () => {
+    const errs = checkTitle(
+      playWithLanguage("Correspondence", "WrongTitle", "german", "Briefwechsel"),
+      { type: "play", resolvedLanguage: "german" },
+    );
+    expect(errs.some((e) => e.includes('must match the H1 name "Briefwechsel"'))).toBe(true);
+  });
+
+  it("does not require declared if language is english", () => {
+    expect(
+      checkTitle(playWithLanguage("Correspondence", null, "english", "Correspondence"), {
+        type: "play",
+        resolvedLanguage: "english",
+      }),
+    ).toEqual([]);
+  });
+});
