@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
-import { writeFileSync, mkdirSync, rmSync, existsSync } from "node:fs";
+import { writeFileSync, mkdirSync, rmSync, existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import {
   cleanProse,
@@ -317,5 +317,56 @@ Kedu ka ị mere? Obi ụtọ na-arụ ọrụ a.
     // it should read "ig" from package.json and skip library checks (meaning 0 errors).
     const results = validateProjectLanguages(projectDir);
     expect(results).toHaveLength(0);
+  });
+});
+
+// An ISO-coded nlp language ("fr") must route the resolved "french" to the
+// NLP/LLM fallback (PR #289). Dormant until the normalization fix lands on main
+// -- probe src/detector.mjs for it, per the cli.test.mjs convention.
+const NLP_DORMANT = !readFileSync(
+  join(import.meta.dirname || __dirname, "..", "src", "detector.mjs"),
+  "utf8",
+).includes("map((s) => normalizeLanguage(s))");
+
+describe.skipIf(NLP_DORMANT)("Language Detector - nlpLanguages normalization", () => {
+  beforeAll(() => {
+    if (!existsSync(FIXTURES_DIR)) mkdirSync(FIXTURES_DIR, { recursive: true });
+  });
+  afterAll(() => {
+    if (existsSync(FIXTURES_DIR)) rmSync(FIXTURES_DIR, { recursive: true, force: true });
+  });
+
+  it("routes an ISO-coded nlp language (fr) to the fallback for resolved french", () => {
+    const projectDir = join(FIXTURES_DIR, "nlp-fr");
+    const playDir = join(projectDir, "plays", "p");
+    mkdirSync(playDir, { recursive: true });
+    writeFileSync(join(projectDir, "README.md"), `---\nlanguage: fr\n---\n`);
+    const file = join(playDir, "persona_x.md");
+    writeFileSync(
+      file,
+      `---
+khai: persona
+---
+# Persona: X
+
+## Projection
+Voici une longue phrase en francais qui contient assez de mots pour exercer le detecteur local ici.
+`,
+    );
+
+    const logs = [];
+    const original = console.log;
+    console.log = (...a) => logs.push(a.join(" "));
+    let errors;
+    try {
+      errors = validateLanguageOfFile(file, projectDir, { nlpLanguages: ["fr"] });
+    } finally {
+      console.log = original;
+    }
+
+    // "fr" normalizes to "french", matches the resolved language, and skips the
+    // local check via the NLP fallback.
+    expect(errors).toEqual([]);
+    expect(logs.some((l) => /\[NLP Fallback\].*french/.test(l))).toBe(true);
   });
 });
