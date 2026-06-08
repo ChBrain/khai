@@ -1167,3 +1167,48 @@ describe.skipIf(JSON_DORMANT)("conformance: malformed package.json is non-fatal"
     expect(results[0].errors.some((e) => /cannot read or parse package\.json/.test(e))).toBe(true);
   });
 });
+
+// The blurb gate must accept a single sentence carrying a decimal, file name,
+// abbreviation, or snake_case identifier (PR #285). Dormant until the fix lands
+// on main -- probe src/validate.mjs for it, per the cli.test.mjs convention.
+const BLURB_DORMANT = !readFileSync(
+  join(dirname(fileURLToPath(import.meta.url)), "..", "src", "validate.mjs"),
+  "utf8",
+).includes("const multiSentence");
+
+describe.skipIf(BLURB_DORMANT)("conformance: blurb gate sentence detection", () => {
+  let dir;
+
+  beforeEach(() => {
+    dir = join(tmpdir(), `khai-blurb-${process.pid}-${Math.random().toString(36).substring(2)}`);
+    mkdirSync(join(dir, "plays", "valid_play"), { recursive: true });
+  });
+
+  afterEach(() => rmSync(dir, { recursive: true, force: true }));
+
+  const blurbErrors = (description) => {
+    writeFileSync(
+      join(dir, "registry.json"),
+      JSON.stringify({
+        name: "house",
+        version: "1.0.0",
+        plays: [{ id: "valid_play", title: "Valid Play", description }],
+      }),
+    );
+    const res = validatePlayhouseRegistry(dir);
+    return res.length ? res[0].errors.filter((e) => /one sentence|markdown/.test(e)) : [];
+  };
+
+  it("accepts a single sentence with a decimal, file name, abbreviation, or snake_case", () => {
+    expect(blurbErrors("Built with Node.js for raw speed.")).toEqual([]);
+    expect(blurbErrors("Targets v1.5 of the runtime engine.")).toEqual([]);
+    expect(blurbErrors("Uses e.g. timers and other tricks.")).toEqual([]);
+    expect(blurbErrors("Configures the play_woyzeck entry.")).toEqual([]);
+  });
+
+  it("still rejects multiple sentences, a question/bang, and bold markup", () => {
+    expect(blurbErrors("This is one sentence. This is two.")).not.toEqual([]);
+    expect(blurbErrors("Is this a single declarative line?")).not.toEqual([]);
+    expect(blurbErrors("This contains **bold** formatting.")).not.toEqual([]);
+  });
+});
