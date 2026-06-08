@@ -295,6 +295,12 @@ export function validateLanguageOfFile(filePath, projectPath, options = {}) {
 /**
  * Finds all markdown content files under a project directory.
  */
+// Infra/docs markdown that is never a language-checked content instance: the
+// generated changelog, the house README, and the LORE warrant (REFERENCES). The
+// single source of the skip policy, so discovery and validation can't diverge.
+const NON_CONTENT_MD = new Set(["CHANGELOG.md", "README.md", "REFERENCES.md", "REFERENCE.md"]);
+const isContentMarkdown = (name) => name.endsWith(".md") && !NON_CONTENT_MD.has(name);
+
 function findProjectMarkdownFiles(dir) {
   const files = [];
   const entries = readdirSync(dir, { withFileTypes: true });
@@ -303,7 +309,7 @@ function findProjectMarkdownFiles(dir) {
     const fullPath = join(dir, entry.name);
     if (entry.isDirectory()) {
       files.push(...findProjectMarkdownFiles(fullPath));
-    } else if (entry.name.endsWith(".md") && entry.name !== "CHANGELOG.md") {
+    } else if (isContentMarkdown(entry.name)) {
       files.push(fullPath);
     }
   }
@@ -336,16 +342,12 @@ export function validateProjectLanguages(projectPath, options = {}) {
   }
   const mergedOptions = { ...options, nlpLanguages };
 
+  // findProjectMarkdownFiles already applies the single NON_CONTENT_MD skip
+  // policy, so README/REFERENCES (infra, not content) never reach here.
   const mdFiles = findProjectMarkdownFiles(contentDir);
   const results = [];
 
   for (const file of mdFiles) {
-    // Exclude root infra files if found under plays (shouldn't be, but guard)
-    const name = basename(file);
-    if (name === "README.md" || name === "REFERENCES.md" || name === "REFERENCE.md") {
-      continue;
-    }
-
     const errors = validateLanguageOfFile(file, projectPath, mergedOptions);
     if (errors.length > 0) {
       results.push({
