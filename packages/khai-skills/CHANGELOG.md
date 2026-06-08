@@ -1,5 +1,20 @@
 # @chbrain/khai-skills
 
+## 0.0.14
+
+### Patch Changes
+
+- 7d7056d: khai-playwright: teach the plan element and its Targets verdict vocabulary. A
+  plan is an in-world blueprint (a mechanism with order), and its Targets carry a
+  verdict on each step: `[ ]` open (the live edge), `[x]` done, `[F]` failed, `[W]`
+  waived. "Resolved" is a verdict, not a success. Keep an in-world plan
+  `status: active` and let the line between `[ ]` and the rest mark the moment the
+  scene captures, between decision and execution; `[F]`/`[W]` are where a scheme's
+  failures become drama. A plan steers the scene structurally, never dictating the
+  lines.
+- Updated dependencies [4c0b468]
+  - @chbrain/khai-arch@0.1.10
+
 ## 0.0.13
 
 ### Patch Changes
