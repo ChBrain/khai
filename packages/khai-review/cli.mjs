@@ -77,6 +77,24 @@ const readJson = (p, fallback) => {
   }
 };
 
+// Every `.md` under `dir` (recursive), so nested element files (e.g.
+// plays/<id>/play_<id>.md, nested persona_*.md) are reviewed, not just the
+// top-level ones. Skips node_modules and dot dirs, and the generated CHANGELOG.
+// Sorted for deterministic review/log order.
+function mdFilesUnder(dir) {
+  const out = [];
+  const entries = readdirSync(dir, { withFileTypes: true }).sort((a, b) =>
+    a.name.localeCompare(b.name),
+  );
+  for (const entry of entries) {
+    if (entry.name.startsWith(".") || entry.name === "node_modules") continue;
+    const full = join(dir, entry.name);
+    if (entry.isDirectory()) out.push(...mdFilesUnder(full));
+    else if (entry.name.endsWith(".md") && entry.name !== "CHANGELOG.md") out.push(full);
+  }
+  return out;
+}
+
 /** The audit log: a human view generated from the ledger. Never hand-edited. */
 function renderLog(auditId, ledger) {
   const open = ledger.filter((e) => e.status === "open");
@@ -152,10 +170,11 @@ async function main() {
     let flags = [];
     try {
       flags = await reviewCard(t.manifest, judge, checks, repoRoot, t.dir);
-      const files = readdirSync(t.dir);
-      for (const file of files) {
-        if (!file.endsWith(".md") || file === "CHANGELOG.md") continue;
-        const filePath = join(t.dir, file);
+      const files = mdFilesUnder(t.dir);
+      for (const filePath of files) {
+        // Label by path relative to the target dir, so a top-level file keeps
+        // its bare name (stable id) and a nested one is disambiguated.
+        const file = relative(t.dir, filePath);
         try {
           const text = readFileSync(filePath, "utf8");
           if (/^---\r?\n[\s\S]*?\bkhai:/.test(text)) {
