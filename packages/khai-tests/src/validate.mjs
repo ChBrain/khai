@@ -171,13 +171,20 @@ export function validateContentFile(
   if (type === "plan") {
     try {
       planCard(text);
-      const targetsBody = sectionBody(doc.body, "Targets");
-      if (targetsBody) {
-        // Only an unchecked task-list item (`- [ ]` / `* [ ]`) is a pending
-        // target; a bare "[ ]" elsewhere in the prose or a code span is not.
-        const pendingCount = targetsBody.filter((line) => /^\s*[-*+]\s+\[ \]/.test(line)).length;
-        if (pendingCount > 0) {
-          errors.push(`plan has ${pendingCount} pending target(s) [ ]`);
+      // Completion is the `closed` state. Only a closed plan must resolve every
+      // target; a draft/active plan is in progress -- an in-world plan staged in
+      // a play holds its targets as forward intent, not as unfinished work -- so
+      // its pending [ ] targets are not a finding. (Order has no status
+      // lifecycle, so its completion below stays mandatory.)
+      if (doc.data?.status === "closed") {
+        const targetsBody = sectionBody(doc.body, "Targets");
+        if (targetsBody) {
+          // Only an unchecked task-list item (`- [ ]` / `* [ ]`) is a pending
+          // target; a bare "[ ]" elsewhere in the prose or a code span is not.
+          const pendingCount = targetsBody.filter((line) => /^\s*[-*+]\s+\[ \]/.test(line)).length;
+          if (pendingCount > 0) {
+            errors.push(`plan has ${pendingCount} pending target(s) [ ]`);
+          }
         }
       }
     } catch (err) {
