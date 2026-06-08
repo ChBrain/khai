@@ -51,7 +51,12 @@ function engineAt(arg, root) {
   const p = resolve(root, arg);
   const pkgPath = existsSync(p) && statSync(p).isDirectory() ? join(p, "package.json") : p;
   if (!existsSync(pkgPath)) return null;
-  const pkg = JSON.parse(readFileSync(pkgPath, "utf8"));
+  let pkg;
+  try {
+    pkg = JSON.parse(readFileSync(pkgPath, "utf8"));
+  } catch {
+    return null; // a malformed target manifest is skipped, not fatal (advisory lane)
+  }
   if (!pkg.khai || !pkg.khai.card) return null;
   return {
     engine: pkg.khai.engine ?? basename(dirname(pkgPath)),
@@ -60,7 +65,16 @@ function engineAt(arg, root) {
   };
 }
 
-const readJson = (p, fallback) => (existsSync(p) ? JSON.parse(readFileSync(p, "utf8")) : fallback);
+// Returns `fallback` when the file is missing OR unreadable/malformed: a
+// hand-edited ledger or decisions file must not crash the advisory lane.
+const readJson = (p, fallback) => {
+  if (!existsSync(p)) return fallback;
+  try {
+    return JSON.parse(readFileSync(p, "utf8"));
+  } catch {
+    return fallback;
+  }
+};
 
 /** The audit log: a human view generated from the ledger. Never hand-edited. */
 function renderLog(auditId, ledger) {
@@ -107,7 +121,15 @@ async function main() {
   const manifestAbs = resolve(manifestPath);
   const auditDir = dirname(manifestAbs);
   const repoRoot = process.cwd();
-  const cfg = JSON.parse(readFileSync(manifestAbs, "utf8"));
+  // A missing or malformed manifest is config, not a build break: report and
+  // exit 0, like the missing-token path below.
+  let cfg;
+  try {
+    cfg = JSON.parse(readFileSync(manifestAbs, "utf8"));
+  } catch (err) {
+    console.log(`khai-review: cannot read manifest ${manifestPath} — ${err.message}`);
+    return;
+  }
   const auditId = cfg.id ?? basename(auditDir);
   const review = cfg.review ?? {};
   const checks = (review.rubrics ?? ["conciseness"]).map((id) => rubrics[id]).filter(Boolean);
@@ -199,4 +221,7 @@ async function main() {
   if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, log);
 }
 
-await main();
+// Advisory lane: any unexpected error is reported but never gates (exit 0).
+await main().catch((err) => {
+  console.log(`khai-review: skipped (advisory) — ${err?.message ?? err}`);
+});
