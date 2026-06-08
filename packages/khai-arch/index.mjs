@@ -65,11 +65,12 @@ export const templates = Object.fromEntries(
     .filter((f) => f.endsWith(".md"))
     .map((f) => {
       const text = readFileSync(join(templatesDir, f), "utf8");
-      return [
-        matter(text).data.khai,
-        { type: matter(text).data.khai, file: `templates/${f}`, text },
-      ];
-    }),
+      return { khai: matter(text).data.khai, file: `templates/${f}`, text };
+    })
+    // Skip a template whose frontmatter lacks `khai`; keying on `undefined` would
+    // collapse all such files onto one entry. (Parse once, too, not twice.)
+    .filter((t) => typeof t.khai === "string" && t.khai)
+    .map((t) => [t.khai, { type: t.khai, file: t.file, text: t.text }]),
 );
 
 /**
