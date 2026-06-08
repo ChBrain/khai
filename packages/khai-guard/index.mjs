@@ -197,25 +197,43 @@ export function classify(changed, config = DEFAULT_CONFIG) {
 }
 
 /**
- * Parse `git diff --name-status -M` lines into changed paths, honoring
- * the rename/copy exemption: R100/C100 are pure moves (no content
- * change) and are dropped; a rename-with-edit is judged by its
- * destination path.
- * @param {string[]} lines
+ * Parse `git diff --name-status` output into changed paths, honoring the
+ * rename/copy exemption: R100/C100 are pure moves (no content change) and are
+ * dropped; a rename-with-edit is judged by its destination path.
+ *
+ * Accepts either a raw NUL-delimited string from `git diff --name-status -z`
+ * (the production path: `-z` emits every path verbatim, so a path containing a
+ * tab, a quote, or a non-ASCII byte is never C-quoted or split apart the way
+ * the default tab/newline format would mangle it — a mangled path matches no
+ * lane or bucket and would silently pass a gate it should fail), or an array
+ * of legacy tab-delimited "<status>\t<path>[\t<dst>]" lines. Both normalize to
+ * one flat <status>, <path>, … token stream.
+ * @param {string|string[]} input
  * @returns {string[]}
  */
-export function parseNameStatus(lines, { exemptRenames = true } = {}) {
+export function parseNameStatus(input, { exemptRenames = true } = {}) {
+  // `-z` records are NUL-separated (status\0path\0, or status\0src\0dst\0 for a
+  // rename); the legacy line form is tab-separated within each line. Either way
+  // we want a single flat token stream of [status, path, status, path, …].
+  const tokens = Array.isArray(input)
+    ? input.flatMap((line) => line.replace(/\r?\n$/, "").split("\t"))
+    : String(input).split("\0");
+
   const out = [];
-  for (const raw of lines) {
-    const line = raw.replace(/\n$/, "");
-    if (!line.trim()) continue;
-    const parts = line.split("\t");
-    const status = parts[0];
-    if (exemptRenames && (status === "R100" || status === "C100")) continue;
-    // Rename/copy rows are: <status>\t<old>\t<new>; use the destination.
-    // All other statuses (M, A, D, T, …) are: <status>\t<path>.
-    if (/^[RC]/.test(status)) out.push(parts[2]);
-    else out.push(parts[1]);
+  for (let i = 0; i < tokens.length; ) {
+    const status = tokens[i++];
+    if (!status || !status.trim()) continue; // blank line / trailing terminator
+    if (/^[RC]/.test(status)) {
+      // Rename/copy: <status> <src> <dst>; judge by the destination.
+      i++; // skip <src>
+      const dst = tokens[i++];
+      if (exemptRenames && (status === "R100" || status === "C100")) continue;
+      if (dst) out.push(dst);
+    } else {
+      // M, A, D, T, … : <status> <path>.
+      const path = tokens[i++];
+      if (path) out.push(path);
+    }
   }
   return out;
 }
