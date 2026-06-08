@@ -370,3 +370,31 @@ Voici une longue phrase en francais qui contient assez de mots pour exercer le d
     expect(logs.some((l) => /\[NLP Fallback\].*french/.test(l))).toBe(true);
   });
 });
+
+// findPlayFile must stay within the project, not walk a sibling that shares
+// root's textual prefix (PR #302). Dormant until the fix lands -- probe
+// src/detector.mjs for the path-relative boundary check.
+const BOUNDARY_DORMANT = !readFileSync(
+  join(import.meta.dirname || __dirname, "..", "src", "detector.mjs"),
+  "utf8",
+).includes("relative(root, current)");
+
+describe.skipIf(BOUNDARY_DORMANT)("Language Detector - project boundary", () => {
+  const base = join(FIXTURES_DIR, "boundary");
+  beforeAll(() => {
+    mkdirSync(join(base, "proj"), { recursive: true });
+    mkdirSync(join(base, "proj2"), { recursive: true });
+    // proj2 is a sibling sharing proj's textual prefix; it has a French play.
+    writeFileSync(join(base, "proj2", "play_x.md"), `---\nkhai: play\nlanguage: fr\n---\n`);
+    writeFileSync(join(base, "proj2", "persona_x.md"), `---\nkhai: persona\n---\n# Persona: X\n`);
+  });
+  afterAll(() => rmSync(base, { recursive: true, force: true }));
+
+  it("does not resolve a play from a sibling that shares root's prefix", () => {
+    // Validate proj2's persona with projectPath = proj. The old startsWith check
+    // walked into proj2 and picked up its French play; now proj2 is out of scope.
+    expect(resolveLanguage(join(base, "proj2", "persona_x.md"), join(base, "proj"))).toBe(
+      "english",
+    );
+  });
+});
