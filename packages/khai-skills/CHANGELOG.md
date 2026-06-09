@@ -1,5 +1,25 @@
 # @chbrain/khai-skills
 
+## 0.0.17
+
+### Patch Changes
+
+- 55638ea: khai-playwright: present the plan target markers as one uniform list, `[ ]` open
+  alongside the four resolved verdicts `[x]` done, `[F]` failed, `[W]` waived, `[-]`
+  struck, each on its own line, so the open marker reads as a peer of the verdicts.
+- 592da30: khai-playwright: pin a plan's target states to the moment the curtain rises. A
+  play opens before its schemes have played out, so every step the production will
+  still enact stays `[ ]`, the live edge the scenes decide; only what is settled
+  before the first scene, the backstory, carries a verdict (`[x]`/`[F]`/`[W]`/`[-]`).
+  Woyzeck opens with the Doctor's diet already running, so that step is `[x]` while
+  the killing it drives stays `[ ]`. Mark the present, not the ending.
+- 8840c42: khai-playwright: spell the corrected closed-plan verdict vocabulary, `[x]` done,
+  `[F]` failed, `[W]` waived (dropped or overtaken by events), `[-]` struck (cut as
+  moot or never applicable), retiring the incoherent `[?]` flagged.
+- Updated dependencies [ea7ae45]
+- Updated dependencies [9c8c56a]
+  - @chbrain/khai-arch@0.1.13
+
 ## 0.0.16
 
 ### Patch Changes

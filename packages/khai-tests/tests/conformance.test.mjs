@@ -17,7 +17,7 @@ import {
   engineDocChecks,
   findEnginePackageFor,
 } from "../index.mjs";
-import { renderEngineReadme } from "@chbrain/khai-arch";
+import { renderEngineReadme, planVerdicts } from "@chbrain/khai-arch";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
 const pkgs = discoverEnginePackages(root);
@@ -693,7 +693,7 @@ stamp:
 status: active
 ---
 `;
-  const validPlan = `${front}\n# Plan: Stage Dantons Tod\n\n## Taxonomy\nstaging\n\n## Owner\n- Project: buechner\n\n## Direction\nvision\n\n## Orders\ncommands\n\n## Implementation\nguidelines\n\n## Targets\n- [x] Target 1\n- [F] Target 2\n- [?] Target 3\n`;
+  const validPlan = `${front}\n# Plan: Stage Dantons Tod\n\n## Taxonomy\nstaging\n\n## Owner\n- Project: buechner\n\n## Direction\nvision\n\n## Orders\ncommands\n\n## Implementation\nguidelines\n\n## Targets\n- [x] Target 1\n- [F] Target 2\n- [W] Target 3\n`;
 
   it("passes a completed plan with all targets checked off", () => {
     expect(validateContentFile(validPlan, { type: "plan" })).toEqual([]);
@@ -710,7 +710,7 @@ status: active
 
   it("rejects a plan with missing chapters", () => {
     const brokenPlan = validPlan.replace(
-      "## Targets\n- [x] Target 1\n- [F] Target 2\n- [?] Target 3\n",
+      "## Targets\n- [x] Target 1\n- [F] Target 2\n- [W] Target 3\n",
       "",
     );
     const errors = validateContentFile(brokenPlan, { type: "plan" });
@@ -736,7 +736,7 @@ stamp:
   date: "2026-06-06"
 ---
 `;
-  const validOrder = `${front}\n# Order: Stage Dantons Tod\n\n## Direction\nvision\n\n## Orders\ncommands\n\n## Implementation\nguidelines\n\n## Targets\n- [x] Target 1\n- [F] Target 2\n- [?] Target 3\n`;
+  const validOrder = `${front}\n# Order: Stage Dantons Tod\n\n## Direction\nvision\n\n## Orders\ncommands\n\n## Implementation\nguidelines\n\n## Targets\n- [x] Target 1\n- [F] Target 2\n- [W] Target 3\n`;
 
   it("passes a completed order with all targets checked off", () => {
     expect(validateContentFile(validOrder, { type: "order" })).toEqual([]);
@@ -750,7 +750,7 @@ stamp:
 
   it("rejects an order with missing chapters", () => {
     const brokenOrder = validOrder.replace(
-      "## Targets\n- [x] Target 1\n- [F] Target 2\n- [?] Target 3\n",
+      "## Targets\n- [x] Target 1\n- [F] Target 2\n- [W] Target 3\n",
       "",
     );
     const errors = validateContentFile(brokenOrder, { type: "order" });
@@ -787,45 +787,50 @@ describe.skipIf(STATUS_GATE_DORMANT)("plan completion is gated by status", () =>
   });
 });
 
-// A closed plan resolves each target with a verdict from the canon vocabulary:
-// `[x]` done, `[F]` failed, `[?]` flagged (sourced from khai-arch's planVerdicts).
-// `[ ]` is pending (the status gate above); any other mark (`[W]`, `[-]`, ...) is
-// no verdict at all, so a closed plan that carries it is a finding. A draft or
-// active plan is in progress and is not held to the vocabulary. Dormant until the
-// gate lands on main -- probe src/validate.mjs for it, per the convention above.
+// A closed plan resolves each target with a verdict from the canon vocabulary,
+// sourced from khai-arch's `planVerdicts` (so this test never restates the set;
+// it derives from it). `[ ]` is pending (the status gate above); any mark outside
+// the canon set is no verdict at all, so a closed plan that carries it is a
+// finding. A draft or active plan is in progress and is not held to the
+// vocabulary. Dormant until the gate lands on main -- probe src/validate.mjs for
+// it, per the convention above.
 const VERDICT_GATE_DORMANT = !readFileSync(
   join(dirname(fileURLToPath(import.meta.url)), "..", "src", "validate.mjs"),
   "utf8",
 ).includes("unresolved verdict");
 
-describe.skipIf(VERDICT_GATE_DORMANT)("closed plan target verdict vocabulary", () => {
+// A mark guaranteed never to be a verdict, whatever the canon set is.
+const NON_VERDICT = "z";
+
+describe.skipIf(VERDICT_GATE_DORMANT)("plan target verdict vocabulary", () => {
   const planWith = (status, targets) =>
     `---\nkhai: plan\ntitle: "Stage Dantons Tod"\nlicense: CC-BY-NC-SA-4.0\nstamp:\n  owner: Choregos\n  version: v1.0.0\n  date: "2026-06-06"\nstatus: ${status}\n---\n\n# Plan: Stage Dantons Tod\n\n## Taxonomy\nstaging\n\n## Owner\n- Project: buechner\n\n## Direction\nvision\n\n## Orders\ncommands\n\n## Implementation\nguidelines\n\n## Targets\n${targets}\n`;
 
-  it("accepts [x], [F], and [?] on a closed plan", () => {
-    const errs = validateContentFile(planWith("closed", "- [x] a\n- [F] b\n- [?] c"), {
-      type: "plan",
-    });
-    expect(errs).toEqual([]);
+  it("accepts every canon verdict on a closed plan", () => {
+    expect(planVerdicts).not.toContain(NON_VERDICT);
+    const targets = planVerdicts.map((v, i) => `- [${v}] target ${i + 1}`).join("\n");
+    expect(validateContentFile(planWith("closed", targets), { type: "plan" })).toEqual([]);
   });
 
-  it("rejects [W] on a closed plan as an unresolved verdict", () => {
-    const errs = validateContentFile(planWith("closed", "- [x] a\n- [W] b"), { type: "plan" });
-    expect(errs.some((e) => e.includes('unresolved verdict "[W]"'))).toBe(true);
-  });
-
-  it("rejects a stray [-] on a closed plan", () => {
-    const errs = validateContentFile(planWith("closed", "- [x] a\n- [-] b"), { type: "plan" });
-    expect(errs.some((e) => e.includes("unresolved verdict"))).toBe(true);
-  });
-
-  it("does not hold a draft or active plan to the verdict vocabulary", () => {
-    for (const status of ["draft", "active"]) {
-      const errs = validateContentFile(planWith(status, "- [x] a\n- [W] b\n- [-] c"), {
+  it("rejects a mark outside the canon set, whatever the plan's status", () => {
+    // The vocabulary holds for every plan -- in a play or anywhere -- not just a
+    // closed one. A resolved (non-open) target must carry a valid verdict.
+    for (const status of ["draft", "active", "closed"]) {
+      const errs = validateContentFile(planWith(status, `- [x] a\n- [${NON_VERDICT}] b`), {
         type: "plan",
       });
-      expect(errs.some((e) => e.includes("unresolved verdict"))).toBe(false);
+      expect(errs.some((e) => e.includes(`unresolved verdict "[${NON_VERDICT}]"`))).toBe(true);
     }
+  });
+
+  it("allows an open [ ] target on a draft or active plan, but not a closed one", () => {
+    for (const status of ["draft", "active"]) {
+      expect(validateContentFile(planWith(status, "- [x] a\n- [ ] b"), { type: "plan" })).toEqual(
+        [],
+      );
+    }
+    const closed = validateContentFile(planWith("closed", "- [x] a\n- [ ] b"), { type: "plan" });
+    expect(closed.some((e) => e.includes("pending target"))).toBe(true);
   });
 });
 
