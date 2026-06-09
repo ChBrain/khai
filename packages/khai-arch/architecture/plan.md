@@ -17,7 +17,7 @@ A plan is a forward-looking blueprint. It maps intent and action, representing e
 
 - **I**mplementation: The boundaries of execution. Physical and technical constraints of the staging environment (language, layout, engines).
 
-- **T**argets: The exit criteria. A checklist of deliverables, each carrying a verdict (done, failed, or flagged); the plan is resolved when none is left open.
+- **T**argets: The exit criteria. A checklist of deliverables, each carrying a verdict (done, failed, waived, or struck); the plan is resolved when none is left open.
 
 ---
 
