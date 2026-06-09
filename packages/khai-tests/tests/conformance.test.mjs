@@ -802,7 +802,7 @@ const VERDICT_GATE_DORMANT = !readFileSync(
 // A mark guaranteed never to be a verdict, whatever the canon set is.
 const NON_VERDICT = "z";
 
-describe.skipIf(VERDICT_GATE_DORMANT)("closed plan target verdict vocabulary", () => {
+describe.skipIf(VERDICT_GATE_DORMANT)("plan target verdict vocabulary", () => {
   const planWith = (status, targets) =>
     `---\nkhai: plan\ntitle: "Stage Dantons Tod"\nlicense: CC-BY-NC-SA-4.0\nstamp:\n  owner: Choregos\n  version: v1.0.0\n  date: "2026-06-06"\nstatus: ${status}\n---\n\n# Plan: Stage Dantons Tod\n\n## Taxonomy\nstaging\n\n## Owner\n- Project: buechner\n\n## Direction\nvision\n\n## Orders\ncommands\n\n## Implementation\nguidelines\n\n## Targets\n${targets}\n`;
 
@@ -812,20 +812,25 @@ describe.skipIf(VERDICT_GATE_DORMANT)("closed plan target verdict vocabulary", (
     expect(validateContentFile(planWith("closed", targets), { type: "plan" })).toEqual([]);
   });
 
-  it("rejects a mark outside the canon set on a closed plan", () => {
-    const errs = validateContentFile(planWith("closed", `- [x] a\n- [${NON_VERDICT}] b`), {
-      type: "plan",
-    });
-    expect(errs.some((e) => e.includes(`unresolved verdict "[${NON_VERDICT}]"`))).toBe(true);
-  });
-
-  it("does not hold a draft or active plan to the verdict vocabulary", () => {
-    for (const status of ["draft", "active"]) {
+  it("rejects a mark outside the canon set, whatever the plan's status", () => {
+    // The vocabulary holds for every plan -- in a play or anywhere -- not just a
+    // closed one. A resolved (non-open) target must carry a valid verdict.
+    for (const status of ["draft", "active", "closed"]) {
       const errs = validateContentFile(planWith(status, `- [x] a\n- [${NON_VERDICT}] b`), {
         type: "plan",
       });
-      expect(errs.some((e) => e.includes("unresolved verdict"))).toBe(false);
+      expect(errs.some((e) => e.includes(`unresolved verdict "[${NON_VERDICT}]"`))).toBe(true);
     }
+  });
+
+  it("allows an open [ ] target on a draft or active plan, but not a closed one", () => {
+    for (const status of ["draft", "active"]) {
+      expect(validateContentFile(planWith(status, "- [x] a\n- [ ] b"), { type: "plan" })).toEqual(
+        [],
+      );
+    }
+    const closed = validateContentFile(planWith("closed", "- [x] a\n- [ ] b"), { type: "plan" });
+    expect(closed.some((e) => e.includes("pending target"))).toBe(true);
   });
 });
 

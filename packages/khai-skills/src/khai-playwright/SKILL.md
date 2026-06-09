@@ -98,7 +98,10 @@ So the Owner is what the plan is _for_; its **Orders** name the agents who _act_
 and its **Targets** carry a verdict on each step, where the drama sits:
 
 - `[ ]` open: no verdict yet, the live edge;
-- `[x]` done; `[F]` failed (attempted, missed); `[W]` waived (a live step dropped or overtaken by events); `[-]` struck (cut as moot or never applicable).
+- `[x]` done: achieved;
+- `[F]` failed: attempted, missed;
+- `[W]` waived: a live step dropped or overtaken by events;
+- `[-]` struck: cut as moot or never applicable.
 
 "Resolved" is a verdict, not a success, so a plan may close with failed, waived,
 or struck targets. Keep an in-world plan `status: active`, and let the line

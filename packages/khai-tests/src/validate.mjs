@@ -113,13 +113,13 @@ export function engineDocChecks(pkgDir) {
   return out;
 }
 
-// The resolved-verdict vocabulary for a closed plan's targets is canon, not the
-// kit's to restate: pull it from @chbrain/khai-arch (guarded with the same
-// vocabulary as a fallback so the kit keeps working against a canon that has not
-// yet shipped the export). `[ ]` is open, handled by the pending gate; a mark
-// outside the canon set is no verdict at all, so a closed plan that carries it
-// is a finding. (A draft or active plan is in progress and is not held to this;
-// see the caller.)
+// The resolved-verdict vocabulary for a plan's targets is canon, not the kit's
+// to restate: pull it from @chbrain/khai-arch (guarded with the same vocabulary
+// as a fallback so the kit keeps working against a canon that has not yet shipped
+// the export). `[ ]` is open (the live edge), exempt here; a resolved (non-open)
+// mark outside the canon set is no verdict at all, so any plan that carries it is
+// a finding -- in a play or anywhere, whatever its status. (Whether an open `[ ]`
+// is allowed is the separate, status-gated completion check; see the caller.)
 const PLAN_VERDICTS = Array.isArray(khaiArch.planVerdicts)
   ? khaiArch.planVerdicts
   : ["x", "f", "w", "-"];
@@ -136,7 +136,7 @@ function targetVerdictErrors(targetsBody, label) {
     const m = /^\s*[-*+]\s+\[(.)\]/.exec(line);
     if (!m || m[1] === " " || RESOLVED_MARK.test(m[1])) continue;
     errors.push(
-      `${label} target has unresolved verdict "[${m[1]}]"; a closed ${label} uses ${VERDICT_LIST}`,
+      `${label} target has unresolved verdict "[${m[1]}]"; a resolved ${label} target is one of ${VERDICT_LIST}`,
     );
   }
   return errors;
@@ -200,17 +200,17 @@ export function validateContentFile(
   if (type === "plan") {
     try {
       planCard(text);
-      // Completion is the `closed` state. Only a closed plan must resolve every
-      // target; a draft/active plan is in progress -- an in-world plan staged in
-      // a play holds its targets as forward intent, not as unfinished work -- so
-      // its targets are not held to the resolved vocabulary at all. (Order has no
-      // status lifecycle, so its completion below stays mandatory.)
-      if (doc.data?.status === "closed") {
-        const targetsBody = sectionBody(doc.body, "Targets");
-        if (targetsBody) {
-          // A closed plan resolves each target as `[x]` done or `[F]` failed;
-          // any other mark is unresolved.
-          errors.push(...targetVerdictErrors(targetsBody, "plan"));
+      const targetsBody = sectionBody(doc.body, "Targets");
+      if (targetsBody) {
+        // The verdict vocabulary holds for every plan, in a play or anywhere
+        // else, whatever its status: a resolved (non-open) target must carry a
+        // valid verdict. `[ ]` is the open/live edge and is exempt here.
+        errors.push(...targetVerdictErrors(targetsBody, "plan"));
+        // Completion is the `closed` state: a plan is closed only when every
+        // target is resolved, so no open `[ ]` may remain. A draft/active plan is
+        // mid-scheme -- an in-world plan staged in a play holds its open targets
+        // as forward intent -- so `[ ]` is allowed until it closes.
+        if (doc.data?.status === "closed") {
           // Only an unchecked task-list item (`- [ ]` / `* [ ]`) is a pending
           // target; a bare "[ ]" elsewhere in the prose or a code span is not.
           const pendingCount = targetsBody.filter((line) => /^\s*[-*+]\s+\[ \]/.test(line)).length;
@@ -228,6 +228,9 @@ export function validateContentFile(
       orderCard(text);
       const targetsBody = sectionBody(doc.body, "Targets");
       if (targetsBody) {
+        // Same vocabulary as a plan. An order has no status lifecycle, so it must
+        // complete: the verdict gate applies and no open `[ ]` may remain.
+        errors.push(...targetVerdictErrors(targetsBody, "order"));
         // Only an unchecked task-list item (`- [ ]` / `* [ ]`) is a pending
         // target; a bare "[ ]" elsewhere in the prose or a code span is not.
         const pendingCount = targetsBody.filter((line) => /^\s*[-*+]\s+\[ \]/.test(line)).length;
