@@ -7,7 +7,22 @@
     "packageLicenses": ["SEE LICENSE IN LICENSE and LICENSE-CODE"]
   },
   "branchScope": {
-    "shared": [".changeset/**", "package.json", "package-lock.json", "CHANGELOG.md"],
+    "shared": [
+      ".changeset/**",
+      "package.json",
+      "package-lock.json",
+      "CHANGELOG.md",
+      ".prettierrc",
+      ".prettierignore",
+      ".gitignore",
+      ".npmrc",
+      ".nvmrc",
+      "LICENSE",
+      "LICENSE-CODE",
+      "SECURITY.md",
+      "registry.json"
+    ],
+    "riders": [{ "pattern": "management/orders/**", "fallback": "governance" }],
     "lanes": [
       { "pattern": "play/*", "layer": "solution", "allow": ["plays/**"] },
       {
