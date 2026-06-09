@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-spine",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine, the spine domain: the meta layer a world runs on — the collaboration instructions (by flavor) and the architecture (the extension point).",
   "type": "module",
   "main": "./index.mjs",
