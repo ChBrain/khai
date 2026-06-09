@@ -168,6 +168,23 @@ export const playChapters = ["Estate", "Name", "Arc", "Company", "Triggers", "St
 export const planChapters = ["Direction", "Orders", "Implementation", "Targets"];
 
 /**
+ * The resolved-verdict vocabulary for a plan's `## Targets`. A target is a task
+ * item `- [<mark>] ...`. `[ ]` (open) is the live edge, not a verdict; a plan is
+ * `closed` only when none is left open. Once closed, every target carries a
+ * resolved verdict from exactly this set (case-insensitive):
+ *   - `x` done -- achieved.
+ *   - `f` failed -- attempted, missed.
+ *   - `?` flagged -- the outcome is genuinely open to question, not yet judged.
+ * "Resolved" is a verdict, not a success: a closed plan may carry failed or
+ * flagged targets. Any other marker is no verdict at all. This set is the single
+ * source: the conformance kit pulls it and builds the gate from it, the
+ * template and the playwright skill spell it in prose, and a draft/active plan
+ * (still in progress) is not held to it.
+ * @type {string[]}
+ */
+export const planVerdicts = ["x", "f", "?"];
+
+/**
  * DO IT: the management order standard.
  * @type {string[]}
  */
@@ -668,6 +685,7 @@ export default {
   referenceChapters,
   playChapters,
   planChapters,
+  planVerdicts,
   orderChapters,
   engineMembers,
   compositionOrder,
