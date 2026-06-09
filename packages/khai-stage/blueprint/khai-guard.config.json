@@ -12,7 +12,15 @@
       "package.json",
       "package-lock.json",
       "CHANGELOG.md",
-      ".prettierignore"
+      ".prettierrc",
+      ".prettierignore",
+      ".gitignore",
+      ".npmrc",
+      ".nvmrc",
+      "LICENSE",
+      "LICENSE-CODE",
+      "SECURITY.md",
+      "registry.json"
     ],
     "lanes": [
       { "pattern": "play/*", "layer": "solution", "allow": ["plays/**"] },
