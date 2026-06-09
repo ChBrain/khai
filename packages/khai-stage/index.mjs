@@ -96,7 +96,7 @@ export function stageHouse({ source, targetDir, manager, playwright } = {}) {
     written: written.sort(),
     handoffs: [
       `npm ci  (needs GITHUB_TOKEN for the @chbrain registry), then push; the first CI runs green on the empty house`,
-      `branch protection: require PRs and the checks (test, khai-guard, branch-scope, consistency) on main, forbid force-push. Apply in Settings > Branches or via gh api, once the first CI run has created the check names.`,
+      `branch protection: require PRs and the checks (test, khai-guard, branch-scope) on main, forbid force-push. Do NOT require the audit "consistency" status: its workflow is path-filtered to audit/**, so it never reports on a non-audit PR and would wedge every such PR ("Expected - waiting"). Apply in Settings > Branches or via gh api, once the first CI run has created the check names.`,
       `RELEASE_TOKEN secret: a PAT with Contents: write and Pull requests: write, so the release workflow can push the version branch + tags and open the Version PR. Without it the house publishes nothing.`,
       `register the house in khai-plays under its Estate identity (README.md), so it appears on the bill`,
     ],
