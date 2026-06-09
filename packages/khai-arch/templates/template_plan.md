@@ -33,9 +33,10 @@ The boundaries of execution: guidelines, folder locations, target languages, req
 
 ## Targets
 
-The checklist, and the verdict on each. `[ ]` is open: no verdict yet, the live edge; a plan is `closed` only when none is left open. Every other marker is resolved, and resolved is a verdict, not a success: `[x]` done, `[F]` failed (attempted, missed), `[?]` flagged (the outcome is open to question, not yet judged). A closed plan may carry failed targets. For an in-world plan staged in a play, the line between `[ ]` and the rest is the moment the scene captures, and the mix of `[x]`/`[F]`/`[?]` among the resolved is how the scheme went.
+The checklist, and the verdict on each. `[ ]` is open: no verdict yet, the live edge; a plan is `closed` only when none is left open. Every other marker is resolved, and resolved is a verdict, not a success: `[x]` done, `[F]` failed (attempted, missed), `[W]` waived (a live target dropped or overtaken by events), `[-]` struck (cut as moot or never applicable). A closed plan may carry failed, waived, or struck targets. For an in-world plan staged in a play, the line between `[ ]` and the rest is the moment the scene captures, and the mix of `[x]`/`[F]`/`[W]`/`[-]` among the resolved is how the scheme went.
 
 - [x] A step achieved
 - [F] A step attempted but missed
-- [?] A step whose outcome is open to question
+- [W] A step dropped or overtaken by events
+- [-] A step struck as moot or never applicable
 - [ ] A step not yet reached
