@@ -1,0 +1,94 @@
+{
+  "name": "@chbrain/khai-engine-emotion",
+  "version": "0.1.0",
+  "description": "khai engine content, the emotion domain: emotion as process, how a persona appraises an event against what it cares about and the appraisal becomes a felt push toward action.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/emotion"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "emotion",
+    "tagline": "Emotion as process: how a persona appraises an event against what it cares about, and the appraisal becomes a felt push toward action -- joy, sadness, anger, fear, or disgust.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_emotion.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_joy.md",
+        "type": "process",
+        "parent": "process_emotion.md"
+      },
+      {
+        "file": "process_sadness.md",
+        "type": "process",
+        "parent": "process_emotion.md"
+      },
+      {
+        "file": "process_anger.md",
+        "type": "process",
+        "parent": "process_emotion.md"
+      },
+      {
+        "file": "process_fear.md",
+        "type": "process",
+        "parent": "process_emotion.md"
+      },
+      {
+        "file": "process_disgust.md",
+        "type": "process",
+        "parent": "process_emotion.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_emotion.md) declares emotion as an appraisal: an event meets what the persona cares about, and the read becomes a felt push toward action.",
+      "issue": "Five feelings a persona may run: joy, sadness, anger, fear, and disgust. Each is a process file composed under the root, so the action tendency follows the appraisal. They are distinct readings of one event, and the read can change.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the specific emotion it runs in the scene.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real emotion. Whether the feeling is true to the appraisal is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its read under Projection, linking the specific emotion. Read it in the first beat; the room enacts it, never narrates it."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.10",
+    "vitest": "^4.1.8"
+  }
+}
