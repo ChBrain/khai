@@ -1,5 +1,28 @@
 # @chbrain/khai-tests
 
+## 0.1.13
+
+### Patch Changes
+
+- 6181719: tests: cover the closed-plan verdict vocabulary. Assert a `status: closed` plan
+  accepts `[x]`/`[F]`/`[?]` and rejects `[W]`/`[-]` as unresolved verdicts, while a
+  draft or active plan is not held to it. Update the plan/order fixtures to spell
+  the canon set (`[?]` flagged in place of the retired `[W]` waived).
+- 10455e9: validate/tests: derive the closed-plan verdict gate and its test from the canon
+  `planVerdicts` rather than restating a glyph set. The validator builds the mark
+  class with each verdict escaped (so `-` is a literal, never a range) and its
+  fallback tracks the canon. The conformance suite now asserts every canon verdict
+  is accepted on a closed plan and a non-verdict mark is rejected, so it stays
+  correct across a vocabulary change.
+- 8b0bb06: validate: the plan target verdict vocabulary now holds for every plan, in a play
+  or anywhere, whatever its status, not only a `closed` one. A resolved (non-open)
+  target must carry a valid verdict; `[ ]` open is allowed until the plan is
+  `closed` (a plan is closed only when every target carries a valid marker, no open
+  `[ ]` left). Orders are held the same way (no status, so they must complete).
+- Updated dependencies [ea7ae45]
+- Updated dependencies [9c8c56a]
+  - @chbrain/khai-arch@0.1.13
+
 ## 0.1.12
 
 ### Patch Changes

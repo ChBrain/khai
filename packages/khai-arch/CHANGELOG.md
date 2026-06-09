@@ -1,5 +1,20 @@
 # @chbrain/khai-arch
 
+## 0.1.13
+
+### Patch Changes
+
+- ea7ae45: Correct the closed-plan verdict vocabulary. `[?]` flagged read as "not yet
+  judged", which contradicts `closed` (every target resolved). Replace it with two
+  genuinely terminal verdicts: `planVerdicts` is now `[x]` done, `[F]` failed,
+  `[W]` waived (a live target dropped or overtaken by events), and `[-]` struck
+  (cut as moot or never applicable). The template and architecture note spell the
+  same set.
+- 9c8c56a: Tighten the `planVerdicts` doc: the verdict vocabulary applies to every resolved
+  (non-open) target on any plan, whatever its status, not only a closed one.
+  Completion is the separate, status-gated rule (a plan is `closed` only when no
+  open `[ ]` remains; a draft/active plan may keep open targets).
+
 ## 0.1.12
 
 ### Patch Changes
