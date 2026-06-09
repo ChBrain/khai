@@ -35,6 +35,7 @@ describe("khai-stage: the stamped house", () => {
       ".npmrc",
       ".gitignore",
       ".nvmrc",
+      ".prettierignore",
       "LICENSE",
       "LICENSE-CODE",
       "khai-guard.config.json",
