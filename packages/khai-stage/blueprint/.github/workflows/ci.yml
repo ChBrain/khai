@@ -36,7 +36,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: source/test separation gate
-        run: npx khai-guard --base "${{ github.event.pull_request.base.sha }}" --head "${{ github.event.pull_request.head.sha }}"
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: npx khai-guard --base "$BASE_SHA" --head "$HEAD_SHA"
   branch-scope:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
@@ -53,4 +56,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: branch-scope lane gate
-        run: npx khai-guard branch-check --branch "${{ github.head_ref }}" --base "${{ github.event.pull_request.base.sha }}" --head "${{ github.event.pull_request.head.sha }}"
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: npx khai-guard branch-check --branch "$HEAD_REF" --base "$BASE_SHA" --head "$HEAD_SHA"
