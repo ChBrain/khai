@@ -571,7 +571,7 @@ describe.skipIf(RECURSIVE_DORMANT)("khai-review CLI - recursive .md discovery", 
     });
     expect(r.status).toBe(0);
     // The nested file is reviewed and labelled by its path under the target dir.
-    expect(r.stdout).toContain("plays/woyzeck/persona_x.md#Projection");
+    expect(r.stdout.replace(/\\+/g, "/")).toContain("plays/woyzeck/persona_x.md#Projection");
   });
 });
 
