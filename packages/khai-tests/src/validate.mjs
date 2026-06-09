@@ -295,32 +295,53 @@ export async function validateEnginePackage(pkgDir, { executeCompose = false } =
   if (unreadable) return [{ file: "package.json", errors: ["cannot read or parse package.json"] }];
   if (!manifest) return [{ file: pkgDir, errors: ["package.json has no `khai` manifest"] }];
 
+  // A `class: meta` engine is the spine -- the flavored instructions and the
+  // architecture (the extension point) a world runs on -- not a content engine
+  // wired into a house/element chapter. So it carries no WIRES card and no
+  // card-rendered README: those two ceremonies are content-engine only. Its
+  // members are meta-type instances (instructions, architecture) and validate
+  // against the canon exactly like any other instance, so everything below the
+  // two gated blocks (members, REFERENCES/LORE, orphan check, compose, docs) is
+  // identical. The discriminator is the canon's own `class` vocabulary, declared
+  // on the manifest -- computed, not judged.
+  const isMeta = manifest.class === "meta";
+
   // WIRES card: the engine must declare a valid card. khai-arch owns the shape
   // (engineCard throws on a missing slug, missing/empty chapter, or foreign
   // key); the kit surfaces that as a package error so a cardless engine fails.
-  try {
-    engineCard(manifest);
-  } catch (err) {
-    results.push({ file: "package.json", errors: [`WIRES card: ${err.message}`] });
+  // A meta engine is the spine, not wired into a chapter, so it carries none.
+  if (!isMeta) {
+    try {
+      engineCard(manifest);
+    } catch (err) {
+      results.push({ file: "package.json", errors: [`WIRES card: ${err.message}`] });
+    }
   }
 
   // README: generated, never hand-edited. The canon renders it from the manifest
   // (renderEngineReadme), so a missing or drifted README is a real error -- the
   // pointer must never disagree with the source of truth. Deterministic: the
-  // answer is in the bytes, so this gates (unlike the advisory docs lane).
-  try {
-    const pkg = JSON.parse(readFileSync(join(pkgDir, "package.json"), "utf8"));
-    const expected = renderEngineReadme(pkg);
-    const readmePath = join(pkgDir, "README.md");
-    if (!existsSync(readmePath))
-      results.push({ file: "README.md", errors: ["missing; run the canon's renderEngineReadme"] });
-    else if (readFileSync(readmePath, "utf8") !== expected)
-      results.push({
-        file: "README.md",
-        errors: ["drifted from the manifest; regenerate with the canon's renderEngineReadme"],
-      });
-  } catch (err) {
-    results.push({ file: "README.md", errors: [`cannot render from manifest: ${err.message}`] });
+  // answer is in the bytes, so this gates (unlike the advisory docs lane). The
+  // renderer keys off the WIRES card, so a meta engine (cardless) has no
+  // generated README to hold to.
+  if (!isMeta) {
+    try {
+      const pkg = JSON.parse(readFileSync(join(pkgDir, "package.json"), "utf8"));
+      const expected = renderEngineReadme(pkg);
+      const readmePath = join(pkgDir, "README.md");
+      if (!existsSync(readmePath))
+        results.push({
+          file: "README.md",
+          errors: ["missing; run the canon's renderEngineReadme"],
+        });
+      else if (readFileSync(readmePath, "utf8") !== expected)
+        results.push({
+          file: "README.md",
+          errors: ["drifted from the manifest; regenerate with the canon's renderEngineReadme"],
+        });
+    } catch (err) {
+      results.push({ file: "README.md", errors: [`cannot render from manifest: ${err.message}`] });
+    }
   }
 
   // Reference warrant: every engine ships a REFERENCES.md conforming to the LORE
@@ -348,11 +369,25 @@ export async function validateEnginePackage(pkgDir, { executeCompose = false } =
   // so the validator is shape-agnostic -- gender's depth-1 tree and a process
   // ladder (root -> channel -> width) validate through the identical code. Each
   // file is checked against its OWN member type, so a mixed-type tree is fine.
+  // A meta engine is the exception: its parts (instructions, architecture) are
+  // independent sibling instances, not a single-root composition tree, so it
+  // reads its members as a flat list rather than desugaring through the canon.
   let members = [];
-  try {
-    members = engineMembers(manifest);
-  } catch (err) {
-    results.push({ file: "package.json", errors: [`manifest members: ${err.message}`] });
+  if (isMeta) {
+    members = Array.isArray(manifest.members) ? manifest.members : [];
+    if (members.length === 0)
+      results.push({
+        file: "package.json",
+        errors: [
+          "a meta engine must declare its members (the instructions/architecture instances)",
+        ],
+      });
+  } else {
+    try {
+      members = engineMembers(manifest);
+    } catch (err) {
+      results.push({ file: "package.json", errors: [`manifest members: ${err.message}`] });
+    }
   }
   const referenced = new Set(members.map((m) => m.file));
 
@@ -382,13 +417,16 @@ export async function validateEnginePackage(pkgDir, { executeCompose = false } =
   // composable units are the tree's leaves (canon compositionOrder), general
   // across shapes. The call shape follows the manifest: an explicit-members
   // engine composes a leaf file; the anchor+expressions shorthand composes an
-  // expression name (kept so existing engines are unaffected).
+  // expression name (kept so existing engines are unaffected). A meta engine
+  // composes a flavor, defaulting when called bare, so the smoke is a bare call.
   if (executeCompose) {
     try {
       const mod = await import(pathToFileURL(join(pkgDir, "index.mjs")).href);
-      const calls = Array.isArray(manifest.members)
-        ? Object.keys(compositionOrder(manifest)).map((leaf) => ({ leaf }))
-        : Object.keys(manifest.expressions ?? {}).map((expression) => ({ expression }));
+      const calls = isMeta
+        ? [undefined]
+        : Array.isArray(manifest.members)
+          ? Object.keys(compositionOrder(manifest)).map((leaf) => ({ leaf }))
+          : Object.keys(manifest.expressions ?? {}).map((expression) => ({ expression }));
       for (const arg of calls) {
         const out = mod.compose(arg);
         if (!out || typeof out !== "string")

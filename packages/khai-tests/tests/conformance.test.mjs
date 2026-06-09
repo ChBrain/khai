@@ -594,6 +594,84 @@ describe("engine README: validateEnginePackage enforces the generated README", (
   });
 });
 
+// --- meta engine (the spine): instructions + architecture, no card/README --
+// A `class: meta` engine is the spine a world runs on -- the flavored
+// instructions and the architecture (the extension point) -- not a content
+// engine wired into a house/element chapter. It carries no WIRES card and no
+// card-rendered README; its members are meta-type instances that validate
+// against the canon like any other. The kit must drop exactly those two
+// content-only ceremonies and nothing else.
+describe("meta engine: validateEnginePackage accepts the spine (class: meta)", () => {
+  const dir = join(tmpdir(), `khai-meta-${process.pid}`);
+  const manifest = {
+    name: "@chbrain/khai-engine-demospine",
+    khai: {
+      engine: "demospine",
+      class: "meta",
+      tagline: "Demo as spine: the instructions and architecture a world runs on.",
+      members: [
+        { file: "instructions_demo.md", type: "instructions", parent: null },
+        { file: "architecture_demo.md", type: "architecture", parent: null },
+      ],
+    },
+  };
+  const stamp =
+    'license: CC-BY-NC-4.0\nstamp:\n  owner: KAI HACKS AI\n  version: v0.1.0\n  date: "2026-06-09"';
+  const instructions = `---\nkhai: instructions\ntitle: "Demo"\n${stamp}\n---\n\n# Instructions: Demo\n\n## Human\n\nThe director who sets the scene.\n\n## Agent\n\nThe inhabitant who holds the room.\n\n## Collaboration\n\nHow the human and the agent move together.\n\n## Knowledge\n\nHow information enters and lands.\n\n## System\n\nThe hard rules that win the fight in advance.\n`;
+  const architecture = `---\nkhai: architecture\ntitle: "Demo"\n${stamp}\n---\n\n# Architecture: Demo\n\n## Taxonomy\n\nMeta.\n\n## Owner\n\n- Project: khai\n- Engine: demospine\n\n## Ground\n\nWhat stays fixed: the canon you build on.\n\n## Root\n\nWhere this world attaches to the canon.\n\n## Open\n\nThe one seam built to be opened.\n\n## Weave\n\nThe canon and this world running as one.\n`;
+  const references = `---\nupdated: "2026-06-09"\n---\n\n# Demo: Reference\n\n## Line of Work\n\nThe spine as meta: the instructions and the architecture a world runs on.\n\n## Origin\n\nThe KAI HACKS AI architecture.\n\n## Restrictions\n\nModels the spine only; content types are delegated to their own engines.\n\n## Encoding\n\n- [instructions](instructions_demo.md) (the contract): how the room collaborates.\n- [architecture](architecture_demo.md) (the seam): where the world attaches to the canon.\n`;
+
+  // A bare compose() returns the default flavor's instructions; the kit's meta
+  // smoke calls it bare, so the fixture ships a minimal index.mjs.
+  const index = `export const compose = () => "demo instructions";\n`;
+
+  beforeEach(() => {
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(join(dir, "package.json"), JSON.stringify(manifest));
+    writeFileSync(join(dir, "instructions_demo.md"), instructions);
+    writeFileSync(join(dir, "architecture_demo.md"), architecture);
+    writeFileSync(join(dir, "REFERENCES.md"), references);
+    writeFileSync(join(dir, "index.mjs"), index);
+  });
+  afterEach(() => rmSync(dir, { recursive: true, force: true }));
+
+  it("validates a well-formed meta engine with zero findings (compose included)", async () => {
+    expect(flatten(await validateEnginePackage(dir, { executeCompose: true }))).toEqual([]);
+    expect(flattenWarnings(await validateEnginePackage(dir, { executeCompose: true }))).toEqual([]);
+  });
+
+  it("does not demand a WIRES card or a generated README of a meta engine", async () => {
+    const errors = flatten(await validateEnginePackage(dir));
+    expect(errors.some((e) => e.includes("WIRES card"))).toBe(false);
+    expect(errors.some((e) => e.includes("README"))).toBe(false);
+  });
+
+  it("still requires the card on a content engine (the gate is meta-only)", async () => {
+    // The same cardless manifest WITHOUT `class: meta` is a content engine, so
+    // the card ceremony bites -- proving the branch keys on the class, nothing else.
+    writeFileSync(
+      join(dir, "package.json"),
+      JSON.stringify({
+        name: "@chbrain/khai-engine-demospine",
+        khai: { engine: "demospine", members: manifest.khai.members },
+      }),
+    );
+    expect(flatten(await validateEnginePackage(dir)).some((e) => e.includes("WIRES card"))).toBe(
+      true,
+    );
+  });
+
+  it("still validates meta member content (teeth on the instances)", async () => {
+    // Drop a required chapter from the instructions instance: the kit drops the
+    // card/README ceremony for a meta engine, never the member contract.
+    writeFileSync(
+      join(dir, "instructions_demo.md"),
+      instructions.replace(/\n## System\n[\s\S]*$/, "\n"),
+    );
+    expect(flatten(await validateEnginePackage(dir)).length).toBeGreaterThan(0);
+  });
+});
+
 // --- play contract: ENACTS chapter structure validated ---------------------
 describe("play contract: ENACTS chapter structure validated", () => {
   const front = `---
