@@ -1,5 +1,55 @@
 # @chbrain/khai-arch
 
+## 0.1.13
+
+### Patch Changes
+
+- ea7ae45: Correct the closed-plan verdict vocabulary. `[?]` flagged read as "not yet
+  judged", which contradicts `closed` (every target resolved). Replace it with two
+  genuinely terminal verdicts: `planVerdicts` is now `[x]` done, `[F]` failed,
+  `[W]` waived (a live target dropped or overtaken by events), and `[-]` struck
+  (cut as moot or never applicable). The template and architecture note spell the
+  same set.
+- 9c8c56a: Tighten the `planVerdicts` doc: the verdict vocabulary applies to every resolved
+  (non-open) target on any plan, whatever its status, not only a closed one.
+  Completion is the separate, status-gated rule (a plan is `closed` only when no
+  open `[ ]` remains; a draft/active plan may keep open targets).
+
+## 0.1.12
+
+### Patch Changes
+
+- 0ad27c2: Make the plan-target verdict vocabulary canon. Export `planVerdicts`
+  (`[x]` done, `[F]` failed, `[?]` flagged) as the single source, and spell the
+  same set in `template_plan.md` and `architecture/plan.md` (the former `[W]`
+  waived becomes `[?]` flagged). The conformance kit pulls this export instead of
+  restating the rule.
+
+## 0.1.11
+
+### Patch Changes
+
+- 91b3c98: Teach the plan Owner taxonomy. A plan is directed intent toward a subject, and
+  the Owner is that subject: it can be a persona (a personal scheme), a position
+  (a mandate, where the office acts not the person), a process (a method), a place
+  (a development), a piece (a making), or the project (a production directive). The
+  Owner sets the kind of plan; the agents who carry it out are named in Orders, not
+  the Owner. `template_plan.md`'s Taxonomy and Owner guidance now carry the full
+  set. A plan commands other elements by reference, it never copies them, so
+  several plans may command one process without duplication.
+
+## 0.1.10
+
+### Patch Changes
+
+- 4c0b468: Teach the plan Targets vocabulary. A target carries a verdict, and "resolved"
+  means a verdict was reached, not that it succeeded: `[ ]` is open (no verdict
+  yet, the live edge; a closed plan has none), `[x]` done, `[F]` failed, `[W]`
+  waived. A closed plan may carry failed targets. `template_plan.md` now documents
+  the four markers with a worked mix, and the `plan` spec's Targets line reads
+  "each carrying a verdict (done, failed, or waived); resolved when none is left
+  open" instead of "must be completed". The gate is unchanged (only `[ ]` blocks).
+
 ## 0.1.9
 
 ### Patch Changes

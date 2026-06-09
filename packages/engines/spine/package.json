@@ -1,0 +1,49 @@
+{
+  "name": "@chbrain/khai-engine-spine",
+  "version": "0.1.1",
+  "description": "khai engine, the spine domain: the meta layer a world runs on — the collaboration instructions (by flavor) and the architecture (the extension point).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/spine"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "spine",
+    "class": "meta",
+    "tagline": "The spine a world runs on: the collaboration instructions, by flavor, alongside the architecture (the extension point).",
+    "members": [
+      {
+        "file": "instructions_raw.md",
+        "type": "instructions",
+        "parent": null
+      },
+      {
+        "file": "architecture.md",
+        "type": "architecture",
+        "parent": null
+      }
+    ]
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.8"
+  }
+}

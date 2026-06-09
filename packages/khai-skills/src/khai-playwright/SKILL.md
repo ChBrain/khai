@@ -82,6 +82,45 @@ positions, and personas; Stage draws personas, pieces, and plans; Tension draws 
    [persona](references/template_persona.md),
    [plan](references/template_plan.md).
 
+### The plan element: a scheme caught between done and undone
+
+A `plan` is an in-world blueprint: not dialogue, but a mechanism with order. Who
+acts, in what sequence, to what end, and how far it has got.
+
+Its **Owner** is the subject it is directed at, and the subject sets the kind: a
+**persona** holds a personal scheme; a **position** drives a mandate (the office
+acts, not the person: a warden's plan to put out a fire); a **process** carries a
+method (how a mechanism is run); a **place** a development (its becoming); a
+**piece** a making (its construction); the **project** a production directive. A
+plan **commands, it never copies**: its Orders reference existing elements, so two
+plans may drive one `process` (one poison, two schemers) without duplicating it.
+So the Owner is what the plan is _for_; its **Orders** name the agents who _act_;
+and its **Targets** carry a verdict on each step, where the drama sits:
+
+- `[ ]` open: no verdict yet, the live edge;
+- `[x]` done: achieved;
+- `[F]` failed: attempted, missed;
+- `[W]` waived: a live step dropped or overtaken by events;
+- `[-]` struck: cut as moot or never applicable.
+
+"Resolved" is a verdict, not a success, so a plan may carry failed, waived, or
+struck targets. Keep an in-world plan `status: active`: it is a live scheme, not
+a finished record.
+
+**Set the targets to the state at the moment the curtain rises, not the ending.**
+A play opens _before_ its schemes have played out, so every step the production
+will still enact stays `[ ]`, the live edge the scenes decide: the poison not yet
+poured, the flight not yet made, the proof not yet won. Only what is already
+settled when the play begins, its backstory, carries a verdict: a step the world
+completed before the first scene is `[x]` (or `[F]`/`[W]`/`[-]` for how it went).
+So _Woyzeck_ opens with the Doctor's diet already running: that step is `[x]`,
+while the killing it drives stays `[ ]`. The line between `[ ]` and the rest is
+the curtain itself; pre-marking an outcome the play has yet to stage steals the
+scene's drama before it is played. The mix of `[x]`/`[F]`/`[W]`/`[-]` among the
+resolved is how the scheme stood at the open, and `[F]`/`[W]`/`[-]` are where its
+settled past already swerved from clean success. A plan steers the scene
+structurally; it never dictates the lines.
+
 ### Staying in lane (what the play defines, the plot may not exceed)
 
 The play defines what is in the production. A plot must stay in that lane:

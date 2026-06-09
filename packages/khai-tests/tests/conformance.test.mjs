@@ -17,7 +17,7 @@ import {
   engineDocChecks,
   findEnginePackageFor,
 } from "../index.mjs";
-import { renderEngineReadme } from "@chbrain/khai-arch";
+import { renderEngineReadme, planVerdicts } from "@chbrain/khai-arch";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
 const pkgs = discoverEnginePackages(root);
@@ -594,6 +594,84 @@ describe("engine README: validateEnginePackage enforces the generated README", (
   });
 });
 
+// --- meta engine (the spine): instructions + architecture, no card/README --
+// A `class: meta` engine is the spine a world runs on -- the flavored
+// instructions and the architecture (the extension point) -- not a content
+// engine wired into a house/element chapter. It carries no WIRES card and no
+// card-rendered README; its members are meta-type instances that validate
+// against the canon like any other. The kit must drop exactly those two
+// content-only ceremonies and nothing else.
+describe("meta engine: validateEnginePackage accepts the spine (class: meta)", () => {
+  const dir = join(tmpdir(), `khai-meta-${process.pid}`);
+  const manifest = {
+    name: "@chbrain/khai-engine-demospine",
+    khai: {
+      engine: "demospine",
+      class: "meta",
+      tagline: "Demo as spine: the instructions and architecture a world runs on.",
+      members: [
+        { file: "instructions_demo.md", type: "instructions", parent: null },
+        { file: "architecture_demo.md", type: "architecture", parent: null },
+      ],
+    },
+  };
+  const stamp =
+    'license: CC-BY-NC-4.0\nstamp:\n  owner: KAI HACKS AI\n  version: v0.1.0\n  date: "2026-06-09"';
+  const instructions = `---\nkhai: instructions\ntitle: "Demo"\n${stamp}\n---\n\n# Instructions: Demo\n\n## Human\n\nThe director who sets the scene.\n\n## Agent\n\nThe inhabitant who holds the room.\n\n## Collaboration\n\nHow the human and the agent move together.\n\n## Knowledge\n\nHow information enters and lands.\n\n## System\n\nThe hard rules that win the fight in advance.\n`;
+  const architecture = `---\nkhai: architecture\ntitle: "Demo"\n${stamp}\n---\n\n# Architecture: Demo\n\n## Taxonomy\n\nMeta.\n\n## Owner\n\n- Project: khai\n- Engine: demospine\n\n## Ground\n\nWhat stays fixed: the canon you build on.\n\n## Root\n\nWhere this world attaches to the canon.\n\n## Open\n\nThe one seam built to be opened.\n\n## Weave\n\nThe canon and this world running as one.\n`;
+  const references = `---\nupdated: "2026-06-09"\n---\n\n# Demo: Reference\n\n## Line of Work\n\nThe spine as meta: the instructions and the architecture a world runs on.\n\n## Origin\n\nThe KAI HACKS AI architecture.\n\n## Restrictions\n\nModels the spine only; content types are delegated to their own engines.\n\n## Encoding\n\n- [instructions](instructions_demo.md) (the contract): how the room collaborates.\n- [architecture](architecture_demo.md) (the seam): where the world attaches to the canon.\n`;
+
+  // A bare compose() returns the default flavor's instructions; the kit's meta
+  // smoke calls it bare, so the fixture ships a minimal index.mjs.
+  const index = `export const compose = () => "demo instructions";\n`;
+
+  beforeEach(() => {
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(join(dir, "package.json"), JSON.stringify(manifest));
+    writeFileSync(join(dir, "instructions_demo.md"), instructions);
+    writeFileSync(join(dir, "architecture_demo.md"), architecture);
+    writeFileSync(join(dir, "REFERENCES.md"), references);
+    writeFileSync(join(dir, "index.mjs"), index);
+  });
+  afterEach(() => rmSync(dir, { recursive: true, force: true }));
+
+  it("validates a well-formed meta engine with zero findings (compose included)", async () => {
+    expect(flatten(await validateEnginePackage(dir, { executeCompose: true }))).toEqual([]);
+    expect(flattenWarnings(await validateEnginePackage(dir, { executeCompose: true }))).toEqual([]);
+  });
+
+  it("does not demand a WIRES card or a generated README of a meta engine", async () => {
+    const errors = flatten(await validateEnginePackage(dir));
+    expect(errors.some((e) => e.includes("WIRES card"))).toBe(false);
+    expect(errors.some((e) => e.includes("README"))).toBe(false);
+  });
+
+  it("still requires the card on a content engine (the gate is meta-only)", async () => {
+    // The same cardless manifest WITHOUT `class: meta` is a content engine, so
+    // the card ceremony bites -- proving the branch keys on the class, nothing else.
+    writeFileSync(
+      join(dir, "package.json"),
+      JSON.stringify({
+        name: "@chbrain/khai-engine-demospine",
+        khai: { engine: "demospine", members: manifest.khai.members },
+      }),
+    );
+    expect(flatten(await validateEnginePackage(dir)).some((e) => e.includes("WIRES card"))).toBe(
+      true,
+    );
+  });
+
+  it("still validates meta member content (teeth on the instances)", async () => {
+    // Drop a required chapter from the instructions instance: the kit drops the
+    // card/README ceremony for a meta engine, never the member contract.
+    writeFileSync(
+      join(dir, "instructions_demo.md"),
+      instructions.replace(/\n## System\n[\s\S]*$/, "\n"),
+    );
+    expect(flatten(await validateEnginePackage(dir)).length).toBeGreaterThan(0);
+  });
+});
+
 // --- play contract: ENACTS chapter structure validated ---------------------
 describe("play contract: ENACTS chapter structure validated", () => {
   const front = `---
@@ -699,9 +777,12 @@ status: active
     expect(validateContentFile(validPlan, { type: "plan" })).toEqual([]);
   });
 
-  it("rejects a plan with pending targets", () => {
-    const pendingPlan = `${validPlan}- [ ] Target 4\n`;
-    const errors = validateContentFile(pendingPlan, { type: "plan" });
+  // Completion is the `closed` state: only a closed plan must resolve every
+  // target. A draft/active plan is in progress, so its pending targets are not a
+  // finding (the status-gated suite below covers that, once the gate lands).
+  it("rejects a closed plan with pending targets", () => {
+    const closedPending = `${validPlan.replace("status: active", "status: closed")}- [ ] Target 4\n`;
+    const errors = validateContentFile(closedPending, { type: "plan" });
     expect(errors.some((e) => e.includes("plan has 1 pending target"))).toBe(true);
   });
 
@@ -752,6 +833,82 @@ stamp:
     );
     const errors = validateContentFile(brokenOrder, { type: "order" });
     expect(errors.some((e) => e.includes("order (DO IT):"))).toBe(true);
+  });
+});
+
+// Plan completion is gated by status: only a `closed` plan must resolve every
+// target. A draft/active plan (e.g. an in-world plan staged inside a play) holds
+// its targets as forward intent, so a pending [ ] is not a finding. Order has no
+// lifecycle, so its completion stays mandatory. Dormant until the gate lands on
+// main -- probe src/validate.mjs for it, per the cli.test.mjs convention.
+const STATUS_GATE_DORMANT = !readFileSync(
+  join(dirname(fileURLToPath(import.meta.url)), "..", "src", "validate.mjs"),
+  "utf8",
+).includes('status === "closed"');
+
+describe.skipIf(STATUS_GATE_DORMANT)("plan completion is gated by status", () => {
+  const planWith = (status, targets) =>
+    `---\nkhai: plan\ntitle: "Stage Dantons Tod"\nlicense: CC-BY-NC-SA-4.0\nstamp:\n  owner: Choregos\n  version: v1.0.0\n  date: "2026-06-06"\nstatus: ${status}\n---\n\n# Plan: Stage Dantons Tod\n\n## Taxonomy\nstaging\n\n## Owner\n- Project: buechner\n\n## Direction\nvision\n\n## Orders\ncommands\n\n## Implementation\nguidelines\n\n## Targets\n${targets}\n`;
+
+  it("lets an active plan hold pending targets as forward intent", () => {
+    const errs = validateContentFile(planWith("active", "- [x] Done\n- [ ] Pending"), {
+      type: "plan",
+    });
+    expect(errs.some((e) => e.includes("pending target"))).toBe(false);
+  });
+
+  it("still rejects a closed plan that leaves targets pending", () => {
+    const errs = validateContentFile(planWith("closed", "- [x] Done\n- [ ] Pending"), {
+      type: "plan",
+    });
+    expect(errs.some((e) => e.includes("plan has 1 pending target"))).toBe(true);
+  });
+});
+
+// A closed plan resolves each target with a verdict from the canon vocabulary,
+// sourced from khai-arch's `planVerdicts` (so this test never restates the set;
+// it derives from it). `[ ]` is pending (the status gate above); any mark outside
+// the canon set is no verdict at all, so a closed plan that carries it is a
+// finding. A draft or active plan is in progress and is not held to the
+// vocabulary. Dormant until the gate lands on main -- probe src/validate.mjs for
+// it, per the convention above.
+const VERDICT_GATE_DORMANT = !readFileSync(
+  join(dirname(fileURLToPath(import.meta.url)), "..", "src", "validate.mjs"),
+  "utf8",
+).includes("unresolved verdict");
+
+// A mark guaranteed never to be a verdict, whatever the canon set is.
+const NON_VERDICT = "z";
+
+describe.skipIf(VERDICT_GATE_DORMANT)("plan target verdict vocabulary", () => {
+  const planWith = (status, targets) =>
+    `---\nkhai: plan\ntitle: "Stage Dantons Tod"\nlicense: CC-BY-NC-SA-4.0\nstamp:\n  owner: Choregos\n  version: v1.0.0\n  date: "2026-06-06"\nstatus: ${status}\n---\n\n# Plan: Stage Dantons Tod\n\n## Taxonomy\nstaging\n\n## Owner\n- Project: buechner\n\n## Direction\nvision\n\n## Orders\ncommands\n\n## Implementation\nguidelines\n\n## Targets\n${targets}\n`;
+
+  it("accepts every canon verdict on a closed plan", () => {
+    expect(planVerdicts).not.toContain(NON_VERDICT);
+    const targets = planVerdicts.map((v, i) => `- [${v}] target ${i + 1}`).join("\n");
+    expect(validateContentFile(planWith("closed", targets), { type: "plan" })).toEqual([]);
+  });
+
+  it("rejects a mark outside the canon set, whatever the plan's status", () => {
+    // The vocabulary holds for every plan -- in a play or anywhere -- not just a
+    // closed one. A resolved (non-open) target must carry a valid verdict.
+    for (const status of ["draft", "active", "closed"]) {
+      const errs = validateContentFile(planWith(status, `- [x] a\n- [${NON_VERDICT}] b`), {
+        type: "plan",
+      });
+      expect(errs.some((e) => e.includes(`unresolved verdict "[${NON_VERDICT}]"`))).toBe(true);
+    }
+  });
+
+  it("allows an open [ ] target on a draft or active plan, but not a closed one", () => {
+    for (const status of ["draft", "active"]) {
+      expect(validateContentFile(planWith(status, "- [x] a\n- [ ] b"), { type: "plan" })).toEqual(
+        [],
+      );
+    }
+    const closed = validateContentFile(planWith("closed", "- [x] a\n- [ ] b"), { type: "plan" });
+    expect(closed.some((e) => e.includes("pending target"))).toBe(true);
   });
 });
 

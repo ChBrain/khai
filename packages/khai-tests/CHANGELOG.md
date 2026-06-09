@@ -1,5 +1,57 @@
 # @chbrain/khai-tests
 
+## 0.1.14
+
+### Patch Changes
+
+- 5c4ad95: Teach the conformance kit the `class: meta` engine (the spine). An engine that declares `class: meta` carries the flavored instructions and the architecture (the extension point) a world runs on, not a content engine wired into a house/element chapter. `validateEnginePackage` now skips the two content-only ceremonies for such an engine -- the WIRES card and the card-rendered README -- and reads its members as a flat list of meta-type instances (instructions, architecture), each validated against the canon exactly like any other instance. Content engines are unaffected.
+
+## 0.1.13
+
+### Patch Changes
+
+- 6181719: tests: cover the closed-plan verdict vocabulary. Assert a `status: closed` plan
+  accepts `[x]`/`[F]`/`[?]` and rejects `[W]`/`[-]` as unresolved verdicts, while a
+  draft or active plan is not held to it. Update the plan/order fixtures to spell
+  the canon set (`[?]` flagged in place of the retired `[W]` waived).
+- 10455e9: validate/tests: derive the closed-plan verdict gate and its test from the canon
+  `planVerdicts` rather than restating a glyph set. The validator builds the mark
+  class with each verdict escaped (so `-` is a literal, never a range) and its
+  fallback tracks the canon. The conformance suite now asserts every canon verdict
+  is accepted on a closed plan and a non-verdict mark is rejected, so it stays
+  correct across a vocabulary change.
+- 8b0bb06: validate: the plan target verdict vocabulary now holds for every plan, in a play
+  or anywhere, whatever its status, not only a `closed` one. A resolved (non-open)
+  target must carry a valid verdict; `[ ]` open is allowed until the plan is
+  `closed` (a plan is closed only when every target carries a valid marker, no open
+  `[ ]` left). Orders are held the same way (no status, so they must complete).
+- Updated dependencies [ea7ae45]
+- Updated dependencies [9c8c56a]
+  - @chbrain/khai-arch@0.1.13
+
+## 0.1.12
+
+### Patch Changes
+
+- d0cd960: validate: gate a closed plan's targets against the canon verdict vocabulary.
+  Pull `planVerdicts` from @chbrain/khai-arch (guarded fallback `[x]`/`[F]`/`[?]`)
+  and, for a `status: closed` plan, flag any target mark outside that set (`[-]`,
+  `[W]`, ...) as an unresolved verdict. `[ ]` stays pending; draft/active plans are
+  not held to it; orders keep their existing completion check.
+- Updated dependencies [0ad27c2]
+  - @chbrain/khai-arch@0.1.12
+
+## 0.1.11
+
+### Patch Changes
+
+- f0720f0: Plan completion is now gated by `status`. Only a `closed` plan must resolve every
+  target (no pending `[ ]`); a `draft` or `active` plan is in progress, so an
+  in-world plan staged inside a play holds its targets as forward intent rather
+  than being failed as incomplete. The `order` type has no status lifecycle, so
+  its completion stays mandatory. Mirrors the scope-agnostic plan coda: completion
+  is a state a plan reaches, not a precondition every plan must meet.
+
 ## 0.1.10
 
 ### Patch Changes

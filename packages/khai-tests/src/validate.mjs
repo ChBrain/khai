@@ -113,6 +113,35 @@ export function engineDocChecks(pkgDir) {
   return out;
 }
 
+// The resolved-verdict vocabulary for a plan's targets is canon, not the kit's
+// to restate: pull it from @chbrain/khai-arch (guarded with the same vocabulary
+// as a fallback so the kit keeps working against a canon that has not yet shipped
+// the export). `[ ]` is open (the live edge), exempt here; a resolved (non-open)
+// mark outside the canon set is no verdict at all, so any plan that carries it is
+// a finding -- in a play or anywhere, whatever its status. (Whether an open `[ ]`
+// is allowed is the separate, status-gated completion check; see the caller.)
+const PLAN_VERDICTS = Array.isArray(khaiArch.planVerdicts)
+  ? khaiArch.planVerdicts
+  : ["x", "f", "w", "-"];
+// Build the mark class from the canon set, escaping each mark so a verdict like
+// `-` is a literal in the class, never a range, whatever its position.
+const RESOLVED_MARK = new RegExp(
+  `^[${PLAN_VERDICTS.map((v) => v.replace(/[-\]\\^]/g, "\\$&")).join("")}]$`,
+  "i",
+);
+const VERDICT_LIST = PLAN_VERDICTS.map((v) => `[${v}]`).join(", ");
+function targetVerdictErrors(targetsBody, label) {
+  const errors = [];
+  for (const line of targetsBody) {
+    const m = /^\s*[-*+]\s+\[(.)\]/.exec(line);
+    if (!m || m[1] === " " || RESOLVED_MARK.test(m[1])) continue;
+    errors.push(
+      `${label} target has unresolved verdict "[${m[1]}]"; a resolved ${label} target is one of ${VERDICT_LIST}`,
+    );
+  }
+  return errors;
+}
+
 /**
  * Validate one content file's text against a type contract. `owner` pins the
  * Owner block to an exact expectation (engine content, owned by the project);
@@ -173,11 +202,21 @@ export function validateContentFile(
       planCard(text);
       const targetsBody = sectionBody(doc.body, "Targets");
       if (targetsBody) {
-        // Only an unchecked task-list item (`- [ ]` / `* [ ]`) is a pending
-        // target; a bare "[ ]" elsewhere in the prose or a code span is not.
-        const pendingCount = targetsBody.filter((line) => /^\s*[-*+]\s+\[ \]/.test(line)).length;
-        if (pendingCount > 0) {
-          errors.push(`plan has ${pendingCount} pending target(s) [ ]`);
+        // The verdict vocabulary holds for every plan, in a play or anywhere
+        // else, whatever its status: a resolved (non-open) target must carry a
+        // valid verdict. `[ ]` is the open/live edge and is exempt here.
+        errors.push(...targetVerdictErrors(targetsBody, "plan"));
+        // Completion is the `closed` state: a plan is closed only when every
+        // target is resolved, so no open `[ ]` may remain. A draft/active plan is
+        // mid-scheme -- an in-world plan staged in a play holds its open targets
+        // as forward intent -- so `[ ]` is allowed until it closes.
+        if (doc.data?.status === "closed") {
+          // Only an unchecked task-list item (`- [ ]` / `* [ ]`) is a pending
+          // target; a bare "[ ]" elsewhere in the prose or a code span is not.
+          const pendingCount = targetsBody.filter((line) => /^\s*[-*+]\s+\[ \]/.test(line)).length;
+          if (pendingCount > 0) {
+            errors.push(`plan has ${pendingCount} pending target(s) [ ]`);
+          }
         }
       }
     } catch (err) {
@@ -189,6 +228,9 @@ export function validateContentFile(
       orderCard(text);
       const targetsBody = sectionBody(doc.body, "Targets");
       if (targetsBody) {
+        // Same vocabulary as a plan. An order has no status lifecycle, so it must
+        // complete: the verdict gate applies and no open `[ ]` may remain.
+        errors.push(...targetVerdictErrors(targetsBody, "order"));
         // Only an unchecked task-list item (`- [ ]` / `* [ ]`) is a pending
         // target; a bare "[ ]" elsewhere in the prose or a code span is not.
         const pendingCount = targetsBody.filter((line) => /^\s*[-*+]\s+\[ \]/.test(line)).length;
@@ -253,32 +295,53 @@ export async function validateEnginePackage(pkgDir, { executeCompose = false } =
   if (unreadable) return [{ file: "package.json", errors: ["cannot read or parse package.json"] }];
   if (!manifest) return [{ file: pkgDir, errors: ["package.json has no `khai` manifest"] }];
 
+  // A `class: meta` engine is the spine -- the flavored instructions and the
+  // architecture (the extension point) a world runs on -- not a content engine
+  // wired into a house/element chapter. So it carries no WIRES card and no
+  // card-rendered README: those two ceremonies are content-engine only. Its
+  // members are meta-type instances (instructions, architecture) and validate
+  // against the canon exactly like any other instance, so everything below the
+  // two gated blocks (members, REFERENCES/LORE, orphan check, compose, docs) is
+  // identical. The discriminator is the canon's own `class` vocabulary, declared
+  // on the manifest -- computed, not judged.
+  const isMeta = manifest.class === "meta";
+
   // WIRES card: the engine must declare a valid card. khai-arch owns the shape
   // (engineCard throws on a missing slug, missing/empty chapter, or foreign
   // key); the kit surfaces that as a package error so a cardless engine fails.
-  try {
-    engineCard(manifest);
-  } catch (err) {
-    results.push({ file: "package.json", errors: [`WIRES card: ${err.message}`] });
+  // A meta engine is the spine, not wired into a chapter, so it carries none.
+  if (!isMeta) {
+    try {
+      engineCard(manifest);
+    } catch (err) {
+      results.push({ file: "package.json", errors: [`WIRES card: ${err.message}`] });
+    }
   }
 
   // README: generated, never hand-edited. The canon renders it from the manifest
   // (renderEngineReadme), so a missing or drifted README is a real error -- the
   // pointer must never disagree with the source of truth. Deterministic: the
-  // answer is in the bytes, so this gates (unlike the advisory docs lane).
-  try {
-    const pkg = JSON.parse(readFileSync(join(pkgDir, "package.json"), "utf8"));
-    const expected = renderEngineReadme(pkg);
-    const readmePath = join(pkgDir, "README.md");
-    if (!existsSync(readmePath))
-      results.push({ file: "README.md", errors: ["missing; run the canon's renderEngineReadme"] });
-    else if (readFileSync(readmePath, "utf8") !== expected)
-      results.push({
-        file: "README.md",
-        errors: ["drifted from the manifest; regenerate with the canon's renderEngineReadme"],
-      });
-  } catch (err) {
-    results.push({ file: "README.md", errors: [`cannot render from manifest: ${err.message}`] });
+  // answer is in the bytes, so this gates (unlike the advisory docs lane). The
+  // renderer keys off the WIRES card, so a meta engine (cardless) has no
+  // generated README to hold to.
+  if (!isMeta) {
+    try {
+      const pkg = JSON.parse(readFileSync(join(pkgDir, "package.json"), "utf8"));
+      const expected = renderEngineReadme(pkg);
+      const readmePath = join(pkgDir, "README.md");
+      if (!existsSync(readmePath))
+        results.push({
+          file: "README.md",
+          errors: ["missing; run the canon's renderEngineReadme"],
+        });
+      else if (readFileSync(readmePath, "utf8") !== expected)
+        results.push({
+          file: "README.md",
+          errors: ["drifted from the manifest; regenerate with the canon's renderEngineReadme"],
+        });
+    } catch (err) {
+      results.push({ file: "README.md", errors: [`cannot render from manifest: ${err.message}`] });
+    }
   }
 
   // Reference warrant: every engine ships a REFERENCES.md conforming to the LORE
@@ -306,11 +369,25 @@ export async function validateEnginePackage(pkgDir, { executeCompose = false } =
   // so the validator is shape-agnostic -- gender's depth-1 tree and a process
   // ladder (root -> channel -> width) validate through the identical code. Each
   // file is checked against its OWN member type, so a mixed-type tree is fine.
+  // A meta engine is the exception: its parts (instructions, architecture) are
+  // independent sibling instances, not a single-root composition tree, so it
+  // reads its members as a flat list rather than desugaring through the canon.
   let members = [];
-  try {
-    members = engineMembers(manifest);
-  } catch (err) {
-    results.push({ file: "package.json", errors: [`manifest members: ${err.message}`] });
+  if (isMeta) {
+    members = Array.isArray(manifest.members) ? manifest.members : [];
+    if (members.length === 0)
+      results.push({
+        file: "package.json",
+        errors: [
+          "a meta engine must declare its members (the instructions/architecture instances)",
+        ],
+      });
+  } else {
+    try {
+      members = engineMembers(manifest);
+    } catch (err) {
+      results.push({ file: "package.json", errors: [`manifest members: ${err.message}`] });
+    }
   }
   const referenced = new Set(members.map((m) => m.file));
 
@@ -340,13 +417,16 @@ export async function validateEnginePackage(pkgDir, { executeCompose = false } =
   // composable units are the tree's leaves (canon compositionOrder), general
   // across shapes. The call shape follows the manifest: an explicit-members
   // engine composes a leaf file; the anchor+expressions shorthand composes an
-  // expression name (kept so existing engines are unaffected).
+  // expression name (kept so existing engines are unaffected). A meta engine
+  // composes a flavor, defaulting when called bare, so the smoke is a bare call.
   if (executeCompose) {
     try {
       const mod = await import(pathToFileURL(join(pkgDir, "index.mjs")).href);
-      const calls = Array.isArray(manifest.members)
-        ? Object.keys(compositionOrder(manifest)).map((leaf) => ({ leaf }))
-        : Object.keys(manifest.expressions ?? {}).map((expression) => ({ expression }));
+      const calls = isMeta
+        ? [undefined]
+        : Array.isArray(manifest.members)
+          ? Object.keys(compositionOrder(manifest)).map((leaf) => ({ leaf }))
+          : Object.keys(manifest.expressions ?? {}).map((expression) => ({ expression }));
       for (const arg of calls) {
         const out = mod.compose(arg);
         if (!out || typeof out !== "string")
