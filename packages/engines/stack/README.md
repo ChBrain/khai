@@ -12,7 +12,7 @@ The collaboration instructions, one file per flavor. `raw` is the base; vendor-s
 
 ## Stack
 
-- [stack.md](stack.md): the extension point, where anything that is not khai attaches to a world. Usually empty.
+- [stack.md](stack.md): the runtime a world composes onto the five khai types. Six chapters in fixed order spell **TO MECH**: Title, Owner, Machine (the base layer it runs on), Extends (secondary worlds and borrowed non-khai surfaces), Communication (channel, languages, register), Heap (the personas, pieces, and places this world allocates).
 
 See [sources and attribution](REFERENCES.md).
 
