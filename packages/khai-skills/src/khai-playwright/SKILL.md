@@ -103,12 +103,23 @@ and its **Targets** carry a verdict on each step, where the drama sits:
 - `[W]` waived: a live step dropped or overtaken by events;
 - `[-]` struck: cut as moot or never applicable.
 
-"Resolved" is a verdict, not a success, so a plan may close with failed, waived,
-or struck targets. Keep an in-world plan `status: active`, and let the line
-between `[ ]` and the rest mark the moment the scene captures: between decision
-and execution. The mix of `[x]`/`[F]`/`[W]`/`[-]` among the resolved is how the
-scheme went, and `[F]`/`[W]`/`[-]` are where it swerves from clean success into
-drama. A plan steers the scene structurally; it never dictates the lines.
+"Resolved" is a verdict, not a success, so a plan may carry failed, waived, or
+struck targets. Keep an in-world plan `status: active`: it is a live scheme, not
+a finished record.
+
+**Set the targets to the state at the moment the curtain rises, not the ending.**
+A play opens _before_ its schemes have played out, so every step the production
+will still enact stays `[ ]`, the live edge the scenes decide: the poison not yet
+poured, the flight not yet made, the proof not yet won. Only what is already
+settled when the play begins, its backstory, carries a verdict: a step the world
+completed before the first scene is `[x]` (or `[F]`/`[W]`/`[-]` for how it went).
+So _Woyzeck_ opens with the Doctor's diet already running: that step is `[x]`,
+while the killing it drives stays `[ ]`. The line between `[ ]` and the rest is
+the curtain itself; pre-marking an outcome the play has yet to stage steals the
+scene's drama before it is played. The mix of `[x]`/`[F]`/`[W]`/`[-]` among the
+resolved is how the scheme stood at the open, and `[F]`/`[W]`/`[-]` are where its
+settled past already swerved from clean success. A plan steers the scene
+structurally; it never dictates the lines.
 
 ### Staying in lane (what the play defines, the plot may not exceed)
 
