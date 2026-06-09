@@ -22,6 +22,7 @@
       "SECURITY.md",
       "registry.json"
     ],
+    "riders": [{ "pattern": "management/orders/**", "fallback": "governance" }],
     "lanes": [
       { "pattern": "play/*", "layer": "solution", "allow": ["plays/**"] },
       {
