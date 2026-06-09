@@ -1,5 +1,30 @@
 # @chbrain/khai-stage
 
+## 0.0.9
+
+### Patch Changes
+
+- 4e08d1e: Ship a `.prettierignore` in the house blueprint. The audit workflow commits
+  machine-written `audit/*/log.md`, `ledger.json`, and `meta.json`; without an
+  ignore file, a house's `prettier --check` (the `test` gate) fails the moment the
+  audit bot writes a non-trivial finding. The blueprint now stamps a
+  `.prettierignore` (mirroring the khai monorepo) that excludes those generated
+  artifacts, and registers `.prettierignore` as a shared path in the house
+  `khai-guard.config.json` so it stays lane-neutral. Every newly raised house is
+  gated correctly from the start.
+- f40db11: Add the management-order rider lane to the blueprint. The houses route
+  `management/orders/**` as a rider (it rides the lane of the change it drives,
+  homing to `governance` when it stands alone), declared in
+  `khai-guard.config.json` and documented in `CLAUDE.md`. The blueprint lacked
+  both, so a freshly stamped house had no rider lane. Bring the blueprint in line
+  with the live houses.
+- 8047cba: Sync the blueprint `khai-guard.config.json` `shared` list with the live houses.
+  The blueprint only declared `.changeset/**`, `package.json`, `package-lock.json`,
+  and `CHANGELOG.md` as lane-neutral, so a freshly stamped house could not edit
+  `.prettierrc`, `.gitignore`, `.npmrc`, `.nvmrc`, `LICENSE`, `LICENSE-CODE`,
+  `SECURITY.md`, or `registry.json` off the governance lane. The blueprint now
+  shares the same set Buechner and Kleist already use.
+
 ## 0.0.8
 
 ### Patch Changes
