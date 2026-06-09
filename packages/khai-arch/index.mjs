@@ -169,20 +169,21 @@ export const planChapters = ["Direction", "Orders", "Implementation", "Targets"]
 
 /**
  * The resolved-verdict vocabulary for a plan's `## Targets`. A target is a task
- * item `- [<mark>] ...`. `[ ]` (open) is the live edge, not a verdict; a plan is
- * `closed` only when none is left open. Once closed, every target carries a
- * resolved verdict from exactly this set (case-insensitive). Each is terminal --
- * a judgment was reached -- which is what `closed` means:
+ * item `- [<mark>] ...`. `[ ]` (open) is the live edge, not a verdict. Every
+ * resolved (non-open) target carries a verdict from exactly this set
+ * (case-insensitive), on any plan -- in a play or anywhere, whatever its status.
+ * Each is terminal -- a judgment was reached:
  *   - `x` done -- achieved.
  *   - `f` failed -- attempted, missed.
  *   - `w` waived -- a live target relinquished: dropped or overtaken by events.
  *   - `-` struck -- cut as moot or never applicable; it dropped out before its test.
- * "Resolved" is a verdict, not a success: a closed plan may carry failed, waived,
- * or struck targets. Any other marker (e.g. `?`, which reads as "not yet judged"
- * and so contradicts `closed`) is no verdict at all. This set is the single
- * source: the conformance kit pulls it and builds the gate from it, the
- * template and the playwright skill spell it in prose, and a draft/active plan
- * (still in progress) is not held to it.
+ * "Resolved" is a verdict, not a success: a plan may close with failed, waived,
+ * or struck targets. Any other marker (e.g. `?`, which reads as "not yet judged")
+ * is no verdict at all. Completion is separate and status-gated: a plan is
+ * `closed` only when none is left open (no `[ ]` remains); a draft/active plan is
+ * mid-scheme and may keep open targets. This set is the single source: the
+ * conformance kit pulls it and builds the gate from it, and the template and the
+ * playwright skill spell it in prose.
  * @type {string[]}
  */
 export const planVerdicts = ["x", "f", "w", "-"];
