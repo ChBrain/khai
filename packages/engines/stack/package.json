@@ -1,0 +1,40 @@
+{
+  "name": "@chbrain/khai-engine-stack",
+  "version": "0.1.0",
+  "description": "khai engine content, the stack domain: the HACKS spine a world runs on — collaboration instructions (by flavor) and the stack extension point.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/stack"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "stack",
+    "tagline": "The HACKS spine a world runs on: the collaboration instructions, by flavor, alongside the stack extension point.",
+    "stack": "stack.md",
+    "flavors": {
+      "raw": "instructions_raw.md"
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.8"
+  }
+}
