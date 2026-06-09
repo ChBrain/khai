@@ -29,6 +29,12 @@ npx khai-guard branch <topic>
   `khai-guard.config.json`, `tests/**`, `CLAUDE.md`, `README.md`, `REFERENCE.md`, `REFERENCES.md`, `management/**`).
 - `changeset-release/*` is a bot-controlled general lane for version releases.
 
+A **management order** (`management/orders/**`) is a **rider**: an order directs
+work in any lane, so it rides the lane of the change it drives. Write the order
+beside that change and the guard folds both onto one branch (an order that
+restages a play lands as one `play/` PR); committed alone, an order homes to
+`governance/`. So an order and the change it commands are one PR, never two.
+
 Never `--no-verify`. Never merge; open the PR and stop.
 
 ## Versioning
