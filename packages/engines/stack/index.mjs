@@ -30,9 +30,7 @@ export const manifest = JSON.parse(read("package.json")).khai;
 /** Original files, frontmatter intact — for provenance and stamping. */
 export const raw = {
   stack: read(manifest.stack),
-  ...Object.fromEntries(
-    Object.entries(manifest.flavors).map(([name, file]) => [name, read(file)]),
-  ),
+  ...Object.fromEntries(Object.entries(manifest.flavors).map(([name, file]) => [name, read(file)])),
 };
 
 /** The world stack (the extension point), body only. */

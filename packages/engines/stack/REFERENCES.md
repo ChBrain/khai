@@ -19,10 +19,10 @@ The instructions are the entry point of the architecture's three-part spine
 (instructions, stack, the five khai types), lifted here from the per-world
 `engine/` folder into a reusable, flavored engine.
 
-| Source                         | Scope                                                                                  |
-| ------------------------------ | -------------------------------------------------------------------------------------- |
+| Source                         | Scope                                                                                     |
+| ------------------------------ | ----------------------------------------------------------------------------------------- |
 | **KAI HACKS AI ARCHITECTURE**  | The spine: `instructions.md` guards the collaboration, `stack.md` is the extension point. |
-| **Agent Implemented (stance)** | Built by agents under a human guard rail; the instructions are that rail, written down. |
+| **Agent Implemented (stance)** | Built by agents under a human guard rail; the instructions are that rail, written down.   |
 
 ## Restrictions
 
