@@ -12,7 +12,7 @@ The collaboration instructions, one file per flavor. `raw` is the base; vendor-s
 
 ## Stack
 
-- [stack.md](stack.md): the runtime a world composes onto the five khai types. Six chapters in fixed order spell **TO MECH**: Title, Owner, Machine (the base layer it runs on), Extends (secondary worlds and borrowed non-khai surfaces), Communication (channel, languages, register), Heap (the personas, pieces, and places this world allocates).
+- [stack.md](stack.md): the runtime a world composes onto the five khai types. Six chapters in fixed order spell **TO MECH**: Title, Owner, Machine (the LLM runtime, which selects the instructions flavor), Extensions (third-party customizations and their integration rules, UML `<<extend>>`), Communication (external services the world talks to), Heap (the KHAI packs loaded into scope, UML `<<include>>`: `Cultures`, `Stress`, ...).
 
 See [sources and attribution](REFERENCES.md).
 

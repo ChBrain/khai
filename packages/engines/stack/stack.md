@@ -12,33 +12,39 @@ stamp:
 
 The runtime a world composes onto the five khai types. Six chapters, fixed
 order, spelling **TO MECH**: Title and Owner give the `TO`, then Machine,
-Extends, Communication, Heap. The systemic setup (Machine, Extends,
-Communication) names what the world runs on, builds from, and speaks through;
-the Heap is the concrete pile this one world allocates.
+Extensions, Communication, Heap. The stack declares **edges**, never an
+inventory: it says what is wired to what, while the khai-type files hold the
+content.
 
 ## Title
 
-The stack's name: the world it composes.
+The world this stack composes.
 
 ## Owner
 
-Project always.
+Project.
 
 ## Machine
 
-The base layer the world runs on: the OS layer it executes against.
+The LLM runtime the world executes on, from generic to specific: `any LLM`,
+`Claude.ai`, a named model. The Machine selects the instructions flavor: `any
+LLM` runs the `raw` flavor; a named runtime runs its vendor adaptation.
 
-## Extends
+## Extensions
 
-What the world inherits and pulls in: secondary worlds, and the non-khai
-surfaces borrowed from them.
+The points the world is extended by (UML `<<extend>>`): third-party
+customizations from other builders, and the rules that integrate them. The base
+world stays oblivious to them. Populated only when foreign work is composed in,
+empty otherwise.
 
 ## Communication
 
-How meaning moves in the world: the channel, the languages, the register the
-scene speaks in.
+The external services the world talks to: APIs, MCP servers, tools. The outbound
+interface boundary.
 
 ## Heap
 
-The concrete pile instantiated for this world: the personas, pieces, and places
-gathered into the scene.
+The packs from KHAI (KAI HACKS AI) loaded into the world's scope (UML
+`<<include>>`), named at pack grain, not by file: `Cultures`, `Stress`,
+`Gender`. The scope boundary: what is loaded together, and therefore able to
+reach each other.
