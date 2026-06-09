@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-attachment",
+  "version": "0.1.0",
+  "description": "khai engine content, the attachment domain: attachment as process, how a persona seeks or gives up on closeness to a secure base under threat.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/attachment"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "attachment",
+    "tagline": "Attachment as process: how a persona seeks or gives up on closeness to a secure base under threat -- secure, anxious, avoidant, or disorganized, set by how the base has answered.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_attachment.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_secure.md",
+        "type": "process",
+        "parent": "process_attachment.md"
+      },
+      {
+        "file": "process_anxious.md",
+        "type": "process",
+        "parent": "process_attachment.md"
+      },
+      {
+        "file": "process_avoidant.md",
+        "type": "process",
+        "parent": "process_attachment.md"
+      },
+      {
+        "file": "process_disorganized.md",
+        "type": "process",
+        "parent": "process_attachment.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_attachment.md) declares attachment as a system that activates under threat: the persona reaches for a secure base, and the history of being answered shapes the reach.",
+      "issue": "Four strategies a persona may run: secure, anxious, avoidant, and disorganized. Each is a process file composed under the root, so the move toward closeness follows the record of how the base answered. The strategy holds until the figure or the history changes.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the specific attachment strategy it runs.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real attachment strategy. Whether the strategy is true to the persona's history is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its read under Projection, linking the specific strategy. Read it in the first beat; the room enacts it, never narrates it."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.10",
+    "vitest": "^4.1.8"
+  }
+}
