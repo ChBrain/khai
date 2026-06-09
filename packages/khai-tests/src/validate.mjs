@@ -113,6 +113,30 @@ export function engineDocChecks(pkgDir) {
   return out;
 }
 
+// The resolved-verdict vocabulary for a closed plan's targets is canon, not the
+// kit's to restate: pull it from @chbrain/khai-arch (guarded with the same
+// vocabulary as a fallback so the kit keeps working against a canon that has not
+// yet shipped the export). `[ ]` is open, handled by the pending gate; a mark
+// outside the canon set is no verdict at all, so a closed plan that carries it
+// is a finding. (A draft or active plan is in progress and is not held to this;
+// see the caller.)
+const PLAN_VERDICTS = Array.isArray(khaiArch.planVerdicts)
+  ? khaiArch.planVerdicts
+  : ["x", "f", "?"];
+const RESOLVED_MARK = new RegExp(`^[${PLAN_VERDICTS.join("")}]$`, "i");
+const VERDICT_LIST = PLAN_VERDICTS.map((v) => `[${v}]`).join(", ");
+function targetVerdictErrors(targetsBody, label) {
+  const errors = [];
+  for (const line of targetsBody) {
+    const m = /^\s*[-*+]\s+\[(.)\]/.exec(line);
+    if (!m || m[1] === " " || RESOLVED_MARK.test(m[1])) continue;
+    errors.push(
+      `${label} target has unresolved verdict "[${m[1]}]"; a closed ${label} uses ${VERDICT_LIST}`,
+    );
+  }
+  return errors;
+}
+
 /**
  * Validate one content file's text against a type contract. `owner` pins the
  * Owner block to an exact expectation (engine content, owned by the project);
@@ -174,11 +198,14 @@ export function validateContentFile(
       // Completion is the `closed` state. Only a closed plan must resolve every
       // target; a draft/active plan is in progress -- an in-world plan staged in
       // a play holds its targets as forward intent, not as unfinished work -- so
-      // its pending [ ] targets are not a finding. (Order has no status
-      // lifecycle, so its completion below stays mandatory.)
+      // its targets are not held to the resolved vocabulary at all. (Order has no
+      // status lifecycle, so its completion below stays mandatory.)
       if (doc.data?.status === "closed") {
         const targetsBody = sectionBody(doc.body, "Targets");
         if (targetsBody) {
+          // A closed plan resolves each target as `[x]` done or `[F]` failed;
+          // any other mark is unresolved.
+          errors.push(...targetVerdictErrors(targetsBody, "plan"));
           // Only an unchecked task-list item (`- [ ]` / `* [ ]`) is a pending
           // target; a bare "[ ]" elsewhere in the prose or a code span is not.
           const pendingCount = targetsBody.filter((line) => /^\s*[-*+]\s+\[ \]/.test(line)).length;

@@ -98,12 +98,12 @@ So the Owner is what the plan is _for_; its **Orders** name the agents who _act_
 and its **Targets** carry a verdict on each step, where the drama sits:
 
 - `[ ]` open: no verdict yet, the live edge;
-- `[x]` done; `[F]` failed (attempted, missed); `[W]` waived (dropped or overtaken).
+- `[x]` done; `[F]` failed (attempted, missed); `[?]` flagged (outcome open to question).
 
 "Resolved" is a verdict, not a success, so a plan may close with failed targets.
 Keep an in-world plan `status: active`, and let the line between `[ ]` and the
 rest mark the moment the scene captures: between decision and execution. The mix
-of `[x]`/`[F]`/`[W]` among the resolved is how the scheme went, and `[F]`/`[W]`
+of `[x]`/`[F]`/`[?]` among the resolved is how the scheme went, and `[F]`/`[?]`
 are where its failures become drama. A plan steers the scene structurally; it
 never dictates the lines.
 
