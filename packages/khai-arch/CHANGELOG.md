@@ -1,5 +1,15 @@
 # @chbrain/khai-arch
 
+## 0.1.12
+
+### Patch Changes
+
+- 0ad27c2: Make the plan-target verdict vocabulary canon. Export `planVerdicts`
+  (`[x]` done, `[F]` failed, `[?]` flagged) as the single source, and spell the
+  same set in `template_plan.md` and `architecture/plan.md` (the former `[W]`
+  waived becomes `[?]` flagged). The conformance kit pulls this export instead of
+  restating the rule.
+
 ## 0.1.11
 
 ### Patch Changes

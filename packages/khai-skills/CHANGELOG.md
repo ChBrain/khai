@@ -1,5 +1,15 @@
 # @chbrain/khai-skills
 
+## 0.0.16
+
+### Patch Changes
+
+- bd26a1a: khai-playwright: spell the plan Targets verdict vocabulary as the canon now
+  defines it, `[x]` done, `[F]` failed, `[?]` flagged (the former `[W]` waived
+  becomes `[?]` flagged).
+- Updated dependencies [0ad27c2]
+  - @chbrain/khai-arch@0.1.12
+
 ## 0.0.15
 
 ### Patch Changes
