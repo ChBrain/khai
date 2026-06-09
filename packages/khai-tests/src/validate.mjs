@@ -122,8 +122,13 @@ export function engineDocChecks(pkgDir) {
 // see the caller.)
 const PLAN_VERDICTS = Array.isArray(khaiArch.planVerdicts)
   ? khaiArch.planVerdicts
-  : ["x", "f", "?"];
-const RESOLVED_MARK = new RegExp(`^[${PLAN_VERDICTS.join("")}]$`, "i");
+  : ["x", "f", "w", "-"];
+// Build the mark class from the canon set, escaping each mark so a verdict like
+// `-` is a literal in the class, never a range, whatever its position.
+const RESOLVED_MARK = new RegExp(
+  `^[${PLAN_VERDICTS.map((v) => v.replace(/[-\]\\^]/g, "\\$&")).join("")}]$`,
+  "i",
+);
 const VERDICT_LIST = PLAN_VERDICTS.map((v) => `[${v}]`).join(", ");
 function targetVerdictErrors(targetsBody, label) {
   const errors = [];
