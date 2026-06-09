@@ -7,7 +7,13 @@
     "packageLicenses": ["SEE LICENSE IN LICENSE and LICENSE-CODE"]
   },
   "branchScope": {
-    "shared": [".changeset/**", "package.json", "package-lock.json", "CHANGELOG.md"],
+    "shared": [
+      ".changeset/**",
+      "package.json",
+      "package-lock.json",
+      "CHANGELOG.md",
+      ".prettierignore"
+    ],
     "lanes": [
       { "pattern": "play/*", "layer": "solution", "allow": ["plays/**"] },
       {
