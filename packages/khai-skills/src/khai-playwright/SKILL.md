@@ -98,14 +98,14 @@ So the Owner is what the plan is _for_; its **Orders** name the agents who _act_
 and its **Targets** carry a verdict on each step, where the drama sits:
 
 - `[ ]` open: no verdict yet, the live edge;
-- `[x]` done; `[F]` failed (attempted, missed); `[?]` flagged (outcome open to question).
+- `[x]` done; `[F]` failed (attempted, missed); `[W]` waived (a live step dropped or overtaken by events); `[-]` struck (cut as moot or never applicable).
 
-"Resolved" is a verdict, not a success, so a plan may close with failed targets.
-Keep an in-world plan `status: active`, and let the line between `[ ]` and the
-rest mark the moment the scene captures: between decision and execution. The mix
-of `[x]`/`[F]`/`[?]` among the resolved is how the scheme went, and `[F]`/`[?]`
-are where its failures become drama. A plan steers the scene structurally; it
-never dictates the lines.
+"Resolved" is a verdict, not a success, so a plan may close with failed, waived,
+or struck targets. Keep an in-world plan `status: active`, and let the line
+between `[ ]` and the rest mark the moment the scene captures: between decision
+and execution. The mix of `[x]`/`[F]`/`[W]`/`[-]` among the resolved is how the
+scheme went, and `[F]`/`[W]`/`[-]` are where it swerves from clean success into
+drama. A plan steers the scene structurally; it never dictates the lines.
 
 ### Staying in lane (what the play defines, the plot may not exceed)
 
