@@ -12,7 +12,7 @@ stamp:
 
 ## Taxonomy
 
-The group above this process: the larger process it is a step of. Name it, then ask whether that parent process already has its own file. If it does, link it; if it does not, ask whether it should. This is the run this step belongs to, not the step's own name (the H1 carries that) and not where it came from (Owner carries that).
+The group directly above: the larger process this one is a step of. Name it; link it if it has its own file. Not this one's name (the H1) or its origin (Owner).
 
 ## Owner
 

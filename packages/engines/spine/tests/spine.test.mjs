@@ -1,48 +1,47 @@
 // The spine engine ships its own structural tests alongside the shared
-// conformance kit. It is `class: meta` (the spine: flavored instructions + the
-// architecture), so the conformance suite validates it through its meta branch;
-// these tests pin the manifest contract, compose() behavior, and the file
-// hygiene the canon's TECHNICAL.md requires of every .md file.
+// conformance kit. It is `class: meta` (the spine: the collaboration
+// instructions and the architecture, the extension point), so the conformance
+// suite validates it through its meta branch; these tests pin the manifest
+// contract, compose() behavior, and the file hygiene the canon's TECHNICAL.md
+// requires of every .md file.
+//
+// The instructions file is moving from `instructions_raw.md` (a flavor) to a
+// single `instructions.md` (the basis), and the flavor machinery is retiring
+// with it. The rename-dependent assertions are guarded by RENAMED, computed
+// from the manifest, so they stay dormant until the source change lands and
+// activate automatically once it does. Source and tests are separate PRs.
 
 import { describe, it, expect } from "vitest";
 import { readFileSync, readdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
-import { manifest, compose, architecture, flavors, flavorFiles, raw } from "../index.mjs";
+import { manifest, compose, architecture, raw } from "../index.mjs";
 
 const pkgDir = join(dirname(fileURLToPath(import.meta.url)), "..");
 const mdFiles = readdirSync(pkgDir).filter((f) => f.endsWith(".md") && f !== "CHANGELOG.md");
 
-// --- manifest contract ----------------------------------------------------
+// The single instructions.md (the basis) has replaced the instructions_<flavor>
+// convention. True once the source rename lands; false on the old shape.
+const RENAMED = manifest.members.some((m) => m.file === "instructions.md");
+
+// --- manifest contract (source-agnostic) ----------------------------------
 describe("spine: manifest", () => {
-  it("declares the meta spine engine and its members", () => {
+  it("declares the meta spine engine and its architecture", () => {
     expect(manifest.engine).toBe("spine");
     expect(manifest.class).toBe("meta");
     const byType = (t) => manifest.members.filter((m) => m.type === t).map((m) => m.file);
-    expect(byType("instructions")).toContain("instructions_raw.md");
     expect(byType("architecture")).toEqual(["architecture.md"]);
-  });
-
-  it("derives the raw flavor from the instructions members", () => {
-    expect(flavorFiles.raw).toBe("instructions_raw.md");
-  });
-
-  it("every manifest-referenced file exists and is loadable", () => {
-    expect(architecture.length).toBeGreaterThan(0);
-    for (const name of Object.keys(flavorFiles)) {
-      expect(flavors[name].length).toBeGreaterThan(0);
-    }
+    expect(byType("instructions").length).toBe(1);
   });
 });
 
-// --- behavior: compose() returns the chosen flavor's instructions ---------
+// --- behavior: compose() returns the collaboration contract ---------------
+// A bare compose() returns the basis contract in both shapes (the old flavor
+// model defaults to raw; the new single-file model has nothing to choose), so
+// these hold across the transition.
 describe("spine: compose()", () => {
-  it("defaults to the raw flavor", () => {
-    expect(compose()).toBe(compose({ flavor: "raw" }));
-  });
-
-  it("composes the raw collaboration contract, all five HACKS chapters", () => {
-    const out = compose({ flavor: "raw" });
+  it("composes the collaboration contract, all five HACKS chapters", () => {
+    const out = compose();
     for (const chapter of [
       "## Human",
       "## Agent",
@@ -55,12 +54,7 @@ describe("spine: compose()", () => {
   });
 
   it("strips frontmatter from the composed output", () => {
-    expect(compose({ flavor: "raw" }).startsWith("---")).toBe(false);
-    expect(raw["instructions_raw.md"].startsWith("---")).toBe(true); // on-disk original keeps it
-  });
-
-  it("rejects an unknown flavor", () => {
-    expect(() => compose({ flavor: "not-a-flavor" })).toThrow();
+    expect(compose().startsWith("---")).toBe(false);
   });
 });
 
@@ -70,6 +64,23 @@ describe("spine: architecture", () => {
     for (const chapter of ["## Ground", "## Root", "## Open", "## Weave"]) {
       expect(architecture).toContain(chapter);
     }
+  });
+});
+
+// --- the renamed basis (dormant until the source rename lands) -------------
+describe.skipIf(!RENAMED)("spine: instructions.md (the basis)", () => {
+  it("declares the single instructions.md as the contract member", () => {
+    const instr = manifest.members.filter((m) => m.type === "instructions").map((m) => m.file);
+    expect(instr).toEqual(["instructions.md"]);
+  });
+
+  it("keeps the setup plan as the anchor", () => {
+    const plans = manifest.members.filter((m) => m.type === "plan").map((m) => m.file);
+    expect(plans).toContain("plan_setup.md");
+  });
+
+  it("keeps the on-disk original's frontmatter (stamping/provenance)", () => {
+    expect(raw["instructions.md"].startsWith("---")).toBe(true);
   });
 });
 
