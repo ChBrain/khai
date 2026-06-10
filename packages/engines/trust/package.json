@@ -1,0 +1,94 @@
+{
+  "name": "@chbrain/khai-engine-trust",
+  "version": "0.1.0",
+  "description": "khai engine content, the trust domain: trust as process, the persona's bet on another's reliability, placed by accepting vulnerability to someone whose conduct cannot be controlled, then tested and updated by what they do.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/trust"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "trust",
+    "tagline": "Trust as process: the persona's bet on another's reliability -- extended, tested, withheld, betrayed, or repaired -- placed by accepting vulnerability to someone whose conduct cannot be controlled.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_trust.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_extend.md",
+        "type": "process",
+        "parent": "process_trust.md"
+      },
+      {
+        "file": "process_test.md",
+        "type": "process",
+        "parent": "process_trust.md"
+      },
+      {
+        "file": "process_withhold.md",
+        "type": "process",
+        "parent": "process_trust.md"
+      },
+      {
+        "file": "process_betrayed.md",
+        "type": "process",
+        "parent": "process_trust.md"
+      },
+      {
+        "file": "process_repair.md",
+        "type": "process",
+        "parent": "process_trust.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_trust.md) declares trust as a bet on another: a stake sits where another could harm or protect it with no way to control them, and the persona either hands it over or holds it back, the read updated by what the other does.",
+      "issue": "Five moves a persona may run toward another: extend, test, withhold, betrayed, and repair. Each is a process file composed under the root, so the placement follows the bet. They are distinct settlings of one exposure, and the read can change as the relationship moves.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the specific trust move it runs toward the other in the scene.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real move. Whether the stance is true to the relationship is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its stance toward the other under Projection, linking the specific move. The engine models only the persona's bet; who is trusted and the live relationship belong to the scene's personas and links."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.10",
+    "vitest": "^4.1.8"
+  }
+}
