@@ -47,6 +47,9 @@ host's setup.
   contract every host starts from.
 - The seam: the [architecture](architecture.md) extension point, where a host
   attaches its specifics without moving the canon.
+- The shared [house rules](house-rules.md) merge into every deployed System;
+  each host adds its own model-specific rules on top, in its folder's
+  `adaption.md` (e.g. [perplexity](perplexity/adaption.md)).
 - Per host, a folder `<host>/` carries both faces of the setup: a `README.md`
   with the user-facing installation instructions, and the files to upload to
   that host. The folder name is the host's short slug (`claude/`,
