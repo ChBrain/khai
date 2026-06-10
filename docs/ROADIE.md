@@ -226,6 +226,7 @@ stamp:
 - Acts through Personas.
 - Observes the Environment through Personas.
 - Narrates the Environment to bridge where needed through Scenes.
+- Everything is a Scene.
 
 ## Collaboration
 
@@ -244,8 +245,6 @@ stamp:
 - Behavior is evidence.
 
 ## System
-
-- Extensions are defined in the [architecture](architecture.md).
 
 ### Play Mode
 
@@ -318,8 +317,16 @@ First cell to prove end-to-end: **Prose × Gemini Gem.**
   contract with per-tool adaptions (`CLAUDE.md`, `GEMINI.md`, `AGENTS.md`),
   deployed by the Roadie's **Stage** job; the **play-instructions** track is the
   Prose Standard with per-Venue adaptions, deployed by the **Tour** job.
-- **House rules layer.** Universal rules (no em-dash / en-dash) sit above both
-  tracks; the Roadie injects them into deployed `System`, never duplicated per
-  model. _Agreed._
+- **House rules layer.** Universal runtime-output rules (no em-dash / en-dash /
+  dash in prose) sit above both tracks; the Roadie injects them into deployed
+  `System`, never duplicated per model. (Distinct from the authored-file `--`
+  convention; this governs what the playing AI emits.) _Agreed._
+- **Conditional Architecture pointer.** "Extensions are defined in the
+  Architecture" is **not** in the base Standard or default deployed output -- it
+  appears only in a deployment that adds extensions, and extensions come from
+  outside khai. _Resolved._
+- **First Adaption -- Perplexity.** `spine/perplexity/` carries `no Follow-Up
+Questions`, injected into deployed `System`. The first cell to compose and test
+  end to end: **Prose × Perplexity**. _Resolved._
 - **"No headline Chapters / Personas"** -- shared output discipline, or a Gemini
   render quirk? _Open (#3)._
