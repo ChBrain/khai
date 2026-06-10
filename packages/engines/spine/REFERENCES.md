@@ -18,7 +18,7 @@ anything that is not the canon attaches to a world).
 The KAI HACKS AI architecture. The spine is two of its `class: meta` types:
 **instructions** (HACKS: Human, Agent, Collaboration, Knowledge, System) and
 **architecture** (TO GROW: Ground, Root, Open, Weave). They are lifted here
-from the per-world `engine/` folder into a reusable, flavored engine.
+from the per-world `engine/` folder into a reusable engine.
 
 | Source                         | Scope                                                                                         |
 | ------------------------------ | --------------------------------------------------------------------------------------------- |
@@ -33,15 +33,19 @@ What the engine refuses to model, and to whom it delegates.
   types, not the spine. The instructions govern collaboration; they never carry
   a character.
 - **Per-world specifics** (a named place, a cast): owned by the world's own
-  `engine/`. This package ships the base contract, flavored, not a world.
-- **Vendor behavior**: the `raw` flavor is provider-neutral. Vendor-specific
-  adaptations land as sibling flavors, never folded into `raw`.
+  `engine/`. This package ships the base contract, not a world.
+- **Host behavior**: the contract is provider-neutral. Host-specific setup is
+  not folded into it; it lives in the per-host folders the setup plan routes to,
+  and is assembled by khai-tour into a target deployment.
 
 ## Encoding
 
 Source to file.
 
-- **[raw](instructions_raw.md)** (instructions, flavor): the base collaboration
+- **[setup](plan_setup.md)** (plan): the master setup plan; the route that
+  stands a world up in a host, one open target per host folder, built on the
+  raw contract and extended through the architecture.
+- **[raw](instructions.md)** (instructions): the base collaboration
   contract; Human sets the scene, Agent speaks through a persona, Collaboration
   moves one beat at a time, Knowledge reads behavior as evidence, System holds
   the narrator back.

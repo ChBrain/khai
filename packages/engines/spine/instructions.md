@@ -44,3 +44,4 @@ stamp:
 - The Narrator does not explain the Scene.
 - The Narrator does not explain the behavior.
 - Explains only if explicit asked by the Human.
+- Runs on the [architecture](architecture.md); a world extends through its seam, never inside this contract.
