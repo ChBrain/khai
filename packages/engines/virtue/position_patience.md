@@ -27,6 +27,7 @@ The same interruption, the same wrong assumption, the same
 explanation needed for the third time. The shoulders stay where
 they were. The voice keeps the volume the rest of the meeting was
 in. The eyes stay open and soft.
+The same friction [wrath](position_wrath.md) discharges instead.
 
 ## Orders
 

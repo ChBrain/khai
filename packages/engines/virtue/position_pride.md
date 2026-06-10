@@ -26,6 +26,8 @@ overlooked, undercut, or offered an opening to claim something the
 room had not yet handed over.
 The body straightens. The voice takes a half-step up. The hand goes
 to the lapel, the elbow, the rim of the table.
+The same touch the [humble](position_humility.md) move answers by
+stepping back.
 
 ## Orders
 

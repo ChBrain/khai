@@ -29,6 +29,7 @@ arriving as good news for the friend, without subtracting
 anything from the persona's own ledger.
 The body lets out a breath the persona did not know was being
 held.
+The same portion [envy](position_envy.md) reads as its own absence.
 
 ## Orders
 

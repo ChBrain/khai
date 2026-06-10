@@ -28,6 +28,7 @@ and the attention stays on the conversation that is happening.
 The opening for the promotion-by-conversation is there and the
 sentence is finished as it was started. The other future is
 visible and not stepped toward.
+The same opening [lust](position_lust.md) leans past its standing for.
 
 ## Orders
 

@@ -30,6 +30,8 @@ not about the other person at all; it is the inventory of what
 this persona does not have.
 The smile in the response message is the right size and a quarter-
 second slow.
+The same arrival [gratitude](position_gratitude.md) receives as
+sufficiency.
 
 ## Orders
 

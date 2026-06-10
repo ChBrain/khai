@@ -28,6 +28,7 @@ organisation that has not been offered. A room that is not theirs
 to belong to. A future that requires someone else's life to
 empty.
 The reach is fast; the noticing-it-as-reach is slow.
+The same reach [chastity](position_chastity.md) leaves untaken.
 
 ## Orders
 

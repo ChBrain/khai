@@ -29,6 +29,7 @@ pushing in. The small kindness owed to a colleague. The
 appointment unbooked.
 The body settles deeper into the chair instead of beginning. The
 hand reaches for something easier.
+The same small thing [diligence](position_diligence.md) simply does.
 
 ## Orders
 

@@ -27,6 +27,7 @@ The opening of the hand. The forwarded contact. The credit
 redirected without being prompted. The extra ten minutes given
 to the colleague who would not have asked. The line in the budget
 moved to the team that needs it more.
+The same surplus [greed](position_greed.md) closes its hand around.
 
 ## Orders
 

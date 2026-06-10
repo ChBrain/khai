@@ -28,6 +28,7 @@ The plate finished and pushed back two inches. The decision to
 stop made before the next reach has fully formed.
 The body still wants the next one; the persona moves through the
 want without surrendering to it.
+The threshold [gluttony](position_gluttony.md) reaches past.
 
 ## Orders
 

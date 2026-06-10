@@ -29,6 +29,7 @@ enough. The third bite when the third was not the one the body
 asked for. The fourth refresh of the inbox after the third returned
 nothing new.
 The reach is automatic; the noticing arrives later, if at all.
+The threshold [temperance](position_temperance.md) stops at instead.
 
 ## Orders
 

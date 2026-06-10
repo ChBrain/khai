@@ -28,6 +28,7 @@ the same afternoon. The chair pushed in on the way out. The
 small kindness given without being asked for. The appointment
 booked before it expires from the to-do.
 No one is watching, and the move is made anyway.
+The same small thing [sloth](position_sloth.md) leaves undone.
 
 ## Orders
 

@@ -27,6 +27,7 @@ The voice stays at its ground volume. The credit gets named for
 whoever actually did the work. The "I" becomes "we" where there
 was a we. A question is asked that the persona could have pretended
 not to need.
+The same opening [pride](position_pride.md) answers by claiming it.
 
 ## Orders
 
