@@ -25,7 +25,23 @@ The Roadie composes these into a target: an adapted set of instructions plus a
 content bundle, fit to where it is going. The spine ships _inputs_; the Roadie
 _renders_.
 
-## 2. The Roadie's two jobs
+## 2. The company: four voices
+
+khai has four voices -- three creative/management by Scope, and one technical.
+
+| Voice               | Scope         | Concern                                       |
+| ------------------- | ------------- | --------------------------------------------- |
+| **Playwright**      | a Play        | creative -- writes the Play                   |
+| **Theatre Manager** | a House       | creative/management -- runs the House         |
+| **Impresario**      | the Chain     | management -- runs the Chain across Houses    |
+| **Roadie**          | cross-cutting | technical -- sets up the Stage, runs the Tour |
+
+The scope ladder **Play ⊂ House ⊂ Chain** is the creative axis (Playwright →
+Theatre Manager → Impresario). The **Roadie** is the technical axis: it executes
+setup and tour at whatever scope the others direct -- the technical things,
+which are also part of management.
+
+### The Roadie's two (technical) jobs
 
 A roadie sets the Stage up before the show, and loads it out for the Tour. Same
 crew, both ends of the lifecycle.
@@ -99,6 +115,18 @@ One **Venue** abstraction, each with a **Profile** carrying a `kind`:
 | `email`            | publication |
 | `markdown`         | publication |
 
+A second, **orthogonal** Profile dimension is `source`:
+
+- **repo** -- the Venue ingests a GitHub repo directly (point it at `khai-plays-*`).
+- **upload** -- the Venue cannot read a repo (e.g. Gemini Gem's 10-file limit), so
+  the Roadie bundles files and uploads them.
+
+`kind` decides _gets instructions or not_; `source` decides _point at the repo
+vs bundle + upload_. They combine freely (Gemini Gem = interactive + upload;
+GitHub Pages = publication + repo). This is **why** engines must be deployed into
+the play repo (§7.1): repo-source Venues can only see what is physically in the
+repo, and upload-source bundles are built from that same repo.
+
 The Profile also holds **constraints** (file/size limits), **format** (how it is
 packaged), and -- for interactive -- **render rules** and the **setup README**.
 The shared pipeline is `aggregate → fit → format`; the
@@ -120,6 +148,23 @@ So an engine is a **type library** for the Playwright and a **knowledge module**
 for the runtime. The Roadie makes both live: the Stage job lights up the types
 (authoring); the Tour job bakes the law into Knowledge (runtime). The engine is
 the hinge between produce and experience.
+
+### 7.1 Deploying the engine into the world
+
+An engine is published as a package (`@chbrain/khai-engine-*`), but a Venue reads
+a **world**, not a package. So the Roadie **materializes** the engines a Play
+uses into the `khai-plays-*` repo:
+
+- **The right folder, not `node_modules`.** The engine's content files are copied
+  into the repo's content tree where a Venue (and the Playwright) can navigate
+  them. A `node_modules` install is invisible to a repo-source Venue.
+- **A managed sync, not a one-time copy.** The deployed copy carries a version
+  stamp; when the engine's npm package updates, the deployed copy is stale and
+  the Roadie has work -- re-materialize the engine into every `khai-plays-*` repo
+  that uses it.
+
+This makes the play repo a **self-contained source of truth**: repo-source Venues
+read it directly; upload-source bundles are built from it.
 
 ## 8. The Playwright's stack
 
@@ -215,18 +260,22 @@ stamp:
 
 ## 11. The pieces
 
-| Piece             | Kind          | Role                                            |
-| ----------------- | ------------- | ----------------------------------------------- |
-| `khai-arch`       | package       | the canon: types + templates                    |
-| `spine`           | engine (meta) | the Standards, the Architecture, the Setup Plan |
-| `khai-engine-*`   | packages      | content domains; two wirings each               |
-| `khai-stage`      | package       | set up the Stage (production)                   |
-| `khai-tour`       | package       | take on Tour (Venues)                           |
-| `khai-roadie`     | skill         | the crew that drives Stage + Tour               |
-| `khai-playwright` | skill         | produces Plays on the deployed stack            |
+| Piece                  | Kind          | Role                                                  |
+| ---------------------- | ------------- | ----------------------------------------------------- |
+| `khai-arch`            | package       | the canon: types + templates                          |
+| `spine`                | engine (meta) | the Standards, the Architecture, the Setup Plan       |
+| `khai-engine-*`        | packages      | content domains; two wirings each                     |
+| `khai-stage`           | package       | set up the Stage (production)                         |
+| `khai-tour`            | package       | take on Tour (Venues)                                 |
+| `khai-playwright`      | skill         | the Play voice: produces Plays on the deployed stack  |
+| `khai-theatre-manager` | skill         | the House voice: runs a House (creative/management)   |
+| `khai-impresario`      | skill         | the Chain voice: runs the Chain across Houses         |
+| `khai-roadie`          | skill         | the technical voice: sets up the Stage, runs the Tour |
+| `khai-engineer`        | skill         | builds engines (the domains)                          |
 
 Pattern: **packages compute deterministically; skills make the smart calls** --
-the same split as Playwright/Engineer over the canon.
+the same split as Playwright/Engineer over the canon. The four voices (§2) are
+skills; the Roadie is the technical one.
 
 ## 12. Build order
 
@@ -253,3 +302,14 @@ First cell to prove end-to-end: **Prose × Gemini Gem.**
 - **What the Roadie consumes from spine** (`compose()` / exports surface). _TBD._
 - **Conformance**: do `###` Mode subsections pass the HACKS card, or do Modes
   become bold labels? _Verify at build._
+- **Validator -- links outside a play.** The conformance validator currently
+  forbids links that point outside a play; **engine content needs them allowed**
+  (cross-references to other packages, the Architecture, or `khai-plays-*`).
+  _Kit change in `khai-tests`._
+- **The four voices as skills.** `khai-theatre-manager` and `khai-impresario` are
+  new skills to define alongside `khai-playwright` / `khai-roadie`. _TBD._
+- **Deploy/sync mechanism.** How the Roadie version-stamps a deployed engine and
+  re-materializes it into `khai-plays-*` when the npm package updates. _TBD._
+- **`gemini.md` → shared concept.** `gemini.md` works well in the houses and the
+  website; abstract its shared concept up into the Standard so `claude.md` (and
+  every model adaption) inherits it, leaving only model-specifics per file. _Next._
