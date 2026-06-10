@@ -3,10 +3,37 @@
  * Each profile describes how a play/artifact should be formatted for its audience
  */
 
+// A Venue has a `kind`:
+//   - `interactive`: an LLM deployment (a custom assistant configured with the
+//     composed instructions + knowledge). Its instructions are composed by
+//     `composeVenue(slug)`; `source` says how it takes its files — `repo`
+//     (synced from a connected repository) or `upload` (uploaded by hand).
+//   - `publication`: a rendered artifact (PDF, HTML, ...). Its `constraints`,
+//     `defaultFormat` and `packaging` drive the renderer.
+// Interactive venue slugs carry the kind of host (`perplexity_space`,
+// `claude_project`); the slug is also the key of the adaption fragment in
+// @chbrain/khai-engine-spine.
 export const venues = {
+  // --- Interactive venues (LLM deployments) ---
+  claude_project: {
+    name: "Claude Project",
+    description: "Anthropic Claude Project (instructions + connected knowledge)",
+    kind: "interactive",
+    source: "repo",
+  },
+
+  perplexity_space: {
+    name: "Perplexity Space",
+    description: "Perplexity Space (instructions + uploaded knowledge)",
+    kind: "interactive",
+    source: "upload",
+  },
+
+  // --- Publication venues (rendered artifacts) ---
   gemini_gem: {
     name: "Gemini Gem",
     description: "Google Gemini context window artifact (10-file limit)",
+    kind: "publication",
     constraints: {
       maxFiles: 10,
       maxTotalSize: null, // Context-dependent, not enforced here
@@ -20,6 +47,7 @@ export const venues = {
   github_pages: {
     name: "GitHub Pages",
     description: "Hosted static site with unlimited files",
+    kind: "publication",
     constraints: {
       maxFiles: null,
       maxTotalSize: null,
@@ -33,6 +61,7 @@ export const venues = {
   markdown: {
     name: "Portable Markdown",
     description: "Single markdown file for local/portable use",
+    kind: "publication",
     constraints: {
       maxFiles: 1,
       maxTotalSize: null,
@@ -46,6 +75,7 @@ export const venues = {
   print: {
     name: "Print-Ready",
     description: "Single PDF optimized for printing",
+    kind: "publication",
     constraints: {
       maxFiles: 1,
       maxTotalSize: null,
@@ -59,6 +89,7 @@ export const venues = {
   email: {
     name: "Email Share",
     description: "Compressed for email transmission",
+    kind: "publication",
     constraints: {
       maxFiles: 1,
       maxTotalSize: 25 * 1024 * 1024, // 25MB typical email limit
@@ -69,6 +100,13 @@ export const venues = {
     optimization: "compact",
   },
 };
+
+/** Venue slugs of a given kind ("interactive" | "publication"). */
+export function venuesOfKind(kind) {
+  return Object.entries(venues)
+    .filter(([, v]) => v.kind === kind)
+    .map(([slug]) => slug);
+}
 
 /**
  * Format-specific renderers: what each format needs

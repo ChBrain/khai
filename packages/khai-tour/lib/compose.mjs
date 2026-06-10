@@ -71,19 +71,31 @@ export function composeInstructions(
   return `${out.trimEnd()}\n`;
 }
 
+/** Resolve a venue's adaption fragment from spine, keyed by the venue slug
+ * (e.g. `perplexity_space`). Transition-tolerant: while a spine folder is still
+ * named by the short host (`perplexity`) rather than the full slug, fall back to
+ * the de-suffixed slug. The pattern is a fixed alternation anchored at the end,
+ * so there is no backtracking. */
+function adaptionFor(venue) {
+  if (adaptions[venue]) return adaptions[venue];
+  const short = venue.replace(/_(space|project|gem)$/, "");
+  return adaptions[short] ?? "";
+}
+
 /**
- * Compose the deployed instructions for a Venue from live spine content: the
- * Prose Standard, the shared House Rules, and the Venue's adaption (keyed by its
- * spine folder, e.g. `perplexity`), with optional engines injected at Knowledge.
+ * Compose the deployed instructions for an interactive Venue from live spine
+ * content: the Prose Standard, the shared House Rules, and the Venue's adaption
+ * (keyed by venue slug, e.g. `perplexity_space`), with optional engines injected
+ * at Knowledge.
  *
- * @param {string} venue - the spine adaption folder name (e.g. "perplexity")
+ * @param {string} venue - the interactive venue slug (e.g. "perplexity_space")
  * @param {{ engines?: string[] }} [opts]
  * @returns {string} the deployed instructions, chapters only
  */
 export function composeVenue(venue, { engines = [] } = {}) {
   return composeInstructions(proseStandard, {
     houseRules: systemBullets(houseRulesFragment),
-    adaption: systemBullets(adaptions[venue]),
+    adaption: systemBullets(adaptionFor(venue)),
     engines,
   });
 }
