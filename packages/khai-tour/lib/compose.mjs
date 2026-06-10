@@ -33,9 +33,11 @@ export function composeInstructions(
   standard,
   { houseRules = [], adaption = [], engines = [] } = {},
 ) {
-  // [^\r\n] (not [^\n]): \r must be excluded from the class or it overlaps the
-  // following \r?, making `…\r\n` match two ways (CodeQL polynomial-regex).
-  let out = standard.replace(/^#[ \t]+[^\r\n]*\r?\n+/, ""); // drop the H1 title
+  // Drop the H1 title. Use a single [ \t] (not [ \t]+): a quantified [ \t]+
+  // beside [^\r\n]* both match spaces, so a run of spaces backtracks O(n)
+  // (CodeQL polynomial-regex). [^\r\n] (not [^\n]) likewise keeps \r out of the
+  // class so it cannot overlap the following \r?.
+  let out = standard.replace(/^#[ \t][^\r\n]*\r?\n+/, "");
 
   // Knowledge <- engines (each declares its law), appended under the chapter.
   if (engines.length) {
