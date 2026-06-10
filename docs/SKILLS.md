@@ -102,5 +102,8 @@ skill work then rides the `skills/*` lane.
 
 - **Built:** `khai-playwright` — the first skill, centred on the `play` house
   type (ENACTS: Estate, Name, Arc, Company, Triggers, Stakes).
+- **Built:** `khai-engineer`: wires an engine into one connected whole (the
+  weave): one anchor, every member tied down and back up, siblings tied across,
+  all in prose. Mode A wires as it builds; Mode B repairs a flat engine.
 - **Next:** the redesigned authoring/audit surface, settled skill by skill as
   each lands — not lifted wholesale.
