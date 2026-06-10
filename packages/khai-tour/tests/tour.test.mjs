@@ -60,6 +60,28 @@ describe("buildInteractiveBundle", () => {
       "not interactive",
     );
   });
+
+  it("enforces the Gemini Gem hard 10-file knowledge limit", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "khai-gem-"));
+    const collections = {};
+    for (let i = 0; i < 11; i++) {
+      writeFileSync(join(dir, `k${i}.md`), `# ${i}\n`);
+      collections[`c${i}`] = `k${i}.md`;
+    }
+    await expect(
+      buildInteractiveBundle("gemini_gem", { artifactDir: dir, collections }),
+    ).rejects.toThrow("at most 10 knowledge files");
+    rmSync(dir, { recursive: true, force: true });
+  });
+
+  it("builds a Gemini Gem bundle within the limit", async () => {
+    const bundle = await buildInteractiveBundle("gemini_gem", {
+      artifactDir,
+      collections: { guide: "guide.md" },
+    });
+    expect(bundle.kind).toBe("interactive");
+    expect(bundle.entries.filter((e) => e.role === "knowledge")).toHaveLength(1);
+  });
 });
 
 describe("tour", () => {
