@@ -56,11 +56,18 @@ An engine is wired when all four ties hold. Each tie is a markdown link
    so a reader who opens only the anchor learns the whole and can step into any
    part.
 2. **Members reach up.** **Every** member's prose links back to the anchor, so a
-   reader who lands on a leaf can climb to the whole it belongs to.
+   reader who lands on a leaf can climb to the whole it belongs to. This tie is
+   often already present as the structural reference a member carries to its
+   parent (its `## Taxonomy` link, or its `parent` in the manifest): credit it
+   where it holds, rather than adding a second up-link.
 3. **Siblings reach across.** Members that share a parent link to **each other**
    where their meanings touch: a contrast, a boundary, a handoff, an order. Each
    member ties to at least one sibling. Siblings are where an engine stops being
-   a star and becomes a web.
+   a star and becomes a web. The richest source is the **transitions** between
+   members: how one becomes another under pressure (a status collapses into the
+   next, a stage hands off, a place gives onto a place). These transitions are
+   usually already named in the prose as bare concepts ("falls toward search or
+   drift", "forecloses on it"); turn the named concept into the link.
 4. **No orphan.** No content file is left unlinked in either direction. A file
    that neither links nor is linked is off the weave: tie it in or cut it.
 
@@ -104,7 +111,8 @@ Produce a report, not a rewrite.
    thin siblings); **silent anchor** (members reach up, anchor names none of
    them); **has orphans** (one or more files off the weave); or **thin** (a
    two-file engine with no siblings to tie, which may be correct: ask whether it
-   is finished).
+   is finished). An engine can carry more than one shape at once (a silent anchor
+   that is also a star with no web is common); name every shape that applies.
 5. **Name the repair brief.** For each gap, list the exact ties to add. That list
    is what Mode C works from.
 
