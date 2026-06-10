@@ -4,7 +4,7 @@
  */
 
 import { readFileSync } from "fs";
-import { glob } from "glob";
+import { glob } from "node:fs/promises";
 import { join } from "path";
 
 /**
@@ -13,9 +13,11 @@ import { join } from "path";
  * @returns {string} Content without frontmatter
  */
 export function stripFrontmatter(content) {
-  // Match frontmatter: --- at start, then content, then --- on its own line
-  if (/^---\s*\n/.test(content)) {
-    content = content.replace(/^---\s*\n([\s\S]*?)\n---\s*\n/, "");
+  // Match frontmatter: --- at start, then content, then --- on its own line.
+  // Use [ \t]* (not \s*) before the newline: \s matches \n, so \s*\n is
+  // ambiguous and backtracks (CodeQL polynomial-regex). CRLF-tolerant.
+  if (/^---[ \t]*\r?\n/.test(content)) {
+    content = content.replace(/^---[ \t]*\r?\n[\s\S]*?\r?\n---[ \t]*\r?\n(?:[ \t]*\r?\n)*/, "");
   }
   return content;
 }
@@ -31,8 +33,11 @@ export async function findFiles(baseDir, patterns) {
   const allFiles = new Set();
 
   for (const pattern of patternArray) {
-    const files = await glob(pattern, { cwd: baseDir });
-    files.forEach((f) => allFiles.add(f));
+    // Node's built-in glob (node:fs/promises) keeps khai-tour zero-dependency.
+    // It yields paths relative to cwd, matching the join(baseDir, file) below.
+    for await (const file of glob(pattern, { cwd: baseDir })) {
+      allFiles.add(file);
+    }
   }
 
   return Array.from(allFiles).sort();

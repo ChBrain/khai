@@ -37,8 +37,5 @@
   },
   "devDependencies": {
     "vitest": "^4.1.8"
-  },
-  "dependencies": {
-    "@chbrain/khai-pack": "workspace:*"
   }
 }
