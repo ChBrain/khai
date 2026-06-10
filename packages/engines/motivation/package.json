@@ -1,0 +1,94 @@
+{
+  "name": "@chbrain/khai-engine-motivation",
+  "version": "0.1.0",
+  "description": "khai engine content, the motivation domain: motivation as process, what moves a persona to act and where the drive springs from.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/motivation"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "motivation",
+    "tagline": "Motivation as process: what moves a persona to act, and where the drive springs from -- intrinsic, identified, introjected, external, or amotivated.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_motivation.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_intrinsic.md",
+        "type": "process",
+        "parent": "process_motivation.md"
+      },
+      {
+        "file": "process_identified.md",
+        "type": "process",
+        "parent": "process_motivation.md"
+      },
+      {
+        "file": "process_introjected.md",
+        "type": "process",
+        "parent": "process_motivation.md"
+      },
+      {
+        "file": "process_external.md",
+        "type": "process",
+        "parent": "process_motivation.md"
+      },
+      {
+        "file": "process_amotivated.md",
+        "type": "process",
+        "parent": "process_motivation.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_motivation.md) declares motivation as a drive: a need or value meets an available act, and the source of the pull -- inside the act or pressed from outside -- shapes the effort.",
+      "issue": "Five styles a persona may run: intrinsic, identified, introjected, external, and amotivated. Each is a process file composed under the root, so the quality and persistence of the effort follow the source of the drive. The style holds until that source changes.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the specific motivation style it runs.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real motivation style. Whether the style is true to the act and the persona is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its read under Projection, linking the specific style. Read it in the first beat; the room enacts it, never narrates it."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.10",
+    "vitest": "^4.1.8"
+  }
+}
