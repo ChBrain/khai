@@ -40,6 +40,23 @@ import { resolveLanguage } from "@chbrain/khai-language";
 
 const typeIds = Object.keys(types);
 
+// The licence an instance must declare is computed from the canon, never
+// configured per repo: each authoring template stamps a `license:` into the
+// content generated from it, so the template *is* the ruling and one change in
+// khai-arch reaches every consumer on the next dependency bump. A type the
+// canon ships no template for (e.g. order) carries no expectation, and a canon
+// too old to export `templates` yields none — the kit keeps working, it just
+// cannot enforce what the canon does not declare.
+const canonLicenses = new Map();
+function canonLicenseFor(type) {
+  if (!canonLicenses.has(type)) {
+    const text = khaiArch.templates?.[type]?.text;
+    const declared = text ? parseDoc(text).data?.license : null;
+    canonLicenses.set(type, typeof declared === "string" ? declared : null);
+  }
+  return canonLicenses.get(type);
+}
+
 /**
  * Read and JSON-parse a file, returning `fallback` (default null) if it is
  * missing, unreadable, or malformed. Installed dependencies and consumer files
@@ -151,7 +168,7 @@ function targetVerdictErrors(targetsBody, label) {
  */
 export function validateContentFile(
   text,
-  { type, baseDir, owner, allowed, exemptLinks, resolvedLanguage },
+  { type, baseDir, owner, allowed, exemptLinks, resolvedLanguage, license },
 ) {
   const contract = types[type];
   if (!contract) return [`unknown khai type "${type}" (not in canon)`];
@@ -190,6 +207,16 @@ export function validateContentFile(
     ...h2Errors,
     ...checkExtensions(doc, { allowed: new Set(allowed ?? []) }),
   ];
+  // The licence is part of the frontmatter contract when the caller pins an
+  // expectation (validateInstanceFile pins the canon's): a missing field leaves
+  // the content unprotected, a different one re-licenses it on the quiet.
+  if (license) {
+    const declared = doc.data?.license;
+    if (typeof declared !== "string")
+      errors.push(`frontmatter license missing (canon declares "${license}")`);
+    else if (declared !== license)
+      errors.push(`frontmatter license "${declared}" != canon licence "${license}"`);
+  }
   if (type === "play") {
     try {
       playCard(text);
@@ -561,7 +588,7 @@ export function wiringRequirements(manifests) {
  */
 export function validateInstanceFile(
   text,
-  { baseDir, requirements = [], owner, levels, resolvedLanguage } = {},
+  { baseDir, requirements = [], owner, levels, resolvedLanguage, license } = {},
 ) {
   const doc = parseDoc(text);
   const type = doc.data?.khai;
@@ -577,6 +604,10 @@ export function validateInstanceFile(
     owner,
     exemptLinks,
     resolvedLanguage,
+    // "canon" resolves to whatever licence the installed canon's template for
+    // this type stamps; an explicit string pins it; absent means no check
+    // (direct callers validating structure only).
+    license: license === "canon" ? canonLicenseFor(type) : license,
   }).map((m) => ({
     level: "fail",
     message: m,
@@ -845,10 +876,16 @@ export function validatePlayhouseRegistry(root) {
  * hard each engine's contract binds). Each result buckets the file's findings
  * into errors (fail) / warnings (warn) / audit.
  *
- * @param {{ root: string, contentDir?: string, owner?: object, levels?: Record<string,string> }} opts
+ * @param {{ root: string, contentDir?: string, owner?: object, levels?: Record<string,string>, license?: string|false }} opts
  * @returns {{ file: string, errors: string[], warnings: string[], audit: string[] }[]}
  */
-export function validateProject({ root, contentDir = root, owner, levels } = {}) {
+export function validateProject({
+  root,
+  contentDir = root,
+  owner,
+  levels,
+  license = "canon",
+} = {}) {
   const requirements = wiringRequirements(installedEngineManifests(root));
   const results = [];
   const files = new Set(findInstanceFiles(contentDir));
@@ -868,6 +905,7 @@ export function validateProject({ root, contentDir = root, owner, levels } = {})
       owner,
       levels,
       resolvedLanguage,
+      license,
     });
     if (findings.length) results.push({ file, ...bucket(findings) });
   }
