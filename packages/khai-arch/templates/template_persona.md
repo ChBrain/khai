@@ -13,7 +13,7 @@ type: fictional
 
 ## Taxonomy
 
-The group above this persona: the role it fills, its seat in the cast or the org. Name it, then ask whether that role already exists as a Position with its own file. If it does, link it; if it does not, ask whether it should. This is what the persona is one of, not its own name (the H1 carries that) and not where it came from (Owner carries that).
+The group directly above: the role this persona fills, its seat in the cast or the org. Name it; link it if it is a Position with its own file. Not this one's name (the H1) or its origin (Owner).
 
 ## Owner
 
