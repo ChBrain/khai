@@ -6,6 +6,7 @@
 
 export * from "./profiles.mjs";
 export * as aggregator from "./aggregator.mjs";
+export { composeInstructions, HOUSE_RULES, VENUE_ADAPTIONS } from "./compose.mjs";
 
 /**
  * Main tour orchestrator: takes artifact, applies profile, renders output
