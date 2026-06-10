@@ -42,7 +42,13 @@
         "type": "architecture",
         "parent": "plan_setup.md"
       }
-    ]
+    ],
+    "extensions": {
+      "instructions.md": [
+        "Play Mode",
+        "Analysis Mode"
+      ]
+    }
   },
   "scripts": {
     "test": "vitest run",
