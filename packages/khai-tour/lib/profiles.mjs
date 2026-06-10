@@ -29,21 +29,20 @@ export const venues = {
     source: "upload",
   },
 
-  // --- Publication venues (rendered artifacts) ---
   gemini_gem: {
     name: "Gemini Gem",
-    description: "Google Gemini context window artifact (10-file limit)",
-    kind: "publication",
+    description: "Google Gemini Gem (instructions + up to 10 uploaded knowledge files)",
+    kind: "interactive",
+    source: "upload",
+    // A Gem accepts at most 10 knowledge files (hard limit). Consolidate the
+    // collections to fit — one file per category (all personas, all positions,
+    // ...); aggregateCollections already merges each collection into one file.
     constraints: {
       maxFiles: 10,
-      maxTotalSize: null, // Context-dependent, not enforced here
-      supportedFormats: ["pdf", "zip"],
     },
-    defaultFormat: "pdf",
-    packaging: "zip", // Bundle all into single zip
-    optimization: "compact", // Single PDF vs. multiple
   },
 
+  // --- Publication venues (rendered artifacts) ---
   github_pages: {
     name: "GitHub Pages",
     description: "Hosted static site with unlimited files",

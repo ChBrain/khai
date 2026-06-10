@@ -83,8 +83,20 @@ export async function buildInteractiveBundle(
   }
 
   const knowledge = await aggregateCollections(artifactDir, collections, stripFrontmatter);
-  for (const name of Object.keys(knowledge).sort()) {
+  const names = Object.keys(knowledge).sort();
+  for (const name of names) {
     entries.push({ path: `khai/${name}.md`, role: "knowledge", content: knowledge[name] });
+  }
+
+  // Hard knowledge-file limit (e.g. a Gemini Gem accepts at most 10). The fix is
+  // to consolidate collections — one file per category — so fail loudly rather
+  // than ship a bundle the venue will reject. Instructions do not count (they go
+  // in the host's instruction field, not as a knowledge file).
+  const maxFiles = profile.constraints?.maxFiles;
+  if (maxFiles != null && names.length > maxFiles) {
+    throw new Error(
+      `Venue "${venue}" accepts at most ${maxFiles} knowledge files but ${names.length} were produced; consolidate collections (e.g. merge into "personas", "positions") to fit`,
+    );
   }
 
   return { venue, kind: "interactive", entries, warnings };

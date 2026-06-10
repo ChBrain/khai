@@ -24,13 +24,23 @@ describe("profiles", () => {
       expect(venues.claude_project.source).toBe("repo");
     });
 
+    it("treats the Gemini Gem as interactive with a hard 10-file limit", () => {
+      expect(venues.gemini_gem.kind).toBe("interactive");
+      expect(venues.gemini_gem.source).toBe("upload");
+      expect(venues.gemini_gem.constraints.maxFiles).toBe(10);
+    });
+
     it("tags rendered venues as publication", () => {
-      expect(venues.gemini_gem.kind).toBe("publication");
+      expect(venues.github_pages.kind).toBe("publication");
       expect(venues.print.kind).toBe("publication");
     });
 
     it("venuesOfKind partitions the registry", () => {
-      expect(venuesOfKind("interactive")).toEqual(["claude_project", "perplexity_space"]);
+      expect(venuesOfKind("interactive")).toEqual([
+        "claude_project",
+        "perplexity_space",
+        "gemini_gem",
+      ]);
       expect(venuesOfKind("publication")).toContain("github_pages");
       expect(venuesOfKind("publication")).not.toContain("perplexity_space");
     });
@@ -48,12 +58,12 @@ describe("profiles", () => {
 
   describe("format validation", () => {
     it("validateVenueFormat succeeds for supported formats", () => {
-      expect(validateVenueFormat("gemini_gem", "pdf")).toBe(true);
+      expect(validateVenueFormat("print", "pdf")).toBe(true);
       expect(validateVenueFormat("github_pages", "html")).toBe(true);
     });
 
     it("validateVenueFormat throws for unsupported formats", () => {
-      expect(() => validateVenueFormat("gemini_gem", "html")).toThrow("does not support format");
+      expect(() => validateVenueFormat("print", "html")).toThrow("does not support format");
     });
   });
 });

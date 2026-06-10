@@ -48,10 +48,10 @@ describe("renderPublication", () => {
 
   it("rejects a format the venue does not support", async () => {
     await expect(
-      renderPublication("gemini_gem", {
+      renderPublication("print", {
         artifactDir,
         collections: { x: "a.md" },
-        format: "markdown",
+        format: "html",
       }),
     ).rejects.toThrow("does not support format");
   });
