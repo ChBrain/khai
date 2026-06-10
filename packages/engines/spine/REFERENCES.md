@@ -41,6 +41,9 @@ What the engine refuses to model, and to whom it delegates.
 
 Source to file.
 
+- **[setup](plan_setup.md)** (plan): the master setup plan; the route that
+  stands a world up in a host, one open target per host folder, built on the
+  raw contract and extended through the architecture.
 - **[raw](instructions_raw.md)** (instructions, flavor): the base collaboration
   contract; Human sets the scene, Agent speaks through a persona, Collaboration
   moves one beat at a time, Knowledge reads behavior as evidence, System holds

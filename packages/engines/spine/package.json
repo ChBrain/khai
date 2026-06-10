@@ -25,17 +25,22 @@
   "khai": {
     "engine": "spine",
     "class": "meta",
-    "tagline": "The spine a world runs on: the collaboration instructions, by flavor, alongside the architecture (the extension point).",
+    "tagline": "The spine a world runs on: a setup plan routing to each host, on the neutral collaboration contract and the architecture (the extension point).",
     "members": [
+      {
+        "file": "plan_setup.md",
+        "type": "plan",
+        "parent": null
+      },
       {
         "file": "instructions_raw.md",
         "type": "instructions",
-        "parent": null
+        "parent": "plan_setup.md"
       },
       {
         "file": "architecture.md",
         "type": "architecture",
-        "parent": null
+        "parent": "plan_setup.md"
       }
     ]
   },
