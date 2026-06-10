@@ -17,10 +17,18 @@ import {
   engineDocChecks,
   findEnginePackageFor,
 } from "../index.mjs";
-import { renderEngineReadme, planVerdicts } from "@chbrain/khai-arch";
+import { renderEngineReadme, planVerdicts, templates } from "@chbrain/khai-arch";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
 const pkgs = discoverEnginePackages(root);
+
+// The licence a fixture declares is the canon's, read from the type's authoring
+// template, so these tests hold whichever licence the canon rules (the value is
+// the canon's to change, not this suite's to restate).
+const canonLicense = (type) => {
+  const m = /^license:\s*(\S+)\s*$/m.exec(templates?.[type]?.text ?? "");
+  return m ? m[1] : "CC-BY-NC-4.0";
+};
 
 const flatten = (results) => results.flatMap((r) => r.errors.map((e) => `${r.file}: ${e}`));
 const flattenWarnings = (results) =>
@@ -409,7 +417,7 @@ describe("project: validateProject discovers and enforces", () => {
   const personaFile = (name, projection) => `---
 khai: persona
 title: ${name}
-license: CC-BY-NC-SA-4.0
+license: ${canonLicense("persona")}
 stamp:
   owner: Demo
   version: v0.1.0
@@ -1430,5 +1438,95 @@ describe.skipIf(CLI_GUARD_DORMANT)("conformance: CLI arg guards", () => {
     });
     expect(r.status).toBe(2);
     expect(r.stderr).toMatch(/--out needs a directory value/);
+  });
+});
+
+// The licence gate: an instance must declare the licence the canon stamps into
+// its type's template. Dormant until the source lands on main -- probe
+// src/validate.mjs for it, per the cli.test.mjs convention.
+const LICENSE_DORMANT = !readFileSync(
+  join(dirname(fileURLToPath(import.meta.url)), "..", "src", "validate.mjs"),
+  "utf8",
+).includes("canon licence");
+
+describe.skipIf(LICENSE_DORMANT)("conformance: licence is the canon's", () => {
+  const persona = (license) => `---
+khai: persona
+title: Ada
+${license ? `license: ${license}\n` : ""}stamp:
+  owner: Demo
+  version: v0.1.0
+  date: "2026-01-01"
+type: fictional
+---
+
+# Persona: Ada
+
+## Taxonomy
+Ada
+
+## Owner
+- Project: demo
+
+## Projection
+A woman.
+
+## Action
+She moves.
+
+## Shadow
+She cannot see the cost.
+
+## Tell
+A held breath.
+`;
+  const licenceFindings = (errors) =>
+    errors.filter((e) => /canon (declares|licence)/.test(String(e)));
+
+  it("flags a licence differing from the pinned expectation", () => {
+    const errors = validateContentFile(persona("MIT"), { type: "persona", license: "CC-X" });
+    expect(licenceFindings(errors)).toEqual([`frontmatter license "MIT" != canon licence "CC-X"`]);
+  });
+
+  it("flags a missing licence when an expectation is pinned, naming the canon's", () => {
+    const errors = validateContentFile(persona(null), { type: "persona", license: "CC-X" });
+    expect(licenceFindings(errors)).toEqual([
+      `frontmatter license missing (canon declares "CC-X")`,
+    ]);
+  });
+
+  it('derives the expectation from the type\'s template via license: "canon"', () => {
+    const good = validateInstanceFile(persona(canonLicense("persona")), { license: "canon" });
+    expect(licenceFindings(good.map((f) => f.message))).toEqual([]);
+    const bad = validateInstanceFile(persona("MIT"), { license: "canon" });
+    expect(licenceFindings(bad.map((f) => f.message))).toEqual([
+      `frontmatter license "MIT" != canon licence "${canonLicense("persona")}"`,
+    ]);
+  });
+
+  it("carries no expectation for a type the canon ships no template for", () => {
+    // `order` has no authoring template, so "canon" resolves to nothing: other
+    // findings may fire on this minimal text, but never a licence finding.
+    const order = `---\nkhai: order\ntitle: Probe\n---\n\n# Order: Probe\n`;
+    const findings = validateInstanceFile(order, { license: "canon" });
+    expect(licenceFindings(findings.map((f) => f.message))).toEqual([]);
+  });
+
+  it("validateProject enforces the canon by default; license: false disables", () => {
+    const dir = join(tmpdir(), `khai-lic-${process.pid}`);
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(join(dir, "ada.md"), persona("MIT"));
+    try {
+      const enforced = licenceFindings(validateProject({ root: dir }).flatMap((r) => r.errors));
+      expect(enforced).toEqual([
+        `frontmatter license "MIT" != canon licence "${canonLicense("persona")}"`,
+      ]);
+      const off = licenceFindings(
+        validateProject({ root: dir, license: false }).flatMap((r) => r.errors),
+      );
+      expect(off).toEqual([]);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
   });
 });
