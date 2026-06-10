@@ -1,0 +1,139 @@
+{
+  "name": "@chbrain/khai-engine-virtue",
+  "version": "0.1.0",
+  "description": "khai engine content, the virtue domain: virtue as the active firing under pressure -- seven sin/virtue axes, two poles each, read by the room through behaviour.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/virtue"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "virtue",
+    "tagline": "Virtue as the active firing under pressure: seven sin/virtue axes, two poles each, read by the room through behaviour -- never named.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_virtue.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "position_pride.md",
+        "type": "position",
+        "parent": "process_virtue.md"
+      },
+      {
+        "file": "position_humility.md",
+        "type": "position",
+        "parent": "process_virtue.md"
+      },
+      {
+        "file": "position_wrath.md",
+        "type": "position",
+        "parent": "process_virtue.md"
+      },
+      {
+        "file": "position_patience.md",
+        "type": "position",
+        "parent": "process_virtue.md"
+      },
+      {
+        "file": "position_greed.md",
+        "type": "position",
+        "parent": "process_virtue.md"
+      },
+      {
+        "file": "position_generosity.md",
+        "type": "position",
+        "parent": "process_virtue.md"
+      },
+      {
+        "file": "position_gluttony.md",
+        "type": "position",
+        "parent": "process_virtue.md"
+      },
+      {
+        "file": "position_temperance.md",
+        "type": "position",
+        "parent": "process_virtue.md"
+      },
+      {
+        "file": "position_envy.md",
+        "type": "position",
+        "parent": "process_virtue.md"
+      },
+      {
+        "file": "position_gratitude.md",
+        "type": "position",
+        "parent": "process_virtue.md"
+      },
+      {
+        "file": "position_lust.md",
+        "type": "position",
+        "parent": "process_virtue.md"
+      },
+      {
+        "file": "position_chastity.md",
+        "type": "position",
+        "parent": "process_virtue.md"
+      },
+      {
+        "file": "position_sloth.md",
+        "type": "position",
+        "parent": "process_virtue.md"
+      },
+      {
+        "file": "position_diligence.md",
+        "type": "position",
+        "parent": "process_virtue.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The anchor (process_virtue.md) declares virtue as a firing: pressure arrives, the persona moves toward one pole on at least one of seven axes, and the room reads the shape of the move. Virtue fires; it does not sit.",
+      "issue": "Seven axes, two poles each -- fourteen pole positions a persona may fire: pride/humility, wrath/patience, greed/generosity, gluttony/temperance, envy/gratitude, lust/chastity, sloth/diligence. The harder pole is the active practice; the easier is the default when capacity has thinned. A persona may fire on multiple axes in one scene, sometimes in opposite directions.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the firing is read for every persona under pressure. The link: each persona links, under Projection, the pole it just fired -- never named in the room, only shown.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real pole position. Whether the firing is true to the scene -- and whether the prose shows the move without naming it (the behaviour-as-evidence rule) -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the persona its firing under Projection, linking the specific pole. Read it in the move, not the label; the room enacts the firing and reads its shape, and the narrator never names which pole landed."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.10",
+    "vitest": "^4.1.8"
+  }
+}
