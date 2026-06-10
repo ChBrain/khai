@@ -1,0 +1,44 @@
+{
+  "name": "@chbrain/khai-tour",
+  "version": "0.0.1",
+  "description": "khai-tour: Stage plays and khai artifacts to their venues. Adapt khai work (plays, engines, skills, methods) to distribution profiles (gemini_gem, github_pages, print, etc.) with audience-specific constraints and formats.",
+  "type": "module",
+  "main": "./lib/index.mjs",
+  "exports": {
+    ".": "./lib/index.mjs",
+    "./profiles": "./lib/profiles.mjs",
+    "./aggregator": "./lib/aggregator.mjs",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "khai-tour": "bin/khai-tour.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/khai-tour"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "lib/",
+    "bin/",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.8"
+  },
+  "dependencies": {
+    "@chbrain/khai-pack": "workspace:*"
+  }
+}
