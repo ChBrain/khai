@@ -26,7 +26,7 @@ them and edits none of them.
 
 ## Root
 
-Where a world attaches. The anchor is the [instructions](instructions_raw.md)
+Where a world attaches. The anchor is the [instructions](instructions.md)
 Knowledge chapter, where each included engine declares its law, so the read
 holds system-wide.
 

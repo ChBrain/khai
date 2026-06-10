@@ -36,14 +36,14 @@ host's setup.
 - To whoever stands the world up (a human, or a configurator built on
   khai-tour): pick the host, open its folder, follow its `README.md`, and
   upload the files it lists.
-- The contract is fixed: take [raw](instructions_raw.md) as the basis and never
+- The contract is fixed: take [raw](instructions.md) as the basis and never
   fork it per host.
 - A host extends only through the seam the [architecture](architecture.md)
   leaves open -- never by editing the canon or the contract.
 
 ## Implementation
 
-- The basis: [raw](instructions_raw.md), the provider-neutral collaboration
+- The basis: [raw](instructions.md), the provider-neutral collaboration
   contract every host starts from.
 - The seam: the [architecture](architecture.md) extension point, where a host
   attaches its specifics without moving the canon.

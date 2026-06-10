@@ -1,7 +1,7 @@
 {
   "name": "@chbrain/khai-engine-spine",
   "version": "0.1.1",
-  "description": "khai engine, the spine domain: the meta layer a world runs on — the collaboration instructions (by flavor) and the architecture (the extension point).",
+  "description": "khai engine, the spine domain: the meta layer a world runs on, the collaboration contract and the architecture (the extension point), with a setup plan that routes a world into a host.",
   "type": "module",
   "main": "./index.mjs",
   "exports": {
@@ -33,7 +33,7 @@
         "parent": null
       },
       {
-        "file": "instructions_raw.md",
+        "file": "instructions.md",
         "type": "instructions",
         "parent": "plan_setup.md"
       },
