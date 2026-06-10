@@ -49,11 +49,12 @@ host's setup.
   attaches its specifics without moving the canon.
 - The shared [house rules](house-rules.md) merge into every deployed System;
   each host adds its own model-specific rules on top, in its folder's
-  `adaption.md` (e.g. [perplexity](perplexity/adaption.md)).
+  `adaption.md` (e.g. [perplexity_space](perplexity_space/adaption.md)).
 - Per host, a folder `<host>/` carries both faces of the setup: a `README.md`
   with the user-facing installation instructions, and the files to upload to
-  that host. The folder name is the host's short slug (`claude/`,
-  `perplexity/`, ...), so the layout is navigable straight from GitHub.
+  that host. The folder name is the host's venue slug (`claude_project`,
+  `perplexity_space`, ...), so the layout is navigable straight from GitHub and
+  matches the venue the tour composes for.
 
 ## Targets
 
