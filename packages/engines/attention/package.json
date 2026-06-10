@@ -1,0 +1,94 @@
+{
+  "name": "@chbrain/khai-engine-attention",
+  "version": "0.1.0",
+  "description": "khai engine content, the attention domain: how a persona allocates a limited spotlight across a field that offers more than can be held.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/attention"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "attention",
+    "tagline": "Attention as process: how a persona allocates a limited spotlight across a field that offers more than can be held -- selective, divided, sustained, captured, or orienting.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_attention.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_selective.md",
+        "type": "process",
+        "parent": "process_attention.md"
+      },
+      {
+        "file": "process_divided.md",
+        "type": "process",
+        "parent": "process_attention.md"
+      },
+      {
+        "file": "process_sustained.md",
+        "type": "process",
+        "parent": "process_attention.md"
+      },
+      {
+        "file": "process_captured.md",
+        "type": "process",
+        "parent": "process_attention.md"
+      },
+      {
+        "file": "process_orienting.md",
+        "type": "process",
+        "parent": "process_attention.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_attention.md) declares attention as selection under a fixed budget: the field offers more than the persona can hold, a limited spotlight falls somewhere, and what is not selected often never registers at all.",
+      "issue": "Five modes a persona may run: selective (lock onto one stream, suppress the rest), divided (split across streams, each degraded), sustained (hold a long, empty watch for a rare signal), captured (yanked off-goal by a salient intruder), and orienting (sweep the field for a target not yet found). Each is a process composed under the root, so the cost of the selection follows the mode.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the attention mode the moment runs -- and what it is therefore missing.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real attention mode. Whether the selection -- and crucially what it leaves dark -- is true to the scene is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its attention under Projection, linking the specific mode. Read it in what the persona catches and what they walk past -- the missed exit, the unheard question -- never as a label."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.10",
+    "vitest": "^4.1.8"
+  }
+}
