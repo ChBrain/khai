@@ -33,12 +33,14 @@ export function composeInstructions(
   standard,
   { houseRules = [], adaption = [], engines = [] } = {},
 ) {
-  let out = standard.replace(/^#[ \t]+[^\n]*\r?\n+/, ""); // drop the H1 title
+  // [^\r\n] (not [^\n]): \r must be excluded from the class or it overlaps the
+  // following \r?, making `…\r\n` match two ways (CodeQL polynomial-regex).
+  let out = standard.replace(/^#[ \t]+[^\r\n]*\r?\n+/, ""); // drop the H1 title
 
   // Knowledge <- engines (each declares its law), appended under the chapter.
   if (engines.length) {
     out = out.replace(
-      /(## Knowledge\r?\n\r?\n(?:- [^\n]*\r?\n)*)/,
+      /(## Knowledge\r?\n\r?\n(?:- [^\r\n]*\r?\n)*)/,
       (block) => `${block}${bullets(engines)}\n`,
     );
   }
