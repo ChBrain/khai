@@ -22,8 +22,8 @@ stamp:
 ## Has
 
 A self-story the persona explored and then chose.
-The commitments were tried against alternatives and kept on purpose, so they are owned rather than inherited.
-The persona knows not just what they are but why, and the why has already been tested.
+The commitments were tried against alternatives and kept on purpose, so they are owned rather than [inherited](position_foreclosed.md).
+The persona knows not just what they are but why, and the why has already been tested in the search the [moratorium](position_moratorium.md) self is still inside.
 
 ## Orders
 

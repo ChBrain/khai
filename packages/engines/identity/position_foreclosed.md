@@ -27,7 +27,7 @@ The commitments were taken whole -- from family, faith, authority, or group -- a
 ## Orders
 
 Hold the line and do not examine it.
-The position runs on borrowed solidity -- clear, confident, unconflicted -- for as long as nothing forces the question the persona never asked.
+The position runs on borrowed solidity -- clear, confident, unconflicted -- the look of the [achieved](position_achieved.md) self without the search that earned it, for as long as nothing forces the question the persona never asked.
 
 ## Loses
 
@@ -38,4 +38,4 @@ A question to the story has no give in it, because the story has no foundation t
 
 On a challenge to the story:
 hardens around the commitment and treats the challenger as enemy,
-or, where the challenge cannot be repelled, risks the sudden collapse of a structure that was never load-tested, and falls toward search or drift.
+or, where the challenge cannot be repelled, risks the sudden collapse of a structure that was never load-tested, and falls toward [search](position_moratorium.md) or [drift](position_diffuse.md).

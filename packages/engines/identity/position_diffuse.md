@@ -21,7 +21,7 @@ stamp:
 
 ## Has
 
-Neither an explored nor a committed self -- the question of who-they-are mostly unasked.
+Neither an explored nor a committed self -- the question of who-they-are mostly unasked, where the [achieved](position_achieved.md) self answered it and even the [foreclosed](position_foreclosed.md) self at least settled it.
 There is no firm story to hold, so the persona carries little to defend and takes much of their shape from whatever room they are in.
 
 ## Orders
@@ -38,4 +38,4 @@ Without a self-story the persona has no stable place from which to choose, resis
 
 On a challenge to the absent self:
 deflects with whatever the room wants and drifts on,
-or feels the lack sharply enough to enter the search, falling forward into moratorium.
+or feels the lack sharply enough to enter the search, falling forward into [moratorium](position_moratorium.md).

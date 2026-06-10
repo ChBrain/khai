@@ -42,4 +42,4 @@ To hold a self is to have something that can be threatened, and the holding cost
 On the loss of the blank:
 holds the story and meets a challenge to it as information or as attack, depending on how the story was built,
 or lets the story go slack and takes the shape of whatever room it is in.
-How firmly, and on what basis, the self is held is the read the statuses carry.
+How firmly, and on what basis, the self is held is the read the four statuses carry: the self [achieved](position_achieved.md) by exploring and then choosing, the self [foreclosed](position_foreclosed.md) by committing without ever exploring, the self in [moratorium](position_moratorium.md) still searching and not yet committed, and the [diffuse](position_diffuse.md) self that has neither asked the question nor settled it.

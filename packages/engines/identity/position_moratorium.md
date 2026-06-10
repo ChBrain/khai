@@ -37,5 +37,6 @@ Without a settled story the persona has no firm place to stand when the room dem
 ## Drives
 
 On a challenge to the unfinished self:
-uses the challenge as more material for the search and keeps exploring,
-or, worn down by the not-knowing, grabs the nearest available story and forecloses on it to end the discomfort.
+uses the challenge as more material for the search and keeps exploring, the road that ends in an [achieved](position_achieved.md) self the persona has tried and chosen,
+or, worn down by the not-knowing, grabs the nearest available story and [forecloses](position_foreclosed.md) on it to end the discomfort.
+It is the search itself, the work the [diffuse](position_diffuse.md) self never starts.
