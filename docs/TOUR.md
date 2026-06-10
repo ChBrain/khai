@@ -12,15 +12,20 @@ adapting the same material to that venue's shape. It does not author content
 
 A Venue declares a `kind` (see `lib/profiles.mjs`). The kind selects the pipeline:
 
-| kind          | what it produces                                                     | examples                                       |
-| ------------- | -------------------------------------------------------------------- | ---------------------------------------------- |
-| `interactive` | an LLM **deployment** (instructions + knowledge), delivered as a ZIP | `claude_project`, `perplexity_space`           |
-| `publication` | a rendered **artifact** (PDF/HTML/md)                                | `print`, `github_pages`, `email`, `gemini_gem` |
+| kind          | what it produces                                                     | examples                                           |
+| ------------- | -------------------------------------------------------------------- | -------------------------------------------------- |
+| `interactive` | an LLM **deployment** (instructions + knowledge), delivered as a ZIP | `claude_project`, `perplexity_space`, `gemini_gem` |
+| `publication` | a rendered **artifact** (PDF/HTML/md)                                | `print`, `github_pages`, `email`                   |
 
 An interactive Venue also declares a `source` — `upload` (files dropped into the
 host by hand) or `repo` (synced from a connected repository). Both produce the
 same ZIP today; `source` only changes how the human installs it (and, later, how
 a `repo` venue is pushed to a `khai-plays-*` repo).
+
+An interactive Venue may also cap its knowledge files via `constraints.maxFiles`
+— a Gemini Gem accepts at most 10. The bundle enforces this (instructions do not
+count): exceed it and the build fails, pointing at consolidating collections (one
+file per category — all personas, all positions) as the fix.
 
 `venuesOfKind(kind)` partitions the registry so `tour()` can dispatch.
 
