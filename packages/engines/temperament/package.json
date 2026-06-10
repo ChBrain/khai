@@ -1,0 +1,75 @@
+{
+  "name": "@chbrain/khai-engine-temperament",
+  "version": "0.1.0",
+  "description": "khai engine content, the temperament domain: the stable disposition a persona arrives with and returns to -- the resting baseline the room reads when nothing in particular is happening.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/temperament"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "temperament",
+    "tagline": "Temperament as position: the stable disposition a persona arrives with and returns to -- five axes, two poles each, the resting baseline the room reads when nothing in particular is happening.",
+    "type": "position",
+    "anchor": "position_temperament.md",
+    "expressions": {
+      "extraverted": "position_extraverted.md",
+      "reserved": "position_reserved.md",
+      "reactive": "position_reactive.md",
+      "steady": "position_steady.md",
+      "open": "position_open.md",
+      "grounded": "position_grounded.md",
+      "driven": "position_driven.md",
+      "easygoing": "position_easygoing.md",
+      "warm": "position_warm.md",
+      "forthright": "position_forthright.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_temperament.md) declares the resting baseline a persona arrives with and returns to -- the disposition that tilts every act without deciding any one of them, and that the room reads when nothing in particular is happening. The law makes every persona carry one.",
+      "issue": "Ten pole positions across five axes a persona may hold -- extraverted/reserved, reactive/steady, open/grounded, driven/easygoing, warm/forthright (the Big Five). Each pole is adaptive and each carries its own cost; a persona holds a read on each axis, sits there by default, and pays a standing price to act off it. Where virtue fires under pressure, temperament sits.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the baseline is read for every persona. The link: each persona carries, under Projection, its read on each axis it is given -- the pole it sits nearer.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real temperament pole. Whether the baseline is true to the persona, and held consistently beneath the situational firing, is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the persona its baseline under Projection: a pole on each axis, each carrying the anchor upward. Read it in what the persona does without trying and returns to when the pressure lifts, never as a label."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.10",
+    "vitest": "^4.1.8"
+  }
+}
