@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-adoption",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the adoption domain: how an idea travels through a social system, and where each adopter stands as it spreads.",
   "type": "module",
   "main": "./index.mjs",
@@ -105,10 +105,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.8"
+    "@chbrain/khai-arch": "^0.1.14"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.10",
+    "@chbrain/khai-tests": "^0.1.15",
     "vitest": "^4.1.8"
   }
 }
