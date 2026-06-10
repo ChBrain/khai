@@ -9,4 +9,6 @@ with a verdict; Mode C (repair) fixes a flat or weak engine by adding the missin
 ties and lifting the content, without rewriting it. The weave: one anchor that
 names the engine, every member tied down from it and back up to it, and siblings
 tied across to each other, all woven in prose. Ships a graph self-check
-(anchor-down, member-up, sibling-across, no orphan).
+(anchor-down, member-up, sibling-across, no orphan), and bundles the canon
+element templates (process, position, piece, place) pulled from khai-arch at
+build time so a no-tools model has them in hand.

@@ -24,8 +24,13 @@ establishes it, repair restores it. Learn the weave first; the modes follow.
 
 An engine is a directory under `packages/engines/<name>/` with:
 
-- **Element files**, authored from the canon templates: `process_*.md`,
-  `position_*.md`, `piece_*.md`, `place_*.md`. These carry the content.
+- **Element files**, authored from the canon templates bundled with this skill:
+  [process](references/template_process.md), [position](references/template_position.md),
+  [piece](references/template_piece.md), [place](references/template_place.md). These
+  carry the content. Each opens with a `## Taxonomy` slot: the classification slot,
+  the group directly above this element (its immediate parent), named and linked if
+  it has its own file. Keep it terse: it is not the element's own name (the H1) or
+  its origin (Owner).
 - **A manifest**, the `khai` block in `package.json`, the single source of truth
   for how the engine wires. It comes in two shapes:
   - **process** : declares `members` as a tree (`file`, `type`, `parent`). The
@@ -80,8 +85,9 @@ the bar: a flat engine has the spokes but no web, or worse, not even the spokes.
    over time, anchored by a `process`) or position (a stance a persona holds,
    anchored by a `position`). Name the anchor: the one element that holds the
    whole.
-2. **Author the anchor** from its canon template. State what the whole engine is
-   and what moves in it.
+2. **Author the anchor** from its canon template
+   ([process](references/template_process.md) or [position](references/template_position.md)).
+   State what the whole engine is and what moves in it.
 3. **Author each member** from its template, one per stance, place, or piece the
    engine needs. As you write each one, add its link **up** to the anchor and
    add the anchor's link **down** to it.
