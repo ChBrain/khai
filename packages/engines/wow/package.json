@@ -1,0 +1,139 @@
+{
+  "name": "@chbrain/khai-engine-wow",
+  "version": "0.1.0",
+  "description": "khai engine content, the way-of-working domain: how a persona brings their work life into a room, refracted through job family and formation.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/wow"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "wow",
+    "tagline": "Way of working as process: how a persona brings their work life into a room, refracted through one of ten job families and one of four formation rungs.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_wow.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "position_armed_forces.md",
+        "type": "position",
+        "parent": "process_wow.md"
+      },
+      {
+        "file": "position_managers.md",
+        "type": "position",
+        "parent": "process_wow.md"
+      },
+      {
+        "file": "position_professionals.md",
+        "type": "position",
+        "parent": "process_wow.md"
+      },
+      {
+        "file": "position_technicians.md",
+        "type": "position",
+        "parent": "process_wow.md"
+      },
+      {
+        "file": "position_clerks.md",
+        "type": "position",
+        "parent": "process_wow.md"
+      },
+      {
+        "file": "position_service_sales.md",
+        "type": "position",
+        "parent": "process_wow.md"
+      },
+      {
+        "file": "position_agricultural.md",
+        "type": "position",
+        "parent": "process_wow.md"
+      },
+      {
+        "file": "position_crafts.md",
+        "type": "position",
+        "parent": "process_wow.md"
+      },
+      {
+        "file": "position_operators.md",
+        "type": "position",
+        "parent": "process_wow.md"
+      },
+      {
+        "file": "position_elementary.md",
+        "type": "position",
+        "parent": "process_wow.md"
+      },
+      {
+        "file": "position_edu_academic.md",
+        "type": "position",
+        "parent": "process_wow.md"
+      },
+      {
+        "file": "position_edu_applied.md",
+        "type": "position",
+        "parent": "process_wow.md"
+      },
+      {
+        "file": "position_edu_basic.md",
+        "type": "position",
+        "parent": "process_wow.md"
+      },
+      {
+        "file": "position_edu_trained.md",
+        "type": "position",
+        "parent": "process_wow.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The anchor (process_wow.md) declares working as the process that bends what a persona sees, names, and reaches for first -- their work life entering the room before they have spoken of it. It fires the moment the room would otherwise read the persona as neutral.",
+      "issue": "Fourteen positions the process refracts through: ten job families (the ISCO major groups, from managers through elementary workers and the armed forces) and four formation rungs (basic, trained, applied, academic). A persona holds one job family and one formation at any moment; the wow-process passes through both before reaching the room.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the work read fires for every persona. The link: each persona links, under Projection, the job family and the formation it carries.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links real job-family and formation positions. Whether the refraction is true to the persona and the room is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the persona its work read under Projection: one job family and one formation, each carrying the anchor upward. Read it in how the persona moves through the room, not as a CV line."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.10",
+    "vitest": "^4.1.8"
+  }
+}
