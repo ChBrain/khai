@@ -50,5 +50,7 @@ and that ratio shifts as the idea crosses the system.
 The idea either reaches the far edge or stops short of it.
 What reaches the far edge becomes the new ground beneath the next idea;
 what stops short fades and leaves only the cost of the attempt.
+The idea travels from [the outside](place_the_outside.md), across [the chasm](place_chasm.md), through [the tipping point](place_the_tipping_point.md), and onto [the old ground](place_the_old_ground.md).
+The stance a persona takes is read in the position they hold: as [innovator](position_innovator.md), [early adopter](position_early_adopter.md), [early majority](position_early_majority.md), [late majority](position_late_majority.md), or [laggard](position_laggard.md).
 Either way, the room is altered. The next idea enters a system that
 remembers exactly how much this one took, and from whom.
