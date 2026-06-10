@@ -409,7 +409,7 @@ describe("project: validateProject discovers and enforces", () => {
   const personaFile = (name, projection) => `---
 khai: persona
 title: ${name}
-license: CC-BY-NC-4.0
+license: CC-BY-NC-SA-4.0
 stamp:
   owner: Demo
   version: v0.1.0
