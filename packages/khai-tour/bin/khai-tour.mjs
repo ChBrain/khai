@@ -7,17 +7,26 @@
 
 import { argv, exit } from "process";
 import * as tour from "../lib/index.mjs";
+import { runStage, venuesText } from "../lib/cli.mjs";
 
 const command = argv[2];
 
 async function main() {
   switch (command) {
+    case "stage": {
+      const result = await runStage(argv.slice(3));
+      console.log(`Staged ${result.venue} (${result.kind}) -> ${result.outputPath}`);
+      for (const entry of result.entries) {
+        console.log(`  ${entry.role.padEnd(12)} ${entry.path}`);
+      }
+      for (const warning of result.warnings) {
+        console.warn(`  ! ${warning}`);
+      }
+      break;
+    }
+
     case "venues":
-      console.log("Available venues:");
-      Object.entries(tour.venues).forEach(([name, venue]) => {
-        console.log(`  ${name}: ${venue.description}`);
-        console.log(`    Format: ${venue.defaultFormat}, Packaging: ${venue.packaging}`);
-      });
+      console.log(venuesText());
       break;
 
     case "formats":
@@ -37,12 +46,12 @@ async function main() {
 Usage: khai-tour <command> [options]
 
 Commands:
-  venues    List available venues and their constraints
+  stage     Stage a venue's deployment to an output directory
+            --venue <slug> --out <dir> [--artifact <dir>]
+            [--collection <name>=<glob> ...] [--engine <text> ...] [--format <fmt>]
+  venues    List available venues and their kind/source/constraints
   formats   List available output formats
   help      Show this help message
-
-Note: Full tour orchestration coming soon.
-For now, use the library directly: import('@chbrain/khai-tour')
       `);
       break;
 
