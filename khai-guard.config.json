@@ -82,6 +82,11 @@
         "allow": ["packages/khai-plays/**"]
       },
       {
+        "pattern": "tour/*",
+        "layer": "solution",
+        "allow": ["packages/khai-tour/**"]
+      },
+      {
         "pattern": "examples/*",
         "layer": "solution",
         "allow": ["examples/**"]
