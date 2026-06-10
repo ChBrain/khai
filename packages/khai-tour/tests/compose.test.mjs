@@ -58,7 +58,7 @@ const PERPLEXITY_DEPLOYED = `## Human
 
 describe("composeVenue (live spine content)", () => {
   it("reproduces the deployed Perplexity instructions (Prose x Perplexity)", () => {
-    expect(composeVenue("perplexity")).toBe(PERPLEXITY_DEPLOYED);
+    expect(composeVenue("perplexity_space")).toBe(PERPLEXITY_DEPLOYED);
   });
 });
 
