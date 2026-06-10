@@ -20,7 +20,9 @@
   },
   "files": [
     "index.mjs",
-    "*.md"
+    "*.md",
+    "*/adaption.md",
+    "*/README.md"
   ],
   "khai": {
     "engine": "spine",

@@ -17,7 +17,7 @@
 //
 // Zero runtime dependencies, plain Node ESM.
 
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
@@ -45,6 +45,22 @@ export const instructions = body(raw[instructionsMember.file]);
 /** The world architecture (the extension point), body only. */
 export const architecture = body(raw[architectureMember.file]);
 
+/** The shared House Rules fragment (runtime-output discipline merged into every
+ * deployed System), body only. Markdown, not a khai instance: the Roadie parses
+ * and merges it; spine only ships it. */
+export const houseRules = existsSync(join(here, "house-rules.md"))
+  ? body(read("house-rules.md"))
+  : "";
+
+/** Per-Venue adaption fragments, keyed by folder name (e.g. `perplexity`), body
+ * only. Each `<venue>/adaption.md` is the model-specific delta the Roadie merges
+ * into the Standard's System for that Venue. */
+export const adaptions = Object.fromEntries(
+  readdirSync(here, { withFileTypes: true })
+    .filter((d) => d.isDirectory() && existsSync(join(here, d.name, "adaption.md")))
+    .map((d) => [d.name, body(read(join(d.name, "adaption.md")))]),
+);
+
 /**
  * Assemble the collaboration contract, ready to drop into an LLM context. There
  * is a single, provider-neutral contract; host-specific setup is layered by
@@ -56,4 +72,4 @@ export function compose() {
   return `${instructions}\n`;
 }
 
-export default { manifest, instructions, architecture, raw, compose };
+export default { manifest, instructions, architecture, houseRules, adaptions, raw, compose };
