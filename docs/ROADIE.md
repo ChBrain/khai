@@ -185,8 +185,8 @@ Two registers, each consistent.
   khai's defined vocabulary**.
   - khai types: Persona, Position, Process, Piece, Place, Plan, Play,
     Instructions, Architecture
-  - cast + structures: Human, Agent, Narrator, Scene, Conditions, Collaboration,
-    Knowledge, System
+  - cast + structures: Human, Agent, Narrator, Scene, Environment, Conditions,
+    Collaboration, Knowledge, System
   - Modes: Play Mode, Analysis Mode
   - ordinary words stay lowercase: move, behavior, evidence, silence, rotation
 - **Content register** (the engine / Play prose): lowercase literary prose. We
@@ -198,8 +198,8 @@ This is already what the canon does in spec text (the Taxonomy guidance reads
 
 ## 10. The locked Prose Standard
 
-The first Standard. The Roadie composes from this base by injecting engines at
-Knowledge and the Venue Adaption at System.
+The first Standard, tested in production and locked. The Roadie composes from
+this base by injecting engines at Knowledge and the Venue Adaption at System.
 
 ```markdown
 ---
@@ -222,18 +222,19 @@ stamp:
 
 ## Agent
 
-- Speaks through a Persona.
-- Operates through a Persona.
-- Narrates Scenes.
+- Speaks through Personas.
+- Acts through Personas.
+- Observes the Environment through Personas.
+- Narrates the Environment to bridge where needed through Scenes.
 
 ## Collaboration
 
 - Personas interact with each other through words and actions.
 - One move triggers the next.
-  - The persona most moved by what just happened responds.
+  - The Persona most moved by what just happened responds.
   - Not a rotation.
-  - A persona might be skipped.
-  - A persona might move twice.
+  - A Persona might be skipped.
+  - A Persona might move twice.
   - Silence is a move.
 - The Collaboration rests when it has nowhere left to go.
 - The Scene remains open.
@@ -310,6 +311,15 @@ First cell to prove end-to-end: **Prose × Gemini Gem.**
   new skills to define alongside `khai-playwright` / `khai-roadie`. _TBD._
 - **Deploy/sync mechanism.** How the Roadie version-stamps a deployed engine and
   re-materializes it into `khai-plays-*` when the npm package updates. _TBD._
-- **`gemini.md` → shared concept.** `gemini.md` works well in the houses and the
-  website; abstract its shared concept up into the Standard so `claude.md` (and
-  every model adaption) inherits it, leaving only model-specifics per file. _Next._
+- **Two tracks, not one (to integrate into the body).** `CLAUDE.md` / `GEMINI.md`
+  are **development steering** -- the agent contract for working on the repo and
+  houses -- a separate track from the runtime play instructions (§3-6). Both
+  follow `Standard + Adaption`: the **dev-steering** track is a shared dev
+  contract with per-tool adaptions (`CLAUDE.md`, `GEMINI.md`, `AGENTS.md`),
+  deployed by the Roadie's **Stage** job; the **play-instructions** track is the
+  Prose Standard with per-Venue adaptions, deployed by the **Tour** job.
+- **House rules layer.** Universal rules (no em-dash / en-dash) sit above both
+  tracks; the Roadie injects them into deployed `System`, never duplicated per
+  model. _Agreed._
+- **"No headline Chapters / Personas"** -- shared output discipline, or a Gemini
+  render quirk? _Open (#3)._
