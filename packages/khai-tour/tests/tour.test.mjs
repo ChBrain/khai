@@ -86,7 +86,21 @@ describe("tour", () => {
     await expect(tour({ venue: "nope", outputDir })).rejects.toThrow("Unknown venue");
   });
 
-  it("does not implement the publication path yet", async () => {
+  it("renders a markdown publication venue to a file", async () => {
+    const result = await tour({
+      venue: "markdown",
+      outputDir,
+      artifactDir,
+      collections: { body: "guide.md" },
+    });
+    expect(result.kind).toBe("publication");
+    expect(result.format).toBe("markdown");
+    expect(result.outputPath).toBe(join(outputDir, "markdown.md"));
+    expect(existsSync(result.outputPath)).toBe(true);
+    expect(readFileSync(result.outputPath, "utf8")).toContain("# Guide");
+  });
+
+  it("does not implement the pdf renderer yet", async () => {
     await expect(tour({ venue: "print", outputDir })).rejects.toThrow("not implemented yet");
   });
 });

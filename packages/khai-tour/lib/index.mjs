@@ -9,12 +9,14 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { getVenue } from "./profiles.mjs";
 import { buildInteractiveBundle } from "./bundle.mjs";
+import { renderPublication } from "./publication.mjs";
 import { zip } from "./zip.mjs";
 
 export * from "./profiles.mjs";
 export * as aggregator from "./aggregator.mjs";
 export { composeInstructions, composeVenue } from "./compose.mjs";
 export { buildInteractiveBundle } from "./bundle.mjs";
+export { renderPublication } from "./publication.mjs";
 export { zip } from "./zip.mjs";
 
 /**
@@ -67,9 +69,31 @@ export async function tour({
     };
   }
 
-  // Publication path: aggregate -> render -> package. Lands in a later PR
-  // (see docs/TOUR.md, sequencing). Until then, fail loudly rather than silently.
-  throw new Error(
-    `tour: the publication path for "${venue}" (kind: ${profile.kind}) is not implemented yet; see docs/TOUR.md`,
-  );
+  // Publication path: aggregate -> render -> (package). Native markdown now; the
+  // pdf/html renderers land in a later PR (renderPublication throws for them).
+  const pub = await renderPublication(venue, {
+    artifactDir,
+    collections,
+    format,
+    stripFrontmatter,
+  });
+  mkdirSync(outputDir, { recursive: true });
+
+  let outputPath;
+  if (pub.packaging === "zip") {
+    outputPath = join(outputDir, `${venue}.zip`);
+    writeFileSync(outputPath, zip(pub.entries.map((e) => ({ name: e.path, data: e.content }))));
+  } else {
+    for (const entry of pub.entries) writeFileSync(join(outputDir, entry.path), entry.content);
+    outputPath = pub.entries.length === 1 ? join(outputDir, pub.entries[0].path) : outputDir;
+  }
+
+  return {
+    venue,
+    kind: pub.kind,
+    format: pub.format,
+    outputPath,
+    entries: pub.entries.map(({ path, role }) => ({ path, role })),
+    warnings: pub.warnings,
+  };
 }
