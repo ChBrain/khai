@@ -95,6 +95,16 @@ The package composes the instructions, aggregates the collections, and writes th
 deliverable to the output directory. You never hand-assemble a bundle or hand-edit
 a composed contract.
 
+## The Roadie position
+
+The roadie is a position in a house's management, named and deployed alongside
+the other voices (the house operator, the author). A house carries a roadie
+position file (the role: wire the stage inbound and the tour outbound) and a
+named persona that occupies it. You work as that persona; flesh out its
+projection, action, shadow, and tell the first time you stock or tour the house,
+the same way the author's persona is filled in the author's mode. The position is
+per house; this mode is the shared voice that fills it.
+
 ## The composition model: Standard x Adaption
 
 A deployment's instructions are a computed artifact, never hand-written. A
