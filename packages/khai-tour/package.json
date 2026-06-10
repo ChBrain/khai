@@ -35,6 +35,9 @@
     "test": "vitest run",
     "test:watch": "vitest"
   },
+  "dependencies": {
+    "@chbrain/khai-engine-spine": "*"
+  },
   "devDependencies": {
     "vitest": "^4.1.8"
   }

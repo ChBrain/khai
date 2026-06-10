@@ -5,22 +5,37 @@
  * injected at Knowledge and the shared house rules + the Venue adaption injected
  * at System. The H1 title is dropped (the deployed contract is chapters only).
  *
- * Fixture stage: HOUSE_RULES and VENUE_ADAPTIONS live here so the compose logic
- * can be proven against the known-good Perplexity output. The real fix relocates
- * the adaptions into spine (spine/<venue>/) and reads the Standard from the spine
- * package; this function's signature (pure: standard in, instructions out) does
- * not change.
+ * The Standard, the House Rules and the Venue adaptions are read live from
+ * @chbrain/khai-engine-spine (spine owns the content). `composeInstructions`
+ * stays pure (standard in, instructions out) so it can be proven against the
+ * known-good Perplexity output; `composeVenue` is the thin layer that feeds it
+ * the live spine content for a named Venue.
  */
 
-/** Shared, runtime-output house rules, injected into every deployed System. */
-export const HOUSE_RULES = ["no em-dash / no en-dash / no dash in prose text."];
-
-/** Per-Venue adaptions (interim fixtures; relocating to spine/<venue>/). */
-export const VENUE_ADAPTIONS = {
-  perplexity_space: ["no Follow-Up Questions"],
-};
+import {
+  instructions as proseStandard,
+  houseRules as houseRulesFragment,
+  adaptions,
+} from "@chbrain/khai-engine-spine";
 
 const bullets = (items) => items.map((i) => `- ${i}`).join("\n");
+
+/** Extract the bullets under a fragment's `## System` heading. The house-rules
+ * and adaption fragments are authored as chapter-targeted markdown; compose
+ * needs them as a plain list of System rules. Line-based, so no regex
+ * backtracking: the per-line patterns are anchored and non-nested. */
+function systemBullets(fragment) {
+  const lines = (fragment ?? "").split(/\r?\n/);
+  const start = lines.findIndex((l) => l.trim() === "## System");
+  if (start === -1) return [];
+  const out = [];
+  for (const line of lines.slice(start + 1)) {
+    if (/^## /.test(line)) break; // the next chapter ends the System section
+    const m = /^- (.+)$/.exec(line);
+    if (m) out.push(m[1].trim());
+  }
+  return out;
+}
 
 /**
  * Compose the deployed instructions for a Venue.
@@ -54,4 +69,21 @@ export function composeInstructions(
   }
 
   return `${out.trimEnd()}\n`;
+}
+
+/**
+ * Compose the deployed instructions for a Venue from live spine content: the
+ * Prose Standard, the shared House Rules, and the Venue's adaption (keyed by its
+ * spine folder, e.g. `perplexity`), with optional engines injected at Knowledge.
+ *
+ * @param {string} venue - the spine adaption folder name (e.g. "perplexity")
+ * @param {{ engines?: string[] }} [opts]
+ * @returns {string} the deployed instructions, chapters only
+ */
+export function composeVenue(venue, { engines = [] } = {}) {
+  return composeInstructions(proseStandard, {
+    houseRules: systemBullets(houseRulesFragment),
+    adaption: systemBullets(adaptions[venue]),
+    engines,
+  });
 }
