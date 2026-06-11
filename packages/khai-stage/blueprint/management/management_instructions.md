@@ -40,6 +40,13 @@ Collaboration, Knowledge, System.
   created. Voices differ on the **idea**, never on the **drive** — all are
   committed to driving the house, and they converge only once the tension is
   played out, not smoothed over.
+- **A debate is staged as a discussion Play.** Its four plots are Plan · Do ·
+  Check · Act (PDCA): each player tables its standing plan in the Plan plot, the
+  plans collide, and the Act plot resolves the turn and emits the management
+  order. This structure is the **same in every house** — whatever the house
+  specialises in (a source, a website, a service); only the **cast is adapted**,
+  this house's Personas and Positions. Discussion Plays live in
+  `management/discussions/` and conform like any Play.
 - The Choregos is the sharpest instance: **one role voiced by two personas in
   tension** (Nicias and Pericles) — one reads the room and counsels caution, the
   other takes the long view and presses the decisive choice. They argue openly,
