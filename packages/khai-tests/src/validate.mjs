@@ -4,7 +4,7 @@
 // workspace) - same code, two callers.
 
 import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
-import { join, dirname } from "node:path";
+import { join, dirname, basename } from "node:path";
 import { pathToFileURL } from "node:url";
 import {
   types,
@@ -879,6 +879,46 @@ export function validatePlayhouseRegistry(root) {
  * @param {{ root: string, contentDir?: string, owner?: object, levels?: Record<string,string>, license?: string|false }} opts
  * @returns {{ file: string, errors: string[], warnings: string[], audit: string[] }[]}
  */
+/**
+ * A needed position without a persona is a failure. In any directory that casts a
+ * management company, every `position_*.md` must have at least one `persona_*.md`
+ * whose Taxonomy links to it. (A persona pointing at a missing position is a
+ * broken link, caught by checkLinks; this catches the reverse: an orphan
+ * position.) Grouped per directory, so a chain cast and a house cast are each
+ * checked against their own personas.
+ *
+ * @param {Iterable<string>} files  instance file paths
+ * @returns {{ file: string, errors: string[] }[]}
+ */
+export function castErrors(files) {
+  const byDir = new Map();
+  for (const f of files) {
+    const base = basename(f);
+    const isPosition = /^position_.+\.md$/.test(base);
+    const isPersona = /^persona_.+\.md$/.test(base);
+    if (!isPosition && !isPersona) continue;
+    const dir = dirname(f);
+    if (!byDir.has(dir)) byDir.set(dir, { positions: [], linked: new Set() });
+    const group = byDir.get(dir);
+    if (isPosition) group.positions.push({ file: f, base });
+    else
+      for (const m of readFileSync(f, "utf8").matchAll(/position_[a-z0-9_]+\.md/g))
+        group.linked.add(m[0]);
+  }
+  const results = [];
+  for (const { positions, linked } of byDir.values())
+    for (const pos of positions)
+      if (!linked.has(pos.base))
+        results.push({
+          file: pos.file,
+          errors: [
+            `position has no persona: nothing links to ${pos.base} ` +
+              `(a needed position without a persona is a failure)`,
+          ],
+        });
+  return results;
+}
+
 export function validateProject({
   root,
   contentDir = root,
@@ -909,6 +949,9 @@ export function validateProject({
     });
     if (findings.length) results.push({ file, ...bucket(findings) });
   }
+
+  // A needed position without a persona is a failure (computed, not judged).
+  results.push(...castErrors(files));
 
   const playsDir = join(root, "plays");
   if (existsSync(playsDir) && statSync(playsDir).isDirectory()) {
