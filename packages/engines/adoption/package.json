@@ -1,0 +1,114 @@
+{
+  "name": "@chbrain/khai-engine-adoption",
+  "version": "0.1.1",
+  "description": "khai engine content, the adoption domain: how an idea travels through a social system, and where each adopter stands as it spreads.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/adoption"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "adoption",
+    "tagline": "Adoption as process: how an idea travels through a social system -- innovator, early adopter, early majority, late majority, laggard -- across the outside, the chasm, the tipping point, and the old ground.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_adopt_idea.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "position_innovator.md",
+        "type": "position",
+        "parent": "process_adopt_idea.md"
+      },
+      {
+        "file": "position_early_adopter.md",
+        "type": "position",
+        "parent": "process_adopt_idea.md"
+      },
+      {
+        "file": "position_early_majority.md",
+        "type": "position",
+        "parent": "process_adopt_idea.md"
+      },
+      {
+        "file": "position_late_majority.md",
+        "type": "position",
+        "parent": "process_adopt_idea.md"
+      },
+      {
+        "file": "position_laggard.md",
+        "type": "position",
+        "parent": "process_adopt_idea.md"
+      },
+      {
+        "file": "place_the_outside.md",
+        "type": "place",
+        "parent": "process_adopt_idea.md"
+      },
+      {
+        "file": "place_chasm.md",
+        "type": "place",
+        "parent": "process_adopt_idea.md"
+      },
+      {
+        "file": "place_the_tipping_point.md",
+        "type": "place",
+        "parent": "process_adopt_idea.md"
+      },
+      {
+        "file": "place_the_old_ground.md",
+        "type": "place",
+        "parent": "process_adopt_idea.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The anchor (process_adopt_idea.md) declares how a new idea travels through a social system over time, and where each persona stands relative to the spread. The position is held; the journey is the process the room reads.",
+      "issue": "Five adopter positions a persona may hold -- innovator, early adopter, early majority, late majority, laggard -- and four places the idea passes through as it spreads: the outside, the chasm, the tipping point, the old ground. A persona's adopter position is relative to the idea in question; the same persona is an innovator with one idea and a laggard with another.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the spread of an idea is read where it matters. The link: a persona links the adopter position it holds for the idea in play; the scene links the place the idea has reached.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and a real adopter position or place is linked. Whether the position is true to the persona and the idea is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the persona its adopter position relative to the idea, and set the place the idea has reached. Read it in how the persona meets the new thing -- reaching for it, waiting for proof, or refusing it -- never as a label."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.14"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.15",
+    "vitest": "^4.1.8"
+  }
+}

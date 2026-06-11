@@ -1,5 +1,35 @@
 # @chbrain/khai-tests
 
+## 0.1.16
+
+### Patch Changes
+
+- ace7e20: Add the orphan-position gate: a needed position without a persona is a failure.
+  `castErrors` groups position*\*.md and persona*\*.md per directory and flags any
+  position no persona links to (via its Taxonomy); wired into validateProject so
+  `khai-tests --project` enforces it. Makes the rule computed, not judged. The
+  reverse (a persona pointing at a missing position) stays covered by the link
+  check.
+
+## 0.1.15
+
+### Patch Changes
+
+- 4605ef4: The kit learns the canon's licence. `validateProject` now checks every content
+  instance's `license:` frontmatter against the licence the installed canon
+  stamps into its authoring template for that type — computed from
+  `@chbrain/khai-arch`'s `templates` export, never configured per repo, so a
+  licence ruling made once in the canon reaches every house on the next
+  dependency bump. A type the canon ships no template for (e.g. `order`) carries
+  no expectation, and a canon too old to export templates disables the check
+  rather than failing. `validateInstanceFile` and `validateContentFile` accept an
+  optional `license` expectation (`"canon"` to derive it, an explicit string to
+  pin it, `false` to skip); direct calls without it validate structure only, as
+  before.
+- Updated dependencies [65dd38d]
+- Updated dependencies [db6e497]
+  - @chbrain/khai-arch@0.1.14
+
 ## 0.1.14
 
 ### Patch Changes

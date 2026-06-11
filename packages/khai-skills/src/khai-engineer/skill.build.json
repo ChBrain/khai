@@ -1,0 +1,9 @@
+{
+  "type": "engine",
+  "inject": [
+    { "to": "references/template_process.md", "from": "template:process" },
+    { "to": "references/template_position.md", "from": "template:position" },
+    { "to": "references/template_piece.md", "from": "template:piece" },
+    { "to": "references/template_place.md", "from": "template:place" }
+  ]
+}
