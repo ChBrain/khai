@@ -27,8 +27,11 @@ stay open: a decision is owed.
 ## Action
 
 The [Choregos](../../position_choregos.md) names the verdict, adopt, adjust, or
-re-open, and the chosen plan's orders ride out as the management order beside
-[the change](./piece_the_change.md) they command.
+re-open, and with it the result. If the chosen plan can be worked in-flight, it
+goes now as a PR on [the change](./piece_the_change.md); if steps are missing, it
+is parked as a management order, a plan whose target is the houses on
+[the registry](./place_registry.md) and whose final step is the change landing.
+Either way the order rides beside the change it commands.
 
 ## Stage
 
