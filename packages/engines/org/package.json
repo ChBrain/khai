@@ -1,0 +1,109 @@
+{
+  "name": "@chbrain/khai-engine-org",
+  "version": "0.1.0",
+  "description": "khai engine content, the organisational-culture domain: how an organisation operates -- its competing-values stance and the processes it runs.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/org"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "org",
+    "tagline": "Organisational culture as process: how an organisation operates -- its competing-values stance (clan, adhocracy, market, hierarchy) and the four processes it runs (collaborate, create, compete, control).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_operate_org.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_collaborate_org.md",
+        "type": "process",
+        "parent": "process_operate_org.md"
+      },
+      {
+        "file": "process_create_org.md",
+        "type": "process",
+        "parent": "process_operate_org.md"
+      },
+      {
+        "file": "process_compete_org.md",
+        "type": "process",
+        "parent": "process_operate_org.md"
+      },
+      {
+        "file": "process_control_org.md",
+        "type": "process",
+        "parent": "process_operate_org.md"
+      },
+      {
+        "file": "position_clan_org.md",
+        "type": "position",
+        "parent": "process_operate_org.md"
+      },
+      {
+        "file": "position_adhocracy_org.md",
+        "type": "position",
+        "parent": "process_operate_org.md"
+      },
+      {
+        "file": "position_market_org.md",
+        "type": "position",
+        "parent": "process_operate_org.md"
+      },
+      {
+        "file": "position_hierarchy_org.md",
+        "type": "position",
+        "parent": "process_operate_org.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The anchor (process_operate_org.md) declares how an organisation operates: a stance on two axes (flexibility vs stability, internal vs external focus) that sets which of four processes it reaches for. The stance colours every persona who acts inside the organisation.",
+      "issue": "Four stance positions a context may hold -- clan, adhocracy, market, hierarchy (the Competing Values quadrants) -- each paired with the process it runs: collaborate, create, compete, control. A real organisation mixes them; the dominant quadrant sets the default and the others fire as the scene demands.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the organisation's stance is read where personas act inside it. The link: the organisational context links its dominant stance, and a persona acting within it links the process the moment runs.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and a real stance or process is linked. Whether the stance is true to the organisation and the scene is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the organisational context its stance and let a persona link the process the moment runs. Read it in how the room coordinates, not as an org-chart label."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.10",
+    "vitest": "^4.1.8"
+  }
+}
