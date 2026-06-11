@@ -5,7 +5,14 @@
 
 import { readFileSync } from "fs";
 import { glob } from "node:fs/promises";
-import { join } from "path";
+import { basename, join } from "path";
+
+// The Playwright wiring guide is dev-steering, not runtime content: it explains
+// an engine's model so a Playwright wires it, and never goes on tour. It is
+// excluded here, at the single chokepoint every tour path funnels through, so no
+// collection glob can leak it into a deployed bundle regardless of how the
+// caller widened the pattern.
+const NEVER_ON_TOUR = new Set(["playwright_instructions.md"]);
 
 /**
  * Strip YAML frontmatter from markdown content
@@ -36,6 +43,7 @@ export async function findFiles(baseDir, patterns) {
     // Node's built-in glob (node:fs/promises) keeps khai-tour zero-dependency.
     // It yields paths relative to cwd, matching the join(baseDir, file) below.
     for await (const file of glob(pattern, { cwd: baseDir })) {
+      if (NEVER_ON_TOUR.has(basename(file))) continue;
       allFiles.add(file);
     }
   }
