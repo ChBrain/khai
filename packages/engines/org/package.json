@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-org",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the organisational-culture domain: how an organisation operates -- its competing-values stance and the processes it runs.",
   "type": "module",
   "main": "./index.mjs",
@@ -103,7 +103,7 @@
     "@chbrain/khai-arch": "^0.1.8"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.10",
+    "@chbrain/khai-tests": "^0.1.17",
     "vitest": "^4.1.8"
   }
 }

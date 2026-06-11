@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-attachment",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "khai engine content, the attachment domain: attachment as process, how a persona seeks or gives up on closeness to a secure base under threat.",
   "type": "module",
   "main": "./index.mjs",
@@ -83,7 +83,7 @@
     "@chbrain/khai-arch": "^0.1.14"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.15",
+    "@chbrain/khai-tests": "^0.1.17",
     "vitest": "^4.1.8"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-language",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "khai engine content, the language domain: language as process, the gap a persona crosses channel by channel, width by width.",
   "type": "module",
   "main": "./index.mjs",
@@ -178,7 +178,7 @@
     "@chbrain/khai-arch": "^0.1.8"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.10",
+    "@chbrain/khai-tests": "^0.1.17",
     "vitest": "^4.1.8"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-heritage",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the heritage domain: the formation a persona arrives carrying -- the habitus absorbed before any choice, and the capital transmitted to it.",
   "type": "module",
   "main": "./index.mjs",
@@ -118,7 +118,7 @@
     "@chbrain/khai-arch": "^0.1.8"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.10",
+    "@chbrain/khai-tests": "^0.1.17",
     "vitest": "^4.1.8"
   }
 }

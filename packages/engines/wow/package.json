@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-wow",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the way-of-working domain: how a persona brings their work life into a room, refracted through job family and formation.",
   "type": "module",
   "main": "./index.mjs",
@@ -133,7 +133,7 @@
     "@chbrain/khai-arch": "^0.1.8"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.10",
+    "@chbrain/khai-tests": "^0.1.17",
     "vitest": "^4.1.8"
   }
 }
