@@ -1,5 +1,20 @@
 # @chbrain/khai-engine-spine
 
+## 0.1.3
+
+### Patch Changes
+
+- d3dba2d: Ship the Venue adaptions and shared House Rules as spine content, exposed for the
+  Roadie. Add `house-rules.md` (the shared runtime-output discipline merged into
+  every deployed System) and `perplexity/adaption.md` (the Perplexity-specific
+  delta), and export `houseRules` + `adaptions` from `index.mjs`. They are markdown
+  fragments, not khai instances: spine ships them, the Roadie (khai-tour) parses
+  and merges. Woven into the setup plan.
+- 8a18122: Rename the venue adaption folder to the full venue slug: `perplexity/` →
+  `perplexity_space/`. The `adaptions` export is now keyed by the same slug the tour
+  composes for (`perplexity_space`), so there is one venue key end to end and no
+  folder-to-slug mapping. Setup plan reference updated.
+
 ## 0.1.2
 
 ### Patch Changes
