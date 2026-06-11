@@ -1,0 +1,99 @@
+{
+  "name": "@chbrain/khai-engine-group",
+  "version": "0.1.0",
+  "description": "khai engine content, the group domain: how two or more people develop a shared pattern over time in a repeated context.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/group"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "group",
+    "tagline": "Group development as process: how two or more people develop a shared pattern over time -- forming, storming, norming, performing, adjourning -- in a context that repeats.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_evolve_group.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_form_group.md",
+        "type": "process",
+        "parent": "process_evolve_group.md"
+      },
+      {
+        "file": "process_storm_group.md",
+        "type": "process",
+        "parent": "process_evolve_group.md"
+      },
+      {
+        "file": "process_norm_group.md",
+        "type": "process",
+        "parent": "process_evolve_group.md"
+      },
+      {
+        "file": "process_perform_group.md",
+        "type": "process",
+        "parent": "process_evolve_group.md"
+      },
+      {
+        "file": "process_adjourn_group.md",
+        "type": "process",
+        "parent": "process_evolve_group.md"
+      },
+      {
+        "file": "position_group.md",
+        "type": "position",
+        "parent": "process_evolve_group.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The anchor (process_evolve_group.md) declares the full arc a group runs as it develops over a repeated context, and the position (position_group.md) names what a group is -- a standing field configuration. A group has a current stage, not a permanent one.",
+      "issue": "Five stage processes a group may be running right now -- forming, storming, norming, performing, adjourning -- plus the position that names the group itself. The same group is in storming this morning and norming this afternoon, and may regress to forming before the week ends; the room reads the stage from the texture of the exchange.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the group's stage is read wherever personas meet in a repeated context. The link: a group instance links the engine's group position for its universal shape, and the scene reads the stage the moment is in.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and a real stage or the group position is linked. Whether the stage is true to what is happening between the personas is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Name the group as a position; read the current stage from scene context, not a label. The stage shows in the texture of the exchange -- polite reconnaissance, surfaced friction, settled rule, executing pattern, or dissolving mass."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.10",
+    "vitest": "^4.1.8"
+  }
+}
