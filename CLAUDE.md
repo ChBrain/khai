@@ -4,6 +4,13 @@ _Read this before you touch anything. These are imperatives, not background.
 The depth lives in [docs/BRANCHING.md](docs/BRANCHING.md); this file is the
 short, executable contract every agent (Claude, Copilot, any model) follows._
 
+> **Voice first.** Operate under the khai **voice layer**,
+> [management_instructions.md](management_instructions.md): who speaks, through
+> which Persona, and how the company collaborates. _Then_ this file is the
+> **coding contract** (branching, lanes, changesets, the gates). Voice and
+> mechanics live there; coding rules live here. The two are separate layers,
+> and the order matters: management voice first, coding second.
+
 ## The one rule that removes the guesswork
 
 **Do not choose a branch by hand.** Make your edits in the working tree first,
