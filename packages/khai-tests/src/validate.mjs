@@ -453,11 +453,17 @@ export async function validateEnginePackage(pkgDir, { executeCompose = false } =
       results.push({ file, errors: [`content file not referenced in manifest: ${file}`] });
   }
 
-  // The Playwright wiring guide: validate it as an instructions instance when
-  // present (HACKS, each chapter non-empty). Whether it is *required* is gated
-  // separately, flipped on once every engine carries it.
+  // The Playwright wiring guide is required: every engine ships one, including
+  // the meta engine (spine carries a short guide that points at the Roadie), so
+  // there is no carve-out -- a missing guide is a finding. When present it is
+  // validated as an instructions instance (HACKS, each chapter non-empty).
   const piPath = join(pkgDir, PLAYWRIGHT_INSTRUCTIONS);
-  if (existsSync(piPath)) {
+  if (!existsSync(piPath)) {
+    results.push({
+      file: PLAYWRIGHT_INSTRUCTIONS,
+      errors: ["missing; every engine ships a Playwright wiring guide"],
+    });
+  } else {
     const errors = validateContentFile(readFileSync(piPath, "utf8"), {
       type: "instructions",
       baseDir: pkgDir,
