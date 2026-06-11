@@ -2,7 +2,7 @@
 
 > Status: design spec (draft for review). Captures the model for treating a
 > management discussion as a khai Play, so the existing conformance standard
-> validates it. Nothing here is built yet; the test fixture is in §7.
+> validates it. Nothing here is built yet; the test fixture is in §8.
 >
 > Capitalization follows the house rule (docs/ROADIE.md §9): the spec register
 > capitalizes khai's defined vocabulary; ordinary words stay lowercase.
@@ -119,7 +119,25 @@ registry), or down (a package that delivers the current house) — always inside
 the chain. An order whose target does not resolve is not yet placed, the same way
 a play whose cast reaches past its Company has gone off the play.
 
-## 6. The cycle vs the chain
+## 6. Surfacing what's in flight
+
+Because pickup is deliberate, management's standing job is to keep the in-flight
+work **visible**, so the Human can set priority and sequence. Management surfaces
+four kinds of in-flight work:
+
+1. **Issues** — requested but not yet planned: intent.
+2. **Plans** — parked orders (Plan files under `management/orders/`): deferred
+   work whose steps are not all in place.
+3. **PRs** — work in flight, awaiting review and merge.
+4. **Branches** — work in progress that has not opened a PR yet.
+
+Surfacing is not deciding. Management lays the four out and **advises on priority
+and sequence** (what unblocks what, what is behind, what is ready); the Human
+decides and holds the authority to merge and deploy. Deciding the sequence is
+itself a discussion-as-Play, whose Piece is this in-flight inventory and whose
+result is an ordered plan.
+
+## 7. The cycle vs the chain
 
 A Play's Triggers chain plots **linearly**: one plot's close is the next one's
 cue. PDCA's Act→Plan loop is therefore **across Plays, not inside one**. One Play
@@ -128,7 +146,7 @@ the last** through its Estate. This keeps every discussion a finite, resolvable
 artifact: a Play completes when its Stakes are moved and its chosen Plan has no
 open `[ ]` Targets.
 
-## 7. The complete cast — the test fixture
+## 8. The complete cast — the test fixture
 
 The **elements** (class `element`) are five: Persona, Position, **Piece, Place,
 Process**. (Plan is `class: meta`, not an element — it is the standing objective
@@ -153,7 +171,7 @@ So the fixture casts one Piece, two Places, one Process, plus the Personas and
 Positions. The Company lists them, the plots cast them, and the standard checks
 that nothing reaches past the Company.
 
-## 8. Why the standard already works
+## 9. Why the standard already works
 
 Nothing above adds a type or a chapter. A discussion Play is an ordinary Play:
 ENACTS chapters, plots chained by Triggers, a Company every plot draws from, an
@@ -168,7 +186,7 @@ Estate it logs into. So:
 That is the whole point of the move: **management deliberation becomes
 first-class khai content** — produced, chained, and conformed like any Play.
 
-## 9. Decisions and open questions
+## 10. Decisions and open questions
 
 - **Where discussion Plays live.** _Resolved._ A discussion Play lives in
   `management/discussions/` at the scope where the deliberation happens: the
@@ -183,8 +201,10 @@ first-class khai content** — produced, chained, and conformed like any Play.
   needs no plan file; if steps are missing, a Plan is created whose final step is
   the tour. So a discussion does not "tour by default" and is not
   "publication-only"; a tour is its own decided act.
-- **Order pickup.** §5 fixes the result (a PR worked now, or a parked order with
-  a target); what stays open is whether a parked order is picked up automatically
-  or by an authored hand-off. _TBD._
+- **Order pickup.** _Resolved._ Never automatic: a parked order is taken up by a
+  deliberate hand-off at its target scope, once its missing steps are met (the
+  step landing is the cue, not a trigger). Management does not auto-pick-up; it
+  surfaces the in-flight work (§6) and advises priority and sequence, and the
+  Human decides.
 - **Modes.** Is a discussion ever played interactively (Play Mode), or only
   recorded (Analysis Mode)? _TBD._
