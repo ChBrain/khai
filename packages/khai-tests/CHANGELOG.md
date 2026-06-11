@@ -1,5 +1,22 @@
 # @chbrain/khai-tests
 
+## 0.1.17
+
+### Patch Changes
+
+- 4f64f65: Recognize `playwright_instructions.md` as a special engine file. Every engine may
+  ship a Playwright wiring guide (a `khai: instructions` HACKS file explaining the
+  engine's model). The kit exempts it from the manifest-member and loose-file
+  checks, and validates it as an instructions instance when present. It is
+  dev-steering, not engine content. (Making it _required_ is gated separately, once
+  every engine carries it.)
+- 993fc49: Require the Playwright wiring guide on every engine. `validateEnginePackage` now
+  reports a finding when `playwright_instructions.md` is missing, the meta engine
+  included - the spine carries a short guide that points at the Roadie, so there is
+  no carve-out. The recognition (validate-when-present, exempt from manifest-member
+  and loose-file checks) was added earlier; this flips it from optional to
+  required, now that every engine carries one.
+
 ## 0.1.16
 
 ### Patch Changes

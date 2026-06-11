@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-body",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the body domain: body as process, how a persona's physical state makes its demands felt and pulls on attention and action until they are met.",
   "type": "module",
   "main": "./index.mjs",
@@ -88,7 +88,7 @@
     "@chbrain/khai-arch": "^0.1.8"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.10",
+    "@chbrain/khai-tests": "^0.1.17",
     "vitest": "^4.1.8"
   }
 }
