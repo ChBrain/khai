@@ -29,8 +29,10 @@ crew, both ends of the lifecycle; only the direction and destination differ.
 ## Job 1: Set up the Stage (inbound)
 
 Prepare the production repo so the author can write against the full stack: the
-canon (the type framework), the spine contract, and the engines (the optional
-content domains) a world uses.
+canon (the type framework), the spine contract, the **management structure** (the
+house's voice and company), and the engines (the optional content domains) a world
+uses. The impresario judges the source and lists the house; you do the technical
+setup and keep it current.
 
 ### What you judge
 
@@ -38,10 +40,18 @@ content domains) a world uses.
   faces: a type library for the author, and a knowledge module for the runtime.
   Decide which a given world needs.
 
-### What is computed
+### Set up the management structure (the work)
 
-- Raising a new production repo is the impresario's call, stamped by `khai-stage`.
-  As the roadie you do not raise houses; you stock the one that exists.
+A house runs on its **management structure**: the voice contract
+(`management/management_instructions.md`, the HACKS rules every model follows in
+the house) and the company that occupies it (the positions and their named
+personas). You set this up with `khai-stage`:
+
+- **Stamp the structure** so the house has a voice and a company before any play
+  is written.
+- **Refresh on change, not once.** When the blueprint's contract or a position
+  changes, the house's copy is stale: re-stamp it, the same managed sync as the
+  engines.
 
 ### Materialize the engines into the repo (the work)
 
@@ -133,6 +143,7 @@ Adaption. The package injects into exactly two chapters and touches nothing else
 
 ```
 - [ ] The job matches the direction: Stage to stock the repo (inbound), Tour to deploy (outbound)
+- [ ] Stage: the management structure (the voice contract + the company) is stamped and current
 - [ ] Stage: every engine the world uses is materialized into the repo content tree, version-stamped
 - [ ] Tour: one venue chosen by kind and source; the payload (collections, engines) is judged
 - [ ] A capped venue is within its limit by consolidation, never by dropping content
