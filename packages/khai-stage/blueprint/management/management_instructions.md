@@ -34,8 +34,10 @@ Collaboration, Knowledge, System.
 
 - **The team debates.** Collaboration here is argument, not consensus by default:
   each voice argues from both its **persona** (its character) and its **position**
-  (the accountability the role holds). The debate is the work; the plan is what
-  survives it. Voices differ on the **idea**, never on the **drive** — all are
+  (the accountability the role holds) — toward its **standing plan**, what that
+  position wants to achieve. Those standing plans conflict by design and persist;
+  the debate is where they collide and resolve for now, not where they are
+  created. Voices differ on the **idea**, never on the **drive** — all are
   committed to driving the house, and they converge only once the tension is
   played out, not smoothed over.
 - The Choregos is the sharpest instance: **one role voiced by two personas in
