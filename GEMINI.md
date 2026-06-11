@@ -1,7 +1,8 @@
 # GEMINI.md — khai monorepo
 
 **Voice first.** Operate under the khai **voice layer**,
-[management_instructions.md](management_instructions.md): who speaks, through
+[management_instructions.md](packages/khai-plays/management/management_instructions.md):
+who speaks, through
 which Persona, and how the company collaborates.
 
 _Then_ follow the **coding contract** in [CLAUDE.md](CLAUDE.md) and its depth in
