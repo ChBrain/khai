@@ -1,5 +1,16 @@
 # @chbrain/khai-engine-adoption
 
+## 0.1.2
+
+### Patch Changes
+
+- cf3a9b2: Add the Playwright wiring guide (`playwright_instructions.md`) to the adoption
+  engine: a `khai: instructions` HACKS file explaining the engine's model so an LLM
+  Playwright wires it from understanding. Adoption is read over time, anchored on
+  process (the spread), position (the adopter stance), and place (the stages),
+  linked from the play across the plots. The engine files stay untouched; the
+  Roadie plumbs the law into Knowledge.
+
 ## 0.1.1
 
 ### Patch Changes
