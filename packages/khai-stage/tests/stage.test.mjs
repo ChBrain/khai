@@ -55,6 +55,8 @@ describe("khai-stage: the stamped house", () => {
       "management/persona_manager.md",
       "management/position_playwright.md",
       "management/persona_demo-source.md",
+      "management/position_roadie.md",
+      "management/persona_roadie.md",
       "plays/.gitkeep",
       "tests/house.test.mjs",
     ]) {
