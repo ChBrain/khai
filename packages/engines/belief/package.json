@@ -1,0 +1,94 @@
+{
+  "name": "@chbrain/khai-engine-belief",
+  "version": "0.1.0",
+  "description": "khai engine content, the belief domain: belief as process, what a persona holds true and what the belief does when it meets disconfirming evidence -- update, rationalize, deny, convert, or suspend.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/belief"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "belief",
+    "tagline": "Belief as process: what a persona holds true, and what it does when it meets disconfirming evidence -- update, rationalize, deny, convert, or suspend.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_belief.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_update.md",
+        "type": "process",
+        "parent": "process_belief.md"
+      },
+      {
+        "file": "process_rationalize.md",
+        "type": "process",
+        "parent": "process_belief.md"
+      },
+      {
+        "file": "process_deny.md",
+        "type": "process",
+        "parent": "process_belief.md"
+      },
+      {
+        "file": "process_convert.md",
+        "type": "process",
+        "parent": "process_belief.md"
+      },
+      {
+        "file": "process_suspend.md",
+        "type": "process",
+        "parent": "process_belief.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_belief.md) declares belief as a settlement: a held conviction meets evidence that bears on it, and the belief does something with the contradiction.",
+      "issue": "Five things a belief may do when the evidence comes in: update, rationalize, deny, convert, and suspend. Each is a process file composed under the root, so the response follows from how the hold met the weight. They are distinct settlements of one contradiction, and the settlement can change.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the specific response it runs in the scene.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real response. Whether the settlement is true to the evidence and the hold is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its response under Projection, linking the specific leaf. Read it when the disconfirming evidence lands; the room enacts it, never narrates it."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.10",
+    "vitest": "^4.1.8"
+  }
+}
