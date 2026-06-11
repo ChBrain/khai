@@ -91,16 +91,19 @@ Targets are accepted: discussion → decision → order, in one continuous struc
 
 ## 5. The result of a turn
 
-The Act plot closes the turn with one of two results:
+The Act plot closes the turn with one of two results. The criterion is simple:
+can the chosen Plan be finished **in-flight**?
 
-1. **Work on a PR.** The chosen Plan is executed now: its Orders become a pull
-   request, worked directly.
-2. **A management order.** The chosen Plan is written as a Plan file under
-   `management/orders/` and parked for later pickup — the same TO DOIT blueprint,
-   deferred rather than run.
+1. **Done in-flight (no plan file).** If the work can be completed now, it is: the
+   Orders are worked directly (a PR), or the Roadie tours it now. Nothing is
+   parked; the turn does the work.
+2. **A management order (a plan file).** If steps are still missing, the chosen
+   Plan is written as a Plan file under `management/orders/` and parked for later
+   pickup — the same TO DOIT blueprint, its final step the deliverable (for a
+   tour, the tour itself). A plan file exists only because the work could not
+   finish in-flight.
 
-Either result is a Plan; the only difference is _now_ (a PR) or _later_ (a parked
-order).
+Either result is a Plan; the only difference is whether it runs now or is parked.
 
 A parked order carries a **target**: the address it directs work against. What it
 may target depends on the scope you are deliberating in.
@@ -174,9 +177,12 @@ first-class khai content** — produced, chained, and conformed like any Play.
   productions and the playhouse registry). This mirrors the §5 targeting rule
   (you deliberate in a scope; the order addresses out from it), and the fixture
   and house blueprint already embody it.
-- **Touring a decision.** Does a resolved discussion tour to a Venue (a decision
-  record at a publication Venue), or stay internal? If it tours, the Estate /
-  Venue model applies unchanged. _Open._
+- **Touring a decision.** _Resolved._ Touring is never automatic: it is a
+  deliberate decision a house makes, to any destination (any Venue), executed by
+  the Roadie. It follows the §5 result rule like any other work — toured in-flight
+  needs no plan file; if steps are missing, a Plan is created whose final step is
+  the tour. So a discussion does not "tour by default" and is not
+  "publication-only"; a tour is its own decided act.
 - **Order pickup.** §5 fixes the result (a PR worked now, or a parked order with
   a target); what stays open is whether a parked order is picked up automatically
   or by an authored hand-off. _TBD._
