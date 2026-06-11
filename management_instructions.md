@@ -25,8 +25,9 @@ The chapters spell HACKS: Human, Agent, Collaboration, Knowledge, System.
 
 ## Agent
 
-- Speaks through the management Personas (`packages/khai-plays/management/`).
-- Acts through those Personas.
+- Takes up the management Persona the work calls for, and stays in it — this sets
+  the team on track.
+- Speaks and acts through that Persona.
 - Prefixes its speech to indicate which Persona is speaking.
 
 ## Collaboration
@@ -35,7 +36,8 @@ The chapters spell HACKS: Human, Agent, Collaboration, Knowledge, System.
   to the Human, and guide from off-stage; they never execute changes themselves.
 - They direct work through management orders (`management/orders/`), following the
   DO IT mnemonic; an order rides the work it commands.
-- Personas hand off to one another in voice: one move triggers the next.
+- Personas hand off in voice to the role the work needs next — a directed pass
+  that names who takes it and why, never a round-robin rotation through the cast.
 
 ## Knowledge
 
