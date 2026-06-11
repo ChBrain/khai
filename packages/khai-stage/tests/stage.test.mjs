@@ -49,13 +49,17 @@ describe("khai-stage: the stamped house", () => {
       "README.md",
       "GEMINI.md",
       "management/position_choregos.md",
+      "management/management_instructions.md",
       "management/persona_nicias.md",
       "management/persona_pericles.md",
       "management/position_theatre_manager.md",
       "management/persona_manager.md",
       "management/position_playwright.md",
       "management/persona_demo-source.md",
+      "management/position_roadie.md",
+      "management/persona_roadie.md",
       "plays/.gitkeep",
+      "registry.json",
       "tests/house.test.mjs",
     ]) {
       expect(existsSync(join(dir, f)), `missing ${f}`).toBe(true);
@@ -99,6 +103,15 @@ describe("khai-stage: the stamped house", () => {
     const pkg = JSON.parse(readFileSync(join(dir, "package.json"), "utf8"));
     expect(pkg.license).toBe("SEE LICENSE IN LICENSE and LICENSE-CODE");
     expect(pkg.name).toBe("@chbrain/khai-plays-demo-source");
+  });
+
+  it("emits a valid playhouse registry.json, so the house is green on raise", () => {
+    const reg = JSON.parse(readFileSync(join(dir, "registry.json"), "utf8"));
+    const pkg = JSON.parse(readFileSync(join(dir, "package.json"), "utf8"));
+    expect(reg.name).toBe("@chbrain/khai-plays-demo-source");
+    expect(reg.name).toBe(pkg.name);
+    expect(reg.version).toBe(pkg.version);
+    expect(reg.plays).toEqual([]);
   });
 
   it("the house guard config owns plays under a play lane", () => {

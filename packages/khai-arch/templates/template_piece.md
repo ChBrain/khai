@@ -1,7 +1,7 @@
 ---
 khai: piece
 title: "[title]"
-license: CC-BY-NC-4.0
+license: CC-BY-NC-SA-4.0
 stamp:
   owner: KAI HACKS AI
   version: v0.0.1
@@ -12,7 +12,7 @@ stamp:
 
 ## Taxonomy
 
-The group above this piece: the set or kit it is one of. Name it, then ask whether that set already has its own file. If it does, link it; if it does not, ask whether it should. This is the collection this piece belongs to, not the piece's own name (the H1 carries that) and not where it came from (Owner carries that).
+The group directly above: the set or kit this piece is one of. Name it; link it if it has its own file. Not this one's name (the H1) or its origin (Owner).
 
 ## Owner
 
