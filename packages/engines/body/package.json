@@ -1,0 +1,94 @@
+{
+  "name": "@chbrain/khai-engine-body",
+  "version": "0.1.0",
+  "description": "khai engine content, the body domain: body as process, how a persona's physical state makes its demands felt and pulls on attention and action until they are met.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/body"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "body",
+    "tagline": "Body as process: how the persona's physical state makes its demands felt -- hunger, fatigue, pain, arousal, sickness -- pulling on attention and action until it is met.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_body.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_hunger.md",
+        "type": "process",
+        "parent": "process_body.md"
+      },
+      {
+        "file": "process_fatigue.md",
+        "type": "process",
+        "parent": "process_body.md"
+      },
+      {
+        "file": "process_pain.md",
+        "type": "process",
+        "parent": "process_body.md"
+      },
+      {
+        "file": "process_arousal.md",
+        "type": "process",
+        "parent": "process_body.md"
+      },
+      {
+        "file": "process_sickness.md",
+        "type": "process",
+        "parent": "process_body.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_body.md) declares the body as a keeper of set-points: fuel, rest, integrity, charge, defence. When one drifts the body registers the gap and pulls the persona to close it.",
+      "issue": "Five demands a persona's body may run: hunger, fatigue, pain, arousal, and sickness. Each is a process file composed under the root, so the narrowing of attention follows the drift of its set-point. They are distinct drifts of one organism, and the loud one can change.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the specific demand its body runs in the scene.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real demand. Whether the pull is true to the bodily state is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its state under Projection, linking the specific demand. Read it in the first beat; the room enacts the pull, never narrates it."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.10",
+    "vitest": "^4.1.8"
+  }
+}
