@@ -1,0 +1,124 @@
+{
+  "name": "@chbrain/khai-engine-heritage",
+  "version": "0.1.0",
+  "description": "khai engine content, the heritage domain: the formation a persona arrives carrying -- the habitus absorbed before any choice, and the capital transmitted to it.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/heritage"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "heritage",
+    "tagline": "Heritage as position: the formation a persona arrives carrying -- the habitus absorbed before any choice was possible, the family cells it formed in, the capital transmitted, and what fires when it meets a different field.",
+    "type": "position",
+    "members": [
+      {
+        "file": "position_heritage.md",
+        "type": "position",
+        "parent": null
+      },
+      {
+        "file": "position_mother.md",
+        "type": "position",
+        "parent": "position_heritage.md"
+      },
+      {
+        "file": "position_father.md",
+        "type": "position",
+        "parent": "position_heritage.md"
+      },
+      {
+        "file": "position_child.md",
+        "type": "position",
+        "parent": "position_heritage.md"
+      },
+      {
+        "file": "position_sibling.md",
+        "type": "position",
+        "parent": "position_heritage.md"
+      },
+      {
+        "file": "piece_cultural_capital.md",
+        "type": "piece",
+        "parent": "position_heritage.md"
+      },
+      {
+        "file": "piece_economic_capital.md",
+        "type": "piece",
+        "parent": "position_heritage.md"
+      },
+      {
+        "file": "piece_social_capital.md",
+        "type": "piece",
+        "parent": "position_heritage.md"
+      },
+      {
+        "file": "piece_symbolic_capital.md",
+        "type": "piece",
+        "parent": "position_heritage.md"
+      },
+      {
+        "file": "process_formation.md",
+        "type": "process",
+        "parent": "position_heritage.md"
+      },
+      {
+        "file": "process_transmission.md",
+        "type": "process",
+        "parent": "position_heritage.md"
+      },
+      {
+        "file": "process_hysteresis.md",
+        "type": "process",
+        "parent": "position_heritage.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_heritage.md) declares habitus as what it is in the room: a formation the persona arrives carrying, set before any choice was possible and not put down once held. The law makes every persona carry a formation.",
+      "issue": "The formation, read four ways. Four family positions name where habitus was absorbed from (mother, father, child, sibling); four capital pieces name what the cell transmitted (cultural, economic, social, symbolic); three processes name how it forms and what fires when it meets a different field (formation, transmission, hysteresis). The nuclear cell is the irreducible base; extended configurations compose from it.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the formation is read for every persona. The link: each persona links, under Projection, the family positions it formed in and the capital it carries.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and a real family position, capital piece, or formation process is linked. Whether the formation is true to the persona is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the persona its formation under Projection: the cells it grew up in and the capital it carries from them. Read it in what the persona reaches for without deciding to, and in the friction when the old formation meets a new field."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.10",
+    "vitest": "^4.1.8"
+  }
+}
