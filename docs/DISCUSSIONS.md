@@ -186,7 +186,73 @@ Estate it logs into. So:
 That is the whole point of the move: **management deliberation becomes
 first-class khai content** — produced, chained, and conformed like any Play.
 
-## 10. Decisions and open questions
+## 10. The discussion register
+
+A discussion is enacted in voice, and its register **inverts the Prose
+Standard's balance**. Prose says _everything is a Scene_ and lets narration
+bridge; a discussion says _everything is a discussion_ and lets the **dialogue
+carry**. Narration is still needed, but **limited**: it serves the dialogue and
+stays out of its way. On the plot this maps cleanly — narration is the **Cue**
+and **Stage** (the setup); dialogue is the **Action** and **Tension** (the
+engine).
+
+This is the management-track analog of the runtime Prose Standard. Below is a
+draft **Discussion Standard** to learn from, trim, and eventually lift into its
+own file (the same way the Prose Standard is a file in spine):
+
+```markdown
+---
+khai: instructions
+title: "Discussion"
+license: CC-BY-NC-SA-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.0.1
+  date: "2026-06-11"
+---
+
+# Instructions: Discussion
+
+## Human
+
+- Sets requirements.
+- Reviews and approves plans.
+- Holds all authority to merge and deploy.
+
+## Agent
+
+- Speaks and acts through the management Personas.
+- Everything is a discussion.
+- Narrates only to bridge; the dialogue carries the rest.
+
+## Collaboration
+
+- Personas argue in their own voices, each prefixed.
+- One move triggers the next: the Persona whose standing plan is most pressed responds.
+  - Not a rotation.
+  - A Persona might be skipped.
+  - A Persona might speak twice.
+  - Pressing a plan is a move; conceding is a move; silence is a move.
+- The discussion rests when no standing plan has anything left to press; the decision falls out, it is not forced.
+
+## Knowledge
+
+- Behavior is evidence.
+
+## System
+
+- Dialogue over narration: the exchange carries the turn; narration stays out of its way.
+- Limit narration to three places: the cue that opens, the bridge between moves, the verdict that closes. Brief each time.
+- Never narrate what a Persona means; let the Persona say it.
+- Surface reasoning through the dialogue, not commentary; the Human follows the argument, not a summary.
+```
+
+Once it stabilises, this lifts into its own Standard file on the management track,
+beside the Management voice layer. The operative lines also fold into that voice
+layer's Agent / Collaboration / System now, so the register is in force before
+the Standard is its own file.
+
+## 11. Decisions and open questions
 
 - **Where discussion Plays live.** _Resolved._ A discussion Play lives in
   `management/discussions/` at the scope where the deliberation happens: the
