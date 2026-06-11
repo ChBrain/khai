@@ -206,5 +206,7 @@ first-class khai content** — produced, chained, and conformed like any Play.
   step landing is the cue, not a trigger). Management does not auto-pick-up; it
   surfaces the in-flight work (§6) and advises priority and sequence, and the
   Human decides.
-- **Modes.** Is a discussion ever played interactively (Play Mode), or only
-  recorded (Analysis Mode)? _TBD._
+- **Modes.** _Resolved._ Modes don't apply. Play Mode / Analysis Mode are an
+  audience/runtime concept (the play-instructions track); a discussion is on the
+  management track. It is enacted live in voice for the Human (interactive by
+  nature) and recorded as the Play file — no Mode switch.
