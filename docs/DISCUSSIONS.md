@@ -2,7 +2,7 @@
 
 > Status: design spec (draft for review). Captures the model for treating a
 > management discussion as a khai Play, so the existing conformance standard
-> validates it. Nothing here is built yet; the test fixture is in §6.
+> validates it. Nothing here is built yet; the test fixture is in §7.
 >
 > Capitalization follows the house rule (docs/ROADIE.md §9): the spec register
 > capitalizes khai's defined vocabulary; ordinary words stay lowercase.
@@ -89,7 +89,34 @@ plots); **DO IT** is the standing Plan each player brings into it. PDCA is the
 Play; DO IT is the Plan inside it. The **Act** plot resolves which standing Plan's
 Targets are accepted: discussion → decision → order, in one continuous structure.
 
-## 5. The cycle vs the chain
+## 5. The result of a turn
+
+The Act plot closes the turn with one of two results:
+
+1. **Work on a PR.** The chosen Plan is executed now: its Orders become a pull
+   request, worked directly.
+2. **A management order.** The chosen Plan is written as a Plan file under
+   `management/orders/` and parked for later pickup — the same TO DOIT blueprint,
+   deferred rather than run.
+
+Either result is a Plan; the only difference is _now_ (a PR) or _later_ (a parked
+order).
+
+A parked order carries a **target**: the address it directs work against. What it
+may target depends on the scope you are deliberating in.
+
+| Deliberating in…                | An order may target…                                       |
+| ------------------------------- | ---------------------------------------------------------- |
+| the chain (`khai`)              | `khai`, or any house in the registry                       |
+| a house                         | the house itself, or `khai`                                |
+| a website (a specialised house) | the website itself, or any package that delivers the house |
+
+The target addresses up (toward `khai`), sideways (a sibling house in the
+registry), or down (a package that delivers the current house) — always inside
+the chain. An order whose target does not resolve is not yet placed, the same way
+a play whose cast reaches past its Company has gone off the play.
+
+## 6. The cycle vs the chain
 
 A Play's Triggers chain plots **linearly**: one plot's close is the next one's
 cue. PDCA's Act→Plan loop is therefore **across Plays, not inside one**. One Play
@@ -98,7 +125,7 @@ the last** through its Estate. This keeps every discussion a finite, resolvable
 artifact: a Play completes when its Stakes are moved and its chosen Plan has no
 open `[ ]` Targets.
 
-## 6. The complete cast — the test fixture
+## 7. The complete cast — the test fixture
 
 The **elements** (class `element`) are five: Persona, Position, **Piece, Place,
 Process**. (Plan is `class: meta`, not an element — it is the standing objective
@@ -123,7 +150,7 @@ So the fixture casts one Piece, two Places, one Process, plus the Personas and
 Positions. The Company lists them, the plots cast them, and the standard checks
 that nothing reaches past the Company.
 
-## 7. Why the standard already works
+## 8. Why the standard already works
 
 Nothing above adds a type or a chapter. A discussion Play is an ordinary Play:
 ENACTS chapters, plots chained by Triggers, a Company every plot draws from, an
@@ -138,14 +165,15 @@ Estate it logs into. So:
 That is the whole point of the move: **management deliberation becomes
 first-class khai content** — produced, chained, and conformed like any Play.
 
-## 8. Open / deferred
+## 9. Open / deferred
 
 - **Where discussion Plays live.** A management house, or the chain's
   `management/`? They are chain-level, but they are still Plays. _TBD._
 - **Touring a decision.** Does a resolved discussion tour to a Venue (a decision
   record at a publication Venue), or stay internal? If it tours, the Estate /
   Venue model applies unchanged. _Open._
-- **Act emits the order.** The exact handoff from the Act plot's chosen Plan to a
-  `management/orders/` rider — automatic, or authored. _TBD._
+- **Order pickup.** §5 fixes the result (a PR worked now, or a parked order with
+  a target); what stays open is whether a parked order is picked up automatically
+  or by an authored hand-off. _TBD._
 - **Modes.** Is a discussion ever played interactively (Play Mode), or only
   recorded (Analysis Mode)? _TBD._
