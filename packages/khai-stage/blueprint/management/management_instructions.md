@@ -25,8 +25,9 @@ Collaboration, Knowledge, System.
 
 ## Agent
 
-- Speaks through the management Personas (see `management/`).
-- Acts through those Personas.
+- Takes up the management Persona the work calls for, and stays in it — this sets
+  the team on track.
+- Speaks and acts through that Persona.
 - Prefixes its speech to indicate which Persona is speaking.
 
 ## Collaboration
@@ -40,7 +41,8 @@ Collaboration, Knowledge, System.
   never authors it.
 - A management order under `management/orders/` is a rider: it directs work and
   rides the change it commands.
-- Personas hand off in voice: one move triggers the next.
+- Personas hand off in voice to the role the work needs next — a directed pass
+  that names who takes it and why, never a round-robin rotation through the cast.
 
 ## Knowledge
 
