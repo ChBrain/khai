@@ -21,14 +21,14 @@ mapping that lets the standard carry it.
 
 ## 2. The mapping
 
-| The discussion…           | … is the khai Play structure         |
-| ------------------------- | ------------------------------------ |
-| the whole deliberation    | a **Play** (ENACTS)                  |
-| its four phases (P·D·C·A) | four **Plots**, chained by Triggers  |
-| each Persona's proposal   | a **Plan** (TO DOIT), cast in a Plot |
-| the cast it may field     | the Play's **Company**               |
-| what it is deciding       | the **Stakes**                       |
-| PDCA as one shape         | the **Arc**                          |
+| The discussion…           | … is the khai Play structure        |
+| ------------------------- | ----------------------------------- |
+| the whole deliberation    | a **Play** (ENACTS)                 |
+| its four phases (P·D·C·A) | four **Plots**, chained by Triggers |
+| each player's objective   | a standing **Plan** (TO DOIT)       |
+| the cast it may field     | the Play's **Company**              |
+| what it is deciding       | the **Stakes**                      |
+| PDCA as one shape         | the **Arc**                         |
 
 The Play's six chapters (Estate, Name, Arc, Company, Triggers, Stakes) carry it:
 
@@ -46,33 +46,48 @@ The Play's six chapters (Estate, Name, Arc, Company, Triggers, Stakes) carry it:
 The plots chain as the Deming cycle. Each is an ordinary Plot (Cue · Action ·
 Stage · Tension):
 
-| Plot      | What it casts                                                  |
-| --------- | -------------------------------------------------------------- |
-| **Plan**  | each Persona's competing **Plan** — the debate, cast as forces |
-| **Do**    | the Action taken on the chosen Plan                            |
-| **Check** | the evidence weighed against the Plan's Targets                |
-| **Act**   | the verdict: adopt, adjust, or re-open                         |
+| Plot      | What it casts                                            |
+| --------- | -------------------------------------------------------- |
+| **Plan**  | the standing **Plans** collide — each player's objective |
+| **Do**    | the Action taken on the chosen Plan                      |
+| **Check** | the evidence weighed against the Plan's Targets          |
+| **Act**   | the verdict: adopt, adjust, or re-open                   |
 
-The **Plan plot is where the tension lives**. Each Persona, arguing from its
-**Persona** (character) and its **Position** (accountability), casts a Plan. The
-Choregos casts two — Nicias's and Pericles's — and they pull against each other
-by design. This is not bolted on: the Plot card says a plot succeeds when the
-**Action forces the system to move but the Tension prevents it from moving
-smoothly**. That _is_ a debate.
+The **Plan plot is where the tension lives**. Each player tables its **standing
+Plan**, arguing from its **Persona** (character) and its **Position**
+(accountability). The Choregos tables two — Nicias's and Pericles's — pulling
+against each other inside one seat. This is not bolted on: the Plot card says a
+plot succeeds when the **Action forces the system to move but the Tension
+prevents it from moving smoothly**. Conflicting standing Plans _are_ that engine.
 
-## 4. Each Persona has a Plan — and a Plan is a DO IT
+## 4. Standing Plans — what each player wants, and where they collide
 
-The Plan type's mnemonic is **TO DOIT**: **D**irection, **O**rders,
-**I**mplementation, **T**argets. So a Persona's proposal is _already_ a
-management order in structure. This resolves the two-mnemonic worry:
+A **Plan** is not invented in the meeting. It is **standing**: what a player
+wants to achieve, carried into every discussion. The canon makes this exact — a
+Plan is `class: meta` (a forward-looking blueprint, **TO DOIT**: Direction ·
+Orders · Implementation · Targets), and a Position "persists after the Persona
+leaves," so the objective it drives toward stands with it.
 
-- **PDCA** governs the **discussion** — the Play's four plots.
-- **DO IT** governs the **Plan** each Persona brings into it.
+- **Every Position has a standing Plan.** It is the Position's **Drives** written
+  as a Plan: the Roadie's is _keep the chain current and reach the audience_; the
+  Theatre Manager's is _the house runs and conforms_; the Playwright's is _the
+  art_; the Choregos's is _the production and the season_.
+- **Personas may carry one too** — a character's own aim layered on the
+  Position's: Nicias wants the cautious read to hold; Pericles wants the
+  long-view selection to land.
 
-They are not rival models. PDCA is the Play; DO IT is the Plan inside it. The
-**Act** plot resolves which Plan's Targets are accepted, and that Plan's Orders
-become the management order that rides out to the work (the rider defined in the
-voice layer). Discussion → decision → order, in one continuous structure.
+These standing Plans **conflict by design, and the conflict is persistent** — not
+a one-off. The Roadie's pull toward stability fights the Playwright's pull to
+change the art; the Choregos's two personas pull against each other inside one
+seat. A discussion does **not create** the conflict; it is where the standing
+Plans **collide and are resolved for this turn**. The chosen Plan's Orders ride
+out as the management order (the rider in the voice layer); the Plans that lost
+**stay standing**, and collide again next discussion.
+
+So the two mnemonics are not rivals. **PDCA** is the discussion (the Play's four
+plots); **DO IT** is the standing Plan each player brings into it. PDCA is the
+Play; DO IT is the Plan inside it. The **Act** plot resolves which standing Plan's
+Targets are accepted: discussion → decision → order, in one continuous structure.
 
 ## 5. The cycle vs the chain
 
@@ -85,10 +100,12 @@ open `[ ]` Targets.
 
 ## 6. The complete cast — one of each, to test
 
-The element types are Persona, Position, Plan, **Piece, Place, Process**. A
-discussion naturally fields Personas, Positions, and Plans. To exercise the
-**whole** cast — and prove the gate sees every type — the test fixture adds
-**one Piece, one Place, one Process**:
+The **elements** (class `element`) are five: Persona, Position, **Piece, Place,
+Process**. (Plan is `class: meta`, not an element — it is the standing objective
+of §4, carried by a Position, not cast in the Company.) A discussion naturally
+fields Personas and Positions; to exercise the **whole element cast** — and prove
+the gate sees every type — the fixture adds **one Piece, one Place, one
+Process**:
 
 | Element     | In a discussion Play                                        |
 | ----------- | ----------------------------------------------------------- |
