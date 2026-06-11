@@ -165,10 +165,15 @@ Estate it logs into. So:
 That is the whole point of the move: **management deliberation becomes
 first-class khai content** — produced, chained, and conformed like any Play.
 
-## 9. Open / deferred
+## 9. Decisions and open questions
 
-- **Where discussion Plays live.** A management house, or the chain's
-  `management/`? They are chain-level, but they are still Plays. _TBD._
+- **Where discussion Plays live.** _Resolved._ A discussion Play lives in
+  `management/discussions/` at the scope where the deliberation happens: the
+  chain's for chain-level discussions, each house's for house-level ones. Not a
+  separate management house, and not under `plays/` (which holds the source's
+  productions and the playhouse registry). This mirrors the §5 targeting rule
+  (you deliberate in a scope; the order addresses out from it), and the fixture
+  and house blueprint already embody it.
 - **Touring a decision.** Does a resolved discussion tour to a Venue (a decision
   record at a publication Venue), or stay internal? If it tours, the Estate /
   Venue model applies unchanged. _Open._
