@@ -138,6 +138,13 @@ The play defines what is in the production. A plot must stay in that lane:
 - **Existence, mechanical.** Every element a plot names resolves to a Company
   member with a file. This is testable by structure alone (a tool-capable runtime
   runs the khai conformance kit; running solo, confirm each reference resolves).
+- **An existing Position file is cast, mechanical.** Naming a role in prose
+  raises no duty, and not every seat is worth a file. But each `position_[name].md`
+  that does exist is a seat some persona fills, so at least one persona's Taxonomy
+  must link it, `[its name](position_[name].md)`. The conformance kit fails a
+  Position file no persona claims, so before you ship, confirm every
+  `position_[name].md` is held in some persona's Taxonomy: one persona may hold
+  several, several may share one.
 - **Judgement, by review.** That each plot **moves the Stakes**, that the
   **Tension** genuinely blocks the Action, that the **Arc** actually bends across
   the plots, that the **Triggers** chain close to cue. Structure cannot settle
