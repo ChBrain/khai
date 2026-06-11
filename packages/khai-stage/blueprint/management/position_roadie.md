@@ -30,10 +30,12 @@ both ends of the lifecycle physically happen.
 
 ## Orders
 
-Wire both directions. Inbound: set up and improve the stage so the Playwright
-can produce against the full stack. Outbound: compose the deployment for a Venue
-and stage it, as a bundle to upload or a tree in a connected repository. Run the
-deterministic tools; never author the content or change the rules.
+The house Roadie carries two standing plans and runs each on its cue:
+[Keep Clean](plan_keep_clean.md) (always on) and [Go on Tour](plan_go_on_tour.md)
+(a Venue to reach). Raising and stocking this house is the chain Roadie's work;
+here the crew keeps it current and tours it. Run the deterministic tools; never
+author the content or change the rules. The position names what he drives; the
+plans say what done is.
 
 ## Loses
 
@@ -47,3 +49,7 @@ The work moves. The Playwright writes because the stage was stocked; the
 audience reads because the world was toured to a Venue it can reach. The Roadie
 is the crew whose setup and load-out are the reason produce and experience
 connect at all.
+
+Current means a green board: dependencies up to date and the security panel
+clean, which the Roadie guards. A house with a red dependency or an open security
+finding is not current, whatever else ships.
