@@ -1,5 +1,23 @@
 # @chbrain/khai-arch
 
+## 0.1.14
+
+### Patch Changes
+
+- 65dd38d: Declare the canon's templates under CC-BY-NC-SA-4.0, the licence the root
+  LICENSE actually grants. The templates stamped `CC-BY-NC-4.0` (no ShareAlike)
+  into every element generated from them, so downstream houses inherited a
+  content licence weaker than the one khai declares; new elements now carry the
+  SA clause from the start. Existing house content is re-declared separately,
+  house by house.
+- db6e497: Tighten the Taxonomy guidance in the element templates (position, process, piece,
+  place, persona, plan). The slot is the classification slot: the group directly
+  above this element, named and linked if it has its own file. The guidance was a
+  chatty paragraph that invited equally chatty fills; it is now a terse one-liner
+  naming the immediate parent and the link rule, with the reminder that the slot is
+  not the element's own name (the H1) or its origin (Owner). Every house and skill
+  that pulls the canon templates inherits the terser slot on the next bump.
+
 ## 0.1.13
 
 ### Patch Changes

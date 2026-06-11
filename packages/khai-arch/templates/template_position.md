@@ -1,7 +1,7 @@
 ---
 khai: position
 title: "[title]"
-license: CC-BY-NC-4.0
+license: CC-BY-NC-SA-4.0
 stamp:
   owner: KAI HACKS AI
   version: v0.0.1
@@ -12,7 +12,7 @@ stamp:
 
 ## Taxonomy
 
-The group above this position: the unit it sits within. Name it, then ask whether that unit is itself a Position with its own file. If it is, link it; if it is not, ask whether it should be. This is the seat this one reports into, not this seat's own name (the H1 carries that) and not its origin (Owner carries that).
+The group directly above: the unit this position sits within. Name it; link it if it is a Position with its own file. Not this one's name (the H1) or its origin (Owner).
 
 ## Owner
 

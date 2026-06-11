@@ -1,5 +1,11 @@
 # @chbrain/khai-review
 
+## 0.1.3
+
+### Patch Changes
+
+- 32cf1df: Fix the recursive markdown discovery CLI test on Windows by normalizing path separators in test output assertions.
+
 ## 0.1.2
 
 ### Patch Changes

@@ -1,0 +1,94 @@
+{
+  "name": "@chbrain/khai-engine-memory",
+  "version": "0.1.0",
+  "description": "khai engine content, the memory domain: how the past re-enters the present -- a cue meets a trace and the persona rebuilds, not replays, what was.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/memory"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "memory",
+    "tagline": "Memory as process: how the past re-enters the present -- a cue meets a trace, the persona rebuilds (not replays) what was, and refiles it changed -- as episodic, semantic, procedural, emotional, or prospective.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_memory.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_episodic.md",
+        "type": "process",
+        "parent": "process_memory.md"
+      },
+      {
+        "file": "process_semantic.md",
+        "type": "process",
+        "parent": "process_memory.md"
+      },
+      {
+        "file": "process_procedural.md",
+        "type": "process",
+        "parent": "process_memory.md"
+      },
+      {
+        "file": "process_emotional.md",
+        "type": "process",
+        "parent": "process_memory.md"
+      },
+      {
+        "file": "process_prospective.md",
+        "type": "process",
+        "parent": "process_memory.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_memory.md) declares memory as reconstruction, not playback: a cue meets a trace, the persona rebuilds what was -- decayed, tinted, sharpened -- and files it back changed. The past a persona carries is the last reconstruction.",
+      "issue": "Five kinds of remembering a persona may run: episodic (the lived scene re-entered), semantic (the fact stripped of its scene), procedural (the body running the skill without words), emotional (the old charge re-firing ahead of the story), and prospective (an intention held for later). Each is a process composed under the root, so the recall carries the reconstruction dynamic with it.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the kind of memory the moment runs -- and, where it matters, that the recall is a rebuild, not a recording.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real memory kind. Whether the remembering is true to the scene -- and true to the fact that memory distorts -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its recall under Projection, linking the specific kind. Read it in how the past arrives -- re-lived, known, enacted, re-fired, or held forward -- and let the room see the reconstruction drift, never a perfect playback."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.10",
+    "vitest": "^4.1.8"
+  }
+}
