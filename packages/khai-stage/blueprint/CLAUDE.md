@@ -3,10 +3,11 @@
 This is the {{SOURCE_TITLE}} production house (`khai-plays-{{SOURCE}}`), raised by
 khai-stage. The plays are written separately, in khai-playwright mode.
 
-This file is the **coding contract** for the house. Operate also under the
+**Voice first.** Operate under the
 [management instructions](management/management_instructions.md): the khai
-**voice and mechanics** (who speaks, the company, management orders). Coding rules
-here; voice and mechanics there.
+**voice and mechanics** (who speaks, the company, management orders). _Then_ this
+file is the **coding contract** for the house. Voice and mechanics there; coding
+rules here. The order matters: management voice first, coding second.
 
 ## Branching
 
