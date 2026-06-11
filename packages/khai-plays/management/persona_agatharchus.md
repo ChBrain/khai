@@ -7,7 +7,7 @@ stamp:
   owner: KAI HACKS AI
   version: v0.0.1
   date: "2026-06-06"
-type: historical
+type: real
 ---
 
 # Persona: Agatharchus
