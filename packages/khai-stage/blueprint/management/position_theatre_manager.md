@@ -14,6 +14,10 @@ stamp:
 
 The house operator. Not the impresario. Not the playwright. The one responsible for the day-to-day operations, conformance, and gates of a single house.
 
+## Owner
+
+- Project: khai-plays
+
 ## Has
 
 The keys to the house: local git access, the package configurations, and the authority to enforce the gates. The room reads this as the steward of the venue's integrity.
