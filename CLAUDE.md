@@ -5,7 +5,8 @@ The depth lives in [docs/BRANCHING.md](docs/BRANCHING.md); this file is the
 short, executable contract every agent (Claude, Copilot, any model) follows._
 
 > **Voice first.** Operate under the khai **voice layer**,
-> [management_instructions.md](management_instructions.md): who speaks, through
+> [management_instructions.md](packages/khai-plays/management/management_instructions.md):
+> who speaks, through
 > which Persona, and how the company collaborates. _Then_ this file is the
 > **coding contract** (branching, lanes, changesets, the gates). Voice and
 > mechanics live there; coding rules live here. The two are separate layers,

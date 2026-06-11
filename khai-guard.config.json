@@ -47,8 +47,6 @@
           "docs/BRANCHING.md",
           "CLAUDE.md",
           "GEMINI.md",
-          "management_instructions.md",
-          "discussion_instructions.md",
           ".github/copilot-instructions.md"
         ]
       },
