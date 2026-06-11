@@ -98,23 +98,30 @@ the last** through its Estate. This keeps every discussion a finite, resolvable
 artifact: a Play completes when its Stakes are moved and its chosen Plan has no
 open `[ ]` Targets.
 
-## 6. The complete cast — one of each, to test
+## 6. The complete cast — the test fixture
 
 The **elements** (class `element`) are five: Persona, Position, **Piece, Place,
 Process**. (Plan is `class: meta`, not an element — it is the standing objective
 of §4, carried by a Position, not cast in the Company.) A discussion naturally
-fields Personas and Positions; to exercise the **whole element cast** — and prove
-the gate sees every type — the fixture adds **one Piece, one Place, one
-Process**:
+fields Personas and Positions; the fixture adds the other three so the gate sees
+every type. For a discussion about a **change landing across the chain**:
 
-| Element     | In a discussion Play                                        |
-| ----------- | ----------------------------------------------------------- |
-| **Piece**   | the artifact on the table (the doc, the PR, the constraint) |
-| **Place**   | where it is staged (the repo, the house, the room)          |
-| **Process** | the procedure in play (the gate, the review, PDCA itself)   |
+| Element     | In this fixture                                                              |
+| ----------- | ---------------------------------------------------------------------------- |
+| **Piece**   | **the change** — the PR as a general anchor, not a specific number           |
+| **Place**   | **two**: `khai` (the monorepo) and the **registry** (all registered houses)  |
+| **Process** | **theatre-chain management** — the management process itself (PDCA included) |
 
-One each is enough: the Company lists them, a plot casts them, and the standard
-checks that nothing reaches past the Company.
+**Place is the type that naturally fields more than one here.** A change to `khai`
+propagates to every registered house, so the discussion is staged in both Places
+at once — `khai` and the registry. That is not padding the fixture; it _is_ the
+Roadie's standing plan (keep the chain current across all houses) showing up as
+cast. The Process closes the loop: the procedure in play is chain management, and
+this discussion is one turn of it.
+
+So the fixture casts one Piece, two Places, one Process, plus the Personas and
+Positions. The Company lists them, the plots cast them, and the standard checks
+that nothing reaches past the Company.
 
 ## 7. Why the standard already works
 
