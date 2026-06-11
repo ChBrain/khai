@@ -1,7 +1,7 @@
 ---
 khai: plan
 title: "[title]"
-license: CC-BY-NC-4.0
+license: CC-BY-NC-SA-4.0
 stamp:
   owner: KAI HACKS AI
   version: v0.0.1
@@ -13,7 +13,7 @@ status: active
 
 ## Taxonomy
 
-The kind of plan, which follows from what it is for (its Owner): a **personal** scheme (a persona's own intent), a **mandate** (a position: the office acts, not the person, e.g. a warden's plan to put out a fire), a **method** (a process: how a mechanism is run or brought about), a **development** (a place: its becoming, e.g. an empty lot to a tower), a **making** (a piece: its construction), or a **production** directive (the project: staging, release). This is the class of plan, not whose it is (Owner carries that) and not its artistic focus (Direction carries that).
+The kind of plan, set by what it is for (its Owner): a **personal** scheme (a persona), a **mandate** (a position), a **method** (a process), a **development** (a place), a **making** (a piece), or a **production** directive (the project). The class, not whose it is (Owner) or its focus (Direction).
 
 ## Owner
 

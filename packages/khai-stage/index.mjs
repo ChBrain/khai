@@ -32,7 +32,7 @@ const title = (s) =>
 // inert in this repo (no stray hook fires, no nested workflow runs); the stamp
 // restores them. A .tmpl suffix marks a file the toolchain must not pick up here
 // (a test that would otherwise run); the stamp drops it.
-function housePath(rel, { managerSlug, playwrightSlug } = {}) {
+function housePath(rel, { managerSlug, playwrightSlug, roadieSlug } = {}) {
   let p = rel.replace(/\.tmpl$/, "").replace(/\\/g, "/");
   if (p === "npmrc" || p === "gitignore" || p === "nvmrc") return "." + p;
   if (p.startsWith("github/") || p.startsWith("husky/") || p.startsWith("changeset/"))
@@ -42,6 +42,9 @@ function housePath(rel, { managerSlug, playwrightSlug } = {}) {
   }
   if (playwrightSlug && p === "management/persona_playwright.md") {
     return `management/persona_${playwrightSlug}.md`;
+  }
+  if (roadieSlug && p === "management/persona_roadie.md") {
+    return `management/persona_${roadieSlug}.md`;
   }
   return p;
 }
@@ -58,9 +61,9 @@ const walk = (dir, base = dir) =>
  * cannot do itself (branch protection needs the check names to exist; the
  * registry listing is a separate step). It never reaches the network.
  *
- * @param {{ source: string, targetDir: string, manager?: string }} opts
+ * @param {{ source: string, targetDir: string, manager?: string, playwright?: string, roadie?: string }} opts
  */
-export function stageHouse({ source, targetDir, manager, playwright } = {}) {
+export function stageHouse({ source, targetDir, manager, playwright, roadie } = {}) {
   const s = slug(source);
   if (!s)
     throw new Error("khai-stage: a source is required, e.g. stageHouse({ source: 'buechner' })");
@@ -72,6 +75,9 @@ export function stageHouse({ source, targetDir, manager, playwright } = {}) {
   const p = playwright ? slug(playwright) : s;
   const pTitle = playwright ? title(playwright) : title(source);
 
+  const r = roadie ? slug(roadie) : "roadie";
+  const rTitle = roadie ? title(roadie) : "Roadie";
+
   const tokens = {
     "{{SOURCE_TITLE}}": title(source),
     "{{SOURCE}}": s,
@@ -80,16 +86,33 @@ export function stageHouse({ source, targetDir, manager, playwright } = {}) {
     "{{MANAGER_TITLE}}": mTitle,
     "{{PLAYWRIGHT_PERSONA}}": p,
     "{{PLAYWRIGHT_TITLE}}": pTitle,
+    "{{ROADIE_PERSONA}}": r,
+    "{{ROADIE_TITLE}}": rTitle,
   };
   const fill = (text) => Object.entries(tokens).reduce((t, [k, v]) => t.split(k).join(v), text);
 
+  const slugs = { managerSlug: m, playwrightSlug: p, roadieSlug: r };
   const written = [];
   for (const rel of walk(BLUEPRINT)) {
-    const out = join(targetDir, housePath(rel, { managerSlug: m, playwrightSlug: p }));
+    const out = join(targetDir, housePath(rel, slugs));
     mkdirSync(dirname(out), { recursive: true });
     writeFileSync(out, fill(readFileSync(join(BLUEPRINT, rel), "utf8")));
-    written.push(housePath(rel, { managerSlug: m, playwrightSlug: p }).split("\\").join("/"));
+    written.push(housePath(rel, slugs).split("\\").join("/"));
   }
+
+  // Emit the playhouse registry so the house is green on raise (no manual
+  // `khai-tests registry build` step). An empty house lists no plays; name and
+  // version come from the house's own package.json, the same source the kit's
+  // registry builder reads, so the two never drift.
+  const pkg = JSON.parse(readFileSync(join(targetDir, "package.json"), "utf8"));
+  const registry = {
+    $schema: "http://json-schema.org/draft-07/schema#",
+    name: pkg.name,
+    version: pkg.version,
+    plays: [],
+  };
+  writeFileSync(join(targetDir, "registry.json"), JSON.stringify(registry, null, 2) + "\n");
+  written.push("registry.json");
 
   return {
     repo: `khai-plays-${s}`,

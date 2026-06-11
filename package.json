@@ -20,6 +20,7 @@
     "packages/khai-stage",
     "packages/khai-plays",
     "packages/khai-language",
+    "packages/khai-tour",
     "packages/engines/*"
   ],
   "engines": {
