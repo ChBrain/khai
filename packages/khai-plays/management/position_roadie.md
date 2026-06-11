@@ -51,3 +51,7 @@ The chain stays current and reaches its audience. Each house can be produced
 because its stage was stocked; the chain's work is experienced because it was
 toured to Venues that can reach it. The Roadie is the crew whose setup and
 load-out connect produce and experience across every house at once.
+
+Current means a green board: dependencies up to date and the security panel
+clean. The Roadie guards both as standing tasks. A chain with a red dependency
+or an open security finding is not current, whatever else ships.
