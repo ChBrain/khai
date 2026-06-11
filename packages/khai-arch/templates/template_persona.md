@@ -13,7 +13,7 @@ type: fictional
 
 ## Taxonomy
 
-The group directly above: the role this persona fills, its seat in the cast or the org. Name it; link it if it is a Position with its own file. Not this one's name (the H1) or its origin (Owner).
+The role this persona fills: the seat directly above it in the cast or the org. Name it; it needs no file of its own, since a role named in prose here is valid and not every seat is worth a file. When the seat does have a Position file, link it, `[its name](position_[name].md)`: a Position file that exists must be held, the conformance kit fails one that no persona's Taxonomy claims. Not this one's name (the H1) or its origin (Owner).
 
 ## Owner
 
