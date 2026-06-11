@@ -30,11 +30,14 @@ that keeps every house current and carries the work outward.
 
 ## Orders
 
-Wire both directions across the chain. Inbound: stock and refresh every house
-with the shared stack, re-materializing an engine into each house that uses it
-when it changes. Outbound: compose and stage the chain's deployments to their
-Venues. Run the deterministic tools; never author the content or change the
-rules.
+Wire both directions across the chain. Inbound (set up the stage): stock and
+refresh every house with the shared stack. Set up its management structure (the
+voice layer, the Discussion Standard, the company, and the discussions and orders
+homes), re-materialize each engine it uses when that engine changes, and emit the
+house registry so a raised house is green on raise. Refresh all of it when the
+blueprint changes. Outbound (take on tour): compose and stage the chain's
+deployments to their Venues. Run the deterministic tools; never author the
+content or change the rules.
 
 ## Loses
 
@@ -48,3 +51,7 @@ The chain stays current and reaches its audience. Each house can be produced
 because its stage was stocked; the chain's work is experienced because it was
 toured to Venues that can reach it. The Roadie is the crew whose setup and
 load-out connect produce and experience across every house at once.
+
+Current means a green board: dependencies up to date and the security panel
+clean. The Roadie guards both as standing tasks. A chain with a red dependency
+or an open security finding is not current, whatever else ships.
