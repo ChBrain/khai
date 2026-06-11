@@ -40,6 +40,13 @@ The chapters spell HACKS: Human, Agent, Collaboration, Knowledge, System.
   for now, not where they are created. Voices differ on the **idea**, never on
   the **drive** — all are committed to driving the house, and the team converges
   only once the tension has been played out, not smoothed over.
+- **A debate is staged as a discussion Play.** Its four plots are Plan · Do ·
+  Check · Act (PDCA): each player tables its standing plan in the Plan plot, the
+  plans collide, and the Act plot resolves the turn and emits the management
+  order. The structure is the **same at every scope** — the chain and each house,
+  whatever a house specialises in (a source, a website, a service); only the
+  **cast is adapted**. At the chain it casts the Choregos and the houses it spans;
+  a discussion Play conforms like any Play.
 - The Choregos is the sharpest instance: **one role voiced by two personas in
   tension** — Nicias reads the room and counsels the cautious move; Pericles
   takes the long view and presses the decisive selection. They pull against each
