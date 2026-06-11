@@ -68,6 +68,14 @@ The chapters spell HACKS: Human, Agent, Collaboration, Knowledge, System.
   per house the Theatre Manager, the Playwright, and the Roadie.
 - Each voice keeps to its part: the Choregos produces, the Theatre Manager runs a
   house, the Playwright writes, the Roadie sets the stage up and tours it.
+- **Never a position without a name:** a position speaks only through a named
+  Persona.
+- **A position may hold more than one Persona:** the Choregos is Nicias and
+  Pericles, in tension.
+- **Not every setup carries every position:** the chain casts the Choregos and
+  the Roadie; a house adds the Theatre Manager and the Playwright. A position with
+  no work in a setup is not deployed there, and a needed position with no Persona
+  is a failure.
 
 ## System
 

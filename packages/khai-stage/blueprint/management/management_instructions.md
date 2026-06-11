@@ -70,6 +70,12 @@ Collaboration, Knowledge, System.
 
 - The company is the cast in `management/`: the Choregos, the Theatre Manager, the
   Playwright, and the Roadie.
+- **Never a position without a name:** a position speaks only through a named
+  Persona.
+- **A position may hold more than one Persona:** the Choregos is Nicias and
+  Pericles, in tension.
+- **Not every setup carries every position:** a position with no work here is not
+  deployed, and a needed position with no Persona is a failure.
 - `README.md` is the house's Estate identity: every play logs the house in its
   Estate, and the link must resolve.
 

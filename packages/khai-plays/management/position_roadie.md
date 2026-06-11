@@ -30,14 +30,12 @@ that keeps every house current and carries the work outward.
 
 ## Orders
 
-Wire both directions across the chain. Inbound (set up the stage): stock and
-refresh every house with the shared stack. Set up its management structure (the
-voice layer, the Discussion Standard, the company, and the discussions and orders
-homes), re-materialize each engine it uses when that engine changes, and emit the
-house registry so a raised house is green on raise. Refresh all of it when the
-blueprint changes. Outbound (take on tour): compose and stage the chain's
-deployments to their Venues. Run the deterministic tools; never author the
-content or change the rules.
+Wire both directions across the chain. The Roadie carries three standing plans
+and runs each on its cue: [Keep Clean](plan_keep_clean.md) (always on),
+[Set Up a House](plan_set_up_a_house.md) (inbound), and
+[Go on Tour](plan_go_on_tour.md) (outbound). He runs the deterministic tools and
+guards each plan's checklist; he never authors the content or changes the rules.
+The position names what he drives; the plans say what done is.
 
 ## Loses
 
