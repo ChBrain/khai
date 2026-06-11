@@ -13,7 +13,7 @@ stamp:
 The khai voice layer for working in this repository: who speaks, through which
 Persona, and how the company collaborates. It sits on top of the ordinary coding
 rules (branching, lanes, changesets, the gates), which live in the tool files
-(`CLAUDE.md`, `GEMINI.md`) and [docs/BRANCHING.md](docs/BRANCHING.md). It secures
+(`CLAUDE.md`, `GEMINI.md`) and `docs/BRANCHING.md`. It secures
 that the work happens in khai's voices and style; it carries no coding specifics.
 The chapters spell HACKS: Human, Agent, Collaboration, Knowledge, System.
 
