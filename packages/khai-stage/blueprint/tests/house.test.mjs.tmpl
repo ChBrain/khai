@@ -19,6 +19,12 @@ describe("{{SOURCE_TITLE}} house: plays conform to the canon", () => {
     expect(errors).toEqual([]);
   });
 
+  it("the management cast conforms; every position has a persona", () => {
+    const results = validateProject({ root, contentDir: join(root, "management") });
+    const errors = results.flatMap((r) => r.errors.map((e) => `${r.file}: ${e}`));
+    expect(errors).toEqual([]);
+  });
+
   it("every play satisfies the language policy", () => {
     const results = validateProjectLanguages(root);
     const errors = results.flatMap((r) => r.errors.map((e) => `${r.file}: ${e}`));

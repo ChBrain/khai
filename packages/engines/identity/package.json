@@ -1,0 +1,69 @@
+{
+  "name": "@chbrain/khai-engine-identity",
+  "version": "0.1.0",
+  "description": "khai engine content, the identity domain: the self-story a persona holds about who they are, and how firmly -- and on what basis -- they defend it under challenge.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/identity"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "identity",
+    "tagline": "Identity as position: the self-story a persona holds about who they are -- and how firmly, and on what basis, they defend it under challenge.",
+    "type": "position",
+    "anchor": "position_identity.md",
+    "expressions": {
+      "achieved": "position_achieved.md",
+      "foreclosed": "position_foreclosed.md",
+      "moratorium": "position_moratorium.md",
+      "diffuse": "position_diffuse.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_identity.md) declares the self-story a persona holds about who they are -- the commitments assembled into a sense of continuity across scenes, carried into the room and defended when touched. The law makes every persona hold one and reveal how it is held under challenge.",
+      "issue": "Four statuses a persona may hold, set by whether the self-story was explored and whether it is committed (Marcia): achieved (explored then chosen -- held firmly and lightly), foreclosed (committed unexamined -- held rigidly, challenge is threat), moratorium (exploring, uncommitted -- in flux), diffuse (neither -- no firm self, takes the room's shape). Each meets a challenge to the self differently.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the self-story is read for every persona. The link: each persona carries, under Projection, the status that names how firmly and on what basis it holds who-it-is.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real identity status. Whether the status is true to the persona, and shows in how they meet a challenge to the self rather than as a label, is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the persona its status under Projection, carrying the anchor upward. Read it in how the persona answers when the self-story is touched -- revises, hardens, searches, or drifts -- never as a stated label."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.10",
+    "vitest": "^4.1.8"
+  }
+}

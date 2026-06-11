@@ -4,7 +4,7 @@
 // workspace) - same code, two callers.
 
 import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
-import { join, dirname } from "node:path";
+import { join, dirname, basename } from "node:path";
 import { pathToFileURL } from "node:url";
 import {
   types,
@@ -40,6 +40,23 @@ import { resolveLanguage } from "@chbrain/khai-language";
 
 const typeIds = Object.keys(types);
 
+// The licence an instance must declare is computed from the canon, never
+// configured per repo: each authoring template stamps a `license:` into the
+// content generated from it, so the template *is* the ruling and one change in
+// khai-arch reaches every consumer on the next dependency bump. A type the
+// canon ships no template for (e.g. order) carries no expectation, and a canon
+// too old to export `templates` yields none — the kit keeps working, it just
+// cannot enforce what the canon does not declare.
+const canonLicenses = new Map();
+function canonLicenseFor(type) {
+  if (!canonLicenses.has(type)) {
+    const text = khaiArch.templates?.[type]?.text;
+    const declared = text ? parseDoc(text).data?.license : null;
+    canonLicenses.set(type, typeof declared === "string" ? declared : null);
+  }
+  return canonLicenses.get(type);
+}
+
 /**
  * Read and JSON-parse a file, returning `fallback` (default null) if it is
  * missing, unreadable, or malformed. Installed dependencies and consumer files
@@ -60,6 +77,15 @@ export function readJsonOr(path, fallback = null) {
 /** @typedef {{ file: string, errors: string[], warnings?: string[] }} FileResult */
 
 /**
+ * The Playwright wiring guide every engine ships: a `khai: instructions` file
+ * (HACKS) explaining the engine's model so an LLM Playwright wires it from
+ * understanding. It is dev-steering, not engine content -- not a manifest
+ * member, exempt from the loose-file check, validated as instructions, and
+ * excluded from a tour.
+ */
+const PLAYWRIGHT_INSTRUCTIONS = "playwright_instructions.md";
+
+/**
  * The engine docs standard, run over a package's own `.md` files (excluding the
  * changeset-generated CHANGELOG). These are advisory by nature: they surface as
  * `warnings`, never `errors`, so a downstream consumer is informed but not
@@ -70,7 +96,9 @@ export function readJsonOr(path, fallback = null) {
  */
 export function engineDocChecks(pkgDir) {
   const out = [];
-  const mds = readdirSync(pkgDir).filter((f) => f.endsWith(".md") && f !== "CHANGELOG.md");
+  const mds = readdirSync(pkgDir).filter(
+    (f) => f.endsWith(".md") && f !== "CHANGELOG.md" && f !== PLAYWRIGHT_INSTRUCTIONS,
+  );
   for (const f of mds) {
     const text = readFileSync(join(pkgDir, f), "utf8");
     const warnings = [
@@ -151,7 +179,7 @@ function targetVerdictErrors(targetsBody, label) {
  */
 export function validateContentFile(
   text,
-  { type, baseDir, owner, allowed, exemptLinks, resolvedLanguage },
+  { type, baseDir, owner, allowed, exemptLinks, resolvedLanguage, license },
 ) {
   const contract = types[type];
   if (!contract) return [`unknown khai type "${type}" (not in canon)`];
@@ -190,6 +218,16 @@ export function validateContentFile(
     ...h2Errors,
     ...checkExtensions(doc, { allowed: new Set(allowed ?? []) }),
   ];
+  // The licence is part of the frontmatter contract when the caller pins an
+  // expectation (validateInstanceFile pins the canon's): a missing field leaves
+  // the content unprotected, a different one re-licenses it on the quiet.
+  if (license) {
+    const declared = doc.data?.license;
+    if (typeof declared !== "string")
+      errors.push(`frontmatter license missing (canon declares "${license}")`);
+    else if (declared !== license)
+      errors.push(`frontmatter license "${declared}" != canon licence "${license}"`);
+  }
   if (type === "play") {
     try {
       playCard(text);
@@ -408,9 +446,23 @@ export async function validateEnginePackage(pkgDir, { executeCompose = false } =
   }
 
   // no orphan content: every khai instance file must be a declared member
+  // (the Playwright wiring guide is dev-steering, not a member -- exempt).
   for (const file of instanceFiles(pkgDir)) {
+    if (file === PLAYWRIGHT_INSTRUCTIONS) continue;
     if (!referenced.has(file))
       results.push({ file, errors: [`content file not referenced in manifest: ${file}`] });
+  }
+
+  // The Playwright wiring guide: validate it as an instructions instance when
+  // present (HACKS, each chapter non-empty). Whether it is *required* is gated
+  // separately, flipped on once every engine carries it.
+  const piPath = join(pkgDir, PLAYWRIGHT_INSTRUCTIONS);
+  if (existsSync(piPath)) {
+    const errors = validateContentFile(readFileSync(piPath, "utf8"), {
+      type: "instructions",
+      baseDir: pkgDir,
+    });
+    if (errors.length) results.push({ file: PLAYWRIGHT_INSTRUCTIONS, errors });
   }
 
   // compose() smoke test - executes package code; trusted callers only. The
@@ -561,7 +613,7 @@ export function wiringRequirements(manifests) {
  */
 export function validateInstanceFile(
   text,
-  { baseDir, requirements = [], owner, levels, resolvedLanguage } = {},
+  { baseDir, requirements = [], owner, levels, resolvedLanguage, license } = {},
 ) {
   const doc = parseDoc(text);
   const type = doc.data?.khai;
@@ -577,6 +629,10 @@ export function validateInstanceFile(
     owner,
     exemptLinks,
     resolvedLanguage,
+    // "canon" resolves to whatever licence the installed canon's template for
+    // this type stamps; an explicit string pins it; absent means no check
+    // (direct callers validating structure only).
+    license: license === "canon" ? canonLicenseFor(type) : license,
   }).map((m) => ({
     level: "fail",
     message: m,
@@ -845,10 +901,56 @@ export function validatePlayhouseRegistry(root) {
  * hard each engine's contract binds). Each result buckets the file's findings
  * into errors (fail) / warnings (warn) / audit.
  *
- * @param {{ root: string, contentDir?: string, owner?: object, levels?: Record<string,string> }} opts
+ * @param {{ root: string, contentDir?: string, owner?: object, levels?: Record<string,string>, license?: string|false }} opts
  * @returns {{ file: string, errors: string[], warnings: string[], audit: string[] }[]}
  */
-export function validateProject({ root, contentDir = root, owner, levels } = {}) {
+/**
+ * A needed position without a persona is a failure. In any directory that casts a
+ * management company, every `position_*.md` must have at least one `persona_*.md`
+ * whose Taxonomy links to it. (A persona pointing at a missing position is a
+ * broken link, caught by checkLinks; this catches the reverse: an orphan
+ * position.) Grouped per directory, so a chain cast and a house cast are each
+ * checked against their own personas.
+ *
+ * @param {Iterable<string>} files  instance file paths
+ * @returns {{ file: string, errors: string[] }[]}
+ */
+export function castErrors(files) {
+  const byDir = new Map();
+  for (const f of files) {
+    const base = basename(f);
+    const isPosition = /^position_.+\.md$/.test(base);
+    const isPersona = /^persona_.+\.md$/.test(base);
+    if (!isPosition && !isPersona) continue;
+    const dir = dirname(f);
+    if (!byDir.has(dir)) byDir.set(dir, { positions: [], linked: new Set() });
+    const group = byDir.get(dir);
+    if (isPosition) group.positions.push({ file: f, base });
+    else
+      for (const m of readFileSync(f, "utf8").matchAll(/position_[a-z0-9_]+\.md/g))
+        group.linked.add(m[0]);
+  }
+  const results = [];
+  for (const { positions, linked } of byDir.values())
+    for (const pos of positions)
+      if (!linked.has(pos.base))
+        results.push({
+          file: pos.file,
+          errors: [
+            `position has no persona: nothing links to ${pos.base} ` +
+              `(a needed position without a persona is a failure)`,
+          ],
+        });
+  return results;
+}
+
+export function validateProject({
+  root,
+  contentDir = root,
+  owner,
+  levels,
+  license = "canon",
+} = {}) {
   const requirements = wiringRequirements(installedEngineManifests(root));
   const results = [];
   const files = new Set(findInstanceFiles(contentDir));
@@ -868,9 +970,13 @@ export function validateProject({ root, contentDir = root, owner, levels } = {})
       owner,
       levels,
       resolvedLanguage,
+      license,
     });
     if (findings.length) results.push({ file, ...bucket(findings) });
   }
+
+  // A needed position without a persona is a failure (computed, not judged).
+  results.push(...castErrors(files));
 
   const playsDir = join(root, "plays");
   if (existsSync(playsDir) && statSync(playsDir).isDirectory()) {
