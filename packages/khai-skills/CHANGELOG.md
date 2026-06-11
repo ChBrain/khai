@@ -1,5 +1,29 @@
 # @chbrain/khai-skills
 
+## 0.0.19
+
+### Patch Changes
+
+- d22cfa2: Add the khai-roadie skill: the technical voice that runs the two Tour-and-Stage
+  jobs over the deterministic packages. Set up the Stage (inbound) materializes the
+  engines a world uses into the production repo; Take on Tour (outbound) composes a
+  venue's deployment (Standard x Adaption, engines at Knowledge) and stages it as an
+  upload bundle or a repo tree. Vendor-neutral (venue kind/source, never a product
+  name), modelled on khai-impresario. Implements docs/ROADIE.md build-order item 4.
+- 8b718f8: Add the khai-theatre-manager skill: the house voice. It runs one production house
+  day to day, staging finished plays into it (Estate resolved, in the house voice,
+  conformant), versioning it by the house rule (a new play is a minor bump, else
+  patch), keeping its gates (the guard picks the lane, the gate is never bypassed,
+  nothing is merged), and aligning cross-house needs upward to the chain rather than
+  editing them from inside. Vendor-neutral, modelled on khai-impresario / khai-roadie.
+  This fills the last of the four voices whose position and persona already existed.
+- 29229bb: khai-roadie: the Stage job now sets up the management structure. The roadie stamps
+  a house's management structure with khai-stage (the voice contract
+  `management/management_instructions.md` plus the company: the positions and their
+  named personas) and refreshes it when the blueprint changes, the same managed sync
+  as the engines. The impresario judges the source and lists the house; the roadie
+  does the technical setup and keeps it current.
+
 ## 0.0.18
 
 ### Patch Changes
