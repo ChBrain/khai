@@ -77,6 +77,15 @@ export function readJsonOr(path, fallback = null) {
 /** @typedef {{ file: string, errors: string[], warnings?: string[] }} FileResult */
 
 /**
+ * The Playwright wiring guide every engine ships: a `khai: instructions` file
+ * (HACKS) explaining the engine's model so an LLM Playwright wires it from
+ * understanding. It is dev-steering, not engine content -- not a manifest
+ * member, exempt from the loose-file check, validated as instructions, and
+ * excluded from a tour.
+ */
+const PLAYWRIGHT_INSTRUCTIONS = "playwright_instructions.md";
+
+/**
  * The engine docs standard, run over a package's own `.md` files (excluding the
  * changeset-generated CHANGELOG). These are advisory by nature: they surface as
  * `warnings`, never `errors`, so a downstream consumer is informed but not
@@ -87,7 +96,9 @@ export function readJsonOr(path, fallback = null) {
  */
 export function engineDocChecks(pkgDir) {
   const out = [];
-  const mds = readdirSync(pkgDir).filter((f) => f.endsWith(".md") && f !== "CHANGELOG.md");
+  const mds = readdirSync(pkgDir).filter(
+    (f) => f.endsWith(".md") && f !== "CHANGELOG.md" && f !== PLAYWRIGHT_INSTRUCTIONS,
+  );
   for (const f of mds) {
     const text = readFileSync(join(pkgDir, f), "utf8");
     const warnings = [
@@ -435,9 +446,23 @@ export async function validateEnginePackage(pkgDir, { executeCompose = false } =
   }
 
   // no orphan content: every khai instance file must be a declared member
+  // (the Playwright wiring guide is dev-steering, not a member -- exempt).
   for (const file of instanceFiles(pkgDir)) {
+    if (file === PLAYWRIGHT_INSTRUCTIONS) continue;
     if (!referenced.has(file))
       results.push({ file, errors: [`content file not referenced in manifest: ${file}`] });
+  }
+
+  // The Playwright wiring guide: validate it as an instructions instance when
+  // present (HACKS, each chapter non-empty). Whether it is *required* is gated
+  // separately, flipped on once every engine carries it.
+  const piPath = join(pkgDir, PLAYWRIGHT_INSTRUCTIONS);
+  if (existsSync(piPath)) {
+    const errors = validateContentFile(readFileSync(piPath, "utf8"), {
+      type: "instructions",
+      baseDir: pkgDir,
+    });
+    if (errors.length) results.push({ file: PLAYWRIGHT_INSTRUCTIONS, errors });
   }
 
   // compose() smoke test - executes package code; trusted callers only. The
