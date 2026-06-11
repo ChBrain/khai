@@ -12,7 +12,7 @@ stamp:
 
 ## Taxonomy
 
-The group above this place: the region that contains it. Name it, then ask whether that region is itself a Place with its own file. If it is, link it; if it is not, ask whether it should be. This is what this place sits inside, not its own name (the H1 carries that) and not where it came from (Owner carries that).
+The group directly above: the region that contains this place. Name it; link it if it is a Place with its own file. Not this one's name (the H1) or its origin (Owner).
 
 ## Owner
 

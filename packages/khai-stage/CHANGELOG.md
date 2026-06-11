@@ -1,5 +1,56 @@
 # @chbrain/khai-stage
 
+## 0.0.12
+
+### Patch Changes
+
+- bcc3b98: Complete the management standard in raised houses: add the lifted **Discussion
+  Standard** (`management/discussion_instructions.md`, the management-track analog of
+  the Prose Standard) and the `management/orders/` home (beside
+  `management/discussions/`). A raised house now stamps the full standard — voice
+  layer, Discussion Standard, discussions + orders homes, and the company — and all
+  instance files conform.
+- edc2198: Enshrine the position/persona rules in the house voice layer and Discussion
+  Standard: never a position without a name, a position may hold more than one
+  Persona, and not every setup carries every position (a needed position with no
+  Persona is a failure). Stamped into every house.
+- 3b9c7b1: Mirror the Roadie plan model into the house blueprint. The house Roadie now
+  carries two standing plans (`plan_keep_clean`, `plan_go_on_tour`); his Orders
+  drive them and his Drives carry the green-board principle. He does not hold
+  `set up a house`, that is the chain Roadie raising houses, "not all plans in all
+  setups". A raised house stamps both plans and conforms.
+- cd5a827: Lift the house's dev-steering rules into a single default contract,
+  `management/management_instructions.md`: a full HACKS instructions file (Human,
+  Agent, Collaboration, Knowledge, System) holding the operating rules every model
+  follows in a house. `CLAUDE.md` and `GEMINI.md` are reduced to thin, parallel
+  per-tool adaptions that reference it the same way, so the rules live in one place
+  and abstract across LLMs. Stamped into every house by the blueprint.
+- b8d8b1d: Protect every house's management: the house conformance test now runs the kit
+  (`validateProject`) over `management/` too, not just `plays/`. The house cast
+  conforms and the orphan-position gate holds in every house's CI - the same call,
+  the same wall as the chain. Verified: a raised house validates its management
+  clean.
+- 737253d: Emit `registry.json` when a house is raised, so the house is green on raise with
+  no manual `khai-tests registry build` step. An empty house lists no plays; name
+  and version are read from the house package.json (the same source the kit reads),
+  so the two never drift. Verified: raising a house validates clean immediately.
+- 9d5db23: Add the Roadie to the house blueprint as a management position, symmetric with the
+  Theatre Manager and the Playwright. Every stamped house now carries
+  `management/position_roadie.md` (the role: wire the stage inbound and the tour
+  outbound) and a named `persona_roadie.md` (filled per house). `stageHouse` threads
+  a `roadie` slug and `{{ROADIE_*}}` tokens, and the bin takes an optional `[roadie]`
+  argument. The named persona is fleshed out in khai-roadie mode, as the Playwright's
+  is in khai-playwright mode.
+
+## 0.0.11
+
+### Patch Changes
+
+- 9e66206: Rename the blueprint's CI conformance job from `test` to `khai-tests`, the tool
+  it runs, matching the `khai-guard` job's naming. A house raised from this
+  blueprint must require the `khai-tests` check in its branch protection (not
+  `test`).
+
 ## 0.0.10
 
 ### Patch Changes
