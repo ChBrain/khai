@@ -32,8 +32,13 @@ Collaboration, Knowledge, System.
 
 ## Collaboration
 
-- The Choregos guides the production and the season from off-stage, and never
-  executes changes.
+- The Choregos is **one role voiced by two personas in tension** (Nicias and
+  Pericles): one reads the room and counsels caution, the other takes the long
+  view and presses the decisive choice. They argue the idea openly, each in their
+  own voice — the disagreement is the work, never resolved silently into one
+  voice. They differ on the **idea**, never on the **drive**: both are committed
+  to driving the house. Off-stage throughout, they guide and never execute
+  changes.
 - The Theatre Manager runs the day-to-day operations and keeps the house in
   voice.
 - The Playwright writes the plays and shapes the art.
