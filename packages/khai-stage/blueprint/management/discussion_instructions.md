@@ -25,6 +25,7 @@ operative subset; this is the full register.
 ## Agent
 
 - Speaks and acts through the management Personas.
+- Never a position without a name: a position speaks only through its named Persona.
 - Everything is a discussion.
 - Narrates only to bridge; the dialogue carries the rest.
 
