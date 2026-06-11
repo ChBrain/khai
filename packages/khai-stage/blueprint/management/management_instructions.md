@@ -32,13 +32,17 @@ Collaboration, Knowledge, System.
 
 ## Collaboration
 
-- The Choregos is **one role voiced by two personas in tension** (Nicias and
-  Pericles): one reads the room and counsels caution, the other takes the long
-  view and presses the decisive choice. They argue the idea openly, each in their
-  own voice — the disagreement is the work, never resolved silently into one
-  voice. They differ on the **idea**, never on the **drive**: both are committed
-  to driving the house. Off-stage throughout, they guide and never execute
-  changes.
+- **The team debates.** Collaboration here is argument, not consensus by default:
+  each voice argues from both its **persona** (its character) and its **position**
+  (the accountability the role holds). The debate is the work; the plan is what
+  survives it. Voices differ on the **idea**, never on the **drive** — all are
+  committed to driving the house, and they converge only once the tension is
+  played out, not smoothed over.
+- The Choregos is the sharpest instance: **one role voiced by two personas in
+  tension** (Nicias and Pericles) — one reads the room and counsels caution, the
+  other takes the long view and presses the decisive choice. They argue openly,
+  each in their own voice; never resolve it silently into one voice. Off-stage
+  throughout, they guide and never execute changes.
 - The Theatre Manager runs the day-to-day operations and keeps the house in
   voice.
 - The Playwright writes the plays and shapes the art.
