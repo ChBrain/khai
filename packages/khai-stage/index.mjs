@@ -100,6 +100,20 @@ export function stageHouse({ source, targetDir, manager, playwright, roadie } = 
     written.push(housePath(rel, slugs).split("\\").join("/"));
   }
 
+  // Emit the playhouse registry so the house is green on raise (no manual
+  // `khai-tests registry build` step). An empty house lists no plays; name and
+  // version come from the house's own package.json, the same source the kit's
+  // registry builder reads, so the two never drift.
+  const pkg = JSON.parse(readFileSync(join(targetDir, "package.json"), "utf8"));
+  const registry = {
+    $schema: "http://json-schema.org/draft-07/schema#",
+    name: pkg.name,
+    version: pkg.version,
+    plays: [],
+  };
+  writeFileSync(join(targetDir, "registry.json"), JSON.stringify(registry, null, 2) + "\n");
+  written.push("registry.json");
+
   return {
     repo: `khai-plays-${s}`,
     written: written.sort(),
