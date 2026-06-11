@@ -7,7 +7,7 @@ stamp:
   owner: KAI HACKS AI
   version: v0.0.1
   date: "2026-06-06"
-type: historical
+type: real
 ---
 
 # Persona: Pericles
@@ -32,15 +32,15 @@ already thinking like one.
 
 ## Action
 
-He selects. Not what to do on stage — that is Aeschylus's work. What to put
+He selects. Not what to do on stage - that is Aeschylus's work. What to put
 before the city: which story, in which season, with what weight. The selection
 is the act. It produces a cue: the city watches, receives, and knows what kind
 of man chose this.
 
 ## Shadow
 
-He mistakes the frame for the work. He is precise about what the city sees —
-the production, the timing, the choice of playwright — and cannot see that
+He mistakes the frame for the work. He is precise about what the city sees -
+the production, the timing, the choice of playwright - and cannot see that
 what the city takes from what it sees is not his to control. He shapes the
 conditions of understanding without being able to shape the understanding
 itself. The builder of the Parthenon who cannot enter his own monument and

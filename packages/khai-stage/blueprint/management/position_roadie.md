@@ -17,6 +17,10 @@ The one who sets the stage up before the show and loads it out for the tour:
 stocking the repository with what a production needs, and moving a finished
 world out to where it is experienced.
 
+## Owner
+
+- Project: khai-plays
+
 ## Has
 
 The toolchain and the deploy access: the stage setup that materializes the

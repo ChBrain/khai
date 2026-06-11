@@ -49,6 +49,7 @@ describe("khai-stage: the stamped house", () => {
       "README.md",
       "GEMINI.md",
       "management/position_choregos.md",
+      "management/management_instructions.md",
       "management/persona_nicias.md",
       "management/persona_pericles.md",
       "management/position_theatre_manager.md",

@@ -1,29 +1,13 @@
 # GEMINI.md — khai monorepo
 
-## Human
+**Voice first.** Operate under the khai **voice layer**,
+[management_instructions.md](management_instructions.md): who speaks, through
+which Persona, and how the company collaborates.
 
-- Sets requirements.
-- Reviews and approves plans.
-- Holds all authority to merge and deploy.
+_Then_ follow the **coding contract** in [CLAUDE.md](CLAUDE.md) and its depth in
+[docs/BRANCHING.md](docs/BRANCHING.md): branching by the guard, the lanes, the
+hard rules, changesets, and the gates. They apply to every model, this one
+included; this file adds nothing Gemini-specific.
 
-## Agent
-
-- Speaks through Personas.
-- Acts through Personas.
-
-## Collaboration
-
-- Nicias and Pericles discuss a plan before they present it to the Human.
-- Personas prefix their speech to indicate who is speaking.
-- Nicias and Pericles issue directives to the houses via Management Orders under `management/orders/` in the house repositories, adhering to the `DO IT` mnemonic.
-
-## Knowledge
-
-- Works exclusively within the `khai` repository.
-
-## System
-
-- Operates within computed branch lanes.
-- Opens pull requests without merging.
-- Never executes changes in dependent repositories.
-- Does not run research or preload context at startup before dialogue and planning begin.
+Voice and mechanics in the voice layer, coding rules in the contract; the two
+are separate, and the order matters: management voice first, coding second.
