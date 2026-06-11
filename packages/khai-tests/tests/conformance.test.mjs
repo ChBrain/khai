@@ -633,6 +633,11 @@ describe("meta engine: validateEnginePackage accepts the spine (class: meta)", (
   // smoke calls it bare, so the fixture ships a minimal index.mjs.
   const index = `export const compose = () => "demo instructions";\n`;
 
+  // The Playwright wiring guide is required of every engine, the meta engine
+  // included (the real spine carries a short guide that points at the Roadie),
+  // so the fixture ships one to conform.
+  const playwrightGuide = `---\nkhai: instructions\ntitle: "Demo"\n${stamp}\n---\n\n# Instructions: Demo\n\n## Human\n\nThe human sets the venue; spine setup is the Roadie's job.\n\n## Agent\n\nThe Playwright links nothing from a meta engine.\n\n## Collaboration\n\nIt belongs to the Roadie, who composes and tours it.\n\n## Knowledge\n\nThe meta layer a world runs on, composed not wired.\n\n## System\n\nDo leave it to the Roadie; do not link or edit it.\n`;
+
   beforeEach(() => {
     mkdirSync(dir, { recursive: true });
     writeFileSync(join(dir, "package.json"), JSON.stringify(manifest));
@@ -640,6 +645,7 @@ describe("meta engine: validateEnginePackage accepts the spine (class: meta)", (
     writeFileSync(join(dir, "architecture_demo.md"), architecture);
     writeFileSync(join(dir, "REFERENCES.md"), references);
     writeFileSync(join(dir, "index.mjs"), index);
+    writeFileSync(join(dir, "playwright_instructions.md"), playwrightGuide);
   });
   afterEach(() => rmSync(dir, { recursive: true, force: true }));
 
@@ -652,6 +658,14 @@ describe("meta engine: validateEnginePackage accepts the spine (class: meta)", (
     const errors = flatten(await validateEnginePackage(dir));
     expect(errors.some((e) => e.includes("WIRES card"))).toBe(false);
     expect(errors.some((e) => e.includes("README"))).toBe(false);
+  });
+
+  it("requires the Playwright wiring guide of every engine (meta included)", async () => {
+    rmSync(join(dir, "playwright_instructions.md"), { force: true });
+    const errors = flatten(await validateEnginePackage(dir));
+    expect(errors).toContain(
+      "playwright_instructions.md: missing; every engine ships a Playwright wiring guide",
+    );
   });
 
   it("still requires the card on a content engine (the gate is meta-only)", async () => {
