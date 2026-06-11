@@ -1,6 +1,6 @@
 ---
 name: khai-engineer
-description: "In khai-engineer mode you become the engineer and work a khai engine end to end. Mode A (create) builds a new engine: its anchor, its members, its manifest, and the weave that ties them. Mode B (audit) reviews an engine against the contract and returns findings with a verdict. Mode C (repair) fixes and improves a flat or weak engine, adding the missing ties and lifting the content, without rewriting it. The shared contract is the weave: one anchor that names the engine, every member tied down from it and back up to it, and siblings tied across to each other, all woven in prose. Use when creating, auditing, reviewing, repairing, improving, or wiring a khai engine."
+description: "In khai-engineer mode you become the engineer and work a khai engine end to end. Mode A (create) builds a new engine: its anchor, its members, its manifest, its Playwright wiring guide, and the weave that ties them. Mode B (audit) reviews an engine against the contract and returns findings with a verdict. Mode C (repair) fixes and improves a flat or weak engine, adding the missing ties and lifting the content, without rewriting it. The shared contract is the weave: one anchor that names the engine, every member tied down from it and back up to it, and siblings tied across to each other, all woven in prose. Use when creating, auditing, reviewing, repairing, improving, or wiring a khai engine."
 license: CC-BY-NC-4.0
 ---
 
@@ -79,6 +79,64 @@ An engine is wired when all four ties hold. Each tie is a markdown link
 The anchor-and-spokes (ties 1 and 2) is the floor. The sibling web (tie 3) is
 the bar: a flat engine has the spokes but no web, or worse, not even the spokes.
 
+## The Playwright wiring guide
+
+Every engine ships a `playwright_instructions.md`: a `khai: instructions` file
+(HACKS) that explains the engine's model so an LLM **Playwright** wires it into a
+play from understanding, not from a recipe. It is dev-steering, not runtime
+content: it never goes on tour, and the conformance kit **requires** it of every
+engine (the meta engine included). It spells HACKS, five chapters. Write the
+**why**, the reasoning a Playwright needs to grasp the engine, never the explicit
+placement for one play.
+
+There are two wirings, and only one is the Playwright's to perform:
+
+- **The law into Knowledge is the Roadie's, and it is locked.** On deploy the
+  Roadie plumbs each engine's declared law into the Instructions Knowledge
+  chapter. This always happens, automatically. State it as fixed; never ask the
+  Playwright to do it.
+- **The type wiring is the Playwright's.** The Playwright links the play's own
+  content to the engine by anchoring on the khai type(s) the engine fits. **The
+  engine files stay untouched:** the Playwright wires by linking _from the play_,
+  never by editing the engine.
+
+### The chapter contract
+
+- **Human** : the human's steering, what the human sets for this engine.
+- **Agent** : what the Playwright does, the anchors it casts (which khai type,
+  read how, across what).
+- **Collaboration** : where the Playwright needs help, the neighbouring engines a
+  meaning belongs to, the scene, and the team's review.
+- **Knowledge** : the engine explained, its model and the why behind it. This is
+  the chapter that teaches.
+- **System** : the technical do and do-not, closing on the two constants: engine
+  files stay untouched, and the guide does not go on tour.
+
+### Where to anchor
+
+Pick the khai type(s) the engine's nature fits. More than one may apply: use all
+that make sense, the Playwright's call.
+
+- **Over time** (an arc, a change that plays out) : anchor on a **play** or its
+  **plots**.
+- **Desired or intended but contested** : anchor on a **plan**.
+- **An inner self** : anchor on a **persona**.
+- **A structural role, a stance the room reads** : anchor on a **position**.
+- **A mechanism, a thing that fires** : anchor on a **process**.
+- **A charged object** : anchor on a **piece**.
+- **An environment, a field** : anchor on a **place**.
+
+A single engine often carries more than one: a stance that drifts over a run
+anchors on a position and is read across the plots.
+
+### Lock only what is certain
+
+The guide is reasoning space and creative freedom, not a cage. **Lock a chapter
+only where you are 100% certain.** The Roadie plumbing is the clear case, and it
+is always locked. Everywhere else, explain the why and leave the placement to the
+Playwright's judgment for the play in hand: a guide that dictates the exact link
+for every case has stopped teaching the engine and started writing one play.
+
 ## Mode A: create an engine
 
 1. **Settle the shape and the anchor.** Decide process (a thing that happens
@@ -96,8 +154,11 @@ the bar: a flat engine has the spokes but no web, or worse, not even the spokes.
 5. **Write the manifest.** Declare `engine`, `tagline`, `type`, the members tree
    (or `anchor` + `expressions`), the `requires`, and the `card`. The anchor in
    the manifest must equal the anchor in the prose.
-6. **Add the boilerplate** (copied from an existing engine) and a changeset.
-7. **Run the create self-check**, then hand to a runtime for the structural kit.
+6. **Write the Playwright wiring guide** (`playwright_instructions.md`): the HACKS
+   chapters explaining the engine's model and where it anchors, so a Playwright
+   wires it from understanding. Required of every engine, and kept off tour.
+7. **Add the boilerplate** (copied from an existing engine) and a changeset.
+8. **Run the create self-check**, then hand to a runtime for the structural kit.
 
 ## Mode B: audit an engine
 
@@ -111,7 +172,7 @@ Produce a report, not a rewrite.
    - **members up** : members linking the anchor.
    - **siblings across** : links between members that share a parent.
 3. **Check the floor** (or note that a runtime must): exactly one anchor, the
-   manifest well formed, no orphan file.
+   manifest well formed, no orphan file, and the Playwright wiring guide present.
 4. **Return findings and a verdict.** Name the shape: **full** (all four ties
    hold, siblings woven, no orphan); **star with no web** (spokes hold, zero or
    thin siblings); **silent anchor** (members reach up, anchor names none of
@@ -176,6 +237,7 @@ contrast or handoff, where one member is defined against another.
 - [ ] Manifest anchor equals the anchor named in the prose
 - [ ] requires declares the wiring altitudes; card carries wire/issue/require/enforce/setup
 - [ ] Every member file exists and matches its declared type
+- [ ] playwright_instructions.md is present: HACKS chapters, the why not the placement
 - [ ] A changeset is present
 ```
 
