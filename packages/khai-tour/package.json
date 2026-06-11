@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-tour",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "khai-tour: Stage plays and khai artifacts to their venues. Adapt khai work (plays, engines, skills, methods) to distribution profiles (gemini_gem, github_pages, print, etc.) with audience-specific constraints and formats.",
   "type": "module",
   "main": "./lib/index.mjs",
