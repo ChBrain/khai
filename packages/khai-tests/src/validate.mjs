@@ -855,6 +855,36 @@ export function validatePlayhouseRegistry(root) {
     }
   }
 
+  // Numbering invariant: the minor version tracks the play count. A house adds a
+  // play with a minor bump, so the minor *is* the count — computed, not chosen.
+  // Two unreconciled paths (a manual version edit vs. a minor changeset) can drift
+  // the version from the count, and nothing else catches it; assert it here so the
+  // mismatch is a red build, not a defect found by a downstream human. The scheme
+  // only holds while major stays 0 (a major bump would reset minor while the count
+  // keeps climbing), so a non-zero major is itself the finding.
+  const versionMatch = /^(\d+)\.(\d+)\./.exec(registry.version.trim());
+  if (!versionMatch) {
+    errors.push(
+      `registry.json version "${registry.version}" is not semver (MAJOR.MINOR.PATCH); ` +
+        `cannot check that the minor tracks the play count`,
+    );
+  } else {
+    const major = Number(versionMatch[1]);
+    const minor = Number(versionMatch[2]);
+    const count = registryPlays.length;
+    if (major !== 0) {
+      errors.push(
+        `registry.json version "${registry.version}" has major ${major}; a playhouse stays 0.x ` +
+          `so the minor tracks the play count (a major bump resets the minor and breaks the invariant)`,
+      );
+    } else if (minor !== count) {
+      errors.push(
+        `registry.json version minor (${minor}) must equal the play count (${count}); ` +
+          `adding a play is a minor bump, so 0.${count}.x is expected`,
+      );
+    }
+  }
+
   // Title Alignment:
   // Parse the playbook frontmatter (the `play_*.md` under `plays/<id>/`, matching
   // how buildRegistry discovers it) and verify that its `title` matches the `title`
