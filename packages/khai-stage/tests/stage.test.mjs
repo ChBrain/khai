@@ -74,7 +74,7 @@ describe("khai-stage: the stamped house", () => {
   it("stamps a publishable package: files, version + release scripts, not private", () => {
     const pkg = JSON.parse(readFileSync(join(dir, "package.json"), "utf8"));
     expect(pkg.files).toContain("plays/**");
-    expect(pkg.scripts.version).toBe("changeset version");
+    expect(pkg.scripts.version).toBe("changeset version && khai-tests registry build");
     expect(pkg.scripts.release).toBe("changeset publish");
     expect(pkg.private).toBeUndefined();
   });
