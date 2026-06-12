@@ -16,6 +16,11 @@ describe("{{SOURCE_TITLE}} house: plays conform to the canon", () => {
   it("every play validates against the canon (zero findings)", () => {
     const results = validateProject({ root, contentDir: join(root, "plays") });
     const errors = results.flatMap((r) => r.errors.map((e) => `${r.file}: ${e}`));
+    // Advisory findings (e.g. a Company element no plot casts) do not fail the
+    // build, but they are surfaced in the CI log so the drift is visible here
+    // rather than only to a human reading the rendered play.
+    const warnings = results.flatMap((r) => (r.warnings ?? []).map((w) => `${r.file}: ${w}`));
+    if (warnings.length) console.warn(`house warnings (advisory):\n${warnings.join("\n")}`);
     expect(errors).toEqual([]);
   });
 
