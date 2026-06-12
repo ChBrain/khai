@@ -32,10 +32,20 @@ Never `--no-verify`. Never merge; open the PR and stop.
 
 ## Versioning
 
-We align version numbers using changesets under the following rules:
+The minor version IS the play count, computed not chosen. The `version` script
+runs `khai-tests registry build` after `changeset version`, which derives the
+version (minor set to the play count) and reconciles both `package.json` and
+`registry.json`. So a changeset only ever picks the release level; the count
+owns the minor.
 
-- **Adding a play** -> `minor` bump (so the minor version indicates the total count of plays).
-- **Everything else** (governance, formatting, etc.) -> `patch` bump.
+- **Adding a play** -> a `patch` changeset is enough to cut the release; the
+  build bumps the minor for you when it counts the new play. Do not hand-edit
+  the version or add a `minor` changeset for the count, that double-bump is the
+  drift the build now heals.
+- **Everything else** (governance, formatting, etc.) -> a `patch` changeset.
+
+A non-zero major resets the minor while the count keeps climbing, so a house
+stays `0.x`; the numbering guard rejects a major bump.
 
 ## Protection
 
