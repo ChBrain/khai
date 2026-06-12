@@ -855,6 +855,36 @@ export function validatePlayhouseRegistry(root) {
     }
   }
 
+  // Numbering invariant: the minor version tracks the play count. A house adds a
+  // play with a minor bump, so the minor *is* the count — computed, not chosen.
+  // Two unreconciled paths (a manual version edit vs. a minor changeset) can drift
+  // the version from the count, and nothing else catches it; assert it here so the
+  // mismatch is a red build, not a defect found by a downstream human. The scheme
+  // only holds while major stays 0 (a major bump would reset minor while the count
+  // keeps climbing), so a non-zero major is itself the finding.
+  const versionMatch = /^(\d+)\.(\d+)\./.exec(registry.version.trim());
+  if (!versionMatch) {
+    errors.push(
+      `registry.json version "${registry.version}" is not semver (MAJOR.MINOR.PATCH); ` +
+        `cannot check that the minor tracks the play count`,
+    );
+  } else {
+    const major = Number(versionMatch[1]);
+    const minor = Number(versionMatch[2]);
+    const count = registryPlays.length;
+    if (major !== 0) {
+      errors.push(
+        `registry.json version "${registry.version}" has major ${major}; a playhouse stays 0.x ` +
+          `so the minor tracks the play count (a major bump resets the minor and breaks the invariant)`,
+      );
+    } else if (minor !== count) {
+      errors.push(
+        `registry.json version minor (${minor}) must equal the play count (${count}); ` +
+          `adding a play is a minor bump, so 0.${count}.x is expected`,
+      );
+    }
+  }
+
   // Title Alignment:
   // Parse the playbook frontmatter (the `play_*.md` under `plays/<id>/`, matching
   // how buildRegistry discovers it) and verify that its `title` matches the `title`
@@ -950,6 +980,106 @@ export function castErrors(files) {
   return results;
 }
 
+/** Basenames of every relative markdown link target in a block of text. Mirrors
+ * the private helper in khai-rules and the regex the house "isolated links" test
+ * uses; inlined here so casting coverage owns no cross-package import. */
+function castLinkBasenames(text) {
+  const re = /\]\(([^()\s]+)\)/g;
+  const out = [];
+  let m;
+  while ((m = re.exec(text))) {
+    const target = m[1].split("#")[0];
+    if (!target || /^[a-z]+:\/\//i.test(target)) continue;
+    out.push(target.split(/[/\\]/).pop());
+  }
+  return out;
+}
+
+/**
+ * A plot that names its company in plain prose ships uncast: structurally valid,
+ * green in CI, yet bound to nothing until a human reads the rendered play. This
+ * is the dual of castErrors (a needed position without a persona) lifted to the
+ * play level — computed, not judged.
+ *
+ * A plot casts an element by linking it inline; the play's Company section is the
+ * closed set of elements the play may field, so it is the source of truth for
+ * what the cast is. A plot's cast is the intersection of its links with the
+ * Company's links — which drops the structural Taxonomy link to the play itself
+ * (a play never lists itself in its Company) without special-casing.
+ *
+ *   (a) a plot whose cast is empty is uncast — an error.
+ *   (b) a Company element no plot casts is a dead entry — a warning, since the
+ *       Company is an upper bound ("the closed cast this discussion MAY field"),
+ *       not a mandate that every declared member be fielded.
+ *
+ * @param {string} root  project root (looks for plays/<id>/)
+ * @returns {{ file: string, errors: string[], warnings: string[], audit: string[] }[]}
+ */
+export function castingCoverageErrors(root) {
+  const playsDir = join(root, "plays");
+  if (!existsSync(playsDir) || !statSync(playsDir).isDirectory()) return [];
+
+  let subdirs;
+  try {
+    subdirs = readdirSync(playsDir, { withFileTypes: true })
+      .filter((e) => e.isDirectory() && !e.name.startsWith("."))
+      .map((e) => e.name);
+  } catch {
+    return [];
+  }
+
+  const results = [];
+  for (const id of subdirs) {
+    const playDir = join(playsDir, id);
+    let files;
+    try {
+      files = readdirSync(playDir).filter((f) => f.endsWith(".md"));
+    } catch {
+      continue;
+    }
+    const playFileName = files.find((f) => f.startsWith("play_"));
+    if (!playFileName) continue; // structure is the registry's concern, not casting's
+
+    const playPath = join(playDir, playFileName);
+    const parsed = parseDoc(readFileSync(playPath, "utf8"));
+    const companyLines = parsed.body == null ? null : sectionBody(parsed.body, "Company");
+    const company = new Set(companyLines ? castLinkBasenames(companyLines.join("\n")) : []);
+    if (company.size === 0) continue; // no declared cast to measure a plot against
+
+    const cast = new Set(); // union of every plot's casting links
+    for (const plotFile of files.filter((f) => f.startsWith("plot_"))) {
+      const plotPath = join(playDir, plotFile);
+      const plotCast = castLinkBasenames(readFileSync(plotPath, "utf8")).filter((b) =>
+        company.has(b),
+      );
+      for (const b of plotCast) cast.add(b);
+      if (plotCast.length === 0) {
+        results.push({
+          file: plotPath,
+          errors: [
+            "plot casts nothing: its prose links no element of its play's Company " +
+              "(cast the company by linking it inline, not naming it in plain text)",
+          ],
+          warnings: [],
+          audit: [],
+        });
+      }
+    }
+
+    const dead = [...company].filter((b) => !cast.has(b));
+    if (dead.length) {
+      results.push({
+        file: playPath,
+        errors: [],
+        warnings: dead.map((b) => `Company element cast by no plot: ${b}`),
+        audit: [],
+      });
+    }
+  }
+
+  return results;
+}
+
 export function validateProject({
   root,
   contentDir = root,
@@ -988,6 +1118,9 @@ export function validateProject({
   if (existsSync(playsDir) && statSync(playsDir).isDirectory()) {
     const regResults = validatePlayhouseRegistry(root);
     if (regResults.length) results.push(...regResults);
+    // Every plot must cast at least one element of its play's Company; a dead
+    // Company entry is a warning. The dual of castErrors, at the play level.
+    results.push(...castingCoverageErrors(root));
   }
 
   return results;
