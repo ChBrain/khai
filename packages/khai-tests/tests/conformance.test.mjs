@@ -1049,7 +1049,7 @@ describe("conformance: playhouse registry gates", () => {
         join(dir, "registry.json"),
         JSON.stringify({
           name: "test-house",
-          version: "1.0.0",
+          version: "0.1.0",
           plays: [{ id: "valid_play", title: "Valid Play", description: desc }],
         }),
       );
@@ -1107,7 +1107,7 @@ describe("conformance: playhouse registry gates", () => {
       join(dir, "registry.json"),
       JSON.stringify({
         name: "test-house",
-        version: "1.0.0",
+        version: "0.1.0",
         plays: [{ id: "aligned", title: "Aligned Play", description: "Valid blurb description." }],
       }),
     );
@@ -1176,7 +1176,7 @@ describe("conformance: registry utility functions", () => {
   it("builds and verifies a registry.json correctly from plays directory", () => {
     writeFileSync(
       join(dir, "package.json"),
-      JSON.stringify({ name: "my-house", version: "2.3.4" }),
+      JSON.stringify({ name: "my-house", version: "0.1.0" }),
     );
 
     mkdirSync(join(dir, "plays", "play_a"), { recursive: true });
@@ -1203,7 +1203,7 @@ This is a single sentence description.
 
     const registry = JSON.parse(readFileSync(join(dir, "registry.json"), "utf8"));
     expect(registry.name).toBe("my-house");
-    expect(registry.version).toBe("2.3.4");
+    expect(registry.version).toBe("0.1.0");
     expect(registry.plays.length).toBe(1);
     expect(registry.plays[0].id).toBe("play_a");
     expect(registry.plays[0].title).toBe("Play A Title");
@@ -1239,7 +1239,7 @@ describe.skipIf(DORMANT_CONSISTENCY)("conformance: registry build/verify consist
     );
     mkdirSync(dir, { recursive: true });
     mkdirSync(join(dir, "plays"), { recursive: true });
-    writeFileSync(join(dir, "package.json"), JSON.stringify({ name: "house", version: "1.0.0" }));
+    writeFileSync(join(dir, "package.json"), JSON.stringify({ name: "house", version: "0.1.0" }));
   });
 
   afterEach(() => {

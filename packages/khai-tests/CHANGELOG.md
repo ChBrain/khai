@@ -1,5 +1,22 @@
 # @chbrain/khai-tests
 
+## 0.1.18
+
+### Patch Changes
+
+- 71209a2: Add casting-coverage validation to `validateProject`. A plot must cast at least
+  one element of its play's Company (links it inline); a plot that names the
+  company only in plain prose is now an error, the dual of the position→persona
+  cast check at the play level. A Company element no plot casts is reported as a
+  warning, since the Company is the closed cast a play may field, not a mandate
+  that every member appear.
+- 61c021e: Enforce the playhouse numbering invariant in `validatePlayhouseRegistry`: a
+  house's version minor must equal its play count (adding a play is a minor bump,
+  so the minor tracks the count). A drifted minor, a non-semver version, or a
+  non-zero major (which would reset the minor while the count keeps climbing) is
+  now an error rather than silent drift found downstream. Existing registry test
+  fixtures are aligned to the invariant (version 0.<count>.0).
+
 ## 0.1.17
 
 ### Patch Changes
