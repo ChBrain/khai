@@ -1,5 +1,19 @@
 # @chbrain/khai-stage
 
+## 0.0.13
+
+### Patch Changes
+
+- 76e790a: The generated house derives its version from the play count: the `version`
+  script now runs `khai-tests registry build` after `changeset version`, so the
+  minor is set to the play count and `package.json` plus `registry.json` are
+  reconciled at release. The house CLAUDE.md versioning rule is updated to match,
+  a play PR is a patch changeset and the build owns the minor, no hand-bumps.
+- 0494215: The generated house test now surfaces advisory validation warnings (e.g. a
+  Company element no plot casts) to the CI log instead of dropping them. Warnings
+  still never fail the build; they are printed so the drift is visible in CI
+  rather than only to a human reading the rendered play.
+
 ## 0.0.12
 
 ### Patch Changes

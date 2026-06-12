@@ -1,5 +1,13 @@
 # @chbrain/khai-skills
 
+## 0.0.22
+
+### Patch Changes
+
+- 750ba53: The theatre-manager skill's versioning guidance now matches the derived-version
+  flow: changesets pick the release level only, and the build sets the minor from
+  the play count. Adding a play is a patch changeset, not a hand-bumped minor.
+
 ## 0.0.21
 
 ### Patch Changes
