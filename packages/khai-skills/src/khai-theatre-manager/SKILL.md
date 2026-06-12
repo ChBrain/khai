@@ -49,10 +49,14 @@ You do not rewrite the play; you fit it to the house and confirm it conforms.
 
 ### Version it
 
-Use changesets, by the house rule:
+Use changesets to pick the release level only; the minor is not yours to set.
+The `version` script runs `khai-tests registry build`, which derives the version
+from the play count (the minor IS the count) and reconciles `package.json` and
+`registry.json`.
 
-- Adding a play is a **minor** bump, so the minor number tracks the count of
-  plays in the house.
+- Adding a play is a **patch** changeset; the build bumps the minor for you when
+  it counts the new play. Do not hand-bump the version or add a minor changeset
+  for the count, that double-bump is the drift the build heals.
 - Everything else (governance, formatting, configuration) is a **patch**.
 
 ### Keep the gates
@@ -89,7 +93,7 @@ the change it needs.
 - [ ] Every staged play logs this house in its Estate, and the link resolves
 - [ ] Everything staged is in the house voice, or carries a deliberate per-play override
 - [ ] The house passes the conformance check before anything is presented
-- [ ] Versioning follows the rule: a new play is minor, everything else patch
+- [ ] Versioning follows the rule: a patch changeset; the build sets the minor from the play count
 - [ ] The lane was computed by the guard; the gate was not bypassed and nothing was merged
 - [ ] Any management order rides the lane of the change it commands
 - [ ] Work beyond the house is aligned upward, not edited from inside
