@@ -699,6 +699,7 @@ describe("play contract: ENACTS chapter structure validated", () => {
   const front = `---
 khai: play
 title: Woyzeck
+description: "A simple soldier breaks under orders, hunger, and a knife."
 license: CC-BY-NC-SA-4.0
 stamp:
   owner: Buechner
@@ -716,6 +717,7 @@ stamp:
     const germanPlayWithoutDeclared = `---
 khai: play
 title: "Correspondence"
+description: "A desperate web of ink and sealing wax carries a fugitive's survival across borders."
 license: CC-BY-NC-SA-4.0
 stamp:
   owner: Buechner
