@@ -123,6 +123,23 @@ The linter sees that a link is present; only the reviewer sees whether the text
 behind it means anything. A persona that links `position_female.md` but reads
 with no female register passes the linter and is caught by NLP.
 
+### Reviewer-assist — `title` vs `declared`
+
+An instance carries two names: **`title`** is the English-facing label; **`declared`**
+is the name as it stands in the source (German, for a German house). They diverge
+for a common noun (`declared: "König"` → `title: "The King"`) and coincide for a
+proper noun or cognate (`Rapunzel`, `Horn`). So source-language text must never sit
+in `title` — only in `declared`.
+
+A blanket `title === declared` rewrite would corrupt the proper nouns, and no script
+can tell "keep" from "translate": that needs language judgment. `titleLeakAudit`
+therefore **only assists** — it raises **audit** findings (never `warn`, never `fail`,
+never an edit) for a human to triage, in two buckets: a title carrying a
+source-language marker (the high-signal case), and a title equal to its `declared`
+(mostly proper nouns, surfaced so a stray untranslated common noun is not missed).
+It is wired into `validateInstanceFile`/`validateProject` and surfaces on the CLI's
+`·` audit line.
+
 ### Two altitudes
 
 The model applies wherever an engine wires (the canon's Require):
