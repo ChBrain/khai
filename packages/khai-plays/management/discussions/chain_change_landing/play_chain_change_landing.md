@@ -1,6 +1,7 @@
 ---
 khai: play
 title: "Chain Change Landing"
+description: "The chain's management deliberates whether a change lands across every house at once, and on whose terms."
 license: CC-BY-NC-SA-4.0
 stamp:
   owner: KAI HACKS AI
