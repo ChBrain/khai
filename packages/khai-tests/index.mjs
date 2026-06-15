@@ -11,6 +11,7 @@ export {
   validatePlayhouseRegistry,
   wiringRequirements,
   engineDocChecks,
+  titleLeakAudit,
 } from "./src/validate.mjs";
 export {
   buildRegistry,

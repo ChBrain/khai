@@ -604,6 +604,76 @@ export function wiringRequirements(manifests) {
   return manifests.flatMap(requirementsFromEngine);
 }
 
+// --- reviewer-assist: source-language leak into the English `title` ----------
+// `title` is the English-facing label; `declared` is the name as it stands in the
+// source. The two diverge for a common noun (declared "König" -> title "The King")
+// and coincide for a proper noun or cognate (Rapunzel/Rapunzel, Horn/Horn), so no
+// script can tell "keep" from "translate": a blanket title===declared rewrite would
+// corrupt the proper nouns. This check therefore never fails and never edits -- it
+// raises AUDIT findings a human triages. Two buckets, per the contract:
+//   (a) the title carries a source-language marker (orthography, a connective
+//       phrase, or an observed common noun) -- the high-signal case;
+//   (b) the title equals the declared source name -- the low-signal case (mostly
+//       proper nouns, surfaced so a stray untranslated common noun is not missed).
+
+// Curated source-language markers, keyed by the resolved language so a new source
+// adds its own set without touching the logic. German is the only source in play.
+// Deliberately high-precision over a Title-cased English label: a *bare* umlaut is
+// not a marker, because a proper name keeps its orthography in English (Büchner,
+// Dörfling) and would only train reviewers to ignore the audit; the title===declared
+// bucket below surfaces those gently instead. What stays:
+//   - a Title-cased German connective binding two words: the tell of a Title-cased
+//     German slug ("Tonne Im Meer", "Lied Von Herz Und Leber"). A lowercased "von"
+//     in an English-rendered name ("Wenzel von Tronka") is deliberately not matched.
+//   - the common nouns observed leaking from Title-cased German slugs (matched
+//     Title-cased, so an English word mid-title is not caught).
+const SOURCE_MARKERS = {
+  german: [
+    /\b(?:Und|Im|Von|Zu|Auf|Aus|Mit|Der|Die|Das|Dem|Den)\s+\w/,
+    /\b(?:Wald|H(?:ue|ü)tte|Becher|V(?:oe|ö)gel|Vogel|Sau|Kirche|K(?:oe|ö)nig|Goldschmied|Goldei|Tonne|Meer|Stube|Schloss|Brunnen|Eierhandel|Spruchwirkung|Wunschkraft|Zitrone|Messer|Bodenloch|Voegel|Wuensche|Erwaehlt|Versoehnung)\b/,
+  ],
+};
+
+/**
+ * Reviewer-assist audit for source-language text leaking into `title`. Returns
+ * AUDIT-level findings only (never errors, never warnings): the call to translate
+ * or keep is the reviewer's, not the gate's. English content (no resolved source
+ * language) is exempt -- there is no second language to leak. A file is reported
+ * once: the high-signal marker bucket takes precedence over the title===declared
+ * bucket, so a flagged file is not double-counted.
+ * @param {ReturnType<typeof parseDoc>} doc
+ * @param {string} [resolvedLanguage]
+ * @returns {{ level: "audit", message: string }[]}
+ */
+export function titleLeakAudit(doc, resolvedLanguage) {
+  if (!doc.ok) return [];
+  const title = doc.data?.title;
+  if (typeof title !== "string" || title.trim() === "") return [];
+  const lang = resolvedLanguage && resolvedLanguage !== "english" ? resolvedLanguage : null;
+  if (!lang) return []; // an English label over an English source has nothing to leak
+  const markers = SOURCE_MARKERS[lang] ?? [];
+  if (markers.some((re) => re.test(title)))
+    return [
+      {
+        level: "audit",
+        message:
+          `title "${title}" may carry ${lang} text; \`title\` is the English label and the ` +
+          `source name belongs in \`declared\` (translate a common noun, keep a proper noun)`,
+      },
+    ];
+  const declared = doc.data?.declared;
+  if (typeof declared === "string" && declared.trim() !== "" && title.trim() === declared.trim())
+    return [
+      {
+        level: "audit",
+        message:
+          `title equals declared ("${title}"); confirm this is a proper noun or cognate, ` +
+          `not an untranslated ${lang} common noun`,
+      },
+    ];
+  return [];
+}
+
 /**
  * Validate one consumer instance file: structure against its canon type, plus
  * any wiring requirements whose `on` matches the instance's declared khai type.
@@ -648,6 +718,9 @@ export function validateInstanceFile(
     const level = resolveLevel(req, levels);
     for (const m of checkWiring(doc, req)) findings.push({ level, message: m });
   }
+  // Reviewer-assist (audit only): does the English `title` carry source-language
+  // text? Never gates -- the translate/keep call is the reviewer's.
+  findings.push(...titleLeakAudit(doc, resolvedLanguage));
   return findings;
 }
 
