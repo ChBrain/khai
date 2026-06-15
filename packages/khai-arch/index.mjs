@@ -126,7 +126,7 @@ export function toPrefix(typeId) {
  */
 const FRONTMATTER_EXTRAS = {
   persona: { type: { values: ["real", "archetype", "fictional"], required: true } },
-  play: { description: { required: false } },
+  play: { description: { required: true } },
   plan: { status: { values: ["draft", "active", "closed"], required: true } },
 };
 export function frontmatterExtras(typeId) {
