@@ -1,6 +1,7 @@
 ---
 khai: play
 title: "[title]"
+description: "One English sentence summarising the play, which the shelf and search index read."
 license: CC-BY-NC-SA-4.0
 stamp:
   owner: KAI HACKS AI
