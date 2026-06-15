@@ -91,20 +91,27 @@ export function buildRegistry(root) {
 
     const title = doc.data?.title || id;
 
-    // Parse blurb description under ## Arc
-    let description = "";
-    const content = doc.body || "";
-    const arcMatch = content.match(/^##\s+Arc\s*$/im);
-    if (arcMatch) {
-      const startIndex = arcMatch.index + arcMatch[0].length;
-      const rest = content.slice(startIndex).trim();
-      const nextHeadingMatch = rest.match(/^##\s+/m);
-      const sectionText = nextHeadingMatch ? rest.slice(0, nextHeadingMatch.index).trim() : rest;
-      const paragraphs = sectionText
-        .split(/\r?\n\r?\n/)
-        .map((p) => p.trim())
-        .filter((p) => p.length > 0);
-      description = paragraphs[0] || "";
+    // The registry is the English-facing index, so the description is the
+    // canon's own one-line `description:` from frontmatter (the same English
+    // slot as `title`). Fall back to the first ## Arc paragraph (the
+    // declared-language synopsis the book reads) only when no frontmatter
+    // description is authored, so a house keeps building while its plays adopt
+    // the field.
+    let description = typeof doc.data?.description === "string" ? doc.data.description.trim() : "";
+    if (!description) {
+      const content = doc.body || "";
+      const arcMatch = content.match(/^##\s+Arc\s*$/im);
+      if (arcMatch) {
+        const startIndex = arcMatch.index + arcMatch[0].length;
+        const rest = content.slice(startIndex).trim();
+        const nextHeadingMatch = rest.match(/^##\s+/m);
+        const sectionText = nextHeadingMatch ? rest.slice(0, nextHeadingMatch.index).trim() : rest;
+        const paragraphs = sectionText
+          .split(/\r?\n\r?\n/)
+          .map((p) => p.trim())
+          .filter((p) => p.length > 0);
+        description = paragraphs[0] || "";
+      }
     }
 
     plays.push({
