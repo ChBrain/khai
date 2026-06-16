@@ -1,0 +1,7 @@
+{
+  "id": "hcandersen",
+  "title": "H.C. Andersen",
+  "package": "@chbrain/khai-plays-hcandersen",
+  "blurb": "The productions of Hans Christian Andersen: fairy tales told in a plain, spoken voice that speaks to a child and wounds the adult who overhears.",
+  "repo": "https://github.com/ChBrain/khai-plays-hcandersen"
+}

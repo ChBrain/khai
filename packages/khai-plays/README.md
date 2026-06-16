@@ -14,6 +14,7 @@ shape is in `registry/README.md`); it rewrites this file.
 
 - **[Buechner](https://github.com/ChBrain/khai-plays-buechner)** (programme `@chbrain/khai-plays-buechner`): The productions of Georg Büchner: fevered, unfinished, a century ahead of their stage.
 - **[Grimm](https://github.com/ChBrain/khai-plays-grimm)** (programme `@chbrain/khai-plays-grimm`): The Grimm production house: 210 plays staged from the Children's and Household Tales in the Margaret Hunt translation, each tale its own ENACTS production.
+- **[H.C. Andersen](https://github.com/ChBrain/khai-plays-hcandersen)** (programme `@chbrain/khai-plays-hcandersen`): The productions of Hans Christian Andersen: fairy tales told in a plain, spoken voice that speaks to a child and wounds the adult who overhears.
 - **[Kleist](https://github.com/ChBrain/khai-plays-kleist)** (programme `@chbrain/khai-plays-kleist`): The productions of Kleist: broken trust, somnambulists, and sudden violence where a single misread sign shatters the whole order.
 
 ## Reading the bill
