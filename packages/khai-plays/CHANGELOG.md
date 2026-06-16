@@ -1,5 +1,11 @@
 # @chbrain/khai-plays
 
+## 0.0.9
+
+### Patch Changes
+
+- 5f9c660: List the H.C. Andersen house on the bill: register its card (repo the house, package the programme).
+
 ## 0.0.8
 
 ### Patch Changes
