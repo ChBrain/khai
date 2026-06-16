@@ -1,5 +1,11 @@
 # @chbrain/khai-stage
 
+## 0.0.14
+
+### Patch Changes
+
+- 9ad21a8: Stamp houses with security wiring: add `.github/dependabot.yml` (npm + github-actions, weekly) and `.github/workflows/codeql.yml`, and declare least-privilege `permissions: contents: read` in the house `ci.yml`. Every future house inherits these; existing houses are backfilled separately.
+
 ## 0.0.13
 
 ### Patch Changes
