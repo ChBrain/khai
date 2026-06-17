@@ -1,0 +1,13 @@
+{
+  "type": "writing",
+  "inject": [
+    { "to": "references/template_play.md", "from": "template:play" },
+    { "to": "references/template_plot.md", "from": "template:plot" },
+    { "to": "references/template_process.md", "from": "template:process" },
+    { "to": "references/template_position.md", "from": "template:position" },
+    { "to": "references/template_piece.md", "from": "template:piece" },
+    { "to": "references/template_place.md", "from": "template:place" },
+    { "to": "references/template_persona.md", "from": "template:persona" },
+    { "to": "references/template_plan.md", "from": "template:plan" }
+  ]
+}
