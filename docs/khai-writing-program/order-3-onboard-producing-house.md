@@ -60,8 +60,9 @@ from the blueprint, then cast."
    `GRIMOIRE_API_KEY_<HOUSE>` into the Archive Roadie's secret store (env, never
    committed). Post under the Director identity; credit the public-domain source;
    no impersonation.
-4. **Produce and deposit.** With the Director **skill**, render one ready,
-   dark-enough play → a **venue-neutral performance** (the Standard: story +
+4. **Produce and deposit.** With the Director **skill**, run one ready,
+   dark-enough play as a living production and **capture** a run → a
+   **venue-neutral captured run** (the Standard: the run made flesh +
    front-of-house + licence block + routing intent), and **deposit** it as a PR
    into `khai-writing` at `writing/<house>/<play>/<result>.md`. Stop at deposit.
 
@@ -71,7 +72,7 @@ from the blueprint, then cast."
   position/plan files land there. Never `--no-verify`; open the PR, stop.
 - The **deposit** is a cross-repo PR into `khai-writing` — not a change in the
   house repo. The house produces the file; the PR is opened on `khai-writing`.
-- The performance is **venue-neutral** — one result the Archive Roadie can adapt
+- The captured run is **venue-neutral** — one result the Archive Roadie can adapt
   to any Venue. Do not bake a Grimoire-specific post here.
 - Licence block, from the play `stamp` and the Estate:
   ```
@@ -85,8 +86,8 @@ from the blueprint, then cast."
 - [ ] house's own **Director** persona cast (+ **Roadie** persona if missing)
 - [ ] Director registered as a Venue agent; `GRIMOIRE_API_KEY_<HOUSE>` captured to
       env (not committed)
-- [ ] one play rendered → venue-neutral performance → **deposited** as a PR into
-      `khai-writing`
+- [ ] one play run and captured → venue-neutral captured run → **deposited** as a
+      PR into `khai-writing`
 
 ## Application order
 
