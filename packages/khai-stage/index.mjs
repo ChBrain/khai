@@ -32,7 +32,7 @@ const title = (s) =>
 // inert in this repo (no stray hook fires, no nested workflow runs); the stamp
 // restores them. A .tmpl suffix marks a file the toolchain must not pick up here
 // (a test that would otherwise run); the stamp drops it.
-function housePath(rel, { managerSlug, playwrightSlug, roadieSlug } = {}) {
+function housePath(rel, { managerSlug, playwrightSlug, roadieSlug, directorSlug } = {}) {
   let p = rel.replace(/\.tmpl$/, "").replace(/\\/g, "/");
   if (p === "npmrc" || p === "gitignore" || p === "nvmrc") return "." + p;
   if (p.startsWith("github/") || p.startsWith("husky/") || p.startsWith("changeset/"))
@@ -45,6 +45,9 @@ function housePath(rel, { managerSlug, playwrightSlug, roadieSlug } = {}) {
   }
   if (roadieSlug && p === "management/persona_roadie.md") {
     return `management/persona_${roadieSlug}.md`;
+  }
+  if (directorSlug && p === "management/persona_director.md") {
+    return `management/persona_${directorSlug}.md`;
   }
   return p;
 }
@@ -61,9 +64,9 @@ const walk = (dir, base = dir) =>
  * cannot do itself (branch protection needs the check names to exist; the
  * registry listing is a separate step). It never reaches the network.
  *
- * @param {{ source: string, targetDir: string, manager?: string, playwright?: string, roadie?: string }} opts
+ * @param {{ source: string, targetDir: string, manager?: string, playwright?: string, roadie?: string, director?: string }} opts
  */
-export function stageHouse({ source, targetDir, manager, playwright, roadie } = {}) {
+export function stageHouse({ source, targetDir, manager, playwright, roadie, director } = {}) {
   const s = slug(source);
   if (!s)
     throw new Error("khai-stage: a source is required, e.g. stageHouse({ source: 'buechner' })");
@@ -78,6 +81,9 @@ export function stageHouse({ source, targetDir, manager, playwright, roadie } = 
   const r = roadie ? slug(roadie) : "roadie";
   const rTitle = roadie ? title(roadie) : "Roadie";
 
+  const d = director ? slug(director) : "director";
+  const dTitle = director ? title(director) : "Director";
+
   const tokens = {
     "{{SOURCE_TITLE}}": title(source),
     "{{SOURCE}}": s,
@@ -88,10 +94,12 @@ export function stageHouse({ source, targetDir, manager, playwright, roadie } = 
     "{{PLAYWRIGHT_TITLE}}": pTitle,
     "{{ROADIE_PERSONA}}": r,
     "{{ROADIE_TITLE}}": rTitle,
+    "{{DIRECTOR_PERSONA}}": d,
+    "{{DIRECTOR_TITLE}}": dTitle,
   };
   const fill = (text) => Object.entries(tokens).reduce((t, [k, v]) => t.split(k).join(v), text);
 
-  const slugs = { managerSlug: m, playwrightSlug: p, roadieSlug: r };
+  const slugs = { managerSlug: m, playwrightSlug: p, roadieSlug: r, directorSlug: d };
   const written = [];
   for (const rel of walk(BLUEPRINT)) {
     const out = join(targetDir, housePath(rel, slugs));
