@@ -1,35 +1,31 @@
 import { describe, it, expect } from "vitest";
-import { mkdtempSync, rmSync, mkdirSync, writeFileSync, cpSync, readFileSync } from "node:fs";
+import { mkdtempSync, rmSync, mkdirSync, writeFileSync, cpSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
   checkManagement,
-  defaultBlueprintDir,
+  blueprintManagementDir,
   MANAGEMENT_CORE,
   MANAGEMENT_HOMES,
-  CORE_DIR,
 } from "../index.mjs";
 
-// Build a temp house whose management/ matches the shipped core snapshot.
+const BLUEPRINT = blueprintManagementDir();
+
+// Build a temp house whose management/ matches the live blueprint core.
 function convergedHouse() {
   const dir = mkdtempSync(join(tmpdir(), "khai-house-"));
   const m = join(dir, "management");
   mkdirSync(m, { recursive: true });
-  for (const f of MANAGEMENT_CORE) cpSync(join(CORE_DIR, f), join(m, f));
+  for (const f of MANAGEMENT_CORE) cpSync(join(BLUEPRINT, f), join(m, f));
   for (const h of MANAGEMENT_HOMES) mkdirSync(join(m, h), { recursive: true });
   return dir;
 }
 
 describe("khai-tests: the management convergence gate", () => {
-  // The drift guard: the committed snapshot must equal the blueprint it was built
-  // from. This is the check that catches a stale snapshot (e.g. the blueprint
-  // gained a field but `management build` was not re-run).
-  it("the committed snapshot is in sync with the khai-stage blueprint", () => {
-    const bp = defaultBlueprintDir();
-    const drifted = MANAGEMENT_CORE.filter(
-      (f) => readFileSync(join(CORE_DIR, f), "utf8") !== readFileSync(join(bp, f), "utf8"),
-    );
-    expect(drifted, `run "khai-tests management build" to resync`).toEqual([]);
+  it("resolves the blueprint and carries the full core", () => {
+    expect(existsSync(BLUEPRINT)).toBe(true);
+    for (const f of MANAGEMENT_CORE)
+      expect(existsSync(join(BLUEPRINT, f)), `blueprint ${f}`).toBe(true);
   });
 
   it("passes a house whose core matches and that carries the homes", () => {
