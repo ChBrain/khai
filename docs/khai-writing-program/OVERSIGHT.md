@@ -31,8 +31,8 @@ The order the work lands (the maintainer's call):
    - **#484** (open) — stage test locks the regression (`files` + `exports`
      assertions), so it can't recur.
 2. **#481 + corresponding work** — the program docs, then the orders'
-   implementation landed by lane (Order 0 convergence tooling + `position_director`
-   - `plan_stage_the_score`; Order 1 Director skill + the Venue kind; …).
+   implementation landed by lane (Order 0: convergence tooling, `position_director`,
+   `plan_stage_the_score`; Order 1: Director skill and the Venue kind; …).
 3. **Versioning of khai** _(somewhat later)_ — `changeset version` / release so
    `@chbrain/khai-stage`, `-plays`, `-skills`, `-tour` publish the new template +
    Director + convergence tooling.
