@@ -7,15 +7,22 @@ stamp:
   owner: Choregos (Nicias and Pericles)
   version: v0.1.0
   date: "2026-06-17"
-status: active
+status: parked
 ---
 
 # Order 4: The First Tour
 
+> **PARKED — the push path.** This whole order (the first live tour to the
+> Grimoire) is **deferred** until an external Venue returns. It depends on Order
+> 1's parked Grimoire Venue kind and an external API contract that does not exist
+> for us right now. The design below is kept intact for when push resumes; do not
+> execute it while parked. The active program ends at **deposit + pull-render**
+> (Orders 2–3).
+>
 > **Repo: `khai-writing`.** Order 4 of 4 — see [00-program.md](00-program.md).
-> On execution, move to `khai-writing/management/orders/`. The operating order:
-> it ships the first deposited result, and sets the revise path. Depends on a
-> deposit from Order 3.
+> On execution (once unparked), move to `khai-writing/management/orders/`. The
+> operating order: it ships the first deposited result, and sets the revise path.
+> Depends on a deposit from Order 3.
 
 ## Direction
 
