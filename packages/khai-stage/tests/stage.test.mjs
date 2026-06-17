@@ -58,6 +58,9 @@ describe("khai-stage: the stamped house", () => {
       "management/persona_demo-source.md",
       "management/position_roadie.md",
       "management/persona_roadie.md",
+      "management/position_director.md",
+      "management/persona_director.md",
+      "management/plan_stage_the_score.md",
       "plays/.gitkeep",
       "registry.json",
       "tests/house.test.mjs",
@@ -91,7 +94,7 @@ describe("khai-stage: the stamped house", () => {
     for (const f of allFiles(dir)) {
       const text = readFileSync(join(dir, f), "utf8");
       expect(
-        /\{\{(SOURCE|SOURCE_TITLE|YEAR|MANAGER_PERSONA|MANAGER_TITLE|PLAYWRIGHT_PERSONA|PLAYWRIGHT_TITLE)\}\}/.test(
+        /\{\{(SOURCE|SOURCE_TITLE|YEAR|MANAGER_PERSONA|MANAGER_TITLE|PLAYWRIGHT_PERSONA|PLAYWRIGHT_TITLE|DIRECTOR_PERSONA|DIRECTOR_TITLE)\}\}/.test(
           text,
         ),
         `placeholder left in ${f}`,
@@ -116,6 +119,23 @@ describe("khai-stage: the stamped house", () => {
     expect(reg.name).toBe(pkg.name);
     expect(reg.version).toBe(pkg.version);
     expect(reg.plays).toEqual([]);
+  });
+
+  it("casts the Director: stamps the position, the plan, and a per-house persona", () => {
+    const d = mkdtempSync(join(tmpdir(), "khai-stage-dir-"));
+    try {
+      stageHouse({ source: "Demo Source", targetDir: d, director: "Some Director" });
+      expect(existsSync(join(d, "management/position_director.md"))).toBe(true);
+      expect(existsSync(join(d, "management/plan_stage_the_score.md"))).toBe(true);
+      // the .tmpl persona is renamed per house and filled; no default copy left.
+      expect(existsSync(join(d, "management/persona_some-director.md"))).toBe(true);
+      expect(existsSync(join(d, "management/persona_director.md"))).toBe(false);
+      const persona = readFileSync(join(d, "management/persona_some-director.md"), "utf8");
+      expect(persona).toContain('title: "Some Director"');
+      expect(persona).not.toMatch(/\{\{/);
+    } finally {
+      rmSync(d, { recursive: true, force: true });
+    }
   });
 
   it("the house guard config owns plays under a play lane", () => {
