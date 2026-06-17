@@ -53,12 +53,26 @@ lastShipped)` — the single source of truth for what exists and where it is
 7. **Gate it.** Conformance checks: the ledger resolves; every result links a real
    house+play in the chain registry; every result carries its licence block; no
    secret is committed.
+8. **Ship as a package (the pull path).** `khai-writing` is itself a first-class
+   consumable `@chbrain` package: a **built, shipped, and exported**
+   `registry.json` discovery index (`writing[]`) plus the shipped `ledger.json`,
+   so own surfaces (the website) render the archive by `npm install` — no API, no
+   Roadie. `files` + `exports` cover the writing and the index; the index is
+   **built** (single writer, run by `version`), never hand-edited — the
+   registry-packaging fix (#482), not re-trodden. This is the **pull** Venue;
+   step 5 is the **push** Venue.
 
 ## Implementation
 
 - **Consumes `khai`**: the Roadie machinery (`khai-tour`) and the **Grimoire Venue
   profile** from Order 1 — built in khai, run here. The Director **skill** is a
   house tool; this engine may use it for in-repo revises.
+- **Consumable package** (pull path): `exports` exposes `./registry.json` and
+  `./ledger.json`, and `files` ships the writing, the index, and the ledger;
+  `registry:build` is the single writer of the index, run by the `version` script
+  so name and version stay in lockstep with `package.json`. The website consumes it
+  as a dependency and renders it on its own surface — the npm-pull Venue, alongside
+  the Grimoire API Venue. (Scaffolded in `khai-writing#1`.)
 - **Ledger schema** (`ledger.json`):
   ```json
   {
@@ -99,6 +113,9 @@ lastShipped)` — the single source of truth for what exists and where it is
       placements back; publish-only, no auto-repost, keys from env
 - [ ] conformance gates pass: ledger resolves, results link real house+play,
       licence block present, no secret committed
+- [ ] consumable package: `registry.json` index built + shipped + exported
+      (`files`/`exports`), `ledger.json` shipped; npm-pull consumers enumerate
+      the archive without parsing the tree
 - [ ] `LICENSE` + `LICENSE-CODE` present
 
 ## Depends on
