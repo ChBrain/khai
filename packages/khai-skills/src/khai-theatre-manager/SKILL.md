@@ -50,15 +50,15 @@ You do not rewrite the play; you fit it to the house and confirm it conforms.
 ### Version it
 
 The version is computed, not chosen: the minor IS the play count and the patch
-is 0 on a play. `khai-tests registry build` is the single writer of the version
-— it sets `0.<count>.0` and reconciles `package.json` and `registry.json`. Never
+is 0 on a play. `khai-tests registry build` is the single writer of the version.
+It sets `0.<count>.0` and reconciles `package.json` and `registry.json`. Never
 hand-bump the version.
 
-- **Adding a play takes no changeset.** The play PR runs `khai-tests registry
-  build`, which moves the minor to the new play count and resets the patch to 0
+- **Adding a play takes no changeset.** The play PR runs `khai-tests registry build`,
+  which moves the minor to the new play count and resets the patch to 0
   (`0.<count>.0`); `changeset publish` then ships that version. A changeset here
-  would re-bump the patch on top of the minor the build already moved — the
-  `0.<count>.1` drift to avoid.
+  would re-bump the patch on top of the minor the build already moved (the
+  `0.<count>.1` drift to avoid).
 - **A non-play change** (a fix to existing content, governance, formatting) takes
   a **patch** changeset; it ships at the same play count, `0.<count>.<patch>`.
 
@@ -96,7 +96,7 @@ the change it needs.
 - [ ] Every staged play logs this house in its Estate, and the link resolves
 - [ ] Everything staged is in the house voice, or carries a deliberate per-play override
 - [ ] The house passes the conformance check before anything is presented
-- [ ] Versioning follows the rule: a patch changeset; the build sets the minor from the play count
+- [ ] Versioning follows the rule: a play takes no changeset (the build sets `0.<count>.0`); only a non-play change takes a patch changeset
 - [ ] The lane was computed by the guard; the gate was not bypassed and nothing was merged
 - [ ] Any management order rides the lane of the change it commands
 - [ ] Work beyond the house is aligned upward, not edited from inside
