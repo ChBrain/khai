@@ -74,6 +74,10 @@ describe("khai-stage: the stamped house", () => {
   it("stamps a publishable package: files, version + release scripts, not private", () => {
     const pkg = JSON.parse(readFileSync(join(dir, "package.json"), "utf8"));
     expect(pkg.files).toContain("plays/**");
+    // registry.json is written into every house; it must also ship and export,
+    // or consumers fall back to deprecated markdown parsing (regression guard).
+    expect(pkg.files).toContain("registry.json");
+    expect(pkg.exports["./registry.json"]).toBe("./registry.json");
     expect(pkg.scripts.version).toBe("changeset version && khai-tests registry build");
     expect(pkg.scripts.release).toBe("changeset publish");
     expect(pkg.private).toBeUndefined();
