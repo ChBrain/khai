@@ -22,6 +22,25 @@ back, and escalates the open decisions.
 4. **Close.** A row closes when its PR is **merged by the human** and its Targets
    are met. Oversight never merges.
 
+## Landing sequence (release train)
+
+The order the work lands (the maintainer's call):
+
+1. **#482** ✅ merged — `khai-stage` template ships/exports `registry.json` (root
+   cause; every future house now ships the registry).
+   - **#484** (open) — stage test locks the regression (`files` + `exports`
+     assertions), so it can't recur.
+2. **#481 + corresponding work** — the program docs, then the orders'
+   implementation landed by lane (Order 0 convergence tooling + `position_director`
+   - `plan_stage_the_score`; Order 1 Director skill + the Venue kind; …).
+3. **Versioning of khai** _(somewhat later)_ — `changeset version` / release so
+   `@chbrain/khai-stage`, `-plays`, `-skills`, `-tour` publish the new template +
+   Director + convergence tooling.
+4. **Rollout to houses** — each house bumps its `@chbrain/khai-*` deps and runs
+   **Set Up a House** (Order 3 step 1) to pull the new blueprint → registry
+   shipping, the Director, and the shared management structure reach every house.
+   (**#24** ✅ merged — the early manual hcandersen patch, ahead of this.)
+
 ## Control board
 
 State: `todo` · `draft` · `ci-red` · `review` · `ready` · `merged`. Oversight:
@@ -37,7 +56,6 @@ State: `todo` · `draft` · `ci-red` · `review` · `ready` · `merged`. Oversig
 | 1     | khai                | Director skill — tests                                                                             |        |         | todo  | —         |
 | 1     | khai                | Grimoire Venue profile in `khai-tour` — source                                                     |        |         | todo  | —         |
 | 1     | khai                | `khai-tour` — tests                                                                                |        |         | todo  | —         |
-| 1     | khai                | `go_on_tour` sources from archive (governance/blueprint)                                           |        |         | todo  | —         |
 | 2     | khai-writing        | raise repo: Estate(Metroon) + cast + store + ledger + gates + licence                              |        |         | todo  | —         |
 | 3     | each house          | onboard: sync + cast Director(+Roadie) (governance)                                                |        |         | todo  | —         |
 | 3     | khai-writing        | deposit: `writing/<house>/<play>/<result>.md`                                                      |        |         | todo  | —         |

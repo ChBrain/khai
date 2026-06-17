@@ -153,6 +153,8 @@ readiness matrix is a snapshot for today's four; it goes stale and that is fine.
 2. **Archivist's name** — Callimachus proposed (the _Pinakes_ cataloguer).
 3. **Auto-repost on edit** — parked; a Roadie-with-owner call. All orders assume
    **stage + confirm** every ship.
+4. **Management-gate visibility** — `khai-tests management check` folded into
+   `test` (recommended) vs a named `khai-management` required check (Order 0).
 
 ## Cross-cutting constraints (every order)
 
