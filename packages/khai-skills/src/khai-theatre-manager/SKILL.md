@@ -49,15 +49,18 @@ You do not rewrite the play; you fit it to the house and confirm it conforms.
 
 ### Version it
 
-Use changesets to pick the release level only; the minor is not yours to set.
-The `version` script runs `khai-tests registry build`, which derives the version
-from the play count (the minor IS the count) and reconciles `package.json` and
-`registry.json`.
+The version is computed, not chosen: the minor IS the play count and the patch
+is 0 on a play. `khai-tests registry build` is the single writer of the version
+— it sets `0.<count>.0` and reconciles `package.json` and `registry.json`. Never
+hand-bump the version.
 
-- Adding a play is a **patch** changeset; the build bumps the minor for you when
-  it counts the new play. Do not hand-bump the version or add a minor changeset
-  for the count, that double-bump is the drift the build heals.
-- Everything else (governance, formatting, configuration) is a **patch**.
+- **Adding a play takes no changeset.** The play PR runs `khai-tests registry
+  build`, which moves the minor to the new play count and resets the patch to 0
+  (`0.<count>.0`); `changeset publish` then ships that version. A changeset here
+  would re-bump the patch on top of the minor the build already moved — the
+  `0.<count>.1` drift to avoid.
+- **A non-play change** (a fix to existing content, governance, formatting) takes
+  a **patch** changeset; it ships at the same play count, `0.<count>.<patch>`.
 
 ### Keep the gates
 
