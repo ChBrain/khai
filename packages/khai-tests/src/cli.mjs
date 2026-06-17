@@ -21,6 +21,7 @@ import {
 } from "./validate.mjs";
 import { packEngine } from "./pack.mjs";
 import { buildRegistry, verifyRegistry } from "./registry.mjs";
+import { checkManagement, buildManagementCore, defaultBlueprintDir } from "./management.mjs";
 import { resolve, relative } from "node:path";
 import { existsSync, readdirSync, writeFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
@@ -154,7 +155,46 @@ async function registryMode(args) {
   }
 }
 
+// `management build [blueprintDir]` snapshots the shared core from the blueprint
+// into this package (the single writer; run in the monorepo). `management check
+// [dir]` holds a house's management to that snapshot.
+function managementMode(args) {
+  const sub = args[1];
+  if (sub === "build") {
+    const blueprintDir =
+      args[2] && !args[2].startsWith("--") ? resolve(args[2]) : defaultBlueprintDir();
+    try {
+      const written = buildManagementCore(blueprintDir);
+      console.log(
+        `khai-tests management build: snapshotted ${written.length} core file(s) from ${blueprintDir}`,
+      );
+    } catch (err) {
+      console.error(`✖ management build failed: ${err.message}`);
+      process.exit(1);
+    }
+    return;
+  }
+  if (sub === "check") {
+    const dirArg = args[2] && !args[2].startsWith("--") ? args[2] : ".";
+    const errors = checkManagement(resolve(dirArg));
+    if (errors.length) {
+      for (const e of errors) console.error(`✖ ${e}`);
+      console.error(
+        "\nkhai-tests management check: management has drifted from the shared blueprint core.",
+      );
+      process.exit(1);
+    }
+    console.log(
+      "khai-tests management check: management conforms to the shared blueprint core (overlay-only).",
+    );
+    return;
+  }
+  console.error("khai-tests management [build|check] [dir]");
+  process.exit(2);
+}
+
 if (argv[0] === "pack") await packMode(argv);
 else if (argv[0] === "registry") await registryMode(argv);
+else if (argv[0] === "management") managementMode(argv);
 else if (argv.includes("--project")) projectMode(argv);
 else await engineMode(argv);

@@ -20,5 +20,13 @@ export {
   deriveVersionFrom,
   deriveHouseVersion,
 } from "./src/registry.mjs";
+export {
+  checkManagement,
+  buildManagementCore,
+  defaultBlueprintDir,
+  MANAGEMENT_CORE,
+  MANAGEMENT_HOMES,
+  CORE_DIR,
+} from "./src/management.mjs";
 export * as rules from "@chbrain/khai-rules";
 export { parseDoc, sectionBody } from "@chbrain/khai-rules";
