@@ -1,5 +1,16 @@
 # @chbrain/khai-stage
 
+## 0.0.18
+
+### Patch Changes
+
+- 6ffe2f0: Add `language: english` to the blueprint management core files. A non-English
+  house's language gate requires every management file to declare its language;
+  the houses already carried `language: english`, but the chain-owned blueprint
+  core omitted it, so converging a non-English house (e.g. Grimm `de`) to the
+  blueprint stripped the field and broke the house gate. Surfaced by the management
+  convergence gate (Order 0b).
+
 ## 0.0.17
 
 ### Patch Changes
