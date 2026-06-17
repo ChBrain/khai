@@ -58,6 +58,25 @@ The **Director is the bridge**. `khai-writing` is chain infrastructure — one r
 for all houses, like `website`. Plain on the tin; its Estate in the voice is the
 **Metroon**, the archive that kept the authoritative play-texts.
 
+## Two Venues, two paths
+
+The writing reaches an audience two ways, and the brief keeps them distinct:
+
+- **Push — the Grimoire (API Venue).** The Archive's Roadie ships a result to an
+  external Venue over the authenticated, stateful API kind (Order 1) and records
+  the placement in the **ledger**. The ledger tracks _external_ placements only.
+- **Pull — the package (npm Venue).** `@chbrain/khai-writing` is `npm install`-ed
+  and rendered like `@chbrain/khai-plays-*`; **the website is the npm-pull Venue**.
+  No API, no auth, no Roadie — a consumer reads the package's built, shipped, and
+  exported discovery index (the same `exports`/`files`/registry mechanics the
+  houses use, the registry-packaging fix of #482 _not_ re-trodden). "On our own
+  surfaces" is free once the package exports cleanly.
+
+So `khai-writing` is **both an archive and a consumable package**: Order 2 raises
+it as a first-class package (the pull Venue), and its Roadie ships from it (the
+push Venue). The website surface that renders it is `website`-repo work, mirroring
+the plays surface.
+
 ## The company
 
 | Position             | Persona                    | Cast                                                          |
