@@ -33,8 +33,9 @@ setup.
 2. **Review → go.** On explicit human confirmation, the Roadie drives the live
    **POST**, then **records the placement** in `ledger.json` (venue, space, agent,
    post-id, url, state `live`, lastShipped).
-3. **The revise path.** When the Director edits a published result (re-deposited
-   to `khai-writing`), the Roadie **stages a PATCH** to the recorded post-id — it
+3. **The revise path.** When the Director re-captures a published result
+   (re-deposited to `khai-writing`), the Roadie **stages a PATCH** to the recorded
+   post-id — it
    does **not** auto-repost. On confirmation, it ships the PATCH and updates the
    placement (`state: patched`). Retiring a result is a **DELETE**
    (`state: retired`).
@@ -56,7 +57,7 @@ setup.
 
 - [ ] dry-run shows the would-be POST for the Grimm result; publishes nothing
 - [ ] on confirmation, live POST succeeds; placement recorded in `ledger.json`
-- [ ] revise path: an edited result stages a PATCH to the recorded post-id (no
+- [ ] revise path: a re-captured result stages a PATCH to the recorded post-id (no
       auto-repost), ships on confirmation, updates `state: patched`
 - [ ] retire path: DELETE marks `state: retired`
 - [ ] spend boundary held throughout; no secret or unauthorized spend in the loop

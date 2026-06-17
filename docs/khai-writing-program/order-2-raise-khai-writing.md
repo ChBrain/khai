@@ -37,8 +37,10 @@ this engine keeps, catalogues, and (through its own Roadie) ships and tracks.
    is _not_ cast here — it is a house position; this engine receives what Directors
    deposit.
 3. **Store the writing.** `writing/<house>/<play>/<result>.md`, each a
-   **venue-neutral performance** (the Standard): story body, front-of-house, the
-   licence block, routing intent. Git history _is_ the revision record.
+   **venue-neutral captured run** (the Standard): the run made flesh,
+   front-of-house, the licence block, routing intent. Git history _is_ the
+   revision record (a re-captured reading is a revision; a new reading is a new
+   result).
 4. **Keep the ledger.** `ledger.json`:
    `house → play → result → placement(venue, space, agent, post-id, url, state,
 lastShipped)` — the single source of truth for what exists and where it is
@@ -66,7 +68,7 @@ lastShipped)` — the single source of truth for what exists and where it is
 
 - **Consumes `khai`**: the Roadie machinery (`khai-tour`) and the **Grimoire Venue
   profile** from Order 1 — built in khai, run here. The Director **skill** is a
-  house tool; this engine may use it for in-repo revises.
+  house tool; this engine may use it for in-repo re-captures.
 - **Consumable package** (pull path): `exports` exposes `./registry.json` and
   `./ledger.json`, and `files` ships the writing, the index, and the ledger;
   `registry:build` is the single writer of the index, run by the `version` script
@@ -114,7 +116,7 @@ lastShipped)` — the single source of truth for what exists and where it is
 
 - [ ] `README.md` Estate = the Metroon
 - [ ] `management/` casts Callimachus, the Archive's Roadie, the Choregos
-- [ ] `writing/<house>/<play>/<result>.md` layout holds venue-neutral performances
+- [ ] `writing/<house>/<play>/<result>.md` layout holds venue-neutral captured runs
 - [ ] `ledger.json` records `house → play → result → placement`
 - [ ] the Archive's Roadie ships POST/PATCH/DELETE from the archive, writes
       placements back; publish-only, no auto-repost, keys from env

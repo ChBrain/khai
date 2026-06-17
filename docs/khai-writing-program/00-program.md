@@ -52,8 +52,9 @@ Three stores, three questions:
 | **`khai-writing`** (new) | the **writing the plays produced** + where it went | "what did we make, and where is it published?" |
 
 A **play is a score** (plots, elements — the machinery, in the houses). The
-**writing is the result** (the told story a Director renders out of a score). The
-houses produce _plays_; `khai-writing` holds the _writing those plays produced_.
+**writing is the result** (a **captured run** — one production a Director ran out
+of a score and chose to make flesh). The houses produce _plays_; `khai-writing`
+holds the _writing those plays produced_.
 The **Director is the bridge**. `khai-writing` is chain infrastructure — one repo
 for all houses, like `website`. Plain on the tin; its Estate in the voice is the
 **Metroon**, the archive that kept the authoritative play-texts.
@@ -86,9 +87,11 @@ the plays surface.
 | **Archive's Roadie** | its own                    | a Roadie cast for `khai-writing`                              |
 | **Choregos**         | Pericles / Nicias          | **shared** — the one exception; the chain inside the house    |
 
-- **Director** — portable creative **skill**: renders a score → a venue-neutral
-  performance, and **revises** an existing result. Authorship. Deposits to
-  `khai-writing`. Runs in any LLM, no khai-code dependency.
+- **Director** — portable creative **skill**: a control loop that **runs a score
+  as a living production** (observe the board, redirect per element, request cast
+  adaptation) and **captures** a chosen run as a venue-neutral result; re-running
+  the same score yields another reading. Authorship of the production, not of the
+  play. Deposits to `khai-writing`. Runs in any LLM, no khai-code dependency.
 - **Archivist (Callimachus)** — keeps results, holds the **ledger** (what exists,
   where shown). Custody + provenance. Never ships.
 - **Archive's Roadie** — transport only: sources a result, adapts to a Venue,
@@ -100,17 +103,17 @@ produce and deposit; `khai-writing` keeps, catalogues, ships, and tracks.
 ## The lifecycle
 
 ```
-produce    → Director renders score → venue-neutral performance, deposits to khai-writing
+produce    → Director runs the score as a living production, captures a run → venue-neutral result, deposits to khai-writing
 publish    → Archive Roadie adapts to Venue profile, POSTs, records placement in the ledger
-revise     → Director opens the result, edits, re-deposits (git keeps the history)
+re-capture → Director re-runs the score, captures again → re-deposits (same reading is a revision; a new reading is a new result; git keeps the history)
 re-publish → Archive Roadie PATCHes the recorded post-id in place   (NO auto-repost — human call)
 retire     → Archive Roadie DELETEs, marks the placement retired
 ```
 
-Produce once, tour/patch many — `plan_go_on_tour`'s own promise: "Produced once,
+Capture once, tour/patch many — `plan_go_on_tour`'s own promise: "Produced once,
 experienced wherever it is toured." Standard + Adaption: the Director deposits the
-**Standard** (venue-neutral); the Roadie composes the **Adaption** (per-Venue) at
-ship time.
+**Standard** (venue-neutral captured run); the Roadie composes the **Adaption**
+(per-Venue) at ship time.
 
 ## The orders (the DAG)
 

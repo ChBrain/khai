@@ -18,8 +18,9 @@ status: active
 
 ## Direction
 
-A khai play is a **score**; turning it into a told story is **authorship**, which
-the Roadie may not do — he _Loses_ the position the moment he authors. So the
+A khai play is a **score**; running it as a living production and capturing a run
+is **authorship**, which the Roadie may not do — he _Loses_ the position the
+moment he authors. So the
 chain needs a **Director**: a creative position, held as a **portable skill**. The
 Venue and the touring machinery already exist (the Roadie, `khai-tour`,
 `plan_go_on_tour`); what is missing is the **Grimoire Venue kind** and the
@@ -36,10 +37,13 @@ two **executable** halves that consume them, and that the Writing Archive
 
 1. **Director skill** — `packages/khai-skills/src/khai-director/SKILL.md`
    (`license: CC-BY-NC-4.0`), self-contained and portable (runs in any LLM, no
-   khai-code dependency). Two modes: **produce** (play + files → performance) and
-   **revise** (open an existing result → edit). Output = the **Standard**: story
-   body + front-of-house (byline, blurb, content-warnings) + licence block +
-   routing intent (Venue + space).
+   khai-code dependency). A **control loop** over the board the play casts:
+   observe behaviour (response and silence), redirect per element idiom, request
+   cast adaptation as a sanctioned call, and **capture** a chosen run. The play
+   (what happens) stays fixed; the production (how it runs) is the Director's. The
+   captured run is the **Standard**: the run made flesh + front-of-house (byline,
+   blurb, content-warnings) + licence block + routing intent (Venue + space).
+   Re-running the score yields another reading.
 2. **Grimoire Venue — a new Venue _kind_** for `khai-tour`. The existing venues
    are `interactive` (LLM deployment) and `publication` (rendered artifact) —
    both **stateless, pull/format, no auth**. The Grimoire needs a **third kind**:
@@ -67,8 +71,9 @@ behaviour and lives in `khai-writing` (Orders 2 and 4) — _not_ in the house's
 
 ## Targets
 
-- [ ] Director **skill** present in `khai-skills`, portable, produce + revise,
-      outputs the venue-neutral Standard
+- [ ] Director **skill** present in `khai-skills`, portable, a control loop over
+      the board (observe, redirect, adapt-the-cast, capture), outputs the
+      venue-neutral Standard (a captured run)
 - [ ] `khai-tour` gains a **third Venue kind** (authenticated/stateful): Bearer
       auth, `api/agent/*`, POST/PATCH/DELETE, ten spaces, publish shape, licence
       field, persisted post-id lifecycle, spend boundary
