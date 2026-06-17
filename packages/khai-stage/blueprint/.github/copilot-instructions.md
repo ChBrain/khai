@@ -28,11 +28,11 @@ build` is the single writer of the version: it sets `0.<count>.0` (minor = the
 play count, patch reset to 0) and reconciles `package.json` and `registry.json`.
 Never hand-edit the version.
 
-- **Staging a play -> add NO changeset.** The play PR runs `khai-tests registry
-  build`, which moves the minor to the new play count and resets the patch to 0;
-  `changeset publish` ships it. Do **not** run `changeset add` for a play — a
-  per-play changeset re-bumps the patch on top of the minor the build already
-  moved, the `0.<count>.1` drift to avoid.
+- **Staging a play -> add NO changeset.** The play PR runs the build
+  (`khai-tests registry build`), which moves the minor to the new play count and
+  resets the patch to 0; `changeset publish` ships it. Do **not** run
+  `changeset add` for a play: a per-play changeset re-bumps the patch on top of
+  the minor the build already moved (the `0.<count>.1` drift to avoid).
 - **A non-play change** (governance, formatting, a fix to existing content) ->
   a `patch` changeset.
 
