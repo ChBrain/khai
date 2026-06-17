@@ -1,6 +1,7 @@
 ---
 khai: plan
 title: "Stage the Score"
+language: english
 license: CC-BY-NC-SA-4.0
 stamp:
   owner: KAI HACKS AI
