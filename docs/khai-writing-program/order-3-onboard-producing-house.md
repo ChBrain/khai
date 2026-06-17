@@ -16,8 +16,7 @@ status: active
 > [00-program.md](00-program.md). On execution, move a copy to the house's
 > `management/orders/`. **Repeatable and house-agnostic:** it is defined against
 > the blueprint, not a named house, so the four known houses and every future
-> house run the _same_ order. **Grimm is the first instance (pilot).** This
-> **supersedes** `khai-plays-grimm/management/orders/order_260617_grimoire.md`.
+> house run the _same_ order. **Grimm is the first instance (pilot).**
 
 ## Direction
 

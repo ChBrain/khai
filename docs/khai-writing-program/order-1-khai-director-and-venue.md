@@ -10,7 +10,7 @@ stamp:
 status: active
 ---
 
-# Order 1: Establish the Director and the Venue Machinery
+# Order 1: Establish the Director Skill and the Venue Machinery
 
 > **Repo: `khai` (monorepo).** Order 1 of 4 — see
 > [00-program.md](00-program.md). Foundational; gates Orders 2–4. On execution,
@@ -22,40 +22,44 @@ A khai play is a **score**; turning it into a told story is **authorship**, whic
 the Roadie may not do — he _Loses_ the position the moment he authors. So the
 chain needs a **Director**: a creative position, held as a **portable skill**. The
 Venue and the touring machinery already exist (the Roadie, `khai-tour`,
-`plan_go_on_tour`); what is missing is the **Grimoire Venue profile** and the
-**Director** that feeds it. This order builds the khai-side foundation that the
-Writing Archive (Order 2) and the houses (Order 3) consume.
+`plan_go_on_tour`); what is missing is the **Grimoire Venue kind** and the
+**Director** that feeds it. The Director **position** and its standing plan are
+landed in the blueprint by **Order 0** (canonicalization); this order builds the
+two **executable** halves that consume them, and that the Writing Archive
+(Order 2) and the houses (Order 3) then use.
 
 ## Orders
 
-1. **Director position** — land `position_director.md` in the blueprint at
-   `packages/khai-plays/management/`; a **draft** ships with this program at
-   [drafts/position_director.md](drafts/position_director.md). The shared
-   position; the persona is **cast per house** (no name bound here).
-2. **Director plan (blueprint)** —
-   `packages/khai-plays/management/plan_stage_the_score.md`: the Director's
-   standing mandate — render a score → a **venue-neutral performance**; **revise**
-   an existing result. Propagates to houses.
-3. **Director skill** — `packages/khai-skills/src/khai-director/SKILL.md`
+> The Director **position** and its standing plan `plan_stage_the_score` are
+> landed in the blueprint by **Order 0**. This order builds the two **executable**
+> halves.
+
+1. **Director skill** — `packages/khai-skills/src/khai-director/SKILL.md`
    (`license: CC-BY-NC-4.0`), self-contained and portable (runs in any LLM, no
    khai-code dependency). Two modes: **produce** (play + files → performance) and
    **revise** (open an existing result → edit). Output = the **Standard**: story
    body + front-of-house (byline, blurb, content-warnings) + licence block +
    routing intent (Venue + space).
-4. **Grimoire Venue profile + assemble/publish** for `khai-tour`, built from
-   `thegrimoire.art/skill.md`: `Authorization: Bearer <key>`, base
-   `https://thegrimoire.art/api/agent/`, methods POST/GET/**PATCH**/DELETE, the
-   ten spaces, the publish post shape, carries a licence field. **Spend
-   boundary:** `publish`/`patch`/`delete` only; `tip`/`comment`/`vote`/`follow`
-   never without explicit per-act human authorization and a hard cap.
-5. **Update `plan_go_on_tour.md`** — source the deployment **from the archive** (a
-   stored venue-neutral result), compose Standard + Adaption, and write the
-   placement back to the ledger.
+2. **Grimoire Venue — a new Venue _kind_** for `khai-tour`. The existing venues
+   are `interactive` (LLM deployment) and `publication` (rendered artifact) —
+   both **stateless, pull/format, no auth**. The Grimoire needs a **third kind**:
+   an **authenticated, stateful live/agent venue** — `Authorization: Bearer <key>`,
+   base `https://thegrimoire.art/api/agent/`, POST/GET/**PATCH**/DELETE, the ten
+   spaces, a publish post shape carrying a licence field, and a **persisted remote
+   post-id lifecycle**. This is a genuine extension of the profiles model + the
+   composer — and the first **stateful** behaviour in a package that is
+   deterministic/stateless today — not a one-line profile add. **Spend boundary:**
+   `publish`/`patch`/`delete` only; `tip`/`comment`/`vote`/`follow` never without
+   explicit per-act human authorization and a cap.
+
+The ship-from-archive + **ledger write-back** is the **Archive Roadie's**
+behaviour and lives in `khai-writing` (Orders 2 and 4) — _not_ in the house's
+`plan_go_on_tour`, so the deposit boundary holds (the house ends at deposit).
 
 ## Implementation
 
-- Lanes: `skills/<topic>` for the skill; the blueprint-management lane for the
-  position/plan; the `khai-tour` package lane for the profile.
+- Lanes: `skills/<topic>` for the skill; the `khai-tour` package lane
+  (`tour/<topic>`) for the new Venue kind. (The position/plan are Order 0's.)
 - **Source and tests are separate PRs**; every PR needs a **changeset**; open as
   **draft** until whole; never merge; never `--no-verify`.
 - The skill declares `CC-BY-NC-4.0`; the package declares
@@ -63,22 +67,17 @@ Writing Archive (Order 2) and the houses (Order 3) consume.
 
 ## Targets
 
-- [ ] `position_director.md` landed in the blueprint (draft provided) — no bound
-      persona
-- [ ] `plan_stage_the_score.md` present in the blueprint
 - [ ] Director **skill** present in `khai-skills`, portable, produce + revise,
       outputs the venue-neutral Standard
-- [ ] Grimoire **Venue profile** in `khai-tour`: Bearer auth, `api/agent/*`,
-      POST/PATCH/DELETE, ten spaces, publish shape, licence field, spend boundary
-- [ ] `plan_go_on_tour.md` updated to source from the archive
+- [ ] `khai-tour` gains a **third Venue kind** (authenticated/stateful): Bearer
+      auth, `api/agent/*`, POST/PATCH/DELETE, ten spaces, publish shape, licence
+      field, persisted post-id lifecycle, spend boundary
+- [ ] (position/plan are Order 0's; ledger write-back is the Archive Roadie's,
+      Orders 2/4 — _not_ landed here)
 
 ## Feeds
 
-Orders 2, 3, and 4 all consume this. Nothing here depends on `khai-writing`.
-
-Because the position and plan land in the **blueprint** (beside the Roadie and
-touring kit already there), they propagate to houses the chain way: **khai-stage**
-gives them to every **future house** at raising, and **existing houses** backfill
-them through the Roadie's `plan_set_up_a_house` (Order 3, step 1). This is why the
-program never enumerates houses — the Director becomes a chain position the moment
-it lands here.
+Orders 2, 3, and 4 consume the **skill** and the **Venue kind**. Nothing here
+depends on `khai-writing`. (The Director **position/plan** are landed and
+propagated by Order 0 — that is what gives every present and future house the
+Director without this program enumerating houses.)

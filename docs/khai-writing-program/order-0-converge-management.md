@@ -80,7 +80,9 @@ house** (expected, not exceptional).
 
 1. **Canonicalize the blueprint reference.** Lift the shared positions
    (`position_playwright`, `position_theatre_manager`) from the houses into the
-   blueprint; add `position_director` + `plan_stage_the_score`; ensure the
+   blueprint; add `position_director` (draft:
+   [drafts/position_director.md](drafts/position_director.md)) +
+   `plan_stage_the_score`; ensure the
    instructions, the discussion template, the standing plans, and the management
    conformance all live there. One source of truth.
 2. **Critically review every `position_*` for cast leakage.** A position must be

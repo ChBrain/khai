@@ -12,11 +12,11 @@ status: active
 
 # Order 2: Raise the Writing Archive
 
-> **Repo: `khai-writing` (new).** Order 2 of 4 — see [00-program.md](00-program.md).
-> The repo does not exist yet; on creating it, move this file to
-> `khai-writing/management/orders/` and execute there. May **scaffold** in
+> **Repo: `khai-writing`.** Order 2 of 4 — see [00-program.md](00-program.md).
+> The repo already exists as a stub (a `README`); **flesh it out** — move this
+> file to `khai-writing/management/orders/` and execute there. May **scaffold** in
 > parallel with Order 1, but cannot **ship** until Order 1 lands the Grimoire
-> Venue profile.
+> Venue kind.
 
 ## Direction
 

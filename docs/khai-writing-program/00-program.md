@@ -23,15 +23,15 @@ You are the executing session. This folder is the **whole program** — take it 
 to end.
 
 - **Access you need:** `khai`, the four `khai-plays-*` houses (grimm, kleist,
-  buechner, hcandersen), and `khai-writing` (the archive repo — create it if it
-  does not exist; Order 2 stands it up). `website` is referenced but not modified.
+  buechner, hcandersen), and `khai-writing` (the archive repo — already a stub
+  with a `README`; Order 2 fleshes it out). `website` is referenced but not
+  modified.
 - **Sequence:** **0 → 1 → 2 → 3 → 4** (Order 2 may scaffold while Order 1 lands;
   Order 3 repeats once per house, Grimm first). The DAG and overlaps are in
   _The orders_ below.
 - **Place each order in its repo's `management/orders/` before executing it** —
   every order opens with a staging note saying which repo and where. Order 3 is
-  copied into each house as it is onboarded. Order 3 **supersedes** the older
-  `khai-plays-grimm/.../order_260617_grimoire.md`.
+  copied into each house as it is onboarded.
 - **Branch discipline:** never `claude/*`. Edit the working tree, then
   `npx khai-guard branch <topic>` per repo to let the guard compute the lane.
   Split by lane; source and tests are separate PRs; every PR a changeset; open as
@@ -175,6 +175,4 @@ readiness matrix is a snapshot for today's four; it goes stale and that is fine.
 
 These files live in `khai/docs/khai-writing-program/` because the engines do not
 all exist yet. On execution, move each order into its repo's `management/orders/`
-(Order 3 is copied into each house as it is onboarded). Order 3 **supersedes**
-`khai-plays-grimm/management/orders/order_260617_grimoire.md` (re-scoped to the
-deposit boundary).
+(Order 3 is copied into each house as it is onboarded).
