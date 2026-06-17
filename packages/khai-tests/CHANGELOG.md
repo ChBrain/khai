@@ -1,5 +1,21 @@
 # @chbrain/khai-tests
 
+## 0.1.22
+
+### Patch Changes
+
+- 6c1e006: Add the management convergence gate (Order 0b). `khai-tests management build`
+  snapshots the shared management core from the khai-stage blueprint into the
+  package (the single writer); `khai-tests management check [dir]` holds a house's
+  management to that snapshot, allowing only overlay differences (cast personas,
+  house plans, orders/). The Roadie/touring module is deferred (not in the core
+  yet). No new runtime dependency; the snapshot ships in the package.
+- 2ea7969: Resync the management core snapshot with the blueprint (it had lost the
+  `language: english` fields after the blueprint fix), and add the management gate
+  tests: a snapshot/blueprint in-sync guard (catches a stale snapshot in CI) plus
+  checkManagement behaviour (converged passes; drift, missing core, and missing
+  home are flagged; touring stays out of the core).
+
 ## 0.1.21
 
 ### Patch Changes
