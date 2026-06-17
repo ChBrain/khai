@@ -19,7 +19,7 @@ status: active
 ## Direction
 
 A khai play is a **score**; turning it into a told story is **authorship**, which
-the Roadie may not do — he *Loses* the position the moment he authors. So the
+the Roadie may not do — he _Loses_ the position the moment he authors. So the
 chain needs a **Director**: a creative position, held as a **portable skill**. The
 Venue and the touring machinery already exist (the Roadie, `khai-tour`,
 `plan_go_on_tour`); what is missing is the **Grimoire Venue profile** and the

@@ -17,15 +17,15 @@ not the Roadie, who carries it out and disclaims taste. The Director takes a
 **ready play** — the plot it chains and the elements it casts — and renders it
 into a **performance**: a single told story, in the house voice, in the shape a
 Venue can host. The Playwright authors the score; the Director authors the
-*performance of* the score. Both are creative voices; only the Roadie is crew.
+_performance of_ the score. Both are creative voices; only the Roadie is crew.
 
 Like the Playwright, the Theatre Manager, and the Roadie, the Director is **cast
 per house**: the position is one and chain-owned, but the named Persona is the
 house's own —
 distinct by house, unique to its setup — because a house's stagecraft is its own
 taste over its own source, not the chain's. The single exception is the Choregos,
-who carries one Persona across every house because the Choregos *represents the
-chain inside the house*; every other position is the house's own. There is no
+who carries one Persona across every house because the Choregos _represents the
+chain inside the house_; every other position is the house's own. There is no
 single Director, then: there is a Director in each house, named by that house.
 
 ## Owner

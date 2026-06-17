@@ -27,21 +27,21 @@ back, and escalates the open decisions.
 State: `todo` · `draft` · `ci-red` · `review` · `ready` · `merged`. Oversight:
 `—` · `ok` · `drift` · `blocked`.
 
-| Order | Repo | PR (lane) | Branch | PR link | State | Oversight |
-| --- | --- | --- | --- | --- | --- | --- |
-| 0 | khai | blueprint canonicalize: lift positions + `position_director` + `plan_stage_the_score` (governance) | | | todo | — |
-| 0 | khai | `khai-tests management build`/`check` — source (package) | | | todo | — |
-| 0 | khai | `khai-tests management` — tests | | | todo | — |
-| 0 | each `khai-plays-*` | sync core + cast personas (governance, per house ×4) | | | todo | — |
-| 1 | khai | Director skill — source (`skills/`) | | | todo | — |
-| 1 | khai | Director skill — tests | | | todo | — |
-| 1 | khai | Grimoire Venue profile in `khai-tour` — source | | | todo | — |
-| 1 | khai | `khai-tour` — tests | | | todo | — |
-| 1 | khai | `go_on_tour` sources from archive (governance/blueprint) | | | todo | — |
-| 2 | khai-writing | raise repo: Estate(Metroon) + cast + store + ledger + gates + licence | | | todo | — |
-| 3 | each house | onboard: sync + cast Director(+Roadie) (governance) | | | todo | — |
-| 3 | khai-writing | deposit: `writing/<house>/<play>/<result>.md` | | | todo | — |
-| 4 | khai-writing | first tour: dry-run → live POST + ledger write-back | | | todo | — |
+| Order | Repo                | PR (lane)                                                                                          | Branch | PR link | State | Oversight |
+| ----- | ------------------- | -------------------------------------------------------------------------------------------------- | ------ | ------- | ----- | --------- |
+| 0     | khai                | blueprint canonicalize: lift positions + `position_director` + `plan_stage_the_score` (governance) |        |         | todo  | —         |
+| 0     | khai                | `khai-tests management build`/`check` — source (package)                                           |        |         | todo  | —         |
+| 0     | khai                | `khai-tests management` — tests                                                                    |        |         | todo  | —         |
+| 0     | each `khai-plays-*` | sync core + cast personas (governance, per house ×4)                                               |        |         | todo  | —         |
+| 1     | khai                | Director skill — source (`skills/`)                                                                |        |         | todo  | —         |
+| 1     | khai                | Director skill — tests                                                                             |        |         | todo  | —         |
+| 1     | khai                | Grimoire Venue profile in `khai-tour` — source                                                     |        |         | todo  | —         |
+| 1     | khai                | `khai-tour` — tests                                                                                |        |         | todo  | —         |
+| 1     | khai                | `go_on_tour` sources from archive (governance/blueprint)                                           |        |         | todo  | —         |
+| 2     | khai-writing        | raise repo: Estate(Metroon) + cast + store + ledger + gates + licence                              |        |         | todo  | —         |
+| 3     | each house          | onboard: sync + cast Director(+Roadie) (governance)                                                |        |         | todo  | —         |
+| 3     | khai-writing        | deposit: `writing/<house>/<play>/<result>.md`                                                      |        |         | todo  | —         |
+| 4     | khai-writing        | first tour: dry-run → live POST + ledger write-back                                                |        |         | todo  | —         |
 
 (Split rows as the lanes actually fall; add one row per real PR.)
 

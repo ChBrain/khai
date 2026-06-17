@@ -27,27 +27,27 @@ houses** rather than owned once; no house carries the Director. Bring every
 **unable to drift again** by gating it.
 
 Management is **just another play**: a Company of cast elements chained by plots.
-Convergence makes every house's *management play* the **same production with a
+Convergence makes every house's _management play_ the **same production with a
 locally-adapted cast** — identical core, local personas and local plans the only
 differences.
 
 ## The model: shared core + local overlay
 
 A house's `management/` = **blueprint core (synced, identical)** + **local overlay
-(the only differences)**. The diff between any two houses is *only* the overlay.
+(the only differences)**. The diff between any two houses is _only_ the overlay.
 
-| Element | Layer |
-| --- | --- |
-| `position_*` (the **role** definitions) | **shared** — blueprint, synced identically |
-| standing plans (`plan_go_on_tour`, `plan_keep_clean`, `plan_set_up_a_house`, `plan_stage_the_score`) | **shared** |
-| `management_instructions`, `discussion_instructions`, the PDCA `discussions/` template | **shared** |
-| Choregos personas (`persona_pericles`, `persona_nicias`) | **shared** |
-| management conformance/gate | **shared** |
-| `persona_<playwright/theatre_manager/roadie/director>` — the house's **cast** | **local** |
-| **house-specific plans** (e.g. Grimm's `plan-candidacy`, `plan-sagen`; a house's own Director plan) | **local** |
-| `orders/` — the house's management orders | **local** |
+| Element                                                                                              | Layer                                      |
+| ---------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| `position_*` (the **role** definitions)                                                              | **shared** — blueprint, synced identically |
+| standing plans (`plan_go_on_tour`, `plan_keep_clean`, `plan_set_up_a_house`, `plan_stage_the_score`) | **shared**                                 |
+| `management_instructions`, `discussion_instructions`, the PDCA `discussions/` template               | **shared**                                 |
+| Choregos personas (`persona_pericles`, `persona_nicias`)                                             | **shared**                                 |
+| management conformance/gate                                                                          | **shared**                                 |
+| `persona_<playwright/theatre_manager/roadie/director>` — the house's **cast**                        | **local**                                  |
+| **house-specific plans** (e.g. Grimm's `plan-candidacy`, `plan-sagen`; a house's own Director plan)  | **local**                                  |
+| `orders/` — the house's management orders                                                            | **local**                                  |
 
-Positions are the *role*; personas are the *casting*; standing plans ride the
+Positions are the _role_; personas are the _casting_; standing plans ride the
 role; house plans are the house's own. House Director plans **may differ by
 house** (expected, not exceptional).
 

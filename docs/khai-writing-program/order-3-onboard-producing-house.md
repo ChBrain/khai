@@ -16,7 +16,7 @@ status: active
 > [00-program.md](00-program.md). On execution, move a copy to the house's
 > `management/orders/`. **Repeatable and house-agnostic:** it is defined against
 > the blueprint, not a named house, so the four known houses and every future
-> house run the *same* order. **Grimm is the first instance (pilot).** This
+> house run the _same_ order. **Grimm is the first instance (pilot).** This
 > **supersedes** `khai-plays-grimm/management/orders/order_260617_grimoire.md`.
 
 ## Direction
@@ -30,12 +30,12 @@ the blueprint, cast the house's own personas, register, produce, deposit.
 
 ## Readiness (known houses, 2026-06-17)
 
-| House | Playwright | Roadie + touring | Director | Gap to close |
-| --- | --- | --- | --- | --- |
-| **HCAndersen** | ✓ | ✓ (Vilhelm Pedersen) | ✗ | Director only |
-| **Grimm** *(pilot)* | ✓ (Jacob & Wilhelm) | ✗ | ✗ | Roadie + touring + Director |
-| **Kleist** | ✓ (Kleist) | ✗ | ✗ | Roadie + touring + Director |
-| **Büchner** | ✓ (Büchner) | ✗ | ✗ | Roadie + touring + Director |
+| House               | Playwright          | Roadie + touring     | Director | Gap to close                |
+| ------------------- | ------------------- | -------------------- | -------- | --------------------------- |
+| **HCAndersen**      | ✓                   | ✓ (Vilhelm Pedersen) | ✗        | Director only               |
+| **Grimm** _(pilot)_ | ✓ (Jacob & Wilhelm) | ✗                    | ✗        | Roadie + touring + Director |
+| **Kleist**          | ✓ (Kleist)          | ✗                    | ✗        | Roadie + touring + Director |
+| **Büchner**         | ✓ (Büchner)         | ✗                    | ✗        | Roadie + touring + Director |
 
 **Future houses** are not listed and need not be. A house raised by **khai-stage**
 after Order 1 is born with Director + Roadie + touring from the blueprint; it runs
@@ -48,8 +48,8 @@ from the blueprint, then cast."
    `khai/packages/khai-plays/management/`). The house must carry: the **Director**
    (position + `plan_stage_the_score`) and the **Roadie** (position +
    `plan_go_on_tour`, `plan_keep_clean`, `plan_set_up_a_house`).
-   - *Future house:* khai-stage delivered these at raising — nothing to do.
-   - *Existing house:* the Roadie's **Set Up a House** (inbound sync) backfills
+   - _Future house:_ khai-stage delivered these at raising — nothing to do.
+   - _Existing house:_ the Roadie's **Set Up a House** (inbound sync) backfills
      whatever the readiness matrix shows missing (Director for all four;
      Roadie + touring for Grimm/Kleist/Büchner).
 2. **Cast the house's own personas** (per-house rule; Choregos stays shared):

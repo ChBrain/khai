@@ -34,14 +34,14 @@ this engine keeps, catalogues, and (through its own Roadie) ships and tracks.
 2. **Cast** (`management/`): **Callimachus**, the Archivist (single — keeps
    results, holds the ledger, never ships); **the Archive's own Roadie**
    (transport only); the **Choregos** (Pericles and Nicias, shared). The Director
-   is *not* cast here — it is a house position; this engine receives what Directors
+   is _not_ cast here — it is a house position; this engine receives what Directors
    deposit.
 3. **Store the writing.** `writing/<house>/<play>/<result>.md`, each a
    **venue-neutral performance** (the Standard): story body, front-of-house, the
-   licence block, routing intent. Git history *is* the revision record.
+   licence block, routing intent. Git history _is_ the revision record.
 4. **Keep the ledger.** `ledger.json`:
    `house → play → result → placement(venue, space, agent, post-id, url, state,
-   lastShipped)` — the single source of truth for what exists and where it is
+lastShipped)` — the single source of truth for what exists and where it is
    published.
 5. **Ship and track** (the Archive's Roadie): source a result, adapt to a Venue
    profile, drive **POST / PATCH / DELETE**, write the placement back. Sourcing
@@ -68,9 +68,15 @@ this engine keeps, catalogues, and (through its own Roadie) ships and tracks.
           "source": "<house-repo>/plays/<play>",
           "created": "<date>",
           "placements": [
-            { "venue": "grimoire", "space": "<space>", "agent": "<house-director-agent>",
-              "postId": "<id>", "url": "<url>", "state": "live|patched|retired",
-              "lastShipped": "<date>" }
+            {
+              "venue": "grimoire",
+              "space": "<space>",
+              "agent": "<house-director-agent>",
+              "postId": "<id>",
+              "url": "<url>",
+              "state": "live|patched|retired",
+              "lastShipped": "<date>"
+            }
           ]
         }
       }

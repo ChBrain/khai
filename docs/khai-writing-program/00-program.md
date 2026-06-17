@@ -27,7 +27,7 @@ to end.
   does not exist; Order 2 stands it up). `website` is referenced but not modified.
 - **Sequence:** **0 → 1 → 2 → 3 → 4** (Order 2 may scaffold while Order 1 lands;
   Order 3 repeats once per house, Grimm first). The DAG and overlaps are in
-  *The orders* below.
+  _The orders_ below.
 - **Place each order in its repo's `management/orders/` before executing it** —
   every order opens with a staging note saying which repo and where. Order 3 is
   copied into each house as it is onboarded. Order 3 **supersedes** the older
@@ -37,7 +37,7 @@ to end.
   Split by lane; source and tests are separate PRs; every PR a changeset; open as
   **draft** until whole; **never merge** — open the PR and stop.
 - **Nothing here is committed.** These files are the brief, not landed work.
-- **Clear the open decisions with the human first** (see *Open decisions*):
+- **Clear the open decisions with the human first** (see _Open decisions_):
   Grimoire identity model, Archivist name, auto-repost default, and whether the
   management gate is folded into `test` or surfaced as a named check.
 
@@ -45,27 +45,27 @@ to end.
 
 Three stores, three questions:
 
-| Store | Holds | Answers |
-| --- | --- | --- |
-| House `registry.json` | the plays a house **offers** (scores) | "what can this house stage?" |
-| Chain registry (khai) | all houses | "what houses exist?" |
+| Store                    | Holds                                              | Answers                                        |
+| ------------------------ | -------------------------------------------------- | ---------------------------------------------- |
+| House `registry.json`    | the plays a house **offers** (scores)              | "what can this house stage?"                   |
+| Chain registry (khai)    | all houses                                         | "what houses exist?"                           |
 | **`khai-writing`** (new) | the **writing the plays produced** + where it went | "what did we make, and where is it published?" |
 
 A **play is a score** (plots, elements — the machinery, in the houses). The
 **writing is the result** (the told story a Director renders out of a score). The
-houses produce *plays*; `khai-writing` holds the *writing those plays produced*.
+houses produce _plays_; `khai-writing` holds the _writing those plays produced_.
 The **Director is the bridge**. `khai-writing` is chain infrastructure — one repo
 for all houses, like `website`. Plain on the tin; its Estate in the voice is the
 **Metroon**, the archive that kept the authoritative play-texts.
 
 ## The company
 
-| Position | Persona | Cast |
-| --- | --- | --- |
-| **Director** | the house's own | **per house** (like the Playwright) |
-| **Archivist** | **Callimachus** (proposed) | **single**, for the whole archive (like Lessing in `website`) |
-| **Archive's Roadie** | its own | a Roadie cast for `khai-writing` |
-| **Choregos** | Pericles / Nicias | **shared** — the one exception; the chain inside the house |
+| Position             | Persona                    | Cast                                                          |
+| -------------------- | -------------------------- | ------------------------------------------------------------- |
+| **Director**         | the house's own            | **per house** (like the Playwright)                           |
+| **Archivist**        | **Callimachus** (proposed) | **single**, for the whole archive (like Lessing in `website`) |
+| **Archive's Roadie** | its own                    | a Roadie cast for `khai-writing`                              |
+| **Choregos**         | Pericles / Nicias          | **shared** — the one exception; the chain inside the house    |
 
 - **Director** — portable creative **skill**: renders a score → a venue-neutral
   performance, and **revises** an existing result. Authorship. Deposits to
@@ -95,13 +95,13 @@ ship time.
 
 ## The orders (the DAG)
 
-| # | Order | Repo (executes) | Depends on |
-| --- | --- | --- | --- |
-| 0 | [Converge the houses onto the shared management structure](order-0-converge-management.md) *(substrate, governance)* | `khai` + each `khai-plays-*` | — |
-| 1 | [Establish the Director and the Venue machinery](order-1-khai-director-and-venue.md) | `khai` | 0 (blueprint canonical) |
-| 2 | [Raise the Writing Archive](order-2-raise-khai-writing.md) | `khai-writing` (new) | 1 (to ship) |
-| 3 | [Onboard a producing house](order-3-onboard-producing-house.md) | each play-house (**per house**, Grimm first) | 1, 2 |
-| 4 | [The first tour (dry-run → live)](order-4-first-tour.md) | `khai-writing` | 2, 3 |
+| #   | Order                                                                                                                | Repo (executes)                              | Depends on              |
+| --- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- | ----------------------- |
+| 0   | [Converge the houses onto the shared management structure](order-0-converge-management.md) _(substrate, governance)_ | `khai` + each `khai-plays-*`                 | —                       |
+| 1   | [Establish the Director and the Venue machinery](order-1-khai-director-and-venue.md)                                 | `khai`                                       | 0 (blueprint canonical) |
+| 2   | [Raise the Writing Archive](order-2-raise-khai-writing.md)                                                           | `khai-writing` (new)                         | 1 (to ship)             |
+| 3   | [Onboard a producing house](order-3-onboard-producing-house.md)                                                      | each play-house (**per house**, Grimm first) | 1, 2                    |
+| 4   | [The first tour (dry-run → live)](order-4-first-tour.md)                                                             | `khai-writing`                               | 2, 3                    |
 
 **Sequence.** Order 1 is foundational (khai) and gates the rest. Order 2 may
 **scaffold** the repo in parallel with 1 (identity, cast, store, ledger, gates),
@@ -118,12 +118,12 @@ The program names **no house in its machinery** — Orders 1, 2, and 4 are
 house-agnostic; Order 3 is a repeatable per-house template. Houses differ only in
 how much of the blueprint they have already pulled.
 
-| House | Roadie + touring | Director | Order 3 work |
-| --- | --- | --- | --- |
-| HCAndersen | ✓ (Vilhelm Pedersen) | ✗ | cast Director, produce, deposit |
-| Grimm *(pilot)* | ✗ | ✗ | backfill Roadie + touring, cast both, produce, deposit |
-| Kleist | ✗ | ✗ | backfill Roadie + touring, cast both, produce, deposit |
-| Büchner | ✗ | ✗ | backfill Roadie + touring, cast both, produce, deposit |
+| House           | Roadie + touring     | Director | Order 3 work                                           |
+| --------------- | -------------------- | -------- | ------------------------------------------------------ |
+| HCAndersen      | ✓ (Vilhelm Pedersen) | ✗        | cast Director, produce, deposit                        |
+| Grimm _(pilot)_ | ✗                    | ✗        | backfill Roadie + touring, cast both, produce, deposit |
+| Kleist          | ✗                    | ✗        | backfill Roadie + touring, cast both, produce, deposit |
+| Büchner         | ✗                    | ✗        | backfill Roadie + touring, cast both, produce, deposit |
 
 **Phase 0 (the substrate).** Before any feature work, the houses **converge onto
 the shared management structure** — see
