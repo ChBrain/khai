@@ -1,5 +1,12 @@
 # @chbrain/khai-plays
 
+## 0.0.11
+
+### Patch Changes
+
+- 180209c: Mirror the control-loop Director seat into the canonical management doctrine
+  (position_director + plan_stage_the_score), parity with the khai-stage blueprint.
+
 ## 0.0.10
 
 ### Patch Changes
