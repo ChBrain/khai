@@ -1,5 +1,23 @@
 # @chbrain/khai-stage
 
+## 0.0.17
+
+### Patch Changes
+
+- 48072ec: Blueprint: add `.github/copilot-instructions.md` so the Copilot staging agent gets the house contract — most importantly that **a play takes no changeset** (the build sets `0.<count>.0`). Without it, Copilot had no house guidance and added a changeset per play, producing the `0.<count>.1` drift. Mirrors `CLAUDE.md`.
+- 1d51aab: Stage template now ships and exports `registry.json`. `index.mjs` already writes
+  a `registry.json` into every raised house, but the blueprint `package.json.tmpl`
+  left it out of `files` and declared no `exports` — so every house published
+  without it, forcing consumers (e.g. the website loader) onto the deprecated `##
+Arc` markdown fallback. Add `registry.json` to `files` and an `exports` map
+  (`.`, `./package.json`, `./registry.json`), matching the houses that were fixed
+  by hand. Future houses now ship the registry by default.
+- a50fb75: Stamp the Director into every house. The stage blueprint now carries
+  `position_director`, `plan_stage_the_score`, and a per-house
+  `persona_director.md.tmpl`; `index.mjs` fills the `{{DIRECTOR_*}}` tokens and
+  renames the persona per house (a new optional `director` arg, default `director`).
+  New and synced houses are born with the Director, matching the chain reference cast.
+
 ## 0.0.16
 
 ### Patch Changes
