@@ -14,9 +14,11 @@ status: active
 
 > **Repo: `khai-writing`.** Order 2 of 4 — see [00-program.md](00-program.md).
 > The repo already exists as a stub (a `README`); **flesh it out** — move this
-> file to `khai-writing/management/orders/` and execute there. May **scaffold** in
-> parallel with Order 1, but cannot **ship** until Order 1 lands the Grimoire
-> Venue kind.
+> file to `khai-writing/management/orders/` and execute there.
+>
+> **The pull path is the active deliverable** (the consumable package — step 8).
+> The **push/ship steps (5–6) are PARKED** with the Grimoire path; the ledger
+> ships but stays dormant. The repo no longer waits on a Venue kind to be useful.
 
 ## Direction
 
@@ -25,7 +27,8 @@ and the provenance of where each has been published. Chain infrastructure, one
 repo for all houses (like `website`). On the tin it is `khai-writing`; in the
 voice its Estate is the **Metroon**, the archive that kept the authoritative
 play-texts. A house's responsibility ends at **deposit**: houses deposit here;
-this engine keeps, catalogues, and (through its own Roadie) ships and tracks.
+this engine keeps and catalogues (and, when the push path returns, ships and
+tracks through its own Roadie).
 
 ## Orders
 
@@ -41,17 +44,18 @@ this engine keeps, catalogues, and (through its own Roadie) ships and tracks.
    front-of-house, the licence block, routing intent. Git history _is_ the
    revision record (a re-captured reading is a revision; a new reading is a new
    result).
-4. **Keep the ledger.** `ledger.json`:
+4. **Keep the ledger** (dormant while push is parked). `ledger.json`:
    `house → play → result → placement(venue, space, agent, post-id, url, state,
 lastShipped)` — the single source of truth for what exists and where it is
-   published.
-5. **Ship and track** (the Archive's Roadie): source a result, adapt to a Venue
+   published. Ships empty; written to only when the push path returns.
+5. ~~**Ship and track** (the Archive's Roadie): source a result, adapt to a Venue
    profile, drive **POST / PATCH / DELETE**, write the placement back. Sourcing
-   from the archive — never authoring.
-6. **Hold the boundary.** `publish`/`patch`/`delete` only; `tip`/`comment`/
+   from the archive — never authoring.~~ **PARKED** (push path).
+6. ~~**Hold the boundary.** `publish`/`patch`/`delete` only; `tip`/`comment`/
    `vote`/`follow` gated behind explicit per-act human authorization and a cap.
    **No auto-repost** — an edit is staged and shipped only on confirmation.
-   Secrets (per-house Venue keys) come from the environment, never committed.
+   Secrets (per-house Venue keys) come from the environment, never committed.~~
+   **PARKED** (push path); the no-secret rule still holds for the repo.
 7. **Gate it.** Conformance checks: the ledger resolves; every result links a real
    house+play in the chain registry; every result carries its licence block; no
    secret is committed.
@@ -61,20 +65,21 @@ lastShipped)` — the single source of truth for what exists and where it is
    so own surfaces (the website) render the archive by `npm install` — no API, no
    Roadie. `files` + `exports` cover the writing and the index; the index is
    **built** (single writer, run by `version`), never hand-edited — the
-   registry-packaging fix (#482), not re-trodden. This is the **pull** Venue;
-   step 5 is the **push** Venue.
+   registry-packaging fix (#482), not re-trodden. This is the **pull** Venue (the
+   active deliverable); ~~step 5 is the **push** Venue~~ (parked).
 
 ## Implementation
 
-- **Consumes `khai`**: the Roadie machinery (`khai-tour`) and the **Grimoire Venue
-  profile** from Order 1 — built in khai, run here. The Director **skill** is a
-  house tool; this engine may use it for in-repo re-captures.
+- **Consumes `khai`**: the Director **skill** (a house tool; this engine may use it
+  for in-repo re-captures). ~~The Roadie machinery (`khai-tour`) and the **Grimoire
+  Venue profile** from Order 1~~ are parked with the push path.
 - **Consumable package** (pull path): `exports` exposes `./registry.json` and
   `./ledger.json`, and `files` ships the writing, the index, and the ledger;
   `registry:build` is the single writer of the index, run by the `version` script
   so name and version stay in lockstep with `package.json`. The website consumes it
-  as a dependency and renders it on its own surface — the npm-pull Venue, alongside
-  the Grimoire API Venue. (Scaffolded in `khai-writing#1`.) Rendering it is a **new
+  as a dependency and renders it on its own surface — the npm-pull Venue (the
+  parked Grimoire API Venue would sit alongside it). (Scaffolded in
+  `khai-writing#1`.) Rendering it is a **new
   website surface**: per `website`'s branching contract, the `writing` surface lane
   must be added to `khai-guard.config.json` in a `governance` PR **before** any
   pages build (an unowned surface branch is rejected), or an existing surface
@@ -117,9 +122,9 @@ lastShipped)` — the single source of truth for what exists and where it is
 - [ ] `README.md` Estate = the Metroon
 - [ ] `management/` casts Callimachus, the Archive's Roadie, the Choregos
 - [ ] `writing/<house>/<play>/<result>.md` layout holds venue-neutral captured runs
-- [ ] `ledger.json` records `house → play → result → placement`
-- [ ] the Archive's Roadie ships POST/PATCH/DELETE from the archive, writes
-      placements back; publish-only, no auto-repost, keys from env
+- [ ] `ledger.json` present and resolving (dormant — no placements while push is parked)
+- [ ] ~~the Archive's Roadie ships POST/PATCH/DELETE from the archive, writes
+      placements back; publish-only, no auto-repost, keys from env~~ — **PARKED**
 - [ ] conformance gates pass: ledger resolves, results link real house+play,
       licence block present, no secret committed
 - [ ] consumable package: `registry.json` index built + shipped + exported
@@ -132,5 +137,6 @@ lastShipped)` — the single source of truth for what exists and where it is
 
 ## Depends on
 
-Order 1 (the Grimoire Venue profile and `khai-tour`) to ship. Scaffolding
-(identity, cast, store, ledger, gates) may proceed first.
+Order 1's **Director skill** (to produce what the archive keeps). ~~Order 1's
+Grimoire Venue profile and `khai-tour`~~ are parked — the consumable package (the
+pull deliverable) ships without them.

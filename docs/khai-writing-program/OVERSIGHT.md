@@ -32,7 +32,7 @@ The order the work lands (the maintainer's call):
      assertions), so it can't recur.
 2. **#481 + corresponding work** — the program docs, then the orders'
    implementation landed by lane (Order 0: convergence tooling, `position_director`,
-   `plan_stage_the_score`; Order 1: Director skill and the Venue kind; …).
+   `plan_stage_the_score`; Order 1: Director skill (the Venue kind is **parked**); …).
 3. **Versioning of khai** _(somewhat later)_ — `changeset version` / release so
    `@chbrain/khai-stage`, `-plays`, `-skills`, `-tour` publish the new template +
    Director + convergence tooling.
@@ -46,20 +46,20 @@ The order the work lands (the maintainer's call):
 State: `todo` · `draft` · `ci-red` · `review` · `ready` · `merged`. Oversight:
 `—` · `ok` · `drift` · `blocked`.
 
-| Order | Repo                | PR (lane)                                                                                          | Branch | PR link | State | Oversight |
-| ----- | ------------------- | -------------------------------------------------------------------------------------------------- | ------ | ------- | ----- | --------- |
-| 0     | khai                | blueprint canonicalize: lift positions + `position_director` + `plan_stage_the_score` (governance) |        |         | todo  | —         |
-| 0     | khai                | `khai-tests management build`/`check` — source (package)                                           |        |         | todo  | —         |
-| 0     | khai                | `khai-tests management` — tests                                                                    |        |         | todo  | —         |
-| 0     | each `khai-plays-*` | sync core + cast personas (governance, per house ×4)                                               |        |         | todo  | —         |
-| 1     | khai                | Director skill — source (`skills/`)                                                                |        |         | todo  | —         |
-| 1     | khai                | Director skill — tests                                                                             |        |         | todo  | —         |
-| 1     | khai                | Grimoire Venue profile in `khai-tour` — source                                                     |        |         | todo  | —         |
-| 1     | khai                | `khai-tour` — tests                                                                                |        |         | todo  | —         |
-| 2     | khai-writing        | raise repo: Estate(Metroon) + cast + store + ledger + gates + licence                              |        |         | todo  | —         |
-| 3     | each house          | onboard: sync + cast Director(+Roadie) (governance)                                                |        |         | todo  | —         |
-| 3     | khai-writing        | deposit: `writing/<house>/<play>/<result>.md`                                                      |        |         | todo  | —         |
-| 4     | khai-writing        | first tour: dry-run → live POST + ledger write-back                                                |        |         | todo  | —         |
+| Order | Repo                | PR (lane)                                                                                          | Branch | PR link | State  | Oversight |
+| ----- | ------------------- | -------------------------------------------------------------------------------------------------- | ------ | ------- | ------ | --------- |
+| 0     | khai                | blueprint canonicalize: lift positions + `position_director` + `plan_stage_the_score` (governance) |        |         | todo   | —         |
+| 0     | khai                | `khai-tests management build`/`check` — source (package)                                           |        |         | todo   | —         |
+| 0     | khai                | `khai-tests management` — tests                                                                    |        |         | todo   | —         |
+| 0     | each `khai-plays-*` | sync core + cast personas (governance, per house ×4)                                               |        |         | todo   | —         |
+| 1     | khai                | Director skill — source (`skills/`)                                                                |        |         | todo   | —         |
+| 1     | khai                | Director skill — tests                                                                             |        |         | todo   | —         |
+| ~~1~~ | khai                | ~~Grimoire Venue profile in `khai-tour` — source~~ — **PARKED** (push path)                        |        |         | parked | —         |
+| ~~1~~ | khai                | ~~`khai-tour` — tests~~ — **PARKED** (push path)                                                   |        |         | parked | —         |
+| 2     | khai-writing        | raise repo: Estate(Metroon) + cast + store + ledger + gates + licence                              |        |         | todo   | —         |
+| 3     | each house          | onboard: sync + cast Director(+Roadie) (governance)                                                |        |         | todo   | —         |
+| 3     | khai-writing        | deposit: `writing/<house>/<play>/<result>.md`                                                      |        |         | todo   | —         |
+| ~~4~~ | khai-writing        | ~~first tour: dry-run → live POST + ledger write-back~~ — **PARKED** (push path)                   |        |         | parked | —         |
 
 (Split rows as the lanes actually fall; add one row per real PR.)
 
@@ -77,15 +77,16 @@ State: `todo` · `draft` · `ci-red` · `review` · `ready` · `merged`. Oversig
 - **Management PRs (Order 0):** `khai-tests management check` clean — the diff is
   overlay-only (personas + house plans + orders); positions reviewed for cast
   leakage.
-- **Tour/poster code (Orders 1, 4):** spend boundary held — `publish`/`patch`/
-  `delete` only; `tip`/`comment`/`vote`/`follow` gated.
+- ~~**Tour/poster code (Orders 1, 4):** spend boundary held — `publish`/`patch`/
+  `delete` only; `tip`/`comment`/`vote`/`follow` gated.~~ — **PARKED** (push path).
 
 ## Escalate to the human (`AskUserQuestion`) when
 
 - a review comment is ambiguous or architecturally significant;
 - a change contradicts the brief or a settled decision;
-- an **open decision** blocks progress — Grimoire identity model, Archivist name,
-  auto-repost default, management-gate visibility;
+- an **open decision** blocks progress — Archivist name, management-gate
+  visibility (~~Grimoire identity model, auto-repost default~~ — parked with the
+  push path);
 - CI fails for a real, out-of-scope reason, or after several re-kicks with no
   progress.
 

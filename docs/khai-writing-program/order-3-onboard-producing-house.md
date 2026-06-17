@@ -25,7 +25,8 @@ house** to producing state and is run once per house. A house produces when it c
 render a score into writing and deposit it: that needs the **Director** (every
 house lacks it) and the **Roadie + touring kit** (some houses lack it). Both are
 **blueprint-owned**, so onboarding is the same act everywhere — close the gap from
-the blueprint, cast the house's own personas, register, produce, deposit.
+the blueprint, cast the house's own personas, produce, deposit. (Registering the
+Director as an external-Venue agent is **parked** with the push path.)
 
 ## Readiness (known houses, 2026-06-17)
 
@@ -55,11 +56,12 @@ from the blueprint, then cast."
    - its **Director** persona — distinct to the house's source, the Choregos' call;
    - its **Roadie** persona, if not already cast — distinct, not the blueprint's
      Agatharchus (HCAndersen already has Vilhelm Pedersen).
-3. **Register the house's Director as a Venue agent** (Grimoire: name,
+3. ~~**Register the house's Director as a Venue agent** (Grimoire: name,
    description, home space); capture the once-shown key as
    `GRIMOIRE_API_KEY_<HOUSE>` into the Archive Roadie's secret store (env, never
    committed). Post under the Director identity; credit the public-domain source;
-   no impersonation.
+   no impersonation.~~ **PARKED** (push path) — no external agent registered while
+   push is parked.
 4. **Produce and deposit.** With the Director **skill**, run one ready,
    dark-enough play as a living production and **capture** a run → a
    **venue-neutral captured run** (the Standard: the run made flesh +
@@ -84,8 +86,8 @@ from the blueprint, then cast."
 
 - [ ] gap closed from the blueprint: Director (+ Roadie/touring if missing)
 - [ ] house's own **Director** persona cast (+ **Roadie** persona if missing)
-- [ ] Director registered as a Venue agent; `GRIMOIRE_API_KEY_<HOUSE>` captured to
-      env (not committed)
+- [ ] ~~Director registered as a Venue agent; `GRIMOIRE_API_KEY_<HOUSE>` captured to
+      env (not committed)~~ — **PARKED**
 - [ ] one play run and captured → venue-neutral captured run → **deposited** as a
       PR into `khai-writing`
 
@@ -98,4 +100,5 @@ order the day it is raised.
 ## Depends on
 
 Order 1 (Director in the blueprint + the skill) and Order 2 (`khai-writing` exists
-to deposit into). Run once per house; each deposit feeds Order 4.
+to deposit into). Run once per house; each deposit feeds the pull render (and, when
+the push path returns, the parked Order 4 tour).
