@@ -72,7 +72,14 @@ lastShipped)` — the single source of truth for what exists and where it is
   `registry:build` is the single writer of the index, run by the `version` script
   so name and version stay in lockstep with `package.json`. The website consumes it
   as a dependency and renders it on its own surface — the npm-pull Venue, alongside
-  the Grimoire API Venue. (Scaffolded in `khai-writing#1`.)
+  the Grimoire API Venue. (Scaffolded in `khai-writing#1`.) Rendering it is a **new
+  website surface**: per `website`'s branching contract, the `writing` surface lane
+  must be added to `khai-guard.config.json` in a `governance` PR **before** any
+  pages build (an unowned surface branch is rejected), or an existing surface
+  extended.
+- **Licensing on the package** — `package.json` declares the dual licence
+  (`SEE LICENSE IN LICENSE and LICENSE-CODE`), like every `@chbrain` package; the
+  `licensePolicy` gate rejects a bare permissive declaration.
 - **Ledger schema** (`ledger.json`):
   ```json
   {
@@ -116,7 +123,10 @@ lastShipped)` — the single source of truth for what exists and where it is
 - [ ] consumable package: `registry.json` index built + shipped + exported
       (`files`/`exports`), `ledger.json` shipped; npm-pull consumers enumerate
       the archive without parsing the tree
-- [ ] `LICENSE` + `LICENSE-CODE` present
+- [ ] `LICENSE` + `LICENSE-CODE` present; `package.json` declares
+      `SEE LICENSE IN LICENSE and LICENSE-CODE`
+- [ ] the `writing` website surface lane is defined (a `website` `governance` PR)
+      before its pages are built
 
 ## Depends on
 
