@@ -44,7 +44,7 @@ groups:
     members: [play, plot]
   - id: cast
     label: cast
-    members: [process, position, piece, place, persona, plan]
+    members: [process, position, piece, place, persona, plan, pitch]
   - id: rests-on
     label: rests on
     members: [architecture, instructions]
@@ -63,6 +63,7 @@ groups:
 - **Place**: the pressure environment. The source of the ambient conditions the Plot's Cue draws from.
 - **Persona**: the specific human the scene runs through.
 - **Plan**: the forward-looking blueprint. The mapping of intent.
+- **Pitch**: the key a production is played in. The tuning of tone.
 - **Architecture**: the extension seam (GROW). Where builders attach without touching the canon.
 - **Instructions**: the HACKS method. The fight won in advance.
 - **Engines**: what comes through the seam (WIRE). The extensions builders wire in.
