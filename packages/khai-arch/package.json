@@ -45,6 +45,6 @@
     "js-yaml": "^4.2.0",
     "markdown-it": "^14.1.0",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.8"
+    "vitest": "^4.1.9"
   }
 }
