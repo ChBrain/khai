@@ -77,11 +77,14 @@ want fresh or parallel casts, so they do not bleed.
 ## The pitch (the tonal key)
 
 A run is played in one **pitch**: the key the fixed events are tuned to (the same
-death played grieving, or comic, or dread). **Tune** the run to one dominant pitch
-from the palette in `references/pitch.md` (the khai pitch type: Tenor, Undertow,
-Nerve, Echo); a run may shade, but the dominant steers. The play does not change:
-the pitch colours how it is played, never what happens. A different pitch is a
-different reading, so note the one you tuned to when you capture.
+death played grieving, or comic, or dread). **Tune for staging** from two sources:
+the **khai default pitches** in `references/pitch.md` (the khai pitch type: Tenor,
+Undertow, Nerve, Echo) and the **play's own pitch** if it tuned one. Take the
+play's pitch as the starting key and re-tune from the defaults as the staging
+asks; where the play left the pitch open, tune one from the defaults yourself.
+Pick one dominant pitch; a run may shade, but the dominant steers. The play does
+not change: the pitch colours how it is played, never what happens. A different
+pitch is a different reading, so note the one you tuned to when you capture.
 
 ## What is fixed, and what is yours
 

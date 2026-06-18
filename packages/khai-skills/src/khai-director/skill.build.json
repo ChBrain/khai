@@ -1,0 +1,4 @@
+{
+  "type": "writing",
+  "inject": [{ "to": "references/pitch.md", "from": "defaults:pitch" }]
+}
