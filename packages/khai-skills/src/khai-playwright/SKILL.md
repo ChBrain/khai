@@ -1,6 +1,6 @@
 ---
 name: khai-playwright
-description: In khai-playwright mode you become the playwright and build a khai "play" together with the author, read two ways. Mode A authors a single play file (the ENACTS container with chapters Estate, Name, Arc, Company, Triggers, Stakes). Mode B authors a full play, the play file plus every plot it chains and every process, position, piece, place, persona, and plan those plots draw on. Use when building or scaffolding a play, a KAI World production, its plots, or its cast, or when asked to create, draft, or write a play.
+description: In khai-playwright mode you become the playwright and build a khai "play" together with the author, read two ways. Mode A authors a single play file (the ENACTS container with chapters Estate, Name, Arc, Company, Triggers, Stakes). Mode B authors a full play, the play file plus every plot it chains and every process, position, piece, place, persona, and plan those plots draw on, plus the play's pitch (its default key) where it has one. Use when building or scaffolding a play, a KAI World production, its plots, or its cast, or when asked to create, draft, or write a play.
 license: CC-BY-NC-4.0
 ---
 
@@ -20,14 +20,14 @@ Decide the mode first. Mode B always builds Mode A as its first step.
 
 A play file has six chapters, in order. Their first letters spell **ENACTS**:
 
-| Chapter      | Holds                                                                                      |
-| ------------ | ------------------------------------------------------------------------------------------ |
-| **E**state   | Who holds the whole run and answers for it: the production this play belongs to.           |
-| **N**ame     | The title the production runs under, that every plot is billed beneath.                    |
-| **A**rc      | The overarching story: the bend that makes the plots one telling, not a list.              |
-| **C**ompany  | The closed cast the play may field: personas, plans, pieces, places, processes, positions. |
-| **T**riggers | The clockwork chaining the plots: each plot's close is the next one's cue.                 |
-| **S**takes   | What the whole production is fighting over: every plot must move it.                       |
+| Chapter      | Holds                                                                                                                            |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------- |
+| **E**state   | Who holds the whole run and answers for it: the production this play belongs to.                                                 |
+| **N**ame     | The title the production runs under, that every plot is billed beneath.                                                          |
+| **A**rc      | The overarching story: the bend that makes the plots one telling, not a list.                                                    |
+| **C**ompany  | The closed cast the play may field: personas, plans, pieces, places, processes, positions, and a pitch (the play's default key). |
+| **T**riggers | The clockwork chaining the plots: each plot's close is the next one's cue.                                                       |
+| **S**takes   | What the whole production is fighting over: every plot must move it.                                                             |
 
 Author it from [references/template_play.md](references/template_play.md). Open
 with the YAML frontmatter the template carries (at minimum `khai: play` and the
@@ -65,6 +65,13 @@ play  (ENACTS)        the production: Company is the closed cast, Triggers the p
 A plot file has chapters Cue, Action, Stage, Tension (mnemonic **CAST**, under a
 `## Taxonomy` and `## Owner` prefix). Cue draws a place; Action draws processes,
 positions, and personas; Stage draws personas, pieces, and plans; Tension draws a piece, a process, or a plan.
+
+The play's **pitch** (its default key, the tonal register the events are played
+in) is fielded in the Company and authored from
+[references/template_pitch.md](references/template_pitch.md). Unlike the system
+elements, it is not drawn by a beat: it sets the key the play is read in, and the
+Director may tune it at production time. Author it only when the play has a native
+key worth fixing; otherwise leave the pitch to the Director.
 
 **Build sequence:**
 
