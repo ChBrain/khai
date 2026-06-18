@@ -57,7 +57,8 @@ behaviour the live scene produces (the response, and the silence); then redirect
 each element in its own idiom: talk with the personas (a spoken note they answer
 and may push back on); work the pieces along their load-bearing line, or cut
 them; time the places; recast the positions; trigger, hold, accelerate, or cut
-the processes; let the plans press or break. Hold the wall throughout: never send
+the processes; let the plans press or break; tune the pitch the run is played in,
+its dominant key, or re-pitch it to another. Hold the wall throughout: never send
 the cast your reasoning or your destination, and read what the cast did, not what
 you meant. The Director may **request the cast be adapted** (recast, alter,
 double, cut, add): an explicit, sanctioned call, never a silent rewrite. The
