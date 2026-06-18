@@ -15,6 +15,7 @@ import matter from "gray-matter";
 const here = dirname(fileURLToPath(import.meta.url));
 const archDir = join(here, "architecture");
 const templatesDir = join(here, "templates");
+const defaultsDir = join(here, "defaults");
 
 /**
  * @typedef {Object} KhaiType
@@ -71,6 +72,23 @@ export const templates = Object.fromEntries(
     // collapse all such files onto one entry. (Parse once, too, not twice.)
     .filter((t) => typeof t.khai === "string" && t.khai)
     .map((t) => [t.khai, { type: t.khai, file: t.file, text: t.text }]),
+);
+
+/**
+ * Canon defaults: per-type default sets, keyed by type id (the filename stem).
+ * Where a template is the empty skeleton, a default is a filled, ready-to-tune
+ * starting set the consumer learns from and adapts. `pitch` ships the standard
+ * registers (the tenors). Read from the canon's own defaults/ dir so a consumer
+ * (e.g. a skill) injects one source and cannot drift from it.
+ * @type {Record<string, { file: string, text: string }>}
+ */
+export const defaults = Object.fromEntries(
+  (existsSync(defaultsDir) ? readdirSync(defaultsDir) : [])
+    .filter((f) => f.endsWith(".md"))
+    .map((f) => [
+      f.replace(/\.md$/, ""),
+      { file: `defaults/${f}`, text: readFileSync(join(defaultsDir, f), "utf8") },
+    ]),
 );
 
 /**
@@ -680,6 +698,7 @@ export function renderEngineReadme(pkg) {
 export default {
   types,
   templates,
+  defaults,
   chaptersFor,
   toPrefix,
   frontmatterExtras,
