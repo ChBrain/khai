@@ -23,6 +23,7 @@
     "index.mjs",
     "architecture/",
     "templates/",
+    "defaults/",
     "LICENSE",
     "LICENSE-CODE",
     "README.md"
