@@ -7,4 +7,6 @@ from and converge to). Identical to the khai-plays doctrine change: the position
 encodes the separation of two stances (the immersed cast as producer, the
 Director outside it reading and redirecting), the channel discipline, and that a
 captured or handed-over run is the cast's work, selected and never authored by the
-Director. Houses pick this up on their normal khai-stage dependency rollout.
+Director. Also adds "tune the pitch" to the redirect idioms (pairs with the pitch
+element type in khai-arch). Houses pick this up on their normal khai-stage
+dependency rollout.
