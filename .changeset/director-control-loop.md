@@ -21,11 +21,12 @@ templates (template_play, template_persona, ...): those are the playwright's
 authoring schema and have no place in a portable directing skill. In their place
 the bundle ships the references a directing skill actually expects: a director
 position (the seat), a default persona (with the clear option to use your own),
-and a modes palette, so a persona holding the position runs the craft. The bundle
+and a pitch palette, so a persona holding the position runs the craft. The bundle
 no longer depends on khai's file formats.
 
-Adds a register knob and references/modes.md: a palette of tonal registers the
-director drives one of for a given run (the same fixed events played grieving, or
-comic, or dread). It is grounded in rasa (the classical theory of dramatic
-flavour), each rasa named as a plain register so any model can drive it. A
-register is a reading, never a rewrite: the play's events do not change.
+Adds a pitch knob and references/pitch.md: the director tunes a run to one
+dominant pitch, the tonal key the fixed events are played in (grieving, comic,
+dread, ...). The reference is a portable echo of the khai pitch type (TO TUNE:
+Tenor, Undertow, Nerve, Echo) with a starting palette of tenors, so the skill
+stays dependency-free while khai-arch owns the type. A pitch is a reading, never a
+rewrite: the play's events do not change.
