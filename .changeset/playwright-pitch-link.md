@@ -2,9 +2,18 @@
 "@chbrain/khai-skills": patch
 ---
 
-Playwright: link the pitch from the play, recommend one, allow per-plot. The play
-fields its pitch as a Company member and links it like any member with a file;
-recommend a single pitch per play (the default key the production is read in). A
-plot may link its own pitch when a scene runs in a different key (the exception,
-not the rule). Author a pitch only when the play or a plot has a native key worth
-fixing; otherwise leave it to the Director, who tunes at production time.
+Pitch tuning model across the playwright and director skills.
+
+The playwright now ships the khai default pitches (references/pitch.md) to learn
+from, beside the template, and links the pitch from the play: recommend one pitch
+per play (the default key), a plot may tune its own (the exception). Writing a
+play tunes a default into a play-specific pitch, authored from template_pitch.md
+and linked from the Company. Author one only when the play or a plot has a native
+key worth fixing.
+
+The director tunes for staging from two sources: the khai default pitches AND the
+play's own pitch (if it tuned one). It takes the play's pitch as the starting key
+and re-tunes from the defaults as the staging asks; where the play left the pitch
+open, it tunes one from the defaults itself. So: playwright learns from the
+defaults and produces play specifics; director uses the defaults and the play
+specific to tune for the run.

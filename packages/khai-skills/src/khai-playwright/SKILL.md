@@ -67,15 +67,17 @@ A plot file has chapters Cue, Action, Stage, Tension (mnemonic **CAST**, under a
 positions, and personas; Stage draws personas, pieces, and plans; Tension draws a piece, a process, or a plan.
 
 The play's **pitch** (its default key, the tonal register the events are played
-in) is a Company member: author it from
+in) is a Company member. Learn the **khai default pitches** in
+[references/pitch.md](references/pitch.md), then **tune one into a play-specific
+pitch**: author it from
 [references/template_pitch.md](references/template_pitch.md) and **link it from the
 Company** like any member with a file. **Recommend one pitch per play**: the
-default key the whole production is read in. Unlike the system elements, it is not
-drawn by a beat; it sets the key. A **plot may link its own pitch** when that
-scene runs in a different key, overriding the play default for that plot; keep
-this the exception, not the rule. Author a pitch only when the play (or a plot)
-has a native key worth fixing; otherwise leave it to the Director, who tunes at
-production time.
+default key the whole production is read in. It is not drawn by a beat; it sets
+the key. A **plot may tune its own pitch** when that scene runs in a different
+key, overriding the play default for that plot; keep this the exception, not the
+rule. Tune a pitch only when the play (or a plot) has a native key worth fixing;
+otherwise leave it to the Director, who **re-tunes for staging** from the same
+defaults and your play-specific pitch.
 
 **Build sequence:**
 
