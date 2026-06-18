@@ -67,11 +67,15 @@ A plot file has chapters Cue, Action, Stage, Tension (mnemonic **CAST**, under a
 positions, and personas; Stage draws personas, pieces, and plans; Tension draws a piece, a process, or a plan.
 
 The play's **pitch** (its default key, the tonal register the events are played
-in) is fielded in the Company and authored from
-[references/template_pitch.md](references/template_pitch.md). Unlike the system
-elements, it is not drawn by a beat: it sets the key the play is read in, and the
-Director may tune it at production time. Author it only when the play has a native
-key worth fixing; otherwise leave the pitch to the Director.
+in) is a Company member: author it from
+[references/template_pitch.md](references/template_pitch.md) and **link it from the
+Company** like any member with a file. **Recommend one pitch per play**: the
+default key the whole production is read in. Unlike the system elements, it is not
+drawn by a beat; it sets the key. A **plot may link its own pitch** when that
+scene runs in a different key, overriding the play default for that plot; keep
+this the exception, not the rule. Author a pitch only when the play (or a plot)
+has a native key worth fixing; otherwise leave it to the Director, who tunes at
+production time.
 
 **Build sequence:**
 
