@@ -41,7 +41,12 @@ function resolveCanon(from) {
     if (!t) throw new Error(`unknown canon template "${arg}" (template:${arg})`);
     return t.text;
   }
-  throw new Error(`unknown canon resolver "${from}" (expected template:<type>)`);
+  if (kind === "defaults") {
+    const d = arch.defaults?.[arg];
+    if (!d) throw new Error(`unknown canon defaults "${arg}" (defaults:${arg})`);
+    return d.text;
+  }
+  throw new Error(`unknown canon resolver "${from}" (expected template:<type> or defaults:<type>)`);
 }
 
 /** All files under a dir as { rel (posix), data:Buffer }, excluding given names. */

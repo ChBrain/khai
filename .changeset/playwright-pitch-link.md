@@ -2,18 +2,17 @@
 "@chbrain/khai-skills": patch
 ---
 
-Pitch tuning model across the playwright and director skills.
+Pitch tuning model across the playwright and director skills, on one canonical
+source.
 
-The playwright now ships the khai default pitches (references/pitch.md) to learn
-from, beside the template, and links the pitch from the play: recommend one pitch
-per play (the default key), a plot may tune its own (the exception). Writing a
-play tunes a default into a play-specific pitch, authored from template_pitch.md
-and linked from the Company. Author one only when the play or a plot has a native
-key worth fixing.
+Both skills now inject the pitch defaults from the canon (defaults:pitch, from
+@chbrain/khai-arch defaults/pitch.md) instead of carrying hand-authored copies, so
+the "khai defaults" are a single source that cannot drift (provenance-checked at
+build, like the element templates). The director gains a build directive for the
+inject; the playwright adds it beside the element templates.
 
-The director tunes for staging from two sources: the khai default pitches AND the
-play's own pitch (if it tuned one). It takes the play's pitch as the starting key
-and re-tunes from the defaults as the staging asks; where the play left the pitch
-open, it tunes one from the defaults itself. So: playwright learns from the
-defaults and produces play specifics; director uses the defaults and the play
-specific to tune for the run.
+The model: the playwright learns from the khai default pitches and, when writing a
+play, tunes one into a play-specific pitch (one per play, linked from the Company;
+a plot may tune its own as the exception). The director tunes for staging from
+both the khai defaults and the play's own pitch, starting from the play key and
+re-tuning from the defaults, or tuning one itself where the play left it open.
