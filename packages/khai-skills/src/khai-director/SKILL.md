@@ -69,9 +69,20 @@ The knobs, free to differ every time:
 - **Persistent or fresh** cast (memory, below).
 - **Number and breadth** of runs; **diverge** to explore or **converge** to finish.
 - **Capture** as a keepsake or as the terminal **deliverable**.
+- **The register** to drive in: the tonal key of the run (see below).
 
 A single coherent script wants a persistent cast. Several readings side by side
 want fresh or parallel casts, so they do not bleed.
+
+## The register (the tonal key)
+
+A run is driven in one **register**: the tone the fixed events are played for (the
+same death played grieving, or comic, or dread). Pick one dominant register per
+execution from the palette in `references/modes.md` (grounded in rasa, the
+classical theory of dramatic flavour); a run may shade, but the dominant steers.
+The play does not change: the register colours how it is played, never what
+happens. A different register is a different reading, so note the one you drove
+when you capture.
 
 ## What is fixed, and what is yours
 
