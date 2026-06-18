@@ -178,6 +178,21 @@ function assertLicensePolicy(value) {
     assertStringList(value.skillLicenses, "licensePolicy.skillLicenses");
 }
 
+// Validate the changesetPolicy section: the changeset-presence gate. A khai
+// plays house versions by play count, so a PR that ADDS a new play needs no
+// changeset (the build moves the minor); every other shipped change needs one
+// or it merges and publishes nothing. `countDrivenAdd` (optional) is the glob
+// list whose ADDITION marks a PR as count-driven (e.g. plays/*/play_*.md); with
+// none configured, every PR requires a changeset (the monorepo rule). A
+// malformed policy is a config error rather than a silent hole.
+function assertChangesetPolicy(value) {
+  if (typeof value !== "object" || value == null || Array.isArray(value)) {
+    throw new ConfigError(`"changesetPolicy" must be an object`);
+  }
+  if ("countDrivenAdd" in value)
+    assertGlobList(value.countDrivenAdd, "changesetPolicy.countDrivenAdd");
+}
+
 // Shallow per-key override: a config file replaces only the keys it sets.
 // Validates the shape so a typo (e.g. source as a bare string) fails loud
 // instead of matching nothing and waving every PR through.
@@ -197,6 +212,7 @@ export function resolveConfig(fileConfig) {
   if ("branchScope" in fileConfig) assertBranchScope(fileConfig.branchScope);
   if ("bumpScope" in fileConfig) assertBumpScope(fileConfig.bumpScope);
   if ("licensePolicy" in fileConfig) assertLicensePolicy(fileConfig.licensePolicy);
+  if ("changesetPolicy" in fileConfig) assertChangesetPolicy(fileConfig.changesetPolicy);
   return { ...DEFAULT_CONFIG, ...fileConfig };
 }
 
@@ -714,6 +730,78 @@ export function bumpScope(changesets, config = DEFAULT_CONFIG) {
     escalations,
     highest: highestRank >= 0 ? BUMP_LEVELS[highestRank] : null,
   };
+}
+
+/**
+ * Parse `git diff --name-status` output into {status, path} records, keeping the
+ * status letter parseNameStatus drops. A rename/copy is judged by its
+ * destination and reported as the destination's effective status (the dst is
+ * "added" relative to the lane it lands in). Mirrors parseNameStatus's tolerance
+ * of both the `-z` NUL stream and the legacy tab-delimited line form.
+ * @param {string|string[]} input
+ * @returns {{status: string, path: string}[]}
+ */
+export function parseChanges(input) {
+  const tokens = Array.isArray(input)
+    ? input.flatMap((line) => line.replace(/\r?\n$/, "").split("\t"))
+    : String(input).split("\0");
+  const out = [];
+  for (let i = 0; i < tokens.length; ) {
+    const status = tokens[i++];
+    if (!status || !status.trim()) continue;
+    if (/^[RC]/.test(status)) {
+      i++; // skip <src>
+      const dst = tokens[i++];
+      // A rename into a path is, for ownership, an addition of that path.
+      if (dst) out.push({ status: "A", path: dst });
+    } else {
+      const path = tokens[i++];
+      if (path) out.push({ status: status[0], path });
+    }
+  }
+  return out;
+}
+
+/**
+ * The changeset-presence gate. A khai plays house versions by play count, so a
+ * PR that ADDS a new play needs no changeset (the play-count build moves the
+ * minor and resets the patch); a per-play changeset would re-bump the patch on
+ * top and drift the version. Every OTHER shipped change (a content edit, a
+ * governance or tooling change) needs a changeset, real or empty, or it merges
+ * green and publishes nothing. Pure: it takes the parsed diff records
+ * [{status, path}] and the parsed changesets [{file, entries}], and returns
+ * findings; the git/file IO lives in the CLI.
+ *
+ * With no `changesetPolicy.countDrivenAdd` configured, nothing is count-driven
+ * and every PR requires a changeset (the monorepo's "every PR needs a
+ * changeset" rule). `ok` is true when there are no violations.
+ * @param {{changed?: {status:string,path:string}[], changesets?: {file:string,entries:unknown[]}[], config?: typeof DEFAULT_CONFIG}} args
+ */
+export function changesetCheck({ changed = [], changesets = [], config = DEFAULT_CONFIG } = {}) {
+  const globs = config.changesetPolicy?.countDrivenAdd ?? [];
+  const isCountDrivenAdd = globs.length > 0 ? picomatch(globs, { dot: true }) : () => false;
+  const countDrivenAdds = changed
+    .filter((c) => c.status === "A" && isCountDrivenAdd(c.path))
+    .map((c) => c.path);
+  const addsCountDriven = countDrivenAdds.length > 0;
+  const hasChangeset = changesets.length > 0;
+
+  const violations = [];
+  if (addsCountDriven && hasChangeset) {
+    violations.push(
+      `this PR adds a new play (the version is play-count driven: ${countDrivenAdds.join(", ")}) ` +
+        `but carries a changeset. Remove it: the play-count build moves the version, and a per-play ` +
+        `changeset re-bumps the patch on top, drifting the version.`,
+    );
+  }
+  if (!addsCountDriven && !hasChangeset) {
+    violations.push(
+      `no changeset found, and this PR adds no new play. A change that is not a new play must ship a ` +
+        `changeset, or it merges and publishes nothing. Run \`npx changeset add\` (or ` +
+        `\`npx changeset add --empty\` for tooling/docs that ship no package content).`,
+    );
+  }
+  return { ok: violations.length === 0, violations, addsCountDriven, hasChangeset };
 }
 
 // The license-scope gate. khai's concepts are NonCommercial: every package

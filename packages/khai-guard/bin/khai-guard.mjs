@@ -48,9 +48,11 @@ import {
   advise,
   parseChangeset,
   bumpScope,
+  changesetCheck,
   checkLicenses,
   resolveConfig,
   parseNameStatus,
+  parseChanges,
   DEFAULT_CONFIG,
   ConfigError,
 } from "../index.mjs";
@@ -156,6 +158,61 @@ function changedPaths(config) {
     process.exit(2);
   }
   return parseNameStatus(raw, { exemptRenames: config.exemptRenames !== false });
+}
+
+// Like changedPaths, but keeps the status letter (A/M/D) the changeset gate
+// needs to tell a new-play ADDITION from an edit. Returns null in local mode
+// when no comparison base resolves (skip rather than block).
+function changedRecords(config) {
+  let base = flag("--base");
+  const head = flag("--head") ?? "HEAD";
+  if (!base) {
+    const defaultRef = config.defaultRef ?? "origin/main";
+    try {
+      base = git(["merge-base", defaultRef, "HEAD"]).trim();
+    } catch {
+      return null;
+    }
+  }
+  let raw;
+  try {
+    raw = git(["diff", "--name-status", "-M", "-z", `${base}...${head}`]);
+  } catch (err) {
+    console.error(`KHAI-Guard: git diff failed — ${err.message}`);
+    process.exit(2);
+  }
+  return parseChanges(raw);
+}
+
+// `changeset-check`: the changeset-presence gate. A play-count-driven house
+// needs NO changeset when a PR adds a new play, but DOES for any other shipped
+// change, or the change merges and publishes nothing. Hard-fails (exit 1) by
+// default; `--advisory` softens it to a warning that still exits 0.
+function runChangesetCheck() {
+  const config = loadConfig();
+  const changed = changedRecords(config);
+  if (changed === null) {
+    console.log("KHAI-Guard changeset-check: no comparison base found; skipping (local).");
+    process.exit(0);
+  }
+  const { ok, violations, addsCountDriven } = changesetCheck({
+    changed,
+    changesets: readChangesets(),
+    config,
+  });
+  if (ok) {
+    const why = addsCountDriven
+      ? "PR adds a new play (the version is play-count driven); no changeset needed"
+      : "PR carries a changeset";
+    console.log(`KHAI-Guard changeset-check OK: ${why}.`);
+    process.exit(0);
+  }
+  const advisory = process.argv.includes("--advisory");
+  const tag = advisory ? "::warning::" : "::error::";
+  console.error(`${tag}KHAI-Guard changeset-check: ${violations.length} finding(s):`);
+  for (const v of violations) console.error(`  - ${v}`);
+  console.error("");
+  process.exit(advisory ? 0 : 1);
 }
 
 // The gate: classify the PR's diff range and exit non-zero on a mix.
@@ -604,6 +661,7 @@ if (process.argv[2] === "doctor") runDoctor();
 else if (process.argv[2] === "branch-check") runBranchCheck();
 else if (process.argv[2] === "advise") runAdvise();
 else if (process.argv[2] === "bump-check") runBumpCheck();
+else if (process.argv[2] === "changeset-check") runChangesetCheck();
 else if (process.argv[2] === "branch") runBranch();
 else if (process.argv[2] === "license-check") runLicenseCheck();
 else runGate();
