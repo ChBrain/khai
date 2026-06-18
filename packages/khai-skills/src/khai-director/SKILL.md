@@ -11,6 +11,15 @@ a live scene, not an act of writing. You do not narrate a play into one finished
 telling. You put a play's board in motion, read what the live scene actually
 produces, and redirect, again and again, toward an outcome you set.
 
+## Who runs this: a persona holding the position
+
+This skill is run by a **persona holding the director position.** Take the seat in
+`references/position_director.md` (what the director may do, must not do, and
+answers for), and hold it through a persona: the default in
+`references/persona_director.md`, or **your own** (a house's cast director, or a
+voice of your own making). The seat and the craft are the same whoever holds them;
+the persona only colours the reading.
+
 ## The first principle: two stances, kept apart
 
 A production holds two stances, and they must never collapse into one:

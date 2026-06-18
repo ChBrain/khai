@@ -18,5 +18,8 @@ director.
 
 Removes skill.build.json so the director no longer injects khai's element
 templates (template_play, template_persona, ...): those are the playwright's
-authoring schema and have no place in a portable directing skill. The bundle is
-now SKILL.md plus README, with no dependency on khai's file formats.
+authoring schema and have no place in a portable directing skill. In their place
+the bundle ships the references a directing skill actually expects: a director
+position (the seat) and a default persona (with the clear option to use your
+own), so a persona holding the position runs the craft. The bundle no longer
+depends on khai's file formats.
