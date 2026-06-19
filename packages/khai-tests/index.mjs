@@ -8,6 +8,7 @@ export {
   findEnginePackageFor,
   validateInstanceFile,
   validateProject,
+  validateCollectionRegistry,
   validatePlayhouseRegistry,
   wiringRequirements,
   engineDocChecks,
@@ -16,6 +17,8 @@ export {
 export {
   buildRegistry,
   verifyRegistry,
+  resolveCollection,
+  countItems,
   countPlays,
   deriveVersionFrom,
   deriveHouseVersion,
