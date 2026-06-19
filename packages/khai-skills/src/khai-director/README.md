@@ -15,8 +15,8 @@ its board. You keep two stances apart (an immersed cast that embodies the scene,
 and you outside it reading and redirecting), so behaviour is real evidence. You
 name an outcome (explore plural readings, or converge to one handed-over script),
 set the knobs (solo or split, persistent or fresh cast, diverge or converge,
-keepsake or deliverable), and steer without ever authoring a line. A chosen run
-can be captured.
+keepsake or deliverable), and steer without ever authoring a line, your notes
+setting conditions and never instructions. A chosen run can be captured.
 
 ## What you get
 
