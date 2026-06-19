@@ -775,9 +775,20 @@ export function parseChanges(input) {
  * With no `changesetPolicy.countDrivenAdd` configured, nothing is count-driven
  * and every PR requires a changeset (the monorepo's "every PR needs a
  * changeset" rule). `ok` is true when there are no violations.
- * @param {{changed?: {status:string,path:string}[], changesets?: {file:string,entries:unknown[]}[], config?: typeof DEFAULT_CONFIG}} args
+ *
+ * `shipped` is the package's published path set (its `files`, normalized) — when
+ * given, a releasing changeset on a PR that changes nothing shipped is flagged:
+ * that release republishes identical content and drifts the version (the
+ * spurious `0.<count>.1` patch). Empty/omitted -> the rule is off (shipped set
+ * unknown). The git/file IO that reads `files` lives in the CLI.
+ * @param {{changed?: {status:string,path:string}[], changesets?: {file:string,entries:unknown[]}[], shipped?: string[], config?: typeof DEFAULT_CONFIG}} args
  */
-export function changesetCheck({ changed = [], changesets = [], config = DEFAULT_CONFIG } = {}) {
+export function changesetCheck({
+  changed = [],
+  changesets = [],
+  shipped = [],
+  config = DEFAULT_CONFIG,
+} = {}) {
   const globs = config.changesetPolicy?.countDrivenAdd ?? [];
   const isCountDrivenAdd = globs.length > 0 ? picomatch(globs, { dot: true }) : () => false;
   const countDrivenAdds = changed
@@ -800,6 +811,22 @@ export function changesetCheck({ changed = [], changesets = [], config = DEFAULT
         `changeset, or it merges and publishes nothing. Run \`npx changeset add\` (or ` +
         `\`npx changeset add --empty\` for tooling/docs that ship no package content).`,
     );
+  }
+  // A releasing changeset (one that declares a bump) republishes the package. If
+  // the PR changes nothing under the package `files`, that release ships content
+  // identical to the last and drifts the version — the spurious `0.<count>.1`
+  // patch a REFERENCES/docs/tooling PR cuts when it carries a `patch` changeset
+  // instead of an `--empty` one. Only checked when the shipped set is known.
+  const releasing = changesets.some((c) => Array.isArray(c.entries) && c.entries.length > 0);
+  if (shipped.length > 0 && releasing) {
+    const isShipped = picomatch(shipped, { dot: true });
+    if (!changed.some((c) => isShipped(c.path))) {
+      violations.push(
+        `this PR changes no shipped package content (nothing under the package \`files\`) but ` +
+          `carries a releasing changeset; that release would republish identical content and drift ` +
+          `the version. Use an empty changeset instead: \`npx changeset add --empty\`.`,
+      );
+    }
   }
   return { ok: violations.length === 0, violations, addsCountDriven, hasChangeset };
 }

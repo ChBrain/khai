@@ -211,9 +211,36 @@ function changedRecords(config) {
   return parseChanges(raw);
 }
 
+// The package's published path set: its package.json `files`, normalized to
+// globs (a bare directory entry publishes recursively, so it gains a `/**`), plus
+// package.json itself (always published). Empty when there is no `files` field —
+// the shipped set is then unknown and the "ships nothing" rule stays off rather
+// than firing falsely. Pure read; a malformed manifest resolves to empty.
+function readShippedGlobs() {
+  let pkg;
+  try {
+    pkg = JSON.parse(readFileSync(resolve(process.cwd(), "package.json"), "utf8"));
+  } catch {
+    return [];
+  }
+  const files = Array.isArray(pkg.files) ? pkg.files : [];
+  if (files.length === 0) return [];
+  const globs = ["package.json"];
+  for (const f of files) {
+    const e = String(f)
+      .replace(/^\.?\//, "")
+      .replace(/\/+$/, "");
+    if (!e) continue;
+    globs.push(e);
+    if (!e.includes("*")) globs.push(`${e}/**`);
+  }
+  return globs;
+}
+
 // `changeset-check`: the changeset-presence gate. A play-count-driven house
 // needs NO changeset when a PR adds a new play, but DOES for any other shipped
-// change, or the change merges and publishes nothing. Hard-fails (exit 1) by
+// change, or the change merges and publishes nothing. It also flags a releasing
+// changeset on a PR that ships nothing (use `--empty`). Hard-fails (exit 1) by
 // default; `--advisory` softens it to a warning that still exits 0.
 function runChangesetCheck() {
   const config = loadConfig();
@@ -239,6 +266,7 @@ function runChangesetCheck() {
   const { ok, violations, addsCountDriven } = changesetCheck({
     changed,
     changesets: readChangesets(),
+    shipped: readShippedGlobs(),
     config,
   });
   if (ok) {
