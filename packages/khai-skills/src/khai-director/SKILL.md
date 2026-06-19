@@ -116,7 +116,7 @@ pitch is a different reading, so note the one you tuned to when you capture.
 
 Your note to the cast is a **condition:** the state of the world the cast steps
 into. It is never an **instruction:** a command to perform an action or to
-report back. The instant you ask the cast to *do* something, or to *tell* you
+report back. The instant you ask the cast to _do_ something, or to _tell_ you
 what it did, the wall is down from your side, even though you authored no line.
 Asking for a report is the sharper breach: it treats the cast as an apparatus
 rather than a producer.
