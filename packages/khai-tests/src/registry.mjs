@@ -1,24 +1,43 @@
 import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { parseDoc } from "@chbrain/khai-rules";
-import { validatePlayhouseRegistry } from "./validate.mjs";
+import { validateCollectionRegistry } from "./validate.mjs";
+import { resolveCollection, resolveCollectionAt } from "./collection.mjs";
+
+export { resolveCollection };
 
 /**
- * Count the plays in a house: the same set the registry and the numbering guard
- * count, i.e. each non-hidden subdirectory of plays/ that holds a play_*.md.
+ * Count the items in a house's collection: the same set the registry and the
+ * numbering guard count, i.e. each non-hidden subdirectory of the collection dir
+ * that holds an anchor file (`<anchor>*.md`).
+ * @param {string} root
+ * @param {{ dir: string, key: string, anchor: string }} [collection]
+ * @returns {number}
+ */
+export function countItems(root, collection = resolveCollectionAt(root)) {
+  const itemsDir = join(root, collection.dir);
+  if (!existsSync(itemsDir)) return 0;
+  let n = 0;
+  for (const e of readdirSync(itemsDir, { withFileTypes: true })) {
+    if (!e.isDirectory() || e.name.startsWith(".")) continue;
+    if (
+      readdirSync(join(itemsDir, e.name)).some(
+        (f) => f.startsWith(collection.anchor) && f.endsWith(".md"),
+      )
+    )
+      n++;
+  }
+  return n;
+}
+
+/**
+ * Count the plays in a house. Back-compat alias for {@link countItems}, which
+ * resolves the collection from package.json (plays when unset).
  * @param {string} root
  * @returns {number}
  */
 export function countPlays(root) {
-  const playsDir = join(root, "plays");
-  if (!existsSync(playsDir)) return 0;
-  let n = 0;
-  for (const e of readdirSync(playsDir, { withFileTypes: true })) {
-    if (!e.isDirectory() || e.name.startsWith(".")) continue;
-    if (readdirSync(join(playsDir, e.name)).some((f) => f.startsWith("play_") && f.endsWith(".md")))
-      n++;
-  }
-  return n;
+  return countItems(root);
 }
 
 /**
@@ -49,7 +68,7 @@ export function deriveVersionFrom(currentVersion, count) {
  */
 export function deriveHouseVersion(root) {
   const pkg = JSON.parse(readFileSync(join(root, "package.json"), "utf8"));
-  return deriveVersionFrom(pkg.version, countPlays(root));
+  return deriveVersionFrom(pkg.version, countItems(root, resolveCollection(pkg)));
 }
 
 export function buildRegistry(root) {
@@ -61,32 +80,37 @@ export function buildRegistry(root) {
   const packageJson = JSON.parse(readFileSync(packageJsonPath, "utf8"));
   const name = packageJson.name;
 
-  const playsDir = join(root, "plays");
-  if (!existsSync(playsDir)) {
-    throw new Error(`missing plays directory at ${root}`);
+  const collection = resolveCollection(packageJson);
+  const itemsDir = join(root, collection.dir);
+  if (!existsSync(itemsDir)) {
+    throw new Error(`missing ${collection.dir} directory at ${root}`);
   }
 
-  const subdirs = readdirSync(playsDir, { withFileTypes: true })
+  const subdirs = readdirSync(itemsDir, { withFileTypes: true })
     .filter((e) => e.isDirectory() && !e.name.startsWith("."))
     .map((e) => e.name)
     .sort((a, b) => a.localeCompare(b));
 
-  const plays = [];
+  const items = [];
   for (const id of subdirs) {
-    const playSubdir = join(playsDir, id);
-    const files = readdirSync(playSubdir);
-    const playFileName = files.find((f) => f.startsWith("play_") && f.endsWith(".md"));
-    if (!playFileName) {
-      console.warn(`Warning: playbook file play_*.md not found in plays/${id}`);
+    const itemSubdir = join(itemsDir, id);
+    const files = readdirSync(itemSubdir);
+    const anchorFileName = files.find((f) => f.startsWith(collection.anchor) && f.endsWith(".md"));
+    if (!anchorFileName) {
+      console.warn(
+        `Warning: anchor file ${collection.anchor}*.md not found in ${collection.dir}/${id}`,
+      );
       continue;
     }
 
-    const playFile = join(playSubdir, playFileName);
+    const anchorFile = join(itemSubdir, anchorFileName);
 
-    const text = readFileSync(playFile, "utf8");
+    const text = readFileSync(anchorFile, "utf8");
     const doc = parseDoc(text);
     if (!doc.ok) {
-      throw new Error(`failed to parse playbook frontmatter of plays/${id}/${playFileName}`);
+      throw new Error(
+        `failed to parse anchor frontmatter of ${collection.dir}/${id}/${anchorFileName}`,
+      );
     }
 
     const title = doc.data?.title || id;
@@ -114,22 +138,22 @@ export function buildRegistry(root) {
       }
     }
 
-    plays.push({
+    items.push({
       id,
       title,
       description,
     });
   }
 
-  // plays are pushed in subdir order, which is already sorted by localeCompare
+  // items are pushed in subdir order, which is already sorted by localeCompare
   // above, so the output is deterministic without a second sort.
 
-  // The minor IS the play count: derive the version and reconcile package.json
+  // The minor IS the item count: derive the version and reconcile package.json
   // (the published artifact; registry.json is not in the package files) so the
   // build is the single writer of the minor. registry.json then mirrors it, so
   // the numbering guard still meaningfully checks the committed registry against
-  // the play count on disk.
-  const version = deriveVersionFrom(packageJson.version, plays.length);
+  // the item count on disk.
+  const version = deriveVersionFrom(packageJson.version, items.length);
   if (packageJson.version !== version) {
     packageJson.version = version;
     writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2) + "\n", "utf8");
@@ -139,7 +163,7 @@ export function buildRegistry(root) {
     $schema: "http://json-schema.org/draft-07/schema#",
     name,
     version,
-    plays,
+    [collection.key]: items,
   };
 
   const registryPath = join(root, "registry.json");
@@ -157,7 +181,7 @@ export function buildRegistry(root) {
 }
 
 export function verifyRegistry(root) {
-  const results = validatePlayhouseRegistry(root);
+  const results = validateCollectionRegistry(root);
   if (results.length > 0) {
     return {
       ok: false,

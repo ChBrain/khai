@@ -6,6 +6,7 @@
 import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { join, dirname, basename } from "node:path";
 import { pathToFileURL } from "node:url";
+import { resolveCollectionAt } from "./collection.mjs";
 import {
   types,
   engineCard,
@@ -755,17 +756,23 @@ function findInstanceFiles(dir) {
 }
 
 /**
- * Validate a playhouse's `registry.json` against its `plays/` directory:
- * schema shape, blurb constraints, bidirectional directory sync, and title
- * alignment with each play's frontmatter.
+ * Validate a house's `registry.json` against its collection directory: schema
+ * shape, blurb constraints, bidirectional directory sync, and title alignment
+ * with each item's anchor frontmatter. The collection (dir, registry key, item
+ * anchor) is resolved from package.json and defaults to plays, so a play house
+ * is validated exactly as before.
  *
- * @param {string} root playhouse root containing `registry.json` and `plays/`
+ * @param {string} root house root containing `registry.json` and the collection dir
  * @returns {{ file: string, errors: string[], warnings: string[], audit: string[] }[]}
  */
-export function validatePlayhouseRegistry(root) {
+export function validateCollectionRegistry(root) {
+  const collection = resolveCollectionAt(root);
+  // The singular noun for messages: plays -> play, cultures -> culture. The
+  // default keeps every existing message byte-identical.
+  const noun = collection.key.replace(/s$/, "");
   const errors = [];
   const registryPath = join(root, "registry.json");
-  const playsDir = join(root, "plays");
+  const itemsDir = join(root, collection.dir);
 
   if (!existsSync(registryPath)) {
     return [
@@ -825,44 +832,46 @@ export function validatePlayhouseRegistry(root) {
   if (typeof registry.version !== "string" || !registry.version.trim()) {
     errors.push("registry.json must have a non-empty string 'version'");
   }
-  if (!Array.isArray(registry.plays)) {
-    errors.push("registry.json must have a 'plays' array");
+  if (!Array.isArray(registry[collection.key])) {
+    errors.push(`registry.json must have a '${collection.key}' array`);
   }
 
   if (errors.length > 0) {
     return [{ file: registryPath, errors, warnings: [], audit: [] }];
   }
 
-  // Check plays array items
-  const registryPlays = registry.plays;
-  const playIds = new Set();
+  // Check the collection array items
+  const registryItems = registry[collection.key];
+  const itemIds = new Set();
 
-  for (let i = 0; i < registryPlays.length; i++) {
-    const play = registryPlays[i];
-    if (typeof play !== "object" || play === null) {
-      errors.push(`plays[${i}] must be an object`);
+  for (let i = 0; i < registryItems.length; i++) {
+    const item = registryItems[i];
+    if (typeof item !== "object" || item === null) {
+      errors.push(`${collection.key}[${i}] must be an object`);
       continue;
     }
-    if (typeof play.id !== "string" || !/^[a-z0-9_]+$/.test(play.id)) {
-      errors.push(`plays[${i}] id must match pattern ^[a-z0-9_]+$, got ${JSON.stringify(play.id)}`);
+    if (typeof item.id !== "string" || !/^[a-z0-9_]+$/.test(item.id)) {
+      errors.push(
+        `${collection.key}[${i}] id must match pattern ^[a-z0-9_]+$, got ${JSON.stringify(item.id)}`,
+      );
       continue;
     }
-    if (playIds.has(play.id)) {
-      errors.push(`duplicate play id in registry: "${play.id}"`);
+    if (itemIds.has(item.id)) {
+      errors.push(`duplicate ${noun} id in registry: "${item.id}"`);
     }
-    playIds.add(play.id);
+    itemIds.add(item.id);
 
-    if (typeof play.title !== "string" || !play.title.trim()) {
-      errors.push(`play "${play.id}" must have a non-empty title`);
+    if (typeof item.title !== "string" || !item.title.trim()) {
+      errors.push(`${noun} "${item.id}" must have a non-empty title`);
     }
 
-    if (typeof play.description !== "string") {
-      errors.push(`play "${play.id}" must have a description string`);
+    if (typeof item.description !== "string") {
+      errors.push(`${noun} "${item.id}" must have a description string`);
     } else {
-      const desc = play.description;
+      const desc = item.description;
       if (desc.length < 10 || desc.length > 120) {
         errors.push(
-          `play "${play.id}" description must be between 10 and 120 characters (got ${desc.length})`,
+          `${noun} "${item.id}" description must be between 10 and 120 characters (got ${desc.length})`,
         );
       }
 
@@ -870,7 +879,7 @@ export function validatePlayhouseRegistry(root) {
       const plain = desc.replace(/`[^`]+`/g, "");
       if (!plain.endsWith(".") || plain.endsWith("..")) {
         errors.push(
-          `play "${play.id}" description must consist of exactly one sentence ending in a period`,
+          `${noun} "${item.id}" description must consist of exactly one sentence ending in a period`,
         );
       } else {
         // A second sentence shows as a terminator followed by whitespace and a
@@ -881,20 +890,20 @@ export function validatePlayhouseRegistry(root) {
         const hasQuestionOrBang = /[?!]/.test(plain);
         if (multiSentence || hasQuestionOrBang) {
           errors.push(
-            `play "${play.id}" description must consist of exactly one sentence (ending in a period ".")`,
+            `${noun} "${item.id}" description must consist of exactly one sentence (ending in a period ".")`,
           );
         }
       }
 
       if (/<[^>]+>/.test(plain)) {
-        errors.push(`play "${play.id}" description must not contain HTML tags`);
+        errors.push(`${noun} "${item.id}" description must not contain HTML tags`);
       }
       // `_` alone is not flagged: an underscore in prose is usually an
       // identifier (snake_case), not emphasis. Bold/italic markers (** __ *) and
       // link brackets ([ ]) still are.
       if (/\*\*|__|\*|\[|\]/.test(plain)) {
         errors.push(
-          `play "${play.id}" description must not contain markdown formatting (other than inline code formatting if needed)`,
+          `${noun} "${item.id}" description must not contain markdown formatting (other than inline code formatting if needed)`,
         );
       }
     }
@@ -902,29 +911,31 @@ export function validatePlayhouseRegistry(root) {
 
   // Directory bidirectional sync
   let subdirs = [];
-  if (existsSync(playsDir)) {
+  if (existsSync(itemsDir)) {
     try {
-      subdirs = readdirSync(playsDir, { withFileTypes: true })
+      subdirs = readdirSync(itemsDir, { withFileTypes: true })
         .filter((e) => e.isDirectory() && !e.name.startsWith("."))
         .map((e) => e.name);
     } catch (err) {
-      errors.push(`failed to read plays directory: ${err.message}`);
+      errors.push(`failed to read ${collection.dir} directory: ${err.message}`);
     }
   }
 
-  // Rule A: For every subdirectory under plays/ (excluding hidden/ignored folders),
-  // there must be a corresponding item in registry.json where id matches the directory name.
+  // Rule A: For every subdirectory under the collection dir (excluding hidden/ignored
+  // folders), there must be a corresponding item in registry.json by directory name.
   for (const subdir of subdirs) {
-    if (!playIds.has(subdir)) {
-      errors.push(`play subdirectory "${subdir}" has no corresponding entry in registry.json`);
+    if (!itemIds.has(subdir)) {
+      errors.push(`${noun} subdirectory "${subdir}" has no corresponding entry in registry.json`);
     }
   }
 
-  // Rule B: For every item in the plays array of registry.json,
-  // there must be a corresponding directory under plays/ with that name.
-  for (const id of playIds) {
+  // Rule B: For every item in the registry's collection array, there must be a
+  // corresponding directory under the collection dir with that name.
+  for (const id of itemIds) {
     if (!subdirs.includes(id)) {
-      errors.push(`registry.json declares play "${id}" but directory "plays/${id}" is missing`);
+      errors.push(
+        `registry.json declares ${noun} "${id}" but directory "${collection.dir}/${id}" is missing`,
+      );
     }
   }
 
@@ -939,21 +950,21 @@ export function validatePlayhouseRegistry(root) {
   if (!versionMatch) {
     errors.push(
       `registry.json version "${registry.version}" is not semver (MAJOR.MINOR.PATCH); ` +
-        `cannot check that the minor tracks the play count`,
+        `cannot check that the minor tracks the ${noun} count`,
     );
   } else {
     const major = Number(versionMatch[1]);
     const minor = Number(versionMatch[2]);
-    const count = registryPlays.length;
+    const count = registryItems.length;
     if (major !== 0) {
       errors.push(
-        `registry.json version "${registry.version}" has major ${major}; a playhouse stays 0.x ` +
-          `so the minor tracks the play count (a major bump resets the minor and breaks the invariant)`,
+        `registry.json version "${registry.version}" has major ${major}; a house stays 0.x ` +
+          `so the minor tracks the ${noun} count (a major bump resets the minor and breaks the invariant)`,
       );
     } else if (minor !== count) {
       errors.push(
-        `registry.json version minor (${minor}) must equal the play count (${count}); ` +
-          `adding a play is a minor bump, so 0.${count}.x is expected`,
+        `registry.json version minor (${minor}) must equal the ${noun} count (${count}); ` +
+          `adding a ${noun} is a minor bump, so 0.${count}.x is expected`,
       );
     }
   }
@@ -964,33 +975,35 @@ export function validatePlayhouseRegistry(root) {
   // declared for that play in `registry.json`. buildRegistry falls back to the id
   // when frontmatter has no title, so the comparison applies the same fallback to
   // keep build -> verify idempotent.
-  for (const play of registryPlays) {
-    if (!play || typeof play.id !== "string" || !play.id) continue;
-    const playDir = join(playsDir, play.id);
-    if (!existsSync(playDir)) continue;
-    let playFileName;
+  for (const item of registryItems) {
+    if (!item || typeof item.id !== "string" || !item.id) continue;
+    const itemDir = join(itemsDir, item.id);
+    if (!existsSync(itemDir)) continue;
+    let anchorFileName;
     try {
-      playFileName = readdirSync(playDir).find((f) => f.startsWith("play_") && f.endsWith(".md"));
+      anchorFileName = readdirSync(itemDir).find(
+        (f) => f.startsWith(collection.anchor) && f.endsWith(".md"),
+      );
     } catch {
       // unreadable dir already surfaced by the bidirectional-sync checks
     }
-    if (!playFileName) continue;
-    const playFile = join(playDir, playFileName);
+    if (!anchorFileName) continue;
+    const anchorFile = join(itemDir, anchorFileName);
     try {
-      const text = readFileSync(playFile, "utf8");
+      const text = readFileSync(anchorFile, "utf8");
       const doc = parseDoc(text);
       if (doc.ok && doc.data) {
-        const fmTitle = doc.data.title || play.id;
-        if (fmTitle !== play.title) {
+        const fmTitle = doc.data.title || item.id;
+        if (fmTitle !== item.title) {
           errors.push(
-            `play "${play.id}": title in playbook frontmatter ("${fmTitle}") does not match title in registry.json ("${play.title}")`,
+            `${noun} "${item.id}": title in playbook frontmatter ("${fmTitle}") does not match title in registry.json ("${item.title}")`,
           );
         }
       } else {
-        errors.push(`play "${play.id}": failed to parse frontmatter of ${playFile}`);
+        errors.push(`${noun} "${item.id}": failed to parse frontmatter of ${anchorFile}`);
       }
     } catch (err) {
-      errors.push(`play "${play.id}": failed to read playbook ${playFile}: ${err.message}`);
+      errors.push(`${noun} "${item.id}": failed to read anchor ${anchorFile}: ${err.message}`);
     }
   }
 
@@ -998,6 +1011,15 @@ export function validatePlayhouseRegistry(root) {
     return [{ file: registryPath, errors, warnings: [], audit: [] }];
   }
   return [];
+}
+
+/**
+ * Back-compat alias for {@link validateCollectionRegistry}. The historical name
+ * from when the only collection was plays; downstream importers may still use it.
+ * @param {string} root
+ */
+export function validatePlayhouseRegistry(root) {
+  return validateCollectionRegistry(root);
 }
 
 /**
@@ -1089,12 +1111,13 @@ function castLinkBasenames(text) {
  * @returns {{ file: string, errors: string[], warnings: string[], audit: string[] }[]}
  */
 export function castingCoverageErrors(root) {
-  const playsDir = join(root, "plays");
-  if (!existsSync(playsDir) || !statSync(playsDir).isDirectory()) return [];
+  const collection = resolveCollectionAt(root);
+  const itemsDir = join(root, collection.dir);
+  if (!existsSync(itemsDir) || !statSync(itemsDir).isDirectory()) return [];
 
   let subdirs;
   try {
-    subdirs = readdirSync(playsDir, { withFileTypes: true })
+    subdirs = readdirSync(itemsDir, { withFileTypes: true })
       .filter((e) => e.isDirectory() && !e.name.startsWith("."))
       .map((e) => e.name);
   } catch {
@@ -1103,14 +1126,14 @@ export function castingCoverageErrors(root) {
 
   const results = [];
   for (const id of subdirs) {
-    const playDir = join(playsDir, id);
+    const playDir = join(itemsDir, id);
     let files;
     try {
       files = readdirSync(playDir).filter((f) => f.endsWith(".md"));
     } catch {
       continue;
     }
-    const playFileName = files.find((f) => f.startsWith("play_"));
+    const playFileName = files.find((f) => f.startsWith(collection.anchor));
     if (!playFileName) continue; // structure is the registry's concern, not casting's
 
     const playPath = join(playDir, playFileName);
@@ -1187,12 +1210,12 @@ export function validateProject({
   // A needed position without a persona is a failure (computed, not judged).
   results.push(...castErrors(files));
 
-  const playsDir = join(root, "plays");
-  if (existsSync(playsDir) && statSync(playsDir).isDirectory()) {
-    const regResults = validatePlayhouseRegistry(root);
+  const itemsDir = join(root, resolveCollectionAt(root).dir);
+  if (existsSync(itemsDir) && statSync(itemsDir).isDirectory()) {
+    const regResults = validateCollectionRegistry(root);
     if (regResults.length) results.push(...regResults);
-    // Every plot must cast at least one element of its play's Company; a dead
-    // Company entry is a warning. The dual of castErrors, at the play level.
+    // Every plot must cast at least one element of its item's Company; a dead
+    // Company entry is a warning. The dual of castErrors, at the item level.
     results.push(...castingCoverageErrors(root));
   }
 
