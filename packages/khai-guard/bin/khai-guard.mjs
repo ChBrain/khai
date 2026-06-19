@@ -107,6 +107,33 @@ function git(args) {
   return execFileSync("git", args, { encoding: "utf8" });
 }
 
+// The PR/working branch name. CI must pass `--branch` (on a PR, actions/checkout
+// leaves a detached HEAD, so rev-parse can't name it); the `GITHUB_HEAD_REF`
+// default GitHub sets on pull_request events is the next-best source; locally we
+// read the current branch. Returns undefined when the branch can't be named
+// (detached HEAD with nothing to fall back on).
+function resolveBranch() {
+  const explicit = flag("--branch");
+  if (explicit) return explicit;
+  if (process.env.GITHUB_HEAD_REF) return process.env.GITHUB_HEAD_REF;
+  try {
+    const b = git(["rev-parse", "--abbrev-ref", "HEAD"]).trim();
+    return b === "HEAD" || b.length === 0 ? undefined : b;
+  } catch {
+    return undefined;
+  }
+}
+
+// The changesets release branch (the bot's "Version Packages" PR): its whole job
+// is to CONSUME changesets and bump the version, so by construction it carries
+// no changeset and adds no play. It is the release mechanism, not a shipped
+// change, so the changeset-presence gate must not fire on it. The branch name is
+// the changesets convention `changeset-release/<baseBranch>`, the same lane the
+// branchScope config recognizes.
+function isReleaseBranch(branch) {
+  return typeof branch === "string" && branch.startsWith("changeset-release/");
+}
+
 function loadConfig() {
   const path = resolve(process.cwd(), "khai-guard.config.json");
   if (!existsSync(path)) return DEFAULT_CONFIG;
@@ -190,6 +217,20 @@ function changedRecords(config) {
 // default; `--advisory` softens it to a warning that still exits 0.
 function runChangesetCheck() {
   const config = loadConfig();
+
+  // The bot's release branch consumes changesets, so it carries none by design;
+  // exempt it rather than red every "Version Packages" PR. (Belt-and-suspenders
+  // with any workflow-level `if:` skip — this makes the guard itself correct, so
+  // every house is covered without each one wiring the skip into its CI.)
+  const branch = resolveBranch();
+  if (isReleaseBranch(branch)) {
+    console.log(
+      `KHAI-Guard changeset-check: "${branch}" is the changesets release branch ` +
+        `(it consumes changesets); skipping.`,
+    );
+    process.exit(0);
+  }
+
   const changed = changedRecords(config);
   if (changed === null) {
     console.log("KHAI-Guard changeset-check: no comparison base found; skipping (local).");
