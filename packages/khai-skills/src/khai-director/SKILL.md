@@ -11,6 +11,11 @@ a live scene, not an act of writing. You do not narrate a play into one finished
 telling. You put a play's board in motion, read what the live scene actually
 produces, and redirect, again and again, toward an outcome you set.
 
+This file states the law. Its hands-on companion,
+`references/operating-guide.md`, tells you how to run a production without
+breaking it, and front-loads the craft that decides whether the work is real or
+just motion.
+
 ## Who runs this: a persona holding the position
 
 This skill is run by a **persona holding the director position.** Take the seat in
@@ -107,6 +112,28 @@ pitch is a different reading, so note the one you tuned to when you capture.
 4. **Run it again.** Re-run from the change. The play holds, so the scene is
    repeatable and variation is native.
 
+## Conditions, not instructions
+
+Your note to the cast is a **condition:** the state of the world the cast steps
+into. It is never an **instruction:** a command to perform an action or to
+report back. The instant you ask the cast to _do_ something, or to _tell_ you
+what it did, the wall is down from your side, even though you authored no line.
+Asking for a report is the sharper breach: it treats the cast as an apparatus
+rather than a producer.
+
+- **Wrong (an instruction):** "Stage the opening. Walk him through the snow.
+  Bring back what he does and what he reaches for." This commands a performance
+  and, worse, asks for a report.
+- **Right (a condition):** "Alone, the twentieth of January, in the mountains.
+  Snow, cold, the wind in the firs." This states what is, and lets the cast live
+  it.
+
+Write every note in the register of "here is what is," then read what comes
+back. If you catch yourself writing "show me," "have him," "let the cast," or
+"bring back," stop and rewrite it as a situation. This is the rule the spoken
+note to a persona (below) is given under: even a note that answers back is a
+condition, not a command.
+
 ## The idioms of the redirect
 
 Each element moves differently. Use the right idiom or the move misfires.
@@ -128,18 +155,31 @@ Each element moves differently. Use the right idiom or the move misfires.
 ## Reading by omission: the uncalled
 
 The most productive move is often the one you **do not** make. Leave a variable
-**uncalled** (a piece, a place, a mercy, the link to the previous beat) and let
-the cast handle it naively, so its choice becomes clean evidence about the play
-rather than an echo of your steer. What comes back unprompted is the play
-speaking.
+**uncalled** (a piece, a place, a mercy, the link to the previous beat, the
+tonal key, even a whole **persona**) and let the cast handle it naively, so its
+choice becomes clean evidence about the play rather than an echo of your steer.
+What comes back unprompted is the play speaking.
+
+The persona case is the one most easily missed: you do not have to place every
+figure. Leave the host uncalled and, the instant the scene needs one, the cast
+will cast the canonical figure itself from the board (face, voice, hand on the
+arm) as the door opens. The counsel that follows is firm: **do not place a
+figure the cast would have supplied.** That is unnecessary hand, and it costs
+you the cleanest evidence the run can give.
 
 **Cold control runs** are the companion the uncalled method needs. Give a
 **fresh** cast the same uncalled test and read what it produces with no history.
 This is your calibration baseline: it separates **play-latency** (what the
 material yields on first contact) from **production-inertia** (what a deepened
 cast supplies from its own momentum). Cold runs are also the only known check on a
-persistent cast performing its own pet motif instead of reading the scene. In solo
-mode, the uncalled and the cold run are how you audit the wall.
+persistent cast performing its own pet motif instead of reading the scene.
+
+Watch your own bias while you read. A director tends to **over-credit the
+production:** to call a discovery the production's when it was in fact latent in
+the play, because the discovery is the more flattering story. The cold run
+corrects in exactly that direction. Expect it to catch you over-reading, and
+welcome it when it does. In solo mode, the uncalled and the cold run are how you
+audit the wall.
 
 ## The cast: memory changes what evidence means
 
