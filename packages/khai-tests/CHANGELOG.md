@@ -1,5 +1,29 @@
 # @chbrain/khai-tests
 
+## 0.1.26
+
+### Patch Changes
+
+- 86520e7: registry: discriminated entries, optional geo iso, and referencing collections
+
+  `buildRegistry` now stamps a `kind` discriminator on every entry, merges an
+  optional per-item `geo.json` `iso` (absent ⇒ non-mappable), and supports
+  referencing collections declared in `khai.collections` (e.g. `groups`) whose
+  entries derive their `references` from the casts in their anchor file. The
+  numbering invariant counts the primary collection only, so referencing
+  collections never move the minor. `verifyRegistry` validates the richer shape:
+  `kind` (when present) must match its collection, `iso` must be a non-empty
+  string when present, and each `references` id must name an existing member of
+  the referenced collection. New exports: `resolveCollections`, `collectionKind`.
+  Single-collection plays and cultures houses are unaffected.
+
+- Updated dependencies [046d1a9]
+- Updated dependencies [323b66b]
+- Updated dependencies [2f1c8be]
+  - @chbrain/khai-arch@0.1.19
+  - @chbrain/khai-language@0.1.4
+  - @chbrain/khai-rules@0.1.6
+
 ## 0.1.25
 
 ### Patch Changes
