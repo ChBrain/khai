@@ -10,9 +10,25 @@
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
-import matter from "gray-matter";
+import yaml from "js-yaml";
 
 const here = dirname(fileURLToPath(import.meta.url));
+
+// Split a content file's YAML frontmatter from its body, on js-yaml 4.2.0 — the
+// merge-key quadratic-DoS in gray-matter's bundled js-yaml 3.x (GHSA-h67p-54hq-rp68)
+// is closed here. Frontmatter opens only on a leading `---` fence; a malformed
+// block throws.
+function parseFrontmatter(text) {
+  let str = String(text);
+  if (str.charCodeAt(0) === 0xfeff) str = str.slice(1);
+  const m = /^---[ \t]*\r?\n([\s\S]*?)\r?\n---[ \t]*(?:\r?\n|$)/.exec(str);
+  if (!m) return { data: {}, content: str };
+  const loaded = yaml.load(m[1]);
+  return {
+    data: loaded && typeof loaded === "object" ? loaded : {},
+    content: str.slice(m[0].length),
+  };
+}
 const archDir = join(here, "architecture");
 const templatesDir = join(here, "templates");
 const defaultsDir = join(here, "defaults");
@@ -30,7 +46,7 @@ const defaultsDir = join(here, "defaults");
 export const types = Object.fromEntries(
   readdirSync(archDir)
     .filter((f) => f.endsWith(".md"))
-    .map((f) => matter(readFileSync(join(archDir, f), "utf8")).data)
+    .map((f) => parseFrontmatter(readFileSync(join(archDir, f), "utf8")).data)
     .filter((d) => d && typeof d.id === "string" && Array.isArray(d.chapters))
     .map((d) => [
       d.id,
@@ -66,7 +82,7 @@ export const templates = Object.fromEntries(
     .filter((f) => f.endsWith(".md"))
     .map((f) => {
       const text = readFileSync(join(templatesDir, f), "utf8");
-      return { khai: matter(text).data.khai, file: `templates/${f}`, text };
+      return { khai: parseFrontmatter(text).data.khai, file: `templates/${f}`, text };
     })
     // Skip a template whose frontmatter lacks `khai`; keying on `undefined` would
     // collapse all such files onto one entry. (Parse once, too, not twice.)
@@ -95,14 +111,14 @@ export const defaults = Object.fromEntries(
  * The playbook spine, owned by the canon. model.md declares the ordered groups
  * (each an ordered list of type ids) in a `groups` yaml block; this reads it so
  * consumers render the playbook instead of re-declaring its order or grouping.
- * Parsed via gray-matter by wrapping the block as frontmatter -- no extra yaml
- * dependency.
+ * Parsed by wrapping the block as frontmatter and handing it to the local
+ * parseFrontmatter (js-yaml 4.2.0).
  * @type {{ id: string, label: string, members: string[] }[]}
  */
 const modelText = readFileSync(join(archDir, "model.md"), "utf8");
 const groupsBlock = modelText.match(/```ya?ml\n([\s\S]*?)```/);
 export const playbook = groupsBlock
-  ? (matter(`---\n${groupsBlock[1]}---\n`).data.groups ?? [])
+  ? (parseFrontmatter(`---\n${groupsBlock[1]}---\n`).data.groups ?? [])
   : [];
 
 /**
@@ -495,7 +511,7 @@ function parseChapters(main) {
 export function referenceCard(text) {
   if (typeof text !== "string" || !text.trim())
     throw new Error("referenceCard: REFERENCES.md text is required");
-  const body = matter(text).content.trim();
+  const body = parseFrontmatter(text).content.trim();
 
   // An optional trailing coda after a final `---` rule (as a spec's coda is).
   const { main, coda } = splitCoda(body);
@@ -530,7 +546,7 @@ export function referenceCard(text) {
  */
 export function playCard(text) {
   if (typeof text !== "string" || !text.trim()) throw new Error("playCard: play text is required");
-  const body = matter(text).content.trim();
+  const body = parseFrontmatter(text).content.trim();
 
   // An optional trailing coda after a final `---` rule (as a play's builder note is).
   const { main, coda } = splitCoda(body);
@@ -565,7 +581,7 @@ export function playCard(text) {
  */
 export function planCard(text) {
   if (typeof text !== "string" || !text.trim()) throw new Error("planCard: plan text is required");
-  const body = matter(text).content.trim();
+  const body = parseFrontmatter(text).content.trim();
 
   // An optional trailing coda after a final `---` rule.
   const { main, coda } = splitCoda(body);
@@ -603,7 +619,7 @@ export function planCard(text) {
 export function orderCard(text) {
   if (typeof text !== "string" || !text.trim())
     throw new Error("orderCard: order text is required");
-  const body = matter(text).content.trim();
+  const body = parseFrontmatter(text).content.trim();
 
   // An optional trailing coda after a final `---` rule.
   const { main, coda } = splitCoda(body);

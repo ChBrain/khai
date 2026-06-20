@@ -17,9 +17,30 @@
 // (advisory, the standard's "recommended" rules).
 
 import { createHash } from "node:crypto";
-import matter from "gray-matter";
+import yaml from "js-yaml";
 
 export const sha256 = (text) => createHash("sha256").update(text, "utf8").digest("hex");
+
+// Frontmatter read/write on js-yaml 4.2.0 — the merge-key quadratic-DoS in
+// gray-matter's bundled js-yaml 3.x (GHSA-h67p-54hq-rp68) is closed here. Shared
+// with build.mjs so the package carries one YAML surface, not two.
+// parseFrontmatter throws on a malformed block (callers catch it); stringifyFrontmatter
+// is deterministic (insertion order kept, no reflow) so a stamped SKILL.md hashes stably.
+export function parseFrontmatter(text) {
+  let str = String(text);
+  if (str.charCodeAt(0) === 0xfeff) str = str.slice(1);
+  const m = /^---[ \t]*\r?\n([\s\S]*?)\r?\n---[ \t]*(?:\r?\n|$)/.exec(str);
+  if (!m) return { data: {}, content: str };
+  const loaded = yaml.load(m[1]);
+  return {
+    data: loaded && typeof loaded === "object" ? loaded : {},
+    content: str.slice(m[0].length),
+  };
+}
+
+export function stringifyFrontmatter(content, data = {}) {
+  return `---\n${yaml.dump(data ?? {}, { lineWidth: -1 })}---\n${content}`;
+}
 
 // ---------------------------------------------------------------------------
 // Tier 1 — agentskills.io standard conformance (mirror of specification.mdx)
@@ -108,7 +129,7 @@ export function localLinks(md) {
 export function validateSkillMd(text, { dirName } = {}) {
   let parsed;
   try {
-    parsed = matter(text);
+    parsed = parseFrontmatter(text);
   } catch (e) {
     return {
       errors: [`SKILL.md: cannot parse YAML frontmatter (${e.message})`],
