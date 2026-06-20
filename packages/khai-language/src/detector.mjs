@@ -21,12 +21,40 @@ function parseFrontmatter(text) {
 
 const lngDetector = new LanguageDetect();
 
+// European languages with reliable local detection: languagedetect returns each
+// as the top hit on real prose, so they gate like the original four. Cyrillic
+// (ru/uk/sr/mk/bg), the czech<->slovak pair on the czech side, turkish, and
+// languages languagedetect does not model (catalan, greek, basque, ...) are left
+// out on purpose — they would false-fail a local gate and belong on the NLP /
+// franc path (see LANGUAGES.md). A language given here is detected; one declared
+// only via `khai.languages` is exempt.
 const ISO_MAP = {
+  // West
   en: "english",
   de: "german",
-  da: "danish",
   fr: "french",
+  nl: "dutch",
   it: "italian",
+  es: "spanish",
+  pt: "portuguese",
+  // Nordic
+  da: "danish",
+  sv: "swedish",
+  no: "norwegian",
+  fi: "finnish",
+  is: "icelandic",
+  // Central / Southeast (Latin script)
+  pl: "polish",
+  hu: "hungarian",
+  ro: "romanian",
+  hr: "croatian",
+  sk: "slovak",
+  sl: "slovene",
+  sq: "albanian",
+  // Baltic
+  lt: "lithuanian",
+  lv: "latvian",
+  et: "estonian",
 };
 
 const DEFAULT_PROSE_SECTIONS = [

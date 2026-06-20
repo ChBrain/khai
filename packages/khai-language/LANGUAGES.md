@@ -15,6 +15,32 @@ declares and authors; **this package decides what `nds` means to the gate.**
 > and it is governance lane (`packages/khai-language/**`). The repo adoption
 > (`khai-cultures`) is reproduced below only as the contract it implements against.
 
+## Built-in European languages (reliable local detection)
+
+These declare **and gate** locally today (`language: <code>`), because
+languagedetect returns each as the top hit on real prose:
+
+`en` English · `de` German · `fr` French · `nl` Dutch · `it` Italian ·
+`es` Spanish · `pt` Portuguese · `da` Danish · `sv` Swedish · `no` Norwegian ·
+`fi` Finnish · `is` Icelandic · `pl` Polish · `hu` Hungarian · `ro` Romanian ·
+`hr` Croatian · `sk` Slovak · `sl` Slovene · `sq` Albanian · `lt` Lithuanian ·
+`lv` Latvian · `et` Estonian.
+
+**Deliberately _not_ local** — these would false-fail a per-paragraph gate, so
+they take the NLP/`franc` path instead of `ISO_MAP`:
+
+- **Cyrillic cluster** (Russian, Ukrainian, Serbian, Macedonian, Bulgarian) —
+  languagedetect collapses them; `ru`/`uk` samples read as serbian.
+- **Czech** — reads as Slovak (the `cs`↔`sk` pair). Slovak itself is fine.
+- **Turkish** — misreads (read as danish on accent-stripped prose).
+- **Unmodelled by languagedetect** — Greek, Catalan, Basque, Irish, Maltese,
+  Luxembourgish: no trigram model at all.
+- **Low German (`nds`)** — the driving case below.
+
+Every excluded language is still **declarable** today via the NLP-fallback
+exemption (`khai.languages`); what it lacks is a _local_ gate. `franc` (below) is
+the lever that promotes the franc-capable ones — including `nds` — to detected.
+
 ## What already works (no engine change)
 
 Two of the three pieces the plan assumes are already built — confirm before
