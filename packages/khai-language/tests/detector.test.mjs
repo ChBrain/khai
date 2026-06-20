@@ -255,6 +255,88 @@ In the middle of the journey of our life I found myself within a forest dark, fo
     expect(errors[0]).toContain("English span");
   });
 
+  // The reliably-detected European set: languagedetect returns each as the top
+  // hit, so a house declaring the code and writing matching prose validates clean.
+  it.each([
+    [
+      "nl",
+      "Het was een koude winterdag toen de schaatsers over de bevroren grachten van de oude stad gleden.",
+    ],
+    [
+      "es",
+      "En un lugar de la Mancha de cuyo nombre no quiero acordarme vivia un hidalgo de los de lanza en astillero.",
+    ],
+    [
+      "pt",
+      "No meio do caminho tinha uma pedra tinha uma pedra no meio do caminho tinha uma pedra cansada.",
+    ],
+    [
+      "sv",
+      "Det var en gang en liten flicka som bodde i en by langt uppe i norr nara de stora skogarna.",
+    ],
+    [
+      "no",
+      "Det var en gang en liten gutt som bodde i en gard langt inne i den dype norske skogen.",
+    ],
+    [
+      "fi",
+      "Olipa kerran pieni tytto joka asui suuren metsan reunalla kaukana pohjoisessa lumisten tunturien keskella maassa.",
+    ],
+    [
+      "pl",
+      "Litwo ojczyzno moja ty jestes jak zdrowie ile cie trzeba cenic ten tylko sie dowie kto cie stracil.",
+    ],
+    [
+      "hu",
+      "Egyszer volt hol nem volt volt egyszer egy szegeny ember akinek harom fia volt a vilag vegen tul.",
+    ],
+    [
+      "ro",
+      "A fost odata ca niciodata un imparat care avea trei feciori si o imparatie mare si bogata peste mari.",
+    ],
+    [
+      "hr",
+      "Bio jednom jedan kralj koji je imao tri kceri i svaka je bila ljepsa od one druge u kraljevstvu.",
+    ],
+    [
+      "is",
+      "Thad var einu sinni litil stulka sem bjo i litlu husi vid jadar skogarins langt i burtu fra borginni.",
+    ],
+    [
+      "sk",
+      "Bol raz jeden kral ktory mal tri dcery a kazda z nich bola krajsia nez ta predchadzajuca v krajine.",
+    ],
+    [
+      "sl",
+      "Nekoc je zivel kralj ki je imel tri hcere in vsaka je bila lepsa od prejsnje v vsem kraljestvu velikem.",
+    ],
+    [
+      "sq",
+      "Na ishte njehere nje mbret qe kishte tre djem dhe nje mbreteri te madhe e te pasur pertej maleve larg.",
+    ],
+    [
+      "lt",
+      "Buvo karta karalius kuris turejo tris dukteris ir kiekviena buvo grazesne uz ankstesne visoje karalysteje toli.",
+    ],
+    [
+      "lv",
+      "Reiz dzivoja karalis kuram bija tris meitas un katra no tam bija skaistaka par iepriekslejo visa valstiba liela.",
+    ],
+    [
+      "et",
+      "Elas kord kuningas kellel oli kolm tutart ja igauks neist oli kaunim kui eelmine kogu kuningriigis suures.",
+    ],
+  ])("registers %s and gates its own prose clean", (code, prose) => {
+    const projectDir = join(FIXTURES_DIR, `euro-${code}`);
+    const playDir = join(projectDir, "plays", "p");
+    mkdirSync(playDir, { recursive: true });
+    writeFileSync(join(projectDir, "README.md"), `---\nlanguage: ${code}\n---\n`);
+    writeFileSync(join(playDir, "play_p.md"), `---\nkhai: play\n---\n`);
+    const file = join(playDir, "persona_x.md");
+    writeFileSync(file, `---\nkhai: persona\n---\n# Persona: X\n\n## Projection\n${prose}\n`);
+    expect(validateLanguageOfFile(file, projectDir)).toHaveLength(0);
+  });
+
   it("validateLanguageOfFile skips library check on NLP fallback languages", () => {
     const projectDir = join(FIXTURES_DIR, "nlp-project");
     const playDir = join(projectDir, "plays", "igbo-play");
@@ -292,11 +374,13 @@ Kedu ka ị mere? Obi ụtọ na-arụ ọrụ a.
     const playDir = join(projectDir, "plays", "unknown-play");
     mkdirSync(playDir, { recursive: true });
 
-    // Setup house README (unregistered language 'es')
+    // Setup house README (unregistered language 'el' — Greek is European but
+    // languagedetect cannot model it, so it is not in ISO_MAP and needs the
+    // NLP/franc path rather than a local gate).
     writeFileSync(
       join(projectDir, "README.md"),
       `---
-language: es
+language: el
 ---
 `,
     );
@@ -313,7 +397,7 @@ khai: persona
 
     const errors = validateLanguageOfFile(fileUnknown, projectDir);
     expect(errors).toHaveLength(1);
-    expect(errors[0]).toContain("Language 'es' is not registered");
+    expect(errors[0]).toContain("Language 'el' is not registered");
   });
 
   it("validateProjectLanguages resolves nlpLanguages dynamically from package.json", () => {
