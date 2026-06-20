@@ -15,24 +15,40 @@ declares and authors; **this package decides what `nds` means to the gate.**
 > and it is governance lane (`packages/khai-language/**`). The repo adoption
 > (`khai-cultures`) is reproduced below only as the contract it implements against.
 
-## Built-in European languages (reliable local detection)
+## Built-in languages (reliable local detection)
 
-These declare **and gate** locally today (`language: <code>`), because
-languagedetect returns each as the top hit on real prose:
+Every language whose own prose languagedetect returns as the **top hit** is
+registered in `ISO_MAP` and gates locally today (`language: <code>`). The full
+set (37), by region:
 
-`en` English · `de` German · `fr` French · `nl` Dutch · `it` Italian ·
-`es` Spanish · `pt` Portuguese · `da` Danish · `sv` Swedish · `no` Norwegian ·
-`fi` Finnish · `is` Icelandic · `pl` Polish · `hu` Hungarian · `ro` Romanian ·
-`hr` Croatian · `sk` Slovak · `sl` Slovene · `sq` Albanian · `lt` Lithuanian ·
-`lv` Latvian · `et` Estonian.
+- **Europe — West/South:** `en` English · `de` German · `fr` French · `nl` Dutch ·
+  `it` Italian · `es` Spanish · `pt` Portuguese
+- **Europe — Nordic:** `da` Danish · `sv` Swedish · `no` Norwegian · `fi` Finnish ·
+  `is` Icelandic
+- **Europe — Central/SE (Latin):** `pl` Polish · `hu` Hungarian · `ro` Romanian ·
+  `hr` Croatian · `sk` Slovak · `sl` Slovene · `sq` Albanian
+- **Europe — Baltic:** `lt` Lithuanian · `lv` Latvian · `et` Estonian
+- **Celtic / classical:** `cy` Welsh · `la` Latin
+- **Middle East / South Asia (distinct scripts):** `ar` Arabic · `fa` Farsi ·
+  `ur` Urdu · `hi` Hindi · `bn` Bengali
+- **Central Asia (distinct Cyrillic):** `kk` Kazakh · `mn` Mongolian
+- **Africa / Pacific / SE Asia:** `sw` Swahili · `so` Somali · `ha` Hausa ·
+  `haw` Hawaiian · `id` Indonesian · `ceb` Cebuano
 
-**Deliberately _not_ local** — these would false-fail a per-paragraph gate, so
-they take the NLP/`franc` path instead of `ISO_MAP`:
+A data-driven test gates one verified native sample per language.
 
-- **Cyrillic cluster** (Russian, Ukrainian, Serbian, Macedonian, Bulgarian) —
-  languagedetect collapses them; `ru`/`uk` samples read as serbian.
+**Deliberately _not_ local** — these false-fail a per-paragraph gate (the wrong
+language wins by more than the confidence margin), so they take the NLP/`franc`
+path instead of `ISO_MAP`:
+
+- **Cyrillic Slavic cluster** (Russian, Ukrainian, Serbian, Macedonian, Bulgarian) —
+  mutually confusable; `ru`/`uk`/`mk` collapse onto serbian, `bg`/serbian sit
+  within 0.02. (Kazakh and Mongolian are Cyrillic too but distinct, so they're in.)
 - **Czech** — reads as Slovak (the `cs`↔`sk` pair). Slovak itself is fine.
-- **Turkish** — misreads (read as danish on accent-stripped prose).
+- **Turkic Latin** (Azeri, Uzbek) — read as turkish; **Turkish** itself is
+  sample-inconsistent (danish/azeri on short text).
+- **Nepali** — ties Hindi (both Devanagari). **Tagalog**, **Vietnamese** — read as
+  cebuano (Vietnamese needs its diacritics).
 - **Unmodelled by languagedetect** — Greek, Catalan, Basque, Irish, Maltese,
   Luxembourgish: no trigram model at all.
 - **Low German (`nds`)** — the driving case below.
