@@ -1,7 +1,23 @@
 import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
 import { join, dirname, resolve, basename, relative, isAbsolute } from "node:path";
-import matter from "gray-matter";
+import yaml from "js-yaml";
 import LanguageDetect from "languagedetect";
+
+// Split a content file's YAML frontmatter from its body, on js-yaml 4.2.0 — the
+// merge-key quadratic-DoS in gray-matter's bundled js-yaml 3.x (GHSA-h67p-54hq-rp68)
+// is closed here. Frontmatter opens only on a leading `---` fence; a malformed
+// block throws, matching the prior gray-matter behaviour the caller already absorbs.
+function parseFrontmatter(text) {
+  let str = String(text);
+  if (str.charCodeAt(0) === 0xfeff) str = str.slice(1);
+  const m = /^---[ \t]*\r?\n([\s\S]*?)\r?\n---[ \t]*(?:\r?\n|$)/.exec(str);
+  if (!m) return { data: {}, content: str };
+  const loaded = yaml.load(m[1]);
+  return {
+    data: loaded && typeof loaded === "object" ? loaded : {},
+    content: str.slice(m[0].length),
+  };
+}
 
 const lngDetector = new LanguageDetect();
 
@@ -44,11 +60,11 @@ function normalizeLanguage(lang) {
 /**
  * Parses a markdown file's YAML frontmatter.
  */
-function parseFrontmatter(filePath) {
+function readFrontmatter(filePath) {
   if (!existsSync(filePath)) return {};
   try {
     const content = readFileSync(filePath, "utf8");
-    const parsed = matter(content);
+    const parsed = parseFrontmatter(content);
     return parsed.data || {};
   } catch {
     return {};
@@ -73,7 +89,7 @@ function findPlayFile(fileDir, projectPath) {
       for (const file of files) {
         if (file.endsWith(".md") && file.startsWith("play_")) {
           const fullPath = join(current, file);
-          const data = parseFrontmatter(fullPath);
+          const data = readFrontmatter(fullPath);
           if (data.khai === "play") {
             return fullPath;
           }
@@ -95,14 +111,14 @@ function findPlayFile(fileDir, projectPath) {
  * 4. Fallback: english
  */
 export function resolveLanguage(filePath, projectPath) {
-  const fileData = parseFrontmatter(filePath);
+  const fileData = readFrontmatter(filePath);
   if (fileData.language) {
     return normalizeLanguage(fileData.language);
   }
 
   const playFile = findPlayFile(dirname(filePath), projectPath);
   if (playFile) {
-    const playData = parseFrontmatter(playFile);
+    const playData = readFrontmatter(playFile);
     if (playData.language) {
       return normalizeLanguage(playData.language);
     }
@@ -110,7 +126,7 @@ export function resolveLanguage(filePath, projectPath) {
 
   const houseReadme = join(projectPath, "README.md");
   if (existsSync(houseReadme)) {
-    const houseData = parseFrontmatter(houseReadme);
+    const houseData = readFrontmatter(houseReadme);
     if (houseData.language) {
       return normalizeLanguage(houseData.language);
     }
