@@ -1,4 +1,3 @@
-import matter from "gray-matter";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import Ajv, { type ValidateFunction } from "ajv";
@@ -16,8 +15,17 @@ export interface Frontmatter {
 }
 
 export function parse(text: string): { data: Record<string, unknown>; body: string } {
-  const parsed = matter(text);
-  return { data: parsed.data, body: parsed.content };
+  // Mirror the package's own frontmatter split (js-yaml 4.2.0), so the test
+  // parses exactly as index.mjs does without re-introducing gray-matter.
+  let str = String(text);
+  if (str.charCodeAt(0) === 0xfeff) str = str.slice(1);
+  const m = /^---[ \t]*\r?\n([\s\S]*?)\r?\n---[ \t]*(?:\r?\n|$)/.exec(str);
+  if (!m) return { data: {}, body: str };
+  const loaded = yaml.load(m[1]);
+  return {
+    data: (loaded && typeof loaded === "object" ? loaded : {}) as Record<string, unknown>,
+    body: str.slice(m[0].length),
+  };
 }
 
 export function loadValidator(repoRoot: string): ValidateFunction {
