@@ -4,4 +4,4 @@
 // *down* into here; nothing here points back up.
 
 export * from "./rules.mjs";
-export { parseDoc, sectionBody } from "./parse.mjs";
+export { parseDoc, parseFrontmatter, sectionBody } from "./parse.mjs";
