@@ -1,5 +1,16 @@
 # @chbrain/khai-language
 
+## 0.1.5
+
+### Patch Changes
+
+- 5e09ede: detector: register Italian (it)
+
+  Adds `it: "italian"` to `ISO_MAP`, so a culture can declare `language: it` and
+  have its prose gated by the local detector — languagedetect already recognises
+  Italian, so no NLP fallback or extra detector is needed (unlike Low German).
+  English (or other) spans in an Italian house are still flagged.
+
 ## 0.1.4
 
 ### Patch Changes
