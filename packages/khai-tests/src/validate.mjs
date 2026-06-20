@@ -6,7 +6,7 @@
 import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { join, dirname, basename } from "node:path";
 import { pathToFileURL } from "node:url";
-import { resolveCollectionAt } from "./collection.mjs";
+import { resolveCollectionAt, resolveCollections, safePackageJson } from "./collection.mjs";
 import {
   types,
   engineCard,
@@ -766,13 +766,10 @@ function findInstanceFiles(dir) {
  * @returns {{ file: string, errors: string[], warnings: string[], audit: string[] }[]}
  */
 export function validateCollectionRegistry(root) {
-  const collection = resolveCollectionAt(root);
-  // The singular noun for messages: plays -> play, cultures -> culture. The
-  // default keeps every existing message byte-identical.
-  const noun = collection.key.replace(/s$/, "");
+  const collections = resolveCollections(safePackageJson(root));
+  const primary = collections[0];
   const errors = [];
   const registryPath = join(root, "registry.json");
-  const itemsDir = join(root, collection.dir);
 
   if (!existsSync(registryPath)) {
     return [
@@ -832,178 +829,237 @@ export function validateCollectionRegistry(root) {
   if (typeof registry.version !== "string" || !registry.version.trim()) {
     errors.push("registry.json must have a non-empty string 'version'");
   }
-  if (!Array.isArray(registry[collection.key])) {
-    errors.push(`registry.json must have a '${collection.key}' array`);
+  for (const c of collections) {
+    if (!Array.isArray(registry[c.key])) {
+      errors.push(`registry.json must have a '${c.key}' array`);
+    }
   }
 
   if (errors.length > 0) {
     return [{ file: registryPath, errors, warnings: [], audit: [] }];
   }
 
-  // Check the collection array items
-  const registryItems = registry[collection.key];
-  const itemIds = new Set();
-
-  for (let i = 0; i < registryItems.length; i++) {
-    const item = registryItems[i];
-    if (typeof item !== "object" || item === null) {
-      errors.push(`${collection.key}[${i}] must be an object`);
-      continue;
-    }
-    if (typeof item.id !== "string" || !/^[a-z0-9_]+$/.test(item.id)) {
-      errors.push(
-        `${collection.key}[${i}] id must match pattern ^[a-z0-9_]+$, got ${JSON.stringify(item.id)}`,
-      );
-      continue;
-    }
-    if (itemIds.has(item.id)) {
-      errors.push(`duplicate ${noun} id in registry: "${item.id}"`);
-    }
-    itemIds.add(item.id);
-
-    if (typeof item.title !== "string" || !item.title.trim()) {
-      errors.push(`${noun} "${item.id}" must have a non-empty title`);
-    }
-
-    if (typeof item.description !== "string") {
-      errors.push(`${noun} "${item.id}" must have a description string`);
-    } else {
-      const desc = item.description;
-      if (desc.length < 10 || desc.length > 120) {
-        errors.push(
-          `${noun} "${item.id}" description must be between 10 and 120 characters (got ${desc.length})`,
-        );
-      }
-
-      // Check blurb constraints: one sentence, ending in period, no HTML, no markdown except inline code
-      const plain = desc.replace(/`[^`]+`/g, "");
-      if (!plain.endsWith(".") || plain.endsWith("..")) {
-        errors.push(
-          `${noun} "${item.id}" description must consist of exactly one sentence ending in a period`,
-        );
-      } else {
-        // A second sentence shows as a terminator followed by whitespace and a
-        // new capitalized word. Counting raw periods (the old check) false-failed
-        // a single sentence carrying a decimal ("v1.5"), a file name ("Node.js"),
-        // or a lowercase abbreviation ("e.g."), none of which end a sentence.
-        const multiSentence = /[.!?]\s+[A-Z]/.test(plain);
-        const hasQuestionOrBang = /[?!]/.test(plain);
-        if (multiSentence || hasQuestionOrBang) {
-          errors.push(
-            `${noun} "${item.id}" description must consist of exactly one sentence (ending in a period ".")`,
-          );
-        }
-      }
-
-      if (/<[^>]+>/.test(plain)) {
-        errors.push(`${noun} "${item.id}" description must not contain HTML tags`);
-      }
-      // `_` alone is not flagged: an underscore in prose is usually an
-      // identifier (snake_case), not emphasis. Bold/italic markers (** __ *) and
-      // link brackets ([ ]) still are.
-      if (/\*\*|__|\*|\[|\]/.test(plain)) {
-        errors.push(
-          `${noun} "${item.id}" description must not contain markdown formatting (other than inline code formatting if needed)`,
-        );
-      }
-    }
-  }
-
-  // Directory bidirectional sync
-  let subdirs = [];
-  if (existsSync(itemsDir)) {
-    try {
-      subdirs = readdirSync(itemsDir, { withFileTypes: true })
-        .filter((e) => e.isDirectory() && !e.name.startsWith("."))
-        .map((e) => e.name);
-    } catch (err) {
-      errors.push(`failed to read ${collection.dir} directory: ${err.message}`);
-    }
-  }
-
-  // Rule A: For every subdirectory under the collection dir (excluding hidden/ignored
-  // folders), there must be a corresponding item in registry.json by directory name.
-  for (const subdir of subdirs) {
-    if (!itemIds.has(subdir)) {
-      errors.push(`${noun} subdirectory "${subdir}" has no corresponding entry in registry.json`);
-    }
-  }
-
-  // Rule B: For every item in the registry's collection array, there must be a
-  // corresponding directory under the collection dir with that name.
-  for (const id of itemIds) {
-    if (!subdirs.includes(id)) {
-      errors.push(
-        `registry.json declares ${noun} "${id}" but directory "${collection.dir}/${id}" is missing`,
-      );
-    }
-  }
-
-  // Numbering invariant: the minor version tracks the play count. A house adds a
-  // play with a minor bump, so the minor *is* the count — computed, not chosen.
-  // Two unreconciled paths (a manual version edit vs. a minor changeset) can drift
-  // the version from the count, and nothing else catches it; assert it here so the
-  // mismatch is a red build, not a defect found by a downstream human. The scheme
-  // only holds while major stays 0 (a major bump would reset minor while the count
-  // keeps climbing), so a non-zero major is itself the finding.
-  const versionMatch = /^(\d+)\.(\d+)\./.exec(registry.version.trim());
-  if (!versionMatch) {
-    errors.push(
-      `registry.json version "${registry.version}" is not semver (MAJOR.MINOR.PATCH); ` +
-        `cannot check that the minor tracks the ${noun} count`,
+  // The ids each collection declares, so a referencing entry can be checked to
+  // cast only members that actually exist.
+  const idsByKey = {};
+  for (const c of collections) {
+    idsByKey[c.key] = new Set(
+      registry[c.key].filter((it) => it && typeof it.id === "string").map((it) => it.id),
     );
-  } else {
-    const major = Number(versionMatch[1]);
-    const minor = Number(versionMatch[2]);
-    const count = registryItems.length;
-    if (major !== 0) {
-      errors.push(
-        `registry.json version "${registry.version}" has major ${major}; a house stays 0.x ` +
-          `so the minor tracks the ${noun} count (a major bump resets the minor and breaks the invariant)`,
-      );
-    } else if (minor !== count) {
-      errors.push(
-        `registry.json version minor (${minor}) must equal the ${noun} count (${count}); ` +
-          `adding a ${noun} is a minor bump, so 0.${count}.x is expected`,
-      );
-    }
   }
 
-  // Title Alignment:
-  // Parse the playbook frontmatter (the `play_*.md` under `plays/<id>/`, matching
-  // how buildRegistry discovers it) and verify that its `title` matches the `title`
-  // declared for that play in `registry.json`. buildRegistry falls back to the id
-  // when frontmatter has no title, so the comparison applies the same fallback to
-  // keep build -> verify idempotent.
-  for (const item of registryItems) {
-    if (!item || typeof item.id !== "string" || !item.id) continue;
-    const itemDir = join(itemsDir, item.id);
-    if (!existsSync(itemDir)) continue;
-    let anchorFileName;
-    try {
-      anchorFileName = readdirSync(itemDir).find(
-        (f) => f.startsWith(collection.anchor) && f.endsWith(".md"),
-      );
-    } catch {
-      // unreadable dir already surfaced by the bidirectional-sync checks
-    }
-    if (!anchorFileName) continue;
-    const anchorFile = join(itemDir, anchorFileName);
-    try {
-      const text = readFileSync(anchorFile, "utf8");
-      const doc = parseDoc(text);
-      if (doc.ok && doc.data) {
-        const fmTitle = doc.data.title || item.id;
-        if (fmTitle !== item.title) {
+  // Validate every collection's entries, directory sync, and title alignment.
+  // The numbering invariant (further below) runs once, against the primary only.
+  for (const collection of collections) {
+    const noun = collection.key.replace(/s$/, "");
+    const itemsDir = join(root, collection.dir);
+    // Check the collection array items
+    const registryItems = registry[collection.key];
+    const itemIds = new Set();
+
+    for (let i = 0; i < registryItems.length; i++) {
+      const item = registryItems[i];
+      if (typeof item !== "object" || item === null) {
+        errors.push(`${collection.key}[${i}] must be an object`);
+        continue;
+      }
+      if (typeof item.id !== "string" || !/^[a-z0-9_]+$/.test(item.id)) {
+        errors.push(
+          `${collection.key}[${i}] id must match pattern ^[a-z0-9_]+$, got ${JSON.stringify(item.id)}`,
+        );
+        continue;
+      }
+      if (itemIds.has(item.id)) {
+        errors.push(`duplicate ${noun} id in registry: "${item.id}"`);
+      }
+      itemIds.add(item.id);
+
+      if (typeof item.title !== "string" || !item.title.trim()) {
+        errors.push(`${noun} "${item.id}" must have a non-empty title`);
+      }
+
+      if (typeof item.description !== "string") {
+        errors.push(`${noun} "${item.id}" must have a description string`);
+      } else {
+        const desc = item.description;
+        if (desc.length < 10 || desc.length > 120) {
           errors.push(
-            `${noun} "${item.id}": title in playbook frontmatter ("${fmTitle}") does not match title in registry.json ("${item.title}")`,
+            `${noun} "${item.id}" description must be between 10 and 120 characters (got ${desc.length})`,
           );
         }
-      } else {
-        errors.push(`${noun} "${item.id}": failed to parse frontmatter of ${anchorFile}`);
+
+        // Check blurb constraints: one sentence, ending in period, no HTML, no markdown except inline code
+        const plain = desc.replace(/`[^`]+`/g, "");
+        if (!plain.endsWith(".") || plain.endsWith("..")) {
+          errors.push(
+            `${noun} "${item.id}" description must consist of exactly one sentence ending in a period`,
+          );
+        } else {
+          // A second sentence shows as a terminator followed by whitespace and a
+          // new capitalized word. Counting raw periods (the old check) false-failed
+          // a single sentence carrying a decimal ("v1.5"), a file name ("Node.js"),
+          // or a lowercase abbreviation ("e.g."), none of which end a sentence.
+          const multiSentence = /[.!?]\s+[A-Z]/.test(plain);
+          const hasQuestionOrBang = /[?!]/.test(plain);
+          if (multiSentence || hasQuestionOrBang) {
+            errors.push(
+              `${noun} "${item.id}" description must consist of exactly one sentence (ending in a period ".")`,
+            );
+          }
+        }
+
+        if (/<[^>]+>/.test(plain)) {
+          errors.push(`${noun} "${item.id}" description must not contain HTML tags`);
+        }
+        // `_` alone is not flagged: an underscore in prose is usually an
+        // identifier (snake_case), not emphasis. Bold/italic markers (** __ *) and
+        // link brackets ([ ]) still are.
+        if (/\*\*|__|\*|\[|\]/.test(plain)) {
+          errors.push(
+            `${noun} "${item.id}" description must not contain markdown formatting (other than inline code formatting if needed)`,
+          );
+        }
       }
-    } catch (err) {
-      errors.push(`${noun} "${item.id}": failed to read anchor ${anchorFile}: ${err.message}`);
+
+      // kind discriminator: validated when present (the build stamps it on every
+      // entry) and required to match its collection's. Left optional here so a
+      // registry built before kind existed still verifies until it is rebuilt;
+      // tightening absence into an error is a separate, coordinated migration.
+      if (item.kind !== undefined && item.kind !== collection.kind) {
+        errors.push(
+          `${noun} "${item.id}" must declare kind "${collection.kind}" (got ${JSON.stringify(item.kind)})`,
+        );
+      }
+
+      // iso is optional; when present it must be a non-empty string (ISO 3166 /
+      // 3166-2). Absent means the entry is non-mappable.
+      if (item.iso !== undefined && (typeof item.iso !== "string" || !item.iso.trim())) {
+        errors.push(`${noun} "${item.id}" iso, when present, must be a non-empty string`);
+      }
+
+      // references: only a referencing collection carries them, and each must name
+      // an existing member of the referenced collection (a derived cast, never a
+      // dangling pointer).
+      if (item.references !== undefined) {
+        if (!collection.references) {
+          errors.push(`${noun} "${item.id}" has references but its collection references nothing`);
+        } else if (!Array.isArray(item.references)) {
+          errors.push(`${noun} "${item.id}" references must be an array`);
+        } else {
+          const known = idsByKey[collection.references] || new Set();
+          for (const ref of item.references) {
+            if (!known.has(ref)) {
+              errors.push(
+                `${noun} "${item.id}" references "${ref}", which is not a ${collection.references} member`,
+              );
+            }
+          }
+        }
+      }
+    }
+
+    // Directory bidirectional sync
+    let subdirs = [];
+    if (existsSync(itemsDir)) {
+      try {
+        subdirs = readdirSync(itemsDir, { withFileTypes: true })
+          .filter((e) => e.isDirectory() && !e.name.startsWith("."))
+          .map((e) => e.name);
+      } catch (err) {
+        errors.push(`failed to read ${collection.dir} directory: ${err.message}`);
+      }
+    }
+
+    // Rule A: For every subdirectory under the collection dir (excluding hidden/ignored
+    // folders), there must be a corresponding item in registry.json by directory name.
+    for (const subdir of subdirs) {
+      if (!itemIds.has(subdir)) {
+        errors.push(`${noun} subdirectory "${subdir}" has no corresponding entry in registry.json`);
+      }
+    }
+
+    // Rule B: For every item in the registry's collection array, there must be a
+    // corresponding directory under the collection dir with that name.
+    for (const id of itemIds) {
+      if (!subdirs.includes(id)) {
+        errors.push(
+          `registry.json declares ${noun} "${id}" but directory "${collection.dir}/${id}" is missing`,
+        );
+      }
+    }
+
+    // (numbering invariant moved below, after the per-collection loop — it counts
+    // the primary collection only, so referencing collections never move it.)
+
+    // Title Alignment:
+    // Parse the playbook frontmatter (the `play_*.md` under `plays/<id>/`, matching
+    // how buildRegistry discovers it) and verify that its `title` matches the `title`
+    // declared for that play in `registry.json`. buildRegistry falls back to the id
+    // when frontmatter has no title, so the comparison applies the same fallback to
+    // keep build -> verify idempotent.
+    for (const item of registryItems) {
+      if (!item || typeof item.id !== "string" || !item.id) continue;
+      const itemDir = join(itemsDir, item.id);
+      if (!existsSync(itemDir)) continue;
+      let anchorFileName;
+      try {
+        anchorFileName = readdirSync(itemDir).find(
+          (f) => f.startsWith(collection.anchor) && f.endsWith(".md"),
+        );
+      } catch {
+        // unreadable dir already surfaced by the bidirectional-sync checks
+      }
+      if (!anchorFileName) continue;
+      const anchorFile = join(itemDir, anchorFileName);
+      try {
+        const text = readFileSync(anchorFile, "utf8");
+        const doc = parseDoc(text);
+        if (doc.ok && doc.data) {
+          const fmTitle = doc.data.title || item.id;
+          if (fmTitle !== item.title) {
+            errors.push(
+              `${noun} "${item.id}": title in playbook frontmatter ("${fmTitle}") does not match title in registry.json ("${item.title}")`,
+            );
+          }
+        } else {
+          errors.push(`${noun} "${item.id}": failed to parse frontmatter of ${anchorFile}`);
+        }
+      } catch (err) {
+        errors.push(`${noun} "${item.id}": failed to read anchor ${anchorFile}: ${err.message}`);
+      }
+    }
+  } // end per-collection loop
+
+  // Numbering invariant: the minor version tracks the PRIMARY item count. A house
+  // adds a primary item with a minor bump, so the minor *is* that count — computed,
+  // not chosen; referencing collections (e.g. groups) never move it. Two
+  // unreconciled paths (a manual version edit vs. a minor changeset) can drift the
+  // version from the count, and nothing else catches it; assert it here so the
+  // mismatch is a red build. The scheme only holds while major stays 0, so a
+  // non-zero major is itself the finding.
+  {
+    const noun = primary.key.replace(/s$/, "");
+    const count = registry[primary.key].length;
+    const versionMatch = /^(\d+)\.(\d+)\./.exec(String(registry.version).trim());
+    if (!versionMatch) {
+      errors.push(
+        `registry.json version "${registry.version}" is not semver (MAJOR.MINOR.PATCH); ` +
+          `cannot check that the minor tracks the ${noun} count`,
+      );
+    } else {
+      const major = Number(versionMatch[1]);
+      const minor = Number(versionMatch[2]);
+      if (major !== 0) {
+        errors.push(
+          `registry.json version "${registry.version}" has major ${major}; a house stays 0.x ` +
+            `so the minor tracks the ${noun} count (a major bump resets the minor and breaks the invariant)`,
+        );
+      } else if (minor !== count) {
+        errors.push(
+          `registry.json version minor (${minor}) must equal the ${noun} count (${count}); ` +
+            `adding a ${noun} is a minor bump, so 0.${count}.x is expected`,
+        );
+      }
     }
   }
 
