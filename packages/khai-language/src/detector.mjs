@@ -21,15 +21,17 @@ function parseFrontmatter(text) {
 
 const lngDetector = new LanguageDetect();
 
-// European languages with reliable local detection: languagedetect returns each
-// as the top hit on real prose, so they gate like the original four. Cyrillic
-// (ru/uk/sr/mk/bg), the czech<->slovak pair on the czech side, turkish, and
-// languages languagedetect does not model (catalan, greek, basque, ...) are left
-// out on purpose — they would false-fail a local gate and belong on the NLP /
-// franc path (see LANGUAGES.md). A language given here is detected; one declared
-// only via `khai.languages` is exempt.
+// Every language languagedetect identifies reliably — its own prose comes back
+// as the top hit — so each can be declared (`language: <code>`) and gated
+// locally. Left out on purpose, because they false-fail a per-paragraph gate and
+// belong on the NLP/franc path (see LANGUAGES.md): the Cyrillic Slavic cluster
+// (ru/uk/sr/mk/bg, which collapse onto serbian), Czech (reads as Slovak), the
+// Turkic-Latin pair (azeri/uzbek read as turkish), Nepali (ties Hindi), Tagalog
+// and Vietnamese (read as cebuano), Turkish (sample-inconsistent), and languages
+// languagedetect does not model at all (Greek, Catalan, Basque, Low German, ...).
+// A language given here is detected; one declared only via `khai.languages` is exempt.
 const ISO_MAP = {
-  // West
+  // West & South European
   en: "english",
   de: "german",
   fr: "french",
@@ -43,7 +45,7 @@ const ISO_MAP = {
   no: "norwegian",
   fi: "finnish",
   is: "icelandic",
-  // Central / Southeast (Latin script)
+  // Central / Southeast European (Latin script)
   pl: "polish",
   hu: "hungarian",
   ro: "romanian",
@@ -55,6 +57,25 @@ const ISO_MAP = {
   lt: "lithuanian",
   lv: "latvian",
   et: "estonian",
+  // Celtic / classical
+  cy: "welsh",
+  la: "latin",
+  // Middle East / South Asia (distinct scripts, cleanly separated)
+  ar: "arabic",
+  fa: "farsi",
+  ur: "urdu",
+  hi: "hindi",
+  bn: "bengali",
+  // Central Asia (Cyrillic but distinct from the Slavic cluster)
+  kk: "kazakh",
+  mn: "mongolian",
+  // Africa / Pacific / Southeast Asia
+  sw: "swahili",
+  so: "somali",
+  ha: "hausa",
+  haw: "hawaiian",
+  id: "indonesian",
+  ceb: "cebuano",
 };
 
 const DEFAULT_PROSE_SECTIONS = [
