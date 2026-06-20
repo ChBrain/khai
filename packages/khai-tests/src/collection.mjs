@@ -63,3 +63,55 @@ export function resolveCollection(pkg) {
 export function resolveCollectionAt(root) {
   return resolveCollection(safePackageJson(root));
 }
+
+/**
+ * The `kind` discriminator stamped on a collection's registry entries — the field
+ * the website reads to tell a culture from a group. An explicit `kind` on the
+ * spec wins; otherwise it is the singular of the key (cultures -> culture,
+ * plays -> play, groups -> group), the same rule that singularizes the anchor.
+ * Kept out of {@link resolveCollection} so that function's `{dir,key,anchor}`
+ * shape (and its callers) stay byte-identical.
+ * @param {*} spec  the raw collection spec (string or object) or undefined
+ * @param {string} key  the resolved collection key
+ * @returns {string}
+ */
+export function collectionKind(spec, key) {
+  if (spec && typeof spec === "object" && typeof spec.kind === "string" && spec.kind.trim()) {
+    return spec.kind.trim();
+  }
+  return String(key).replace(/s$/, "");
+}
+
+/**
+ * Every collection a house indexes: the **primary** (counted) collection first,
+ * then any **referencing** collections declared in `khai.collections`. Each
+ * carries `{ dir, key, anchor, kind }`; a referencing collection adds
+ * `references`, the key of the collection whose items its entries link (default:
+ * the primary key). The primary is {@link resolveCollection} enriched with its
+ * kind, so a house that declares no extra collections behaves exactly as before.
+ * @param {object} [pkg] the parsed package.json
+ * @returns {{ dir: string, key: string, anchor: string, kind: string, references?: string }[]}
+ */
+export function resolveCollections(pkg) {
+  const primaryBase = resolveCollection(pkg);
+  const primary = { ...primaryBase, kind: collectionKind(pkg?.khai?.collection, primaryBase.key) };
+  const extra = Array.isArray(pkg?.khai?.collections) ? pkg.khai.collections : [];
+  const referencing = extra.map((spec) => {
+    const base = resolveCollection({ khai: { collection: spec } });
+    const references =
+      spec && typeof spec === "object" && typeof spec.references === "string"
+        ? spec.references
+        : primary.key;
+    return { ...base, kind: collectionKind(spec, base.key), references };
+  });
+  return [primary, ...referencing];
+}
+
+/**
+ * Every collection a house at `root` indexes, read from its package.json.
+ * @param {string} root
+ * @returns {{ dir: string, key: string, anchor: string, kind: string, references?: string }[]}
+ */
+export function resolveCollectionsAt(root) {
+  return resolveCollections(safePackageJson(root));
+}

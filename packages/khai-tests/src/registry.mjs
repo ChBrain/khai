@@ -1,10 +1,10 @@
 import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
-import { join } from "node:path";
+import { join, dirname, resolve, relative, isAbsolute } from "node:path";
 import { parseDoc } from "@chbrain/khai-rules";
 import { validateCollectionRegistry } from "./validate.mjs";
-import { resolveCollection, resolveCollectionAt } from "./collection.mjs";
+import { resolveCollection, resolveCollectionAt, resolveCollections } from "./collection.mjs";
 
-export { resolveCollection };
+export { resolveCollection, resolveCollections };
 
 /**
  * Count the items in a house's collection: the same set the registry and the
@@ -71,25 +71,77 @@ export function deriveHouseVersion(root) {
   return deriveVersionFrom(pkg.version, countItems(root, resolveCollection(pkg)));
 }
 
-export function buildRegistry(root) {
-  const packageJsonPath = join(root, "package.json");
-  if (!existsSync(packageJsonPath)) {
-    throw new Error(`missing package.json at ${root}`);
+/**
+ * The optional `iso` a per-item `geo.json` sidecar places on its registry entry.
+ * A generic per-item sidecar (not a cultures concept): absent file or absent
+ * `iso` ⇒ the entry is non-mappable. Read leniently — a malformed sidecar simply
+ * contributes no `iso` rather than failing the build.
+ * @param {string} itemSubdir
+ * @returns {string|undefined}
+ */
+function readGeoIso(itemSubdir) {
+  const geoPath = join(itemSubdir, "geo.json");
+  if (!existsSync(geoPath)) return undefined;
+  try {
+    const geo = JSON.parse(readFileSync(geoPath, "utf8"));
+    if (geo && typeof geo.iso === "string" && geo.iso.trim()) return geo.iso.trim();
+  } catch {
+    /* a broken sidecar is non-mappable, not a build failure */
   }
+  return undefined;
+}
 
-  const packageJson = JSON.parse(readFileSync(packageJsonPath, "utf8"));
-  const name = packageJson.name;
+/**
+ * The item ids a referencing entry casts: the build-derived `references`. Every
+ * inline link in the anchor file that resolves under `referencedDir` contributes
+ * its item id (the first path segment beneath that dir). Derived, never authored —
+ * and since those links are the same casts `checkLinks` gates, a reference can
+ * never point at a member that does not exist.
+ * @param {string} anchorFile  absolute path to the referencing item's anchor
+ * @param {string} referencedDir  absolute path to the referenced collection's dir
+ * @returns {string[]} unique ids, sorted
+ */
+function referencedIds(anchorFile, referencedDir) {
+  const text = readFileSync(anchorFile, "utf8");
+  const anchorDir = dirname(anchorFile);
+  const refRoot = resolve(referencedDir);
+  const ids = new Set();
+  const re = /\]\(([^()\s]+)\)/g;
+  let m;
+  while ((m = re.exec(text))) {
+    const target = m[1].split("#")[0];
+    if (!target || /^[a-z]+:\/\//i.test(target)) continue;
+    const rel = relative(refRoot, resolve(anchorDir, target));
+    if (rel.startsWith("..") || isAbsolute(rel)) continue; // not under the referenced dir
+    const id = rel.split(/[/\\]/)[0];
+    if (id) ids.add(id);
+  }
+  return [...ids].sort((a, b) => a.localeCompare(b));
+}
 
-  const collection = resolveCollection(packageJson);
+/**
+ * Build the registry entries for one collection: each item's `{ kind, id, title,
+ * description }`, plus an optional `iso` (from a `geo.json` sidecar) and, for a
+ * referencing collection, the build-derived `references`. A missing collection
+ * dir yields no entries (a house may declare a referencing collection before it
+ * holds any items).
+ * @param {string} root
+ * @param {{ dir: string, key: string, anchor: string, kind: string, references?: string }} collection
+ * @param {{ key: string, dir: string }[]} allCollections  for resolving `references` targets
+ * @returns {object[]}
+ */
+function buildItems(root, collection, allCollections) {
   const itemsDir = join(root, collection.dir);
-  if (!existsSync(itemsDir)) {
-    throw new Error(`missing ${collection.dir} directory at ${root}`);
-  }
+  if (!existsSync(itemsDir)) return [];
 
   const subdirs = readdirSync(itemsDir, { withFileTypes: true })
     .filter((e) => e.isDirectory() && !e.name.startsWith("."))
     .map((e) => e.name)
     .sort((a, b) => a.localeCompare(b));
+
+  const referencedDir = collection.references
+    ? allCollections.find((c) => c.key === collection.references)?.dir
+    : undefined;
 
   const items = [];
   for (const id of subdirs) {
@@ -138,22 +190,54 @@ export function buildRegistry(root) {
       }
     }
 
-    items.push({
-      id,
-      title,
-      description,
-    });
+    // kind first: the discriminator the website reads, explicit on every entry.
+    const entry = { kind: collection.kind, id, title, description };
+
+    const iso = readGeoIso(itemSubdir);
+    if (iso) entry.iso = iso;
+
+    if (referencedDir) {
+      const refs = referencedIds(anchorFile, join(root, referencedDir));
+      if (refs.length) entry.references = refs;
+    }
+
+    items.push(entry);
   }
 
   // items are pushed in subdir order, which is already sorted by localeCompare
   // above, so the output is deterministic without a second sort.
+  return items;
+}
 
-  // The minor IS the item count: derive the version and reconcile package.json
-  // (the published artifact; registry.json is not in the package files) so the
-  // build is the single writer of the minor. registry.json then mirrors it, so
-  // the numbering guard still meaningfully checks the committed registry against
-  // the item count on disk.
-  const version = deriveVersionFrom(packageJson.version, items.length);
+export function buildRegistry(root) {
+  const packageJsonPath = join(root, "package.json");
+  if (!existsSync(packageJsonPath)) {
+    throw new Error(`missing package.json at ${root}`);
+  }
+
+  const packageJson = JSON.parse(readFileSync(packageJsonPath, "utf8"));
+  const name = packageJson.name;
+
+  const collections = resolveCollections(packageJson);
+  const primary = collections[0];
+  const primaryDir = join(root, primary.dir);
+  if (!existsSync(primaryDir)) {
+    throw new Error(`missing ${primary.dir} directory at ${root}`);
+  }
+
+  // One array per collection, keyed by its key (cultures, groups, ...). Referencing
+  // collections ride alongside; only the primary feeds the version count below.
+  const arrays = {};
+  for (const collection of collections) {
+    arrays[collection.key] = buildItems(root, collection, collections);
+  }
+  const primaryItems = arrays[primary.key];
+
+  // The minor IS the primary item count: derive the version and reconcile
+  // package.json (the published artifact; registry.json is not in the package
+  // files) so the build is the single writer of the minor. Referencing
+  // collections (e.g. groups) never move the count.
+  const version = deriveVersionFrom(packageJson.version, primaryItems.length);
   if (packageJson.version !== version) {
     packageJson.version = version;
     writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2) + "\n", "utf8");
@@ -163,7 +247,7 @@ export function buildRegistry(root) {
     $schema: "http://json-schema.org/draft-07/schema#",
     name,
     version,
-    [collection.key]: items,
+    ...arrays,
   };
 
   const registryPath = join(root, "registry.json");
