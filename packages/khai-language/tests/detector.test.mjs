@@ -326,6 +326,70 @@ In the middle of the journey of our life I found myself within a forest dark, fo
       "et",
       "Elas kord kuningas kellel oli kolm tutart ja igauks neist oli kaunim kui eelmine kogu kuningriigis suures.",
     ],
+    // Celtic / classical
+    [
+      "cy",
+      "Yr oedd unwaith mewn amser maith yn ol frenin a oedd ganddo dair merch a theyrnas fawr a chyfoethog iawn.",
+    ],
+    [
+      "la",
+      "Gallia est omnis divisa in partes tres quarum unam incolunt Belgae aliam Aquitani tertiam qui ipsorum lingua Celtae appellantur.",
+    ],
+    // Distinct scripts (Middle East / South Asia)
+    [
+      "ar",
+      "كان يا ما كان في قديم الزمان ملك له ثلاث بنات ومملكة كبيرة وغنية وراء البحار والجبال العالية",
+    ],
+    [
+      "fa",
+      "روزی روزگاری پادشاهی بود که سه دختر داشت و یک پادشاهی بزرگ و ثروتمند در آن سوی کوه ها داشت",
+    ],
+    [
+      "ur",
+      "بہت پرانے زمانے میں ایک بادشاہ تھا جس کی تین بیٹیاں تھیں اور پہاڑوں کے پار ایک بڑی امیر سلطنت تھی",
+    ],
+    [
+      "hi",
+      "बहुत समय पहले एक राजा था जिसकी तीन बेटियाँ थीं और पहाड़ों के पार एक बड़ा और समृद्ध राज्य था",
+    ],
+    [
+      "bn",
+      "অনেক অনেক দিন আগে এক রাজা ছিলেন তার তিনটি মেয়ে এবং পাহাড়ের ওপারে একটি বিশাল ধনী রাজ্য ছিল",
+    ],
+    // Central Asia (distinct Cyrillic)
+    [
+      "kk",
+      "Ерте заманда бір патша болыпты оның үш қызы және таулардың арғы жағында үлкен бай патшалығы болыпты",
+    ],
+    [
+      "mn",
+      "Эрт урьд цагт нэгэн хаан байж гурван охинтой бөгөөд уулсын цаана том баян улсыг захирдаг байжээ",
+    ],
+    // Africa / Pacific / Southeast Asia
+    [
+      "sw",
+      "Hapo zamani za kale palikuwa na mfalme aliyekuwa na binti watatu na ufalme mkubwa wenye utajiri mwingi sana sana.",
+    ],
+    [
+      "so",
+      "Waa baa jiray boqor wuxuu lahaa saddex gabdhood iyo boqortooyo weyn oo hodan ah meel aad u fog.",
+    ],
+    [
+      "ha",
+      "Wata rana akwai wani sarki wanda yake da yan mata uku da kuma babbar masarauta mai arziki bayan tsaunuka masu nisa.",
+    ],
+    [
+      "haw",
+      "I ka wa kahiko he moi ka mea nana na kaikamahine ekolu a me ke aupuni nui waiwai ma kela aoao o na mauna.",
+    ],
+    [
+      "id",
+      "Pada zaman dahulu kala ada seorang raja yang memiliki tiga orang putri dan sebuah kerajaan yang besar dan kaya raya.",
+    ],
+    [
+      "ceb",
+      "Kaniadto adunay usa ka hari nga adunay tulo ka anak nga babaye ug usa ka dako ug adunahan nga gingharian sa unahan.",
+    ],
   ])("registers %s and gates its own prose clean", (code, prose) => {
     const projectDir = join(FIXTURES_DIR, `euro-${code}`);
     const playDir = join(projectDir, "plays", "p");
