@@ -19,10 +19,16 @@ import {
 import { fileURLToPath } from "node:url";
 import { dirname, join, relative, posix } from "node:path";
 import { createRequire } from "node:module";
-import matter from "gray-matter";
 import arch from "@chbrain/khai-arch";
 import { packBundle } from "@chbrain/khai-pack";
-import { sha256, validateSkillMd, validateNeutrality, validateProvenance } from "./guard.mjs";
+import {
+  sha256,
+  validateSkillMd,
+  validateNeutrality,
+  validateProvenance,
+  parseFrontmatter,
+  stringifyFrontmatter,
+} from "./guard.mjs";
 
 const require = createRequire(import.meta.url);
 const here = dirname(fileURLToPath(import.meta.url));
@@ -96,7 +102,7 @@ export function composeSkill(srcDir) {
   const src = readFileSync(skillMdPath, "utf8");
   let parsed;
   try {
-    parsed = matter(src);
+    parsed = parseFrontmatter(src);
   } catch (e) {
     return {
       name,
@@ -112,7 +118,7 @@ export function composeSkill(srcDir) {
     const expected = resolveCanon(i.from);
     return { path: i.to, actual: expected, expected, data: Buffer.from(expected, "utf8") };
   });
-  const stamped = matter.stringify(parsed.content, {
+  const stamped = stringifyFrontmatter(parsed.content, {
     ...parsed.data,
     metadata: {
       ...(parsed.data.metadata ?? {}),

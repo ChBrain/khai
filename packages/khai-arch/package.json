@@ -36,14 +36,13 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "gray-matter": "^4.0.3"
+    "js-yaml": "^4.2.0"
   },
   "devDependencies": {
     "@chbrain/khai-rules": "^0.1.5",
-    "@types/markdown-it": "^14.1.2",
     "@types/js-yaml": "^4.0.9",
+    "@types/markdown-it": "^14.1.2",
     "ajv": "^8.17.1",
-    "js-yaml": "^4.2.0",
     "markdown-it": "^14.1.0",
     "typescript": "^6.0.3",
     "vitest": "^4.1.9"

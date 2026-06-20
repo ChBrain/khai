@@ -30,7 +30,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "gray-matter": "^4.0.3",
+    "js-yaml": "^4.2.0",
     "languagedetect": "^2.0.0"
   },
   "devDependencies": {
