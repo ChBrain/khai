@@ -30,13 +30,13 @@ cannot rewrite the rules. A wrong name fails fast, before any path is examined.
 
 ## Lanes
 
-| Branch pattern                                  | Layer        | May touch                                                                                                                                                                       |
-| ----------------------------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `arch/<change>`                                 | architecture | `packages/khai-arch/**`                                                                                                                                                         |
-| `governance/<change>`                           | governance   | `packages/khai-guard/**`, `packages/khai-tests/**`, `packages/khai-rules/**`, `packages/khai-pack/**`, `.github/**`, `.husky/**`, `khai-guard.config.json`, `docs/BRANCHING.md` |
-| `engine/<name>/<change>`                        | solution     | `packages/engines/<name>/**` (the `<name>` segment must equal the engine dir)                                                                                                   |
-| `repo/<change>`                                 | infra        | only **unowned** + **shared** paths (root configs, `README.md`, ...); owns nothing                                                                                              |
-| `chore/<change>` `fix/<change>` `docs/<change>` | general      | only **unowned** + **shared** paths; owns nothing                                                                                                                               |
+| Branch pattern                                  | Layer        | May touch                                                                                                                                                                                                                              |
+| ----------------------------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `arch/<change>`                                 | architecture | `packages/khai-arch/**`                                                                                                                                                                                                                |
+| `governance/<change>`                           | governance   | `packages/khai-guard/**`, `packages/khai-tests/**`, `packages/khai-rules/**`, `packages/khai-pack/**`, `packages/khai-language/**`, `.github/**`, `.husky/**`, `khai-guard.config.json`, `docs/BRANCHING.md`, `CLAUDE.md`, `GEMINI.md` |
+| `engine/<name>/<change>`                        | solution     | `packages/engines/<name>/**` (the `<name>` segment must equal the engine dir)                                                                                                                                                          |
+| `repo/<change>`                                 | infra        | only **unowned** + **shared** paths (root configs, `README.md`, ...); owns nothing                                                                                                                                                     |
+| `chore/<change>` `fix/<change>` `docs/<change>` | general      | only **unowned** + **shared** paths; owns nothing                                                                                                                                                                                      |
 
 `<change>` is a free kebab-case topic. The layer is derived from the prefix.
 
