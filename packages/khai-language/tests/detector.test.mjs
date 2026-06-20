@@ -213,6 +213,48 @@ garrison town
     expect(errors3).toHaveLength(0); // Should be skipped/exempted
   });
 
+  it("accepts Italian prose when the house declares Italian (it -> italian)", () => {
+    const projectDir = join(FIXTURES_DIR, "italian-project");
+    const playDir = join(projectDir, "plays", "commedia");
+    mkdirSync(playDir, { recursive: true });
+
+    // House declares Italian; languagedetect knows it, so it gates locally like de/fr.
+    writeFileSync(join(projectDir, "README.md"), `---\nlanguage: it\n---\n`);
+    writeFileSync(join(playDir, "play_commedia.md"), `---\nkhai: play\n---\n`);
+
+    // 1. Italian prose passes (it normalizes to "italian", the detector's top hit).
+    const fileCorrect = join(playDir, "persona_dante.md");
+    writeFileSync(
+      fileCorrect,
+      `---
+khai: persona
+---
+# Persona: Dante
+
+## Projection
+Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, che la diritta via era smarrita.
+`,
+    );
+    expect(validateLanguageOfFile(fileCorrect, projectDir)).toHaveLength(0);
+
+    // 2. An English span in an Italian house is still flagged.
+    const fileIncorrect = join(playDir, "persona_intruder.md");
+    writeFileSync(
+      fileIncorrect,
+      `---
+khai: persona
+---
+# Persona: Intruder
+
+## Projection
+In the middle of the journey of our life I found myself within a forest dark, for the straightforward pathway had been lost.
+`,
+    );
+    const errors = validateLanguageOfFile(fileIncorrect, projectDir);
+    expect(errors).toHaveLength(1);
+    expect(errors[0]).toContain("English span");
+  });
+
   it("validateLanguageOfFile skips library check on NLP fallback languages", () => {
     const projectDir = join(FIXTURES_DIR, "nlp-project");
     const playDir = join(projectDir, "plays", "igbo-play");

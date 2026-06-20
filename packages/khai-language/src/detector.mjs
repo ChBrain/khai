@@ -26,6 +26,7 @@ const ISO_MAP = {
   de: "german",
   da: "danish",
   fr: "french",
+  it: "italian",
 };
 
 const DEFAULT_PROSE_SECTIONS = [
