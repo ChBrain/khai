@@ -109,6 +109,24 @@ const FRANC_MAP = {
   uz: "uzn", // Uzbek
   ga: "gle", // Irish (sibling top: Scottish Gaelic — Goidelic cluster)
   sco: "sco", // Scots (sibling top: English)
+  // Commonwealth — South Asia (distinct scripts, own prose tops cleanly)
+  ta: "tam", // Tamil
+  te: "tel", // Telugu
+  gu: "guj", // Gujarati
+  pa: "pan", // Punjabi (Gurmukhi)
+  si: "sin", // Sinhala
+  // Commonwealth — Africa (own prose tops; Nguni pair sit within each other's margin)
+  ig: "ibo", // Igbo
+  af: "afr", // Afrikaans
+  zu: "zul", // Zulu (sibling: Xhosa — Nguni cluster, within margin)
+  xh: "xho", // Xhosa (sibling: Zulu — Nguni cluster, within margin)
+  // Commonwealth — Southeast Asia
+  ms: "zlm", // Malay (franc's Malay code; near-sibling Indonesian routes via languagedetect `id`)
+  // Commonwealth — Pacific (own prose tops cleanly)
+  mi: "mri", // Maori
+  fj: "fij", // Fijian
+  sm: "smo", // Samoan
+  to: "ton", // Tongan
 };
 const FRANC_CODES = new Set(Object.values(FRANC_MAP));
 

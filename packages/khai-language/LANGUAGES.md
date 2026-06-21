@@ -68,6 +68,30 @@ gross-error grade, within the Goidelic and English clusters respectively).
 **Cornish** (`kw`) is the one gap — franc has no Cornish model (it reads as
 Breton, its closest Brythonic relative), so it is exempt-only (`khai.languages`).
 
+### Commonwealth coverage
+
+Beyond Europe the Commonwealth is khai's best-aligned region: most of its
+languages carry a distinct script and gate cleanly via franc. Each tops its own
+prose (verified one native sample per language in the franc-routes test):
+
+- **South Asia** — `ta` Tamil · `te` Telugu · `gu` Gujarati · `pa` Punjabi
+  (Gurmukhi) · `si` Sinhala. (`hi` Hindi, `ur` Urdu, `bn` Bengali already gate via
+  languagedetect.)
+- **Africa** — `ig` Igbo · `af` Afrikaans, plus the Nguni pair `zu` Zulu and
+  `xh` Xhosa: each tops its own prose, and they sit within each other's 0.1 margin
+  (Zulu reads near-Xhosa and vice versa), so both gate but only at the gross-error
+  grade for the pair — exactly the Goidelic `gd`/`ga` situation. (`sw` Swahili,
+  `ha` Hausa already gate via languagedetect.)
+- **Southeast Asia** — `ms` Malay, routed to franc's Malay code `zlm`. Its
+  near-sibling is Indonesian (`ind`, within the margin), but Indonesian is declared
+  as `id` and gates on the **other** engine (languagedetect), so the two never
+  collide.
+- **Pacific** — `mi` Maori · `fj` Fijian · `sm` Samoan · `to` Tongan, all clean.
+
+`hi`/`ur`/`bn`/`sw`/`ha`/`cy` (built-in) plus the franc set above cover the
+Commonwealth's principal written languages; the remaining gaps (smaller Indian and
+Pacific tongues franc does not model) stay exempt-only.
+
 ## Still exempt only (would false-fail even with the margin)
 
 These drop straight to NLP, because the declared language falls **more than 0.1
