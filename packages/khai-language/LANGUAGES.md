@@ -19,14 +19,14 @@ declares and authors; **this package decides what `nds` means to the gate.**
 
 Every language whose own prose languagedetect returns as the **top hit** is
 registered in `ISO_MAP` and gates locally today (`language: <code>`). The full
-set (37), by region:
+set (38), by region:
 
 - **Europe — West/South:** `en` English · `de` German · `fr` French · `nl` Dutch ·
   `it` Italian · `es` Spanish · `pt` Portuguese
 - **Europe — Nordic:** `da` Danish · `sv` Swedish · `no` Norwegian · `fi` Finnish ·
   `is` Icelandic
 - **Europe — Central/SE (Latin):** `pl` Polish · `hu` Hungarian · `ro` Romanian ·
-  `hr` Croatian · `sk` Slovak · `sl` Slovene · `sq` Albanian
+  `hr` Croatian · `cs` Czech † · `sk` Slovak · `sl` Slovene · `sq` Albanian
 - **Europe — Baltic:** `lt` Lithuanian · `lv` Latvian · `et` Estonian
 - **Celtic / classical:** `cy` Welsh · `la` Latin
 - **Middle East / South Asia (distinct scripts):** `ar` Arabic · `fa` Farsi ·
@@ -37,9 +37,17 @@ set (37), by region:
 
 A data-driven test gates one verified native sample per language.
 
+> † **Czech** is the one languagedetect language that gates at the **tight-cluster
+> grade** rather than as a clean top: its sibling Slovak frequently tops, but Czech
+> stays within the 0.1 margin on its own prose, so it gates (gross-error catch
+> only — it won't split Czech from Slovak). It is routed through languagedetect, not
+> franc, because franc occasionally misreads Czech outright (one sample read as
+> French at `fra` 1.00 / `ces` 0.85), whereas languagedetect only ever confuses it
+> with Slovak. It is the languagedetect counterpart of franc's `bg`/`sr`.
+
 ## Detected via franc (`FRANC_MAP`) — the second tier
 
-`validateLanguageOfFile` is a three-tier escalation: **languagedetect** (the 37
+`validateLanguageOfFile` is a three-tier escalation: **languagedetect** (the 38
 above) → **franc** (ISO 639-3, broad model) → **NLP** (`khai.languages`). franc
 gates two grades of language, because the gate's **0.1 confidence margin** only
 flags when the declared language scores _more than 0.1 below_ the detected top:
@@ -96,11 +104,11 @@ Pacific tongues franc does not model) stay exempt-only.
 ### NATO coverage
 
 The alliance is wholly European + North American, so the European pass already
-gates **30 of the 32 members'** official languages — Albanian, Bulgarian, Croatian,
+gates most of the 32 members' official languages — Albanian, Bulgarian, Croatian,
 Danish, Dutch, English, Estonian, Finnish, French, German, Greek, Hungarian,
 Icelandic, Italian, Latvian, Lithuanian, Macedonian, Norwegian, Polish,
 Portuguese, Romanian, Slovak, Slovene, Spanish (+ Catalan/Basque), Swedish, Turkish
-— each via `ISO_MAP` or the franc tiers above. NATO adds only two new routes:
+— each via `ISO_MAP` or the franc tiers above. Three more complete the set:
 
 - **Luxembourgish** (`lb` → `ltz`) — Luxembourg. franc models it well: own prose
   tops at 1.0 across samples, German the nearest sibling ~0.2 back, so it gates
@@ -108,27 +116,26 @@ Portuguese, Romanian, Slovak, Slovene, Spanish (+ Catalan/Basque), Swedish, Turk
 - **Montenegrin** (`cnr` → `cnr`) — Montenegro. franc carries a `cnr` code, but it
   rides the Serbo-Croatian cluster (Bosnian/Serbian/Croatian all within the margin),
   so it gates only at the **gross-error grade**, exactly like Serbian.
+- **Czech** (`cs` → `czech`) — Czechia. Routed through languagedetect (not franc,
+  which misreads it outright on occasion), it gates at the tight-cluster grade with
+  Slovak as the sibling, margin-protected. See the † note in the built-in section.
 
-The one NATO member still exempt is **Czechia**: Czech tops `ces` on most prose but
-a minority of plain sentences flip outright (one read as French), so its false-fail
-rate keeps it on the NLP path. See the exempt list below.
+That closes the alliance: **all 32 NATO members'** official languages now gate
+locally, none left on the NLP-only path.
 
 ## Still exempt only (would false-fail even with the margin)
 
 These drop straight to NLP, because the declared language falls **more than 0.1
 below** a sibling on real prose, or franc has no model for it at all:
 
-- **Czech** — franc tops `ces` on most prose, but a minority of plain sentences
-  flip outright (one stress sample read as French at `fra` 1.00 / `ces` 0.85, gap
-  0.15 > margin); languagedetect flips it to Slovak. The false-fail rate is too
-  high to gate, so Czech stays exempt. Slovak itself is fine.
 - **Azeri** — franc splits it across `azj`/`azb` and `azj` falls to 0.82 behind
   Uzbek/Turkish.
 - **Unmodelled by franc** — Cornish (reads as Breton), Maltese, and the like.
 
 Every exempt language is still **declarable** today via `khai.languages`; what it
-lacks is a local gate. (The one-sample spike was over-optimistic on `cs`/`bg` —
-multi-sample testing is what cut them.)
+lacks is a local gate. (Czech was long held here too, but it gates once routed
+through languagedetect under the margin — see the † note above; the lesson is to
+re-test an "exempt" language against _both_ engines before trusting the verdict.)
 
 ## What already works (no engine change)
 

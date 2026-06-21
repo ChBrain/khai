@@ -571,6 +571,33 @@ In the middle of the journey of our life I found myself within a forest dark, fo
     expect(errors[0]).toMatch(/expected: rus/);
   });
 
+  // Czech gates at the tight-cluster grade via languagedetect: Slovak (its
+  // sibling) often tops, but Czech stays within the 0.1 margin, so its own prose
+  // passes while a gross mismatch (English) is still flagged.
+  it("gates Czech within the Slovak margin yet flags a gross mismatch", () => {
+    const projectDir = join(FIXTURES_DIR, "czech-cluster");
+    const playDir = join(projectDir, "plays", "p");
+    mkdirSync(playDir, { recursive: true });
+    writeFileSync(join(projectDir, "README.md"), `---\nlanguage: cs\n---\n`);
+    writeFileSync(join(playDir, "play_p.md"), `---\nkhai: play\n---\n`);
+
+    // 1. Czech prose passes (Slovak may top, but Czech is within the margin).
+    const ok = join(playDir, "persona_cz.md");
+    writeFileSync(
+      ok,
+      `---\nkhai: persona\n---\n# Persona: CZ\n\n## Projection\nBylo nebylo, za devatero horami žil jeden král, který měl tři dcery a velké bohaté království za vysokými horami.\n`,
+    );
+    expect(validateLanguageOfFile(ok, projectDir)).toHaveLength(0);
+
+    // 2. A gross mismatch (English in a Czech house) is still flagged.
+    const bad = join(playDir, "persona_en.md");
+    writeFileSync(
+      bad,
+      `---\nkhai: persona\n---\n# Persona: EN\n\n## Projection\nIn the middle of the journey of our life I found myself within a forest dark and deep and wild.\n`,
+    );
+    expect(validateLanguageOfFile(bad, projectDir)).toHaveLength(1);
+  });
+
   it("validateLanguageOfFile skips library check on NLP fallback languages", () => {
     const projectDir = join(FIXTURES_DIR, "nlp-project");
     const playDir = join(projectDir, "plays", "igbo-play");
@@ -608,13 +635,14 @@ Kedu ka ị mere? Obi ụtọ na-arụ ọrụ a.
     const playDir = join(projectDir, "plays", "unknown-play");
     mkdirSync(playDir, { recursive: true });
 
-    // Setup house README (unregistered language 'cs' — Czech genuinely false-fails
-    // under both engines (ces -> hrv), so it is in no map and is exempt-only: it
-    // must be declared via khai.languages, not auto-registered).
+    // Setup house README (unregistered language 'kw' — Cornish is unmodelled by
+    // both engines: franc has no Cornish (it reads as Breton) and languagedetect
+    // has none either, so it is in no map and is exempt-only: it must be declared
+    // via khai.languages, not auto-registered).
     writeFileSync(
       join(projectDir, "README.md"),
       `---
-language: cs
+language: kw
 ---
 `,
     );
@@ -631,7 +659,7 @@ khai: persona
 
     const errors = validateLanguageOfFile(fileUnknown, projectDir);
     expect(errors).toHaveLength(1);
-    expect(errors[0]).toContain("Language 'cs' is not registered");
+    expect(errors[0]).toContain("Language 'kw' is not registered");
   });
 
   it("validateProjectLanguages resolves nlpLanguages dynamically from package.json", () => {
