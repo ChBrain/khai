@@ -1,5 +1,31 @@
 # @chbrain/khai-language
 
+## 0.1.9
+
+### Patch Changes
+
+- 4cd9e11: Add Commonwealth language coverage to the franc tier: Tamil, Telugu, Gujarati,
+  Punjabi, Sinhala, Igbo, Afrikaans, Zulu, Xhosa, Malay, Maori, Fijian, Samoan,
+  and Tongan. Each gates on its own native prose (verified one sample per language
+  in the franc-routes test); the Nguni pair (Zulu/Xhosa) sits within the 0.1
+  margin and gates at the gross-error grade, and Malay routes to franc's `zlm`.
+- ff6cf4a: Promote Czech from exempt to a gating language. Re-examining the "exempt"
+  verdict under the 0.1 margin showed Czech was simply on the wrong engine: franc
+  occasionally misreads it outright (one sample read as French), but languagedetect
+  only ever confuses it with its Slovak sibling — always within the margin. Routed
+  through languagedetect (`cs` → `czech` in `ISO_MAP`), Czech now gates at the
+  tight-cluster grade (gross-error catch only, won't split Czech from Slovak),
+  verified across 8 samples plus English/German gross-mismatch flags. This closes
+  NATO: all 32 members' official languages now gate locally.
+- 6bb9a56: Complete NATO language coverage. The alliance is wholly European + North
+  American, so 30 of the 32 members' official languages already gate from the
+  European pass; this adds the two remaining routes: Luxembourgish (`lb` → `ltz`,
+  clean) and Montenegrin (`cnr` → `cnr`, gross-error grade within the
+  Serbo-Croatian cluster). Czech stays exempt — multi-sample stress testing shows
+  its prose false-fails too often (one sample read as French), confirming the
+  prior exempt decision. LANGUAGES.md gains a NATO coverage section and the
+  Luxembourgish/Czech exempt notes are corrected.
+
 ## 0.1.8
 
 ### Patch Changes
