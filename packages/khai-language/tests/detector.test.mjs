@@ -444,6 +444,24 @@ In the middle of the journey of our life I found myself within a forest dark, fo
       "mk",
       "Си имало еднаш еден цар кој имал три ќерки и големо богато царство далеку зад високите планини.",
     ],
+    // Tight-cluster grade: a sibling may top, but the declared language stays
+    // within the 0.1 margin, so correct prose still passes (gross-error catch only).
+    [
+      "bg",
+      "Имало едно време един цар който имал три дъщери и голямо богато царство далеч отвъд планините.",
+    ],
+    [
+      "sr",
+      "Био једном један цар који је имао три кћери и велико богато царство далеко иза високих планина.",
+    ],
+    [
+      "tr",
+      "Bir zamanlar uc kizi olan bir kral varmis ve daglarin otesinde buyuk ve zengin bir kralligi bulunurmus.",
+    ],
+    [
+      "uz",
+      "Bir bor ekan bir yoq ekan bir podsho bor ekan uning uchta qizi va toglar ortida katta boy davlati bor ekan.",
+    ],
   ])("franc-routes %s and gates its own prose clean", (code, prose) => {
     const projectDir = join(FIXTURES_DIR, `franc-${code}`);
     const playDir = join(projectDir, "plays", "p");
@@ -508,13 +526,13 @@ Kedu ka ị mere? Obi ụtọ na-arụ ọrụ a.
     const playDir = join(projectDir, "plays", "unknown-play");
     mkdirSync(playDir, { recursive: true });
 
-    // Setup house README (unregistered language 'tr' — Turkish gates stably under
-    // neither languagedetect nor franc, so it is in no map and is exempt-only: it
+    // Setup house README (unregistered language 'cs' — Czech genuinely false-fails
+    // under both engines (ces -> hrv), so it is in no map and is exempt-only: it
     // must be declared via khai.languages, not auto-registered).
     writeFileSync(
       join(projectDir, "README.md"),
       `---
-language: tr
+language: cs
 ---
 `,
     );
@@ -531,7 +549,7 @@ khai: persona
 
     const errors = validateLanguageOfFile(fileUnknown, projectDir);
     expect(errors).toHaveLength(1);
-    expect(errors[0]).toContain("Language 'tr' is not registered");
+    expect(errors[0]).toContain("Language 'cs' is not registered");
   });
 
   it("validateProjectLanguages resolves nlpLanguages dynamically from package.json", () => {

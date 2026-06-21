@@ -37,31 +37,34 @@ set (37), by region:
 
 A data-driven test gates one verified native sample per language.
 
-## Detected via franc (`FRANC_MAP`)
+## Detected via franc (`FRANC_MAP`) — the second tier
 
-`validateLanguageOfFile` routes detection per language: languagedetect for the 37
-above, **franc** (ISO 639-3, broad model) for the 10 below that languagedetect
-cannot separate but franc gates **stably across multiple samples**:
+`validateLanguageOfFile` is a three-tier escalation: **languagedetect** (the 37
+above) → **franc** (ISO 639-3, broad model) → **NLP** (`khai.languages`). franc
+gates two grades of language, because the gate's **0.1 confidence margin** only
+flags when the declared language scores _more than 0.1 below_ the detected top:
 
-`nds` Low German · `el` Greek · `ca` Catalan · `eu` Basque · `vi` Vietnamese ·
-`tl` Tagalog · `ne` Nepali · `ru` Russian · `uk` Ukrainian · `mk` Macedonian.
+- **Clean detection** — own prose tops the list: `nds` Low German (the driving
+  case) · `el` Greek · `ca` Catalan · `eu` Basque · `vi` Vietnamese · `tl`
+  Tagalog · `ne` Nepali · `ru` Russian · `uk` Ukrainian · `mk` Macedonian.
+- **Tight-cluster grade** — a sibling _tops_ the list, but the declared language
+  stays within the margin, so correct prose still passes: `bg` Bulgarian (top:
+  Macedonian) · `sr` Serbian (top: Bosnian) · `tr` Turkish (top: Azeri) · `uz`
+  Uzbek. This is a **gross-error catch only** — it flags English-in-a-Serbian-house
+  but will not split Serbian from Bosnian. Weaker, but gating beats NLP.
 
-This is the per-language detector registry the design called for, now built. The
-headline `nds` and the languagedetect-unmodelled trio (Greek/Catalan/Basque) gate
-here. franc's normalized scores (top is 1.0) make the gate forgiving of close
-within-cluster calls — it catches gross language errors, not hair-splitting.
+This is the per-language detector registry the design called for, now built; the
+franc tier does as much work as the margin lets it before anything reaches NLP.
 
-## Still exempt only (neither engine gates stably)
+## Still exempt only (would false-fail even with the margin)
 
-These stay out of both maps — declarable via the NLP-fallback (`khai.languages`)
-but with no local gate, because **multi-sample** testing showed them flipping:
+Only two languages drop straight to NLP, because the declared language falls
+**more than 0.1 below** a sibling on real prose — a genuine false-fail:
 
-- **Czech** — franc flips it to Croatian (`cs`→`hrv`); languagedetect flips it to
-  Slovak. Slovak itself is fine.
-- **Bulgarian** — franc flips it to Macedonian (`bg`→`mkd`) on a second sample.
-- **Serbian** — franc reads it as Bosnian (`sr`→`bos`, the Serbo-Croatian continuum).
-- **Turkic cluster** — Turkish→Azeri, Azeri→Uzbek; mutually confusable in both
-  engines.
+- **Czech** — `ces` drops to 0.77 when franc tops Croatian (`hrv`); languagedetect
+  flips it to Slovak. Slovak itself is fine.
+- **Azeri** — franc splits it across `azj`/`azb` and `azj` falls to 0.82 behind
+  Uzbek/Turkish.
 - **Unmodelled by either** — Irish, Maltese, Luxembourgish, and the like.
 
 Every exempt language is still **declarable** today via `khai.languages`; what it

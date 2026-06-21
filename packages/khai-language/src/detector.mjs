@@ -25,9 +25,8 @@ const lngDetector = new LanguageDetect();
 // Every language languagedetect identifies reliably — its own prose comes back
 // as the top hit — so each can be declared (`language: <code>`) and gated
 // locally. The languages languagedetect cannot separate are routed to franc
-// instead (FRANC_MAP, below); only the ones neither engine gates stably stay
-// exempt (Czech reads as Croatian, Bulgarian as Macedonian, Serbian as Bosnian,
-// the Turkic cluster collapses — see LANGUAGES.md).
+// instead (FRANC_MAP, below); only Czech and Azeri, which false-fail under both
+// engines, stay exempt (NLP / `khai.languages`). See LANGUAGES.md.
 // A language given here is detected; one declared only via `khai.languages` is exempt.
 const ISO_MAP = {
   // West & South European
@@ -77,13 +76,21 @@ const ISO_MAP = {
   ceb: "cebuano",
 };
 
-// franc-routed languages: those languagedetect cannot separate but franc does,
-// verified stable across multiple samples. Values are the ISO 639-3 code franc
-// emits (note Nepali's individual code `npi`). Kept separate from ISO_MAP so the
-// languagedetect path stays untouched; detection picks the engine per resolved
-// language. The Cyrillic Slavic cluster minus the franc-stable members
-// (Czech/Bulgarian/Serbian) and the Turkic cluster are still neither — exempt only.
+// franc-routed languages: those languagedetect cannot separate but franc gates
+// without false-failing. Values are the ISO 639-3 code franc emits (note Nepali's
+// individual code `npi`). Kept separate from ISO_MAP so the languagedetect path
+// stays untouched; detection picks the engine per resolved language.
+//
+// Two grades here. The first block detects cleanly (its own prose tops the list).
+// The second is the tight-cluster grade: franc's *top* may be a sibling (Serbian
+// reads as Bosnian, Bulgarian as Macedonian, Turkish as Azeri), but the declared
+// language stays within the 0.1 confidence margin, so correct prose still passes
+// and only a GROSS mismatch (e.g. English in a Serbian house) is flagged. It is a
+// weaker gate — it will not split Serbian from Bosnian — but it is gating, which
+// is preferred over dropping the language to NLP. Czech and Azeri are the two that
+// genuinely false-fail (ces -> hrv at 0.77; the azj/azb split), so they stay exempt.
 const FRANC_MAP = {
+  // Clean detection (own prose tops)
   nds: "nds", // Low German — the driving case
   el: "ell", // Greek
   ca: "cat", // Catalan
@@ -94,6 +101,11 @@ const FRANC_MAP = {
   ru: "rus", // Russian
   uk: "ukr", // Ukrainian
   mk: "mkd", // Macedonian
+  // Tight-cluster grade: gross-error catch only (within-margin of a sibling top)
+  bg: "bul", // Bulgarian (sibling top: Macedonian)
+  sr: "srp", // Serbian (sibling top: Bosnian)
+  tr: "tur", // Turkish (sibling top: Azeri)
+  uz: "uzn", // Uzbek
 };
 const FRANC_CODES = new Set(Object.values(FRANC_MAP));
 
