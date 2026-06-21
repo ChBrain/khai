@@ -48,6 +48,12 @@ const ISO_MAP = {
   hu: "hungarian",
   ro: "romanian",
   hr: "croatian",
+  // Czech rides languagedetect, not franc: franc tops `ces` on most prose but
+  // occasionally blows up (one sample read as French), whereas languagedetect's
+  // only confusion is its Slovak sibling — always within the 0.1 margin. So Czech
+  // gates here at the tight-cluster grade (gross-error catch only; it won't split
+  // Czech from Slovak), the languagedetect counterpart of Serbian/Bulgarian.
+  cs: "czech",
   sk: "slovak",
   sl: "slovene",
   sq: "albanian",
