@@ -401,6 +401,76 @@ In the middle of the journey of our life I found myself within a forest dark, fo
     expect(validateLanguageOfFile(file, projectDir)).toHaveLength(0);
   });
 
+  // franc-routed languages: those languagedetect cannot separate but franc gates
+  // stably. A house declaring the code and writing matching prose validates clean.
+  it.each([
+    [
+      "nds",
+      "Dat weer maal en Keerl de harr dree Dochter un en groot un riek Land achter de hoge Bargen wied weg.",
+    ],
+    [
+      "el",
+      "Μια φορά κι έναν καιρό ήταν ένας βασιλιάς που είχε τρεις κόρες και ένα μεγάλο πλούσιο βασίλειο.",
+    ],
+    [
+      "ca",
+      "Hi havia una vegada un rei que tenia tres filles i cadascuna era mes bonica que lanterior al regne.",
+    ],
+    [
+      "eu",
+      "Bazen behin errege bat hiru alaba zituena eta erresuma handi eta aberats bat mendien beste aldean urrun.",
+    ],
+    [
+      "vi",
+      "Ngày xửa ngày xưa có một ông vua có ba người con gái và một vương quốc rộng lớn giàu có.",
+    ],
+    [
+      "tl",
+      "Noong unang panahon may isang hari na may tatlong anak na babae at isang malaki at mayamang kaharian sa malayo.",
+    ],
+    [
+      "ne",
+      "धेरै पहिले एउटा राजा थिए जसका तीन छोरीहरू थिए र पहाडहरू पारि एउटा ठूलो र धनी राज्य थियो।",
+    ],
+    [
+      "ru",
+      "Жил был царь у него было три сына и большое богатое царство за тридевять земель в государстве.",
+    ],
+    [
+      "uk",
+      "Жила собі дівчина у маленькій хаті на краю села біля великого темного лісу далеко на півночі.",
+    ],
+    [
+      "mk",
+      "Си имало еднаш еден цар кој имал три ќерки и големо богато царство далеку зад високите планини.",
+    ],
+  ])("franc-routes %s and gates its own prose clean", (code, prose) => {
+    const projectDir = join(FIXTURES_DIR, `franc-${code}`);
+    const playDir = join(projectDir, "plays", "p");
+    mkdirSync(playDir, { recursive: true });
+    writeFileSync(join(projectDir, "README.md"), `---\nlanguage: ${code}\n---\n`);
+    writeFileSync(join(playDir, "play_p.md"), `---\nkhai: play\n---\n`);
+    const file = join(playDir, "persona_x.md");
+    writeFileSync(file, `---\nkhai: persona\n---\n# Persona: X\n\n## Projection\n${prose}\n`);
+    expect(validateLanguageOfFile(file, projectDir)).toHaveLength(0);
+  });
+
+  it("flags an English span in a franc-routed (Russian) house", () => {
+    const projectDir = join(FIXTURES_DIR, "franc-ru-wrong");
+    const playDir = join(projectDir, "plays", "p");
+    mkdirSync(playDir, { recursive: true });
+    writeFileSync(join(projectDir, "README.md"), `---\nlanguage: ru\n---\n`);
+    writeFileSync(join(playDir, "play_p.md"), `---\nkhai: play\n---\n`);
+    const file = join(playDir, "persona_x.md");
+    writeFileSync(
+      file,
+      `---\nkhai: persona\n---\n# Persona: X\n\n## Projection\nIn the middle of the journey of our life I found myself within a forest dark and deep.\n`,
+    );
+    const errors = validateLanguageOfFile(file, projectDir);
+    expect(errors).toHaveLength(1);
+    expect(errors[0]).toMatch(/expected: rus/);
+  });
+
   it("validateLanguageOfFile skips library check on NLP fallback languages", () => {
     const projectDir = join(FIXTURES_DIR, "nlp-project");
     const playDir = join(projectDir, "plays", "igbo-play");
@@ -438,13 +508,13 @@ Kedu ka ị mere? Obi ụtọ na-arụ ọrụ a.
     const playDir = join(projectDir, "plays", "unknown-play");
     mkdirSync(playDir, { recursive: true });
 
-    // Setup house README (unregistered language 'el' — Greek is European but
-    // languagedetect cannot model it, so it is not in ISO_MAP and needs the
-    // NLP/franc path rather than a local gate).
+    // Setup house README (unregistered language 'tr' — Turkish gates stably under
+    // neither languagedetect nor franc, so it is in no map and is exempt-only: it
+    // must be declared via khai.languages, not auto-registered).
     writeFileSync(
       join(projectDir, "README.md"),
       `---
-language: el
+language: tr
 ---
 `,
     );
@@ -461,7 +531,7 @@ khai: persona
 
     const errors = validateLanguageOfFile(fileUnknown, projectDir);
     expect(errors).toHaveLength(1);
-    expect(errors[0]).toContain("Language 'el' is not registered");
+    expect(errors[0]).toContain("Language 'tr' is not registered");
   });
 
   it("validateProjectLanguages resolves nlpLanguages dynamically from package.json", () => {

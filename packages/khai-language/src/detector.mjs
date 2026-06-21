@@ -2,6 +2,7 @@ import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
 import { join, dirname, resolve, basename, relative, isAbsolute } from "node:path";
 import yaml from "js-yaml";
 import LanguageDetect from "languagedetect";
+import { francAll } from "franc-all";
 
 // Split a content file's YAML frontmatter from its body, on js-yaml 4.2.0 — the
 // merge-key quadratic-DoS in gray-matter's bundled js-yaml 3.x (GHSA-h67p-54hq-rp68)
@@ -23,12 +24,10 @@ const lngDetector = new LanguageDetect();
 
 // Every language languagedetect identifies reliably — its own prose comes back
 // as the top hit — so each can be declared (`language: <code>`) and gated
-// locally. Left out on purpose, because they false-fail a per-paragraph gate and
-// belong on the NLP/franc path (see LANGUAGES.md): the Cyrillic Slavic cluster
-// (ru/uk/sr/mk/bg, which collapse onto serbian), Czech (reads as Slovak), the
-// Turkic-Latin pair (azeri/uzbek read as turkish), Nepali (ties Hindi), Tagalog
-// and Vietnamese (read as cebuano), Turkish (sample-inconsistent), and languages
-// languagedetect does not model at all (Greek, Catalan, Basque, Low German, ...).
+// locally. The languages languagedetect cannot separate are routed to franc
+// instead (FRANC_MAP, below); only the ones neither engine gates stably stay
+// exempt (Czech reads as Croatian, Bulgarian as Macedonian, Serbian as Bosnian,
+// the Turkic cluster collapses — see LANGUAGES.md).
 // A language given here is detected; one declared only via `khai.languages` is exempt.
 const ISO_MAP = {
   // West & South European
@@ -78,6 +77,39 @@ const ISO_MAP = {
   ceb: "cebuano",
 };
 
+// franc-routed languages: those languagedetect cannot separate but franc does,
+// verified stable across multiple samples. Values are the ISO 639-3 code franc
+// emits (note Nepali's individual code `npi`). Kept separate from ISO_MAP so the
+// languagedetect path stays untouched; detection picks the engine per resolved
+// language. The Cyrillic Slavic cluster minus the franc-stable members
+// (Czech/Bulgarian/Serbian) and the Turkic cluster are still neither — exempt only.
+const FRANC_MAP = {
+  nds: "nds", // Low German — the driving case
+  el: "ell", // Greek
+  ca: "cat", // Catalan
+  eu: "eus", // Basque
+  vi: "vie", // Vietnamese
+  tl: "tgl", // Tagalog
+  ne: "npi", // Nepali (individual code)
+  ru: "rus", // Russian
+  uk: "ukr", // Ukrainian
+  mk: "mkd", // Macedonian
+};
+const FRANC_CODES = new Set(Object.values(FRANC_MAP));
+
+// Detect a paragraph's language with the engine that gates the resolved language:
+// franc (broad, ISO 639-3) for FRANC_CODES, languagedetect (the ISO_MAP set)
+// otherwise. Both return a score-ranked [lang, score] list, so the caller
+// compares them identically. franc's "und" (undetermined) means no detection.
+function detectLanguages(text, resolvedLanguage) {
+  if (FRANC_CODES.has(resolvedLanguage)) {
+    const ranked = francAll(text, { minLength: 10 });
+    if (!ranked.length || ranked[0][0] === "und") return [];
+    return ranked;
+  }
+  return lngDetector.detect(text);
+}
+
 const DEFAULT_PROSE_SECTIONS = [
   "projection",
   "action",
@@ -104,7 +136,7 @@ const DEFAULT_NLP_LANGUAGES = [];
 function normalizeLanguage(lang) {
   if (!lang) return "english";
   const normalized = lang.trim().toLowerCase();
-  return ISO_MAP[normalized] || normalized;
+  return ISO_MAP[normalized] || FRANC_MAP[normalized] || normalized;
 }
 
 /**
@@ -293,7 +325,11 @@ export function validateLanguageOfFile(filePath, projectPath, options = {}) {
 
   const resolvedLanguage = resolveLanguage(filePath, projectPath);
 
-  const allowedLangs = new Set([...Object.values(ISO_MAP), ...nlpLanguages]);
+  const allowedLangs = new Set([
+    ...Object.values(ISO_MAP),
+    ...Object.values(FRANC_MAP),
+    ...nlpLanguages,
+  ]);
   if (!allowedLangs.has(resolvedLanguage)) {
     return [
       `Language '${resolvedLanguage}' is not registered. ` +
@@ -336,7 +372,7 @@ export function validateLanguageOfFile(filePath, projectPath, options = {}) {
       const lowerPara = para.toLowerCase();
       if (exceptions.some((entry) => lowerPara.includes(entry))) continue;
 
-      const detections = lngDetector.detect(para);
+      const detections = detectLanguages(para, resolvedLanguage);
       if (!detections || detections.length === 0) continue;
 
       const [topLanguage, topScore] = detections[0];
