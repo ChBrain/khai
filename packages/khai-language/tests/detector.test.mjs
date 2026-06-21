@@ -475,6 +475,67 @@ In the middle of the journey of our life I found myself within a forest dark, fo
       "sco",
       "There wis aince a king that haed three dochters an a muckle walthy kinrick ayont the heich braes faur awa frae hame.",
     ],
+    // Commonwealth — South Asia (distinct scripts, clean)
+    [
+      "ta",
+      "மனிதப் பிறவியினர் சகலரும் சுதந்திரமாகவே பிறக்கின்றனர்; அவர்கள் மதிப்பிலும் உரிமைகளிலும் சமமானவர்கள். அவர்கள் நியாயத்தையும் மனசாட்சியையும் இயற்பண்பாகப் பெற்றவர்கள். அவர்கள் ஒருவருடனொருவர் சகோதர உணர்வுப் பாங்கில் நடந்துகொள்ளல் வேண்டும் என்பதை நாம் என்றும் மறக்கக் கூடாது.",
+    ],
+    [
+      "te",
+      "ప్రతిపత్తిస్వత్వముల విషయమున మానవులెల్లరును జన్మతః స్వతంత్రులును సమానులును నగుదురు. వారు వివేచనాంతఃకరణ సంపన్నులగుటచే పరస్పరము భ్రాతృభావముతో వర్తింపవలయును. ప్రతి మనిషికి జాతి మతం లింగం భాష అనే భేదం లేకుండా అన్ని హక్కులు మరియు స్వేచ్ఛలు కలవు.",
+    ],
+    [
+      "gu",
+      "પ્રતિષ્ઠા અને અધિકારોની દૃષ્ટિએ સર્વ માનવો જન્મથી સ્વતંત્ર અને સમાન હોય છે. તેમનામાં વિચારશક્તિ અને અંતઃકરણ હોય છે અને તેમણે પરસ્પર બંધુત્વની ભાવનાથી વર્તવું જોઈએ એમ સૌ માને છે.",
+    ],
+    [
+      "pa",
+      "ਸਾਰਾ ਮਨੁੱਖੀ ਪਰਿਵਾਰ ਆਪਣੀ ਮਹਿਮਾ, ਸ਼ਾਨ ਅਤੇ ਹੱਕਾਂ ਦੇ ਪੱਖੋਂ ਜਨਮ ਤੋਂ ਹੀ ਆਜ਼ਾਦ ਹੈ ਅਤੇ ਸੁਤੇ ਸਿੱਧ ਸਾਰੇ ਲੋਕ ਬਰਾਬਰ ਹਨ। ਉਨ੍ਹਾਂ ਸਭਨਾਂ ਨੂੰ ਤਰਕ ਅਤੇ ਜ਼ਮੀਰ ਦੀ ਸੌਗਾਤ ਮਿਲੀ ਹੋਈ ਹੈ।",
+    ],
+    [
+      "si",
+      "සියලු මනුෂ්‍යයෝ නිදහස්ව උපත ලබති. තවද ගරුත්වයෙන් හා අයිතිවාසිකම්වලින් සමාන වෙති. යුක්ති අයුක්ති පිළිබඳ හැඟීමෙන් හා හෘදය සාක්ෂියෙන් යුත් ඔවුන්, ඔවුනොවුන්ට සහෝදරත්වයෙන් කටයුතු කළ යුතුය යනු සැමගේ අදහසයි.",
+    ],
+    // Commonwealth — Africa
+    [
+      "ig",
+      "A muru mmadu nile n'ohere nakwa nha anya ugwu na ikike. E nyere ha uche na mmuo ime ihe ziri ezi nke na ha kwesiri ime ka umunne n'enwekoritaonu otu na ibe ha.",
+    ],
+    [
+      "af",
+      "Alle menslike wesens word vry, met gelyke waardigheid en regte, gebore. Hulle het rede en gewete en behoort in die gees van broederskap teenoor mekaar op te tree elke dag van hul lewe.",
+    ],
+    // Nguni pair: each tops its own prose; the sibling stays within the 0.1 margin.
+    [
+      "zu",
+      "Bonke abantu bazalwa bekhululekile belingana ngesithunzi nangamalungelo. Bahlanganiswe wumcabango nangunembeza futhi kufanele baphathane ngomoya wobunye nobuzalwane kuyo yonke imihla yokuphila kwabo emhlabeni.",
+    ],
+    [
+      "xh",
+      "Bonke abantu bazalwa bekhululekile belingana ngesidima nangokwamalungelo. Bonke abantu banesiphiwo sengqiqo nesazela kwaye bamele baphathane ngomoya wobuzalwana kuyo yonke imihla yobomi babo.",
+    ],
+    // Commonwealth — Southeast Asia (Malay via franc's `zlm`)
+    [
+      "ms",
+      "Semua manusia dilahirkan bebas dan samarata dari segi kemuliaan dan hak-hak. Mereka mempunyai pemikiran dan perasaan hati dan hendaklah bertindak di antara satu sama lain dengan semangat persaudaraan yang sejati.",
+    ],
+    // Commonwealth — Pacific
+    [
+      "mi",
+      "Ko te katoa o nga tangata i te whanautanga mai e watea ana i nga here katoa; e taurite ana hoki nga mana me nga tika. E whakawhiwhia ana hoki ki a ratou te ngakau whai whakaaro me te hinengaro tangata.",
+    ],
+    [
+      "fj",
+      "Era sucu ena galala na tamata yadua, era tautauvata ena nodra dokai kei na nodra dodonu. E tiko na nodra vakasama kei na nodra lewaeloma, ia e dodonu mera veidokai ena yalo ni veitacini.",
+    ],
+    [
+      "sm",
+      "O tagata soifua uma ua saoloto lo latou fananau mai, e tutusa foi o latou tulaga aloaia ma a latou aia tatau. Ua faaeeina atu i a latou le mafaufau lelei ma le loto fuatiaifo ma e tatau ona faatino le agaga faauso.",
+    ],
+    [
+      "to",
+      "Ko e kotoa ʻo e fanau ʻa e tangata ʻoku fanauʻi mai ʻoku tauʻatāina pea tatau ʻi he ngeia mo e ngaahi totonu. Naʻe foaki kiate kinautolu ʻa e ʻatamai mo e konisenisi pea ʻoku totonu ke nau feʻofaʻaki ʻi he laumālie ʻo e nofo fakatautehina.",
+    ],
   ])("franc-routes %s and gates its own prose clean", (code, prose) => {
     const projectDir = join(FIXTURES_DIR, `franc-${code}`);
     const playDir = join(projectDir, "plays", "p");
