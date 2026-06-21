@@ -444,6 +444,10 @@ In the middle of the journey of our life I found myself within a forest dark, fo
       "mk",
       "Си имало еднаш еден цар кој имал три ќерки и големо богато царство далеку зад високите планини.",
     ],
+    [
+      "lb",
+      "All Mënsch kënnt fräi a mat deer selwechter Dignitéit an deene selwechte Rechter op d'Welt. Jiddereen huet säi Verstand a säi Gewësse krut an soll an engem Geescht vu Bridderlechkeet denen anere géintiwwer handelen.",
+    ],
     // Tight-cluster grade: a sibling may top, but the declared language stays
     // within the 0.1 margin, so correct prose still passes (gross-error catch only).
     [
@@ -453,6 +457,10 @@ In the middle of the journey of our life I found myself within a forest dark, fo
     [
       "sr",
       "Био једном један цар који је имао три кћери и велико богато царство далеко иза високих планина.",
+    ],
+    [
+      "cnr",
+      "Sva ljudska bića rađaju se slobodna i jednaka u dostojanstvu i pravima. Ona su obdarena razumom i savješću i treba da jedni prema drugima postupaju u duhu bratstva i međusobnog razumijevanja.",
     ],
     [
       "tr",

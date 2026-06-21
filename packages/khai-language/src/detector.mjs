@@ -102,9 +102,11 @@ const FRANC_MAP = {
   uk: "ukr", // Ukrainian
   mk: "mkd", // Macedonian
   gd: "gla", // Scottish Gaelic
+  lb: "ltz", // Luxembourgish (NATO / Benelux; German sibling ~0.2 back)
   // Tight-cluster grade: gross-error catch only (within-margin of a sibling top)
   bg: "bul", // Bulgarian (sibling top: Macedonian)
   sr: "srp", // Serbian (sibling top: Bosnian)
+  cnr: "cnr", // Montenegrin (Serbo-Croatian cluster, sibling top: Bosnian)
   tr: "tur", // Turkish (sibling top: Azeri)
   uz: "uzn", // Uzbek
   ga: "gle", // Irish (sibling top: Scottish Gaelic — Goidelic cluster)
