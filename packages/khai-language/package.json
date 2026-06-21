@@ -30,6 +30,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "franc-all": "^7.2.0",
     "js-yaml": "^4.2.0",
     "languagedetect": "^2.0.0"
   },
