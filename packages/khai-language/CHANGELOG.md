@@ -1,5 +1,49 @@
 # @chbrain/khai-language
 
+## 0.1.8
+
+### Patch Changes
+
+- 1ef1f8d: detector: extend franc routing to the cluster languages the margin protects
+
+  Adds `bg` Bulgarian, `sr` Serbian, `tr` Turkish and `uz` Uzbek to `FRANC_MAP`.
+  franc's _top_ guess for these is often a sibling (Serbian reads as Bosnian,
+  Bulgarian as Macedonian, Turkish as Azeri), but the declared language stays within
+  the gate's 0.1 confidence margin, so correct prose still passes and only a gross
+  mismatch is flagged. It is a weaker, gross-error-catch gate for these — it will not
+  split Serbian from Bosnian — but gating is preferred over dropping them to NLP.
+
+  Only Czech (`ces` falls to 0.77 behind Croatian) and Azeri (the `azj`/`azb` split)
+  genuinely false-fail, so they remain exempt (`khai.languages`). The "unregistered"
+  test now uses Czech. A verified sample per added language keeps the routing pinned.
+
+- 223da01: detector: franc routing for the languages languagedetect can't separate
+
+  `validateLanguageOfFile` now picks the detector per resolved language: the 37
+  languagedetect languages as before, and **franc** (ISO 639-3) for ten that
+  languagedetect collapses but franc gates stably across multiple samples — `nds`
+  Low German (the driving case), `el` Greek, `ca` Catalan, `eu` Basque, `vi`
+  Vietnamese, `tl` Tagalog, `ne` Nepali, `ru` Russian, `uk` Ukrainian, `mk`
+  Macedonian. New `FRANC_MAP` (declared code → 639-3) sits beside `ISO_MAP`; both
+  detectors return a score-ranked list so the existing top-vs-resolved comparison
+  is unchanged. Adds the `franc-all` dependency.
+
+  Still exempt (multi-sample testing showed them flipping, so no local gate):
+  Czech (→Croatian), Bulgarian (→Macedonian), Serbian (→Bosnian) and the Turkic
+  cluster. A data-driven test gates one verified native sample per franc-routed
+  language, plus a wrong-language flag.
+
+- 74b1c5d: detector: add the UK languages — Scottish Gaelic, Irish, Scots
+
+  Routes `gd` Scottish Gaelic (clean), `ga` Irish and `sco` Scots through franc.
+  Irish sits in the Goidelic cluster (franc's top may be Scottish Gaelic) and Scots
+  is English-adjacent (top may be English), so both gate at the gross-error grade —
+  within the 0.1 margin, correct prose passes and only a gross mismatch is flagged.
+
+  With English and Welsh already gated, this covers the UK's text languages except
+  **Cornish** (`kw`), which franc does not model (it reads as Breton); Cornish stays
+  exempt via `khai.languages`. A verified sample per added language pins the routing.
+
 ## 0.1.7
 
 ### Patch Changes
