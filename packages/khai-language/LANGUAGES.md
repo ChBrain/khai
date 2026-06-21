@@ -46,26 +46,39 @@ flags when the declared language scores _more than 0.1 below_ the detected top:
 
 - **Clean detection** — own prose tops the list: `nds` Low German (the driving
   case) · `el` Greek · `ca` Catalan · `eu` Basque · `vi` Vietnamese · `tl`
-  Tagalog · `ne` Nepali · `ru` Russian · `uk` Ukrainian · `mk` Macedonian.
+  Tagalog · `ne` Nepali · `ru` Russian · `uk` Ukrainian · `mk` Macedonian ·
+  `gd` Scottish Gaelic.
 - **Tight-cluster grade** — a sibling _tops_ the list, but the declared language
   stays within the margin, so correct prose still passes: `bg` Bulgarian (top:
   Macedonian) · `sr` Serbian (top: Bosnian) · `tr` Turkish (top: Azeri) · `uz`
-  Uzbek. This is a **gross-error catch only** — it flags English-in-a-Serbian-house
-  but will not split Serbian from Bosnian. Weaker, but gating beats NLP.
+  Uzbek · `ga` Irish (top: Scottish Gaelic — the Goidelic cluster) · `sco` Scots
+  (top: English). This is a **gross-error catch only** — it flags
+  English-in-a-Serbian-house but will not split Serbian from Bosnian, or Scots
+  from English. Weaker, but gating beats NLP.
 
 This is the per-language detector registry the design called for, now built; the
 franc tier does as much work as the margin lets it before anything reaches NLP.
 
+### UK / GB coverage
+
+The UK's text languages: **English** (`en`, languagedetect) and **Welsh** (`cy`,
+languagedetect) gate cleanly; **Scottish Gaelic** (`gd`), **Irish** (`ga`) and
+**Scots** (`sco`) gate via franc (Gaelic clean; Irish and Scots at the
+gross-error grade, within the Goidelic and English clusters respectively).
+**Cornish** (`kw`) is the one gap — franc has no Cornish model (it reads as
+Breton, its closest Brythonic relative), so it is exempt-only (`khai.languages`).
+
 ## Still exempt only (would false-fail even with the margin)
 
-Only two languages drop straight to NLP, because the declared language falls
-**more than 0.1 below** a sibling on real prose — a genuine false-fail:
+These drop straight to NLP, because the declared language falls **more than 0.1
+below** a sibling on real prose, or franc has no model for it at all:
 
 - **Czech** — `ces` drops to 0.77 when franc tops Croatian (`hrv`); languagedetect
   flips it to Slovak. Slovak itself is fine.
 - **Azeri** — franc splits it across `azj`/`azb` and `azj` falls to 0.82 behind
   Uzbek/Turkish.
-- **Unmodelled by either** — Irish, Maltese, Luxembourgish, and the like.
+- **Unmodelled by franc** — Cornish (reads as Breton), Maltese, Luxembourgish,
+  and the like.
 
 Every exempt language is still **declarable** today via `khai.languages`; what it
 lacks is a local gate. (The one-sample spike was over-optimistic on `cs`/`bg` —

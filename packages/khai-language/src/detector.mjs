@@ -101,11 +101,14 @@ const FRANC_MAP = {
   ru: "rus", // Russian
   uk: "ukr", // Ukrainian
   mk: "mkd", // Macedonian
+  gd: "gla", // Scottish Gaelic
   // Tight-cluster grade: gross-error catch only (within-margin of a sibling top)
   bg: "bul", // Bulgarian (sibling top: Macedonian)
   sr: "srp", // Serbian (sibling top: Bosnian)
   tr: "tur", // Turkish (sibling top: Azeri)
   uz: "uzn", // Uzbek
+  ga: "gle", // Irish (sibling top: Scottish Gaelic — Goidelic cluster)
+  sco: "sco", // Scots (sibling top: English)
 };
 const FRANC_CODES = new Set(Object.values(FRANC_MAP));
 

@@ -462,6 +462,19 @@ In the middle of the journey of our life I found myself within a forest dark, fo
       "uz",
       "Bir bor ekan bir yoq ekan bir podsho bor ekan uning uchta qizi va toglar ortida katta boy davlati bor ekan.",
     ],
+    // GB: Scottish Gaelic (clean), Irish (Goidelic-cluster grade), Scots (English-cluster grade)
+    [
+      "gd",
+      "Bha righ ann uair a bha tri nigheanan aige agus rioghachd mhor bheairteach thar nam beanntan arda fada air falbh.",
+    ],
+    [
+      "ga",
+      "Bhi ri ann fado a raibh triur inionacha aige agus riocht mhor shaibhir thar na sleibhte arda i bhfad i gcein.",
+    ],
+    [
+      "sco",
+      "There wis aince a king that haed three dochters an a muckle walthy kinrick ayont the heich braes faur awa frae hame.",
+    ],
   ])("franc-routes %s and gates its own prose clean", (code, prose) => {
     const projectDir = join(FIXTURES_DIR, `franc-${code}`);
     const playDir = join(projectDir, "plays", "p");
