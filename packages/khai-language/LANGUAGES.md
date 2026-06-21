@@ -47,12 +47,13 @@ flags when the declared language scores _more than 0.1 below_ the detected top:
 - **Clean detection** — own prose tops the list: `nds` Low German (the driving
   case) · `el` Greek · `ca` Catalan · `eu` Basque · `vi` Vietnamese · `tl`
   Tagalog · `ne` Nepali · `ru` Russian · `uk` Ukrainian · `mk` Macedonian ·
-  `gd` Scottish Gaelic.
+  `gd` Scottish Gaelic · `lb` Luxembourgish.
 - **Tight-cluster grade** — a sibling _tops_ the list, but the declared language
   stays within the margin, so correct prose still passes: `bg` Bulgarian (top:
-  Macedonian) · `sr` Serbian (top: Bosnian) · `tr` Turkish (top: Azeri) · `uz`
-  Uzbek · `ga` Irish (top: Scottish Gaelic — the Goidelic cluster) · `sco` Scots
-  (top: English). This is a **gross-error catch only** — it flags
+  Macedonian) · `sr` Serbian (top: Bosnian) · `cnr` Montenegrin (top: Bosnian) ·
+  `tr` Turkish (top: Azeri) · `uz` Uzbek · `ga` Irish (top: Scottish Gaelic — the
+  Goidelic cluster) · `sco` Scots (top: English). This is a **gross-error catch
+  only** — it flags
   English-in-a-Serbian-house but will not split Serbian from Bosnian, or Scots
   from English. Weaker, but gating beats NLP.
 
@@ -92,17 +93,38 @@ prose (verified one native sample per language in the franc-routes test):
 Commonwealth's principal written languages; the remaining gaps (smaller Indian and
 Pacific tongues franc does not model) stay exempt-only.
 
+### NATO coverage
+
+The alliance is wholly European + North American, so the European pass already
+gates **30 of the 32 members'** official languages — Albanian, Bulgarian, Croatian,
+Danish, Dutch, English, Estonian, Finnish, French, German, Greek, Hungarian,
+Icelandic, Italian, Latvian, Lithuanian, Macedonian, Norwegian, Polish,
+Portuguese, Romanian, Slovak, Slovene, Spanish (+ Catalan/Basque), Swedish, Turkish
+— each via `ISO_MAP` or the franc tiers above. NATO adds only two new routes:
+
+- **Luxembourgish** (`lb` → `ltz`) — Luxembourg. franc models it well: own prose
+  tops at 1.0 across samples, German the nearest sibling ~0.2 back, so it gates
+  **clean** (and doubles as a Benelux language).
+- **Montenegrin** (`cnr` → `cnr`) — Montenegro. franc carries a `cnr` code, but it
+  rides the Serbo-Croatian cluster (Bosnian/Serbian/Croatian all within the margin),
+  so it gates only at the **gross-error grade**, exactly like Serbian.
+
+The one NATO member still exempt is **Czechia**: Czech tops `ces` on most prose but
+a minority of plain sentences flip outright (one read as French), so its false-fail
+rate keeps it on the NLP path. See the exempt list below.
+
 ## Still exempt only (would false-fail even with the margin)
 
 These drop straight to NLP, because the declared language falls **more than 0.1
 below** a sibling on real prose, or franc has no model for it at all:
 
-- **Czech** — `ces` drops to 0.77 when franc tops Croatian (`hrv`); languagedetect
-  flips it to Slovak. Slovak itself is fine.
+- **Czech** — franc tops `ces` on most prose, but a minority of plain sentences
+  flip outright (one stress sample read as French at `fra` 1.00 / `ces` 0.85, gap
+  0.15 > margin); languagedetect flips it to Slovak. The false-fail rate is too
+  high to gate, so Czech stays exempt. Slovak itself is fine.
 - **Azeri** — franc splits it across `azj`/`azb` and `azj` falls to 0.82 behind
   Uzbek/Turkish.
-- **Unmodelled by franc** — Cornish (reads as Breton), Maltese, Luxembourgish,
-  and the like.
+- **Unmodelled by franc** — Cornish (reads as Breton), Maltese, and the like.
 
 Every exempt language is still **declarable** today via `khai.languages`; what it
 lacks is a local gate. (The one-sample spike was over-optimistic on `cs`/`bg` —
