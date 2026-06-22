@@ -112,6 +112,7 @@ const FRANC_MAP = {
   // Tight-cluster grade: gross-error catch only (within-margin of a sibling top)
   bg: "bul", // Bulgarian (sibling top: Macedonian)
   sr: "srp", // Serbian (sibling top: Bosnian)
+  bs: "bos", // Bosnian (Serbo-Croatian cluster attractor; siblings within margin)
   cnr: "cnr", // Montenegrin (Serbo-Croatian cluster, sibling top: Bosnian)
   tr: "tur", // Turkish (sibling top: Azeri)
   uz: "uzn", // Uzbek

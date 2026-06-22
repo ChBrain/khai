@@ -459,6 +459,10 @@ In the middle of the journey of our life I found myself within a forest dark, fo
       "Био једном један цар који је имао три кћери и велико богато царство далеко иза високих планина.",
     ],
     [
+      "bs",
+      "Sva ljudska bića rađaju se slobodna i jednaka u dostojanstvu i pravima. Ona su obdarena razumom i sviješću i treba da jedno prema drugome postupaju u duhu bratstva.",
+    ],
+    [
       "cnr",
       "Sva ljudska bića rađaju se slobodna i jednaka u dostojanstvu i pravima. Ona su obdarena razumom i savješću i treba da jedni prema drugima postupaju u duhu bratstva i međusobnog razumijevanja.",
     ],
