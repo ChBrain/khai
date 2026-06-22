@@ -106,6 +106,7 @@ const FRANC_MAP = {
   ne: "npi", // Nepali (individual code)
   ru: "rus", // Russian
   uk: "ukr", // Ukrainian
+  be: "bel", // Belarusian (East Slavic; tops cleanly, Ukrainian sibling ~0.3 back)
   mk: "mkd", // Macedonian
   gd: "gla", // Scottish Gaelic
   lb: "ltz", // Luxembourgish (NATO / Benelux; German sibling ~0.2 back)

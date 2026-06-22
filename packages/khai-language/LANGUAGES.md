@@ -54,8 +54,8 @@ flags when the declared language scores _more than 0.1 below_ the detected top:
 
 - **Clean detection** — own prose tops the list: `nds` Low German (the driving
   case) · `el` Greek · `ca` Catalan · `eu` Basque · `vi` Vietnamese · `tl`
-  Tagalog · `ne` Nepali · `ru` Russian · `uk` Ukrainian · `mk` Macedonian ·
-  `gd` Scottish Gaelic · `lb` Luxembourgish.
+  Tagalog · `ne` Nepali · `ru` Russian · `uk` Ukrainian · `be` Belarusian ·
+  `mk` Macedonian · `gd` Scottish Gaelic · `lb` Luxembourgish.
 - **Tight-cluster grade** — a sibling _tops_ the list, but the declared language
   stays within the margin, so correct prose still passes: `bg` Bulgarian (top:
   Macedonian) · `sr` Serbian (top: Bosnian) · `bs` Bosnian · `cnr` Montenegrin
@@ -75,6 +75,13 @@ franc tier does as much work as the margin lets it before anything reaches NLP.
 > prose tops `bos` on roughly half its samples and rides within the margin on the
 > rest. Within the cluster the four are indistinguishable to the gate (it will not
 > split Bosnian from Croatian); across it, a gross mismatch is still caught.
+
+> **Eastern Europe.** The East Slavic trio gates cleanly via franc — `ru` Russian,
+> `uk` Ukrainian, `be` Belarusian (each tops its own prose outright; Belarusian's
+> nearest sibling, Ukrainian, sits ~0.3 back). **Moldova needs no code of its own:**
+> "Moldovan" _is_ Romanian (ISO deprecated `mo`/`mol` and merged them into `ron` in
+> 2008), and `ro` Romanian already gates via languagedetect — so a Moldovan culture
+> declares `language: ro`, which is the truth about the content, not a substitution.
 
 ### UK / GB coverage
 
