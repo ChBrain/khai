@@ -58,15 +58,23 @@ flags when the declared language scores _more than 0.1 below_ the detected top:
   `gd` Scottish Gaelic · `lb` Luxembourgish.
 - **Tight-cluster grade** — a sibling _tops_ the list, but the declared language
   stays within the margin, so correct prose still passes: `bg` Bulgarian (top:
-  Macedonian) · `sr` Serbian (top: Bosnian) · `cnr` Montenegrin (top: Bosnian) ·
-  `tr` Turkish (top: Azeri) · `uz` Uzbek · `ga` Irish (top: Scottish Gaelic — the
-  Goidelic cluster) · `sco` Scots (top: English). This is a **gross-error catch
-  only** — it flags
+  Macedonian) · `sr` Serbian (top: Bosnian) · `bs` Bosnian · `cnr` Montenegrin
+  (top: Bosnian) · `tr` Turkish (top: Azeri) · `uz` Uzbek · `ga` Irish (top:
+  Scottish Gaelic — the Goidelic cluster) · `sco` Scots (top: English). This is a
+  **gross-error catch only** — it flags
   English-in-a-Serbian-house but will not split Serbian from Bosnian, or Scots
   from English. Weaker, but gating beats NLP.
 
 This is the per-language detector registry the design called for, now built; the
 franc tier does as much work as the margin lets it before anything reaches NLP.
+
+> **The Serbo-Croatian cluster, completed.** Its four standard varieties now all
+> gate: `hr` Croatian via languagedetect (clean top), and `sr` Serbian, `bs`
+> Bosnian, `cnr` Montenegrin via franc. franc treats `bos` as the cluster
+> attractor — Serbian and Montenegrin prose read _as_ Bosnian — so Bosnian's own
+> prose tops `bos` on roughly half its samples and rides within the margin on the
+> rest. Within the cluster the four are indistinguishable to the gate (it will not
+> split Bosnian from Croatian); across it, a gross mismatch is still caught.
 
 ### UK / GB coverage
 
