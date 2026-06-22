@@ -1,5 +1,22 @@
 # @chbrain/khai-language
 
+## 0.1.10
+
+### Patch Changes
+
+- 1b6b31d: Register Belarusian (`be` → `bel`) so the East Slavic trio (Russian, Ukrainian,
+  Belarusian) all gate. languagedetect has no Belarusian, so it routes via franc,
+  where it tops its own prose cleanly across samples (Ukrainian the nearest sibling
+  ~0.3 back). Moldova needs no new code: "Moldovan" is Romanian (ISO merged
+  `mo`/`mol` into `ron`), and `ro` already gates — documented in LANGUAGES.md.
+- ea91085: Register Bosnian (`bs` → `bos`) so cultures can declare `language: bs` instead of
+  staging Bosnian content as Croatian or Serbian. Bosnian routes via franc
+  (languagedetect has no Bosnian) at the tight-cluster grade: franc treats `bos` as
+  the Serbo-Croatian attractor, so Bosnian prose tops `bos` on roughly half its
+  samples and stays within the 0.1 margin on the rest — its own prose passes, a
+  gross mismatch is flagged. This completes the cluster: Croatian, Serbian,
+  Montenegrin, and Bosnian all gate.
+
 ## 0.1.9
 
 ### Patch Changes
