@@ -103,6 +103,7 @@ const FRANC_MAP = {
   eu: "eus", // Basque
   vi: "vie", // Vietnamese
   tl: "tgl", // Tagalog
+  ht: "hat", // Haitian Creole (Kreyòl; French-lexified but tops cleanly, French ~0.65 back)
   ne: "npi", // Nepali (individual code)
   ru: "rus", // Russian
   uk: "ukr", // Ukrainian

@@ -54,8 +54,9 @@ flags when the declared language scores _more than 0.1 below_ the detected top:
 
 - **Clean detection** — own prose tops the list: `nds` Low German (the driving
   case) · `el` Greek · `ca` Catalan · `eu` Basque · `vi` Vietnamese · `tl`
-  Tagalog · `ne` Nepali · `ru` Russian · `uk` Ukrainian · `be` Belarusian ·
-  `mk` Macedonian · `gd` Scottish Gaelic · `lb` Luxembourgish · `mt` Maltese.
+  Tagalog · `ht` Haitian Creole · `ne` Nepali · `ru` Russian · `uk` Ukrainian ·
+  `be` Belarusian · `mk` Macedonian · `gd` Scottish Gaelic · `lb` Luxembourgish ·
+  `mt` Maltese.
 - **Tight-cluster grade** — a sibling _tops_ the list, but the declared language
   stays within the margin, so correct prose still passes: `bg` Bulgarian (top:
   Macedonian) · `sr` Serbian (top: Bosnian) · `bs` Bosnian · `cnr` Montenegrin
@@ -145,6 +146,17 @@ below** a sibling on real prose, or franc has no model for it at all:
 
 - **Azeri** — franc splits it across `azj`/`azb` and `azj` falls to 0.82 behind
   Uzbek/Turkish.
+- **Papiamento** — franc carries `pap`, but the Iberian-creole field (Ladino,
+  Tetum, Upper-Guinea Crioulo) is tangled: one in four samples loses `pap`
+  outright (one topped Tetum), so it false-fails too often to gate. Exempt — the
+  Caribbean creole that looked clean on a single sample but didn't survive
+  multi-sample, the same way Czech once did.
+- **Caribbean English-lexified creoles** — Jamaican Patois (`jam`), Belizean Kriol
+  (`bzj`), Sranan Tongo (`srn`), Bajan, Guyanese, Trinidadian and the like: franc
+  has no model for them (it carries the broader `pis`/`kri`/`tpi` creoles, not the
+  Caribbean codes), so they read as those or as English. The **French-lexified**
+  Antillean creoles (Saint Lucian `acf`, Guadeloupean `gcf`) read as Haitian `hat`.
+  All exempt; their official languages (English, French, Dutch, Spanish) gate.
 - **Unmodelled by franc** — Cornish (reads as Breton), and the like. (Maltese was
   listed here on assumption; franc in fact models `mlt` and gates it clean — another
   case where the both-engines re-test overturned an untested "exempt" verdict.)
