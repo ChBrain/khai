@@ -55,7 +55,7 @@ flags when the declared language scores _more than 0.1 below_ the detected top:
 - **Clean detection** — own prose tops the list: `nds` Low German (the driving
   case) · `el` Greek · `ca` Catalan · `eu` Basque · `vi` Vietnamese · `tl`
   Tagalog · `ne` Nepali · `ru` Russian · `uk` Ukrainian · `be` Belarusian ·
-  `mk` Macedonian · `gd` Scottish Gaelic · `lb` Luxembourgish.
+  `mk` Macedonian · `gd` Scottish Gaelic · `lb` Luxembourgish · `mt` Maltese.
 - **Tight-cluster grade** — a sibling _tops_ the list, but the declared language
   stays within the margin, so correct prose still passes: `bg` Bulgarian (top:
   Macedonian) · `sr` Serbian (top: Bosnian) · `bs` Bosnian · `cnr` Montenegrin
@@ -145,7 +145,9 @@ below** a sibling on real prose, or franc has no model for it at all:
 
 - **Azeri** — franc splits it across `azj`/`azb` and `azj` falls to 0.82 behind
   Uzbek/Turkish.
-- **Unmodelled by franc** — Cornish (reads as Breton), Maltese, and the like.
+- **Unmodelled by franc** — Cornish (reads as Breton), and the like. (Maltese was
+  listed here on assumption; franc in fact models `mlt` and gates it clean — another
+  case where the both-engines re-test overturned an untested "exempt" verdict.)
 
 Every exempt language is still **declarable** today via `khai.languages`; what it
 lacks is a local gate. (Czech was long held here too, but it gates once routed

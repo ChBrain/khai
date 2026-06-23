@@ -109,6 +109,7 @@ const FRANC_MAP = {
   be: "bel", // Belarusian (East Slavic; tops cleanly, Ukrainian sibling ~0.3 back)
   mk: "mkd", // Macedonian
   gd: "gla", // Scottish Gaelic
+  mt: "mlt", // Maltese (Semitic + Latin script; uniquely distinctive, no near sibling)
   lb: "ltz", // Luxembourgish (NATO / Benelux; German sibling ~0.2 back)
   // Tight-cluster grade: gross-error catch only (within-margin of a sibling top)
   bg: "bul", // Bulgarian (sibling top: Macedonian)
