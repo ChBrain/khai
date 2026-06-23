@@ -429,6 +429,10 @@ In the middle of the journey of our life I found myself within a forest dark, fo
       "Noong unang panahon may isang hari na may tatlong anak na babae at isang malaki at mayamang kaharian sa malayo.",
     ],
     [
+      "ht",
+      "Tout moun fèt lib, egal ego pou diyite kou wè dwa. Nou gen la rezon ak la konsyans epi nou fèt pou nou aji youn ak lòt tankou frè ak sè.",
+    ],
+    [
       "ne",
       "धेरै पहिले एउटा राजा थिए जसका तीन छोरीहरू थिए र पहाडहरू पारि एउटा ठूलो र धनी राज्य थियो।",
     ],
