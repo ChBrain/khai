@@ -484,6 +484,10 @@ In the middle of the journey of our life I found myself within a forest dark, fo
       "Bha righ ann uair a bha tri nigheanan aige agus rioghachd mhor bheairteach thar nam beanntan arda fada air falbh.",
     ],
     [
+      "mt",
+      "Il-bnedmin kollha jitwieldu ħielsa u ugwali fid-dinjità u d-drittijiet. Huma mogħnija bir-raġuni u bil-kuxjenza u għandhom iġibu ruħhom ma' xulxin bi spirtu ta' aħwa.",
+    ],
+    [
       "ga",
       "Bhi ri ann fado a raibh triur inionacha aige agus riocht mhor shaibhir thar na sleibhte arda i bhfad i gcein.",
     ],
