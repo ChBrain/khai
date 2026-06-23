@@ -139,6 +139,14 @@ const FRANC_MAP = {
   fj: "fij", // Fijian
   sm: "smo", // Samoan
   to: "ton", // Tongan
+  // Pacific / Oceania — Melanesian creoles + Micronesian/Polynesian
+  tpi: "tpi", // Tok Pisin (PNG)
+  bis: "bis", // Bislama (Vanuatu)
+  pis: "pis", // Pijin (Solomon Is.; sibling Bislama within margin — Melanesian creole cluster)
+  cha: "cha", // Chamorro (Guam)
+  tah: "tah", // Tahitian (sibling Rarotongan within margin — East Polynesian cluster)
+  mah: "mah", // Marshallese
+  pau: "pau", // Palauan
 };
 const FRANC_CODES = new Set(Object.values(FRANC_MAP));
 
