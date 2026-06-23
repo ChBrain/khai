@@ -139,6 +139,26 @@ Portuguese, Romanian, Slovak, Slovene, Spanish (+ Catalan/Basque), Swedish, Turk
 That closes the alliance: **all 32 NATO members'** official languages now gate
 locally, none left on the NLP-only path.
 
+### Pacific / Oceania coverage
+
+Oceania is the best-gating region beyond Europe — franc models most of its
+languages, so the soul-languages gate, not just the official English. The
+Polynesian set landed with the Commonwealth (`mi` Maori, `sm` Samoan, `to` Tongan,
+`fj` Fijian; `haw` Hawaiian is built-in). Seven more complete it:
+
+- **Melanesian creoles** — `tpi` Tok Pisin (PNG) and `bis` Bislama (Vanuatu) top
+  their own prose clean; `pis` Pijin (Solomon Is.) gates at the tight-cluster grade
+  (Bislama tops on some prose, but Pijin rides within the margin — the three creoles
+  share a lexicon).
+- **Micronesian** — `cha` Chamorro (Guam), `mah` Marshallese, `pau` Palauan, each
+  clean and isolated (no near sibling in the model).
+- **East Polynesian** — `tah` Tahitian, tight-cluster grade (Rarotongan can tie it;
+  the two are close East Polynesian relatives).
+
+Exempt: `gil` Gilbertese (Kiribati) is unmodelled (reads as Maori), as are the
+smaller tongues (Tuvaluan, Nauruan, Hiri Motu); they take the `khai.languages`
+path. Australia and New Zealand are covered by `en` (NZ also by `mi`).
+
 ## Still exempt only (would false-fail even with the margin)
 
 These drop straight to NLP, because the declared language falls **more than 0.1

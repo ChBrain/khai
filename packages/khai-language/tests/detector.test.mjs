@@ -560,6 +560,36 @@ In the middle of the journey of our life I found myself within a forest dark, fo
       "to",
       "Ko e kotoa ʻo e fanau ʻa e tangata ʻoku fanauʻi mai ʻoku tauʻatāina pea tatau ʻi he ngeia mo e ngaahi totonu. Naʻe foaki kiate kinautolu ʻa e ʻatamai mo e konisenisi pea ʻoku totonu ke nau feʻofaʻaki ʻi he laumālie ʻo e nofo fakatautehina.",
     ],
+    // Pacific / Oceania — Melanesian creoles (tpi/bis clean, pis tight-cluster)
+    // and the Micronesian/Polynesian set (cha/mah/pau clean, tah tight-cluster).
+    [
+      "tpi",
+      "Olgeta manmeri i kamap fri na wankain long wei bilong daunim na long ol rait. Ol i gat tingting na bel na ol i mas mekim pasin wantaim ol arapela olsem ol brata.",
+    ],
+    [
+      "bis",
+      "Evri man mo woman oli bon fri mo ikwol long ol raet blong olgeta. Oli gat risen mo tingting mo oli mas mekem fasin long ol narafala olsem ol brata mo sista.",
+    ],
+    [
+      "pis",
+      "Evri pipol oli born free an iqual long digniti an raet. Olketa garem maind an konsensi an mas duim samting long narawan olsem brata long evri taem.",
+    ],
+    [
+      "cha",
+      "Todu i taotao siha man mafañågu libre yan pareho gi dignidåd yan direchu siha. Manmannå'i siha hinasso yan konsiensia ya debi di ufanatungo.",
+    ],
+    [
+      "tah",
+      "E fanauhia te taata atoa ma te tiamâ e te aifaito i te tura e te tiamanaraa. Ua î te reira i te manao paari e te manava taata.",
+    ],
+    [
+      "mah",
+      "Aolep armej rej jiljilok im jonon ilo aer jaroran im maron ko aer. Emaron in jen aer ello im boklikot im rej aikuj jero ledidik ñan doon.",
+    ],
+    [
+      "pau",
+      "A rokui el chad a mle cherrungel e di uereom el ngii a llemeltir me a klisichir. Ngarngii a tekoi e reng er tir el rokui.",
+    ],
   ])("franc-routes %s and gates its own prose clean", (code, prose) => {
     const projectDir = join(FIXTURES_DIR, `franc-${code}`);
     const playDir = join(projectDir, "plays", "p");
