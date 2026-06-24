@@ -202,6 +202,9 @@ land (the Dravidian/Brahmic ones via the dense-script measure above):
   Pashto (franc's `pbu`; Persian ~0.68 back). `ar`/`fa` are built-in.
 - **Central Asia** — `ky` Kyrgyz, `tg` Tajik (Persian-in-Cyrillic; Uzbek ~0.65
   back), `tk` Turkmen. `kk`/`mn` are built-in, `uz` already franc.
+- **South Caucasus** — `ka` Georgian (`kat`) and `hy` Armenian (`hye`), each its own
+  unique alphabet, fully isolated: franc returns nothing but the language itself at
+  1.0. The cleanest gates in the whole registry.
 - **Azeri** (`az` → `azj`) gates at the **tight-cluster grade** — it rides the Oghuz
   Turkic cluster (Gagauz tops one sample, Turkish ~0.95), but `azj` stays within the
   margin on its own prose. This **overturns its old exempt verdict**: re-tested

@@ -720,6 +720,15 @@ In the middle of the journey of our life I found myself within a forest dark, fo
       "tw",
       "Wɔwoo adasamma nyinaa sɛ nnipa a wɔwɔ ahofadie ne kɛsɛyɛ ne ahobammɔ pɛ. Wɔwɔ adwene ne ahonim na ɛsɛ sɛ wɔne wɔn ho di no onuayɛ kwan so.",
     ],
+    // Caucasus — unique alphabets, isolated
+    [
+      "ka",
+      "ყველა ადამიანი იბადება თავისუფალი და თანასწორი თავისი ღირსებითა და უფლებებით. მათ მინიჭებული აქვთ გონება და სინდისი და ერთმანეთის მიმართ უნდა იქცეოდნენ ძმობის სულისკვეთებით.",
+    ],
+    [
+      "hy",
+      "Բոլոր մարդիկ ծնվում են ազատ ու հավասար իրենց արժանապատվությամբ ու իրավունքներով։ Նրանք օժտված են բանականությամբ ու խղճով և պարտավոր են միմյանց հանդեպ եղբայրաբար վարվել։",
+    ],
   ])("franc-routes %s and gates its own prose clean", (code, prose) => {
     const projectDir = join(FIXTURES_DIR, `franc-${code}`);
     const playDir = join(projectDir, "plays", "p");

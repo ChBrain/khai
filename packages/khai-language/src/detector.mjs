@@ -191,6 +191,9 @@ const FRANC_MAP = {
   tw: "twi", // Twi / Akan (sibling Fante `fat` within margin)
   // Island
   mg: "plt", // Malagasy (franc's Plateau Malagasy code)
+  // Caucasus — unique alphabets, fully isolated (nothing else in the ranking)
+  ka: "kat", // Georgian (Mkhedruli)
+  hy: "hye", // Armenian
 };
 const FRANC_CODES = new Set(Object.values(FRANC_MAP));
 
