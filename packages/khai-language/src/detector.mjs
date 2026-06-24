@@ -174,6 +174,23 @@ const FRANC_MAP = {
   tk: "tuk", // Turkmen
   // Tight-cluster grade: Azeri rides the Oghuz Turkic cluster
   az: "azj", // Azerbaijani (North, Latin; siblings Gagauz/Turkish within margin)
+  // Africa (beyond the Commonwealth ig/af/zu/xh + built-in sw/so/ha slice)
+  // Horn (Tigrinya gates; Amharic false-fails to it, so Amharic is exempt)
+  ti: "tir", // Tigrinya (Ge'ez; Amharic far below on Tigrinya prose)
+  om: "gaz", // Oromo (franc's West-Central Oromo code)
+  // Bantu — East/Central/Southern
+  rw: "kin", // Kinyarwanda (sibling Kirundi `run` within margin — tight-cluster)
+  sn: "sna", // Shona
+  st: "sot", // Sesotho (Sotho-Tswana siblings nso/tsn within margin)
+  lg: "lug", // Luganda
+  ln: "lin", // Lingala (Kongo siblings ktu/kng within margin)
+  // West Africa & Sahel
+  yo: "yor", // Yoruba (clean — overturns the early world-probe fail)
+  wo: "wol", // Wolof
+  bm: "bam", // Bambara (sibling Maninka `emk` within margin — tight-cluster)
+  tw: "twi", // Twi / Akan (sibling Fante `fat` within margin)
+  // Island
+  mg: "plt", // Malagasy (franc's Plateau Malagasy code)
 };
 const FRANC_CODES = new Set(Object.values(FRANC_MAP));
 
@@ -221,7 +238,7 @@ const DEFAULT_NLP_LANGUAGES = [];
 // Korean (Hangul) and Latin/Cyrillic/Arabic-script languages are excluded: they
 // space their words and 15 of them is a reasonable floor, so they count normally.
 const DENSE_SCRIPT_RE =
-  /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Thai}\p{Script=Lao}\p{Script=Khmer}\p{Script=Myanmar}\p{Script=Tibetan}\p{Script=Devanagari}\p{Script=Bengali}\p{Script=Gurmukhi}\p{Script=Gujarati}\p{Script=Oriya}\p{Script=Tamil}\p{Script=Telugu}\p{Script=Kannada}\p{Script=Malayalam}\p{Script=Sinhala}]/gu;
+  /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Thai}\p{Script=Lao}\p{Script=Khmer}\p{Script=Myanmar}\p{Script=Tibetan}\p{Script=Devanagari}\p{Script=Bengali}\p{Script=Gurmukhi}\p{Script=Gujarati}\p{Script=Oriya}\p{Script=Tamil}\p{Script=Telugu}\p{Script=Kannada}\p{Script=Malayalam}\p{Script=Sinhala}\p{Script=Ethiopic}]/gu;
 
 /**
  * Normalizes a language code or name to the lowercase name expected by languagedetect.

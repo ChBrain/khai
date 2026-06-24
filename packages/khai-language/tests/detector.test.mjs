@@ -669,6 +669,57 @@ In the middle of the journey of our life I found myself within a forest dark, fo
       "az",
       "Bütün insanlar ləyaqət və hüquqlarına görə azad və bərabər doğulurlar onların şüurları və vicdanları var və bir-birlərinə qardaşlıq ruhunda davranmalıdırlar.",
     ],
+    // Africa — Horn (Tigrinya, Ge'ez), Bantu, West Africa/Sahel, and the island.
+    [
+      "ti",
+      "ኩሎም ሰባት ነጻነትን ማዕርነትን ክብርን መሰልን ሒዞም ይውለዱ። ምስትውዓልን ሕልናን ዝተዓደሎም ስለ ዝኾኑ ንሓድሕዶም ብሕውነታዊ መንፈስ ክተሓላለዩ ይግባእ።",
+    ],
+    [
+      "om",
+      "Namoonni hundinuu birmaduu ta'anii mirgaa fi ulfinaan wal qixxee dhalatan. Sammuu fi qalbii ittiin yaadan waan uumamaan kennameef hafuura obbolummaatiin walii isaanii ilaaluu qabu.",
+    ],
+    [
+      "sn",
+      "Vanhu vose vanoberekwa vakasununguka uye vakaenzana muchiremerera nekodzero. Vanopiwa pfungwa nehana uye vanofanira kubatana mumweya wehama.",
+    ],
+    [
+      "st",
+      "Batho bohle ba tswetswe ba lokolohile mme ba lekana ka seriti le ditokelo. Ba tswetswe ba ena le monahano le letswalo mme ba lokela ho phedisana ka moya wa boena.",
+    ],
+    [
+      "lg",
+      "Abantu bonna bazaalibwa nga ba ddembe era nga benkanankana mu kitiibwa ne mu ddembe. Balina amagezi n'omutima era basaanidde okuyisaganana nga baganda.",
+    ],
+    [
+      "ln",
+      "Bato nyonso babotami nzela mpe bakokani na limemya mpe na makoki. Bazali na mayele mpe na lobanzo mpe basengeli kofanda na bondeko.",
+    ],
+    [
+      "yo",
+      "Gbogbo ènìyàn ni a bí ní òmìnira; iyì àti ẹ̀tọ́ kọ̀ọ̀kan sì dọ́gba. Wọ́n ni ẹ̀bùn ti làákàyè àti ti ẹ̀rí-ọkàn ó sì yẹ kí wọn ó máa hùwà sí ara wọn bí ọmọ ìyá.",
+    ],
+    [
+      "wo",
+      "Doomi aadama yépp danuy juddu yam ci tawfeex ci sag ak sañ-sañ. Nekk na it ku xam dëgg te andak xelam te war naa jëflante ak nawleen ci wàllu mbokk.",
+    ],
+    [
+      "mg",
+      "Teraka afaka sy mitovy zo sy fahamendrehana ny olombelona rehetra. Samy manan-tsaina sy fieritreretana ka tokony hifampitondra am-pirahalahiana izy ireo.",
+    ],
+    // Tight-cluster grade: Kinyarwanda (Kirundi sibling), Bambara (Maninka sibling),
+    // Twi (Fante sibling).
+    [
+      "rw",
+      "Abantu bose bavuka ariko bakaba batagomba kugororwa mu gaciro no mu burenganzira. Bafite ubwenge n'umutima kandi bagomba kugirana umubano wa kivandimwe.",
+    ],
+    [
+      "bm",
+      "Hadamadenw bɛɛ danmakɛɲɛnen bɛ bange danbe ni josira la. Hakili ni taasi b'u la wa u ka kan ka badenya hakili don ɲɔgɔn na cɛ.",
+    ],
+    [
+      "tw",
+      "Wɔwoo adasamma nyinaa sɛ nnipa a wɔwɔ ahofadie ne kɛsɛyɛ ne ahobammɔ pɛ. Wɔwɔ adwene ne ahonim na ɛsɛ sɛ wɔne wɔn ho di no onuayɛ kwan so.",
+    ],
   ])("franc-routes %s and gates its own prose clean", (code, prose) => {
     const projectDir = join(FIXTURES_DIR, `franc-${code}`);
     const playDir = join(projectDir, "plays", "p");

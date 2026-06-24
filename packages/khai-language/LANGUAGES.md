@@ -211,6 +211,23 @@ land (the Dravidian/Brahmic ones via the dense-script measure above):
 
 The genuine gaps here stay exempt (see below): Odia, Assamese, Kurdish (Kurmanji).
 
+### Africa coverage
+
+The last and most mixed frontier. The Commonwealth pass took the anglophone slice
+(`ig`/`af`/`zu`/`xh`; `sw`/`so`/`ha` built-in); this adds twelve more, mostly clean
+(Latin script, distinct vocabulary), verified multi-sample:
+
+- **Horn** — `ti` Tigrinya (Ge'ez; gated by the dense-script measure, with Ethiopic
+  added to `DENSE_SCRIPT_RE`) and `om` Oromo. _Amharic does **not** gate_ — see exempt.
+- **Bantu** — `sn` Shona · `st` Sesotho (Sotho-Tswana siblings `nso`/`tsn` within
+  margin) · `lg` Luganda · `ln` Lingala (Kongo siblings within margin), plus
+  `rw` Kinyarwanda at the tight-cluster grade (Kirundi `run` tops some prose, within
+  margin).
+- **West Africa & Sahel** — `yo` Yoruba (**clean** — overturning the early
+  world-probe's "fail", which was a bad sample), `wo` Wolof, and at tight-cluster
+  grade `bm` Bambara (Maninka `emk` sibling) and `tw` Twi/Akan (Fante `fat` sibling).
+- **Island** — `mg` Malagasy (franc's Plateau-Malagasy `plt`), clean and isolated.
+
 ## Still exempt only (would false-fail even with the margin)
 
 These drop straight to NLP, because the declared language falls **more than 0.1
@@ -224,6 +241,16 @@ below** a sibling on real prose, or franc has no model for it at all:
 - **Kurdish (Kurmanji)** (`ku`/`kmr`) — the Latin standard is not in franc's model
   (it reads as Sorani `ckb`). A Sorani (Arabic-script) culture may gate via `ckb`,
   untested here; Kurmanji is exempt.
+- **Amharic** (`am`) — the Ge'ez cluster is asymmetric: Tigrinya gates cleanly, but
+  Amharic prose reads as Tigrinya (`tir` tops, `amh` ~0.85, gap >0.1) on every
+  sample. franc is biased toward `tir`, so Amharic false-fails and stays exempt —
+  the notable gap in the Horn (Ethiopia's main language, ~57M speakers).
+- **Chichewa / Nyanja** (`ny`) — franc carries `nya`, but the Bantu field has
+  Swahili as a strong attractor: one in four samples loses to `swh` outright
+  (gap >0.1), too noisy to gate. Exempt — the same 1-in-4 false-fail that cut
+  Papiamento. (Shona survived the same test; Chichewa didn't.)
+- **Kabyle / Berber** (`kab`) — not in franc's model; reads as Central Atlas
+  Tamazight (`tzm`). A Tamazight culture may gate via `tzm`; Kabyle is exempt.
 - **Papiamento** — franc carries `pap`, but the Iberian-creole field (Ladino,
   Tetum, Upper-Guinea Crioulo) is tangled: one in four samples loses `pap`
   outright (one topped Tetum), so it false-fails too often to gate. Exempt — the
