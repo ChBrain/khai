@@ -147,6 +147,18 @@ const FRANC_MAP = {
   tah: "tah", // Tahitian (sibling Rarotongan within margin — East Polynesian cluster)
   mah: "mah", // Marshallese
   pau: "pau", // Palauan
+  // East Asia / Southeast Asia — distinct scripts, all top cleanly. These scripts
+  // are scriptio continua (no word spaces); the span gate measures them by
+  // character count (see CONTINUOUS_SCRIPT_RE) so detection actually runs.
+  // (Vietnamese `vi` is already registered above; it uses spaces.)
+  zh: "cmn", // Chinese (Mandarin)
+  ja: "jpn", // Japanese
+  ko: "kor", // Korean (Hangul; uses spaces)
+  th: "tha", // Thai
+  km: "khm", // Khmer
+  lo: "lao", // Lao
+  my: "mya", // Burmese
+  bo: "bod", // Tibetan
 };
 const FRANC_CODES = new Set(Object.values(FRANC_MAP));
 
@@ -182,6 +194,14 @@ const DEFAULT_PROSE_SECTIONS = [
 ];
 
 const DEFAULT_NLP_LANGUAGES = [];
+
+// Scriptio-continua scripts — Han, Japanese kana, Thai, Lao, Khmer, Myanmar,
+// Tibetan — do not delimit words with spaces, so a whitespace-token count badly
+// understates a paragraph's length (a whole Chinese sentence reads as one "word").
+// For these, span length is measured in characters instead. Korean (Hangul) and
+// Vietnamese are excluded on purpose: both space their words and count normally.
+const CONTINUOUS_SCRIPT_RE =
+  /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Thai}\p{Script=Lao}\p{Script=Khmer}\p{Script=Myanmar}\p{Script=Tibetan}]/gu;
 
 /**
  * Normalizes a language code or name to the lowercase name expected by languagedetect.
@@ -370,6 +390,10 @@ export function validateLanguageOfFile(filePath, projectPath, options = {}) {
     .filter((s) => typeof s === "string" && s.trim())
     .map((s) => normalizeLanguage(s));
   const minSpanWords = options.minSpanWords !== undefined ? options.minSpanWords : 15;
+  // Scriptio-continua fallback: a paragraph also qualifies if it carries at least
+  // this many spaceless-script characters, since franc is reliable well below 15
+  // "words" of CJK/SEA text (it tops these at 1.0 on a single short sentence).
+  const minSpanChars = options.minSpanChars !== undefined ? options.minSpanChars : 24;
   const confidenceMargin = options.confidenceMargin !== undefined ? options.confidenceMargin : 0.1;
 
   if (!existsSync(filePath)) {
@@ -419,7 +443,10 @@ export function validateLanguageOfFile(filePath, projectPath, options = {}) {
 
     for (const para of paragraphs) {
       const words = para.split(/\s+/).filter(Boolean);
-      if (words.length < minSpanWords) continue;
+      // Too short to trust — but measure spaceless scripts by character count, or
+      // a whole Chinese/Thai/etc. paragraph (one whitespace token) is wrongly skipped.
+      const continuousChars = (para.match(CONTINUOUS_SCRIPT_RE) || []).length;
+      if (words.length < minSpanWords && continuousChars < minSpanChars) continue;
 
       // Check exceptions
       const lowerPara = para.toLowerCase();
@@ -437,9 +464,12 @@ export function validateLanguageOfFile(filePath, projectPath, options = {}) {
 
       if (diff >= confidenceMargin) {
         const snippet = para.length > 80 ? para.slice(0, 77) + "..." : para;
+        // Report a word count for spaced text, a character count for spaceless scripts.
+        const measure =
+          words.length >= minSpanWords ? `${words.length} words` : `${continuousChars} chars`;
         errors.push(
           `${topLanguage.charAt(0).toUpperCase() + topLanguage.slice(1)} span ` +
-            `(${words.length} words) in ## ${section.header}: '${snippet}' ` +
+            `(${measure}) in ## ${section.header}: '${snippet}' ` +
             `(expected: ${resolvedLanguage})`,
         );
       }

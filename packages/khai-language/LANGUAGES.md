@@ -163,6 +163,25 @@ plus Hiri Motu and the like. They take the `khai.languages` path. **Micronesia
 Yapese, Kosraean — so its honest national tongue is `en` (gated). Australia and New
 Zealand are covered by `en` (NZ also by `mi`).
 
+### East Asia / Southeast Asia coverage
+
+Distinct scripts make this the lowest-risk batch — franc tops each at 1.0 with no
+near sibling: `zh` Chinese (`cmn`) · `ja` Japanese (`jpn`) · `ko` Korean (`kor`) ·
+`th` Thai · `km` Khmer · `lo` Lao · `my` Burmese (`mya`) · `bo` Tibetan (`bod`).
+(`vi` Vietnamese was already registered; `id` Indonesian and `ceb` Cebuano are
+built-in.)
+
+The catch here is not detection but **length measurement**. Most of these scripts
+are _scriptio continua_ — Chinese, Japanese, Thai, Khmer, Lao, Burmese and Tibetan
+do not put spaces between words — so the span gate's `minSpanWords` (a whitespace
+token count) reads a whole Chinese sentence as **one word** and skips it, and the
+language is never actually checked. The gate therefore measures these scripts by
+**character count** instead (`minSpanChars`, default 24; see `CONTINUOUS_SCRIPT_RE`):
+a paragraph qualifies if it has enough words _or_ enough continuous-script
+characters. Korean and Vietnamese space their words and count normally. With this,
+a Japanese span in a Chinese house is flagged (not silently skipped), and native
+prose is genuinely validated rather than waved through.
+
 ## Still exempt only (would false-fail even with the margin)
 
 These drop straight to NLP, because the declared language falls **more than 0.1
