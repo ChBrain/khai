@@ -155,9 +155,13 @@ Polynesian set landed with the Commonwealth (`mi` Maori, `sm` Samoan, `to` Tonga
 - **East Polynesian** — `tah` Tahitian, tight-cluster grade (Rarotongan can tie it;
   the two are close East Polynesian relatives).
 
-Exempt: `gil` Gilbertese (Kiribati) is unmodelled (reads as Maori), as are the
-smaller tongues (Tuvaluan, Nauruan, Hiri Motu); they take the `khai.languages`
-path. Australia and New Zealand are covered by `en` (NZ also by `mi`).
+Exempt — empirically confirmed absent from franc's 329-language model (each native
+sample tops a relative): `gil` Gilbertese / Kiribati (reads as Maori), `tvl`
+Tuvaluan / Tuvalu (reads as Samoan), `nau` Nauruan / Nauru (reads as Marshallese),
+plus Hiri Motu and the like. They take the `khai.languages` path. **Micronesia
+(FSM)** has no single national language — its states speak Chuukese, Pohnpeian,
+Yapese, Kosraean — so its honest national tongue is `en` (gated). Australia and New
+Zealand are covered by `en` (NZ also by `mi`).
 
 ## Still exempt only (would false-fail even with the margin)
 
@@ -177,6 +181,14 @@ below** a sibling on real prose, or franc has no model for it at all:
   Caribbean codes), so they read as those or as English. The **French-lexified**
   Antillean creoles (Saint Lucian `acf`, Guadeloupean `gcf`) read as Haitian `hat`.
   All exempt; their official languages (English, French, Dutch, Spanish) gate.
+- **Pacific micro-languages** — `gil` Gilbertese (Kiribati), `tvl` Tuvaluan
+  (Tuvalu), `nau` Nauruan (Nauru): confirmed absent from franc's model, each reading
+  as a larger relative (Maori, Samoan, Marshallese respectively). **Do not register
+  these in `FRANC_MAP`** — franc would detect their prose as that relative, the
+  declared code would score ~0, and the gate would false-fail _every_ paragraph
+  (1.0 − 0 > margin). The `khai.languages` exempt path, which skips local detection,
+  is the only correct route. A Kiribati / Tuvalu / Nauru culture authors natively
+  this way; verification falls to the NLP layer.
 - **Unmodelled by franc** — Cornish (reads as Breton), and the like. (Maltese was
   listed here on assumption; franc in fact models `mlt` and gates it clean — another
   case where the both-engines re-test overturned an untested "exempt" verdict.)
