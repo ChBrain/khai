@@ -159,6 +159,8 @@ const FRANC_MAP = {
   lo: "lao", // Lao
   my: "mya", // Burmese
   bo: "bod", // Tibetan
+  // Maritime SE Asia (Latin script, spaced)
+  tet: "tet", // Tetum (Timor-Leste; tops cleanly, sibling tdt is its own Dili variety)
 };
 const FRANC_CODES = new Set(Object.values(FRANC_MAP));
 

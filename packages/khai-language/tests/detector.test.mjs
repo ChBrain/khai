@@ -624,6 +624,10 @@ In the middle of the journey of our life I found myself within a forest dark, fo
       "bo",
       "འགྲོ་བ་མིའི་རིགས་རྒྱུད་ཡོངས་ལ་སྐྱེས་ཙམ་ཉིད་ནས་ཆེ་མཐོངས་དང་ཐོབ་ཐང་གི་རང་དབང་འདྲ་མཉམ་དུ་ཡོད་ལ། ཁོང་ཚོར་རང་བྱུང་གི་བློ་རྩལ་ཡོད།",
     ],
+    [
+      "tet",
+      "Ema hotu moris hanesan no iha dignidade ho direitu. Sira hotu iha hanoin no konxiénsia, tan ne'e tenke hala'o malu hanesan maun-alin no feto-alin.",
+    ],
   ])("franc-routes %s and gates its own prose clean", (code, prose) => {
     const projectDir = join(FIXTURES_DIR, `franc-${code}`);
     const playDir = join(projectDir, "plays", "p");
