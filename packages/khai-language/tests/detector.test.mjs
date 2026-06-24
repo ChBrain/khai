@@ -628,6 +628,47 @@ In the middle of the journey of our life I found myself within a forest dark, fo
       "tet",
       "Ema hotu moris hanesan no iha dignidade ho direitu. Sira hotu iha hanoin no konxiénsia, tan ne'e tenke hala'o malu hanesan maun-alin no feto-alin.",
     ],
+    // South Asia — Brahmic scripts, gated by character count (agglutinative, so a
+    // full sentence is well under 15 whitespace words).
+    [
+      "mr",
+      "सर्व मानव जन्मतः स्वतंत्र आहेत व त्यांना समान प्रतिष्ठा व समान अधिकार आहेत. त्यांना विचारशक्ती व सदसद्विवेकबुद्धी लाभलेली आहे.",
+    ],
+    [
+      "kn",
+      "ಎಲ್ಲಾ ಮಾನವರೂ ಸ್ವತಂತ್ರರಾಗಿಯೇ ಜನಿಸಿದ್ದಾರೆ ಹಾಗೂ ಘನತೆ ಮತ್ತು ಹಕ್ಕುಗಳಲ್ಲಿ ಸಮಾನರಾಗಿದ್ದಾರೆ ವಿವೇಕ ಮತ್ತು ಅಂತಃಕರಣಗಳನ್ನು ಪಡೆದವರಾಗಿದ್ದಾರೆ.",
+    ],
+    [
+      "ml",
+      "മനുഷ്യരെല്ലാവരും തുല്യാവകാശങ്ങളോടും അന്തസ്സോടും സ്വാതന്ത്ര്യത്തോടുംകൂടി ജനിച്ചവരാണ് അന്യോന്യം ഭ്രാതൃഭാവത്തോടെ പെരുമാറുവാനാണ് മനുഷ്യന് വിവേകബുദ്ധിയുള്ളത്.",
+    ],
+    // Middle East
+    [
+      "he",
+      "כל בני האדם נולדו בני חורין ושווים בערכם ובזכויותיהם כולם חוננו בתבונה ובמצפון לפיכך חובה עליהם לנהוג איש ברעהו ברוח של אחווה.",
+    ],
+    [
+      "ps",
+      "ټول انسانان ازاد نړۍ ته راځي او د حيثيت او حقونو له پلوه سره برابر دي دوی له عقل او وجدان څخه برخمن دي او بايد چلند وکړي.",
+    ],
+    // Central Asia
+    [
+      "ky",
+      "Бардык адамдар өз беделинде жана укуктарында эркин жана тең укуктуу болуп жаралат алардын аң-сезими менен абийири бар жана туугандык мамиле кылууга тийиш.",
+    ],
+    [
+      "tg",
+      "Тамоми одамон озод ба дунё меоянд ва аз лиҳози шаъну шараф ва ҳуқуқ бо ҳам баробаранд онҳо соҳиби ақлу виҷдонанд ва бояд рафтор кунанд.",
+    ],
+    [
+      "tk",
+      "Ähli adamlar azat dogulýarlar we öz mertebesi we hukuklary boýunça deňdirler olara aň hem wyždan berlendir we olar doganlyk ruhunda gatnaşmalydyrlar.",
+    ],
+    // Tight-cluster grade: Azeri (Oghuz Turkic cluster, Gagauz/Turkish siblings)
+    [
+      "az",
+      "Bütün insanlar ləyaqət və hüquqlarına görə azad və bərabər doğulurlar onların şüurları və vicdanları var və bir-birlərinə qardaşlıq ruhunda davranmalıdırlar.",
+    ],
   ])("franc-routes %s and gates its own prose clean", (code, prose) => {
     const projectDir = join(FIXTURES_DIR, `franc-${code}`);
     const playDir = join(projectDir, "plays", "p");

@@ -173,24 +173,57 @@ its own prose at 1.0 (its only near sibling is `tdt`, Tetum's own Dili-variety
 code; Portuguese loanwords don't pull it off `tet`). (`vi` Vietnamese was already
 registered; `id` Indonesian, `ms` Malay and `ceb` Cebuano are built-in/franc.)
 
-The catch here is not detection but **length measurement**. Most of these scripts
-are _scriptio continua_ — Chinese, Japanese, Thai, Khmer, Lao, Burmese and Tibetan
-do not put spaces between words — so the span gate's `minSpanWords` (a whitespace
-token count) reads a whole Chinese sentence as **one word** and skips it, and the
-language is never actually checked. The gate therefore measures these scripts by
-**character count** instead (`minSpanChars`, default 24; see `CONTINUOUS_SCRIPT_RE`):
-a paragraph qualifies if it has enough words _or_ enough continuous-script
-characters. Korean and Vietnamese space their words and count normally. With this,
-a Japanese span in a Chinese house is flagged (not silently skipped), and native
-prose is genuinely validated rather than waved through.
+The catch here is not detection but **length measurement** — a problem shared by
+the next region too, so the fix is general. Most of these scripts are _scriptio
+continua_ — Chinese, Japanese, Thai, Khmer, Lao, Burmese and Tibetan do not put
+spaces between words — so the span gate's `minSpanWords` (a whitespace token count)
+reads a whole Chinese sentence as **one word** and skips it, and the language is
+never actually checked. The same trap catches the **agglutinative Brahmic** scripts
+of South Asia (a full Malayalam sentence is ~10 words). The gate therefore measures
+all of these **dense scripts** by **character count** instead (`minSpanChars`,
+default 24; see `DENSE_SCRIPT_RE`, which covers the spaceless scripts plus
+Devanagari, Bengali, Gurmukhi, Gujarati, Oriya, Tamil, Telugu, Kannada, Malayalam
+and Sinhala): a paragraph qualifies if it has enough words _or_ enough
+dense-script characters. Korean and the Latin/Cyrillic/Arabic-script languages
+space their words and count normally. With this, a Japanese span in a Chinese house
+(or a Tamil span in a Malayalam one) is flagged, not silently skipped — and it
+retroactively strengthens the Commonwealth Dravidian set (`ta`/`te`), whose short
+dense paragraphs were being waved through before.
+
+### South / Central Asia + Middle East coverage
+
+West of the CJK batch, the scripts stay distinct and the gate stays easy. Nine more
+land (the Dravidian/Brahmic ones via the dense-script measure above):
+
+- **South Asia** — `mr` Marathi (Devanagari; Hindi isn't even a near sibling),
+  `kn` Kannada, `ml` Malayalam. (Tamil/Telugu/Gujarati/Punjabi/Sinhala landed with
+  the Commonwealth; Hindi/Urdu/Bengali are built-in.)
+- **Middle East** — `he` Hebrew (Yiddish the only sibling, far below) and `ps`
+  Pashto (franc's `pbu`; Persian ~0.68 back). `ar`/`fa` are built-in.
+- **Central Asia** — `ky` Kyrgyz, `tg` Tajik (Persian-in-Cyrillic; Uzbek ~0.65
+  back), `tk` Turkmen. `kk`/`mn` are built-in, `uz` already franc.
+- **Azeri** (`az` → `azj`) gates at the **tight-cluster grade** — it rides the Oghuz
+  Turkic cluster (Gagauz tops one sample, Turkish ~0.95), but `azj` stays within the
+  margin on its own prose. This **overturns its old exempt verdict**: re-tested
+  multi-sample, real Azerbaijani never falls 0.1 behind, so it gates (gross-error
+  catch only). The fourth "exempt" call corrected by re-testing, after Czech,
+  Luxembourgish and Maltese.
+
+The genuine gaps here stay exempt (see below): Odia, Assamese, Kurdish (Kurmanji).
 
 ## Still exempt only (would false-fail even with the margin)
 
 These drop straight to NLP, because the declared language falls **more than 0.1
 below** a sibling on real prose, or franc has no model for it at all:
 
-- **Azeri** — franc splits it across `azj`/`azb` and `azj` falls to 0.82 behind
-  Uzbek/Turkish.
+- **Odia** (`or`) — franc returns `und` (undetermined) on Odia prose: its script is
+  not in the model at all. Exempt.
+- **Assamese** (`as`) — not modelled; franc reads it as Bengali (`ben`, near-identical
+  Eastern-Nagari script). Staging it as `bn` would be a lie (distinct language), so
+  it stays exempt — the Bosnian principle.
+- **Kurdish (Kurmanji)** (`ku`/`kmr`) — the Latin standard is not in franc's model
+  (it reads as Sorani `ckb`). A Sorani (Arabic-script) culture may gate via `ckb`,
+  untested here; Kurmanji is exempt.
 - **Papiamento** — franc carries `pap`, but the Iberian-creole field (Ladino,
   Tetum, Upper-Guinea Crioulo) is tangled: one in four samples loses `pap`
   outright (one topped Tetum), so it false-fails too often to gate. Exempt — the

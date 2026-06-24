@@ -25,8 +25,7 @@ const lngDetector = new LanguageDetect();
 // Every language languagedetect identifies reliably — its own prose comes back
 // as the top hit — so each can be declared (`language: <code>`) and gated
 // locally. The languages languagedetect cannot separate are routed to franc
-// instead (FRANC_MAP, below); only Czech and Azeri, which false-fail under both
-// engines, stay exempt (NLP / `khai.languages`). See LANGUAGES.md.
+// instead (FRANC_MAP, below). See LANGUAGES.md for the few that stay exempt.
 // A language given here is detected; one declared only via `khai.languages` is exempt.
 const ISO_MAP = {
   // West & South European
@@ -93,8 +92,8 @@ const ISO_MAP = {
 // language stays within the 0.1 confidence margin, so correct prose still passes
 // and only a GROSS mismatch (e.g. English in a Serbian house) is flagged. It is a
 // weaker gate — it will not split Serbian from Bosnian — but it is gating, which
-// is preferred over dropping the language to NLP. Czech and Azeri are the two that
-// genuinely false-fail (ces -> hrv at 0.77; the azj/azb split), so they stay exempt.
+// is preferred over dropping the language to NLP. Azeri rides this tier too (the
+// Oghuz Turkic cluster); Czech is the notable one routed via languagedetect instead.
 const FRANC_MAP = {
   // Clean detection (own prose tops)
   nds: "nds", // Low German — the driving case
@@ -147,9 +146,9 @@ const FRANC_MAP = {
   tah: "tah", // Tahitian (sibling Rarotongan within margin — East Polynesian cluster)
   mah: "mah", // Marshallese
   pau: "pau", // Palauan
-  // East Asia / Southeast Asia — distinct scripts, all top cleanly. These scripts
-  // are scriptio continua (no word spaces); the span gate measures them by
-  // character count (see CONTINUOUS_SCRIPT_RE) so detection actually runs.
+  // East Asia / Southeast Asia — distinct scripts, all top cleanly. The spaceless
+  // ones are scriptio continua; the span gate measures them by character count
+  // (see DENSE_SCRIPT_RE) so detection actually runs.
   // (Vietnamese `vi` is already registered above; it uses spaces.)
   zh: "cmn", // Chinese (Mandarin)
   ja: "jpn", // Japanese
@@ -161,6 +160,20 @@ const FRANC_MAP = {
   bo: "bod", // Tibetan
   // Maritime SE Asia (Latin script, spaced)
   tet: "tet", // Tetum (Timor-Leste; tops cleanly, sibling tdt is its own Dili variety)
+  // South Asia — distinct Brahmic scripts, all top cleanly (gated by character
+  // count, since these scripts are agglutinative: a full sentence is ~10 words).
+  mr: "mar", // Marathi (Devanagari; Hindi not even a near sibling)
+  kn: "kan", // Kannada
+  ml: "mal", // Malayalam
+  // Middle East
+  he: "heb", // Hebrew (Yiddish sibling far below)
+  ps: "pbu", // Pashto (franc's Northern Pashto code; Persian ~0.68 back)
+  // Central Asia
+  ky: "kir", // Kyrgyz
+  tg: "tgk", // Tajik (Persian in Cyrillic; Uzbek ~0.65 back)
+  tk: "tuk", // Turkmen
+  // Tight-cluster grade: Azeri rides the Oghuz Turkic cluster
+  az: "azj", // Azerbaijani (North, Latin; siblings Gagauz/Turkish within margin)
 };
 const FRANC_CODES = new Set(Object.values(FRANC_MAP));
 
@@ -197,13 +210,18 @@ const DEFAULT_PROSE_SECTIONS = [
 
 const DEFAULT_NLP_LANGUAGES = [];
 
-// Scriptio-continua scripts — Han, Japanese kana, Thai, Lao, Khmer, Myanmar,
-// Tibetan — do not delimit words with spaces, so a whitespace-token count badly
-// understates a paragraph's length (a whole Chinese sentence reads as one "word").
-// For these, span length is measured in characters instead. Korean (Hangul) and
-// Vietnamese are excluded on purpose: both space their words and count normally.
-const CONTINUOUS_SCRIPT_RE =
-  /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Thai}\p{Script=Lao}\p{Script=Khmer}\p{Script=Myanmar}\p{Script=Tibetan}]/gu;
+// Dense scripts — ones where a whitespace-token count badly understates a
+// paragraph's length, so span length is measured in characters instead. Two
+// families qualify:
+//   • scriptio continua (no word spaces): Han, Japanese kana, Thai, Lao, Khmer,
+//     Myanmar, Tibetan — a whole Chinese sentence reads as one "word".
+//   • agglutinative Brahmic (spaced, but one orthographic word packs many
+//     morphemes): Devanagari, Bengali, Gurmukhi, Gujarati, Oriya, Tamil, Telugu,
+//     Kannada, Malayalam, Sinhala — a full Malayalam sentence is ~10 words.
+// Korean (Hangul) and Latin/Cyrillic/Arabic-script languages are excluded: they
+// space their words and 15 of them is a reasonable floor, so they count normally.
+const DENSE_SCRIPT_RE =
+  /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Thai}\p{Script=Lao}\p{Script=Khmer}\p{Script=Myanmar}\p{Script=Tibetan}\p{Script=Devanagari}\p{Script=Bengali}\p{Script=Gurmukhi}\p{Script=Gujarati}\p{Script=Oriya}\p{Script=Tamil}\p{Script=Telugu}\p{Script=Kannada}\p{Script=Malayalam}\p{Script=Sinhala}]/gu;
 
 /**
  * Normalizes a language code or name to the lowercase name expected by languagedetect.
@@ -445,10 +463,10 @@ export function validateLanguageOfFile(filePath, projectPath, options = {}) {
 
     for (const para of paragraphs) {
       const words = para.split(/\s+/).filter(Boolean);
-      // Too short to trust — but measure spaceless scripts by character count, or
-      // a whole Chinese/Thai/etc. paragraph (one whitespace token) is wrongly skipped.
-      const continuousChars = (para.match(CONTINUOUS_SCRIPT_RE) || []).length;
-      if (words.length < minSpanWords && continuousChars < minSpanChars) continue;
+      // Too short to trust — but measure dense scripts by character count, or a
+      // whole Chinese/Thai/Malayalam paragraph (few whitespace tokens) is wrongly skipped.
+      const denseChars = (para.match(DENSE_SCRIPT_RE) || []).length;
+      if (words.length < minSpanWords && denseChars < minSpanChars) continue;
 
       // Check exceptions
       const lowerPara = para.toLowerCase();
@@ -466,9 +484,9 @@ export function validateLanguageOfFile(filePath, projectPath, options = {}) {
 
       if (diff >= confidenceMargin) {
         const snippet = para.length > 80 ? para.slice(0, 77) + "..." : para;
-        // Report a word count for spaced text, a character count for spaceless scripts.
+        // Report a word count for spaced text, a character count for dense scripts.
         const measure =
-          words.length >= minSpanWords ? `${words.length} words` : `${continuousChars} chars`;
+          words.length >= minSpanWords ? `${words.length} words` : `${denseChars} chars`;
         errors.push(
           `${topLanguage.charAt(0).toUpperCase() + topLanguage.slice(1)} span ` +
             `(${measure}) in ## ${section.header}: '${snippet}' ` +
