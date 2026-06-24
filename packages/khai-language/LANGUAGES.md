@@ -168,8 +168,10 @@ Zealand are covered by `en` (NZ also by `mi`).
 Distinct scripts make this the lowest-risk batch — franc tops each at 1.0 with no
 near sibling: `zh` Chinese (`cmn`) · `ja` Japanese (`jpn`) · `ko` Korean (`kor`) ·
 `th` Thai · `km` Khmer · `lo` Lao · `my` Burmese (`mya`) · `bo` Tibetan (`bod`).
-(`vi` Vietnamese was already registered; `id` Indonesian and `ceb` Cebuano are
-built-in.)
+Maritime SE Asia adds `tet` Tetum (Timor-Leste), Latin-script and spaced: it tops
+its own prose at 1.0 (its only near sibling is `tdt`, Tetum's own Dili-variety
+code; Portuguese loanwords don't pull it off `tet`). (`vi` Vietnamese was already
+registered; `id` Indonesian, `ms` Malay and `ceb` Cebuano are built-in/franc.)
 
 The catch here is not detection but **length measurement**. Most of these scripts
 are _scriptio continua_ — Chinese, Japanese, Thai, Khmer, Lao, Burmese and Tibetan
