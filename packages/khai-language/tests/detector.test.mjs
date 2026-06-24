@@ -590,6 +590,40 @@ In the middle of the journey of our life I found myself within a forest dark, fo
       "pau",
       "A rokui el chad a mle cherrungel e di uereom el ngii a llemeltir me a klisichir. Ngarngii a tekoi e reng er tir el rokui.",
     ],
+    // East Asia / SE Asia — distinct scripts, all clean. The spaceless ones are
+    // gated by character count (CONTINUOUS_SCRIPT_RE); Korean/Vietnamese use spaces.
+    [
+      "zh",
+      "人人生而自由，在尊严和权利上一律平等。他们赋有理性和良心，并应以兄弟关系的精神相对待。从前有一个国王，他有三个女儿。",
+    ],
+    [
+      "ja",
+      "すべての人間は、生まれながらにして自由であり、かつ、尊厳と権利とについて平等である。人間は、理性と良心とを授けられており、互いに同胞の精神をもって行動しなければならない。",
+    ],
+    [
+      "ko",
+      "모든 인간은 태어날 때부터 자유로우며 그 존엄과 권리에 있어 동등하다. 인간은 천부적으로 이성과 양심을 부여받았으며 서로 형제애의 정신으로 행동하여야 한다.",
+    ],
+    [
+      "th",
+      "มนุษย์ทั้งหลายเกิดมามีอิสระและเสมอภาคกันในเกียรติศักดิ์และสิทธิ ต่างมีเหตุผลและมโนธรรม และควรปฏิบัติต่อกันด้วยเจตนารมณ์แห่งภราดรภาพ",
+    ],
+    [
+      "km",
+      "មនុស្សទាំងអស់កើតមកមានសេរីភាព និងសមភាពក្នុងសិទ្ធិ និងសេចក្ដីថ្លៃថ្នូរ។ មនុស្សគ្រប់រូបសុទ្ធតែមានវិចារណញ្ញាណ និងសតិសម្បជញ្ញៈ។",
+    ],
+    [
+      "lo",
+      "ມະນຸດທຸກຄົນເກີດມາມີສິດເສລີພາບ ແລະ ສະເໝີພາບກັນໃນກຽດສັກສີ ແລະ ສິດທິ ທຸກໆຄົນມີເຫດຜົນແລະມະໂນທຳ ແລະ ຄວນປະພຶດຕໍ່ກັນດ້ວຍຄວາມເປັນອ້າຍນ້ອງ",
+    ],
+    [
+      "my",
+      "လူတိုင်းသည် တူညီ လွတ်လပ်သော ဂုဏ်သိက္ခာဖြင့်လည်းကောင်း တူညီလွတ်လပ်သော အခွင့်အရေးများဖြင့်လည်းကောင်း မွေးဖွားလာသူများဖြစ်သည်။",
+    ],
+    [
+      "bo",
+      "འགྲོ་བ་མིའི་རིགས་རྒྱུད་ཡོངས་ལ་སྐྱེས་ཙམ་ཉིད་ནས་ཆེ་མཐོངས་དང་ཐོབ་ཐང་གི་རང་དབང་འདྲ་མཉམ་དུ་ཡོད་ལ། ཁོང་ཚོར་རང་བྱུང་གི་བློ་རྩལ་ཡོད།",
+    ],
   ])("franc-routes %s and gates its own prose clean", (code, prose) => {
     const projectDir = join(FIXTURES_DIR, `franc-${code}`);
     const playDir = join(projectDir, "plays", "p");
@@ -615,6 +649,36 @@ In the middle of the journey of our life I found myself within a forest dark, fo
     const errors = validateLanguageOfFile(file, projectDir);
     expect(errors).toHaveLength(1);
     expect(errors[0]).toMatch(/expected: rus/);
+  });
+
+  // The span gate must run on scriptio-continua scripts (no word spaces), where a
+  // whole paragraph is one whitespace token. Without the character-count fallback
+  // every Chinese/Japanese/Thai span is skipped and nothing is ever checked.
+  it("gates a scriptio-continua (Chinese) house by character count", () => {
+    const projectDir = join(FIXTURES_DIR, "zh-house");
+    const playDir = join(projectDir, "plays", "p");
+    mkdirSync(playDir, { recursive: true });
+    writeFileSync(join(projectDir, "README.md"), `---\nlanguage: zh\n---\n`);
+    writeFileSync(join(playDir, "play_p.md"), `---\nkhai: play\n---\n`);
+
+    // 1. Native Chinese prose passes (and is genuinely checked — see step 2).
+    const ok = join(playDir, "persona_zh.md");
+    writeFileSync(
+      ok,
+      `---\nkhai: persona\n---\n# Persona: ZH\n\n## Projection\n人人生而自由，在尊严和权利上一律平等。他们赋有理性和良心，并应以兄弟关系的精神相对待。\n`,
+    );
+    expect(validateLanguageOfFile(ok, projectDir)).toHaveLength(0);
+
+    // 2. A Japanese span (also spaceless) in a Chinese house is flagged — proof the
+    // gate runs on continuous-script text rather than skipping it as one "word".
+    const bad = join(playDir, "persona_ja.md");
+    writeFileSync(
+      bad,
+      `---\nkhai: persona\n---\n# Persona: JA\n\n## Projection\nすべての人間は、生まれながらにして自由であり、かつ、尊厳と権利とについて平等である。人間は理性と良心とを授けられている。\n`,
+    );
+    const errors = validateLanguageOfFile(bad, projectDir);
+    expect(errors).toHaveLength(1);
+    expect(errors[0]).toMatch(/chars\).*expected: cmn/);
   });
 
   // Czech gates at the tight-cluster grade via languagedetect: Slovak (its
