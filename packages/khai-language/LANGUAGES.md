@@ -231,6 +231,21 @@ The last and most mixed frontier. The Commonwealth pass took the anglophone slic
   grade `bm` Bambara (Maninka `emk` sibling) and `tw` Twi/Akan (Fante `fat` sibling).
 - **Island** — `mg` Malagasy (franc's Plateau-Malagasy `plt`), clean and isolated.
 
+**Round 2** saturates the continent's nationals — eleven more, each topping its own
+prose (close siblings within the margin, gross-error grade):
+
+- **Sotho-Tswana / Nguni (South Africa & neighbours)** — `tn` Tswana, `nso` Sepedi
+  (the `sot`/`tsn`/`nso` trio all sit within each other's margin), `ts` Tsonga,
+  `ve` Venda, `ss` Swati (Nguni cluster with `zu`/`xh`). South Africa's eleven
+  officials now all gate.
+- **Great Lakes** — `rn` Kirundi (Burundi; the `kin`/`run` pair, like Kinyarwanda).
+- **Central Africa** — `kg` Kikongo and `sg` Sango at tight-cluster grade (Kikongo
+  rides its creole Kituba `ktu`; Sango rides Lingala).
+- **West Africa & Sahel** — `ee` Ewe (Togo/Ghana), `ff` Fula (franc's Nigerian
+  Fulfulde `fuv`; Pular `fuf` sibling within margin).
+- **North Africa** — `tzm` Tamazight (Morocco), clean in **Latin/Berber-Latin**;
+  Tifinagh script is untested and likely exempt. (`ar` MSA covers the Arabic nationals.)
+
 ## Still exempt only (would false-fail even with the margin)
 
 These drop straight to NLP, because the declared language falls **more than 0.1
