@@ -1,0 +1,70 @@
+{
+  "name": "@chbrain/khai-engine-superstition",
+  "version": "0.1.0",
+  "description": "khai engine content, the superstition domain: magical causation as position -- the link a persona reads between events that share no mechanism, by contact, resemblance, control, sign, or luck.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/superstition"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "superstition",
+    "tagline": "Magical causation as position: the link a persona reads between events that share no mechanism -- by contact, resemblance, control, sign, or luck. The read holds against disconfirmation because it cannot be disproved from within.",
+    "type": "position",
+    "anchor": "position_superstition.md",
+    "expressions": {
+      "contagion": "position_contagion.md",
+      "similarity": "position_similarity.md",
+      "control": "position_control.md",
+      "omen": "position_omen.md",
+      "luck": "position_luck.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_superstition.md) declares a magical-causal read: the persona holds a link between events that share no mechanism -- an act, object, sign, or contact taken to bear on an outcome it cannot reach. The law makes the persona that is given the engine carry one such read.",
+      "issue": "Five links a persona may read where none exists -- contagion (trace passes by touch), similarity (the image is the thing), control (one's act sways chance), omen (a sign carries intent), and luck (fortune adheres and is spent). Each is a position under the root; the persona occupies one toward a given object or event. Its mark is that disconfirming evidence does not move it: the link reads a null result as the wrong rite or the dormant charge, never as no link.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the read is understood wherever it appears. The link: each persona given the engine carries, under Projection, the specific magical link it reads in the scene.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona that holds the engine links a real position. Whether the magical link is true to the persona, and held against the evidence in its own terms, is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the superstitious persona its read under Projection -- the specific link it holds, carrying the anchor upward. Read it in what the persona does under uncertainty and how it explains away the miss, never as a label."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}
