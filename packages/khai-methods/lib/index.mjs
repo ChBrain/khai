@@ -1,11 +1,11 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import yaml from "js-yaml";
+import * as yaml from "js-yaml";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-// Split a content file's YAML frontmatter from its body, on js-yaml 4.2.0 — the
+// Split a content file's YAML frontmatter from its body, on js-yaml 5.x — the
 // merge-key quadratic-DoS in gray-matter's bundled js-yaml 3.x (GHSA-h67p-54hq-rp68)
 // is closed here. A malformed block throws a YAMLException, exactly the case
 // parseMethod's try/catch already absorbs.
