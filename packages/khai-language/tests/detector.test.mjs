@@ -779,6 +779,19 @@ In the middle of the journey of our life I found myself within a forest dark, fo
       "kg",
       "Bantu bawonso babutukidi mu kimpwanza ye mu luzitu ye nswa zimosi. Bena ye diela ye kansansa ye bafwene kuzingila bonso bampangi mu kintwadi.",
     ],
+    // West African creoles (pov/kri clean; pcm tight-cluster within English's margin)
+    [
+      "pov",
+      "Tudu pekaduru ta padidu libri i igual na dignidadi ku diritu. E tene razon ku konsiensia, i e dibi di trata n'utru na spiritu di ermondadi suma ermon.",
+    ],
+    [
+      "kri",
+      "Ɔl mɔtalman dɛn bɔn fri ɛn ekwal pan digniti ɛn rayt. Dɛn gɛt sɛns ɛn kɔnshɛns, ɛn dɛn fɔ liv lɛk brɔda ɛn sista na wan fambul.",
+    ],
+    [
+      "pcm",
+      "One time, one king bin dey wey get three pikin girl and one big rich country far far behind di high mountain dem and di deep river.",
+    ],
   ])("franc-routes %s and gates its own prose clean", (code, prose) => {
     const projectDir = join(FIXTURES_DIR, `franc-${code}`);
     const playDir = join(projectDir, "plays", "p");

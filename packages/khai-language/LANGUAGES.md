@@ -245,6 +245,13 @@ prose (close siblings within the margin, gross-error grade):
   Fulfulde `fuv`; Pular `fuf` sibling within margin).
 - **North Africa** — `tzm` Tamazight (Morocco), clean in **Latin/Berber-Latin**;
   Tifinagh script is untested and likely exempt. (`ar` MSA covers the Arabic nationals.)
+- **West African creoles / lingua francas** — `pov` Guinea-Bissau Kriol (clean) ·
+  `kri` Krio (Sierra Leone, clean) · `pcm` Nigerian Pidgin (tight-cluster, English
+  sibling within margin). Registering these makes them **detector-known**, so a
+  nation that uses its creole as a base `language:` gates locally rather than needing
+  the exempt list — even where the current call is to author in the official-language
+  variety (French/Portuguese/English, all built-in) with the creole only flavouring
+  the prose. **Cape Verdean Kriolu** (`kea`) is the exception — see exempt below.
 
 ## Still exempt only (would false-fail even with the margin)
 
@@ -274,6 +281,12 @@ below** a sibling on real prose, or franc has no model for it at all:
   outright (one topped Tetum), so it false-fails too often to gate. Exempt — the
   Caribbean creole that looked clean on a single sample but didn't survive
   multi-sample, the same way Czech once did.
+- **Cape Verdean Kriolu** (`kea`) — franc carries `kea`, but Cape Verdean and
+  Guinea-Bissau creole are both Upper Guinea Portuguese creoles, and franc reads
+  Kriolu prose as Guinea-Bissau Kriol (`pov` tops at 1.0, `kea` ~0.75, gap > margin).
+  So `kea` false-fails to its `pov` sibling and stays exempt — even though `pov`
+  itself gates cleanly. A Cape Verde culture authoring wholly in Kriolu takes the
+  `khai.languages` path.
 - **Caribbean English-lexified creoles** — Jamaican Patois (`jam`), Belizean Kriol
   (`bzj`), Sranan Tongo (`srn`), Bajan, Guyanese, Trinidadian and the like: franc
   has no model for them (it carries the broader `pis`/`kri`/`tpi` creoles, not the
