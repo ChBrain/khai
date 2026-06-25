@@ -409,6 +409,10 @@ In the middle of the journey of our life I found myself within a forest dark, fo
       "Dat weer maal en Keerl de harr dree Dochter un en groot un riek Land achter de hoge Bargen wied weg.",
     ],
     [
+      "hsb",
+      "Wšitcy čłowjekojo su wot naroda swobodni a su jenacy po dostojnosći a prawach. Woni su z rozumom a swědomjom obdarjeni a maja mjez sobu w duchu bratrowstwa wobchadźeć.",
+    ],
+    [
       "el",
       "Μια φορά κι έναν καιρό ήταν ένας βασιλιάς που είχε τρεις κόρες και ένα μεγάλο πλούσιο βασίλειο.",
     ],
