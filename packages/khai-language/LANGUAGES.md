@@ -288,6 +288,17 @@ below** a sibling on real prose, or franc has no model for it at all:
   (1.0 − 0 > margin). The `khai.languages` exempt path, which skips local detection,
   is the only correct route. A Kiribati / Tuvalu / Nauru culture authors natively
   this way; verification falls to the NLP layer.
+- **High German dialects** — Bavarian (`bar`), Swiss German / Alemannic (`gsw`),
+  Kölsch (`ksh`), Palatine (`pfl`), Swabian (`swg`): the **inverse** of the
+  distinct-script case. They are too _close_ to Standard German, so franc reads them
+  as `deu` (the attractor). Even `gsw`, which franc does model, false-fails 2-in-3
+  (deu tops, gsw ~0.85). Only **Low German** (`nds`) is distinct enough to gate (it
+  leans Dutch-ward) — the driving case. **Upper Sorbian** (`hsb`) also gates, but it
+  is a West Slavic regional language, not a German dialect, so nothing German is near
+  it. Lower Sorbian (`dsb`, reads as `hsb`), North Frisian (`frr`, reads as West
+  Frisian) and Saterland Frisian (`stq`, reads as `nds`) are exempt. For a dialect
+  culture, declare Standard German (`de`) as the house and the dialect via
+  `khai.languages`.
 - **Unmodelled by franc** — Cornish (reads as Breton), and the like. (Maltese was
   listed here on assumption; franc in fact models `mlt` and gates it clean — another
   case where the both-engines re-test overturned an untested "exempt" verdict.)

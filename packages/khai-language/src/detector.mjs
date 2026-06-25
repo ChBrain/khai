@@ -97,6 +97,7 @@ const ISO_MAP = {
 const FRANC_MAP = {
   // Clean detection (own prose tops)
   nds: "nds", // Low German — the driving case
+  hsb: "hsb", // Upper Sorbian (West Slavic regional language of Germany; isolated)
   el: "ell", // Greek
   ca: "cat", // Catalan
   eu: "eus", // Basque
