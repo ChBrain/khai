@@ -17,11 +17,11 @@
 // (advisory, the standard's "recommended" rules).
 
 import { createHash } from "node:crypto";
-import yaml from "js-yaml";
+import * as yaml from "js-yaml";
 
 export const sha256 = (text) => createHash("sha256").update(text, "utf8").digest("hex");
 
-// Frontmatter read/write on js-yaml 4.2.0 — the merge-key quadratic-DoS in
+// Frontmatter read/write on js-yaml 5.x — the merge-key quadratic-DoS in
 // gray-matter's bundled js-yaml 3.x (GHSA-h67p-54hq-rp68) is closed here. Shared
 // with build.mjs so the package carries one YAML surface, not two.
 // parseFrontmatter throws on a malformed block (callers catch it); stringifyFrontmatter
