@@ -729,6 +729,52 @@ In the middle of the journey of our life I found myself within a forest dark, fo
       "hy",
       "Բոլոր մարդիկ ծնվում են ազատ ու հավասար իրենց արժանապատվությամբ ու իրավունքներով։ Նրանք օժտված են բանականությամբ ու խղճով և պարտավոր են միմյանց հանդեպ եղբայրաբար վարվել։",
     ],
+    // Africa round 2 — Sotho-Tswana, Nguni, and other Bantu/Niger-Congo nationals.
+    [
+      "rn",
+      "Abantu bose bavuka ari abidegemvya kandi bangana mu gateka no mu burenganzira. Bafise ubwenge n'umutima kandi bategerezwa kwubahana nk'abavandimwe mu bumwe.",
+    ],
+    [
+      "tn",
+      "Batho botlhe ba tsholwa ba gololesegile mme ba lekana ka seriti le ditshwanelo. Ba abetswe go nna le mowa wa go akanya le segakolodi mme ba tshwanetse go direlana.",
+    ],
+    [
+      "ts",
+      "Vanhu hinkwavo va velekiwa va ntshunxekile naswona va ringana hi vunhu na timfanelo. Va hlawuriwe hi mianakanyo na ripfalo naswona va fanele va tirhisana hi moya.",
+    ],
+    [
+      "ve",
+      "Vhathu vhoṱhe vha bebwa vha vhofholowa na u lingana kha tshirunzi na pfanelo. Vho ṋewa muhumbulo na luvalo nahone vha tea u farana sa vharwa na vhakomana.",
+    ],
+    [
+      "ss",
+      "Bonkhe bantfu batalwa bakhululekile balingana ngalokufananako esitfunti nakulamalungelo. Banikwe umcondvo nanembeza futsi kufanele batiphatse ngemoya webuzalwane.",
+    ],
+    [
+      "nso",
+      "Batho ka moka ba belegwa ba lokologile le go lekana ka seriti le ditokelo. Ba filwe monagano le letswalo gomme ba swanetse go swarana ka moya wa borwarra ka botlalo.",
+    ],
+    [
+      "ee",
+      "Wodzi amegbetowo katã ablode me eye wodzo de bubu kple gomekpokpo sosoe me. Susu kple dzitsinya le wo si eye wole be woawo nu le novinyenye ƒe gbogbo me.",
+    ],
+    [
+      "ff",
+      "Innama aadee fof e jibinte e ndimaagu e potal e jojjanɗe. Eɓe ngoodi miijo e hakkille ene poti huufondirde e nder enɗam paykuyaagu.",
+    ],
+    [
+      "tzm",
+      "Imdanen akken ma llan ttlalen d ilelliyen msawan di lḥerma d yizerfan. Sɛan tamusni d nniya u yessefk ad tili tegmatt gar asen di liman.",
+    ],
+    // Tight-cluster grade: Sango (Lingala sibling), Kikongo (Kituba sibling).
+    [
+      "sg",
+      "Azo kue ayeke na ngangu na ndo ti dutingo na nzoni na adroit ti ala ayeke legeoko. Ala kue awara ndara na bibe so akpengba ala ti sara nzoni.",
+    ],
+    [
+      "kg",
+      "Bantu bawonso babutukidi mu kimpwanza ye mu luzitu ye nswa zimosi. Bena ye diela ye kansansa ye bafwene kuzingila bonso bampangi mu kintwadi.",
+    ],
   ])("franc-routes %s and gates its own prose clean", (code, prose) => {
     const projectDir = join(FIXTURES_DIR, `franc-${code}`);
     const playDir = join(projectDir, "plays", "p");

@@ -194,6 +194,19 @@ const FRANC_MAP = {
   // Caucasus — unique alphabets, fully isolated (nothing else in the ranking)
   ka: "kat", // Georgian (Mkhedruli)
   hy: "hye", // Armenian
+  // Africa, round 2 — Sotho-Tswana, Nguni, and Bantu/Niger-Congo nationals.
+  // Each tops its own prose; close siblings sit within the margin (gross-error grade).
+  rn: "run", // Kirundi (Burundi; Kinyarwanda `kin` sibling within margin)
+  tn: "tsn", // Tswana (Botswana; Sotho-Tswana cluster)
+  ts: "tso", // Tsonga (South Africa)
+  ve: "ven", // Venda (South Africa)
+  ss: "ssw", // Swati (Eswatini; Nguni cluster with Zulu/Xhosa)
+  nso: "nso", // Sepedi / Northern Sotho (South Africa; Sotho-Tswana cluster)
+  ee: "ewe", // Ewe (Togo/Ghana)
+  ff: "fuv", // Fula (franc's Nigerian Fulfulde; Pular `fuf` sibling within margin)
+  tzm: "tzm", // Tamazight (Morocco; Latin/Berber-Latin — Tifinagh untested)
+  sg: "sag", // Sango (CAR; sibling Lingala within margin — tight-cluster)
+  kg: "kng", // Kikongo (Congo; sibling Kituba `ktu` within margin — tight-cluster)
 };
 const FRANC_CODES = new Set(Object.values(FRANC_MAP));
 
