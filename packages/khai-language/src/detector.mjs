@@ -208,6 +208,11 @@ const FRANC_MAP = {
   tzm: "tzm", // Tamazight (Morocco; Latin/Berber-Latin — Tifinagh untested)
   sg: "sag", // Sango (CAR; sibling Lingala within margin — tight-cluster)
   kg: "kng", // Kikongo (Congo; sibling Kituba `ktu` within margin — tight-cluster)
+  // West African creoles / lingua francas (own prose tops; Cape Verdean Kriolu
+  // stays exempt — it false-fails to Guinea-Bissau Kriol, the Upper Guinea sibling).
+  pov: "pov", // Guinea-Bissau Kriol (Upper Guinea Creole; clean)
+  kri: "kri", // Krio (Sierra Leone; clean)
+  pcm: "pcm", // Nigerian Pidgin / Naija (tight-cluster; English sibling within margin)
 };
 const FRANC_CODES = new Set(Object.values(FRANC_MAP));
 
