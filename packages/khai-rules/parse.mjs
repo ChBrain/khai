@@ -1,7 +1,7 @@
 // Minimal, dependency-light markdown structural parser for khai content files.
 // We only need frontmatter + the header tree + section bodies; no full AST.
 
-import { load as yamlLoad } from "js-yaml";
+import yaml from "js-yaml";
 
 /**
  * @typedef {{ level: number, text: string, line: number }} Header
@@ -17,7 +17,7 @@ import { load as yamlLoad } from "js-yaml";
  * numbers and CRLF checks stay exact). A leading BOM is tolerated. YAML loads
  * with js-yaml's safe default loader (no custom types), which **throws** on a
  * malformed block so callers can surface a parse failure instead of guessing.
- * Built on js-yaml 5.x, which closes the merge-key DoS the 3.x line (pulled in by
+ * Built on js-yaml 4.x, which closes the merge-key DoS the 3.x line (pulled in by
  * gray-matter) is exposed to.
  * @param {string} text
  * @returns {{ data: Record<string, unknown>, content: string }}
@@ -27,7 +27,7 @@ export function parseFrontmatter(text) {
   if (str.charCodeAt(0) === 0xfeff) str = str.slice(1); // strip a leading UTF-8 BOM
   const m = /^---[ \t]*\r?\n([\s\S]*?)\r?\n---[ \t]*(?:\r?\n|$)/.exec(str);
   if (!m) return { data: {}, content: str };
-  const loaded = yamlLoad(m[1]);
+  const loaded = yaml.load(m[1]);
   const data = loaded && typeof loaded === "object" ? loaded : {};
   return { data, content: str.slice(m[0].length) };
 }

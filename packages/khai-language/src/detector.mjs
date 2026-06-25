@@ -1,10 +1,10 @@
 import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
 import { join, dirname, resolve, basename, relative, isAbsolute } from "node:path";
-import { load as yamlLoad } from "js-yaml";
+import yaml from "js-yaml";
 import LanguageDetect from "languagedetect";
 import { francAll } from "franc-all";
 
-// Split a content file's YAML frontmatter from its body, on js-yaml 5.x — the
+// Split a content file's YAML frontmatter from its body, on js-yaml 4.2.0 — the
 // merge-key quadratic-DoS in gray-matter's bundled js-yaml 3.x (GHSA-h67p-54hq-rp68)
 // is closed here. Frontmatter opens only on a leading `---` fence; a malformed
 // block throws, matching the prior gray-matter behaviour the caller already absorbs.
@@ -13,7 +13,7 @@ function parseFrontmatter(text) {
   if (str.charCodeAt(0) === 0xfeff) str = str.slice(1);
   const m = /^---[ \t]*\r?\n([\s\S]*?)\r?\n---[ \t]*(?:\r?\n|$)/.exec(str);
   if (!m) return { data: {}, content: str };
-  const loaded = yamlLoad(m[1]);
+  const loaded = yaml.load(m[1]);
   return {
     data: loaded && typeof loaded === "object" ? loaded : {},
     content: str.slice(m[0].length),
