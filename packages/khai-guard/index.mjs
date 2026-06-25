@@ -348,11 +348,13 @@ export function classifyBranch(branchName, config = DEFAULT_CONFIG) {
   if (!Array.isArray(lanes) || typeof branchName !== "string" || branchName.length === 0) {
     return null;
   }
-  for (const lane of lanes) {
-    const captured = matchLanePattern(lane.pattern, branchName);
-    if (!captured) continue;
-    const unit = "unit" in lane ? (captured[lane.unit] ?? null) : null;
-    return { lane: lane.pattern.split("/")[0], layer: lane.layer, unit };
+  for (const candidate of branchNameCandidates(branchName)) {
+    for (const lane of lanes) {
+      const captured = matchLanePattern(lane.pattern, candidate);
+      if (!captured) continue;
+      const unit = "unit" in lane ? (captured[lane.unit] ?? null) : null;
+      return { lane: lane.pattern.split("/")[0], layer: lane.layer, unit };
+    }
   }
   return null;
 }
@@ -368,14 +370,58 @@ function resolveAllow(lane, unit) {
 function findLane(branchName, config) {
   const lanes = config.branchScope?.lanes;
   if (!Array.isArray(lanes)) return null;
-  for (const lane of lanes) {
-    const captured = matchLanePattern(lane.pattern, branchName);
-    if (captured) {
-      const unit = "unit" in lane ? (captured[lane.unit] ?? null) : null;
-      return { lane, captured, unit };
+  for (const candidate of branchNameCandidates(branchName)) {
+    for (const lane of lanes) {
+      const captured = matchLanePattern(lane.pattern, candidate);
+      if (captured) {
+        const unit = "unit" in lane ? (captured[lane.unit] ?? null) : null;
+        return { lane, captured, unit };
+      }
     }
   }
   return null;
+}
+
+/**
+ * Produce branch-name candidates for lane matching.
+ * For Copilot branches we also try the name with `copilot/` removed so
+ * `copilot/<lane>/...` is treated as `<lane>/...`.
+ */
+function branchNameCandidates(branchName) {
+  if (typeof branchName !== "string" || branchName.length === 0) return [];
+  return branchName.startsWith("copilot/")
+    ? [branchName, branchName.slice("copilot/".length)]
+    : [branchName];
+}
+
+// Synthetic topic suffix used only to shape an owner lane string into a
+// branch-pattern candidate when inferring compact legacy Copilot names.
+const COMPACT_BRANCH_SYNTHETIC_TOPIC = "legacy";
+
+/**
+ * Infer lane for compact Copilot branches like `copilot/<text-without-slash>`
+ * (e.g. `copilot/add-feature`) by attributing changed paths.
+ * Full prefixed-lane names like `copilot/governance/fix-x` are not compact.
+ * Returns null unless exactly one owner lane claims the change.
+ */
+function inferCompactCopilotLane(branchName, changedPaths, config) {
+  if (typeof branchName !== "string" || !branchName.startsWith("copilot/")) return null;
+  const stripped = branchName.slice("copilot/".length);
+  if (stripped.includes("/")) return null;
+  const owners = new Set();
+  for (const p of changedPaths) {
+    const owner = laneForPath(p, config);
+    if (owner) owners.add(owner);
+  }
+  if (owners.size !== 1) return null;
+  const owner = owners.values().next().value;
+  const segs = owner.split("/");
+  if (segs.length === 0) return null;
+  const synthetic =
+    segs.length > 1
+      ? `${segs[0]}/${segs[1]}/${COMPACT_BRANCH_SYNTHETIC_TOPIC}`
+      : `${segs[0]}/${COMPACT_BRANCH_SYNTHETIC_TOPIC}`;
+  return findLane(synthetic, config);
 }
 
 // Recover the {name} a fan-out lane binds for a path. A lane may list several
@@ -497,7 +543,8 @@ function riderMatcher(config) {
  * into per-lane branches that merge in layer order.
  */
 export function checkBranchScope(branchName, changedPaths, config = DEFAULT_CONFIG) {
-  const matched = findLane(branchName, config);
+  const matched =
+    findLane(branchName, config) ?? inferCompactCopilotLane(branchName, changedPaths, config);
   if (!matched) {
     return {
       ok: false,
