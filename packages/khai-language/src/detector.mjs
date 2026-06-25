@@ -1,10 +1,10 @@
 import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
 import { join, dirname, resolve, basename, relative, isAbsolute } from "node:path";
-import yaml from "js-yaml";
+import * as yaml from "js-yaml";
 import LanguageDetect from "languagedetect";
 import { francAll } from "franc-all";
 
-// Split a content file's YAML frontmatter from its body, on js-yaml 4.2.0 — the
+// Split a content file's YAML frontmatter from its body, on js-yaml 5.x (named exports only) — the
 // merge-key quadratic-DoS in gray-matter's bundled js-yaml 3.x (GHSA-h67p-54hq-rp68)
 // is closed here. Frontmatter opens only on a leading `---` fence; a malformed
 // block throws, matching the prior gray-matter behaviour the caller already absorbs.
