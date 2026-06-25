@@ -1,5 +1,25 @@
 # @chbrain/khai-language
 
+## 0.1.18
+
+### Patch Changes
+
+- fa14700: Africa round 2 — register eleven more national languages, saturating the
+  continent. Sotho-Tswana/Nguni: `tn` Tswana, `nso` Sepedi, `ts` Tsonga, `ve`
+  Venda, `ss` Swati (so South Africa's eleven officials now all gate). Great Lakes:
+  `rn` Kirundi. Central Africa: `kg` Kikongo and `sg` Sango (tight-cluster, riding
+  Kituba and Lingala respectively). West Africa: `ee` Ewe, `ff` Fula. North Africa:
+  `tzm` Tamazight (Latin/Berber-Latin; Tifinagh untested). Each tops its own prose
+  multi-sample, with close siblings within the margin (gross-error grade).
+- 9d90256: Register Upper Sorbian (`hsb`), the West Slavic regional language of Lusatia — it
+  gates clean (isolated; nearest sibling Polish ~0.8 back) because it is not German
+  at all. Documents the German-dialect finding: the High German dialects (Bavarian,
+  Swiss German/Alemannic, Kölsch, Palatine, Swabian) are the inverse of the
+  distinct-script case — too close to Standard German, so franc reads them as `deu`
+  and they stay exempt. Low German (`nds`) remains the one German dialect distinct
+  enough to gate; a dialect culture declares Standard German and the dialect via
+  `khai.languages`.
+
 ## 0.1.17
 
 ### Patch Changes
