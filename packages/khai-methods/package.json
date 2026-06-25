@@ -31,7 +31,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "js-yaml": "^4.2.0"
+    "js-yaml": "^5.1.0"
   },
   "devDependencies": {
     "vitest": "^4.1.9"
