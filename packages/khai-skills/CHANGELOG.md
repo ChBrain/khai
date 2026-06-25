@@ -1,5 +1,13 @@
 # @chbrain/khai-skills
 
+## 0.0.30
+
+### Patch Changes
+
+- 9a75953: Migrate js-yaml to v5 in skills lane (4/4). js-yaml 5 removed the default export; switched to namespace import `import * as yaml` and bumped the dependency to ^5.1.0 in @chbrain/khai-skills.
+- Updated dependencies [a37cb14]
+  - @chbrain/khai-arch@0.1.20
+
 ## 0.0.29
 
 ### Patch Changes

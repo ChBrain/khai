@@ -1,5 +1,11 @@
 # @chbrain/khai-guard
 
+## 0.1.13
+
+### Patch Changes
+
+- 18da675: Treat `copilot/<lane>/...` branch names as aliases of `<lane>/...` in branch classification and branch-scope checks.
+
 ## 0.1.12
 
 ### Patch Changes
