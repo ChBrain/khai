@@ -43,7 +43,7 @@
   "dependencies": {
     "@chbrain/khai-arch": "^0.1.19",
     "@chbrain/khai-pack": "^0.0.3",
-    "js-yaml": "^4.2.0"
+    "js-yaml": "^5.1.0"
   },
   "devDependencies": {
     "vitest": "^4.1.9"
