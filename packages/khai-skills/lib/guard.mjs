@@ -17,11 +17,11 @@
 // (advisory, the standard's "recommended" rules).
 
 import { createHash } from "node:crypto";
-import yaml from "js-yaml";
+import { load as yamlLoad, dump as yamlDump } from "js-yaml";
 
 export const sha256 = (text) => createHash("sha256").update(text, "utf8").digest("hex");
 
-// Frontmatter read/write on js-yaml 4.2.0 — the merge-key quadratic-DoS in
+// Frontmatter read/write on js-yaml 5.x — the merge-key quadratic-DoS in
 // gray-matter's bundled js-yaml 3.x (GHSA-h67p-54hq-rp68) is closed here. Shared
 // with build.mjs so the package carries one YAML surface, not two.
 // parseFrontmatter throws on a malformed block (callers catch it); stringifyFrontmatter
@@ -31,7 +31,7 @@ export function parseFrontmatter(text) {
   if (str.charCodeAt(0) === 0xfeff) str = str.slice(1);
   const m = /^---[ \t]*\r?\n([\s\S]*?)\r?\n---[ \t]*(?:\r?\n|$)/.exec(str);
   if (!m) return { data: {}, content: str };
-  const loaded = yaml.load(m[1]);
+  const loaded = yamlLoad(m[1]);
   return {
     data: loaded && typeof loaded === "object" ? loaded : {},
     content: str.slice(m[0].length),
@@ -39,7 +39,7 @@ export function parseFrontmatter(text) {
 }
 
 export function stringifyFrontmatter(content, data = {}) {
-  return `---\n${yaml.dump(data ?? {}, { lineWidth: -1 })}---\n${content}`;
+  return `---\n${yamlDump(data ?? {}, { lineWidth: -1 })}---\n${content}`;
 }
 
 // ---------------------------------------------------------------------------

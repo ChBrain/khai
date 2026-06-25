@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import Ajv, { type ValidateFunction } from "ajv";
-import yaml from "js-yaml";
+import { load as yamlLoad } from "js-yaml";
 
 export interface Frontmatter {
   id: string;
@@ -15,13 +15,13 @@ export interface Frontmatter {
 }
 
 export function parse(text: string): { data: Record<string, unknown>; body: string } {
-  // Mirror the package's own frontmatter split (js-yaml 4.2.0), so the test
+  // Mirror the package's own frontmatter split (js-yaml 5.x), so the test
   // parses exactly as index.mjs does without re-introducing gray-matter.
   let str = String(text);
   if (str.charCodeAt(0) === 0xfeff) str = str.slice(1);
   const m = /^---[ \t]*\r?\n([\s\S]*?)\r?\n---[ \t]*(?:\r?\n|$)/.exec(str);
   if (!m) return { data: {}, body: str };
-  const loaded = yaml.load(m[1]);
+  const loaded = yamlLoad(m[1]);
   return {
     data: (loaded && typeof loaded === "object" ? loaded : {}) as Record<string, unknown>,
     body: str.slice(m[0].length),
@@ -30,7 +30,7 @@ export function parse(text: string): { data: Record<string, unknown>; body: stri
 
 export function loadValidator(repoRoot: string): ValidateFunction {
   const schemaText = readFileSync(join(repoRoot, "architecture", "_schema.yml"), "utf-8");
-  const schema = yaml.load(schemaText);
+  const schema = yamlLoad(schemaText);
   const ajv = new Ajv({ allErrors: true, strict: false });
   return ajv.compile(schema as object);
 }
