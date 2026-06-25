@@ -94,15 +94,7 @@
       {
         "pattern": "dependabot/*",
         "layer": "deps",
-        "allow": [
-          "**/package.json",
-          ".github/workflows/**",
-          "khai-guard.config.json",
-          "packages/khai-language/src/detector.mjs",
-          "packages/khai-methods/lib/index.mjs",
-          "packages/khai-rules/parse.mjs",
-          "packages/khai-skills/lib/guard.mjs"
-        ]
+        "allow": ["**/package.json", ".github/workflows/**"]
       },
       {
         "pattern": "repo/*",
