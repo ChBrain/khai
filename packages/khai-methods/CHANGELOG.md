@@ -1,5 +1,11 @@
 # @chbrain/khai-methods
 
+## 0.0.6
+
+### Patch Changes
+
+- 36e80b7: Migrate js-yaml to v5 in methods lane (3/4). js-yaml 5 removed the default export; switched to namespace import `import * as yaml` and bumped the dependency to ^5.1.0 in @chbrain/khai-methods.
+
 ## 0.0.5
 
 ### Patch Changes
