@@ -10,11 +10,11 @@
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
-import { load as yamlLoad } from "js-yaml";
+import * as yaml from "js-yaml";
 
 const here = dirname(fileURLToPath(import.meta.url));
 
-// Split a content file's YAML frontmatter from its body, on js-yaml 5.x — the
+// Split a content file's YAML frontmatter from its body, on js-yaml 5.x (named exports only) — the
 // merge-key quadratic-DoS in gray-matter's bundled js-yaml 3.x (GHSA-h67p-54hq-rp68)
 // is closed here. Frontmatter opens only on a leading `---` fence; a malformed
 // block throws.
@@ -23,7 +23,7 @@ function parseFrontmatter(text) {
   if (str.charCodeAt(0) === 0xfeff) str = str.slice(1);
   const m = /^---[ \t]*\r?\n([\s\S]*?)\r?\n---[ \t]*(?:\r?\n|$)/.exec(str);
   if (!m) return { data: {}, content: str };
-  const loaded = yamlLoad(m[1]);
+  const loaded = yaml.load(m[1]);
   return {
     data: loaded && typeof loaded === "object" ? loaded : {},
     content: str.slice(m[0].length),
@@ -112,7 +112,7 @@ export const defaults = Object.fromEntries(
  * (each an ordered list of type ids) in a `groups` yaml block; this reads it so
  * consumers render the playbook instead of re-declaring its order or grouping.
  * Parsed by wrapping the block as frontmatter and handing it to the local
- * parseFrontmatter (js-yaml 4.2.0).
+ * parseFrontmatter (js-yaml 5.x).
  * @type {{ id: string, label: string, members: string[] }[]}
  */
 const modelText = readFileSync(join(archDir, "model.md"), "utf8");
