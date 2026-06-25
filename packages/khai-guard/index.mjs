@@ -348,11 +348,13 @@ export function classifyBranch(branchName, config = DEFAULT_CONFIG) {
   if (!Array.isArray(lanes) || typeof branchName !== "string" || branchName.length === 0) {
     return null;
   }
-  for (const lane of lanes) {
-    const captured = matchLanePattern(lane.pattern, branchName);
-    if (!captured) continue;
-    const unit = "unit" in lane ? (captured[lane.unit] ?? null) : null;
-    return { lane: lane.pattern.split("/")[0], layer: lane.layer, unit };
+  for (const candidate of branchNameCandidates(branchName)) {
+    for (const lane of lanes) {
+      const captured = matchLanePattern(lane.pattern, candidate);
+      if (!captured) continue;
+      const unit = "unit" in lane ? (captured[lane.unit] ?? null) : null;
+      return { lane: lane.pattern.split("/")[0], layer: lane.layer, unit };
+    }
   }
   return null;
 }
@@ -368,14 +370,23 @@ function resolveAllow(lane, unit) {
 function findLane(branchName, config) {
   const lanes = config.branchScope?.lanes;
   if (!Array.isArray(lanes)) return null;
-  for (const lane of lanes) {
-    const captured = matchLanePattern(lane.pattern, branchName);
-    if (captured) {
-      const unit = "unit" in lane ? (captured[lane.unit] ?? null) : null;
-      return { lane, captured, unit };
+  for (const candidate of branchNameCandidates(branchName)) {
+    for (const lane of lanes) {
+      const captured = matchLanePattern(lane.pattern, candidate);
+      if (captured) {
+        const unit = "unit" in lane ? (captured[lane.unit] ?? null) : null;
+        return { lane, captured, unit };
+      }
     }
   }
   return null;
+}
+
+function branchNameCandidates(branchName) {
+  if (typeof branchName !== "string" || branchName.length === 0) return [];
+  return branchName.startsWith("copilot/")
+    ? [branchName, branchName.slice("copilot/".length)]
+    : [branchName];
 }
 
 // Recover the {name} a fan-out lane binds for a path. A lane may list several
