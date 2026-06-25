@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import Ajv, { type ValidateFunction } from "ajv";
-import yaml from "js-yaml";
+import * as yaml from "js-yaml";
 
 export interface Frontmatter {
   id: string;
@@ -15,7 +15,7 @@ export interface Frontmatter {
 }
 
 export function parse(text: string): { data: Record<string, unknown>; body: string } {
-  // Mirror the package's own frontmatter split (js-yaml 4.2.0), so the test
+  // Mirror the package's own frontmatter split (js-yaml 5.x), so the test
   // parses exactly as index.mjs does without re-introducing gray-matter.
   let str = String(text);
   if (str.charCodeAt(0) === 0xfeff) str = str.slice(1);
