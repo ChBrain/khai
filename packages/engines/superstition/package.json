@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-superstition",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the superstition domain: magical causation as position -- the link a persona reads between events that share no mechanism, by contact, resemblance, control, sign, or luck.",
   "type": "module",
   "main": "./index.mjs",
