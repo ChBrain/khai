@@ -190,8 +190,9 @@ const FRANC_MAP = {
   wo: "wol", // Wolof
   bm: "bam", // Bambara (sibling Maninka `emk` within margin — tight-cluster)
   tw: "twi", // Twi / Akan (sibling Fante `fat` within margin)
-  // Island
+  // Island — Indian Ocean
   mg: "plt", // Malagasy (franc's Plateau Malagasy code)
+  crs: "crs", // Seychellois Creole / Seselwa (French-lexified; tops clean, French ~0.76 back — sister Mauritian Morisien `mfe` has no franc model and stays exempt)
   // Caucasus — unique alphabets, fully isolated (nothing else in the ranking)
   ka: "kat", // Georgian (Mkhedruli)
   hy: "hye", // Armenian

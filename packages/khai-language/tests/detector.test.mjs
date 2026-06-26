@@ -792,6 +792,11 @@ In the middle of the journey of our life I found myself within a forest dark, fo
       "pcm",
       "One time, one king bin dey wey get three pikin girl and one big rich country far far behind di high mountain dem and di deep river.",
     ],
+    // Indian Ocean creole — Seselwa tops clean (French ~0.76 back, the Haitian pattern)
+    [
+      "crs",
+      "Tou imen i ne lib e egal dan ladinyite ek drwa. Zot annan rezon ek konsyans e zot devret azir anver lezot dan en lespri fraternite.",
+    ],
   ])("franc-routes %s and gates its own prose clean", (code, prose) => {
     const projectDir = join(FIXTURES_DIR, `franc-${code}`);
     const playDir = join(projectDir, "plays", "p");
