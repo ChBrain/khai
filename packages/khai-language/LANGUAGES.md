@@ -229,7 +229,11 @@ The last and most mixed frontier. The Commonwealth pass took the anglophone slic
 - **West Africa & Sahel** — `yo` Yoruba (**clean** — overturning the early
   world-probe's "fail", which was a bad sample), `wo` Wolof, and at tight-cluster
   grade `bm` Bambara (Maninka `emk` sibling) and `tw` Twi/Akan (Fante `fat` sibling).
-- **Island** — `mg` Malagasy (franc's Plateau-Malagasy `plt`), clean and isolated.
+- **Island — Indian Ocean** — `mg` Malagasy (franc's Plateau-Malagasy `plt`), clean
+  and isolated; `crs` Seychellois Creole / Seselwa (French-lexified but tops clean
+  3/3, French ~0.76 back — the Haitian `ht` pattern, and the authentic base since
+  Seselwa is Seychelles' first official language). Its sister **Mauritian Morisien**
+  (`mfe`) has no franc model and stays exempt — see below.
 
 **Round 2** saturates the continent's nationals — eleven more, each topping its own
 prose (close siblings within the margin, gross-error grade):
@@ -287,6 +291,11 @@ below** a sibling on real prose, or franc has no model for it at all:
   So `kea` false-fails to its `pov` sibling and stays exempt — even though `pov`
   itself gates cleanly. A Cape Verde culture authoring wholly in Kriolu takes the
   `khai.languages` path.
+- **Mauritian Creole / Morisien** (`mfe`) — franc carries **no `mfe` model**, and it
+  reads Morisien prose as its near-identical sister Seychellois Creole (`crs` tops at
+  1.0), not as French. So Morisien cannot gate as itself and stays exempt — a Mauritius
+  culture authoring in Morisien (~90% L1, more authentic than the colonial standard)
+  takes the `khai.languages` path. The registered `crs` covers Seychelles, not Mauritius.
 - **Caribbean English-lexified creoles** — Jamaican Patois (`jam`), Belizean Kriol
   (`bzj`), Sranan Tongo (`srn`), Bajan, Guyanese, Trinidadian and the like: franc
   has no model for them (it carries the broader `pis`/`kri`/`tpi` creoles, not the
