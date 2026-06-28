@@ -27,7 +27,7 @@ A nervous system that remains steady and quiet under intense stimulation, but re
 ## Orders
 
 Amplify the input; move to find stimulus; stand steady in the chaos.
-The position seeks out strong sensory signals - sound, movement, pressure - to feed a system that runs flat by default.
+The position seeks out strong sensory signals (sound, movement, pressure) to feed a system that runs flat by default.
 
 ## Loses
 

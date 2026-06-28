@@ -35,8 +35,8 @@ What the engine refuses to model, and to whom it delegates.
 Source to constraint. One position anchor (the baseline filter) and ten pole positions across five axes.
 
 - **[apprehension](position_apprehension.md)** (the anchor): The baseline nervous-system filter and cognitive grasp.
-- **Attention Allocation** — [monotropic](position_monotropic.md) (single-channel focus, flow-prone) / [polytropic](position_polytropic.md) (multichannel scanning, distributed).
-- **Sensory Reactivity** — [hyperreactive](position_hyperreactive.md) (low threshold, deep perception, overload-prone) / [hyporeactive](position_hyporeactive.md) (high threshold, sensation-seeking).
-- **Executive Initiation** — [linear](position_linear.md) (sequential planning, priority-based) / [associative](position_associative.md) (interest/urgency-driven, non-linear).
-- **Communication Style** — [declarative](position_declarative.md) (direct, literal) / [attuned](position_attuned.md) (indirect, subtextual).
-- **Integration Style** — [bottom_up](position_bottom_up.md) (localist, detail-first) / [top_down](position_top_down.md) (globalist, gestalt-first).
+- **Attention Allocation:** [monotropic](position_monotropic.md) (single-channel focus, flow-prone) / [polytropic](position_polytropic.md) (multichannel scanning, distributed).
+- **Sensory Reactivity:** [hyperreactive](position_hyperreactive.md) (low threshold, deep perception, overload-prone) / [hyporeactive](position_hyporeactive.md) (high threshold, sensation-seeking).
+- **Executive Initiation:** [linear](position_linear.md) (sequential planning, priority-based) / [associative](position_associative.md) (interest/urgency-driven, non-linear).
+- **Communication Style:** [declarative](position_declarative.md) (direct, literal) / [attuned](position_attuned.md) (indirect, subtextual).
+- **Integration Style:** [bottom_up](position_bottom_up.md) (localist, detail-first) / [top_down](position_top_down.md) (globalist, gestalt-first).
