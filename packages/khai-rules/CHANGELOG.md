@@ -1,5 +1,11 @@
 # @chbrain/khai-rules
 
+## 0.1.8
+
+### Patch Changes
+
+- 12fae8a: Migrate js-yaml to v5 in governance lane (2/4). js-yaml 5 removed the default export; switched to namespace import `import * as yaml` and bumped the dependency to ^5.1.0 in @chbrain/khai-rules and @chbrain/khai-language.
+
 ## 0.1.7
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-apprehension",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "khai engine content, the apprehension domain: the baseline nervous-system filter and cognitive grasp a persona arrives with and returns to -- five axes, two poles each.",
   "type": "module",
   "main": "./index.mjs",
