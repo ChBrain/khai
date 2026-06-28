@@ -1,0 +1,75 @@
+{
+  "name": "@chbrain/khai-engine-apprehension",
+  "version": "0.1.0",
+  "description": "khai engine content, the apprehension domain: the baseline nervous-system filter and cognitive grasp a persona arrives with and returns to -- five axes, two poles each.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/apprehension"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "apprehension",
+    "tagline": "Apprehension as position: the baseline nervous-system filter and cognitive grasp a persona arrives with and returns to -- five axes, two poles each.",
+    "type": "position",
+    "anchor": "position_apprehension.md",
+    "expressions": {
+      "monotropic": "position_monotropic.md",
+      "polytropic": "position_polytropic.md",
+      "hyperreactive": "position_hyperreactive.md",
+      "hyporeactive": "position_hyporeactive.md",
+      "linear": "position_linear.md",
+      "associative": "position_associative.md",
+      "declarative": "position_declarative.md",
+      "attuned": "position_attuned.md",
+      "bottom_up": "position_bottom_up.md",
+      "top_down": "position_top_down.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_apprehension.md) declares the baseline nervous-system filter a persona arrives with and returns to -- the cognitive grasp that shapes every act. The law makes every persona carry one.",
+      "issue": "Ten pole positions across five axes a persona may hold -- monotropic/polytropic, hyperreactive/hyporeactive, linear/associative, declarative/attuned, bottom_up/top_down. Each pole is adaptive and carries its own cost.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the baseline is read for every persona. The link: each persona links, under Projection, the pole they occupy on each axis.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real apprehension pole. Coherence is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then link the persona to its poles under Projection. Read it in how the persona grasps the world without trying."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}
