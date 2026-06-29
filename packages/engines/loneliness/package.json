@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-loneliness",
+  "version": "0.1.0",
+  "description": "khai engine content, the loneliness domain: loneliness as process, how the gap between needed and actual social connection registers as pain and produces responses that may close the gap or widen it.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/loneliness"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "loneliness",
+    "tagline": "Loneliness as process: how the gap between needed and actual social connection registers as pain -- the alarm evolved to push the organism back toward the group, that can make the reaching harder.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_loneliness.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_reaching.md",
+        "type": "process",
+        "parent": "process_loneliness.md"
+      },
+      {
+        "file": "process_withdrawal.md",
+        "type": "process",
+        "parent": "process_loneliness.md"
+      },
+      {
+        "file": "process_numbness.md",
+        "type": "process",
+        "parent": "process_loneliness.md"
+      },
+      {
+        "file": "process_reconnected.md",
+        "type": "process",
+        "parent": "process_loneliness.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_loneliness.md) declares loneliness as a social pain signal: the gap between needed and actual connection registers, the room is read as more threatening, and the responses may close the gap or deepen it.",
+      "issue": "Four responses a persona may run: reaching (the signal fires and the persona moves toward contact), withdrawal (the hypervigilance reads the room as threatening; the persona pulls back), numbness (the chronic signal flattens into background), and reconnected (contact lands; the alarm stands down). Each is a different resolution of the running gap.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the response it is currently running.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real loneliness response. Whether the response is true to the persona's situation is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its response under Projection. The response may shift across the arc; update the link as the gap opens or closes."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}
