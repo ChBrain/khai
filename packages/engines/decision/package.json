@@ -1,0 +1,60 @@
+{
+  "name": "@chbrain/khai-engine-decision",
+  "version": "0.1.0",
+  "description": "khai engine content, the decision domain: decision as process, how a persona resolves between competing options when the outcome is uncertain and only one path can be taken.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/decision"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "decision",
+    "tagline": "Decision as process: how a persona resolves between competing options when the outcome is uncertain and only one path can be taken -- intuitive, deliberate, heuristic, satisficing, or paralysed.",
+    "type": "process",
+    "members": [
+      { "file": "process_decision.md", "type": "process", "parent": null },
+      { "file": "process_intuitive.md", "type": "process", "parent": "process_decision.md" },
+      { "file": "process_deliberate.md", "type": "process", "parent": "process_decision.md" },
+      { "file": "process_heuristic.md", "type": "process", "parent": "process_decision.md" },
+      { "file": "process_satisficing.md", "type": "process", "parent": "process_decision.md" },
+      { "file": "process_paralysed.md", "type": "process", "parent": "process_decision.md" }
+    ],
+    "requires": [
+      { "on": "instructions", "section": "Knowledge", "link": "anchor", "level": "fail" },
+      { "on": "persona", "section": "Projection", "link": "expression", "level": "fail" }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_decision.md) declares decision as the moment where options press against uncertainty and the persona must commit; the mode is set by the stakes and the available information.",
+      "issue": "Five modes a persona may run: intuitive (fast, pattern-matched), deliberate (slow, comparative), heuristic (rule-of-thumb, invisible), satisficing (first-good-enough taken), and paralysed (commitment suspended). Each is a different relationship between the persona and its own uncertainty.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the mode it defaults to when choices press.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real decision mode. Whether the mode is true to the persona's character under pressure is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its default mode under Projection. Read it when the scene offers a fork; the mode runs before the persona has finished naming the choice."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}
