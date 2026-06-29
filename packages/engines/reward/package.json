@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-reward",
+  "version": "0.1.0",
+  "description": "khai engine content, the reward domain: how the organism values outcomes across time -- immediate, deferred, delay-averse, and stimulation-seeking.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/reward"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "reward",
+    "tagline": "Reward as process: how the organism values outcomes across time -- the discount rate that makes near rewards large and distant ones thin, with immediate, deferred, delay-averse, and stimulation-seeking modes.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_reward.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_immediate.md",
+        "type": "process",
+        "parent": "process_reward.md"
+      },
+      {
+        "file": "process_deferred.md",
+        "type": "process",
+        "parent": "process_reward.md"
+      },
+      {
+        "file": "process_delay_averse.md",
+        "type": "process",
+        "parent": "process_reward.md"
+      },
+      {
+        "file": "process_stimulation_seeking.md",
+        "type": "process",
+        "parent": "process_reward.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_reward.md) declares reward as the organism's valuation of outcomes across time: every anticipated outcome is discounted by its distance, and the persona moves toward it in proportion to its discounted weight.",
+      "issue": "Four modes a persona may run: immediate (near-full weight, no time to discount), deferred (distance has thinned the pull), delay-averse (the wait itself is aversive, not merely suboptimal), and stimulation-seeking (pursuing input to correct an arousal deficit, not to reach an outcome). Each is a distinct mode of how the discount and the urgency play out.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the reward mode the moment runs -- and what it is therefore valuing and ignoring.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real reward mode. Whether the valuation is true to the scene is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its mode under Projection. Read it in what the persona moves toward and what they walk away from -- the abandoned project, the disruption chosen over the quiet, the smaller reward taken because it was now."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}
