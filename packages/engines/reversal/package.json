@@ -1,0 +1,62 @@
+{
+  "name": "@chbrain/khai-engine-reversal",
+  "version": "0.1.0",
+  "description": "khai reversal engine — the inversion of a situation's direction",
+  "type": "module",
+  "main": "index.mjs",
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "khai": {
+    "engine": "reversal",
+    "tagline": "The inversion of a situation's direction.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_reversal.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_approach.md",
+        "type": "process",
+        "parent": "process_reversal.md"
+      },
+      {
+        "file": "process_turn.md",
+        "type": "process",
+        "parent": "process_reversal.md"
+      },
+      {
+        "file": "process_aftermath.md",
+        "type": "process",
+        "parent": "process_reversal.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Link the phase the persona is in (approach, turn, or aftermath) under Projection.",
+      "issue": "The direction the persona held as settled, and what has inverted or is inverting it.",
+      "require": "An established trajectory — a direction the situation was going — that a specific event or revelation is capable of inverting.",
+      "enforce": "Reversal is not surprise. The turn must invert a direction; news that does not change the direction is not a reversal. Do not use reversal to mean unexpected.",
+      "setup": "Name the direction the situation held before the turn, the event or revelation that pivoted it, and the new direction the persona now faces."
+    }
+  },
+  "devDependencies": {
+    "vitest": "^3.2.0"
+  },
+  "scripts": {
+    "test": "vitest run"
+  }
+}
