@@ -6,7 +6,7 @@ updated: "2026-06-29"
 
 ## Line of Work
 
-Time perception as **position**: the persona's resting orientation toward duration as felt experience -- not the clock, not the calendar, but the subjective texture of how long moments are, how real the future is, and how available the past remains. The domain does not model attention (how the spotlight is allocated, which affects felt duration as a downstream consequence) or memory (how the past is reconstructed from traces); it models the *baseline temporal frame* the persona inhabits and acts from.
+Time perception as **position**: the persona's resting orientation toward duration as felt experience -- not the clock, not the calendar, but the subjective texture of how long moments are, how real the future is, and how available the past remains. The domain does not model attention (how the spotlight is allocated, which affects felt duration as a downstream consequence) or memory (how the past is reconstructed from traces); it models the _baseline temporal frame_ the persona inhabits and acts from.
 
 The spine is the now-versus-not-now model: for some personas the future is a tangible, felt destination that pulls behavior forward; for others it is known but effectively weightless, arriving as a surprise rather than an approach. The distinction is not motivational or attentional but temporal -- it concerns the frame in which the persona stands in relation to time, prior to what they attend to or want within it.
 
@@ -14,12 +14,12 @@ The spine is the now-versus-not-now model: for some personas the future is a tan
 
 Cognitive psychology and neuroscience of subjective time, applied directly as position constraints.
 
-| Source | Key Work | Scope |
-| :--- | :--- | :--- |
-| **Russell A. Barkley** | *Taking Charge of Adult ADHD* (2010); *"The Important Role of Executive Functioning and Self-Regulation in ADHD"* (2011) | The now-versus-not-now model: ADHD as a disorder of time perception and self-regulation across time; the future as present only when it has become the present. |
-| **Dan Zakay & Richard A. Block** | *"The Role of Attention in Time Estimation Processes"* (1995) | The attentional gate model: how attention allocation determines felt duration; prospective vs. retrospective time estimation and their different cognitive demands. |
-| **Marc Wittmann** | *Felt Time: The Psychology of How We Perceive Time* (2016) | Duration as embodied, felt process -- not a clock readout but a bodily signal; the physiological and psychological substrates of subjective time. |
-| **Mihaly Csikszentmihalyi** | *Flow: The Psychology of Optimal Experience* (1990) | The flow state as temporal suspension: how full engagement removes the subjective sense of duration's passage; absorption as a distinct temporal mode. |
+| Source                           | Key Work                                                                                                                 | Scope                                                                                                                                                               |
+| :------------------------------- | :----------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Russell A. Barkley**           | _Taking Charge of Adult ADHD_ (2010); _"The Important Role of Executive Functioning and Self-Regulation in ADHD"_ (2011) | The now-versus-not-now model: ADHD as a disorder of time perception and self-regulation across time; the future as present only when it has become the present.     |
+| **Dan Zakay & Richard A. Block** | _"The Role of Attention in Time Estimation Processes"_ (1995)                                                            | The attentional gate model: how attention allocation determines felt duration; prospective vs. retrospective time estimation and their different cognitive demands. |
+| **Marc Wittmann**                | _Felt Time: The Psychology of How We Perceive Time_ (2016)                                                               | Duration as embodied, felt process -- not a clock readout but a bodily signal; the physiological and psychological substrates of subjective time.                   |
+| **Mihaly Csikszentmihalyi**      | _Flow: The Psychology of Optimal Experience_ (1990)                                                                      | The flow state as temporal suspension: how full engagement removes the subjective sense of duration's passage; absorption as a distinct temporal mode.              |
 
 ## Restrictions
 
