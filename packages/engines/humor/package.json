@@ -1,0 +1,69 @@
+{
+  "name": "@chbrain/khai-engine-humor",
+  "version": "0.1.0",
+  "description": "khai engine content, the humor domain: humor style as position -- the default relational stance toward comedy, who it is for, and at whose expense.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/humor"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "humor",
+    "tagline": "Humor style as position: the default relational stance toward comedy -- affiliative, self-enhancing, aggressive, or self-defeating.",
+    "type": "position",
+    "anchor": "position_humor.md",
+    "expressions": {
+      "affiliative": "position_affiliative.md",
+      "self-enhancing": "position_self_enhancing.md",
+      "aggressive": "position_aggressive.md",
+      "self-defeating": "position_self_defeating.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_humor.md) declares humor style: the default relational stance toward comedy, who it is for, and at whose expense.",
+      "issue": "Four expressions a persona may hold: affiliative (humor that bonds and includes; the laughter is shared), self-enhancing (humor that copes; a comic perspective on one's own situation maintained under stress), aggressive (humor that places; teasing or ridicule at another's expense), and self-defeating (humor that ingratiate; the persona is the willing target). The two axes are direction (self vs. other) and function (beneficial vs. detrimental to wellbeing and relationships).",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor. The link: each persona links, under Projection, the humor style it holds.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real humor style. Whether the style is true to the persona's character is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give each persona its style under Projection. Read it in what comic material the persona reaches for and in how they respond when humor arrives from others."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}

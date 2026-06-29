@@ -1,0 +1,69 @@
+{
+  "name": "@chbrain/khai-engine-role",
+  "version": "0.1.0",
+  "description": "khai engine content, the role domain: socially sanctioned expectations that govern what a persona may do and be",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/role"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "role",
+    "tagline": "socially sanctioned expectations that govern what a persona may do and be",
+    "type": "position",
+    "anchor": "position_role.md",
+    "expressions": {
+      "congruent": "position_congruent.md",
+      "incongruent": "position_incongruent.md",
+      "overloaded": "position_overloaded.md",
+      "ambiguous": "position_ambiguous.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Link the role the persona occupies and the expectations the scene attaches to it to the anchor.",
+      "issue": "Does this persona match, violate, exceed, or receive unclear expectations from their role?",
+      "require": "Each persona links a role expression under Projection.",
+      "enforce": "Do not collapse role into status; a persona can hold a congruent role at low status, or an incongruent role at high status.",
+      "setup": "Specify the role the persona occupies and the expectations the scene treats as attached to it before assigning an expression."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}
