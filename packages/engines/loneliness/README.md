@@ -1,6 +1,6 @@
 # Loneliness
 
-Loneliness as process: how the gap between needed and actual social connection registers as pain and produces responses that may close the gap or widen it.
+Loneliness as process: how the gap between needed and actual social connection registers as pain -- the alarm evolved to push the organism back toward the group, that can make the reaching harder.
 
 This engine is defined by its [manifest](package.json), which the canon renders as the WIRES card. The manifest is the single source of truth; this README is generated, not edited by hand.
 
