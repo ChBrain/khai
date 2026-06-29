@@ -1,6 +1,6 @@
 # Empathy
 
-Empathy as position: the baseline capacity a persona holds for taking in the inner state of another -- cognitive, affective, compassionate, or distressed.
+Empathy as position: the baseline capacity a persona holds for taking in the inner state of another -- how open the channel is and what form the opening takes.
 
 This engine is defined by its [manifest](package.json), which the canon renders as the WIRES card. The manifest is the single source of truth; this README is generated, not edited by hand.
 
