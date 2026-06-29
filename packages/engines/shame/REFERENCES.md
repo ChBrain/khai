@@ -14,12 +14,12 @@ The spine is social appraisal theory applied to the self-referential emotions: s
 
 Self-conscious emotion theory and social psychology of shame, applied directly as process constraints.
 
-| Source | Key Work | Scope |
-| :--- | :--- | :--- |
-| **June Price Tangney** | *Shame and Guilt* (2002) | Distinction between shame (global self-condemnation, hide/withdraw) and guilt (act-specific, repair-motivated). |
-| **Michael Lewis** | *Shame: The Exposed Self* (1992) | The structural model: self-evaluation against a standard, with attribution to the whole self (shame) or an act (guilt). |
-| **Dacher Keltner &amp; Brenda Buswell** | *"Embarrassment: Its Distinct Form and Appeasement Functions"* (1997) | Embarrassment as a distinct mild-exposure state with a recovery trajectory, not a lesser shame. |
-| **Linda M. Brown &amp; Susan Gilligan** | *Meeting at the Crossroads* (1992) | Humiliation as power-mediated: the verdict is imposed, not arrived at; refusal and rage are the secondary responses. |
+| Source                                  | Key Work                                                              | Scope                                                                                                                   |
+| :-------------------------------------- | :-------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------- |
+| **June Price Tangney**                  | _Shame and Guilt_ (2002)                                              | Distinction between shame (global self-condemnation, hide/withdraw) and guilt (act-specific, repair-motivated).         |
+| **Michael Lewis**                       | _Shame: The Exposed Self_ (1992)                                      | The structural model: self-evaluation against a standard, with attribution to the whole self (shame) or an act (guilt). |
+| **Dacher Keltner &amp; Brenda Buswell** | _"Embarrassment: Its Distinct Form and Appeasement Functions"_ (1997) | Embarrassment as a distinct mild-exposure state with a recovery trajectory, not a lesser shame.                         |
+| **Linda M. Brown &amp; Susan Gilligan** | _Meeting at the Crossroads_ (1992)                                    | Humiliation as power-mediated: the verdict is imposed, not arrived at; refusal and rage are the secondary responses.    |
 
 ## Restrictions
 

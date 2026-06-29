@@ -27,14 +27,40 @@
     "tagline": "Shame as process: how a persona appraises exposure against a social standard, and the appraisal becomes a response directed at the self or at the one who saw -- guilt, embarrassment, or humiliation.",
     "type": "process",
     "members": [
-      { "file": "process_shame.md", "type": "process", "parent": null },
-      { "file": "process_guilt.md", "type": "process", "parent": "process_shame.md" },
-      { "file": "process_embarrassment.md", "type": "process", "parent": "process_shame.md" },
-      { "file": "process_humiliation.md", "type": "process", "parent": "process_shame.md" }
+      {
+        "file": "process_shame.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_guilt.md",
+        "type": "process",
+        "parent": "process_shame.md"
+      },
+      {
+        "file": "process_embarrassment.md",
+        "type": "process",
+        "parent": "process_shame.md"
+      },
+      {
+        "file": "process_humiliation.md",
+        "type": "process",
+        "parent": "process_shame.md"
+      }
     ],
     "requires": [
-      { "on": "instructions", "section": "Knowledge", "link": "anchor", "level": "fail" },
-      { "on": "persona", "section": "Projection", "link": "expression", "level": "fail" }
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
     ],
     "card": {
       "wire": "Attaches at Process. The root (process_shame.md) declares shame as a social appraisal: the self is seen against a standard, the gap is exposed, and the response is aimed at concealment, repair, recovery, or rage.",
