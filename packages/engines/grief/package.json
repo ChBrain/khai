@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-grief",
+  "version": "0.1.0",
+  "description": "khai engine content, the grief domain: grief as process, how a persona adapts to irreversible loss by oscillating between confronting the absence and rebuilding the world around it.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/grief"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "grief",
+    "tagline": "Grief as process: how a persona adapts to irreversible loss -- not by returning to what was, but by oscillating between confronting the absence and rebuilding the world it broke.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_grief.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_shock.md",
+        "type": "process",
+        "parent": "process_grief.md"
+      },
+      {
+        "file": "process_yearning.md",
+        "type": "process",
+        "parent": "process_grief.md"
+      },
+      {
+        "file": "process_restoration.md",
+        "type": "process",
+        "parent": "process_grief.md"
+      },
+      {
+        "file": "process_continuing.md",
+        "type": "process",
+        "parent": "process_grief.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_grief.md) declares grief as an adaptation work: the persona oscillates between confronting the loss and rebuilding around it, neither pole held permanently.",
+      "issue": "Four movements a persona may run: shock (the fact not yet real), yearning (the reach toward the absent that fails), restoration (turning to rebuild the changed world), and continuing (carrying the lost thing forward, transformed). Each is a different pass in the adaptation work.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the movement it is currently in.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real grief movement. Whether the movement is true to the persona's loss is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its movement under Projection. The persona may shift movements across the arc; update the link as the work progresses."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}
