@@ -1,6 +1,6 @@
 # Decision
 
-Decision as process: how a persona resolves between competing options when the outcome is uncertain and only one path can be taken.
+Decision as process: how a persona resolves between competing options when the outcome is uncertain and only one path can be taken -- intuitive, deliberate, heuristic, satisficing, or paralysed.
 
 This engine is defined by its [manifest](package.json), which the canon renders as the WIRES card. The manifest is the single source of truth; this README is generated, not edited by hand.
 
