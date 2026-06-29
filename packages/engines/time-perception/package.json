@@ -1,0 +1,69 @@
+{
+  "name": "@chbrain/khai-engine-time-perception",
+  "version": "0.1.0",
+  "description": "khai engine content, the time perception domain: the persona's resting orientation toward duration as felt experience -- continuous, now-anchored, behind, or absorbed.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/time-perception"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "time-perception",
+    "tagline": "Time perception as position: the persona's resting orientation toward duration as felt experience -- how real the future is, how available the past remains, and how duration registers as it passes.",
+    "type": "position",
+    "anchor": "position_time_perception.md",
+    "expressions": {
+      "continuous": "position_continuous.md",
+      "now": "position_now.md",
+      "behind": "position_behind.md",
+      "absorbed": "position_absorbed.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_time_perception.md) declares the baseline temporal orientation a persona inhabits: how real the future is as felt experience, not as concept. The law makes every persona carry a temporal frame.",
+      "issue": "Four expressions a persona may hold: continuous (the future is tangible; the past is a navigable reference), now (only the present carries weight; the future is known but not felt), behind (duration registers after the fact; urgency arrives as discovery), absorbed (the temporal sense suspends inside full engagement). Each carries its own structural cost.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the temporal frame is present for every persona. The link: each persona links, under Projection, the expression they inhabit.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real time-perception expression. Whether the temporal frame is true to the scene is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then link the persona to its expression under Projection. Read it in whether the persona moves toward the future or is surprised by its arrival -- the deadline that lands without approach, the absorbed hour that cost the meeting."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}
