@@ -1,6 +1,6 @@
 # Reward
 
-How the organism values outcomes across time -- immediate, deferred, delay-averse, and stimulation-seeking.
+Reward as process: how the organism values outcomes across time -- the discount rate that makes near rewards large and distant ones thin, with immediate, deferred, delay-averse, and stimulation-seeking modes.
 
 This engine is defined by its [manifest](package.json), which the canon renders as the WIRES card. The manifest is the single source of truth; this README is generated, not edited by hand.
 
