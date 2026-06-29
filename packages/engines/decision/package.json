@@ -27,16 +27,50 @@
     "tagline": "Decision as process: how a persona resolves between competing options when the outcome is uncertain and only one path can be taken -- intuitive, deliberate, heuristic, satisficing, or paralysed.",
     "type": "process",
     "members": [
-      { "file": "process_decision.md", "type": "process", "parent": null },
-      { "file": "process_intuitive.md", "type": "process", "parent": "process_decision.md" },
-      { "file": "process_deliberate.md", "type": "process", "parent": "process_decision.md" },
-      { "file": "process_heuristic.md", "type": "process", "parent": "process_decision.md" },
-      { "file": "process_satisficing.md", "type": "process", "parent": "process_decision.md" },
-      { "file": "process_paralysed.md", "type": "process", "parent": "process_decision.md" }
+      {
+        "file": "process_decision.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_intuitive.md",
+        "type": "process",
+        "parent": "process_decision.md"
+      },
+      {
+        "file": "process_deliberate.md",
+        "type": "process",
+        "parent": "process_decision.md"
+      },
+      {
+        "file": "process_heuristic.md",
+        "type": "process",
+        "parent": "process_decision.md"
+      },
+      {
+        "file": "process_satisficing.md",
+        "type": "process",
+        "parent": "process_decision.md"
+      },
+      {
+        "file": "process_paralysed.md",
+        "type": "process",
+        "parent": "process_decision.md"
+      }
     ],
     "requires": [
-      { "on": "instructions", "section": "Knowledge", "link": "anchor", "level": "fail" },
-      { "on": "persona", "section": "Projection", "link": "expression", "level": "fail" }
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
     ],
     "card": {
       "wire": "Attaches at Process. The root (process_decision.md) declares decision as the moment where options press against uncertainty and the persona must commit; the mode is set by the stakes and the available information.",

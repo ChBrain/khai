@@ -14,12 +14,12 @@ The spine is bounded rationality and dual-process theory: decisions are not made
 
 Judgement and decision-making research, applied directly as process constraints.
 
-| Source | Key Work | Scope |
-| :--- | :--- | :--- |
-| **Daniel Kahneman** | *Thinking, Fast and Slow* (2011) | System 1 (fast, associative, automatic) and System 2 (slow, deliberate, effortful) as dual modes of judgement. |
-| **Herbert Simon** | *"A Behavioural Model of Rational Choice"* (1955) | Satisficing: selecting the first option that clears a threshold rather than searching for the optimum. |
-| **Amos Tversky &amp; Daniel Kahneman** | *"Judgment under Uncertainty: Heuristics and Biases"* (1974) | Heuristics as cognitive shortcuts that are usually efficient and systematically wrong in predictable ways. |
-| **Barry Schwartz** | *The Paradox of Choice* (2004) | Decision paralysis under abundance: more options can produce worse outcomes when the cost of commitment is felt acutely. |
+| Source                                 | Key Work                                                     | Scope                                                                                                                    |
+| :------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------- |
+| **Daniel Kahneman**                    | _Thinking, Fast and Slow_ (2011)                             | System 1 (fast, associative, automatic) and System 2 (slow, deliberate, effortful) as dual modes of judgement.           |
+| **Herbert Simon**                      | _"A Behavioural Model of Rational Choice"_ (1955)            | Satisficing: selecting the first option that clears a threshold rather than searching for the optimum.                   |
+| **Amos Tversky &amp; Daniel Kahneman** | _"Judgment under Uncertainty: Heuristics and Biases"_ (1974) | Heuristics as cognitive shortcuts that are usually efficient and systematically wrong in predictable ways.               |
+| **Barry Schwartz**                     | _The Paradox of Choice_ (2004)                               | Decision paralysis under abundance: more options can produce worse outcomes when the cost of commitment is felt acutely. |
 
 ## Restrictions
 
