@@ -1,0 +1,62 @@
+{
+  "name": "@chbrain/khai-engine-recognition",
+  "version": "0.1.0",
+  "description": "khai recognition engine — the social acknowledgment of who a persona is or what they have done",
+  "type": "module",
+  "main": "index.mjs",
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "khai": {
+    "engine": "recognition",
+    "tagline": "The social acknowledgment of who a persona is or what they have done.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_recognition.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_claim.md",
+        "type": "process",
+        "parent": "process_recognition.md"
+      },
+      {
+        "file": "process_encounter.md",
+        "type": "process",
+        "parent": "process_recognition.md"
+      },
+      {
+        "file": "process_standing.md",
+        "type": "process",
+        "parent": "process_recognition.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Link the recognition phase the persona is in (claim, encounter, or standing) under Projection.",
+      "issue": "Who the persona needs to be seen as, what they need acknowledged, and who can grant that acknowledgment.",
+      "require": "A persona who holds a claim to recognition that is not yet settled, and a recognizing other whose response will determine the outcome.",
+      "enforce": "Do not conflate recognition with praise. Praise is a response; recognition is the acknowledgment of who the persona is or what they have done. Recognition can be withheld or distorted; it can also be contested.",
+      "setup": "Name what the persona claims, from whom, and what the outcome of recognition or misrecognition would mean for their standing."
+    }
+  },
+  "devDependencies": {
+    "vitest": "^3.2.0"
+  },
+  "scripts": {
+    "test": "vitest run"
+  }
+}
