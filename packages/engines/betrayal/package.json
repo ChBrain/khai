@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-betrayal",
+  "version": "0.1.0",
+  "description": "khai engine content, the betrayal domain: the sequence through which a persona reckons with a trust violation",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/betrayal"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "betrayal",
+    "tagline": "the sequence through which a persona reckons with a trust violation",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_betrayal.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_discovery.md",
+        "type": "process",
+        "parent": "process_betrayal.md"
+      },
+      {
+        "file": "process_disorientation.md",
+        "type": "process",
+        "parent": "process_betrayal.md"
+      },
+      {
+        "file": "process_reckoning.md",
+        "type": "process",
+        "parent": "process_betrayal.md"
+      },
+      {
+        "file": "process_resolution.md",
+        "type": "process",
+        "parent": "process_betrayal.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_betrayal.md) declares betrayal as a reckoning process: the persona moves through discovery, disorientation, reckoning, and resolution -- not necessarily in sequence, and not necessarily to completion.",
+      "issue": "Four passes a persona may run: discovery (the violation is learned), disorientation (the prior map of the relationship is wrong), reckoning (what to do with the knowledge), and resolution (a new relationship to the person and the fact).",
+      "require": "The law is declared once in the project's Instructions Knowledge chapter, linking the root. Each persona links, under Projection, the pass it is currently in.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real betrayal pass. Whether the pass is true to the persona's situation is semantic, not mechanical.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Give the persona its current pass under Projection. The persona may move across passes as the play proceeds."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}

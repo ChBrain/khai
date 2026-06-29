@@ -1,0 +1,67 @@
+{
+  "name": "@chbrain/khai-engine-ritual",
+  "version": "0.1.0",
+  "description": "khai ritual engine — how collective action crosses a threshold and marks or transforms participants",
+  "type": "module",
+  "main": "index.mjs",
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "khai": {
+    "engine": "ritual",
+    "tagline": "How collective action crosses a threshold and marks or transforms participants.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_ritual.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_separation.md",
+        "type": "process",
+        "parent": "process_ritual.md"
+      },
+      {
+        "file": "process_liminality.md",
+        "type": "process",
+        "parent": "process_ritual.md"
+      },
+      {
+        "file": "process_effervescence.md",
+        "type": "process",
+        "parent": "process_ritual.md"
+      },
+      {
+        "file": "process_incorporation.md",
+        "type": "process",
+        "parent": "process_ritual.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Link the phase the persona is running (separation, liminality, effervescence, or incorporation) under Projection.",
+      "issue": "What the ritual is marking or transforming, and who participates.",
+      "require": "A collective; a threshold being crossed; shared symbols or actions.",
+      "enforce": "Track whether the ritual is generating collective effervescence. A ritual that fails to focus attention produces low emotional energy and weak solidarity.",
+      "setup": "Name what is being separated from, what transformation is at stake, and who witnesses and receives the incorporation."
+    }
+  },
+  "devDependencies": {
+    "vitest": "^3.2.0"
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests"
+  }
+}
