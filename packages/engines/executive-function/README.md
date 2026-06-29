@@ -1,6 +1,6 @@
-# Executive Function
+# Executive-function
 
-The regulatory control layer that holds goals active, suppresses competing responses, refreshes working memory, and sequences action across time.
+Executive function as process: the regulatory control layer that holds goals active, suppresses competing responses, refreshes working memory, and sequences action across time -- inhibition, updating, shifting, and planning.
 
 This engine is defined by its [manifest](package.json), which the canon renders as the WIRES card. The manifest is the single source of truth; this README is generated, not edited by hand.
 
