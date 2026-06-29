@@ -1,0 +1,69 @@
+{
+  "name": "@chbrain/khai-engine-narrative",
+  "version": "0.1.0",
+  "description": "khai engine content, the narrative domain: narrative identity as position -- the life story a persona carries, shaped by redemptive or contaminated sequence and by agentic or communal thematic orientation.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/narrative"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "narrative",
+    "tagline": "Narrative identity as position: the life story a persona carries -- redemptive or contaminated in sequence, agentic or communal in thematic orientation.",
+    "type": "position",
+    "anchor": "position_narrative.md",
+    "expressions": {
+      "redemptive": "position_redemptive.md",
+      "contaminated": "position_contaminated.md",
+      "agentic": "position_agentic.md",
+      "communal": "position_communal.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_narrative.md) declares narrative identity: the interpreted life story the persona carries, through which every new event is received.",
+      "issue": "Four expressions a persona may hold: redemptive (suffering as the hinge of growth -- the arc moves from bad to good), contaminated (promise gives way to loss -- good things turn bad), agentic (the story is organised around mastery and achievement), communal (the story is organised around belonging, care, and love). Sequence and theme are orthogonal; the engine models the dominant coloring, not the full 2×2.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor. The link: each persona links, under Projection, the narrative expression it carries.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real narrative expression. Whether the expression is true to the persona's history and the play's arc is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give each persona its narrative shape under Projection. Read it in how the persona receives events -- not in what they announce about themselves."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}
