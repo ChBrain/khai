@@ -14,12 +14,12 @@ The spine is the multi-component model of empathy: cognitive perspective-taking,
 
 Social neuroscience and developmental psychology of empathy, applied directly as position constraints.
 
-| Source | Key Work | Scope |
-| :--- | :--- | :--- |
-| **Jean Decety &amp; Philip Jackson** | *"The Functional Architecture of Human Empathy"* (2004) | Multi-component model: shared affect, self/other awareness, mental flexibility, and self-regulation as distinct empathy dimensions. |
-| **Daniel Batson** | *Altruism in Humans* (2011) | Empathic concern as distinct from personal distress: feeling *for* the other vs. feeling *overwhelmed by* the other. |
-| **Simon Baron-Cohen** | *Zero Degrees of Empathy* (2011) | Cognitive and affective empathy as separable: zero cognitive empathy vs. zero affective empathy are different failure modes. |
-| **Tania Singer &amp; Claus Lamm** | *"The Social Neuroscience of Empathy"* (2009) | Neural basis of empathic resonance and the regulation that keeps it from tipping into personal distress. |
+| Source                               | Key Work                                                | Scope                                                                                                                               |
+| :----------------------------------- | :------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------- |
+| **Jean Decety &amp; Philip Jackson** | _"The Functional Architecture of Human Empathy"_ (2004) | Multi-component model: shared affect, self/other awareness, mental flexibility, and self-regulation as distinct empathy dimensions. |
+| **Daniel Batson**                    | _Altruism in Humans_ (2011)                             | Empathic concern as distinct from personal distress: feeling _for_ the other vs. feeling _overwhelmed by_ the other.                |
+| **Simon Baron-Cohen**                | _Zero Degrees of Empathy_ (2011)                        | Cognitive and affective empathy as separable: zero cognitive empathy vs. zero affective empathy are different failure modes.        |
+| **Tania Singer &amp; Claus Lamm**    | _"The Social Neuroscience of Empathy"_ (2009)           | Neural basis of empathic resonance and the regulation that keeps it from tipping into personal distress.                            |
 
 ## Restrictions
 
