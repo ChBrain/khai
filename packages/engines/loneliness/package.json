@@ -27,15 +27,45 @@
     "tagline": "Loneliness as process: how the gap between needed and actual social connection registers as pain -- the alarm evolved to push the organism back toward the group, that can make the reaching harder.",
     "type": "process",
     "members": [
-      { "file": "process_loneliness.md", "type": "process", "parent": null },
-      { "file": "process_reaching.md", "type": "process", "parent": "process_loneliness.md" },
-      { "file": "process_withdrawal.md", "type": "process", "parent": "process_loneliness.md" },
-      { "file": "process_numbness.md", "type": "process", "parent": "process_loneliness.md" },
-      { "file": "process_reconnected.md", "type": "process", "parent": "process_loneliness.md" }
+      {
+        "file": "process_loneliness.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_reaching.md",
+        "type": "process",
+        "parent": "process_loneliness.md"
+      },
+      {
+        "file": "process_withdrawal.md",
+        "type": "process",
+        "parent": "process_loneliness.md"
+      },
+      {
+        "file": "process_numbness.md",
+        "type": "process",
+        "parent": "process_loneliness.md"
+      },
+      {
+        "file": "process_reconnected.md",
+        "type": "process",
+        "parent": "process_loneliness.md"
+      }
     ],
     "requires": [
-      { "on": "instructions", "section": "Knowledge", "link": "anchor", "level": "fail" },
-      { "on": "persona", "section": "Projection", "link": "expression", "level": "fail" }
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
     ],
     "card": {
       "wire": "Attaches at Process. The root (process_loneliness.md) declares loneliness as a social pain signal: the gap between needed and actual connection registers, the room is read as more threatening, and the responses may close the gap or deepen it.",
