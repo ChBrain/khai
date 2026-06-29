@@ -14,12 +14,12 @@ The spine is the Dual Process Model of coping with bereavement: grief is not a s
 
 Bereavement research and loss-adaptation theory, applied directly as process constraints.
 
-| Source | Key Work | Scope |
-| :--- | :--- | :--- |
-| **Margaret Stroebe &amp; Henk Schut** | *"The Dual Process Model of Coping with Bereavement"* (1999) | The oscillation model: grief as movement between loss-orientation and restoration-orientation, neither held permanently. |
-| **William Worden** | *Grief Counselling and Grief Therapy* (1982) | Tasks of mourning: accept reality, work through pain, adjust to changed world, find continuing bond -- grief as active work, not passive stages. |
-| **Colin Murray Parkes** | *Bereavement: Studies of Grief in Adult Life* (1972) | Yearning and searching as the acute phase: the involuntary reach toward the absent. |
-| **Dennis Klass, Phyllis Silverman &amp; Steven Nickman** | *Continuing Bonds* (1996) | The endpoint of grief is not detachment but a transformed relationship with the lost -- a continuing bond. |
+| Source                                                   | Key Work                                                     | Scope                                                                                                                                            |
+| :------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Margaret Stroebe &amp; Henk Schut**                    | _"The Dual Process Model of Coping with Bereavement"_ (1999) | The oscillation model: grief as movement between loss-orientation and restoration-orientation, neither held permanently.                         |
+| **William Worden**                                       | _Grief Counselling and Grief Therapy_ (1982)                 | Tasks of mourning: accept reality, work through pain, adjust to changed world, find continuing bond -- grief as active work, not passive stages. |
+| **Colin Murray Parkes**                                  | _Bereavement: Studies of Grief in Adult Life_ (1972)         | Yearning and searching as the acute phase: the involuntary reach toward the absent.                                                              |
+| **Dennis Klass, Phyllis Silverman &amp; Steven Nickman** | _Continuing Bonds_ (1996)                                    | The endpoint of grief is not detachment but a transformed relationship with the lost -- a continuing bond.                                       |
 
 ## Restrictions
 

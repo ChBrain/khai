@@ -27,15 +27,45 @@
     "tagline": "Grief as process: how a persona adapts to irreversible loss -- not by returning to what was, but by oscillating between confronting the absence and rebuilding the world it broke.",
     "type": "process",
     "members": [
-      { "file": "process_grief.md", "type": "process", "parent": null },
-      { "file": "process_shock.md", "type": "process", "parent": "process_grief.md" },
-      { "file": "process_yearning.md", "type": "process", "parent": "process_grief.md" },
-      { "file": "process_restoration.md", "type": "process", "parent": "process_grief.md" },
-      { "file": "process_continuing.md", "type": "process", "parent": "process_grief.md" }
+      {
+        "file": "process_grief.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_shock.md",
+        "type": "process",
+        "parent": "process_grief.md"
+      },
+      {
+        "file": "process_yearning.md",
+        "type": "process",
+        "parent": "process_grief.md"
+      },
+      {
+        "file": "process_restoration.md",
+        "type": "process",
+        "parent": "process_grief.md"
+      },
+      {
+        "file": "process_continuing.md",
+        "type": "process",
+        "parent": "process_grief.md"
+      }
     ],
     "requires": [
-      { "on": "instructions", "section": "Knowledge", "link": "anchor", "level": "fail" },
-      { "on": "persona", "section": "Projection", "link": "expression", "level": "fail" }
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
     ],
     "card": {
       "wire": "Attaches at Process. The root (process_grief.md) declares grief as an adaptation work: the persona oscillates between confronting the loss and rebuilding around it, neither pole held permanently.",
