@@ -1,0 +1,70 @@
+{
+  "name": "@chbrain/khai-engine-power",
+  "version": "0.1.0",
+  "description": "khai engine content, the power domain: the base from which a persona can move others",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/power"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "power",
+    "tagline": "the base from which a persona can move others",
+    "type": "position",
+    "anchor": "position_power.md",
+    "expressions": {
+      "reward": "position_reward.md",
+      "coercive": "position_coercive.md",
+      "legitimate": "position_legitimate.md",
+      "referent": "position_referent.md",
+      "expert": "position_expert.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Link the scene's dependency relationships and resource asymmetries to the anchor.",
+      "issue": "Which power base does this persona hold, and what makes it credible in this scene?",
+      "require": "Each persona links a power expression under Projection.",
+      "enforce": "Do not merge power with status; a powerful persona may be low in rank, and a high-status persona may be powerless.",
+      "setup": "Identify what each persona controls that others need before drafting the scene's power map."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}
