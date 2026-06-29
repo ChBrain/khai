@@ -1,0 +1,69 @@
+{
+  "name": "@chbrain/khai-engine-empathy",
+  "version": "0.1.0",
+  "description": "khai engine content, the empathy domain: empathy as position, the baseline capacity a persona holds for taking in the inner state of another -- cognitive, affective, compassionate, or distressed.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/empathy"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "empathy",
+    "tagline": "Empathy as position: the baseline capacity a persona holds for taking in the inner state of another -- how open the channel is and what form the opening takes.",
+    "type": "position",
+    "anchor": "position_empathy.md",
+    "expressions": {
+      "cognitive": "position_cognitive.md",
+      "affective": "position_affective.md",
+      "compassionate": "position_compassionate.md",
+      "distressed": "position_distressed.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_empathy.md) declares the baseline capacity to take in another's inner state -- the channel and its width -- before any particular other has appeared.",
+      "issue": "Four expressions a persona may hold: cognitive (perspective-taking without resonance), affective (resonance -- feels what the other feels), compassionate (moved to act on the other's behalf), and distressed (overwhelmed; the channel takes in more than it can hold). Each is a distinct form of other-directed reception.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor. The link: each persona links, under Projection, the expression it holds as its baseline empathic mode.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real empathy expression. Whether the expression is true to the persona's history is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give each persona its mode under Projection. Read it in how the persona meets another's distress -- the channel is open before any decision to look."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}
