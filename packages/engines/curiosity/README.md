@@ -1,6 +1,6 @@
 # Curiosity
 
-Curiosity as position: the resting inclination toward the unknown -- the posture at the edge of what is already understood, before any particular gap has appeared.
+Curiosity as position: the resting inclination toward the unknown -- the posture at the edge of what is already understood, before any particular gap or target has appeared.
 
 This engine is defined by its [manifest](package.json), which the canon renders as the WIRES card. The manifest is the single source of truth; this README is generated, not edited by hand.
 
