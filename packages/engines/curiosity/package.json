@@ -1,0 +1,59 @@
+{
+  "name": "@chbrain/khai-engine-curiosity",
+  "version": "0.1.0",
+  "description": "khai engine content, the curiosity domain: curiosity as position, the resting inclination toward the unknown -- the posture at the edge of what is already understood, before any particular gap has appeared.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/curiosity"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "curiosity",
+    "tagline": "Curiosity as position: the resting inclination toward the unknown -- the posture at the edge of what is already understood, before any particular gap or target has appeared.",
+    "type": "position",
+    "anchor": "position_curiosity.md",
+    "expressions": {
+      "epistemic": "position_epistemic.md",
+      "perceptual": "position_perceptual.md",
+      "social": "position_social.md",
+      "exploratory": "position_exploratory.md"
+    },
+    "requires": [
+      { "on": "instructions", "section": "Knowledge", "link": "anchor", "level": "fail" },
+      { "on": "persona", "section": "Projection", "link": "expression", "level": "fail" }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_curiosity.md) declares the resting inclination toward the unknown -- the persona's posture at the edge of what is already understood, before any particular gap or target has appeared.",
+      "issue": "Four expressions a persona may hold: epistemic (pulled toward knowledge gaps, the itch of not-knowing), perceptual (pulled toward sensory novelty, restless in the familiar), social (pulled toward the interior lives of others), and exploratory (pulled toward the uncharted for its own sake). Each is a distinct form of the same inclination.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor. The link: each persona links, under Projection, the expression it holds as its baseline curiosity mode.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real curiosity expression. Whether the expression is true to the persona's character is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give each persona its mode under Projection. Read it in how the persona meets the edge of the known -- the inclination arrives before the object of curiosity does."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}
