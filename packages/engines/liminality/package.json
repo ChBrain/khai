@@ -1,0 +1,46 @@
+{
+  "name": "@chbrain/khai-engine-liminality",
+  "version": "0.1.0",
+  "description": "khai liminality engine — the individual threshold state between prior identity and what comes next",
+  "type": "module",
+  "main": "index.mjs",
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "khai": {
+    "engine": "liminality",
+    "tagline": "The individual threshold state between prior identity and what comes next.",
+    "type": "place",
+    "anchor": "place_liminality.md",
+    "expressions": {
+      "threshold": "place_threshold.md",
+      "suspension": "place_suspension.md",
+      "emergence": "place_emergence.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Link the persona's current threshold state (threshold, suspension, or emergence) to the expression under Projection.",
+      "issue": "What the persona left behind and what they are waiting to become.",
+      "require": "A prior status that has been genuinely relinquished; the new status not yet conferred.",
+      "enforce": "Do not model the ritual that produced the liminality here; that belongs to the ritual engine. This engine models the individual's in-between state.",
+      "setup": "Name what prior identity or status was left behind, how long the persona has been in the liminal state, and what the stakes are of what comes next."
+    }
+  },
+  "devDependencies": {
+    "vitest": "^3.2.0"
+  },
+  "scripts": {
+    "test": "vitest run"
+  }
+}
