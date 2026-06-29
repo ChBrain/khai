@@ -14,12 +14,12 @@ The spine is the evolutionary-social model of loneliness: the signal is an alarm
 
 Social neuroscience and epidemiology of loneliness, applied directly as process constraints.
 
-| Source | Key Work | Scope |
-| :--- | :--- | :--- |
-| **John Cacioppo &amp; William Patrick** | *Loneliness: Human Nature and the Need for Social Connection* (2008) | Evolutionary model: loneliness as a social pain signal; the hypervigilance loop that turns the alarm into a barrier. |
-| **John Cacioppo &amp; Stephanie Cacioppo** | *"The Growing Problem of Loneliness"* (2018) | Chronic loneliness as a health risk; the distinction between felt loneliness and objective social isolation. |
-| **Julianne Holt-Lunstad, Timothy Smith &amp; Bradley Layton** | *"Social Relationships and Mortality Risk"* (2010) | The health-equivalent of loneliness: its physiological and mortality impact, independent of actual isolation. |
-| **Robert Weiss** | *Loneliness: The Experience of Emotional and Social Isolation* (1973) | Two types: emotional loneliness (absence of a specific close attachment) and social loneliness (absence of a broader network). |
+| Source                                                        | Key Work                                                              | Scope                                                                                                                          |
+| :------------------------------------------------------------ | :-------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------- |
+| **John Cacioppo &amp; William Patrick**                       | _Loneliness: Human Nature and the Need for Social Connection_ (2008)  | Evolutionary model: loneliness as a social pain signal; the hypervigilance loop that turns the alarm into a barrier.           |
+| **John Cacioppo &amp; Stephanie Cacioppo**                    | _"The Growing Problem of Loneliness"_ (2018)                          | Chronic loneliness as a health risk; the distinction between felt loneliness and objective social isolation.                   |
+| **Julianne Holt-Lunstad, Timothy Smith &amp; Bradley Layton** | _"Social Relationships and Mortality Risk"_ (2010)                    | The health-equivalent of loneliness: its physiological and mortality impact, independent of actual isolation.                  |
+| **Robert Weiss**                                              | _Loneliness: The Experience of Emotional and Social Isolation_ (1973) | Two types: emotional loneliness (absence of a specific close attachment) and social loneliness (absence of a broader network). |
 
 ## Restrictions
 
