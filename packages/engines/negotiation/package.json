@@ -1,0 +1,67 @@
+{
+  "name": "@chbrain/khai-engine-negotiation",
+  "version": "0.1.0",
+  "description": "khai negotiation engine — how parties with competing interests pursue agreement",
+  "type": "module",
+  "main": "index.mjs",
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "khai": {
+    "engine": "negotiation",
+    "tagline": "How parties with competing interests pursue agreement.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_negotiation.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_preparation.md",
+        "type": "process",
+        "parent": "process_negotiation.md"
+      },
+      {
+        "file": "process_exploration.md",
+        "type": "process",
+        "parent": "process_negotiation.md"
+      },
+      {
+        "file": "process_invention.md",
+        "type": "process",
+        "parent": "process_negotiation.md"
+      },
+      {
+        "file": "process_resolution.md",
+        "type": "process",
+        "parent": "process_negotiation.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Link the phase the persona is running (preparation, exploration, invention, or resolution) under Projection.",
+      "issue": "What each party wants from this negotiation and what they are willing to accept.",
+      "require": "Both parties are at the table; there is something worth agreeing on.",
+      "enforce": "Keep positions and interests distinct. Do not let the persona confuse what they said they want with what they actually need.",
+      "setup": "Name each party, their stated position, their underlying interests, and their BATNA before play begins."
+    }
+  },
+  "devDependencies": {
+    "vitest": "^3.2.0"
+  },
+  "scripts": {
+    "test": "vitest run"
+  }
+}
