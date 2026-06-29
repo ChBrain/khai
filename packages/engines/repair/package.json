@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-repair",
+  "version": "0.1.0",
+  "description": "khai engine content, the repair domain: what a relationship undergoes when rupture is addressed rather than abandoned",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/repair"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "repair",
+    "tagline": "what a relationship undergoes when rupture is addressed rather than abandoned",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_repair.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_rupture.md",
+        "type": "process",
+        "parent": "process_repair.md"
+      },
+      {
+        "file": "process_accounting.md",
+        "type": "process",
+        "parent": "process_repair.md"
+      },
+      {
+        "file": "process_restitution.md",
+        "type": "process",
+        "parent": "process_repair.md"
+      },
+      {
+        "file": "process_integration.md",
+        "type": "process",
+        "parent": "process_repair.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_repair.md) declares repair as a relational process: the movement through rupture, accounting, restitution, and integration that rebuilds a damaged relationship.",
+      "issue": "Four phases: rupture (the break is acknowledged; both parties know something is damaged), accounting (the responsible party names what happened and why), restitution (concrete action addresses the harm), integration (the repair is received; the relationship is remade on new terms).",
+      "require": "The law is declared once in the project's Instructions Knowledge chapter, linking the root. Each persona links, under Projection, the phase it is currently in.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies that the law is declared and each persona links a real repair phase. Whether the phase is true to the relationship is semantic, not mechanical.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Give the persona its current phase under Projection. Phases may recur if earlier phases are incomplete."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}
