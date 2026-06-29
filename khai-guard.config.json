@@ -94,7 +94,7 @@
       {
         "pattern": "dependabot/*",
         "layer": "deps",
-        "allow": ["**/package.json", ".github/workflows/**"]
+        "allow": ["**/package.json", "**/package-lock.json", ".github/workflows/**"]
       },
       {
         "pattern": "repo/*",
