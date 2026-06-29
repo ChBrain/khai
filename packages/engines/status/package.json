@@ -1,0 +1,69 @@
+{
+  "name": "@chbrain/khai-engine-status",
+  "version": "0.1.0",
+  "description": "khai engine content, the status domain: rank as position in the scene's deference order",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/status"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "status",
+    "tagline": "rank as position in the scene's deference order",
+    "type": "position",
+    "anchor": "position_status.md",
+    "expressions": {
+      "high": "position_high.md",
+      "low": "position_low.md",
+      "contested": "position_contested.md",
+      "token": "position_token.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Link the scene's status order -- who defers to whom -- to the anchor.",
+      "issue": "Which characteristic (diffuse or specific) sets rank in this scene?",
+      "require": "Each persona links a status expression under Projection.",
+      "enforce": "Do not merge status with power or role; a high-status persona may be powerless, and vice versa.",
+      "setup": "Identify one or two relevant status characteristics for the scene before drafting personas."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}
