@@ -1,6 +1,6 @@
 # Grief
 
-Grief as process: how a persona adapts to irreversible loss by oscillating between confronting the absence and rebuilding the world around it.
+Grief as process: how a persona adapts to irreversible loss -- not by returning to what was, but by oscillating between confronting the absence and rebuilding the world it broke.
 
 This engine is defined by its [manifest](package.json), which the canon renders as the WIRES card. The manifest is the single source of truth; this README is generated, not edited by hand.
 
