@@ -1,6 +1,6 @@
-# Time Perception
+# Time-perception
 
-The persona's resting orientation toward duration as felt experience -- continuous, now-anchored, behind, or absorbed.
+Time perception as position: the persona's resting orientation toward duration as felt experience -- how real the future is, how available the past remains, and how duration registers as it passes.
 
 This engine is defined by its [manifest](package.json), which the canon renders as the WIRES card. The manifest is the single source of truth; this README is generated, not edited by hand.
 
