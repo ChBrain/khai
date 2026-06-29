@@ -14,12 +14,12 @@ The spine is the multi-dimensional model of trait curiosity: epistemic, perceptu
 
 Curiosity research in positive psychology and motivation science, applied directly as position constraints.
 
-| Source | Key Work | Scope |
-| :--- | :--- | :--- |
-| **Todd Kashdan, Paul Rose &amp; Frank Fincham** | *"Curiosity and Exploration: Facilitating Positive Subjective Experiences and Personal Growth Opportunities"* (2004) | Curiosity as a multidimensional trait: joyous exploration, deprivation sensitivity, stress tolerance, social curiosity, thrill-seeking. |
-| **George Loewenstein** | *"The Psychology of Curiosity: A Review and Reinterpretation"* (1994) | Information gap theory: curiosity is the felt tension between what is known and what could be known; the gap is the source of the pull. |
-| **Daniel Berlyne** | *Conflict, Arousal, and Curiosity* (1960) | Perceptual curiosity and the novelty-complexity dimension: the organism is pulled toward stimuli that are neither too familiar nor too complex. |
-| **Mario Livio** | *Why?: What Makes Us Curious* (2017) | Distinction between epistemic curiosity (knowledge-gap driven) and perceptual curiosity (novelty-driven); each has a different signature. |
+| Source                                          | Key Work                                                                                                             | Scope                                                                                                                                           |
+| :---------------------------------------------- | :------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Todd Kashdan, Paul Rose &amp; Frank Fincham** | _"Curiosity and Exploration: Facilitating Positive Subjective Experiences and Personal Growth Opportunities"_ (2004) | Curiosity as a multidimensional trait: joyous exploration, deprivation sensitivity, stress tolerance, social curiosity, thrill-seeking.         |
+| **George Loewenstein**                          | _"The Psychology of Curiosity: A Review and Reinterpretation"_ (1994)                                                | Information gap theory: curiosity is the felt tension between what is known and what could be known; the gap is the source of the pull.         |
+| **Daniel Berlyne**                              | _Conflict, Arousal, and Curiosity_ (1960)                                                                            | Perceptual curiosity and the novelty-complexity dimension: the organism is pulled toward stimuli that are neither too familiar nor too complex. |
+| **Mario Livio**                                 | _Why?: What Makes Us Curious_ (2017)                                                                                 | Distinction between epistemic curiosity (knowledge-gap driven) and perceptual curiosity (novelty-driven); each has a different signature.       |
 
 ## Restrictions
 

@@ -34,8 +34,18 @@
       "exploratory": "position_exploratory.md"
     },
     "requires": [
-      { "on": "instructions", "section": "Knowledge", "link": "anchor", "level": "fail" },
-      { "on": "persona", "section": "Projection", "link": "expression", "level": "fail" }
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
     ],
     "card": {
       "wire": "Attaches at Position. The anchor (position_curiosity.md) declares the resting inclination toward the unknown -- the persona's posture at the edge of what is already understood, before any particular gap or target has appeared.",
