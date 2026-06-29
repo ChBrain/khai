@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-executive-function",
+  "version": "0.1.0",
+  "description": "khai engine content, the executive function domain: the regulatory control layer that holds goals active, suppresses competing responses, refreshes working memory, and sequences action across time.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/executive-function"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "executive-function",
+    "tagline": "Executive function as process: the regulatory control layer that holds goals active, suppresses competing responses, refreshes working memory, and sequences action across time -- inhibition, updating, shifting, and planning.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_executive_function.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_inhibition.md",
+        "type": "process",
+        "parent": "process_executive_function.md"
+      },
+      {
+        "file": "process_updating.md",
+        "type": "process",
+        "parent": "process_executive_function.md"
+      },
+      {
+        "file": "process_shifting.md",
+        "type": "process",
+        "parent": "process_executive_function.md"
+      },
+      {
+        "file": "process_planning.md",
+        "type": "process",
+        "parent": "process_executive_function.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_executive_function.md) declares executive function as the regulatory control layer: the goal is held active and the automatic response is suppressed or redirected. The law makes every persona carry the cost of control.",
+      "issue": "Four modes a persona may run: inhibition (blocking the prepotent response before it fires), updating (refreshing working memory as the task shifts), shifting (releasing one configuration and loading another), and planning (holding a goal active across a multi-step sequence). Each is a distinct regulatory cost.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the executive function mode the moment requires -- and what it is therefore costing.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real executive function mode. Whether the regulatory load is true to the scene is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its mode under Projection. Read it in what the persona manages to hold and what slips -- the plan dropped, the impulse that fired, the task that bled into the next one."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}
