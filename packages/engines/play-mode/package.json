@@ -1,0 +1,47 @@
+{
+  "name": "@chbrain/khai-engine-play-mode",
+  "version": "0.1.0",
+  "description": "khai play-mode engine — the mode of engagement in which a persona treats an activity as play",
+  "type": "module",
+  "main": "index.mjs",
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "khai": {
+    "engine": "play-mode",
+    "tagline": "The mode of engagement in which a persona treats an activity as play.",
+    "type": "position",
+    "anchor": "position_play_mode.md",
+    "expressions": {
+      "immersed": "position_immersed.md",
+      "exploratory": "position_exploratory.md",
+      "competitive": "position_competitive.md",
+      "pretend": "position_pretend.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Link the play-mode the persona is in (immersed, exploratory, competitive, or pretend) under Projection.",
+      "issue": "What the persona is playing at and what the play space holds for them.",
+      "require": "A voluntary engagement with an activity that is taken as play, not as work or duty.",
+      "enforce": "Do not model play as a performance of play. The mode is in the quality of the engagement, not in what the activity looks like from outside.",
+      "setup": "Name the activity, the magic circle that separates it from ordinary life, and what the persona risks or stakes in this mode."
+    }
+  },
+  "devDependencies": {
+    "vitest": "^3.2.0"
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests"
+  }
+}

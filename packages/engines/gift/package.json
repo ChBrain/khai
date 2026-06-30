@@ -1,0 +1,62 @@
+{
+  "name": "@chbrain/khai-engine-gift",
+  "version": "0.1.0",
+  "description": "khai gift engine — how a gift creates obligation, binds the parties, and requires a return",
+  "type": "module",
+  "main": "index.mjs",
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "khai": {
+    "engine": "gift",
+    "tagline": "How a gift creates obligation, binds the parties, and requires a return.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_gift.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_giving.md",
+        "type": "process",
+        "parent": "process_gift.md"
+      },
+      {
+        "file": "process_receiving.md",
+        "type": "process",
+        "parent": "process_gift.md"
+      },
+      {
+        "file": "process_reciprocating.md",
+        "type": "process",
+        "parent": "process_gift.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Link the phase the persona is running (giving, receiving, or reciprocating) under Projection.",
+      "issue": "What the gift is, who gives it, and what it costs to give, receive, or refuse.",
+      "require": "A giver, a receiver, and a transfer of something that carries social weight.",
+      "enforce": "Do not model the gift as a free or neutral exchange. Every gift creates an obligation; accepting creates a debt; refusal is also a move.",
+      "setup": "Name what is being given, what history of exchange exists between the parties, and what the gift signals about the relationship."
+    }
+  },
+  "devDependencies": {
+    "vitest": "^3.2.0"
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests"
+  }
+}
