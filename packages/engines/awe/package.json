@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-awe",
+  "version": "0.1.0",
+  "description": "khai engine content, the awe domain: the response through which a persona accommodates a vastness that exceeds its current frame",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/awe"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "awe",
+    "tagline": "the response through which a persona accommodates a vastness that exceeds its current frame",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_awe.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_beauty.md",
+        "type": "process",
+        "parent": "process_awe.md"
+      },
+      {
+        "file": "process_threat.md",
+        "type": "process",
+        "parent": "process_awe.md"
+      },
+      {
+        "file": "process_moral.md",
+        "type": "process",
+        "parent": "process_awe.md"
+      },
+      {
+        "file": "process_sacred.md",
+        "type": "process",
+        "parent": "process_awe.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_awe.md) declares awe as an accommodation process: the persona meets a vastness that exceeds its current frame, the frame must widen rather than the object shrink, and the self goes small in the widening.",
+      "issue": "Four colours the accommodation may take, by what the vastness is read as: beauty (perceptual abundance, the small self without trembling), threat (the sublime, vastness that menaces), moral (elevation, virtue witnessed in another), and sacred (the numinous, vastness read as transcendent).",
+      "require": "The law is declared once in the project's Instructions Knowledge chapter, linking the root. Each persona links, under Projection, the colour of awe it is currently in.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real awe colour. Whether the colour is true to the persona's encounter is semantic, not mechanical.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Give the persona its current colour under Projection. The persona may move across colours as the vastness is re-read."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}
