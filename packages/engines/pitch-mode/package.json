@@ -1,0 +1,47 @@
+{
+  "name": "@chbrain/khai-engine-pitch-mode",
+  "version": "0.1.0",
+  "description": "khai pitch-mode engine — the mode of engagement a persona holds when they are actively pitching",
+  "type": "module",
+  "main": "index.mjs",
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "khai": {
+    "engine": "pitch-mode",
+    "tagline": "The mode of engagement a persona holds when they are actively pitching.",
+    "type": "position",
+    "anchor": "position_pitch_mode.md",
+    "expressions": {
+      "framing": "position_framing.md",
+      "building": "position_building.md",
+      "landing": "position_landing.md",
+      "recovering": "position_recovering.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Link the pitch-mode expression the persona is in (framing, building, landing, or recovering) under Projection.",
+      "issue": "What the persona is pitching, who they are pitching to, and what a yes would require.",
+      "require": "A persona who is actively seeking a specific commitment from a specific other; the pitch must be live, not hypothetical.",
+      "enforce": "Pitch mode is not enthusiasm for an idea. The persona is seeking a specific commitment. Each expression marks what the persona is doing to move the other toward that commitment.",
+      "setup": "Name what the persona is pitching, what they need the other to do, what the other's objections are likely to be, and which pitch-mode expression the persona is currently in."
+    }
+  },
+  "devDependencies": {
+    "vitest": "^3.2.0"
+  },
+  "scripts": {
+    "test": "vitest run"
+  }
+}
