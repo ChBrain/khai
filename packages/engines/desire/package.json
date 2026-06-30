@@ -1,0 +1,71 @@
+{
+  "name": "@chbrain/khai-engine-desire",
+  "version": "0.1.0",
+  "description": "khai engine content, the desire domain: desire as position, the resting style of wanting a persona brings toward an object of desire, before any particular person fills it.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/desire"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "desire",
+    "tagline": "Desire as position: the resting style of wanting a persona brings toward an object of desire -- the appetite before its face -- across the six love styles a persona may carry.",
+    "type": "position",
+    "anchor": "position_desire.md",
+    "expressions": {
+      "passionate": "position_passionate.md",
+      "playful": "position_playful.md",
+      "companionate": "position_companionate.md",
+      "pragmatic": "position_pragmatic.md",
+      "obsessive": "position_obsessive.md",
+      "selfless": "position_selfless.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_desire.md) declares desire as a resting style of wanting the persona carries toward an object of desire (a baseline shape the longing takes before any particular person fills it), and the system-wide law makes every persona carry it beneath who they reach for.",
+      "issue": "Six ready expressions a persona may hold, the six love styles after Lee: passionate (eros, wanting on sight), playful (ludus, wanting as a game), companionate (storge, wanting grown from liking), pragmatic (pragma, wanting by fit), obsessive (mania, wanting that consumes), and selfless (agape, wanting that gives itself away). Each is a full position file the build composes onto the anchor, so the persona gets a baseline that colours every reaching, not a label. More expressions slot in as sibling files without moving the anchor.",
+      "require": "Two altitudes must hold. One, the law: declared once in the project's Instructions Knowledge chapter ('personas carry a desire style'), so the baseline holds system-wide and no persona meets a wanted other on neutral ground. Two, the link: each persona carries its style under Projection. A persona may also hold a different, even contradicting, style under Shadow; the gap between the wanting shown and the wanting masked is the character, not a contradiction to reject.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, and each persona carries a desire style under Projection. Whether a Projection style and a Shadow style cohere into a true persona is semantic, so it is taught and reviewed, never failed by the suite. The engine ships its own structural tests; the reading is guided, not gated.",
+      "setup": "Two steps. Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give each persona its desire style under Projection: one expression, which carries the anchor upward. Where a persona masks a different style, put it under Shadow. Read it in who registers as worth reaching for and how; the room reads it beneath the pursuit, never narrates it."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}
