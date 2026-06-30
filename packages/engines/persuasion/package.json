@@ -1,0 +1,67 @@
+{
+  "name": "@chbrain/khai-engine-persuasion",
+  "version": "0.1.0",
+  "description": "khai persuasion engine — how a persona attempts to change what another believes, values, or does",
+  "type": "module",
+  "main": "index.mjs",
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "khai": {
+    "engine": "persuasion",
+    "tagline": "How a persona attempts to change what another believes, values, or does.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_persuasion.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_appeal.md",
+        "type": "process",
+        "parent": "process_persuasion.md"
+      },
+      {
+        "file": "process_reception.md",
+        "type": "process",
+        "parent": "process_persuasion.md"
+      },
+      {
+        "file": "process_processing.md",
+        "type": "process",
+        "parent": "process_persuasion.md"
+      },
+      {
+        "file": "process_outcome.md",
+        "type": "process",
+        "parent": "process_persuasion.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Link the phase the persona is running (appeal, reception, processing, or outcome) under Projection.",
+      "issue": "What the persuader wants the target to believe, value, or do differently.",
+      "require": "A persuader, a target, and a change the persuader is attempting.",
+      "enforce": "Track which processing route the target is on. Central route change is more durable than peripheral.",
+      "setup": "Name the persuader, the target, the change being sought, and what motivation and ability the target has to process the message deeply."
+    }
+  },
+  "devDependencies": {
+    "vitest": "^3.2.0"
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests"
+  }
+}
