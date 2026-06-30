@@ -1,0 +1,66 @@
+{
+  "name": "@chbrain/khai-engine-deception",
+  "version": "0.1.0",
+  "description": "khai deception engine — the deliberate creation of a false belief in another without their consent",
+  "type": "module",
+  "main": "index.mjs",
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "khai": {
+    "engine": "deception",
+    "tagline": "The deliberate creation of a false belief in another without their consent.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_deception.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_construction.md",
+        "type": "process",
+        "parent": "process_deception.md"
+      },
+      {
+        "file": "process_delivery.md",
+        "type": "process",
+        "parent": "process_deception.md"
+      },
+      {
+        "file": "process_maintenance.md",
+        "type": "process",
+        "parent": "process_deception.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Link the deception phase the persona is in (construction, delivery, or maintenance) under Projection.",
+      "issue": "What the persona is concealing, what false impression they are creating in the target's mind, and what the deception is in service of.",
+      "require": "A specific target whose beliefs are being manipulated without their consent; a deliberate intention to create a false impression; and something the persona knows and the target does not.",
+      "enforce": "Deception requires intent. An honest error is not deception; a false belief the persona sincerely holds is not deception. The deceiver knows the truth and is deliberately creating a different belief in the target.",
+      "setup": "Name what is true, what false belief the persona is installing in the target, what the persona does and says to create that belief, and what the deception is protecting or achieving."
+    }
+  },
+  "devDependencies": {
+    "vitest": "^3.2.0"
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests"
+  }
+}
