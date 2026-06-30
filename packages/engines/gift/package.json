@@ -53,8 +53,12 @@
       "setup": "Name what is being given, what history of exchange exists between the parties, and what the gift signals about the relationship."
     }
   },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
   "devDependencies": {
-    "vitest": "^3.2.0"
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
   },
   "scripts": {
     "test": "vitest run --passWithNoTests"
