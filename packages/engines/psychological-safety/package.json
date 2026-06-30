@@ -1,0 +1,47 @@
+{
+  "name": "@chbrain/khai-engine-psychological-safety",
+  "version": "0.1.0",
+  "description": "khai psychological safety engine — the interpersonal climate that determines what a persona can risk saying",
+  "type": "module",
+  "main": "index.mjs",
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "khai": {
+    "engine": "psychological-safety",
+    "tagline": "The interpersonal climate that determines what a persona can risk saying.",
+    "type": "place",
+    "anchor": "place_psychological_safety.md",
+    "expressions": {
+      "high": "place_high.md",
+      "fragile": "place_fragile.md",
+      "low": "place_low.md",
+      "performative": "place_performative.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Link the scene's interpersonal climate to the anchor; link the specific safety level to the expression under Projection.",
+      "issue": "What can a persona in this climate risk saying without losing standing?",
+      "require": "A team or group with a history of interaction; a norm, enforced or unenforced, around speaking up.",
+      "enforce": "Do not conflate claimed safety with real safety. Performative safety looks like high safety from the outside and functions like low safety from the inside.",
+      "setup": "Identify the relevant prior episodes -- who spoke up, what happened, who was punished -- before assigning an expression."
+    }
+  },
+  "devDependencies": {
+    "vitest": "^3.2.0"
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests"
+  }
+}
