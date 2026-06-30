@@ -1,0 +1,51 @@
+{
+  "name": "@chbrain/khai-engine-goal",
+  "version": "0.1.0",
+  "description": "khai goal engine — the desired state a persona is oriented toward and how they hold the pursuit",
+  "type": "module",
+  "main": "index.mjs",
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "khai": {
+    "engine": "goal",
+    "tagline": "The desired state a persona is oriented toward and how they hold the pursuit.",
+    "type": "position",
+    "anchor": "position_goal.md",
+    "expressions": {
+      "approach": "position_approach.md",
+      "avoidance": "position_avoidance.md",
+      "mastery": "position_mastery.md",
+      "performance": "position_performance.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Link the goal orientation the persona holds (approach, avoidance, mastery, or performance) under Projection.",
+      "issue": "What the persona is pursuing or avoiding, and what makes the goal specific, challenging, and owned by this persona.",
+      "require": "A goal must be the persona's own: consciously held, valued, and connected to how they understand what they are doing.",
+      "enforce": "Do not use this engine to model what the persona wants in an abstract sense. A goal is specific, has direction (toward or away), and shapes what the persona attends to and how they interpret setbacks.",
+      "setup": "Name the goal, its orientation (approach or avoidance) and type (mastery or performance), and what the persona believes determines whether they succeed."
+    }
+  },
+  "devDependencies": {
+    "vitest": "^3.2.0"
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests"
+  }
+}
