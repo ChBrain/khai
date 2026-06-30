@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-habit",
+  "version": "0.1.0",
+  "description": "khai engine content, the habit domain: how a response, repeated in a stable context, comes to run without intention",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/habit"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "habit",
+    "tagline": "how a response, repeated in a stable context, comes to run without intention",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_habit.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_cueing.md",
+        "type": "process",
+        "parent": "process_habit.md"
+      },
+      {
+        "file": "process_repetition.md",
+        "type": "process",
+        "parent": "process_habit.md"
+      },
+      {
+        "file": "process_automaticity.md",
+        "type": "process",
+        "parent": "process_habit.md"
+      },
+      {
+        "file": "process_friction.md",
+        "type": "process",
+        "parent": "process_habit.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_habit.md) declares habit as context-cued automaticity: a response, repeated in a stable context, comes to run from the cue without intention -- moving through cueing, repetition, automaticity, and friction, not necessarily in sequence and not necessarily to completion.",
+      "issue": "Four passes a persona may run: cueing (a stable context fires the response), repetition (the pairing lays the groove), automaticity (the response runs without intention or goal), and friction (a change of context returns the act to deliberation).",
+      "require": "The law is declared once in the project's Instructions Knowledge chapter, linking the root. Each persona links, under Projection, the pass its habit is currently in.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real habit pass. Whether the pass is true to the persona's behaviour is semantic, not mechanical.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Give the persona its current pass under Projection. The persona may move across passes as the context holds or breaks."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}
