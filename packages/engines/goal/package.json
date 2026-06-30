@@ -4,6 +4,10 @@
   "description": "khai goal engine — the desired state a persona is oriented toward and how they hold the pursuit",
   "type": "module",
   "main": "index.mjs",
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
   "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
   "khai": {
     "engine": "goal",
@@ -42,6 +46,6 @@
     "vitest": "^3.2.0"
   },
   "scripts": {
-    "test": "vitest run"
+    "test": "vitest run --passWithNoTests"
   }
 }
