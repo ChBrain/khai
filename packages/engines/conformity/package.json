@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-conformity",
+  "version": "0.1.0",
+  "description": "khai engine content, the conformity domain: the pull of the group's standard on a persona's response, and how that pull resolves into compliance, internalization, obedience, or independence",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/conformity"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "conformity",
+    "tagline": "the pull of the group's standard on a persona's response: how the presence of others' positions bends what the persona shows, believes, or does -- compliance, internalization, obedience, or independence",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_conformity.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_compliance.md",
+        "type": "process",
+        "parent": "process_conformity.md"
+      },
+      {
+        "file": "process_internalization.md",
+        "type": "process",
+        "parent": "process_conformity.md"
+      },
+      {
+        "file": "process_obedience.md",
+        "type": "process",
+        "parent": "process_conformity.md"
+      },
+      {
+        "file": "process_independence.md",
+        "type": "process",
+        "parent": "process_conformity.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_conformity.md) declares conformity as the pull of a present group's standard on the persona's response: the others have answered, their answer is not the persona's, and the persona bends toward it, takes it in, obeys a command, or holds its ground.",
+      "issue": "Four readings a persona may run: compliance (public go-along over private disagreement, normative pull), internalization (private acceptance, the group taken as evidence, informational pull), obedience (yielding to an authority's command rather than a peer norm), and independence (the pull resisted, the deviant position held).",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the specific reading it runs in the scene.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real conformity reading. Whether the reading is true to the persona's situation is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its read under Projection, linking the specific expression. Read it in the first beat; the room enacts the pull, never narrates it."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}
