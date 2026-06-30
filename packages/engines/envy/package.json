@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-envy",
+  "version": "0.1.0",
+  "description": "khai engine content, the envy domain: the upward comparison through which a persona reckons with another's superior good",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/envy"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "envy",
+    "tagline": "the upward comparison through which a persona reckons with another's superior good",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_envy.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_benign.md",
+        "type": "process",
+        "parent": "process_envy.md"
+      },
+      {
+        "file": "process_malicious.md",
+        "type": "process",
+        "parent": "process_envy.md"
+      },
+      {
+        "file": "process_jealousy.md",
+        "type": "process",
+        "parent": "process_envy.md"
+      },
+      {
+        "file": "process_resentment.md",
+        "type": "process",
+        "parent": "process_envy.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_envy.md) declares envy as an upward-comparison process: the persona, faced with another's superior good, is moved to close the gap -- by rising, by pulling the other down, by guarding a bond against a rival, or by recoding the gap as injustice.",
+      "issue": "Four branches the comparison may resolve into: benign (raise the self), malicious (lower the other), jealousy (guard a valued bond against a rival), and resentment (the gap moralized into a wrong).",
+      "require": "The law is declared once in the project's Instructions Knowledge chapter, linking the root. Each persona links, under Projection, the branch its comparison currently runs through.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real envy branch. Whether the branch is true to the persona's comparison is semantic, not mechanical.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Give the persona its current branch under Projection. The persona may move between branches as the gap is read one way and then another."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}
