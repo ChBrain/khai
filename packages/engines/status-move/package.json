@@ -1,0 +1,47 @@
+{
+  "name": "@chbrain/khai-engine-status-move",
+  "version": "0.1.0",
+  "description": "khai status-move engine — a discrete tactical move a persona makes in status space",
+  "type": "module",
+  "main": "index.mjs",
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "khai": {
+    "engine": "status-move",
+    "tagline": "A discrete tactical move a persona makes in status space.",
+    "type": "position",
+    "anchor": "position_status_move.md",
+    "expressions": {
+      "ascending": "position_ascending.md",
+      "descending": "position_descending.md",
+      "lateral": "position_lateral.md",
+      "deflecting": "position_deflecting.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Link the status move the persona is making (ascending, descending, lateral, or deflecting) under Projection.",
+      "issue": "What status position the persona is moving from and toward, and what the move costs them in the interaction.",
+      "require": "An active interaction in which status is being transacted; the move must be addressed to a specific other.",
+      "enforce": "Status moves are moment-by-moment. Do not model a persona as being in a move across an entire scene; a move is discrete and addressed. The status engine holds the persona's ongoing rank; this engine holds the specific move they are making now.",
+      "setup": "Name the other the persona is transacting with, the current relative status, and the specific move being made: its form, its target, and what it signals."
+    }
+  },
+  "devDependencies": {
+    "vitest": "^3.2.0"
+  },
+  "scripts": {
+    "test": "vitest run"
+  }
+}
