@@ -1,0 +1,62 @@
+{
+  "name": "@chbrain/khai-engine-implementation-intention",
+  "version": "0.1.0",
+  "description": "khai implementation-intention engine — the if-then plan that bridges a goal intention to its execution",
+  "type": "module",
+  "main": "index.mjs",
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "khai": {
+    "engine": "implementation-intention",
+    "tagline": "The if-then plan that bridges a goal intention to its execution.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_implementation_intention.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_planning.md",
+        "type": "process",
+        "parent": "process_implementation_intention.md"
+      },
+      {
+        "file": "process_triggering.md",
+        "type": "process",
+        "parent": "process_implementation_intention.md"
+      },
+      {
+        "file": "process_executing.md",
+        "type": "process",
+        "parent": "process_implementation_intention.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Link the implementation-intention phase the persona is in (planning, triggering, or executing) under Projection.",
+      "issue": "The gap between the persona's intention to act and their actual action -- what they intend to do and what consistently fails to happen.",
+      "require": "A goal intention that the persona holds but has not yet translated into reliable action; the implementation intention bridges the intention-behavior gap.",
+      "enforce": "An implementation intention is not a plan in the general sense. It is a specific if-then format: when situation X occurs, I will do Y. The specificity is the mechanism; vague plans do not have the same effect.",
+      "setup": "Name the goal intention, the critical situation (when X), the specific action response (I will do Y), and what has previously prevented the persona from acting on the intention."
+    }
+  },
+  "devDependencies": {
+    "vitest": "^3.2.0"
+  },
+  "scripts": {
+    "test": "vitest run"
+  }
+}
