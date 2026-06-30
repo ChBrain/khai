@@ -58,8 +58,12 @@
       "setup": "Name the persuader, the target, the change being sought, and what motivation and ability the target has to process the message deeply."
     }
   },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
   "devDependencies": {
-    "vitest": "^3.2.0"
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
   },
   "scripts": {
     "test": "vitest run --passWithNoTests"

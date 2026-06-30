@@ -57,8 +57,12 @@
       "setup": "Name the goal intention, the critical situation (when X), the specific action response (I will do Y), and what has previously prevented the persona from acting on the intention."
     }
   },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
   "devDependencies": {
-    "vitest": "^3.2.0"
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
   },
   "scripts": {
     "test": "vitest run --passWithNoTests"
