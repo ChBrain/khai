@@ -57,8 +57,12 @@
       "setup": "Name what is true, what false belief the persona is installing in the target, what the persona does and says to create that belief, and what the deception is protecting or achieving."
     }
   },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
   "devDependencies": {
-    "vitest": "^3.2.0"
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
   },
   "scripts": {
     "test": "vitest run --passWithNoTests"
