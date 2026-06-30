@@ -1,0 +1,69 @@
+{
+  "name": "@chbrain/khai-engine-hope",
+  "version": "0.1.0",
+  "description": "khai engine content, the hope domain: hope as position, the persona's resting orientation toward what the future holds -- across the two axes of expected valence and felt agency.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/hope"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "hope",
+    "tagline": "Hope as position: the persona's resting orientation toward what the future holds -- the slant brought to every horizon before an outcome arrives -- across the two axes of expected valence and felt agency.",
+    "type": "position",
+    "anchor": "position_hope.md",
+    "expressions": {
+      "hopeful": "position_hopeful.md",
+      "optimistic": "position_optimistic.md",
+      "dread": "position_dread.md",
+      "defiant": "position_defiant.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_hope.md) declares hope as a resting orientation toward the future -- a baseline on two axes, the expected future good or bad and the persona's hand on it felt or absent -- and the system-wide law makes every persona carry it beneath every plan.",
+      "issue": "Four ready expressions a persona may hold, the four quadrants of valence by agency: hopeful (good expected, high agency -- will plus route), optimistic (good expected, low agency -- it will work out), dread (bad expected, low agency -- braced and unable to steer), and defiant (bad expected, high agency -- grit against the odds). Each is a full position file the build composes onto the anchor, so the persona gets an orientation that colours every horizon, not a label. More expressions slot in as sibling files without moving the anchor.",
+      "require": "Two altitudes must hold. One, the law: declared once in the project's Instructions Knowledge chapter ('personas carry a hope'), so the orientation holds system-wide and no persona meets a future on neutral ground. Two, the link: each persona carries its hope under Projection. A persona may also hold a different, even contradicting, orientation under Shadow; the gap between the hope shown and the hope masked is the character, not a contradiction to reject.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, and each persona carries a hope under Projection. Whether a Projection hope and a Shadow hope cohere into a true persona is semantic, so it is taught and reviewed, never failed by the suite. The engine ships its own structural tests; the reading is guided, not gated.",
+      "setup": "Two steps. Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give each persona its hope under Projection: one expression, which carries the anchor upward. Where a persona masks a different orientation, put it under Shadow. Read it in how the persona leans toward the future; the room reads it beneath the plans, never narrates it."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}

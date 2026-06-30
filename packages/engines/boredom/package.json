@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-boredom",
+  "version": "0.1.0",
+  "description": "khai engine content, the boredom domain: boredom as process, the aversive state of an unengaged mind whose mobilized attention seeks a target the situation will not supply",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/boredom"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "boredom",
+    "tagline": "the aversive state of an unengaged mind, whose mobilized attention seeks a target the situation will not supply",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_boredom.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_indifferent.md",
+        "type": "process",
+        "parent": "process_boredom.md"
+      },
+      {
+        "file": "process_searching.md",
+        "type": "process",
+        "parent": "process_boredom.md"
+      },
+      {
+        "file": "process_reactant.md",
+        "type": "process",
+        "parent": "process_boredom.md"
+      },
+      {
+        "file": "process_apathetic.md",
+        "type": "process",
+        "parent": "process_boredom.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_boredom.md) declares boredom as the unengaged mind: mobilized attention meets a situation that will not absorb it, and the gap presses for resolution -- a target, an exit, or the surrender of the wish.",
+      "issue": "Four ways the unengaged mind resolves: indifferent (calm withdrawal, untroubled), searching (restless casting about for a target), reactant (agitation that blames the situation and pushes to leave it), and apathetic (depleted, no longer expecting relief). The same gap, settled differently by arousal and by whether escape still seems possible.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the boredom type it runs in the scene.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real boredom type. Whether the type is true to the persona's situation is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its type under Projection, linking the specific expression. The persona may move across types as arousal rises and as escape opens or closes."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}
