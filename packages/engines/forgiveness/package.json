@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-forgiveness",
+  "version": "0.1.0",
+  "description": "khai engine content, the forgiveness domain: the harmed party's unilateral release of a grievance, distinct from the bilateral rebuilding of the relationship",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/forgiveness"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "forgiveness",
+    "tagline": "Forgiveness as process: how a persona releases or keeps a grievance they are owed -- decisional, emotional, withheld, or turned on the self -- a unilateral move that does not wait on the offender and does not rebuild the relationship.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_forgiveness.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_decisional.md",
+        "type": "process",
+        "parent": "process_forgiveness.md"
+      },
+      {
+        "file": "process_emotional.md",
+        "type": "process",
+        "parent": "process_forgiveness.md"
+      },
+      {
+        "file": "process_withheld.md",
+        "type": "process",
+        "parent": "process_forgiveness.md"
+      },
+      {
+        "file": "process_self.md",
+        "type": "process",
+        "parent": "process_forgiveness.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_forgiveness.md) declares forgiveness as a unilateral release: the persona who is owed a debt for a wrong decides to stop collecting it, lowering avoidance and revenge without waiting on the offender's apology or deserving.",
+      "issue": "Four readings a persona may run: decisional (the conduct changes before the feeling), emotional (resentment is replaced by empathy), withheld (the debt is kept, by justice or by self-protection), and self (the persona is both offender and creditor). Each gives up -- or keeps -- a different debt.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the reading it is running toward the wrong it carries.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real forgiveness reading. Whether the release is true to the persona and the wrong is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its reading under Projection, against a wrong it actually holds. Read it in how the persona meets the one who wronged them -- collecting, or setting it down -- never as a label, and never as reconciliation, which is repair's."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}
