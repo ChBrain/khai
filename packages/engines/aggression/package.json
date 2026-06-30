@@ -1,0 +1,94 @@
+{
+  "name": "@chbrain/khai-engine-aggression",
+  "version": "0.1.0",
+  "description": "khai engine content, the aggression domain: the mobilization of hostile force into harm aimed at another who is motivated to avoid it",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/aggression"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "aggression",
+    "tagline": "the mobilization of hostile force into harm aimed at another who is motivated to avoid it",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_aggression.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_hostile.md",
+        "type": "process",
+        "parent": "process_aggression.md"
+      },
+      {
+        "file": "process_instrumental.md",
+        "type": "process",
+        "parent": "process_aggression.md"
+      },
+      {
+        "file": "process_displaced.md",
+        "type": "process",
+        "parent": "process_aggression.md"
+      },
+      {
+        "file": "process_relational.md",
+        "type": "process",
+        "parent": "process_aggression.md"
+      },
+      {
+        "file": "process_passive.md",
+        "type": "process",
+        "parent": "process_aggression.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_aggression.md) declares aggression as the mobilization of hostile force: behaviour intended to harm another who is motivated to avoid it. Inputs raise arousal and prime hostile thought; appraisal routes the charge into one of five forms.",
+      "issue": "Five forms the force may take: hostile (provoked, hot, retaliatory), instrumental (harm as a means to an end), displaced (redirected onto a safer target), relational (harm through the social bond), and passive (harm through withholding).",
+      "require": "The law is declared once in the project's Instructions Knowledge chapter, linking the root. Each persona links, under Projection, the form its aggression is currently taking.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real aggression form. Whether the form is true to the persona's state and provocation is semantic, not mechanical.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Give the persona its current form under Projection. The form may shift as the provocation, the goal, or the safe target changes across the play."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}
