@@ -53,8 +53,12 @@
       "setup": "Name the direction the situation held before the turn, the event or revelation that pivoted it, and the new direction the persona now faces."
     }
   },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
   "devDependencies": {
-    "vitest": "^3.2.0"
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
   },
   "scripts": {
     "test": "vitest run --passWithNoTests"
