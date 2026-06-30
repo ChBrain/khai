@@ -4,6 +4,10 @@
   "description": "khai status-move engine — a discrete tactical move a persona makes in status space",
   "type": "module",
   "main": "index.mjs",
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
   "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
   "khai": {
     "engine": "status-move",
