@@ -4,6 +4,10 @@
   "description": "khai pitch-mode engine — the mode of engagement a persona holds when they are actively pitching",
   "type": "module",
   "main": "index.mjs",
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
   "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
   "khai": {
     "engine": "pitch-mode",
@@ -42,6 +46,6 @@
     "vitest": "^3.2.0"
   },
   "scripts": {
-    "test": "vitest run"
+    "test": "vitest run --passWithNoTests"
   }
 }
