@@ -1,5 +1,11 @@
 # @chbrain/khai-engine-stress
 
+## 0.1.4
+
+### Patch Changes
+
+- 41eb5ca: Deepen the stress engine references: add foundational stress-response sources (Cannon, Selye, Lazarus & Folkman, Taylor et al. tend-and-befriend) to the Origin and Encoding.
+
 ## 0.1.3
 
 ### Patch Changes

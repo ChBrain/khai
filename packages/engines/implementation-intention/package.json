@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-implementation-intention",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai implementation-intention engine — the if-then plan that bridges a goal intention to its execution",
   "type": "module",
   "main": "index.mjs",

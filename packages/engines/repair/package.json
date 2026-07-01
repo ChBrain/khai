@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-repair",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the repair domain: what a relationship undergoes when rupture is addressed rather than abandoned",
   "type": "module",
   "main": "./index.mjs",

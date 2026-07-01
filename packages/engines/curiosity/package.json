@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-curiosity",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the curiosity domain: curiosity as position, the resting inclination toward the unknown -- the posture at the edge of what is already understood, before any particular gap has appeared.",
   "type": "module",
   "main": "./index.mjs",

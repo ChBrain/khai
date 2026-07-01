@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-gift",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai gift engine — how a gift creates obligation, binds the parties, and requires a return",
   "type": "module",
   "main": "index.mjs",

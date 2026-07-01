@@ -1,5 +1,11 @@
 # @chbrain/khai-engine-wow
 
+## 0.1.2
+
+### Patch Changes
+
+- e37e64a: Deepen the wow engine references: add occupational-identity and sociology-of-work sources (Sennett, Hochschild, Hughes, Kohn & Schooler) alongside the ISCO-08 structural backbone.
+
 ## 0.1.1
 
 ### Patch Changes

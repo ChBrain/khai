@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-deception",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai deception engine — the deliberate creation of a false belief in another without their consent",
   "type": "module",
   "main": "index.mjs",

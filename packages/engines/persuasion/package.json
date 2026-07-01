@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-persuasion",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai persuasion engine — how a persona attempts to change what another believes, values, or does",
   "type": "module",
   "main": "index.mjs",

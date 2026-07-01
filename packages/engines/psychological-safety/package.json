@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-psychological-safety",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai psychological safety engine — the interpersonal climate that determines what a persona can risk saying",
   "type": "module",
   "main": "index.mjs",

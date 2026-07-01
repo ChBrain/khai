@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-reversal",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai reversal engine — the inversion of a situation's direction",
   "type": "module",
   "main": "index.mjs",

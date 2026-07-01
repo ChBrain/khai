@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-negotiation",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai negotiation engine — how parties with competing interests pursue agreement",
   "type": "module",
   "main": "index.mjs",

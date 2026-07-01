@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-habit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the habit domain: how a response, repeated in a stable context, comes to run without intention",
   "type": "module",
   "main": "./index.mjs",

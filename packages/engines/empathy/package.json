@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-empathy",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the empathy domain: empathy as position, the baseline capacity a persona holds for taking in the inner state of another -- cognitive, affective, compassionate, or distressed.",
   "type": "module",
   "main": "./index.mjs",

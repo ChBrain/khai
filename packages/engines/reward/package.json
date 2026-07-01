@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-reward",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the reward domain: how the organism values outcomes across time -- immediate, deferred, delay-averse, and stimulation-seeking.",
   "type": "module",
   "main": "./index.mjs",

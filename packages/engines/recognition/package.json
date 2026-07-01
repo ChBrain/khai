@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-recognition",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai recognition engine — the social acknowledgment of who a persona is or what they have done",
   "type": "module",
   "main": "index.mjs",
