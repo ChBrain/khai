@@ -1,0 +1,71 @@
+{
+  "name": "@chbrain/khai-engine-moral-judgment",
+  "version": "0.1.0",
+  "description": "khai engine content, the moral-judgment domain: the moral lens a persona reads another's conduct through -- which foundation lights first when they judge right and wrong in someone else.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/moral-judgment"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "moral-judgment",
+    "tagline": "Moral judgment as position: the moral lens a persona reads another's conduct through -- which of the six foundations lights first when they weigh right and wrong in someone else.",
+    "type": "position",
+    "anchor": "position_moral_judgment.md",
+    "expressions": {
+      "care": "position_care.md",
+      "fairness": "position_fairness.md",
+      "loyalty": "position_loyalty.md",
+      "authority": "position_authority.md",
+      "sanctity": "position_sanctity.md",
+      "liberty": "position_liberty.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_moral_judgment.md) declares the moral lens a persona reads another's conduct through -- a standing set of foundations, one of which fires first and lands a verdict before the reasons are gathered. The law makes every persona carry one.",
+      "issue": "Six ready expressions a persona may hold, the six moral foundations: care (against harm), fairness (against cheating), loyalty (against betrayal), authority (against subversion), sanctity (against degradation), and liberty (against oppression). Each is a full position file the build composes onto the anchor, so the persona gets a lens that weighs every other's act, not a label. More expressions slot in as sibling files without moving the anchor.",
+      "require": "Two altitudes must hold. One, the law: declared once in the project's Instructions Knowledge chapter ('personas read others through a moral lens'), so the verdict-first reading holds system-wide and no persona meets another's conduct on neutral ground. Two, the link: each persona carries, under Projection, the foundation that fires first for it. A persona may weight several foundations, but one leads, and the gap between the foundation it leads with and the reasons it gives after is the character, not a contradiction to reject.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, and each persona links a real moral foundation under Projection. Whether the leading foundation and the persona's stated reasons cohere into a true character is semantic, so it is taught and reviewed, never failed by the suite. The engine ships its own structural tests; the reading is guided, not gated.",
+      "setup": "Two steps. Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give each persona its leading foundation under Projection: one expression, which carries the anchor upward. Read it in how the persona weighs what another does before the argument arrives; the room reads the verdict beneath the reasons, never narrates it."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}
