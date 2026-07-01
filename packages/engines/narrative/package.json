@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-narrative",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the narrative domain: narrative identity as position -- the life story a persona carries, shaped by redemptive or contaminated sequence and by agentic or communal thematic orientation.",
   "type": "module",
   "main": "./index.mjs",

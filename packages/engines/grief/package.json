@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-grief",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the grief domain: grief as process, how a persona adapts to irreversible loss by oscillating between confronting the absence and rebuilding the world around it.",
   "type": "module",
   "main": "./index.mjs",

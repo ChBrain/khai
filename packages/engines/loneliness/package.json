@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-loneliness",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the loneliness domain: loneliness as process, how the gap between needed and actual social connection registers as pain and produces responses that may close the gap or widen it.",
   "type": "module",
   "main": "./index.mjs",

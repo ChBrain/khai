@@ -1,5 +1,11 @@
 # @chbrain/khai-engine-play-mode
 
+## 0.1.1
+
+### Patch Changes
+
+- e73a1cf: Add play-mode engine: the mode of engagement in which a persona treats an activity as play, with immersed, exploratory, competitive, and pretend expressions.
+
 ## 0.1.0
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-mortality",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the mortality domain: mortality as position, the stance a persona holds toward their own finitude when death is made salient.",
   "type": "module",
   "main": "./index.mjs",

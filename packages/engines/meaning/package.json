@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-meaning",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the meaning domain: meaning in life as position -- the stance a persona holds toward the question of whether their life matters.",
   "type": "module",
   "main": "./index.mjs",

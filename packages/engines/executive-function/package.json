@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-executive-function",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the executive function domain: the regulatory control layer that holds goals active, suppresses competing responses, refreshes working memory, and sequences action across time.",
   "type": "module",
   "main": "./index.mjs",

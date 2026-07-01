@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-hope",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the hope domain: hope as position, the persona's resting orientation toward what the future holds -- across the two axes of expected valence and felt agency.",
   "type": "module",
   "main": "./index.mjs",

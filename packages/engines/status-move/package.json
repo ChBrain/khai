@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-status-move",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai status-move engine — a discrete tactical move a persona makes in status space",
   "type": "module",
   "main": "index.mjs",

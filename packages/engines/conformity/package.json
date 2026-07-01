@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-conformity",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the conformity domain: the pull of the group's standard on a persona's response, and how that pull resolves into compliance, internalization, obedience, or independence",
   "type": "module",
   "main": "./index.mjs",

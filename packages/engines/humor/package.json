@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-humor",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the humor domain: humor style as position -- the default relational stance toward comedy, who it is for, and at whose expense.",
   "type": "module",
   "main": "./index.mjs",

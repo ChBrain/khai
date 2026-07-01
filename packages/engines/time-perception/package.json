@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-time-perception",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the time perception domain: the persona's resting orientation toward duration as felt experience -- continuous, now-anchored, behind, or absorbed.",
   "type": "module",
   "main": "./index.mjs",

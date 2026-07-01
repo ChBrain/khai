@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-status",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the status domain: rank as position in the scene's deference order",
   "type": "module",
   "main": "./index.mjs",

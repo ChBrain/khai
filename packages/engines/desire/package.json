@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-desire",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the desire domain: desire as position, the resting style of wanting a persona brings toward an object of desire, before any particular person fills it.",
   "type": "module",
   "main": "./index.mjs",

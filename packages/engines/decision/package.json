@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-decision",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the decision domain: decision as process, how a persona resolves between competing options when the outcome is uncertain and only one path can be taken.",
   "type": "module",
   "main": "./index.mjs",

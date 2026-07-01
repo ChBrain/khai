@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-betrayal",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the betrayal domain: the sequence through which a persona reckons with a trust violation",
   "type": "module",
   "main": "./index.mjs",

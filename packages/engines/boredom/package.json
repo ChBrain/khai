@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-boredom",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the boredom domain: boredom as process, the aversive state of an unengaged mind whose mobilized attention seeks a target the situation will not supply",
   "type": "module",
   "main": "./index.mjs",

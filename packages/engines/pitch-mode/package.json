@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-pitch-mode",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai pitch-mode engine — the mode of engagement a persona holds when they are actively pitching",
   "type": "module",
   "main": "index.mjs",

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-goal",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai goal engine — the desired state a persona is oriented toward and how they hold the pursuit",
   "type": "module",
   "main": "index.mjs",

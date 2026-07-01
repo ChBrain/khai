@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-shame",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the shame domain: shame as process, how a persona appraises exposure against a social standard and the appraisal produces a response directed at the self or at the one who saw.",
   "type": "module",
   "main": "./index.mjs",

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-liminality",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai liminality engine — the individual threshold state between prior identity and what comes next",
   "type": "module",
   "main": "index.mjs",
