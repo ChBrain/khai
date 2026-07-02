@@ -23,6 +23,10 @@
     "skills": ["packages/khai-skills/src/*/SKILL.md"],
     "skillLicenses": ["CC-BY-NC-4.0", "CC-BY-NC-SA-4.0"]
   },
+  "lockfilePolicy": {
+    "lockfiles": ["package-lock.json", "npm-shrinkwrap.json"],
+    "allowRoot": true
+  },
   "exemptRenames": true,
   "branchScope": {
     "shared": [".changeset/**", "package.json", "package-lock.json"],
