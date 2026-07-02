@@ -8,3 +8,10 @@ dist/
 .vscode/
 *.tgz
 *.tar.gz
+
+# Per-package lockfiles: this is an npm-workspaces monorepo, so the ROOT
+# package-lock.json is the only authoritative lock. A stray lock committed
+# inside a workspace (a leftover `npm install` in a package dir) desyncs
+# Dependabot and CI — see the khai-methods fossil that produced a phantom
+# advisory and a downgrade PR. Ignore nested locks; never the root one.
+packages/**/package-lock.json
