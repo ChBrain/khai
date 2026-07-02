@@ -267,7 +267,7 @@ export function parseNameStatus(input, { exemptRenames = true } = {}) {
     : String(input).split("\0");
 
   const out = [];
-  for (let i = 0; i < tokens.length; ) {
+  for (let i = 0; i < tokens.length;) {
     const status = tokens[i++];
     if (!status || !status.trim()) continue; // blank line / trailing terminator
     if (/^[RC]/.test(status)) {
@@ -436,7 +436,7 @@ function bindName(allow, path) {
   for (const glob of allow) {
     if (!glob.includes("{name}")) continue;
     let src = "^";
-    for (let i = 0; i < glob.length; ) {
+    for (let i = 0; i < glob.length;) {
       if (glob.startsWith("{name}", i)) {
         src += "([^/]+)";
         i += "{name}".length;
@@ -793,7 +793,7 @@ export function parseChanges(input) {
     ? input.flatMap((line) => line.replace(/\r?\n$/, "").split("\t"))
     : String(input).split("\0");
   const out = [];
-  for (let i = 0; i < tokens.length; ) {
+  for (let i = 0; i < tokens.length;) {
     const status = tokens[i++];
     if (!status || !status.trim()) continue;
     if (/^[RC]/.test(status)) {

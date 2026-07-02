@@ -80,6 +80,27 @@ Split it into per-lane branches and merge them in layer order:
 architecture, then governance, then solution. Ask the advisor (below) and it
 prints the exact branches and the order.
 
+### Formatter bumps do not fit the dependabot lane
+
+A Dependabot bump of **prettier** (the `dev-tooling` group) is the one dep
+update that cannot merge on its own. Prettier's output changes across versions,
+so `format:check` (`prettier --check .` in the `ci` job) fails on any file the
+new version would re-emit differently — and Dependabot's `dependabot/*` lane may
+touch only `package.json` / `package-lock.json` / `.github/workflows/**`, so it
+cannot carry the reformat. Pre-formatting on `main` does not work either: `main`
+still runs the old prettier, which rejects the new output (the two versions
+disagree).
+
+So a prettier bump lands as a **`governance/*`** branch that does the bump _and_
+the reformat together: set the new `prettier` in root `package.json`, run
+`npm run format`, commit the reformatted files, add a changeset for any package
+whose source was re-emitted, and close the Dependabot PR as superseded. This
+only fits one branch when every reformatted file is governance-owned; if a bump
+re-emits files across other lanes, split per lane and merge in layer order.
+Machine-generated files (each package's `CHANGELOG.md`, the audit artifacts) are
+listed in `.prettierignore` so a formatter bump never gates on churn no human
+wrote.
+
 ## Pre-flight: ask the advisor
 
 Before you `git checkout -b`, let the guard tell you the lane(s) for the files
