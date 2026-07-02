@@ -1,5 +1,21 @@
 # @chbrain/khai-guard
 
+## 0.1.14
+
+### Patch Changes
+
+- 60827a4: Add a `lockfile-check` subcommand (and `checkLockfiles` + a `lockfilePolicy`
+  config section). In an npm-workspaces monorepo the root `package-lock.json` is
+  the only authoritative lock; this gate rejects a lockfile committed inside a
+  package — the fossil class that desynced Dependabot and CI (a stale nested lock
+  pinned an old dependency, producing a phantom advisory and a downgrade PR). The
+  CLI scans the tracked tree and exits non-zero on any nested lockfile.
+- e2793d1: Reformat source to prettier 3.9.x output (the dev-tooling group bumps prettier
+  to ^3.9.4). Prettier 3.9 changed the formatting of empty `for`-update clauses
+  and Markdown list-item continuation indent, so `packages/khai-guard/index.mjs`
+  and `packages/khai-rules/CHANGELOG.md` are re-emitted to match. Formatting only;
+  no behavior change.
+
 ## 0.1.13
 
 ### Patch Changes
