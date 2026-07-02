@@ -131,6 +131,26 @@ jobs:
       - name: license gate
         run: npx khai-guard license-check
 
+  lockfile-scope:
+    # Hard gate: exactly one authoritative lockfile — the root package-lock.json.
+    # This is an npm-workspaces monorepo, so a lockfile committed inside a package
+    # is a fossil that desyncs Dependabot and CI (a stale nested lock pinned an
+    # old js-yaml, producing a phantom advisory and a downgrade PR). The hook
+    # catches it locally; this gate catches anything that skipped the hook. Policy
+    # is in khai-guard.config.json lockfilePolicy; scans the tracked tree
+    # statically like license-check, no diff range needed.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: "npm"
+      - name: install
+        run: npm ci
+      - name: lockfile gate
+        run: npx khai-guard lockfile-check
+
   bump-scope:
     # Release-scope flag (the third khai-guard rule; see the bump-check
     # subcommand). patch is free; a changeset declaring minor/major widens the
