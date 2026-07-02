@@ -39,8 +39,8 @@
   name. A lone `#` not preceded by a space (e.g. "C#") is kept as text.
 - 113d2d6: Add support for declared titles in playbooks, allowing a localized staging H1 title to match a `declared` frontmatter key while keeping `title` in English for the registry.
 - 37f5dbe: parseDoc and sectionBody now track fenced code blocks (```and ~~~) so a
-heading that appears inside a code sample is no longer indexed as a real
-section header. Previously a`## Section` shown in an example block could make
+  heading that appears inside a code sample is no longer indexed as a real
+  section header. Previously a`## Section` shown in an example block could make
   a document that was actually missing that section validate as correct (or make
   a valid document fail), since every structural check builds on the header
   index. sectionBody likewise no longer truncates a section at a fenced heading.
