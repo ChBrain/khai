@@ -35,6 +35,12 @@
 // configured freeLevel), prints a LOUD banner and emits the level so CI can
 // stamp a label. Advisory by default (exit 0); pass `--enforce` to exit 1.
 //
+// Subcommand: `khai-guard lockfile-check` enforces the lockfile-scope rule — in
+// an npm-workspaces monorepo the root package-lock.json is the only
+// authoritative lock, so a lockfile committed inside a package (a fossil that
+// desyncs Dependabot and CI) is rejected. Scans the tracked tree, exits 1 on a
+// nested lockfile.
+//
 // Exit 0 = clean, 1 = source/test mixed (or branch-scope violation in
 // enforce mode), 2 = config/usage error.
 
@@ -50,6 +56,7 @@ import {
   bumpScope,
   changesetCheck,
   checkLicenses,
+  checkLockfiles,
   resolveConfig,
   parseNameStatus,
   parseChanges,
@@ -724,6 +731,44 @@ function runLicenseCheck() {
   );
 }
 
+// Subcommand: `khai-guard lockfile-check` enforces the lockfile-scope rule. In
+// an npm-workspaces monorepo the root package-lock.json is the only
+// authoritative lock; a lockfile committed inside a package desyncs Dependabot
+// and CI. Scans the tracked tree (not a diff) like license-check and exits 1 on
+// any nested lockfile. No policy configured = nothing to check (exit 0).
+function runLockfileCheck() {
+  const config = loadConfig();
+  if (!config.lockfilePolicy) {
+    console.log("KHAI-Guard lockfile-check: no lockfilePolicy configured; nothing to check.");
+    return;
+  }
+  let tracked;
+  try {
+    tracked = git(["ls-files"])
+      .split("\n")
+      .map((s) => s.trim())
+      .filter(Boolean);
+  } catch (err) {
+    console.error(`KHAI-Guard lockfile-check: could not list tracked files — ${err.message}`);
+    process.exit(2);
+  }
+  const { ok, offenders } = checkLockfiles(tracked, config);
+  if (!ok) {
+    console.error("::error::KHAI-Guard lockfile-check: lockfile-scope violations:");
+    for (const o of offenders) console.error(`  ${o}`);
+    console.error("");
+    console.error(
+      "  This is an npm-workspaces monorepo: the root package-lock.json is the only\n" +
+        "  authoritative lock. A nested lockfile is a fossil that desyncs Dependabot and\n" +
+        "  CI. Remove it (workspaces install from the root lock); .gitignore keeps it out.",
+    );
+    process.exit(1);
+  }
+  console.log(
+    `KHAI-Guard lockfile-check OK: no stray lockfiles (${tracked.length} tracked path(s) scanned).`,
+  );
+}
+
 // argv[2] is the first positional. `khai-guard --base …` leaves it as a flag,
 // which falls through to the gate; only an explicit subcommand diverts.
 if (process.argv[2] === "doctor") runDoctor();
@@ -733,4 +778,5 @@ else if (process.argv[2] === "bump-check") runBumpCheck();
 else if (process.argv[2] === "changeset-check") runChangesetCheck();
 else if (process.argv[2] === "branch") runBranch();
 else if (process.argv[2] === "license-check") runLicenseCheck();
+else if (process.argv[2] === "lockfile-check") runLockfileCheck();
 else runGate();

@@ -178,6 +178,24 @@ function assertLicensePolicy(value) {
     assertStringList(value.skillLicenses, "licensePolicy.skillLicenses");
 }
 
+// Validate the lockfilePolicy section: the lockfile-scope gate. In an
+// npm-workspaces monorepo the ROOT package-lock.json is the only authoritative
+// lock; a lockfile committed inside a workspace (a leftover `npm install` in a
+// package dir) desyncs Dependabot and CI — a stale nested lock is what filed a
+// phantom advisory and opened a downgrade PR. `lockfiles` is the set of lock
+// filenames to police (default just package-lock.json); `allowRoot` (default
+// true) keeps the repo-root lock legal while flagging every nested one. A
+// malformed policy is a config error rather than a silent hole.
+function assertLockfilePolicy(value) {
+  if (typeof value !== "object" || value == null || Array.isArray(value)) {
+    throw new ConfigError(`"lockfilePolicy" must be an object`);
+  }
+  if ("lockfiles" in value) assertStringList(value.lockfiles, "lockfilePolicy.lockfiles");
+  if ("allowRoot" in value && typeof value.allowRoot !== "boolean") {
+    throw new ConfigError(`"lockfilePolicy.allowRoot" must be a boolean`);
+  }
+}
+
 // Validate the changesetPolicy section: the changeset-presence gate. A khai
 // plays house versions by play count, so a PR that ADDS a new play needs no
 // changeset (the build moves the minor); every other shipped change needs one
@@ -212,6 +230,7 @@ export function resolveConfig(fileConfig) {
   if ("branchScope" in fileConfig) assertBranchScope(fileConfig.branchScope);
   if ("bumpScope" in fileConfig) assertBumpScope(fileConfig.bumpScope);
   if ("licensePolicy" in fileConfig) assertLicensePolicy(fileConfig.licensePolicy);
+  if ("lockfilePolicy" in fileConfig) assertLockfilePolicy(fileConfig.lockfilePolicy);
   if ("changesetPolicy" in fileConfig) assertChangesetPolicy(fileConfig.changesetPolicy);
   return { ...DEFAULT_CONFIG, ...fileConfig };
 }
@@ -909,4 +928,30 @@ export function checkLicenses({ packages = [], skills = [] } = {}, config = DEFA
       );
   }
   return { ok: errors.length === 0, errors };
+}
+
+// checkLockfiles: the lockfile-scope gate. This is an npm-workspaces monorepo,
+// so the ROOT package-lock.json is the single authoritative lock; a lockfile
+// committed inside a package is a fossil that desyncs Dependabot and CI (a stale
+// nested lock pinned an old dependency, producing a phantom advisory and a
+// downgrade PR). Pure: it takes the tracked paths and returns every lockfile
+// that is not at the repo root; the git IO that lists the tree lives in the CLI.
+// A path is "at root" when it has no directory prefix. With no lockfilePolicy
+// configured there is nothing to police and `ok` is true.
+export function checkLockfiles(paths = [], config = DEFAULT_CONFIG) {
+  const policy = config.lockfilePolicy;
+  if (!policy) return { ok: true, offenders: [] };
+  const names = policy.lockfiles ?? ["package-lock.json"];
+  const allowRoot = policy.allowRoot !== false;
+  const offenders = [];
+  for (const p of paths) {
+    // Normalize a leading "./" so "./package-lock.json" reads as root, not a
+    // one-segment "." prefix.
+    const norm = String(p).replace(/^\.?\/+/, "");
+    const segments = norm.split("/");
+    if (!names.includes(segments[segments.length - 1])) continue;
+    const atRoot = segments.length === 1;
+    if (atRoot ? !allowRoot : true) offenders.push(norm);
+  }
+  return { ok: offenders.length === 0, offenders };
 }
