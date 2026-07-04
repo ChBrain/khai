@@ -114,6 +114,33 @@ function git(args) {
   return execFileSync("git", args, { encoding: "utf8" });
 }
 
+// List every tracked path for a whole-tree gate. `-z` (NUL-separated) is
+// load-bearing: without it, core.quotePath C-quotes any path with non-ASCII or
+// special characters (`"packages/caf\303\251/x"`), and the surrounding quotes
+// make the basename miss every name match — a lockfile in such a directory
+// would silently evade the gate. NUL separation delivers every path verbatim.
+function listTrackedFiles(gate) {
+  try {
+    return git(["ls-files", "-z"]).split("\0").filter(Boolean);
+  } catch (err) {
+    console.error(`KHAI-Guard ${gate}: could not list tracked files — ${err.message}`);
+    process.exit(2);
+  }
+}
+
+// Anchor a whole-tree gate at the repo toplevel. Root position is load-bearing
+// for lockfile-check (a nested lock listed from its own directory reads as the
+// allowed root lock, and khai-guard.config.json only resolves from the root),
+// so run from wherever the user is and re-anchor instead of silently no-oping.
+function chdirRepoToplevel(gate) {
+  try {
+    process.chdir(git(["rev-parse", "--show-toplevel"]).trim());
+  } catch (err) {
+    console.error(`KHAI-Guard ${gate}: not inside a git repository — ${err.message}`);
+    process.exit(2);
+  }
+}
+
 // The PR/working branch name. CI must pass `--branch` (on a PR, actions/checkout
 // leaves a detached HEAD, so rev-parse can't name it); the `GITHUB_HEAD_REF`
 // default GitHub sets on pull_request events is the next-best source; locally we
@@ -684,16 +711,7 @@ function runLicenseCheck() {
     console.log("KHAI-Guard license-check: no licensePolicy configured; nothing to check.");
     return;
   }
-  let tracked;
-  try {
-    tracked = git(["ls-files"])
-      .split("\n")
-      .map((s) => s.trim())
-      .filter(Boolean);
-  } catch (err) {
-    console.error(`KHAI-Guard license-check: could not list tracked files — ${err.message}`);
-    process.exit(2);
-  }
+  const tracked = listTrackedFiles("license-check");
   const matchPkg = picomatch(policy.packages ?? [], { dot: true });
   const matchSkill = picomatch(policy.skills ?? [], { dot: true });
   const packages = [];
@@ -734,24 +752,19 @@ function runLicenseCheck() {
 // Subcommand: `khai-guard lockfile-check` enforces the lockfile-scope rule. In
 // an npm-workspaces monorepo the root package-lock.json is the only
 // authoritative lock; a lockfile committed inside a package desyncs Dependabot
-// and CI. Scans the tracked tree (not a diff) like license-check and exits 1 on
-// any nested lockfile. No policy configured = nothing to check (exit 0).
+// and CI. Anchors at the repo toplevel (run from a package dir, the config
+// would not resolve and a nested lock would list as the root one — a silent
+// pass on the exact violation this gate polices), then scans the tracked tree
+// (not a diff) like license-check and exits 1 on any nested lockfile. No
+// policy configured = nothing to check (exit 0).
 function runLockfileCheck() {
+  chdirRepoToplevel("lockfile-check");
   const config = loadConfig();
   if (!config.lockfilePolicy) {
     console.log("KHAI-Guard lockfile-check: no lockfilePolicy configured; nothing to check.");
     return;
   }
-  let tracked;
-  try {
-    tracked = git(["ls-files"])
-      .split("\n")
-      .map((s) => s.trim())
-      .filter(Boolean);
-  } catch (err) {
-    console.error(`KHAI-Guard lockfile-check: could not list tracked files — ${err.message}`);
-    process.exit(2);
-  }
+  const tracked = listTrackedFiles("lockfile-check");
   const { ok, offenders } = checkLockfiles(tracked, config);
   if (!ok) {
     console.error("::error::KHAI-Guard lockfile-check: lockfile-scope violations:");

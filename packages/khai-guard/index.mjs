@@ -183,16 +183,30 @@ function assertLicensePolicy(value) {
 // lock; a lockfile committed inside a workspace (a leftover `npm install` in a
 // package dir) desyncs Dependabot and CI — a stale nested lock is what filed a
 // phantom advisory and opened a downgrade PR. `lockfiles` is the set of lock
-// filenames to police (default just package-lock.json); `allowRoot` (default
-// true) keeps the repo-root lock legal while flagging every nested one. A
-// malformed policy is a config error rather than a silent hole.
+// filenames to police (default just package-lock.json) and may not be empty —
+// an empty list would leave the gate always-green while claiming to scan;
+// `allowRoot` (default true) keeps the one authoritative root lock legal
+// (`rootLockfile`, default package-lock.json) while flagging every nested one.
+// A malformed policy is a config error rather than a silent hole.
 function assertLockfilePolicy(value) {
   if (typeof value !== "object" || value == null || Array.isArray(value)) {
     throw new ConfigError(`"lockfilePolicy" must be an object`);
   }
-  if ("lockfiles" in value) assertStringList(value.lockfiles, "lockfilePolicy.lockfiles");
+  if ("lockfiles" in value) {
+    assertStringList(value.lockfiles, "lockfilePolicy.lockfiles");
+    if (value.lockfiles.length === 0) {
+      throw new ConfigError(
+        `"lockfilePolicy.lockfiles" must not be empty (a no-op gate is a hole)`,
+      );
+    }
+  }
   if ("allowRoot" in value && typeof value.allowRoot !== "boolean") {
     throw new ConfigError(`"lockfilePolicy.allowRoot" must be a boolean`);
+  }
+  if ("rootLockfile" in value) {
+    if (typeof value.rootLockfile !== "string" || value.rootLockfile.length === 0) {
+      throw new ConfigError(`"lockfilePolicy.rootLockfile" must be a non-empty string`);
+    }
   }
 }
 
@@ -935,23 +949,29 @@ export function checkLicenses({ packages = [], skills = [] } = {}, config = DEFA
 // committed inside a package is a fossil that desyncs Dependabot and CI (a stale
 // nested lock pinned an old dependency, producing a phantom advisory and a
 // downgrade PR). Pure: it takes the tracked paths and returns every lockfile
-// that is not at the repo root; the git IO that lists the tree lives in the CLI.
-// A path is "at root" when it has no directory prefix. With no lockfilePolicy
-// configured there is nothing to police and `ok` is true.
+// that is not the authoritative root lock; the git IO that lists the tree lives
+// in the CLI. A path is "at root" when it has no directory prefix, and allowRoot
+// exempts only `rootLockfile` (default package-lock.json) there — a root
+// npm-shrinkwrap.json would shadow the root lock (npm prefers it), so any other
+// policed name is an offender even at root. With no lockfilePolicy configured
+// there is nothing to police and `ok` is true.
 export function checkLockfiles(paths = [], config = DEFAULT_CONFIG) {
   const policy = config.lockfilePolicy;
   if (!policy) return { ok: true, offenders: [] };
   const names = policy.lockfiles ?? ["package-lock.json"];
   const allowRoot = policy.allowRoot !== false;
+  const rootLockfile = policy.rootLockfile ?? "package-lock.json";
   const offenders = [];
   for (const p of paths) {
     // Normalize a leading "./" so "./package-lock.json" reads as root, not a
     // one-segment "." prefix.
     const norm = String(p).replace(/^\.?\/+/, "");
     const segments = norm.split("/");
-    if (!names.includes(segments[segments.length - 1])) continue;
+    const base = segments[segments.length - 1];
+    if (!names.includes(base)) continue;
     const atRoot = segments.length === 1;
-    if (atRoot ? !allowRoot : true) offenders.push(norm);
+    if (atRoot && allowRoot && base === rootLockfile) continue;
+    offenders.push(norm);
   }
   return { ok: offenders.length === 0, offenders };
 }
