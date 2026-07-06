@@ -1277,3 +1277,59 @@ describe.skipIf(IT_FR_DORMANT)("Language Detector - Italy & France regionals", (
     expect(errors[0]).toMatch(/expected: bre/);
   });
 });
+
+// Venetian (`vec`) and Ligurian/Genoese (`lij`), registered in FRANC_MAP as the
+// northern Italian regionals. Dormant until the entries land on main -- probe
+// src/detector.mjs for `vec: "vec"`.
+const VEC_LIJ_DORMANT = !readFileSync(
+  join(import.meta.dirname || __dirname, "..", "src", "detector.mjs"),
+  "utf8",
+).includes('vec: "vec"');
+
+describe.skipIf(VEC_LIJ_DORMANT)("Language Detector - Venetian & Ligurian", () => {
+  const base = join(FIXTURES_DIR, "vec-lij");
+  beforeAll(() => {
+    if (!existsSync(base)) mkdirSync(base, { recursive: true });
+  });
+  afterAll(() => {
+    if (existsSync(base)) rmSync(base, { recursive: true, force: true });
+  });
+
+  const house = (code, prose) => {
+    const projectDir = join(base, `franc-${code}`);
+    const playDir = join(projectDir, "plays", "p");
+    mkdirSync(playDir, { recursive: true });
+    writeFileSync(join(projectDir, "README.md"), `---\nlanguage: ${code}\n---\n`);
+    writeFileSync(join(playDir, "play_p.md"), `---\nkhai: play\n---\n`);
+    const file = join(playDir, "persona_x.md");
+    writeFileSync(file, `---\nkhai: persona\n---\n# Persona: X\n\n## Projection\n${prose}\n`);
+    return { projectDir, file };
+  };
+
+  // Own prose tops clean, one verified native sample per language.
+  it.each([
+    [
+      "vec",
+      "Tuti i èseri umani i nase lìbari e conpagni in dignità e diriti. I ga raxon e cosiensa e i ga da conportarse tra de lori co spirito de fradelansa granda.",
+    ],
+    [
+      "lij",
+      "Tytti i ommi nascian libberi e paegi in dignitae e driti. Sun dotae de raxun e de cusciensa e devan agi i un verso i atri inte un spirito de fraternitae.",
+    ],
+  ])("gates its own %s prose clean", (code, prose) => {
+    const { projectDir, file } = house(code, prose);
+    expect(validateLanguageOfFile(file, projectDir)).toHaveLength(0);
+  });
+
+  // Gross-error catch against Italian — the contamination that matters (vec and
+  // lij are within-margin siblings of each other, so that pair is not asserted).
+  it("flags an Italian span in a Venetian house", () => {
+    const { projectDir, file } = house(
+      "vec",
+      "Tutti gli esseri umani nascono liberi ed eguali in dignità e diritti. Essi sono dotati di ragione e di coscienza e devono agire fraternamente ogni giorno.",
+    );
+    const errors = validateLanguageOfFile(file, projectDir);
+    expect(errors).toHaveLength(1);
+    expect(errors[0]).toMatch(/expected: vec/);
+  });
+});
