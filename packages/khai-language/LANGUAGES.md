@@ -154,11 +154,17 @@ flagged well outside the margin):
   siblings ~0.78 back (gap ~0.21).
 - **Ladin** (`lld`) — Rhaeto-Romance of the Dolomites; clean top, well isolated.
 
+Two Gallo-Italic languages of the north gate as well: **Venetian** (`vec`) and
+**Ligurian**/Genoese (`lij`). Each tops its own prose clean (0 false-fails across
+3 registers) and flags an Italian span firmly (`vec` gap ~0.33, `lij` ~0.23). The
+one limit is that they are **within-margin siblings of each other** — `vec`
+catches `lij`, but `lij`-in-a-`vec`-house rides at ~0.098, just inside — so the
+gate will not reliably split Venetian from Ligurian (the Nguni `zu`/`xh` pattern).
+Against the national language, the contamination that matters, both are firm.
+
 The Italo-Dalmatian regionals that franc **cannot** model stay exempt: **Sicilian**
 (`scn`, reads as Corsican/Italian), **Neapolitan** (`nap`, reads as Italian), and
-**Lombard**/**Piedmontese** (absent from the model). **Venetian** (`vec`) and
-**Ligurian** (`lij`) do probe clean and could be added on request — held out of
-this batch only for scope.
+**Lombard**/**Piedmontese** (absent from the model).
 
 **France** — two more gate (Occitan `oc` already landed with the Spain batch):
 
