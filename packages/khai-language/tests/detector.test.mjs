@@ -1139,3 +1139,62 @@ describe.skipIf(SPAIN_DORMANT)("Language Detector - Spain co-officials", () => {
     expect(errors[0]).toMatch(/expected: oci/);
   });
 });
+
+// Asturian (`ast`), registered in FRANC_MAP as the fourth Iberian regional
+// language (past Spain's three statutory co-officials). Dormant until the
+// registry entry lands on main -- probe src/detector.mjs for `ast: "ast"`.
+const ASTURIAN_DORMANT = !readFileSync(
+  join(import.meta.dirname || __dirname, "..", "src", "detector.mjs"),
+  "utf8",
+).includes('ast: "ast"');
+
+describe.skipIf(ASTURIAN_DORMANT)("Language Detector - Asturian", () => {
+  const base = join(FIXTURES_DIR, "asturian");
+  beforeAll(() => {
+    if (!existsSync(base)) mkdirSync(base, { recursive: true });
+  });
+  afterAll(() => {
+    if (existsSync(base)) rmSync(base, { recursive: true, force: true });
+  });
+
+  const house = (code, prose) => {
+    const projectDir = join(base, `franc-${code}`);
+    const playDir = join(projectDir, "plays", "p");
+    mkdirSync(playDir, { recursive: true });
+    writeFileSync(join(projectDir, "README.md"), `---\nlanguage: ${code}\n---\n`);
+    writeFileSync(join(playDir, "play_p.md"), `---\nkhai: play\n---\n`);
+    const file = join(playDir, "persona_x.md");
+    writeFileSync(file, `---\nkhai: persona\n---\n# Persona: X\n\n## Projection\n${prose}\n`);
+    return { projectDir, file };
+  };
+
+  // Own prose gates. The multi-sample pass found 0 false-fails across 5
+  // registers: a clean top (UDHR) and the one where Occitan edges the top but
+  // ast stays within 0.045 (narrative) both pass the gate.
+  it.each([
+    [
+      "clean top (UDHR)",
+      "Tolos seres humanos nacen llibres y iguales en dignidá y drechos y, pola mor de la razón y la conciencia de so, han comportase hermaniblemente los unos colos otros.",
+    ],
+    [
+      "Occitan-tie (narrative)",
+      "La vieya casa de l'aldea guardaba entá l'arume del pan que la güela cocía cada mañana xunto a la ventana abierta al güertu del pueblu.",
+    ],
+  ])("gates its own Asturian prose (%s)", (_label, prose) => {
+    const { projectDir, file } = house("ast", prose);
+    expect(validateLanguageOfFile(file, projectDir)).toHaveLength(0);
+  });
+
+  // Gross-error catch. Castilian rides ast's margin (gap ~0.10, borderline like
+  // gl), so this asserts the firm neighbour instead: a Catalan span in an ast
+  // house (gap ~0.21).
+  it("flags a Catalan span in an Asturian house", () => {
+    const { projectDir, file } = house(
+      "ast",
+      "Tots els essers humans neixen lliures i iguals en dignitat i en drets. Son dotats de rao i de consciencia i han de comportar-se fraternalment els uns amb els altres.",
+    );
+    const errors = validateLanguageOfFile(file, projectDir);
+    expect(errors).toHaveLength(1);
+    expect(errors[0]).toMatch(/expected: ast/);
+  });
+});
