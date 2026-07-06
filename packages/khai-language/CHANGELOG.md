@@ -1,5 +1,63 @@
 # @chbrain/khai-language
 
+## 0.1.23
+
+### Patch Changes
+
+- c740666: Register Asturian (`ast`) in the franc detection tier, extending the Iberian
+  set past Spain's three statutory co-officials.
+
+  Confirmed by the repo-standard multi-sample pass: own prose tops clean on 4 of 5
+  registers, and on the fifth Occitan edges the top while `ast` stays within 0.045
+  (inside the 0.1 margin), so it never false-fails. Gross-error catch is firm
+  against Catalan/Galician/English and borderline against Castilian (gap ~0.10) —
+  the same Ibero-Romance limit as `gl`. Overturns the earlier "held" verdict (a
+  Catalan sibling score within margin on one sample never cost `ast` the top).
+  Documented in `LANGUAGES.md`.
+
+- de786cf: Register Italy and France regional/minority languages in the franc detection
+  tier. Registry-only — no logic change, no new dependency. Each verified
+  multi-sample (own prose tops clean, national languages flagged outside the
+  margin):
+
+  - **Italy** — `sc`→`src` Sardinian (franc's Logudorese code, the Malay-`zlm`
+    routing pattern), `fur` Friulian, `lld` Ladin.
+  - **France** — `br`→`bre` Breton (isolated, clean), `co`→`cos` Corsican (clean
+    own prose; Italian the near-sibling at gap ~0.16, the tightest of the set).
+
+  Exempt and documented: Sicilian (`scn`) and Neapolitan (`nap`) — no franc model,
+  read as Corsican/Italian; Lombard/Piedmontese — absent from the model; Alsatian
+  (`gsw`) — rides the Standard-German margin (the documented 2-in-3 false-fail, a
+  fresh re-test agreed). Venetian (`vec`) and Ligurian (`lij`) probe clean and are
+  noted as available but held out for scope. Documented in `LANGUAGES.md`.
+
+- 5c4b1b4: Register Spain's autonomous-community languages in the franc detection tier,
+  completing the Iberian co-official set:
+
+  - **Galician** (`gl` → `glg`) — the genuinely new language. Own prose tops
+    franc clean at 1.0 across registers. As a gross-error catch it sits in the
+    crowded Ibero-Romance field: firm against distant languages (English gap past
+    0.4), a true within-margin sibling to Portuguese (won't split the two), and
+    borderline against Castilian (gap 0.10–0.12, right at the margin). Documented
+    with the honest limits in `LANGUAGES.md`.
+  - **Aranese / Occitan** (`oc` → `oci`) — clean top, Catalan ~0.86 back. This
+    completes Catalonia, whose _third_ official language is Aranese.
+
+  Catalan (`ca`, also covering Valencian — same language under ISO) and Basque
+  (`eu`) already gated; Castilian Spanish (`es`) is built-in. Aragonese (`an`) has
+  no franc model — it reads as Occitan — so it stays exempt (the Gilbertese rule:
+  registering it would false-fail every paragraph). Documented in `LANGUAGES.md`.
+
+- 6676d4a: Register Venetian (`vec`) and Ligurian/Genoese (`lij`) in the franc detection
+  tier, completing the northern Italian regional set. Registry-only — no logic
+  change, no new dependency.
+
+  Each verified multi-sample: own prose tops clean (0 false-fails across 3
+  registers) and an Italian span is firmly flagged (`vec` gap ~0.33, `lij` ~0.23).
+  They are within-margin siblings of each other, so the gate won't split Venetian
+  from Ligurian (the Nguni `zu`/`xh` pattern) — but against Italian, the
+  contamination that matters, both are firm. Documented in `LANGUAGES.md`.
+
 ## 0.1.22
 
 ### Patch Changes
