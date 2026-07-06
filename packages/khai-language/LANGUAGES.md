@@ -136,6 +136,45 @@ earlier "held" verdict (Catalan within margin on one sample) is overturned: that
 sibling score never cost `ast` the top. **Aragonese** (`an`) is the one true gap
 and stays **exempt** — see below.
 
+### Italy & France coverage
+
+The two big Romance states carry a dense set of regional and minority languages;
+franc models enough of them to gate the distinct ones. The national languages
+are built in (`it` Italian, `fr` French via languagedetect), so these are the
+souls beneath.
+
+**Italy** — three gate, verified multi-sample (own prose tops clean, nationals
+flagged well outside the margin):
+
+- **Sardinian** (`sc` → **`src`**) — franc has no `srd` macrolanguage code, but it
+  emits `src` (Logudorese Sardinian) on Sardinian prose at 1.0, so `sc` routes
+  there (the Malay-`zlm` / Malagasy-`plt` pattern). Italian, French, German and
+  English all sit 0.35–0.51 back — a firm gate.
+- **Friulian** (`fur`) — Rhaeto-Romance; clean top, Italian and French the nearest
+  siblings ~0.78 back (gap ~0.21).
+- **Ladin** (`lld`) — Rhaeto-Romance of the Dolomites; clean top, well isolated.
+
+The Italo-Dalmatian regionals that franc **cannot** model stay exempt: **Sicilian**
+(`scn`, reads as Corsican/Italian), **Neapolitan** (`nap`, reads as Italian), and
+**Lombard**/**Piedmontese** (absent from the model). **Venetian** (`vec`) and
+**Ligurian** (`lij`) do probe clean and could be added on request — held out of
+this batch only for scope.
+
+**France** — two more gate (Occitan `oc` already landed with the Spain batch):
+
+- **Breton** (`br` → `bre`) — Brythonic Celtic; clean top with no near sibling in
+  the model, one of the safer gates.
+- **Corsican** (`co` → `cos`) — Italo-Romance and close to Tuscan, so Italian is
+  the near-neighbour: own prose tops clean (Romagnol `rgn` ties one sample within
+  0.04, still passing), and an Italian span is flagged at gap ~0.16 — comfortably
+  outside the margin, but the tightest of the French set.
+
+**Alsatian** (`gsw`) stays **exempt** — a fresh 4-sample re-test had it riding the
+Standard-German margin (2 of 4 within 0.04–0.05 of `deu`), consistent with the
+documented 2-in-3 false-fail. Too close to the German attractor to gate reliably;
+see the High German dialects note below. An Alsace culture declares `de` as the
+house and the dialect via `khai.languages`.
+
 ### Commonwealth coverage
 
 Beyond Europe the Commonwealth is khai's best-aligned region: most of its
