@@ -1198,3 +1198,82 @@ describe.skipIf(ASTURIAN_DORMANT)("Language Detector - Asturian", () => {
     expect(errors[0]).toMatch(/expected: ast/);
   });
 });
+
+// Italy & France regional languages, registered in FRANC_MAP: Sardinian
+// (`sc` → `src`, franc's Logudorese code), Friulian (`fur`), Ladin (`lld`),
+// Breton (`br` → `bre`), Corsican (`co` → `cos`). Dormant until the registry
+// entries land on main -- probe src/detector.mjs for `sc: "src"`.
+const IT_FR_DORMANT = !readFileSync(
+  join(import.meta.dirname || __dirname, "..", "src", "detector.mjs"),
+  "utf8",
+).includes('sc: "src"');
+
+describe.skipIf(IT_FR_DORMANT)("Language Detector - Italy & France regionals", () => {
+  const base = join(FIXTURES_DIR, "it-fr");
+  beforeAll(() => {
+    if (!existsSync(base)) mkdirSync(base, { recursive: true });
+  });
+  afterAll(() => {
+    if (existsSync(base)) rmSync(base, { recursive: true, force: true });
+  });
+
+  const house = (code, prose) => {
+    const projectDir = join(base, `franc-${code}`);
+    const playDir = join(projectDir, "plays", "p");
+    mkdirSync(playDir, { recursive: true });
+    writeFileSync(join(projectDir, "README.md"), `---\nlanguage: ${code}\n---\n`);
+    writeFileSync(join(playDir, "play_p.md"), `---\nkhai: play\n---\n`);
+    const file = join(playDir, "persona_x.md");
+    writeFileSync(file, `---\nkhai: persona\n---\n# Persona: X\n\n## Projection\n${prose}\n`);
+    return { projectDir, file };
+  };
+
+  // Own prose tops clean (the franc-routes grade), one verified native sample
+  // per language. Sardinian rides franc's Logudorese `src` code.
+  it.each([
+    [
+      "sc",
+      "Totu sos èsseres umanos naschint lìberos e eguales in dignidade e in deretos. Issos tenent sa resone e sa cussèntzia e depent operare s'unu cun s'àteru cun ispìritu de fraternidade.",
+    ],
+    [
+      "fur",
+      "Ducj i oms a nassin libars e compagns come dignitât e derits. A àn sintiment e cussience e bisugne che si tratin un culaltri come fradis di une famee.",
+    ],
+    [
+      "lld",
+      "Duta la porsones nasc libres y anfat te dignité y ti dërt. Ares à na rejon y na cosciënza y mëssa arjonjer öna cun l'atra te n spirit de fradlanza.",
+    ],
+    [
+      "br",
+      "Dieub ha par en o dellezed hag o gwirioù eo ganet an holl dud. Poell ha skiant zo dezho ha dleout a reont bevañ an eil gant egile en ur spered a genvreudeuriezh.",
+    ],
+    [
+      "co",
+      "Nascenu tutti l'omi liberi è pari di dignità è di diritti. Anu a ragione è a cuscenza è li tocca à agisce trà elli cù un ispiritu di fratellanza vera.",
+    ],
+  ])("gates its own %s prose clean", (code, prose) => {
+    const { projectDir, file } = house(code, prose);
+    expect(validateLanguageOfFile(file, projectDir)).toHaveLength(0);
+  });
+
+  // Gross-error catches against the national languages the regionals sit under.
+  it("flags an Italian span in a Sardinian house", () => {
+    const { projectDir, file } = house(
+      "sc",
+      "Tutti gli esseri umani nascono liberi ed eguali in dignità e diritti. Essi sono dotati di ragione e di coscienza e devono agire fraternamente.",
+    );
+    const errors = validateLanguageOfFile(file, projectDir);
+    expect(errors).toHaveLength(1);
+    expect(errors[0]).toMatch(/expected: src/);
+  });
+
+  it("flags a French span in a Breton house", () => {
+    const { projectDir, file } = house(
+      "br",
+      "Tous les etres humains naissent libres et egaux en dignite et en droits. Ils sont doues de raison et de conscience et doivent agir en freres.",
+    );
+    const errors = validateLanguageOfFile(file, projectDir);
+    expect(errors).toHaveLength(1);
+    expect(errors[0]).toMatch(/expected: bre/);
+  });
+});
