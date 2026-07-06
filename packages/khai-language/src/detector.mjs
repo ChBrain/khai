@@ -103,6 +103,7 @@ const FRANC_MAP = {
   eu: "eus", // Basque
   gl: "glg", // Galician (own prose tops clean; Portuguese sibling ~0.93 back, within-margin only in the reverse direction — the Galician-Portuguese cluster)
   oc: "oci", // Occitan / Aranese (Catalonia's third official language; clean top, Catalan sibling ~0.86 back)
+  ast: "ast", // Asturian (own prose tops clean 4/5 registers, Occitan ties one within 0.045; Castilian impostor gap ~0.10, borderline like gl)
   vi: "vie", // Vietnamese
   tl: "tgl", // Tagalog
   ht: "hat", // Haitian Creole (Kreyòl; French-lexified but tops cleanly, French ~0.65 back)

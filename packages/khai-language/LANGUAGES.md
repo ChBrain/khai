@@ -126,11 +126,15 @@ co-officials gate via franc:
     a firm catch for gross errors and a _marginal_ one for Castilian, not a
     guarantee — the Ibero-Romance cluster is tight.
 
-**Asturian** (`ast`) is the natural next step if the batch grows past the three
-statutory communities: it tops its own prose clean, but Catalan came within the
-margin on one folk-tale sample, so it wants the repo-standard multi-sample pass
-before it is trusted — held for now. **Aragonese** (`an`) is the one true gap and
-stays **exempt** — see below.
+**Asturian** (`ast`, the Principáu d'Asturies — recognised, not fully official)
+gates too, confirmed by the repo-standard multi-sample pass: own prose tops
+clean on 4 of 5 registers, and on the fifth Occitan edges the top while `ast`
+stays within **0.045** (well inside the margin), so it never false-fails. As a
+gross-error catch it is firm against Catalan/Galician/English and **borderline
+against Castilian** (gap ~0.10) — the same Ibero-Romance limit as `gl`. The
+earlier "held" verdict (Catalan within margin on one sample) is overturned: that
+sibling score never cost `ast` the top. **Aragonese** (`an`) is the one true gap
+and stays **exempt** — see below.
 
 ### Commonwealth coverage
 
