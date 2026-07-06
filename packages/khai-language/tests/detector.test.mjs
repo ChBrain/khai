@@ -1069,3 +1069,73 @@ describe.skipIf(BOUNDARY_DORMANT)("Language Detector - project boundary", () => 
     );
   });
 });
+
+// Spain's autonomous-community co-officials, registered in FRANC_MAP: Galician
+// (`gl` → `glg`) and Aranese/Occitan (`oc` → `oci`). Dormant until the registry
+// entries land on main -- probe src/detector.mjs for `gl: "glg"`, per the
+// cli.test.mjs convention.
+const SPAIN_DORMANT = !readFileSync(
+  join(import.meta.dirname || __dirname, "..", "src", "detector.mjs"),
+  "utf8",
+).includes('gl: "glg"');
+
+describe.skipIf(SPAIN_DORMANT)("Language Detector - Spain co-officials", () => {
+  const base = join(FIXTURES_DIR, "spain");
+  beforeAll(() => {
+    if (!existsSync(base)) mkdirSync(base, { recursive: true });
+  });
+  afterAll(() => {
+    if (existsSync(base)) rmSync(base, { recursive: true, force: true });
+  });
+
+  const house = (code, prose) => {
+    const projectDir = join(base, `franc-${code}`);
+    const playDir = join(projectDir, "plays", "p");
+    mkdirSync(playDir, { recursive: true });
+    writeFileSync(join(projectDir, "README.md"), `---\nlanguage: ${code}\n---\n`);
+    writeFileSync(join(playDir, "play_p.md"), `---\nkhai: play\n---\n`);
+    const file = join(playDir, "persona_x.md");
+    writeFileSync(file, `---\nkhai: persona\n---\n# Persona: X\n\n## Projection\n${prose}\n`);
+    return { projectDir, file };
+  };
+
+  // Own prose tops clean at 1.0 (the franc-routes grade). Galician verified
+  // multi-sample across registers; Aranese is Catalonia's actual official Occitan.
+  it.each([
+    [
+      "gl",
+      "Había unha vez un rei que tiña tres fillas e un reino grande e rico alén das altas montañas moi lonxe, onde o vento cantaba entre os piñeiros cada mañá de inverno.",
+    ],
+    [
+      "oc",
+      "Toti es èssers umans nèishen liures e parièrs en dignitat e drets e, dotadi coma son d'arrason e consciéncia, an de comportar-se fraternaument es uns damb es auti dia a dia.",
+    ],
+  ])("franc-routes %s and gates its own prose clean", (code, prose) => {
+    const { projectDir, file } = house(code, prose);
+    expect(validateLanguageOfFile(file, projectDir)).toHaveLength(0);
+  });
+
+  // Gross-error catches. Galician's Ibero-Romance neighbours (Spanish, Portuguese)
+  // ride near its margin, so this asserts only the FIRM catch: English in a
+  // Galician house (glg ~0.59, gap past 0.4). Aranese/Occitan sits far enough
+  // from Castilian (gap ~0.15) to flag it outright.
+  it("flags an English span in a Galician house", () => {
+    const { projectDir, file } = house(
+      "gl",
+      "In the middle of the journey of our life I found myself within a forest dark and deep where the straight way was wholly lost and gone.",
+    );
+    const errors = validateLanguageOfFile(file, projectDir);
+    expect(errors).toHaveLength(1);
+    expect(errors[0]).toMatch(/expected: glg/);
+  });
+
+  it("flags a Castilian span in an Aranese/Occitan house", () => {
+    const { projectDir, file } = house(
+      "oc",
+      "Todos los seres humanos nacen libres e iguales en dignidad y derechos y deben comportarse fraternalmente los unos con los otros cada dia sin excepcion alguna.",
+    );
+    const errors = validateLanguageOfFile(file, projectDir);
+    expect(errors).toHaveLength(1);
+    expect(errors[0]).toMatch(/expected: oci/);
+  });
+});
