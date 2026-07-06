@@ -13,6 +13,7 @@ shape is in `registry/README.md`); it rewrites this file.
 ## Houses
 
 - **[Buechner](https://github.com/ChBrain/khai-plays-buechner)** (programme `@chbrain/khai-plays-buechner`): Fevered, unfinished, a century ahead of their stage.
+- **[Dickens](https://github.com/ChBrain/khai-plays-dickens)** (programme `@chbrain/khai-plays-dickens`): Debt, fog, and the machinery of institutions, answered by stubborn human warmth.
 - **[Grimm](https://github.com/ChBrain/khai-plays-grimm)** (programme `@chbrain/khai-plays-grimm`): Oaths, taboos, and transformations, run to their exact and merciless end.
 - **[H.C. Andersen](https://github.com/ChBrain/khai-plays-hcandersen)** (programme `@chbrain/khai-plays-hcandersen`): Longing, cruelty, and grace, dressed as a children's tale.
 - **[Kleist](https://github.com/ChBrain/khai-plays-kleist)** (programme `@chbrain/khai-plays-kleist`): Broken trust, somnambulists, and sudden violence where a single misread sign shatters the whole order.
