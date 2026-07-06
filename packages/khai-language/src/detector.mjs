@@ -108,6 +108,8 @@ const FRANC_MAP = {
   sc: "src", // Sardinian (franc emits `src`, Logudorese; own prose tops clean, Italian/French/German far back)
   fur: "fur", // Friulian (Rhaeto-Romance, Friuli; clean top, Italian/French siblings ~0.78 back)
   lld: "lld", // Ladin (Rhaeto-Romance, Dolomites; clean top, isolated)
+  vec: "vec", // Venetian (own prose tops clean, Italian firmly flagged ~0.33; within-margin sibling of Ligurian — the gate won't split the two)
+  lij: "lij", // Ligurian / Genoese (own prose tops clean, Italian flagged ~0.23; within-margin sibling of Venetian)
   // France — regional languages (Occitan `oc` already registered above)
   br: "bre", // Breton (Brythonic Celtic; clean top, no near sibling)
   co: "cos", // Corsican (Italo-Romance; clean own prose, Italian near-sibling gap ~0.16, Romagnol can tie one sample within margin)
