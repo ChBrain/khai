@@ -99,8 +99,10 @@ const FRANC_MAP = {
   nds: "nds", // Low German — the driving case
   hsb: "hsb", // Upper Sorbian (West Slavic regional language of Germany; isolated)
   el: "ell", // Greek
-  ca: "cat", // Catalan
+  ca: "cat", // Catalan (also covers Valencian — same language under ISO, the Moldovan/`ro` precedent)
   eu: "eus", // Basque
+  gl: "glg", // Galician (own prose tops clean; Portuguese sibling ~0.93 back, within-margin only in the reverse direction — the Galician-Portuguese cluster)
+  oc: "oci", // Occitan / Aranese (Catalonia's third official language; clean top, Catalan sibling ~0.86 back)
   vi: "vie", // Vietnamese
   tl: "tgl", // Tagalog
   ht: "hat", // Haitian Creole (Kreyòl; French-lexified but tops cleanly, French ~0.65 back)

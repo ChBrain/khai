@@ -93,6 +93,45 @@ gross-error grade, within the Goidelic and English clusters respectively).
 **Cornish** (`kw`) is the one gap — franc has no Cornish model (it reads as
 Breton, its closest Brythonic relative), so it is exempt-only (`khai.languages`).
 
+### Spain / Iberia coverage
+
+Spain's autonomous communities are the cleanest subnational batch — each
+co-official language is distinct and well-documented, and franc models all but
+one. **Castilian Spanish** (`es`, languagedetect) is the house; the statutory
+co-officials gate via franc:
+
+- **Catalonia** — `ca` Catalan (clean; already registered) gates its own prose
+  top at 1.0. This **also covers Valencian**, which is the same language under
+  ISO (the Moldovan-is-`ro` precedent). Catalonia's _third_ official language,
+  **Aranese** (`oc` → `oci`, the Gascon variety of Occitan), now gates too: own
+  prose tops clean, Catalan the nearest sibling ~0.86 back. So all three of
+  Catalonia's officials gate locally.
+- **Basque Country** (& Navarre) — `eu` Basque (clean; already registered), a
+  language isolate with no near sibling in the model — one of the safest gates
+  in the registry.
+- **Galicia** — `gl` Galician (`glg`), the genuinely new language this batch
+  adds: own prose tops **clean at 1.0** across registers (UDHR, folk-tale,
+  encyclopedic, short paragraph). It gates its own prose reliably, but as a
+  gross-error catch it sits in the **crowded Ibero-Romance field**, so the
+  strength depends on the contaminant:
+  - **English** (or any distant language) — firmly flagged (`glg` ~0.59, gap
+    past 0.4). The catch the gate exists for works.
+  - **Portuguese** — a true within-margin **sibling** (`glg` ~0.92, gap ~0.08):
+    the gate will _not_ split Galician from Portuguese, exactly the Nguni
+    `zu`/`xh` pattern. This is the honest limit, not a bug.
+  - **Castilian Spanish** — the likeliest real contaminant, and here the gate is
+    **borderline**: typical Spanish prose is flagged (`glg` ~0.88–0.90, gap
+    0.10–0.12), but it rides right against the 0.1 margin, so a well-formed
+    Castilian paragraph can occasionally dip just inside and pass. Treat `gl` as
+    a firm catch for gross errors and a _marginal_ one for Castilian, not a
+    guarantee — the Ibero-Romance cluster is tight.
+
+**Asturian** (`ast`) is the natural next step if the batch grows past the three
+statutory communities: it tops its own prose clean, but Catalan came within the
+margin on one folk-tale sample, so it wants the repo-standard multi-sample pass
+before it is trusted — held for now. **Aragonese** (`an`) is the one true gap and
+stays **exempt** — see below.
+
 ### Commonwealth coverage
 
 Beyond Europe the Commonwealth is khai's best-aligned region: most of its
@@ -267,6 +306,12 @@ below** a sibling on real prose, or franc has no model for it at all:
 - **Assamese** (`as`) — not modelled; franc reads it as Bengali (`ben`, near-identical
   Eastern-Nagari script). Staging it as `bn` would be a lie (distinct language), so
   it stays exempt — the Bosnian principle.
+- **Aragonese** (`an`/`arg`) — not in franc's model at all; its prose reads as
+  Occitan (`oci` tops at 1.0), the closest Pyrenean relative. Registering it in
+  `FRANC_MAP` would false-fail _every_ Aragonese paragraph (the Gilbertese rule),
+  so it stays exempt — the one gap in Spain's co-official set. An Aragón culture
+  authoring in Aragonese takes the `khai.languages` path; its house tongue
+  (`es`) gates.
 - **Kurdish (Kurmanji)** (`ku`/`kmr`) — the Latin standard is not in franc's model
   (it reads as Sorani `ckb`). A Sorani (Arabic-script) culture may gate via `ckb`,
   untested here; Kurmanji is exempt.
