@@ -104,6 +104,13 @@ const FRANC_MAP = {
   gl: "glg", // Galician (own prose tops clean; Portuguese sibling ~0.93 back, within-margin only in the reverse direction — the Galician-Portuguese cluster)
   oc: "oci", // Occitan / Aranese (Catalonia's third official language; clean top, Catalan sibling ~0.86 back)
   ast: "ast", // Asturian (own prose tops clean 4/5 registers, Occitan ties one within 0.045; Castilian impostor gap ~0.10, borderline like gl)
+  // Italy — regional / minority languages (Sardinian rides franc's Logudorese code)
+  sc: "src", // Sardinian (franc emits `src`, Logudorese; own prose tops clean, Italian/French/German far back)
+  fur: "fur", // Friulian (Rhaeto-Romance, Friuli; clean top, Italian/French siblings ~0.78 back)
+  lld: "lld", // Ladin (Rhaeto-Romance, Dolomites; clean top, isolated)
+  // France — regional languages (Occitan `oc` already registered above)
+  br: "bre", // Breton (Brythonic Celtic; clean top, no near sibling)
+  co: "cos", // Corsican (Italo-Romance; clean own prose, Italian near-sibling gap ~0.16, Romagnol can tie one sample within margin)
   vi: "vie", // Vietnamese
   tl: "tgl", // Tagalog
   ht: "hat", // Haitian Creole (Kreyòl; French-lexified but tops cleanly, French ~0.65 back)
