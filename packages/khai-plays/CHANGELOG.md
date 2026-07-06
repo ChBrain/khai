@@ -1,5 +1,11 @@
 # @chbrain/khai-plays
 
+## 0.0.13
+
+### Patch Changes
+
+- 0058d85: Register the Dickens house on the bill: `registry/dickens.json` (the card) written by `khai-plays register`, README rendered from the registry.
+
 ## 0.0.12
 
 ### Patch Changes
