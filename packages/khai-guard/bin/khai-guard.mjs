@@ -272,10 +272,12 @@ function readShippedGlobs() {
 }
 
 // `changeset-check`: the changeset-presence gate. A play-count-driven house
-// needs NO changeset when a PR adds a new play, but DOES for any other shipped
-// change, or the change merges and publishes nothing. It also flags a releasing
-// changeset on a PR that ships nothing (use `--empty`). Hard-fails (exit 1) by
-// default; `--advisory` softens it to a warning that still exits 0.
+// requires a `minor` changeset when a PR adds a new play (the Version PR is the
+// deploy gate; the reconcile clamps the minor to the count and resets the patch,
+// so a `patch`/empty add would drift to 0.<count>.1). Any other shipped change
+// needs a changeset too, or it merges and publishes nothing. It also flags a
+// releasing changeset on a PR that ships nothing (use `--empty`). Hard-fails
+// (exit 1) by default; `--advisory` softens it to a warning that still exits 0.
 function runChangesetCheck() {
   const config = loadConfig();
 
@@ -305,7 +307,7 @@ function runChangesetCheck() {
   });
   if (ok) {
     const why = addsCountDriven
-      ? "PR adds a new play (the version is play-count driven); no changeset needed"
+      ? "PR adds new content and carries a minor changeset (the reconcile clamps the minor and resets the patch)"
       : "PR carries a changeset";
     console.log(`KHAI-Guard changeset-check OK: ${why}.`);
     process.exit(0);
