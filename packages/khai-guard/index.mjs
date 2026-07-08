@@ -843,12 +843,17 @@ export function parseChanges(input) {
 }
 
 /**
- * The changeset-presence gate. A khai plays house versions by play count, so a
- * PR that ADDS a new play needs no changeset (the play-count build moves the
- * minor and resets the patch); a per-play changeset would re-bump the patch on
- * top and drift the version. Every OTHER shipped change (a content edit, a
- * governance or tooling change) needs a changeset, real or empty, or it merges
- * green and publishes nothing. Pure: it takes the parsed diff records
+ * The changeset-presence gate. A khai plays house versions by play count, and
+ * every deploy is steered through the changesets "Version Packages" PR — so a
+ * PR that ADDS a new play must carry a `minor` changeset. The count moves the
+ * minor and the version reconcile (`registry build`, run in the Version PR)
+ * resets the patch to 0; because a `minor` bump lands off the count, the
+ * reconcile clamps it back to `0.<count>.0`. A `patch` (or empty) changeset on
+ * a content add would instead survive the reconcile (count === minor after the
+ * count build bakes it) and drift the version to `0.<count>.1` — so it is
+ * rejected here. Every OTHER shipped change (a content edit, a governance or
+ * tooling change) needs a changeset, real or empty, or it merges green and
+ * publishes nothing. Pure: it takes the parsed diff records
  * [{status, path}] and the parsed changesets [{file, entries}], and returns
  * findings; the git/file IO lives in the CLI.
  *
@@ -876,18 +881,35 @@ export function changesetCheck({
     .map((c) => c.path);
   const addsCountDriven = countDrivenAdds.length > 0;
   const hasChangeset = changesets.length > 0;
+  const levels = changesets.flatMap((c) =>
+    (Array.isArray(c.entries) ? c.entries : []).map((e) => e.level),
+  );
 
   const violations = [];
-  if (addsCountDriven && hasChangeset) {
+  if (addsCountDriven) {
+    // A content add moves the count. The Version PR is the deploy gate, so the
+    // add must carry a `minor` changeset: `changeset version` bumps the minor,
+    // and the reconcile clamps it back to `0.<count>.0` (patch reset). A `patch`
+    // or empty changeset survives the reconcile (count === minor after the count
+    // build) and drifts to `0.<count>.1` — the accidental double-count. Require
+    // minor; a stray patch alongside it is harmless (changesets takes the max).
+    if (levels.includes("major")) {
+      violations.push(
+        `this PR adds new content (${countDrivenAdds.join(", ")}) but carries a \`major\` changeset. ` +
+          `A house stays 0.x (the numbering guard rejects a non-zero major); use \`minor\`.`,
+      );
+    } else if (!levels.includes("minor")) {
+      violations.push(
+        `this PR adds new content (${countDrivenAdds.join(", ")}) but carries ` +
+          `${levels.length ? `only a \`${levels.join("`, `")}\` changeset` : "no changeset"}. ` +
+          `A content add must carry a \`minor\` changeset: the count moves the minor and the version ` +
+          `reconcile resets the patch to 0. A \`patch\` here drifts to \`0.<count>.1\`. ` +
+          `Run \`npx changeset add\` and choose minor.`,
+      );
+    }
+  } else if (!hasChangeset) {
     violations.push(
-      `this PR adds a new play (the version is play-count driven: ${countDrivenAdds.join(", ")}) ` +
-        `but carries a changeset. Remove it: the play-count build moves the version, and a per-play ` +
-        `changeset re-bumps the patch on top, drifting the version.`,
-    );
-  }
-  if (!addsCountDriven && !hasChangeset) {
-    violations.push(
-      `no changeset found, and this PR adds no new play. A change that is not a new play must ship a ` +
+      `no changeset found, and this PR adds no new content. A change that is not a content add must ship a ` +
         `changeset, or it merges and publishes nothing. Run \`npx changeset add\` (or ` +
         `\`npx changeset add --empty\` for tooling/docs that ship no package content).`,
     );
