@@ -1,19 +1,30 @@
 import { describe, it, expect } from "vitest";
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
 import * as guard from "../index.mjs";
 
-// Dormant until the source PR (changesetCheck + parseChanges) lands: a tests-first
-// PR cut from a main that does not yet export them would otherwise fail to import.
-// Once the source is on main, these activate. (The source/test-split rule.)
-const DORMANT = typeof guard.changesetCheck !== "function";
+// Dormant until the source PR (the inverted content rule) lands: this tests-first
+// PR rewrites the assertions to the new doctrine (a content add must carry a
+// `minor` changeset), which contradict the old source. Probe the source for the
+// new-behaviour sentinel so the suite stays green on a main that still forbids a
+// changeset on a content add; once the source lands, these activate. (The
+// source/test-split rule: tests first, dormant; source second.)
+const srcPath = join(dirname(fileURLToPath(import.meta.url)), "..", "index.mjs");
+const DORMANT = !readFileSync(srcPath, "utf8").includes("must carry a `minor` changeset");
 
 const { changesetCheck, parseChanges, resolveConfig } = guard;
 
-// A house's policy: adding a play file is what the play-count build versions on,
-// so such an addition needs no changeset; everything else does.
+// A house's policy: adding a play file moves the play count, so such an addition
+// must carry a `minor` changeset (the Version PR is the deploy gate; the reconcile
+// clamps the minor to the count and resets the patch, so a `patch`/empty add would
+// drift to 0.<count>.1). Every other change needs a changeset too.
 const houseCfg = DORMANT
   ? {}
   : resolveConfig({ changesetPolicy: { countDrivenAdd: ["plays/*/play_*.md"] } });
 const patchCs = [{ file: ".changeset/x.md", entries: [{ package: "@scope/a", level: "patch" }] }];
+const minorCs = [{ file: ".changeset/m.md", entries: [{ package: "@scope/a", level: "minor" }] }];
+const emptyCs = [{ file: ".changeset/e.md", entries: [] }];
 
 const NUL = String.fromCharCode(0);
 const TAB = String.fromCharCode(9);
@@ -48,20 +59,44 @@ describe.skipIf(DORMANT)("parseChanges", () => {
 });
 
 describe.skipIf(DORMANT)("changesetCheck", () => {
-  it("passes a new-play addition with no changeset (version is count-driven)", () => {
+  it("passes a new-play addition that carries a minor changeset", () => {
     const changed = parseChanges(
       z(["A", "plays/099z/play_z.md"], ["A", "plays/099z/persona_x.md"]),
     );
-    const r = changesetCheck({ changed, changesets: [], config: houseCfg });
+    const r = changesetCheck({ changed, changesets: minorCs, config: houseCfg });
     expect(r.ok).toBe(true);
     expect(r.addsCountDriven).toBe(true);
   });
 
-  it("flags a new-play addition that ALSO carries a changeset (patch drift)", () => {
+  it("flags a new-play addition with NO changeset (must carry a minor)", () => {
+    const changed = parseChanges(z(["A", "plays/099z/play_z.md"]));
+    const r = changesetCheck({ changed, changesets: [], config: houseCfg });
+    expect(r.ok).toBe(false);
+    expect(r.violations[0]).toMatch(/must carry a `minor` changeset/);
+  });
+
+  it("flags a new-play addition carrying only a patch changeset (0.<count>.1 drift)", () => {
     const changed = parseChanges(z(["A", "plays/099z/play_z.md"]));
     const r = changesetCheck({ changed, changesets: patchCs, config: houseCfg });
     expect(r.ok).toBe(false);
-    expect(r.violations[0]).toMatch(/play-count driven/);
+    expect(r.violations[0]).toMatch(/drifts to `0\.<count>\.1`/);
+  });
+
+  it("flags a new-play addition carrying only an empty changeset", () => {
+    const changed = parseChanges(z(["A", "plays/099z/play_z.md"]));
+    const r = changesetCheck({ changed, changesets: emptyCs, config: houseCfg });
+    expect(r.ok).toBe(false);
+    expect(r.violations[0]).toMatch(/must carry a `minor` changeset/);
+  });
+
+  it("flags a new-play addition carrying a major changeset (a house stays 0.x)", () => {
+    const changed = parseChanges(z(["A", "plays/099z/play_z.md"]));
+    const majorCs = [
+      { file: ".changeset/j.md", entries: [{ package: "@scope/a", level: "major" }] },
+    ];
+    const r = changesetCheck({ changed, changesets: majorCs, config: houseCfg });
+    expect(r.ok).toBe(false);
+    expect(r.violations[0]).toMatch(/major/);
   });
 
   it("flags a content edit with no changeset", () => {
