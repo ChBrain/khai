@@ -299,9 +299,20 @@ function runChangesetCheck() {
     console.log("KHAI-Guard changeset-check: no comparison base found; skipping (local).");
     process.exit(0);
   }
+  // Evaluate only the changesets THIS PR introduces or edits, not every file on
+  // disk. `main` legitimately accumulates unconsumed releasing changesets between
+  // a release-carrying merge and the "Version Packages" PR that consumes them;
+  // those belong to earlier PRs, not this one. Without this scoping, a leftover
+  // releasing changeset on the base makes `releasing` true and blocks any
+  // docs/governance PR that ships no `files` content (a false positive). Match the
+  // added/modified changeset files in the diff (a rename-into parses as an add; a
+  // delete is excluded — the PR is removing it, not carrying it).
+  const prChangesets = new Set(
+    changed.filter((c) => c.status === "A" || c.status === "M").map((c) => c.path),
+  );
   const { ok, violations, addsCountDriven } = changesetCheck({
     changed,
-    changesets: readChangesets(),
+    changesets: readChangesets().filter((c) => prChangesets.has(c.file)),
     shipped: readShippedGlobs(),
     config,
   });
