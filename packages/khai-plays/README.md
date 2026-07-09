@@ -17,6 +17,7 @@ shape is in `registry/README.md`); it rewrites this file.
 - **[Grimm](https://github.com/ChBrain/khai-plays-grimm)** (programme `@chbrain/khai-plays-grimm`): Oaths, taboos, and transformations, run to their exact and merciless end.
 - **[H.C. Andersen](https://github.com/ChBrain/khai-plays-hcandersen)** (programme `@chbrain/khai-plays-hcandersen`): Longing, cruelty, and grace, dressed as a children's tale.
 - **[Kleist](https://github.com/ChBrain/khai-plays-kleist)** (programme `@chbrain/khai-plays-kleist`): Broken trust, somnambulists, and sudden violence where a single misread sign shatters the whole order.
+- **[Storm](https://github.com/ChBrain/khai-plays-storm)** (programme `@chbrain/khai-plays-storm`): Memory, the North Sea dike, and the past that will not stay buried, from the grey town by the grey sea.
 
 ## Reading the bill
 
