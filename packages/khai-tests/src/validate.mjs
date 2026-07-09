@@ -7,6 +7,7 @@ import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { join, dirname, basename } from "node:path";
 import { pathToFileURL } from "node:url";
 import { resolveCollectionAt, resolveCollections, safePackageJson } from "./collection.mjs";
+import { computeRegistry } from "./registry.mjs";
 import {
   types,
   engineCard,
@@ -756,6 +757,29 @@ function findInstanceFiles(dir) {
 }
 
 /**
+ * Deterministic JSON for structural equality: object keys are sorted (so key
+ * order and pretty-print formatting never cause a false diff) while array order
+ * is preserved (so a re-sorted entry list *is* a diff). Used to compare a
+ * committed registry against a fresh build.
+ * @param {unknown} value
+ * @returns {string}
+ */
+function stableStringify(value) {
+  if (Array.isArray(value)) return `[${value.map(stableStringify).join(",")}]`;
+  if (value && typeof value === "object") {
+    // Drop undefined-valued keys, mirroring JSON.stringify (how the registry is
+    // written): an in-memory `{ kind: undefined }` serialises to no key at all, so
+    // the committed file — which never had it — must compare equal.
+    return `{${Object.keys(value)
+      .filter((k) => value[k] !== undefined)
+      .sort()
+      .map((k) => `${JSON.stringify(k)}:${stableStringify(value[k])}`)
+      .join(",")}}`;
+  }
+  return JSON.stringify(value);
+}
+
+/**
  * Validate a house's `registry.json` against its collection directory: schema
  * shape, blurb constraints, bidirectional directory sync, and title alignment
  * with each item's anchor frontmatter. The collection (dir, registry key, item
@@ -1060,6 +1084,31 @@ export function validateCollectionRegistry(root) {
             `adding a ${noun} is a minor bump, so 0.${count}.x is expected`,
         );
       }
+    }
+  }
+
+  // Build-drift gate: the committed registry.json must equal what the build
+  // (computeRegistry) produces from source. This catches a hand-edited or stale
+  // registry — a description no longer matching its play's frontmatter, a missing
+  // or reordered entry, a drifted version — which the per-field checks above pass
+  // individually but which a rebuild (the release `version` script) would silently
+  // overwrite, turning a green house red only at release. The build is the single
+  // writer; a hand edit is a finding. Compared structurally: object-key order and
+  // JSON formatting are ignored, array order (the entry sort) is significant.
+  // Only a real house can be rebuilt (computeRegistry needs package.json and the
+  // collection dir); their absence is reported by other gates, so guard rather
+  // than double-report. A partial fixture that lacks them simply skips this check.
+  if (existsSync(join(root, "package.json"))) {
+    try {
+      const expected = computeRegistry(root).registryData;
+      if (stableStringify(expected) !== stableStringify(registry)) {
+        errors.push(
+          "registry.json is out of date with its source; run `khai-tests registry build` " +
+            "(the build is the single writer — do not hand-edit registry.json)",
+        );
+      }
+    } catch (err) {
+      errors.push(`could not rebuild registry.json to check it for drift: ${err.message}`);
     }
   }
 
