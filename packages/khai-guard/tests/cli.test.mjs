@@ -72,6 +72,73 @@ function runGuard(cwd, args = []) {
   }
 }
 
+// Dormant until the changeset-check scoping fix lands in bin (the diff-scoped
+// changeset filter). Probe bin for the fix's sentinel comment so this suite stays
+// green on a main that still reads every changeset on disk; once the source lands,
+// these activate. (Source/test-split: tests dormant until source.)
+const DORMANT_ACCUM = !readFileSync(binPath, "utf8").includes(
+  "Evaluate only the changesets THIS PR introduces",
+);
+
+// A house-shaped repo whose `main` carries an UNCONSUMED releasing changeset (the
+// normal window between a release-carrying merge and its "Version Packages" PR).
+function houseWithAccumulatedChangeset() {
+  const dir = initRepo();
+  write(
+    dir,
+    "package.json",
+    JSON.stringify({ name: "@scope/house", version: "0.1.0", files: ["plays/**", "README.md"] }),
+  );
+  write(
+    dir,
+    "khai-guard.config.json",
+    JSON.stringify({ changesetPolicy: { countDrivenAdd: ["plays/*/play_*.md"] } }),
+  );
+  write(dir, "README.md", "readme\n");
+  write(dir, ".changeset/add-play.md", '---\n"@scope/house": minor\n---\n\nadd a play\n');
+  commitAll(dir, "main: an unconsumed releasing changeset");
+  return dir;
+}
+
+describe.skipIf(DORMANT_ACCUM)("khai-guard changeset-check: accumulated changesets", () => {
+  it("does not block a docs PR (ships nothing, empty changeset) when main carries a leftover", () => {
+    const dir = houseWithAccumulatedChangeset();
+    git(dir, ["checkout", "-b", "governance/tidy-docs"]);
+    write(dir, "REFERENCES.md", "docs\n");
+    write(dir, ".changeset/tidy-docs.md", "---\n---\n\ndocs only\n");
+    commitAll(dir, "docs + empty changeset");
+    const r = runGuard(dir, [
+      "changeset-check",
+      "--base",
+      "main",
+      "--head",
+      "HEAD",
+      "--branch",
+      "governance/tidy-docs",
+    ]);
+    expect(r.status).toBe(0);
+  });
+
+  it("still blocks a PR that ships nothing but adds its OWN releasing (patch) changeset", () => {
+    const dir = houseWithAccumulatedChangeset();
+    git(dir, ["checkout", "-b", "governance/bad-patch"]);
+    write(dir, "REFERENCES.md", "docs\n");
+    write(dir, ".changeset/bad.md", '---\n"@scope/house": patch\n---\n\ndrift\n');
+    commitAll(dir, "docs + patch changeset");
+    const r = runGuard(dir, [
+      "changeset-check",
+      "--base",
+      "main",
+      "--head",
+      "HEAD",
+      "--branch",
+      "governance/bad-patch",
+    ]);
+    expect(r.status).toBe(1);
+    expect(r.stderr).toMatch(/republish identical content and drift/);
+  });
+});
+
 describe("khai-guard CLI", () => {
   it("uses a three-dot range: a stale branch isn't blamed for main's later source change", () => {
     // The regression that motivated 0.0.3. The branch only touches tests, but
