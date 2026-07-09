@@ -104,6 +104,6 @@
   },
   "devDependencies": {
     "@chbrain/khai-tests": "^0.1.17",
-    "vitest": "^4.1.9"
+    "vitest": "^4.1.10"
   }
 }
