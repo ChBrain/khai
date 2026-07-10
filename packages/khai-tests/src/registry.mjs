@@ -209,7 +209,17 @@ function buildItems(root, collection, allCollections) {
   return items;
 }
 
-export function buildRegistry(root) {
+/**
+ * Compute the registry a house's source *would* build to, writing nothing. The
+ * pure core shared by {@link buildRegistry} (which writes it) and the conformance
+ * drift check (which compares the committed file against it), so the build is
+ * provably the single writer of `registry.json` and a hand edit is caught, not
+ * shipped.
+ * @param {string} root
+ * @returns {{ registryData: object, version: string, packageJson: object,
+ *   packageJsonPath: string, registryPath: string }}
+ */
+export function computeRegistry(root) {
   const packageJsonPath = join(root, "package.json");
   if (!existsSync(packageJsonPath)) {
     throw new Error(`missing package.json at ${root}`);
@@ -233,15 +243,9 @@ export function buildRegistry(root) {
   }
   const primaryItems = arrays[primary.key];
 
-  // The minor IS the primary item count: derive the version and reconcile
-  // package.json (the published artifact; registry.json is not in the package
-  // files) so the build is the single writer of the minor. Referencing
-  // collections (e.g. groups) never move the count.
+  // The minor IS the primary item count: derive the version so the build is the
+  // single writer of the minor. Referencing collections (e.g. groups) never move it.
   const version = deriveVersionFrom(packageJson.version, primaryItems.length);
-  if (packageJson.version !== version) {
-    packageJson.version = version;
-    writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2) + "\n", "utf8");
-  }
 
   const registryData = {
     $schema: "http://json-schema.org/draft-07/schema#",
@@ -250,7 +254,26 @@ export function buildRegistry(root) {
     ...arrays,
   };
 
-  const registryPath = join(root, "registry.json");
+  return {
+    registryData,
+    version,
+    packageJson,
+    packageJsonPath,
+    registryPath: join(root, "registry.json"),
+  };
+}
+
+export function buildRegistry(root) {
+  const { registryData, version, packageJson, packageJsonPath, registryPath } =
+    computeRegistry(root);
+
+  // Reconcile package.json (the published artifact; registry.json is not in the
+  // package files) so the build is the single writer of the minor.
+  if (packageJson.version !== version) {
+    packageJson.version = version;
+    writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2) + "\n", "utf8");
+  }
+
   writeFileSync(registryPath, JSON.stringify(registryData, null, 2) + "\n", "utf8");
 
   // build extracts blurbs best-effort; surface (without failing) anything the
