@@ -21,7 +21,7 @@ stamp:
 
 ## Has
 
-A ledger kept in the self's favor.
+A running verdict kept in the self's favor.
 The win arrives as earned and the loss as circumstance; the persona's hand is written into the good outcome and out of the bad.
 
 ## Orders

@@ -9,30 +9,241 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [bias](position_bias.md): position (anchor)
 - [self](position_self.md): position
 - [self competence](position_self_competence.md): position
+- [explanatory depth](position_explanatory_depth.md): position
+- [action bias](position_action_bias.md): position
+- [prevention bias](position_prevention_bias.md): position
+- [information bias](position_information_bias.md): position
+- [illusion of validity](position_illusion_of_validity.md): position
+- [worse than average](position_worse_than_average.md): position
+- [restraint bias](position_restraint_bias.md): position
+- [hard easy effect](position_hard_easy_effect.md): position
+- [illusory superiority](position_illusory_superiority.md): position
+- [planning fallacy](position_planning_fallacy.md): position
+- [illusion of control](position_illusion_of_control.md): position
+- [dunning kruger](position_dunning_kruger.md): position
+- [overconfidence](position_overconfidence.md): position
 - [self credit](position_self_credit.md): position
+- [assumed similarity](position_assumed_similarity.md): position
+- [extrinsic incentives](position_extrinsic_incentives.md): position
+- [moral credential](position_moral_credential.md): position
+- [false consensus](position_false_consensus.md): position
+- [defensive attribution](position_defensive_attribution.md): position
+- [egocentric bias](position_egocentric_bias.md): position
+- [actor observer](position_actor_observer.md): position
+- [fundamental attribution error](position_fundamental_attribution_error.md): position
+- [self serving bias](position_self_serving_bias.md): position
+- [hindsight bias](position_hindsight_bias.md): position
 - [self clarity](position_self_clarity.md): position
+- [hostile attribution](position_hostile_attribution.md): position
+- [gi joe fallacy](position_gi_joe_fallacy.md): position
+- [asymmetric insight](position_asymmetric_insight.md): position
+- [objectivity illusion](position_objectivity_illusion.md): position
+- [third person effect](position_third_person_effect.md): position
+- [naive cynicism](position_naive_cynicism.md): position
+- [naive realism](position_naive_realism.md): position
+- [bias blind spot](position_bias_blind_spot.md): position
 - [self comfort](position_self_comfort.md): position
+- [persistence](position_persistence.md): position
+- [attentional bias](position_attentional_bias.md): position
+- [pessimism bias](position_pessimism_bias.md): position
+- [choice supportive](position_choice_supportive.md): position
+- [euphoric recall](position_euphoric_recall.md): position
+- [fading affect](position_fading_affect.md): position
+- [risk compensation](position_risk_compensation.md): position
+- [impact bias](position_impact_bias.md): position
+- [positivity effect](position_positivity_effect.md): position
+- [rosy retrospection](position_rosy_retrospection.md): position
+- [ostrich effect](position_ostrich_effect.md): position
+- [negativity bias](position_negativity_bias.md): position
+- [optimism bias](position_optimism_bias.md): position
 - [self image](position_self_image.md): position
+- [value selection](position_value_selection.md): position
+- [sexual overperception](position_sexual_overperception.md): position
+- [delmore effect](position_delmore_effect.md): position
+- [effort justification](position_effort_justification.md): position
+- [social comparison](position_social_comparison.md): position
+- [puritanical bias](position_puritanical_bias.md): position
+- [trait ascription](position_trait_ascription.md): position
+- [self relevance](position_self_relevance.md): position
+- [ben franklin effect](position_ben_franklin_effect.md): position
+- [subjective validation](position_subjective_validation.md): position
+- [end of history illusion](position_end_of_history_illusion.md): position
+- [false uniqueness](position_false_uniqueness.md): position
+- [illusion of transparency](position_illusion_of_transparency.md): position
+- [barnum effect](position_barnum_effect.md): position
+- [reactance](position_reactance.md): position
+- [impostor syndrome](position_impostor_syndrome.md): position
+- [spotlight effect](position_spotlight_effect.md): position
 - [coherence](position_coherence.md): position
 - [coherence seeking](position_coherence_seeking.md): position
+- [common source](position_common_source.md): position
+- [experimenter bias](position_experimenter_bias.md): position
+- [congruence bias](position_congruence_bias.md): position
+- [observer expectancy](position_observer_expectancy.md): position
+- [frequency illusion](position_frequency_illusion.md): position
+- [selective perception](position_selective_perception.md): position
+- [confirmation bias](position_confirmation_bias.md): position
 - [coherence resisting](position_coherence_resisting.md): position
+- [publication bias](position_publication_bias.md): position
+- [plan continuation](position_plan_continuation.md): position
+- [continued influence](position_continued_influence.md): position
+- [semmelweis reflex](position_semmelweis_reflex.md): position
+- [conservatism](position_conservatism.md): position
+- [belief bias](position_belief_bias.md): position
+- [backfire effect](position_backfire_effect.md): position
 - [coherence patterning](position_coherence_patterning.md): position
+- [false priors](position_false_priors.md): position
+- [turkey illusion](position_turkey_illusion.md): position
+- [exaggerated expectation](position_exaggerated_expectation.md): position
+- [proportionality bias](position_proportionality_bias.md): position
+- [outcome bias](position_outcome_bias.md): position
+- [placebo effect](position_placebo_effect.md): position
+- [cognitive dissonance](position_cognitive_dissonance.md): position
+- [declinism](position_declinism.md): position
+- [agent detection](position_agent_detection.md): position
+- [teleological bias](position_teleological_bias.md): position
+- [normalcy bias](position_normalcy_bias.md): position
+- [essentialism](position_essentialism.md): position
+- [illusory correlation](position_illusory_correlation.md): position
+- [just world](position_just_world.md): position
 - [coherence remembering](position_coherence_remembering.md): position
+- [hedonic recall](position_hedonic_recall.md): position
+- [self consistency bias](position_self_consistency_bias.md): position
+- [stereotype bias](position_stereotype_bias.md): position
+- [recency illusion](position_recency_illusion.md): position
 - [ease](position_ease.md): position
 - [ease availability](position_ease_availability.md): position
+- [suffix effect](position_suffix_effect.md): position
+- [mood congruent recall](position_mood_congruent_recall.md): position
+- [plant blindness](position_plant_blindness.md): position
+- [subadditivity](position_subadditivity.md): position
+- [compassion fade](position_compassion_fade.md): position
+- [well travelled road](position_well_travelled_road.md): position
+- [selection bias](position_selection_bias.md): position
+- [salience bias](position_salience_bias.md): position
+- [streetlight effect](position_streetlight_effect.md): position
+- [identifiable victim](position_identifiable_victim.md): position
+- [survivorship bias](position_survivorship_bias.md): position
+- [base rate neglect](position_base_rate_neglect.md): position
+- [availability heuristic](position_availability_heuristic.md): position
 - [ease anchoring](position_ease_anchoring.md): position
+- [weber fechner](position_weber_fechner.md): position
+- [unit bias](position_unit_bias.md): position
+- [quantification bias](position_quantification_bias.md): position
+- [ballot order](position_ballot_order.md): position
+- [time saving bias](position_time_saving_bias.md): position
+- [phantom effect](position_phantom_effect.md): position
+- [less is better](position_less_is_better.md): position
+- [distinction bias](position_distinction_bias.md): position
+- [compromise effect](position_compromise_effect.md): position
+- [money illusion](position_money_illusion.md): position
+- [decoy effect](position_decoy_effect.md): position
+- [framing effect](position_framing_effect.md): position
+- [anchoring](position_anchoring.md): position
 - [ease fluency](position_ease_fluency.md): position
+- [truth bias](position_truth_bias.md): position
+- [aesthetic usability](position_aesthetic_usability.md): position
+- [cheerleader effect](position_cheerleader_effect.md): position
+- [fluency heuristic](position_fluency_heuristic.md): position
+- [rhyme as reason](position_rhyme_as_reason.md): position
+- [illusory truth](position_illusory_truth.md): position
+- [mere exposure](position_mere_exposure.md): position
+- [halo effect](position_halo_effect.md): position
 - [ease likeness](position_ease_likeness.md): position
+- [anecdotal fallacy](position_anecdotal_fallacy.md): position
+- [probability matching](position_probability_matching.md): position
+- [probability neglect](position_probability_neglect.md): position
+- [form function](position_form_function.md): position
+- [anthropocentric thinking](position_anthropocentric_thinking.md): position
+- [intentionality bias](position_intentionality_bias.md): position
+- [berksons paradox](position_berksons_paradox.md): position
+- [sample size insensitivity](position_sample_size_insensitivity.md): position
+- [apophenia](position_apophenia.md): position
+- [anthropomorphism](position_anthropomorphism.md): position
+- [pareidolia](position_pareidolia.md): position
+- [hot hand fallacy](position_hot_hand_fallacy.md): position
+- [clustering illusion](position_clustering_illusion.md): position
+- [conjunction fallacy](position_conjunction_fallacy.md): position
+- [representativeness](position_representativeness.md): position
+- [gamblers fallacy](position_gamblers_fallacy.md): position
 - [ease substitution](position_ease_substitution.md): position
+- [misinterpreted effort](position_misinterpreted_effort.md): position
+- [hot cold empathy gap](position_hot_cold_empathy_gap.md): position
+- [swimmers body](position_swimmers_body.md): position
+- [surrogation](position_surrogation.md): position
+- [embodiment bias](position_embodiment_bias.md): position
+- [domain neglect](position_domain_neglect.md): position
+- [context neglect](position_context_neglect.md): position
+- [stereotyping](position_stereotyping.md): position
+- [bike shedding](position_bike_shedding.md): position
+- [law of instrument](position_law_of_instrument.md): position
+- [additive bias](position_additive_bias.md): position
+- [extension neglect](position_extension_neglect.md): position
+- [projection bias](position_projection_bias.md): position
+- [scope neglect](position_scope_neglect.md): position
+- [attribute substitution](position_attribute_substitution.md): position
+- [functional fixedness](position_functional_fixedness.md): position
+- [curse of knowledge](position_curse_of_knowledge.md): position
 - [belonging](position_belonging.md): position
 - [belonging kin](position_belonging_kin.md): position
+- [implicit association](position_implicit_association.md): position
+- [implicit bias](position_implicit_bias.md): position
+- [gender bias](position_gender_bias.md): position
+- [outgroup favoritism](position_outgroup_favoritism.md): position
+- [women are wonderful](position_women_are_wonderful.md): position
+- [group attribution](position_group_attribution.md): position
+- [ultimate attribution error](position_ultimate_attribution_error.md): position
+- [prejudice](position_prejudice.md): position
+- [cross race effect](position_cross_race_effect.md): position
+- [outgroup homogeneity](position_outgroup_homogeneity.md): position
+- [in group bias](position_in_group_bias.md): position
 - [belonging consensus](position_belonging_consensus.md): position
+- [social cryptomnesia](position_social_cryptomnesia.md): position
+- [pro innovation](position_pro_innovation.md): position
+- [availability cascade](position_availability_cascade.md): position
+- [shared information](position_shared_information.md): position
+- [groupshift](position_groupshift.md): position
+- [abilene paradox](position_abilene_paradox.md): position
+- [groupthink](position_groupthink.md): position
+- [bandwagon effect](position_bandwagon_effect.md): position
 - [belonging authority](position_belonging_authority.md): position
+- [not invented here](position_not_invented_here.md): position
+- [suggestibility](position_suggestibility.md): position
+- [pygmalion effect](position_pygmalion_effect.md): position
+- [automation bias](position_automation_bias.md): position
+- [authority bias](position_authority_bias.md): position
 - [belonging approval](position_belonging_approval.md): position
+- [travis syndrome](position_travis_syndrome.md): position
+- [motonormativity](position_motonormativity.md): position
+- [courtesy bias](position_courtesy_bias.md): position
+- [saying is believing](position_saying_is_believing.md): position
+- [reactive devaluation](position_reactive_devaluation.md): position
+- [system justification](position_system_justification.md): position
+- [social desirability](position_social_desirability.md): position
 - [stake](position_stake.md): position
 - [stake loss](position_stake_loss.md): position
+- [ambiguity effect](position_ambiguity_effect.md): position
+- [pseudocertainty](position_pseudocertainty.md): position
+- [dread aversion](position_dread_aversion.md): position
+- [zero sum bias](position_zero_sum_bias.md): position
+- [omission bias](position_omission_bias.md): position
+- [zero risk bias](position_zero_risk_bias.md): position
+- [loss aversion](position_loss_aversion.md): position
 - [stake ownership](position_stake_ownership.md): position
+- [denomination effect](position_denomination_effect.md): position
+- [mental accounting](position_mental_accounting.md): position
+- [endowment effect](position_endowment_effect.md): position
 - [stake commitment](position_stake_commitment.md): position
+- [non adaptive switching](position_non_adaptive_switching.md): position
+- [doubling back](position_doubling_back.md): position
+- [default effect](position_default_effect.md): position
+- [hyperbolic discounting](position_hyperbolic_discounting.md): position
+- [zeigarnik effect](position_zeigarnik_effect.md): position
+- [disposition effect](position_disposition_effect.md): position
+- [escalation of commitment](position_escalation_of_commitment.md): position
+- [present bias](position_present_bias.md): position
+- [status quo bias](position_status_quo_bias.md): position
+- [sunk cost](position_sunk_cost.md): position
 
 See [sources and attribution](REFERENCES.md).
 
