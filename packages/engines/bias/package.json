@@ -1,0 +1,70 @@
+{
+  "name": "@chbrain/khai-engine-bias",
+  "version": "0.1.0",
+  "description": "khai engine content, the bias domain: the resting tilt a persona brings to judgment before the evidence lands -- five motive families, each governing a catalogue of named biases.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/bias"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "bias",
+    "tagline": "Bias as position: the resting tilt a persona brings to judgment before the evidence lands -- five motive families, each governing a catalogue of named biases.",
+    "type": "position",
+    "anchor": "position_bias.md",
+    "expressions": {
+      "self": "position_self.md",
+      "coherence": "position_coherence.md",
+      "ease": "position_ease.md",
+      "belonging": "position_belonging.md",
+      "stake": "position_stake.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_bias.md) declares the resting tilt a persona brings to every judgment: a scale that does not rest level, read before the evidence lands. The law makes every persona carry one.",
+      "issue": "Five motive tilts a persona may hold, cut by what the lean serves: self (the ego), coherence (the standing model), ease (the cheapest reading), belonging (the group), and stake (what is already held). Each governs a family of named biases and sets which side of the scale starts heavy.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so a resting tilt is read for every persona. The link: each persona links, under Projection, the tilt it carries into the scene.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real tilt. Whether the tilt is true to the reading and colors the scene is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the persona its tilt under Projection, linking the family it leans by. Read it in how the persona weighs before the evidence is in."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  }
+}
