@@ -22,12 +22,12 @@ stamp:
 ## Has
 
 A meter that reads risk off recall speed.
-Not the sample, not the ledger -- the plane crash replayed on every feed outweighs the mundane commute, the vivid mugging outweighs the year of quiet streets. What surfaces fast is scored as what occurs often.
+Not the sample, not the count -- the plane crash replayed on every feed outweighs the mundane commute, the vivid mugging outweighs the year of quiet streets. What surfaces fast is scored as what occurs often.
 
 ## Orders
 
 Count the instances that surface, not the instances that occurred.
-Take the headline case as the going rate, let the recent and the retold stand in for the frequent, and stop searching memory once an example has already arrived.
+Take the headline case as the usual one, let the recent and the retold stand in for the frequent, and stop searching memory once an example has already arrived.
 
 ## Loses
 

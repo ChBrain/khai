@@ -43,6 +43,11 @@
         "parent": "position_self.md"
       },
       {
+        "file": "position_illusion_of_control.md",
+        "type": "position",
+        "parent": "position_self_competence.md"
+      },
+      {
         "file": "position_dunning_kruger.md",
         "type": "position",
         "parent": "position_self_competence.md"
@@ -58,9 +63,29 @@
         "parent": "position_self.md"
       },
       {
+        "file": "position_fundamental_attribution_error.md",
+        "type": "position",
+        "parent": "position_self_credit.md"
+      },
+      {
+        "file": "position_self_serving_bias.md",
+        "type": "position",
+        "parent": "position_self_credit.md"
+      },
+      {
+        "file": "position_hindsight_bias.md",
+        "type": "position",
+        "parent": "position_self_credit.md"
+      },
+      {
         "file": "position_self_clarity.md",
         "type": "position",
         "parent": "position_self.md"
+      },
+      {
+        "file": "position_bias_blind_spot.md",
+        "type": "position",
+        "parent": "position_self_clarity.md"
       },
       {
         "file": "position_self_comfort.md",
@@ -98,9 +123,29 @@
         "parent": "position_coherence.md"
       },
       {
+        "file": "position_belief_bias.md",
+        "type": "position",
+        "parent": "position_coherence_resisting.md"
+      },
+      {
+        "file": "position_backfire_effect.md",
+        "type": "position",
+        "parent": "position_coherence_resisting.md"
+      },
+      {
         "file": "position_coherence_patterning.md",
         "type": "position",
         "parent": "position_coherence.md"
+      },
+      {
+        "file": "position_illusory_correlation.md",
+        "type": "position",
+        "parent": "position_coherence_patterning.md"
+      },
+      {
+        "file": "position_just_world.md",
+        "type": "position",
+        "parent": "position_coherence_patterning.md"
       },
       {
         "file": "position_coherence_remembering.md",
@@ -116,6 +161,11 @@
         "file": "position_ease_availability.md",
         "type": "position",
         "parent": "position_ease.md"
+      },
+      {
+        "file": "position_base_rate_neglect.md",
+        "type": "position",
+        "parent": "position_ease_availability.md"
       },
       {
         "file": "position_availability_heuristic.md",
@@ -143,9 +193,24 @@
         "parent": "position_ease.md"
       },
       {
+        "file": "position_halo_effect.md",
+        "type": "position",
+        "parent": "position_ease_fluency.md"
+      },
+      {
         "file": "position_ease_likeness.md",
         "type": "position",
         "parent": "position_ease.md"
+      },
+      {
+        "file": "position_representativeness.md",
+        "type": "position",
+        "parent": "position_ease_likeness.md"
+      },
+      {
+        "file": "position_gamblers_fallacy.md",
+        "type": "position",
+        "parent": "position_ease_likeness.md"
       },
       {
         "file": "position_ease_substitution.md",
@@ -173,9 +238,19 @@
         "parent": "position_belonging.md"
       },
       {
+        "file": "position_bandwagon_effect.md",
+        "type": "position",
+        "parent": "position_belonging_consensus.md"
+      },
+      {
         "file": "position_belonging_authority.md",
         "type": "position",
         "parent": "position_belonging.md"
+      },
+      {
+        "file": "position_authority_bias.md",
+        "type": "position",
+        "parent": "position_belonging_authority.md"
       },
       {
         "file": "position_belonging_approval.md",
