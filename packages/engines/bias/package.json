@@ -43,6 +43,21 @@
         "parent": "position_self.md"
       },
       {
+        "file": "position_restraint_bias.md",
+        "type": "position",
+        "parent": "position_self_competence.md"
+      },
+      {
+        "file": "position_hard_easy_effect.md",
+        "type": "position",
+        "parent": "position_self_competence.md"
+      },
+      {
+        "file": "position_illusory_superiority.md",
+        "type": "position",
+        "parent": "position_self_competence.md"
+      },
+      {
         "file": "position_planning_fallacy.md",
         "type": "position",
         "parent": "position_self_competence.md"
@@ -66,6 +81,16 @@
         "file": "position_self_credit.md",
         "type": "position",
         "parent": "position_self.md"
+      },
+      {
+        "file": "position_false_consensus.md",
+        "type": "position",
+        "parent": "position_self_credit.md"
+      },
+      {
+        "file": "position_defensive_attribution.md",
+        "type": "position",
+        "parent": "position_self_credit.md"
       },
       {
         "file": "position_egocentric_bias.md",
@@ -98,6 +123,16 @@
         "parent": "position_self.md"
       },
       {
+        "file": "position_third_person_effect.md",
+        "type": "position",
+        "parent": "position_self_clarity.md"
+      },
+      {
+        "file": "position_naive_cynicism.md",
+        "type": "position",
+        "parent": "position_self_clarity.md"
+      },
+      {
         "file": "position_naive_realism.md",
         "type": "position",
         "parent": "position_self_clarity.md"
@@ -111,6 +146,16 @@
         "file": "position_self_comfort.md",
         "type": "position",
         "parent": "position_self.md"
+      },
+      {
+        "file": "position_positivity_effect.md",
+        "type": "position",
+        "parent": "position_self_comfort.md"
+      },
+      {
+        "file": "position_rosy_retrospection.md",
+        "type": "position",
+        "parent": "position_self_comfort.md"
       },
       {
         "file": "position_ostrich_effect.md",
@@ -131,6 +176,26 @@
         "file": "position_self_image.md",
         "type": "position",
         "parent": "position_self.md"
+      },
+      {
+        "file": "position_end_of_history_illusion.md",
+        "type": "position",
+        "parent": "position_self_image.md"
+      },
+      {
+        "file": "position_false_uniqueness.md",
+        "type": "position",
+        "parent": "position_self_image.md"
+      },
+      {
+        "file": "position_illusion_of_transparency.md",
+        "type": "position",
+        "parent": "position_self_image.md"
+      },
+      {
+        "file": "position_barnum_effect.md",
+        "type": "position",
+        "parent": "position_self_image.md"
       },
       {
         "file": "position_reactance.md",
@@ -158,6 +223,16 @@
         "parent": "position_coherence.md"
       },
       {
+        "file": "position_observer_expectancy.md",
+        "type": "position",
+        "parent": "position_coherence_seeking.md"
+      },
+      {
+        "file": "position_frequency_illusion.md",
+        "type": "position",
+        "parent": "position_coherence_seeking.md"
+      },
+      {
         "file": "position_selective_perception.md",
         "type": "position",
         "parent": "position_coherence_seeking.md"
@@ -171,6 +246,11 @@
         "file": "position_coherence_resisting.md",
         "type": "position",
         "parent": "position_coherence.md"
+      },
+      {
+        "file": "position_continued_influence.md",
+        "type": "position",
+        "parent": "position_coherence_resisting.md"
       },
       {
         "file": "position_semmelweis_reflex.md",
@@ -198,6 +278,21 @@
         "parent": "position_coherence.md"
       },
       {
+        "file": "position_declinism.md",
+        "type": "position",
+        "parent": "position_coherence_patterning.md"
+      },
+      {
+        "file": "position_agent_detection.md",
+        "type": "position",
+        "parent": "position_coherence_patterning.md"
+      },
+      {
+        "file": "position_teleological_bias.md",
+        "type": "position",
+        "parent": "position_coherence_patterning.md"
+      },
+      {
         "file": "position_normalcy_bias.md",
         "type": "position",
         "parent": "position_coherence_patterning.md"
@@ -223,6 +318,16 @@
         "parent": "position_coherence.md"
       },
       {
+        "file": "position_self_consistency_bias.md",
+        "type": "position",
+        "parent": "position_coherence_remembering.md"
+      },
+      {
+        "file": "position_stereotype_bias.md",
+        "type": "position",
+        "parent": "position_coherence_remembering.md"
+      },
+      {
         "file": "position_recency_illusion.md",
         "type": "position",
         "parent": "position_coherence_remembering.md"
@@ -236,6 +341,16 @@
         "file": "position_ease_availability.md",
         "type": "position",
         "parent": "position_ease.md"
+      },
+      {
+        "file": "position_streetlight_effect.md",
+        "type": "position",
+        "parent": "position_ease_availability.md"
+      },
+      {
+        "file": "position_identifiable_victim.md",
+        "type": "position",
+        "parent": "position_ease_availability.md"
       },
       {
         "file": "position_survivorship_bias.md",
@@ -258,6 +373,11 @@
         "parent": "position_ease.md"
       },
       {
+        "file": "position_money_illusion.md",
+        "type": "position",
+        "parent": "position_ease_anchoring.md"
+      },
+      {
         "file": "position_decoy_effect.md",
         "type": "position",
         "parent": "position_ease_anchoring.md"
@@ -278,6 +398,11 @@
         "parent": "position_ease.md"
       },
       {
+        "file": "position_rhyme_as_reason.md",
+        "type": "position",
+        "parent": "position_ease_fluency.md"
+      },
+      {
         "file": "position_illusory_truth.md",
         "type": "position",
         "parent": "position_ease_fluency.md"
@@ -296,6 +421,16 @@
         "file": "position_ease_likeness.md",
         "type": "position",
         "parent": "position_ease.md"
+      },
+      {
+        "file": "position_pareidolia.md",
+        "type": "position",
+        "parent": "position_ease_likeness.md"
+      },
+      {
+        "file": "position_hot_hand_fallacy.md",
+        "type": "position",
+        "parent": "position_ease_likeness.md"
       },
       {
         "file": "position_clustering_illusion.md",
@@ -323,6 +458,11 @@
         "parent": "position_ease.md"
       },
       {
+        "file": "position_attribute_substitution.md",
+        "type": "position",
+        "parent": "position_ease_substitution.md"
+      },
+      {
         "file": "position_functional_fixedness.md",
         "type": "position",
         "parent": "position_ease_substitution.md"
@@ -341,6 +481,11 @@
         "file": "position_belonging_kin.md",
         "type": "position",
         "parent": "position_belonging.md"
+      },
+      {
+        "file": "position_cross_race_effect.md",
+        "type": "position",
+        "parent": "position_belonging_kin.md"
       },
       {
         "file": "position_outgroup_homogeneity.md",
@@ -386,6 +531,11 @@
         "file": "position_belonging_approval.md",
         "type": "position",
         "parent": "position_belonging.md"
+      },
+      {
+        "file": "position_system_justification.md",
+        "type": "position",
+        "parent": "position_belonging_approval.md"
       },
       {
         "file": "position_social_desirability.md",
