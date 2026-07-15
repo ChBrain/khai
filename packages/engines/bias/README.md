@@ -9,6 +9,7 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [bias](position_bias.md): position (anchor)
 - [self](position_self.md): position
 - [self competence](position_self_competence.md): position
+- [explanatory depth](position_explanatory_depth.md): position
 - [action bias](position_action_bias.md): position
 - [prevention bias](position_prevention_bias.md): position
 - [information bias](position_information_bias.md): position
@@ -42,6 +43,7 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [naive realism](position_naive_realism.md): position
 - [bias blind spot](position_bias_blind_spot.md): position
 - [self comfort](position_self_comfort.md): position
+- [attentional bias](position_attentional_bias.md): position
 - [pessimism bias](position_pessimism_bias.md): position
 - [choice supportive](position_choice_supportive.md): position
 - [euphoric recall](position_euphoric_recall.md): position
@@ -54,6 +56,9 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [negativity bias](position_negativity_bias.md): position
 - [optimism bias](position_optimism_bias.md): position
 - [self image](position_self_image.md): position
+- [value selection](position_value_selection.md): position
+- [sexual overperception](position_sexual_overperception.md): position
+- [delmore effect](position_delmore_effect.md): position
 - [effort justification](position_effort_justification.md): position
 - [social comparison](position_social_comparison.md): position
 - [puritanical bias](position_puritanical_bias.md): position
@@ -70,6 +75,7 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [spotlight effect](position_spotlight_effect.md): position
 - [coherence](position_coherence.md): position
 - [coherence seeking](position_coherence_seeking.md): position
+- [common source](position_common_source.md): position
 - [experimenter bias](position_experimenter_bias.md): position
 - [congruence bias](position_congruence_bias.md): position
 - [observer expectancy](position_observer_expectancy.md): position
@@ -85,6 +91,7 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [belief bias](position_belief_bias.md): position
 - [backfire effect](position_backfire_effect.md): position
 - [coherence patterning](position_coherence_patterning.md): position
+- [false priors](position_false_priors.md): position
 - [turkey illusion](position_turkey_illusion.md): position
 - [exaggerated expectation](position_exaggerated_expectation.md): position
 - [proportionality bias](position_proportionality_bias.md): position
@@ -105,6 +112,8 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [recency illusion](position_recency_illusion.md): position
 - [ease](position_ease.md): position
 - [ease availability](position_ease_availability.md): position
+- [mood congruent recall](position_mood_congruent_recall.md): position
+- [plant blindness](position_plant_blindness.md): position
 - [subadditivity](position_subadditivity.md): position
 - [compassion fade](position_compassion_fade.md): position
 - [well travelled road](position_well_travelled_road.md): position
@@ -116,6 +125,9 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [base rate neglect](position_base_rate_neglect.md): position
 - [availability heuristic](position_availability_heuristic.md): position
 - [ease anchoring](position_ease_anchoring.md): position
+- [unit bias](position_unit_bias.md): position
+- [quantification bias](position_quantification_bias.md): position
+- [ballot order](position_ballot_order.md): position
 - [time saving bias](position_time_saving_bias.md): position
 - [phantom effect](position_phantom_effect.md): position
 - [less is better](position_less_is_better.md): position
@@ -135,6 +147,11 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [mere exposure](position_mere_exposure.md): position
 - [halo effect](position_halo_effect.md): position
 - [ease likeness](position_ease_likeness.md): position
+- [anecdotal fallacy](position_anecdotal_fallacy.md): position
+- [probability matching](position_probability_matching.md): position
+- [probability neglect](position_probability_neglect.md): position
+- [form function](position_form_function.md): position
+- [anthropocentric thinking](position_anthropocentric_thinking.md): position
 - [intentionality bias](position_intentionality_bias.md): position
 - [berksons paradox](position_berksons_paradox.md): position
 - [sample size insensitivity](position_sample_size_insensitivity.md): position
@@ -147,6 +164,14 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [representativeness](position_representativeness.md): position
 - [gamblers fallacy](position_gamblers_fallacy.md): position
 - [ease substitution](position_ease_substitution.md): position
+- [misinterpreted effort](position_misinterpreted_effort.md): position
+- [hot cold empathy gap](position_hot_cold_empathy_gap.md): position
+- [swimmers body](position_swimmers_body.md): position
+- [surrogation](position_surrogation.md): position
+- [embodiment bias](position_embodiment_bias.md): position
+- [domain neglect](position_domain_neglect.md): position
+- [context neglect](position_context_neglect.md): position
+- [stereotyping](position_stereotyping.md): position
 - [bike shedding](position_bike_shedding.md): position
 - [law of instrument](position_law_of_instrument.md): position
 - [additive bias](position_additive_bias.md): position
@@ -158,6 +183,8 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [curse of knowledge](position_curse_of_knowledge.md): position
 - [belonging](position_belonging.md): position
 - [belonging kin](position_belonging_kin.md): position
+- [implicit bias](position_implicit_bias.md): position
+- [gender bias](position_gender_bias.md): position
 - [outgroup favoritism](position_outgroup_favoritism.md): position
 - [women are wonderful](position_women_are_wonderful.md): position
 - [group attribution](position_group_attribution.md): position
@@ -167,6 +194,7 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [outgroup homogeneity](position_outgroup_homogeneity.md): position
 - [in group bias](position_in_group_bias.md): position
 - [belonging consensus](position_belonging_consensus.md): position
+- [social cryptomnesia](position_social_cryptomnesia.md): position
 - [pro innovation](position_pro_innovation.md): position
 - [availability cascade](position_availability_cascade.md): position
 - [shared information](position_shared_information.md): position
@@ -181,6 +209,7 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [automation bias](position_automation_bias.md): position
 - [authority bias](position_authority_bias.md): position
 - [belonging approval](position_belonging_approval.md): position
+- [travis syndrome](position_travis_syndrome.md): position
 - [motonormativity](position_motonormativity.md): position
 - [courtesy bias](position_courtesy_bias.md): position
 - [saying is believing](position_saying_is_believing.md): position
@@ -201,6 +230,9 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [mental accounting](position_mental_accounting.md): position
 - [endowment effect](position_endowment_effect.md): position
 - [stake commitment](position_stake_commitment.md): position
+- [non adaptive switching](position_non_adaptive_switching.md): position
+- [doubling back](position_doubling_back.md): position
+- [default effect](position_default_effect.md): position
 - [hyperbolic discounting](position_hyperbolic_discounting.md): position
 - [zeigarnik effect](position_zeigarnik_effect.md): position
 - [disposition effect](position_disposition_effect.md): position
