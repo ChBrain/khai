@@ -9,6 +9,8 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [bias](position_bias.md): position (anchor)
 - [self](position_self.md): position
 - [self competence](position_self_competence.md): position
+- [illusion of validity](position_illusion_of_validity.md): position
+- [worse than average](position_worse_than_average.md): position
 - [restraint bias](position_restraint_bias.md): position
 - [hard easy effect](position_hard_easy_effect.md): position
 - [illusory superiority](position_illusory_superiority.md): position
@@ -17,6 +19,7 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [dunning kruger](position_dunning_kruger.md): position
 - [overconfidence](position_overconfidence.md): position
 - [self credit](position_self_credit.md): position
+- [moral credential](position_moral_credential.md): position
 - [false consensus](position_false_consensus.md): position
 - [defensive attribution](position_defensive_attribution.md): position
 - [egocentric bias](position_egocentric_bias.md): position
@@ -25,17 +28,23 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [self serving bias](position_self_serving_bias.md): position
 - [hindsight bias](position_hindsight_bias.md): position
 - [self clarity](position_self_clarity.md): position
+- [asymmetric insight](position_asymmetric_insight.md): position
+- [objectivity illusion](position_objectivity_illusion.md): position
 - [third person effect](position_third_person_effect.md): position
 - [naive cynicism](position_naive_cynicism.md): position
 - [naive realism](position_naive_realism.md): position
 - [bias blind spot](position_bias_blind_spot.md): position
 - [self comfort](position_self_comfort.md): position
+- [risk compensation](position_risk_compensation.md): position
+- [impact bias](position_impact_bias.md): position
 - [positivity effect](position_positivity_effect.md): position
 - [rosy retrospection](position_rosy_retrospection.md): position
 - [ostrich effect](position_ostrich_effect.md): position
 - [negativity bias](position_negativity_bias.md): position
 - [optimism bias](position_optimism_bias.md): position
 - [self image](position_self_image.md): position
+- [ben franklin effect](position_ben_franklin_effect.md): position
+- [subjective validation](position_subjective_validation.md): position
 - [end of history illusion](position_end_of_history_illusion.md): position
 - [false uniqueness](position_false_uniqueness.md): position
 - [illusion of transparency](position_illusion_of_transparency.md): position
@@ -45,6 +54,7 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [spotlight effect](position_spotlight_effect.md): position
 - [coherence](position_coherence.md): position
 - [coherence seeking](position_coherence_seeking.md): position
+- [congruence bias](position_congruence_bias.md): position
 - [observer expectancy](position_observer_expectancy.md): position
 - [frequency illusion](position_frequency_illusion.md): position
 - [selective perception](position_selective_perception.md): position
@@ -56,6 +66,9 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [belief bias](position_belief_bias.md): position
 - [backfire effect](position_backfire_effect.md): position
 - [coherence patterning](position_coherence_patterning.md): position
+- [outcome bias](position_outcome_bias.md): position
+- [placebo effect](position_placebo_effect.md): position
+- [cognitive dissonance](position_cognitive_dissonance.md): position
 - [declinism](position_declinism.md): position
 - [agent detection](position_agent_detection.md): position
 - [teleological bias](position_teleological_bias.md): position
@@ -64,27 +77,35 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [illusory correlation](position_illusory_correlation.md): position
 - [just world](position_just_world.md): position
 - [coherence remembering](position_coherence_remembering.md): position
+- [hedonic recall](position_hedonic_recall.md): position
 - [self consistency bias](position_self_consistency_bias.md): position
 - [stereotype bias](position_stereotype_bias.md): position
 - [recency illusion](position_recency_illusion.md): position
 - [ease](position_ease.md): position
 - [ease availability](position_ease_availability.md): position
+- [salience bias](position_salience_bias.md): position
 - [streetlight effect](position_streetlight_effect.md): position
 - [identifiable victim](position_identifiable_victim.md): position
 - [survivorship bias](position_survivorship_bias.md): position
 - [base rate neglect](position_base_rate_neglect.md): position
 - [availability heuristic](position_availability_heuristic.md): position
 - [ease anchoring](position_ease_anchoring.md): position
+- [distinction bias](position_distinction_bias.md): position
+- [compromise effect](position_compromise_effect.md): position
 - [money illusion](position_money_illusion.md): position
 - [decoy effect](position_decoy_effect.md): position
 - [framing effect](position_framing_effect.md): position
 - [anchoring](position_anchoring.md): position
 - [ease fluency](position_ease_fluency.md): position
+- [cheerleader effect](position_cheerleader_effect.md): position
+- [fluency heuristic](position_fluency_heuristic.md): position
 - [rhyme as reason](position_rhyme_as_reason.md): position
 - [illusory truth](position_illusory_truth.md): position
 - [mere exposure](position_mere_exposure.md): position
 - [halo effect](position_halo_effect.md): position
 - [ease likeness](position_ease_likeness.md): position
+- [apophenia](position_apophenia.md): position
+- [anthropomorphism](position_anthropomorphism.md): position
 - [pareidolia](position_pareidolia.md): position
 - [hot hand fallacy](position_hot_hand_fallacy.md): position
 - [clustering illusion](position_clustering_illusion.md): position
@@ -92,30 +113,39 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [representativeness](position_representativeness.md): position
 - [gamblers fallacy](position_gamblers_fallacy.md): position
 - [ease substitution](position_ease_substitution.md): position
+- [projection bias](position_projection_bias.md): position
+- [scope neglect](position_scope_neglect.md): position
 - [attribute substitution](position_attribute_substitution.md): position
 - [functional fixedness](position_functional_fixedness.md): position
 - [curse of knowledge](position_curse_of_knowledge.md): position
 - [belonging](position_belonging.md): position
 - [belonging kin](position_belonging_kin.md): position
+- [ultimate attribution error](position_ultimate_attribution_error.md): position
+- [prejudice](position_prejudice.md): position
 - [cross race effect](position_cross_race_effect.md): position
 - [outgroup homogeneity](position_outgroup_homogeneity.md): position
 - [in group bias](position_in_group_bias.md): position
 - [belonging consensus](position_belonging_consensus.md): position
+- [abilene paradox](position_abilene_paradox.md): position
 - [groupthink](position_groupthink.md): position
 - [bandwagon effect](position_bandwagon_effect.md): position
 - [belonging authority](position_belonging_authority.md): position
 - [automation bias](position_automation_bias.md): position
 - [authority bias](position_authority_bias.md): position
 - [belonging approval](position_belonging_approval.md): position
+- [reactive devaluation](position_reactive_devaluation.md): position
 - [system justification](position_system_justification.md): position
 - [social desirability](position_social_desirability.md): position
 - [stake](position_stake.md): position
 - [stake loss](position_stake_loss.md): position
+- [omission bias](position_omission_bias.md): position
 - [zero risk bias](position_zero_risk_bias.md): position
 - [loss aversion](position_loss_aversion.md): position
 - [stake ownership](position_stake_ownership.md): position
+- [mental accounting](position_mental_accounting.md): position
 - [endowment effect](position_endowment_effect.md): position
 - [stake commitment](position_stake_commitment.md): position
+- [present bias](position_present_bias.md): position
 - [status quo bias](position_status_quo_bias.md): position
 - [sunk cost](position_sunk_cost.md): position
 

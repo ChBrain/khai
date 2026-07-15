@@ -43,6 +43,16 @@
         "parent": "position_self.md"
       },
       {
+        "file": "position_illusion_of_validity.md",
+        "type": "position",
+        "parent": "position_self_competence.md"
+      },
+      {
+        "file": "position_worse_than_average.md",
+        "type": "position",
+        "parent": "position_self_competence.md"
+      },
+      {
         "file": "position_restraint_bias.md",
         "type": "position",
         "parent": "position_self_competence.md"
@@ -81,6 +91,11 @@
         "file": "position_self_credit.md",
         "type": "position",
         "parent": "position_self.md"
+      },
+      {
+        "file": "position_moral_credential.md",
+        "type": "position",
+        "parent": "position_self_credit.md"
       },
       {
         "file": "position_false_consensus.md",
@@ -123,6 +138,16 @@
         "parent": "position_self.md"
       },
       {
+        "file": "position_asymmetric_insight.md",
+        "type": "position",
+        "parent": "position_self_clarity.md"
+      },
+      {
+        "file": "position_objectivity_illusion.md",
+        "type": "position",
+        "parent": "position_self_clarity.md"
+      },
+      {
         "file": "position_third_person_effect.md",
         "type": "position",
         "parent": "position_self_clarity.md"
@@ -146,6 +171,16 @@
         "file": "position_self_comfort.md",
         "type": "position",
         "parent": "position_self.md"
+      },
+      {
+        "file": "position_risk_compensation.md",
+        "type": "position",
+        "parent": "position_self_comfort.md"
+      },
+      {
+        "file": "position_impact_bias.md",
+        "type": "position",
+        "parent": "position_self_comfort.md"
       },
       {
         "file": "position_positivity_effect.md",
@@ -176,6 +211,16 @@
         "file": "position_self_image.md",
         "type": "position",
         "parent": "position_self.md"
+      },
+      {
+        "file": "position_ben_franklin_effect.md",
+        "type": "position",
+        "parent": "position_self_image.md"
+      },
+      {
+        "file": "position_subjective_validation.md",
+        "type": "position",
+        "parent": "position_self_image.md"
       },
       {
         "file": "position_end_of_history_illusion.md",
@@ -221,6 +266,11 @@
         "file": "position_coherence_seeking.md",
         "type": "position",
         "parent": "position_coherence.md"
+      },
+      {
+        "file": "position_congruence_bias.md",
+        "type": "position",
+        "parent": "position_coherence_seeking.md"
       },
       {
         "file": "position_observer_expectancy.md",
@@ -278,6 +328,21 @@
         "parent": "position_coherence.md"
       },
       {
+        "file": "position_outcome_bias.md",
+        "type": "position",
+        "parent": "position_coherence_patterning.md"
+      },
+      {
+        "file": "position_placebo_effect.md",
+        "type": "position",
+        "parent": "position_coherence_patterning.md"
+      },
+      {
+        "file": "position_cognitive_dissonance.md",
+        "type": "position",
+        "parent": "position_coherence_patterning.md"
+      },
+      {
         "file": "position_declinism.md",
         "type": "position",
         "parent": "position_coherence_patterning.md"
@@ -318,6 +383,11 @@
         "parent": "position_coherence.md"
       },
       {
+        "file": "position_hedonic_recall.md",
+        "type": "position",
+        "parent": "position_coherence_remembering.md"
+      },
+      {
         "file": "position_self_consistency_bias.md",
         "type": "position",
         "parent": "position_coherence_remembering.md"
@@ -341,6 +411,11 @@
         "file": "position_ease_availability.md",
         "type": "position",
         "parent": "position_ease.md"
+      },
+      {
+        "file": "position_salience_bias.md",
+        "type": "position",
+        "parent": "position_ease_availability.md"
       },
       {
         "file": "position_streetlight_effect.md",
@@ -373,6 +448,16 @@
         "parent": "position_ease.md"
       },
       {
+        "file": "position_distinction_bias.md",
+        "type": "position",
+        "parent": "position_ease_anchoring.md"
+      },
+      {
+        "file": "position_compromise_effect.md",
+        "type": "position",
+        "parent": "position_ease_anchoring.md"
+      },
+      {
         "file": "position_money_illusion.md",
         "type": "position",
         "parent": "position_ease_anchoring.md"
@@ -398,6 +483,16 @@
         "parent": "position_ease.md"
       },
       {
+        "file": "position_cheerleader_effect.md",
+        "type": "position",
+        "parent": "position_ease_fluency.md"
+      },
+      {
+        "file": "position_fluency_heuristic.md",
+        "type": "position",
+        "parent": "position_ease_fluency.md"
+      },
+      {
         "file": "position_rhyme_as_reason.md",
         "type": "position",
         "parent": "position_ease_fluency.md"
@@ -421,6 +516,16 @@
         "file": "position_ease_likeness.md",
         "type": "position",
         "parent": "position_ease.md"
+      },
+      {
+        "file": "position_apophenia.md",
+        "type": "position",
+        "parent": "position_ease_likeness.md"
+      },
+      {
+        "file": "position_anthropomorphism.md",
+        "type": "position",
+        "parent": "position_ease_likeness.md"
       },
       {
         "file": "position_pareidolia.md",
@@ -458,6 +563,16 @@
         "parent": "position_ease.md"
       },
       {
+        "file": "position_projection_bias.md",
+        "type": "position",
+        "parent": "position_ease_substitution.md"
+      },
+      {
+        "file": "position_scope_neglect.md",
+        "type": "position",
+        "parent": "position_ease_substitution.md"
+      },
+      {
         "file": "position_attribute_substitution.md",
         "type": "position",
         "parent": "position_ease_substitution.md"
@@ -483,6 +598,16 @@
         "parent": "position_belonging.md"
       },
       {
+        "file": "position_ultimate_attribution_error.md",
+        "type": "position",
+        "parent": "position_belonging_kin.md"
+      },
+      {
+        "file": "position_prejudice.md",
+        "type": "position",
+        "parent": "position_belonging_kin.md"
+      },
+      {
         "file": "position_cross_race_effect.md",
         "type": "position",
         "parent": "position_belonging_kin.md"
@@ -501,6 +626,11 @@
         "file": "position_belonging_consensus.md",
         "type": "position",
         "parent": "position_belonging.md"
+      },
+      {
+        "file": "position_abilene_paradox.md",
+        "type": "position",
+        "parent": "position_belonging_consensus.md"
       },
       {
         "file": "position_groupthink.md",
@@ -533,6 +663,11 @@
         "parent": "position_belonging.md"
       },
       {
+        "file": "position_reactive_devaluation.md",
+        "type": "position",
+        "parent": "position_belonging_approval.md"
+      },
+      {
         "file": "position_system_justification.md",
         "type": "position",
         "parent": "position_belonging_approval.md"
@@ -553,6 +688,11 @@
         "parent": "position_stake.md"
       },
       {
+        "file": "position_omission_bias.md",
+        "type": "position",
+        "parent": "position_stake_loss.md"
+      },
+      {
         "file": "position_zero_risk_bias.md",
         "type": "position",
         "parent": "position_stake_loss.md"
@@ -568,6 +708,11 @@
         "parent": "position_stake.md"
       },
       {
+        "file": "position_mental_accounting.md",
+        "type": "position",
+        "parent": "position_stake_ownership.md"
+      },
+      {
         "file": "position_endowment_effect.md",
         "type": "position",
         "parent": "position_stake_ownership.md"
@@ -576,6 +721,11 @@
         "file": "position_stake_commitment.md",
         "type": "position",
         "parent": "position_stake.md"
+      },
+      {
+        "file": "position_present_bias.md",
+        "type": "position",
+        "parent": "position_stake_commitment.md"
       },
       {
         "file": "position_status_quo_bias.md",
