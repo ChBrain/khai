@@ -43,6 +43,16 @@
         "parent": "position_self.md"
       },
       {
+        "file": "position_dunning_kruger.md",
+        "type": "position",
+        "parent": "position_self_competence.md"
+      },
+      {
+        "file": "position_overconfidence.md",
+        "type": "position",
+        "parent": "position_self_competence.md"
+      },
+      {
         "file": "position_self_credit.md",
         "type": "position",
         "parent": "position_self.md"
@@ -58,6 +68,11 @@
         "parent": "position_self.md"
       },
       {
+        "file": "position_optimism_bias.md",
+        "type": "position",
+        "parent": "position_self_comfort.md"
+      },
+      {
         "file": "position_self_image.md",
         "type": "position",
         "parent": "position_self.md"
@@ -71,6 +86,11 @@
         "file": "position_coherence_seeking.md",
         "type": "position",
         "parent": "position_coherence.md"
+      },
+      {
+        "file": "position_confirmation_bias.md",
+        "type": "position",
+        "parent": "position_coherence_seeking.md"
       },
       {
         "file": "position_coherence_resisting.md",
@@ -98,9 +118,24 @@
         "parent": "position_ease.md"
       },
       {
+        "file": "position_availability_heuristic.md",
+        "type": "position",
+        "parent": "position_ease_availability.md"
+      },
+      {
         "file": "position_ease_anchoring.md",
         "type": "position",
         "parent": "position_ease.md"
+      },
+      {
+        "file": "position_framing_effect.md",
+        "type": "position",
+        "parent": "position_ease_anchoring.md"
+      },
+      {
+        "file": "position_anchoring.md",
+        "type": "position",
+        "parent": "position_ease_anchoring.md"
       },
       {
         "file": "position_ease_fluency.md",
@@ -128,6 +163,11 @@
         "parent": "position_belonging.md"
       },
       {
+        "file": "position_in_group_bias.md",
+        "type": "position",
+        "parent": "position_belonging_kin.md"
+      },
+      {
         "file": "position_belonging_consensus.md",
         "type": "position",
         "parent": "position_belonging.md"
@@ -153,6 +193,11 @@
         "parent": "position_stake.md"
       },
       {
+        "file": "position_loss_aversion.md",
+        "type": "position",
+        "parent": "position_stake_loss.md"
+      },
+      {
         "file": "position_stake_ownership.md",
         "type": "position",
         "parent": "position_stake.md"
@@ -161,6 +206,11 @@
         "file": "position_stake_commitment.md",
         "type": "position",
         "parent": "position_stake.md"
+      },
+      {
+        "file": "position_sunk_cost.md",
+        "type": "position",
+        "parent": "position_stake_commitment.md"
       }
     ],
     "requires": [
