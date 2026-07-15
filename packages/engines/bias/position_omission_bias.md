@@ -21,7 +21,7 @@ stamp:
 
 ## Has
 
-Not a scale that weighs two wounds the same. It's the hand kept still in the pocket while a harm unfolds in front of it, and the stillness reads as clean hands. The mechanism: a harm delivered by a moving hand carries a print on it, traceable to the mover; a harm let through by a hand that never moved leaves no print at all, so the tilt prices the identical wound twice -- cheap when no hand touched it, costly when one did.
+Not an even measure of two equal wounds. It's the hand kept still in the pocket while a harm unfolds in front of it, and the stillness reads as clean hands. The mechanism: a harm delivered by a moving hand carries a print on it, traceable to the mover; a harm let through by a hand that never moved leaves no print at all, so the tilt prices the identical wound twice -- cheap when no hand touched it, costly when one did.
 
 ## Orders
 
