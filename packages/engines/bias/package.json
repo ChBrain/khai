@@ -1,0 +1,199 @@
+{
+  "name": "@chbrain/khai-engine-bias",
+  "version": "0.1.0",
+  "description": "khai engine content, the bias domain: the resting tilt a persona brings to judgment before the evidence lands -- five motive families, routing through sub-motives to the named biases.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/bias"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "bias",
+    "tagline": "Bias as position: the resting tilt a persona brings to judgment before the evidence lands -- five motive families, routing through sub-motives to the named biases.",
+    "type": "position",
+    "members": [
+      {
+        "file": "position_bias.md",
+        "type": "position",
+        "parent": null
+      },
+      {
+        "file": "position_self.md",
+        "type": "position",
+        "parent": "position_bias.md"
+      },
+      {
+        "file": "position_self_competence.md",
+        "type": "position",
+        "parent": "position_self.md"
+      },
+      {
+        "file": "position_self_credit.md",
+        "type": "position",
+        "parent": "position_self.md"
+      },
+      {
+        "file": "position_self_clarity.md",
+        "type": "position",
+        "parent": "position_self.md"
+      },
+      {
+        "file": "position_self_comfort.md",
+        "type": "position",
+        "parent": "position_self.md"
+      },
+      {
+        "file": "position_self_image.md",
+        "type": "position",
+        "parent": "position_self.md"
+      },
+      {
+        "file": "position_coherence.md",
+        "type": "position",
+        "parent": "position_bias.md"
+      },
+      {
+        "file": "position_coherence_seeking.md",
+        "type": "position",
+        "parent": "position_coherence.md"
+      },
+      {
+        "file": "position_coherence_resisting.md",
+        "type": "position",
+        "parent": "position_coherence.md"
+      },
+      {
+        "file": "position_coherence_patterning.md",
+        "type": "position",
+        "parent": "position_coherence.md"
+      },
+      {
+        "file": "position_coherence_remembering.md",
+        "type": "position",
+        "parent": "position_coherence.md"
+      },
+      {
+        "file": "position_ease.md",
+        "type": "position",
+        "parent": "position_bias.md"
+      },
+      {
+        "file": "position_ease_availability.md",
+        "type": "position",
+        "parent": "position_ease.md"
+      },
+      {
+        "file": "position_ease_anchoring.md",
+        "type": "position",
+        "parent": "position_ease.md"
+      },
+      {
+        "file": "position_ease_fluency.md",
+        "type": "position",
+        "parent": "position_ease.md"
+      },
+      {
+        "file": "position_ease_likeness.md",
+        "type": "position",
+        "parent": "position_ease.md"
+      },
+      {
+        "file": "position_ease_substitution.md",
+        "type": "position",
+        "parent": "position_ease.md"
+      },
+      {
+        "file": "position_belonging.md",
+        "type": "position",
+        "parent": "position_bias.md"
+      },
+      {
+        "file": "position_belonging_kin.md",
+        "type": "position",
+        "parent": "position_belonging.md"
+      },
+      {
+        "file": "position_belonging_consensus.md",
+        "type": "position",
+        "parent": "position_belonging.md"
+      },
+      {
+        "file": "position_belonging_authority.md",
+        "type": "position",
+        "parent": "position_belonging.md"
+      },
+      {
+        "file": "position_belonging_approval.md",
+        "type": "position",
+        "parent": "position_belonging.md"
+      },
+      {
+        "file": "position_stake.md",
+        "type": "position",
+        "parent": "position_bias.md"
+      },
+      {
+        "file": "position_stake_loss.md",
+        "type": "position",
+        "parent": "position_stake.md"
+      },
+      {
+        "file": "position_stake_ownership.md",
+        "type": "position",
+        "parent": "position_stake.md"
+      },
+      {
+        "file": "position_stake_commitment.md",
+        "type": "position",
+        "parent": "position_stake.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The root (position_bias.md) declares the resting tilt a persona brings to every judgment: a scale that does not rest level, read before the evidence lands. The law makes every persona carry one.",
+      "issue": "The tilt is a tree. Five motive families cut by what the lean serves -- self (the ego), coherence (the standing model), ease (the cheapest reading), belonging (the group), stake (what is already held) -- each routing through its sub-motives to the specific named bias. The root fires the motive, the family names the sub-motive, and the leaf is the bias the persona carries.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so a resting tilt is read for every persona. The link: each persona links, under Projection, the leaf bias it carries into the scene, which composes its family and the root with it.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real leaf. Whether the tilt is true to the reading and colors the scene is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its bias under Projection, linking the leaf; composing it stacks the sub-motive, the family, and the root. Read it in how the persona weighs before the evidence is in."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  }
+}
