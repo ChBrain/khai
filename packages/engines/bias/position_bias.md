@@ -24,6 +24,7 @@ Judgment (no khai file of its own yet).
 A scale that does not rest level.
 The persona arrives at every judgment already leaning: a standing weight on one pan before the evidence is set down.
 It is not the verdict but the tilt the verdict inherits, the same lean carried into whatever the moment asks them to weigh.
+It leans in one of five directions, by what the lean serves: toward the [self](position_self.md), the [standing model](position_coherence.md), the [cheapest reading](position_ease.md), the [group](position_belonging.md), or the [stake](position_stake.md).
 
 ## Orders
 

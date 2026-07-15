@@ -23,7 +23,7 @@ stamp:
 
 A scale weighted toward the self.
 The pan carrying the persona's own competence, decency, and control sits low before any evidence lands, so a reading that flatters the self is taken as obvious and one that indicts it as suspect.
-The field names the family: self-serving attribution, overconfidence, optimism bias, illusory superiority, egocentric bias, the illusion of control, and the bias blind spot.
+The lean routes through five sub-motives: [competence](position_self_competence.md), [credit](position_self_credit.md), [clarity](position_self_clarity.md), [comfort](position_self_comfort.md), and [image](position_self_image.md).
 
 ## Orders
 

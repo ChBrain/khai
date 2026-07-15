@@ -23,7 +23,7 @@ stamp:
 
 A scale weighted toward the standing model.
 What already fits the persona's picture is set down as light and admitted freely; what contradicts it is set down as heavy and made to earn its entry.
-The field names the family: confirmation bias, congruence bias, belief bias, conservatism in revision, the backfire effect, the Semmelweis reflex, and selective perception.
+The lean routes through four sub-motives: [seeking](position_coherence_seeking.md), [resisting](position_coherence_resisting.md), [patterning](position_coherence_patterning.md), and [remembering](position_coherence_remembering.md).
 
 ## Orders
 

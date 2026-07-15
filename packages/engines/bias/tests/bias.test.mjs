@@ -6,7 +6,7 @@ import { describe, it, expect } from "vitest";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { validateEnginePackage } from "@chbrain/khai-tests";
-import { manifest, compose, expressions } from "../index.mjs";
+import { manifest, compose, chains } from "../index.mjs";
 
 const pkgDir = join(dirname(fileURLToPath(import.meta.url)), "..");
 const flatten = (results) => results.flatMap((r) => r.errors.map((e) => `${r.file}: ${e}`));
@@ -19,11 +19,18 @@ describe("bias: conforms to the canon", () => {
 });
 
 describe("bias: manifest", () => {
-  it("declares the bias position engine with five motive families", () => {
+  it("declares the bias position tree with a single root", () => {
     expect(manifest.engine).toBe("bias");
     expect(manifest.type).toBe("position");
-    expect(manifest.anchor).toBe("position_bias.md");
-    expect(Object.keys(manifest.expressions)).toHaveLength(5);
+    const roots = manifest.members.filter((m) => m.parent === null);
+    expect(roots).toHaveLength(1);
+    expect(roots[0].file).toBe("position_bias.md");
+  });
+  it("every non-root member names a parent that exists", () => {
+    const files = new Set(manifest.members.map((m) => m.file));
+    for (const m of manifest.members) {
+      if (m.parent !== null) expect(files.has(m.parent)).toBe(true);
+    }
   });
   it("declares both enforceable wiring altitudes, each at its level", () => {
     expect(manifest.requires).toContainEqual({
@@ -42,17 +49,19 @@ describe("bias: manifest", () => {
 });
 
 describe("bias: compose()", () => {
-  for (const expression of Object.keys(expressions)) {
-    it(`composes ${expression}: anchor first, then the family`, () => {
-      const out = compose({ expression });
+  it("composes every leaf: root first, then the chain down to the leaf", () => {
+    const leaves = Object.keys(chains);
+    expect(leaves.length).toBeGreaterThan(0);
+    for (const leaf of leaves) {
+      const out = compose({ leaf });
       expect(out.trimStart().split("\n")[0]).toBe("# Position: Bias");
       expect(out.includes("## Has")).toBe(true);
-    });
-  }
-  it("rejects an unknown tilt", () => {
-    expect(() => compose({ expression: "position_greed" })).toThrow();
+    }
   });
-  it("rejects a missing tilt", () => {
+  it("rejects an unknown leaf", () => {
+    expect(() => compose({ leaf: "position_greed.md" })).toThrow();
+  });
+  it("rejects a missing leaf", () => {
     expect(() => compose({})).toThrow();
   });
 });
