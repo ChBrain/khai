@@ -23,7 +23,7 @@ stamp:
 
 A scale weighted toward what is already the persona's.
 A loss weighs heavier than the matching gain, what is owned outweighs the same thing unowned, and the path already invested in pulls the judgment onward.
-The field names the family: loss aversion, the sunk-cost fallacy, the endowment effect, status-quo bias, the IKEA effect, zero-risk bias, negativity bias, and escalation of commitment.
+The field names the family: loss aversion, the sunk-cost fallacy, the endowment effect, status-quo bias, the disposition effect, zero-risk bias, the default effect, and escalation of commitment.
 
 ## Orders
 

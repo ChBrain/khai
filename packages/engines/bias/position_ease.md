@@ -23,7 +23,7 @@ stamp:
 
 A scale weighted toward the cheapest reading.
 Whatever comes to mind fastest, reads most fluently, or was met first sits low: the near example outweighs the true rate, the first figure heard sets the ground, the familiar claim passes for the true one.
-The field names the family: the availability heuristic, anchoring, representativeness, base-rate neglect, mere exposure, the illusory-truth effect, and framing.
+The field names the family: the availability heuristic, anchoring, representativeness, base-rate neglect, mere exposure, the illusory-truth effect, framing, and the halo effect.
 
 ## Orders
 

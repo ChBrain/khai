@@ -23,7 +23,7 @@ stamp:
 
 A scale weighted toward the group.
 The in-group's reading, the familiar face, the voice of authority, and the direction of the crowd all sit low, so the same claim weighs less from an outsider than from one's own.
-The field names the family: in-group favoritism, out-group homogeneity, the bandwagon effect, authority bias, the halo effect, system justification, and the cross-race effect.
+The field names the family: in-group favoritism, out-group homogeneity, the bandwagon effect, authority bias, groupthink, system justification, and the cross-race effect.
 
 ## Orders
 

@@ -23,7 +23,7 @@ stamp:
 
 A scale weighted toward the standing model.
 What already fits the persona's picture is set down as light and admitted freely; what contradicts it is set down as heavy and made to earn its entry.
-The field names the family: confirmation bias, congruence bias, belief bias, conservatism in revision, the backfire effect, the Semmelweis reflex, and choice-supportive memory.
+The field names the family: confirmation bias, congruence bias, belief bias, conservatism in revision, the backfire effect, the Semmelweis reflex, and selective perception.
 
 ## Orders
 
