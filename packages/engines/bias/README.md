@@ -43,6 +43,7 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [naive realism](position_naive_realism.md): position
 - [bias blind spot](position_bias_blind_spot.md): position
 - [self comfort](position_self_comfort.md): position
+- [persistence](position_persistence.md): position
 - [attentional bias](position_attentional_bias.md): position
 - [pessimism bias](position_pessimism_bias.md): position
 - [choice supportive](position_choice_supportive.md): position
@@ -112,6 +113,7 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [recency illusion](position_recency_illusion.md): position
 - [ease](position_ease.md): position
 - [ease availability](position_ease_availability.md): position
+- [suffix effect](position_suffix_effect.md): position
 - [mood congruent recall](position_mood_congruent_recall.md): position
 - [plant blindness](position_plant_blindness.md): position
 - [subadditivity](position_subadditivity.md): position
@@ -125,6 +127,7 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [base rate neglect](position_base_rate_neglect.md): position
 - [availability heuristic](position_availability_heuristic.md): position
 - [ease anchoring](position_ease_anchoring.md): position
+- [weber fechner](position_weber_fechner.md): position
 - [unit bias](position_unit_bias.md): position
 - [quantification bias](position_quantification_bias.md): position
 - [ballot order](position_ballot_order.md): position
@@ -183,6 +186,7 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [curse of knowledge](position_curse_of_knowledge.md): position
 - [belonging](position_belonging.md): position
 - [belonging kin](position_belonging_kin.md): position
+- [implicit association](position_implicit_association.md): position
 - [implicit bias](position_implicit_bias.md): position
 - [gender bias](position_gender_bias.md): position
 - [outgroup favoritism](position_outgroup_favoritism.md): position

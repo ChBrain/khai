@@ -213,6 +213,11 @@
         "parent": "position_self.md"
       },
       {
+        "file": "position_persistence.md",
+        "type": "position",
+        "parent": "position_self_comfort.md"
+      },
+      {
         "file": "position_attentional_bias.md",
         "type": "position",
         "parent": "position_self_comfort.md"
@@ -558,6 +563,11 @@
         "parent": "position_ease.md"
       },
       {
+        "file": "position_suffix_effect.md",
+        "type": "position",
+        "parent": "position_ease_availability.md"
+      },
+      {
         "file": "position_mood_congruent_recall.md",
         "type": "position",
         "parent": "position_ease_availability.md"
@@ -621,6 +631,11 @@
         "file": "position_ease_anchoring.md",
         "type": "position",
         "parent": "position_ease.md"
+      },
+      {
+        "file": "position_weber_fechner.md",
+        "type": "position",
+        "parent": "position_ease_anchoring.md"
       },
       {
         "file": "position_unit_bias.md",
@@ -911,6 +926,11 @@
         "file": "position_belonging_kin.md",
         "type": "position",
         "parent": "position_belonging.md"
+      },
+      {
+        "file": "position_implicit_association.md",
+        "type": "position",
+        "parent": "position_belonging_kin.md"
       },
       {
         "file": "position_implicit_bias.md",
