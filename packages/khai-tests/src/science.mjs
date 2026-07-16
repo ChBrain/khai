@@ -156,7 +156,9 @@ export function collectScience(root) {
 
 // --- rendering -----------------------------------------------------------
 
-const esc = (s) => s.replace(/\|/g, "\\|");
+// Escape backslash first, then the pipe, so the table-cell escaping cannot be
+// bypassed by a literal backslash in the input (js/incomplete-sanitization).
+const esc = (s) => s.replace(/\\/g, "\\\\").replace(/\|/g, "\\|");
 
 /** Render the model into the generated markdown. Deterministic: stable sorts only. */
 export function renderScienceIndex({ records, byEngine }) {
