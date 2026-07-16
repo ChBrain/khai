@@ -21,6 +21,7 @@ import {
 } from "./validate.mjs";
 import { packEngine } from "./pack.mjs";
 import { buildRegistry, verifyRegistry } from "./registry.mjs";
+import { buildScienceIndex, verifyScienceIndex, SCIENCE_INDEX_PATH } from "./science.mjs";
 import { checkManagement } from "./management.mjs";
 import { resolve, relative } from "node:path";
 import { existsSync, readdirSync, writeFileSync, mkdirSync } from "node:fs";
@@ -155,6 +156,42 @@ async function registryMode(args) {
   }
 }
 
+// `science [build|verify] [dir]`: build or drift-check the science -> engine index
+async function scienceMode(args) {
+  const sub = args[1];
+  const dirArg = args[2] && !args[2].startsWith("--") ? args[2] : ".";
+  const root = resolve(dirArg);
+
+  if (sub === "build") {
+    try {
+      buildScienceIndex(root);
+      console.log(
+        `khai-tests science build: successfully updated ${SCIENCE_INDEX_PATH} at ${root}`,
+      );
+    } catch (err) {
+      console.error(`✖ science build failed: ${err.message}`);
+      process.exit(1);
+    }
+  } else if (sub === "verify") {
+    let errors;
+    try {
+      errors = verifyScienceIndex(root);
+    } catch (err) {
+      console.error(`✖ science verify failed: ${err.message}`);
+      process.exit(1);
+    }
+    if (errors.length) {
+      for (const err of errors) console.error(`✖ ${SCIENCE_INDEX_PATH}: ${err}`);
+      console.error(`\nkhai-tests science verify failed.`);
+      process.exit(1);
+    }
+    console.log(`khai-tests science verify: ${SCIENCE_INDEX_PATH} at ${root} conforms.`);
+  } else {
+    console.error("khai-tests science [build|verify] [dir]");
+    process.exit(2);
+  }
+}
+
 // `management check [dir]` holds a house's management to the live blueprint core
 // (read from the installed @chbrain/khai-stage).
 function managementMode(args) {
@@ -178,6 +215,7 @@ function managementMode(args) {
 
 if (argv[0] === "pack") await packMode(argv);
 else if (argv[0] === "registry") await registryMode(argv);
+else if (argv[0] === "science") await scienceMode(argv);
 else if (argv[0] === "management") managementMode(argv);
 else if (argv.includes("--project")) projectMode(argv);
 else await engineMode(argv);
