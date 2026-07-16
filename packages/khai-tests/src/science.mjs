@@ -36,13 +36,14 @@ function stripMd(s) {
 
 /** The body of a `## <name>` chapter, up to the next `## ` heading (or EOF). */
 function sliceChapter(text, name) {
-  const lines = text.split("\n");
   const out = [];
   let inside = false;
-  for (const line of lines) {
-    if (/^##\s+/.test(line)) {
+  for (const line of text.split("\n")) {
+    // A level-2 heading ("## ", not "### "). String checks, not a regex built
+    // from `name`, so there is no dynamic-pattern surface.
+    if (line.startsWith("## ")) {
       if (inside) break;
-      inside = new RegExp(`^##\\s+${name}\\s*$`).test(line);
+      inside = line.slice(3).trim() === name;
       continue;
     }
     if (inside) out.push(line);
@@ -81,16 +82,20 @@ function parseOriginTable(origin) {
  *   "Mayer, Davis & Schoorman"       -> ["Mayer", "Davis", "Schoorman"]
  */
 export function surnames(source) {
-  return source
-    .replace(/\bet al\.?/gi, "")
-    .split(/\s*(?:&|;|,| and )\s*/i)
-    .map((part) => part.trim())
-    .filter(Boolean)
-    .map((part) => {
-      const tokens = part.replace(/[.,]/g, "").split(/\s+/).filter(Boolean);
-      return tokens[tokens.length - 1] || part;
-    })
-    .filter(Boolean);
+  return (
+    source
+      .replace(/\bet al\.?/gi, "")
+      // Split on separators only; trimming handles surrounding whitespace. No
+      // whitespace quantifier wraps the alternation, so the match stays linear.
+      .split(/[,;&]|\s+and\s+/i)
+      .map((part) => part.trim())
+      .filter(Boolean)
+      .map((part) => {
+        const tokens = part.replace(/[.,]/g, "").split(/\s+/).filter(Boolean);
+        return tokens[tokens.length - 1] || part;
+      })
+      .filter(Boolean)
+  );
 }
 
 /** Distinct member types in an engine's tree (explicit members, or shorthand root). */
