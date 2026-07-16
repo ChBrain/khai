@@ -10,6 +10,12 @@ audit/*/ledger.json
 audit/*/log.md
 audit/*/meta.json
 
+# Generated science index: `khai-tests science build` writes docs/SCIENCE.md
+# from every engine's REFERENCES.md, and its build-drift gate holds it
+# byte-identical to that build. Prettier reformatting it would fight the gate,
+# and its style is machine-written, not hand-authored.
+docs/SCIENCE.md
+
 # Generated changelogs: changesets writes every package's CHANGELOG.md, so
 # like the audit artifacts above they are machine-written, not hand-formatted.
 # Keeping them out of the check means a prettier version bump (whose output can

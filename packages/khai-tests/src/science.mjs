@@ -1,0 +1,246 @@
+// The science index: the forward map, science -> engine.
+//
+// Every engine authors its warrant in REFERENCES.md (the LORE standard), whose
+// Origin chapter carries a `| Source | Key Work | Scope |` table -- the reverse
+// map, engine -> science. This module inverts that, across every engine, into a
+// single generated `docs/SCIENCE.md`: navigate from a scholar or theory to the
+// engines that rest on it, and see at a glance where one source is load-bearing
+// across many engines.
+//
+// Computed, not hand-kept: the same Origin tables are the single source, so the
+// two directions can never drift. `buildScienceIndex` is the sole writer;
+// `verifyScienceIndex` is the drift gate (mirrors the registry build-drift gate)
+// -- a stale or hand-edited index fails at the PR, not at the next release.
+//
+// Deliberately dependency-free (node built-ins only): the committed index must
+// be byte-identical to what the gate rebuilds, so the writer and the verifier
+// are the one code path, runnable anywhere without an install step.
+import { readFileSync, writeFileSync, readdirSync, existsSync, statSync } from "node:fs";
+import { join } from "node:path";
+
+/** Where the generated index lives, relative to the repo root. */
+export const SCIENCE_INDEX_PATH = "docs/SCIENCE.md";
+
+// --- markdown helpers ----------------------------------------------------
+
+/** Strip inline markdown emphasis/links and decode the entities the tables use. */
+function stripMd(s) {
+  return s
+    .replace(/\*\*(.*?)\*\*/g, "$1")
+    .replace(/_(.*?)_/g, "$1")
+    .replace(/`(.*?)`/g, "$1")
+    .replace(/\[(.*?)\]\(.*?\)/g, "$1")
+    .replace(/&amp;/g, "&")
+    .trim();
+}
+
+/** The body of a `## <name>` chapter, up to the next `## ` heading (or EOF). */
+function sliceChapter(text, name) {
+  const lines = text.split("\n");
+  const out = [];
+  let inside = false;
+  for (const line of lines) {
+    if (/^##\s+/.test(line)) {
+      if (inside) break;
+      inside = new RegExp(`^##\\s+${name}\\s*$`).test(line);
+      continue;
+    }
+    if (inside) out.push(line);
+  }
+  return out.join("\n");
+}
+
+/** Parse a `| Source | Key Work | Scope |` table into rows (header/rule dropped). */
+function parseOriginTable(origin) {
+  const rows = [];
+  for (const raw of origin.split("\n")) {
+    const line = raw.trim();
+    if (!line.startsWith("|")) continue;
+    const cells = line
+      .split("|")
+      .slice(1, -1)
+      .map((c) => c.trim());
+    if (cells.length < 3) continue;
+    const [source, work, scope] = cells;
+    if (/^:?-+:?$/.test(source)) continue; // separator row
+    if (/^source$/i.test(source)) continue; // header row
+    rows.push({ source: stripMd(source), keyWork: stripMd(work), scope: stripMd(scope) });
+  }
+  return rows;
+}
+
+// --- normalization -------------------------------------------------------
+
+/**
+ * Canonical surnames for an authored Source cell, so the same scholar collates
+ * across engines however they were written. Multi-author cells contribute one
+ * surname each, so a shared author links every engine that cites them:
+ *   "Amos Tversky & Daniel Kahneman" -> ["Tversky", "Kahneman"]
+ *   "Kahneman & Tversky"             -> ["Kahneman", "Tversky"]
+ *   "Dan P. McAdams et al."          -> ["McAdams"]
+ *   "Mayer, Davis & Schoorman"       -> ["Mayer", "Davis", "Schoorman"]
+ */
+export function surnames(source) {
+  return source
+    .replace(/\bet al\.?/gi, "")
+    .split(/\s*(?:&|;|,| and )\s*/i)
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .map((part) => {
+      const tokens = part.replace(/[.,]/g, "").split(/\s+/).filter(Boolean);
+      return tokens[tokens.length - 1] || part;
+    })
+    .filter(Boolean);
+}
+
+/** Distinct member types in an engine's tree (explicit members, or shorthand root). */
+function compositionTypes(khai) {
+  if (Array.isArray(khai.members)) {
+    return [...new Set(khai.members.map((m) => m.type).filter(Boolean))];
+  }
+  return khai.type ? [khai.type] : [];
+}
+
+// --- collection ----------------------------------------------------------
+
+/** Engine package dirs under <root>/packages/engines/*. */
+function engineDirs(root) {
+  const dir = join(root, "packages", "engines");
+  if (!existsSync(dir)) return [];
+  return readdirSync(dir)
+    .sort()
+    .map((d) => join(dir, d))
+    .filter((p) => statSync(p).isDirectory() && existsSync(join(p, "package.json")));
+}
+
+/**
+ * Read every engine's manifest + Origin table into the index model. Throws if an
+ * engine ships a REFERENCES.md whose Origin has no parseable Source table: the
+ * index is only as complete as its source, so a silent gap is not allowed.
+ */
+export function collectScience(root) {
+  const records = []; // one per (engine, scholar)
+  const byEngine = [];
+  for (const dir of engineDirs(root)) {
+    const khai = JSON.parse(readFileSync(join(dir, "package.json"), "utf8")).khai;
+    if (!khai || !khai.engine) continue;
+    // Infra engines that root on no cast/element type (e.g. spine, which lifts
+    // the class:meta architecture itself) carry no external science warrant, so
+    // they are not part of the science map.
+    if (!khai.type) continue;
+    const refPath = join(dir, "REFERENCES.md");
+    if (!existsSync(refPath)) continue;
+    const rows = parseOriginTable(sliceChapter(readFileSync(refPath, "utf8"), "Origin"));
+    if (rows.length === 0)
+      throw new Error(
+        `collectScience: engine "${khai.engine}" has no parseable Origin table in REFERENCES.md`,
+      );
+    byEngine.push({
+      engine: khai.engine,
+      root: khai.type || "?",
+      composition: compositionTypes(khai),
+      requires: [...new Set((khai.requires || []).map((r) => r.on))],
+      sources: rows.map((r) => r.source),
+    });
+    for (const r of rows)
+      for (const surname of surnames(r.source))
+        records.push({ surname, ...r, engine: khai.engine, root: khai.type || "?" });
+  }
+  return { records, byEngine };
+}
+
+// --- rendering -----------------------------------------------------------
+
+const esc = (s) => s.replace(/\|/g, "\\|");
+
+/** Render the model into the generated markdown. Deterministic: stable sorts only. */
+export function renderScienceIndex({ records, byEngine }) {
+  const bySurname = new Map();
+  for (const r of records) {
+    if (!bySurname.has(r.surname)) bySurname.set(r.surname, []);
+    bySurname.get(r.surname).push(r);
+  }
+  const scholars = [...bySurname.keys()].sort((a, b) =>
+    a.toLowerCase().localeCompare(b.toLowerCase()),
+  );
+
+  const L = [];
+  L.push("<!-- GENERATED by `khai-tests science build` — DO NOT EDIT BY HAND. -->");
+  L.push("<!-- Source of truth: each engine's REFERENCES.md Origin table (LORE). -->");
+  L.push("");
+  L.push("# khai science index");
+  L.push("");
+  L.push(
+    `The forward map: **science → engine**. Inverted from the Origin table every ` +
+      `engine's \`REFERENCES.md\` carries, so navigation and the reverse warrant ` +
+      `share one source and cannot drift. ${byEngine.length} engines, ${bySurname.size} scholars.`,
+  );
+
+  L.push("");
+  L.push("## By science");
+  L.push("");
+  L.push("| Scholar | Engine | Root | Key Work | Scope |");
+  L.push("| --- | --- | --- | --- | --- |");
+  for (const scholar of scholars) {
+    const rows = bySurname
+      .get(scholar)
+      .sort((a, b) => a.engine.localeCompare(b.engine) || a.keyWork.localeCompare(b.keyWork));
+    rows.forEach((r, i) => {
+      const label = i === 0 ? `**${esc(scholar)}**` : "↳";
+      const work =
+        r.source === scholar ? esc(r.keyWork) : `${esc(r.keyWork)} <br><sub>${esc(r.source)}</sub>`;
+      L.push(`| ${label} | ${r.engine} | \`${r.root}\` | ${work} | ${esc(r.scope)} |`);
+    });
+  }
+
+  L.push("");
+  L.push("## By engine");
+  L.push("");
+  L.push("| Engine | Root | Composition | Wires into | Sources |");
+  L.push("| --- | --- | --- | --- | --- |");
+  for (const e of [...byEngine].sort((a, b) => a.engine.localeCompare(b.engine))) {
+    const comp = e.composition.map((t) => `\`${t}\``).join(" ");
+    const req = e.requires.map((t) => `\`${t}\``).join(" ");
+    L.push(`| ${e.engine} | \`${e.root}\` | ${comp} | ${req} | ${esc(e.sources.join("; "))} |`);
+  }
+
+  L.push("");
+  L.push("## By root type");
+  L.push("");
+  const byRoot = new Map();
+  for (const e of byEngine) {
+    if (!byRoot.has(e.root)) byRoot.set(e.root, []);
+    byRoot.get(e.root).push(e.engine);
+  }
+  for (const root of [...byRoot.keys()].sort()) {
+    const names = byRoot.get(root).sort();
+    L.push(`- **\`${root}\`** (${names.length}): ${names.join(", ")}`);
+  }
+  L.push("");
+  return L.join("\n");
+}
+
+// --- build / verify ------------------------------------------------------
+
+/** Build the index from source and write it. The single writer of the index. */
+export function buildScienceIndex(root) {
+  const text = renderScienceIndex(collectScience(root));
+  writeFileSync(join(root, SCIENCE_INDEX_PATH), text);
+  return text;
+}
+
+/**
+ * The drift gate: the committed index must equal what the build produces from
+ * source. Returns an array of error strings (empty when in sync), mirroring the
+ * shape the registry drift gate uses.
+ */
+export function verifyScienceIndex(root) {
+  const built = renderScienceIndex(collectScience(root));
+  const path = join(root, SCIENCE_INDEX_PATH);
+  if (!existsSync(path))
+    return [`${SCIENCE_INDEX_PATH} is missing; run \`khai-tests science build\``];
+  const committed = readFileSync(path, "utf8");
+  if (committed !== built)
+    return [`${SCIENCE_INDEX_PATH} is out of date; run \`khai-tests science build\``];
+  return [];
+}

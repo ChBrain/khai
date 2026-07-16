@@ -29,5 +29,13 @@ export {
   MANAGEMENT_CORE,
   MANAGEMENT_HOMES,
 } from "./src/management.mjs";
+export {
+  buildScienceIndex,
+  verifyScienceIndex,
+  collectScience,
+  renderScienceIndex,
+  surnames,
+  SCIENCE_INDEX_PATH,
+} from "./src/science.mjs";
 export * as rules from "@chbrain/khai-rules";
 export { parseDoc, sectionBody } from "@chbrain/khai-rules";

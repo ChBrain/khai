@@ -57,6 +57,18 @@ canon (the pre-commit path used inside this workspace):
 npx khai-tests packages/engines/gender/position_female.md
 ```
 
+### Science index — the forward science → engine map
+
+Invert every engine's `REFERENCES.md` Origin table into a generated
+`docs/SCIENCE.md`: navigate from a scholar or theory to the engines that rest on
+it. `build` is the single writer; `verify` is the drift gate (the committed index
+must equal a fresh build from source).
+
+```bash
+npx khai-tests science build   # regenerate docs/SCIENCE.md
+npx khai-tests science verify  # fail if the committed index is stale
+```
+
 ## Library
 
 The CLI is a thin caller over the same functions the test suite uses:

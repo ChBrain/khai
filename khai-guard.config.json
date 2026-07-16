@@ -29,7 +29,7 @@
   },
   "exemptRenames": true,
   "branchScope": {
-    "shared": [".changeset/**", "package.json", "package-lock.json"],
+    "shared": [".changeset/**", "package.json", "package-lock.json", "docs/SCIENCE.md"],
     "lanes": [
       {
         "pattern": "arch/*",
@@ -48,6 +48,7 @@
           ".github/**",
           ".husky/**",
           "khai-guard.config.json",
+          ".prettierignore",
           "docs/BRANCHING.md",
           "CLAUDE.md",
           "GEMINI.md",
