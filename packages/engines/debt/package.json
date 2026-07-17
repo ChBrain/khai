@@ -1,0 +1,94 @@
+{
+  "name": "@chbrain/khai-engine-debt",
+  "version": "0.1.0",
+  "description": "khai engine content, the debt domain: a quantified obligation that binds creditor to debtor -- what is owed, who is bound by it, and how it is carried, cleared, or broken.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/debt"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "debt",
+    "tagline": "Debt as piece: a quantified obligation that binds creditor to debtor -- the thing one persona owes another, the two unequal stances it sets, and its arc from incurring through servicing to discharge or default.",
+    "type": "piece",
+    "members": [
+      {
+        "file": "piece_debt.md",
+        "type": "piece",
+        "parent": null
+      },
+      {
+        "file": "position_creditor.md",
+        "type": "position",
+        "parent": "piece_debt.md"
+      },
+      {
+        "file": "position_debtor.md",
+        "type": "position",
+        "parent": "piece_debt.md"
+      },
+      {
+        "file": "process_incurring.md",
+        "type": "process",
+        "parent": "piece_debt.md"
+      },
+      {
+        "file": "process_servicing.md",
+        "type": "process",
+        "parent": "piece_debt.md"
+      },
+      {
+        "file": "process_default.md",
+        "type": "process",
+        "parent": "piece_debt.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Piece. The anchor (piece_debt.md) declares the debt as what it is in the room: a quantified obligation one persona owes another, binding them unequally until it is settled. The law makes an owing a thing the scene can carry, count, and call in.",
+      "issue": "The debt, read beneath the sum. Two positions name the poles it sets -- the creditor who is owed and holds the claim, the debtor who owes and is bound; three processes name its arc -- incurring (the obligation is created and the two are bound), servicing (it is carried and kept alive), and default (it is not paid, and the bond ruptures or converts). The sum is the piece; the members are the tie it pulls tight.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so an owing is read as binding wherever it sits. The link: the personas on each pole link the creditor or debtor stance, and the process the debt is in, under Projection.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and a real creditor/debtor position or debt process is linked. Whether the debt actually binds the personas the way the scene needs is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then set the debt: name what is owed, who holds the claim and who is bound, and which process it is in -- being incurred, serviced, or falling into default. Read it in what the debtor cannot refuse and what the creditor can demand."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  }
+}
