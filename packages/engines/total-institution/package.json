@@ -1,0 +1,47 @@
+{
+  "name": "@chbrain/khai-engine-total-institution",
+  "version": "0.1.0",
+  "description": "khai total-institution engine — the place where all of life is conducted in one location under one authority, cut off from the wider world",
+  "type": "module",
+  "main": "index.mjs",
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "khai": {
+    "engine": "total-institution",
+    "tagline": "The place where all of life, sleep, play, work, is conducted in one location under one authority, cut off from the wider world.",
+    "type": "place",
+    "anchor": "place_total_institution.md",
+    "expressions": {
+      "barrier": "place_barrier.md",
+      "batch": "place_batch.md",
+      "mortification": "place_mortification.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Link the persona's face of the institution (barrier, batch, or mortification) to the expression under Projection.",
+      "issue": "What the institution's single authority controls that the persona cannot get to on their own: the exit, the schedule, the identity kit.",
+      "require": "One authority governing all of life in one place, a batch treated alike, and a barrier the persona did not choose and cannot simply cross.",
+      "enforce": "Do not model the felt shame or exposure of the stripping here; that belongs to the emotion engine. Do not model the collective rite that inducts a persona; that belongs to the ritual engine. This engine models the institution's structure, not what it makes the persona feel or the ceremony that produced it.",
+      "setup": "Name which face of the institution the persona is contending with (barrier, batch, or mortification), what prior identity or role the institution required them to relinquish, and who holds the single authority over the schedule and the exit."
+    }
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests"
+  }
+}
