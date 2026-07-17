@@ -65,7 +65,7 @@ vocabulary.
 - **[Supplication](plot_supplication.md)**: a Persecutor pursues, a
   Supplicant begs a Power in authority who hesitates. Polti, Situation I.
 - **[Revenge](plot_revenge.md)**: an Avenger pursues a Criminal for a wrong
-  done. Polti, Situation II (Crime Pursued by Vengeance).
+  done. Polti, Situation III (Crime Pursued by Vengeance).
 - **[Pursuit](plot_pursuit.md)**: a Fugitive flees a Punishment, justified or
   not, that hunts them. Polti, Situation V (Pursuit).
 - **[Rivalry](plot_rivalry.md)**: a Superior Rival and an Inferior Rival
