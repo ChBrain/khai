@@ -1,0 +1,47 @@
+{
+  "name": "@chbrain/khai-engine-restorative-environment",
+  "version": "0.1.0",
+  "description": "khai restorative-environment engine — the setting that refills depleted directed attention rather than draining it",
+  "type": "module",
+  "main": "index.mjs",
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "khai": {
+    "engine": "restorative-environment",
+    "tagline": "The setting that refills depleted directed attention rather than draining it.",
+    "type": "place",
+    "anchor": "place_restorative_environment.md",
+    "expressions": {
+      "being-away": "place_being_away.md",
+      "fascination": "place_fascination.md",
+      "extent": "place_extent.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Link the persona's current restorative quality (being-away, fascination, or extent) to the expression under Projection.",
+      "issue": "What refills the persona's depleted directed attention here, and what it does not yet grant.",
+      "require": "Directed attention that is genuinely depleted; a setting whose pull is soft, not gripping.",
+      "enforce": "Do not model the depletion of directed attention itself here; that belongs to the attention engine. Do not model the felt calm or relief; that belongs to the emotion and mood engines. This engine models the place, not the deficit or the feeling.",
+      "setup": "Name which restorative quality (being-away, fascination, or extent) is in play, what routine or demand the persona is apart from, and what the place still withholds."
+    }
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests"
+  }
+}
