@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-guilt",
+  "version": "0.1.0",
+  "description": "khai engine content, the guilt domain: guilt as process, how a persona appraises a specific act against a standard it holds as its own, and the appraisal becomes a reparative pull toward confession, apology, or amends.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/guilt"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "guilt",
+    "tagline": "Guilt as process: how a persona appraises a specific act against a standard it holds as its own, and the appraisal becomes a reparative pull -- confess it, own it, make amends -- rather than a verdict on the whole self.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_guilt.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_transgression.md",
+        "type": "process",
+        "parent": "process_guilt.md"
+      },
+      {
+        "file": "position_culpable.md",
+        "type": "position",
+        "parent": "process_guilt.md"
+      },
+      {
+        "file": "process_reparation.md",
+        "type": "process",
+        "parent": "process_guilt.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_guilt.md) declares guilt as an act-focused appraisal: a chosen act meets a standard the persona holds as its own, and the read becomes a reparative pull rather than a verdict on the whole self.",
+      "issue": "The appraisal, read three ways beneath the root. One process names the crossing itself (transgression: the act against the standard, committed and irreversible); one position names the stance it leaves the persona holding (culpable: author of record, account open); one process names the way the account closes (reparation: confession, apology, restitution delivered to the party or standard it is owed).",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the specific reading it runs in the scene.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real guilt reading. Whether the reading is true to the persona's act is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its read under Projection, linking the specific expression -- the transgression it committed, the culpable stance it holds, or the reparation it is attempting. Read it in the pull toward repair, never as a narrated verdict on who the persona is."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  }
+}

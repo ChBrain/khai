@@ -1,0 +1,67 @@
+{
+  "name": "@chbrain/khai-engine-loyalty",
+  "version": "0.1.0",
+  "description": "khai engine content, the loyalty domain: loyalty as position, the standing allegiance that raises the cost of leaving and holds exit at bay long enough for voice to be tried.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/loyalty"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "loyalty",
+    "tagline": "Loyalty as position: the standing allegiance to a person, group, or cause that raises the cost of leaving -- holding exit at bay and making voice worth attempting while it holds.",
+    "type": "position",
+    "anchor": "position_loyalty.md",
+    "expressions": {
+      "exit": "position_exit.md",
+      "voice": "position_voice.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_loyalty.md) declares loyalty as a standing allegiance -- the accumulated stake that raises the cost of leaving and buys a declining relationship time before a member acts on it -- and the system-wide law makes every persona who belongs somewhere carry one.",
+      "issue": "Two ready expressions a persona may hold when the allegiance is tested by decline, Hirschman's own pair: exit (the quiet pull to leave, cashing the stake out for an alternative) and voice (the louder choice to stay and press for repair from within, spending the stake as leverage). Each is a full position file the build composes onto the anchor, so the persona gets a standing response to decline, not a label. More expressions slot in as sibling files without moving the anchor.",
+      "require": "Two altitudes must hold. One, the law: declared once in the project's Instructions Knowledge chapter ('personas carry a loyalty'), so the allegiance holds system-wide before any single decline is felt. Two, the link: each persona carries its loyalty response under Projection. A persona may also hold a colder allegiance under Shadow, one already spent past what it can buy; the gap between the loyalty shown and the loyalty exhausted is the character, not a contradiction to reject.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, and each persona carries a loyalty under Projection. Whether a Projection loyalty and a Shadow exhaustion cohere into a true persona is semantic, so it is taught and reviewed, never failed by the suite. The engine ships its own structural tests; the reading is guided, not gated.",
+      "setup": "Two steps. Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give each persona its loyalty under Projection: one expression, exit or voice, which carries the anchor upward. Where the stake has already run out, put it under Shadow. Read it in what a persona tolerates before they act, never narrate it as a belief stated aloud."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-regulation",
+  "version": "0.1.0",
+  "description": "khai engine content, the regulation domain: how a persona intervenes on its own emotion-generative process, before or after the felt push arrives.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/regulation"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "regulation",
+    "tagline": "Regulation as process: how a persona intervenes on its own emotion-generative timeline -- choosing the situation, reframing its meaning, or holding back its expression -- to change a feeling already under way or forestall one before it starts.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_regulation.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_situation_selection.md",
+        "type": "process",
+        "parent": "process_regulation.md"
+      },
+      {
+        "file": "process_reappraisal.md",
+        "type": "process",
+        "parent": "process_regulation.md"
+      },
+      {
+        "file": "process_suppression.md",
+        "type": "process",
+        "parent": "process_regulation.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_regulation.md) declares regulation as an intervention: the persona acts on its own emotion-generative timeline, upstream at the situation or downstream at the expression, to change what it feels or shows.",
+      "issue": "Three points on the timeline a persona may work: situation selection (choosing into or out of the situation before the emotion starts), reappraisal (reframing the situation's meaning while the emotion is forming), and suppression (holding back the expression after the emotion has formed). Each is a distinct point of intervention, composed under the root, and the point chosen changes both the cost and the effect.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the specific strategy it runs in the scene.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real strategy. Whether the regulation is true to the moment -- and to what it costs the persona to hold it -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its strategy under Projection, linking the specific point of intervention. Read it in the beat where the persona acts on its own feeling, never narrated as a label."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  }
+}
