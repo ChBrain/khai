@@ -1,0 +1,46 @@
+{
+  "name": "@chbrain/khai-engine-backstage",
+  "version": "0.1.0",
+  "description": "khai backstage engine — the region hidden from the audience where the performance is prepared and dropped",
+  "type": "module",
+  "main": "index.mjs",
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "khai": {
+    "engine": "backstage",
+    "tagline": "The region hidden from the audience where the performance is prepared and dropped.",
+    "type": "place",
+    "anchor": "place_backstage.md",
+    "expressions": {
+      "frontstage": "place_frontstage.md",
+      "outside": "place_outside.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Link the scene's region -- backstage, frontstage, or outside -- to the anchor; link the specific region the scene occupies to the expression under Projection.",
+      "issue": "Is this scene where the performance is given, where it is prepared and dropped, or nowhere near either?",
+      "require": "A performance with a front to maintain, a team bound by the discretion the back region demands, and an audience whose presence draws the line between them.",
+      "enforce": "Do not model the performance itself here -- the mask, the projected self, what is said and withheld in character. That belongs to the persona's own Projection, Action, Shadow, and Tell. This engine models the region the performance occurs within and is prepared inside, not the act of performing.",
+      "setup": "Identify which region the scene occupies (backstage, frontstage, outside), who counts as the accepted team versus the audience versus a bystander, and what breaks if that boundary is crossed."
+    }
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests"
+  }
+}
