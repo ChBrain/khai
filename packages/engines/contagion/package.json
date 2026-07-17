@@ -1,0 +1,79 @@
+{
+  "name": "@chbrain/khai-engine-contagion",
+  "version": "0.1.0",
+  "description": "khai engine content, the contagion domain: emotional contagion as process -- the automatic, largely unconscious mimicry of another's expression, posture, and voice, and the afferent convergence that follows it.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/contagion"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "contagion",
+    "tagline": "Contagion as process: the automatic, largely unconscious mimicry of another's expression, posture, and voice, and the afferent convergence that follows -- one persona's affect spreading into another's without either judging or choosing it.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_contagion.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_mimicry.md",
+        "type": "process",
+        "parent": "process_contagion.md"
+      },
+      {
+        "file": "process_convergence.md",
+        "type": "process",
+        "parent": "process_contagion.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_contagion.md) declares emotional contagion as what it is in the room: automatic mimicry of another's expression, posture, and voice, converging into a felt match the persona did not choose. The law makes proximity to a displayed affect a channel, not a suggestion.",
+      "issue": "One spread, read in its two moments. Mimicry names the automatic imitation -- the persona's own face, posture, or voice pulled toward the other's, without deliberation. Convergence names what follows -- the mimicked shape feeds back and the persona comes to feel what it is now wearing. Each is a process file composed under the root, so the felt match follows the copied motion.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the specific moment it runs in the scene.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real moment of contagion. Whether the mimicry and the resulting feeling are true to the scene is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its read under Projection, linking mimicry or convergence. Read it in an unguarded first beat -- a face that catches, a voice that matches pitch, a posture that leans the same way -- never narrated as a decision to feel something."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  }
+}
