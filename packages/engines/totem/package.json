@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-totem",
+  "version": "0.1.0",
+  "description": "khai engine content, the totem domain: a sacred object set apart from the profane that stands for the group -- what it concentrates, who is bound to it, and what its charging and violation do.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/totem"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "totem",
+    "tagline": "Totem as piece: a sacred object set apart from the profane that stands for the group -- the emblem that concentrates a collective's force, the adherent bound to revere it, and the charging and violation that make and break the sacred.",
+    "type": "piece",
+    "members": [
+      {
+        "file": "piece_totem.md",
+        "type": "piece",
+        "parent": null
+      },
+      {
+        "file": "position_adherent.md",
+        "type": "position",
+        "parent": "piece_totem.md"
+      },
+      {
+        "file": "process_consecration.md",
+        "type": "process",
+        "parent": "piece_totem.md"
+      },
+      {
+        "file": "process_desecration.md",
+        "type": "process",
+        "parent": "piece_totem.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Piece. The anchor (piece_totem.md) declares the totem as what it is in the room: an object set apart as sacred that stands for the group, holding a force out of all proportion to its substance. The law makes the sacred a thing the scene can carry and profane.",
+      "issue": "The totem, read beneath the object. One position names who is bound to it (the adherent who reveres it); two processes name what makes and breaks its sacredness -- consecration (the gathered group charges it) and desecration (it is profaned, and sanction follows). The object is the piece; the members are the force it concentrates.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so an object marked sacred is read as set apart wherever it sits. The link: the persona bound to it links the adherent stance and the process it is in under Projection.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and a real adherent position or totem process is linked. Whether the object truly holds the sacred force the scene needs is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then set the totem: name the object, the group it stands for, who reveres it, and which process it is in -- being charged by the gathering, or profaned by violation. Read it in the disproportion between what the object is and what it commands."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  }
+}

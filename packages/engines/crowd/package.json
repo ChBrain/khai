@@ -1,0 +1,47 @@
+{
+  "name": "@chbrain/khai-engine-crowd",
+  "version": "0.1.0",
+  "description": "khai crowd engine — the massed environment that presses on everyone inside it before anyone speaks",
+  "type": "module",
+  "main": "index.mjs",
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "khai": {
+    "engine": "crowd",
+    "tagline": "The massed environment that presses on everyone inside it before anyone speaks.",
+    "type": "place",
+    "anchor": "place_crowd.md",
+    "expressions": {
+      "density": "place_density.md",
+      "discharge": "place_discharge.md",
+      "direction": "place_direction.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Link the crowd's current condition (density, discharge, or direction) to the expression under Projection.",
+      "issue": "What the mass is doing to everyone inside it, prior to and independent of what any one persona says or does.",
+      "require": "Bodies pressed close enough that individual distance is abolished, and a shared goal the mass presses toward.",
+      "enforce": "Do not model the individual's felt loss-of-self or its contagion of affect here; that belongs to the contagion and emotion engines. Do not model conformity to the group's standard; that belongs to the conformity and group engines. Do not model any one persona's own standing; that belongs to the hierarchy engine. This engine models the mass, not the member.",
+      "setup": "Name the crowd's density, whether it has reached discharge, and what direction or goal holds it together and moving."
+    }
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests"
+  }
+}
