@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-double-bind",
+  "version": "0.1.0",
+  "description": "khai engine content, the double-bind domain: Bateson's communicational trap as a plot -- contradictory injunctions across logical levels, with escape and comment forbidden.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/double-bind"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "double-bind",
+    "tagline": "The double bind as plot: Gregory Bateson's communicational trap -- an inescapable relationship, contradictory injunctions at different logical levels, and a ban on naming or leaving the contradiction, so every response is wrong.",
+    "type": "plot",
+    "members": [
+      {
+        "file": "plot_double_bind.md",
+        "type": "plot",
+        "parent": null
+      },
+      {
+        "file": "plot_be_spontaneous.md",
+        "type": "plot",
+        "parent": "plot_double_bind.md"
+      },
+      {
+        "file": "plot_disqualification.md",
+        "type": "plot",
+        "parent": "plot_double_bind.md"
+      },
+      {
+        "file": "plot_no_metacomment.md",
+        "type": "plot",
+        "parent": "plot_double_bind.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "plot",
+        "section": "Tension",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Plot. The anchor (plot_double_bind.md) declares the double bind as it stands in the room: an intense relationship the victim cannot leave, holding a primary injunction, a secondary injunction that contradicts it at a more abstract level, and a tertiary injunction forbidding escape or comment. The law makes every plot that runs the bind carry this reading.",
+      "issue": "The bind, read three ways. Three plots name the ingredients that make it inescapable: the be-spontaneous paradox (a command whose content demands what only unbidden action can supply), disqualification (the words say one thing while the frame says the opposite, so no reading is safe), and the prohibition on metacomment (the victim may not name or ask about the contradiction). The anchor is the irreducible whole; the three ingredients compose it.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the bind is read for every persona who enters the trap. The link: each plot that runs the bind links, under Tension, the anchor or one of its three ingredient plots.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and a real double-bind plot is linked under Tension. Whether the bind is true to the scene, whether the contradiction actually holds at different logical levels, is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the plot its bind under Tension: the hidden second injunction and the ban on naming it that makes the Action impossible to complete cleanly. Read it in the relationship the victim cannot leave, and in the fact that every response, comply, refuse, or comment, loses."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  }
+}
