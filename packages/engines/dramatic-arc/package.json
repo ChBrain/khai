@@ -1,0 +1,94 @@
+{
+  "name": "@chbrain/khai-engine-dramatic-arc",
+  "version": "0.1.0",
+  "description": "khai engine content, the dramatic-arc domain: Freytag's five-act pyramid, run as chained plots.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/dramatic-arc"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "dramatic-arc",
+    "tagline": "Freytag's pyramid as a play: the five-act dramatic arc -- exposition, rising action, climax, falling action, and catastrophe -- run as a chain of plots, the rise to a turning point and the fall from it.",
+    "type": "play",
+    "members": [
+      {
+        "file": "play_drama.md",
+        "type": "play",
+        "parent": null
+      },
+      {
+        "file": "plot_exposition.md",
+        "type": "plot",
+        "parent": "play_drama.md"
+      },
+      {
+        "file": "plot_rising_action.md",
+        "type": "plot",
+        "parent": "play_drama.md"
+      },
+      {
+        "file": "plot_climax.md",
+        "type": "plot",
+        "parent": "play_drama.md"
+      },
+      {
+        "file": "plot_falling_action.md",
+        "type": "plot",
+        "parent": "play_drama.md"
+      },
+      {
+        "file": "plot_catastrophe.md",
+        "type": "plot",
+        "parent": "play_drama.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "play",
+        "section": "Arc",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Play. The anchor (play_drama.md) declares the five-act drama as Freytag's pyramid: a rise to a turning point and a fall from it, the whole shaped as a single dramatic movement. The law makes every play readable against this arc.",
+      "issue": "The arc, read as five chained acts. Exposition sets the situation and fires the exciting force; rising action builds the complication; the climax turns the protagonist's fortune; falling action unwinds the consequences and builds the final suspense; the catastrophe resolves it, in tragedy or in comedy. Each act is a plot, cued by the one before it.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the pyramid is read for every play. The link: each play links, under Arc, the exciting force, the climax, and the tragic force that shape its own run.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and a real act (plot) is linked. Whether a play's own arc is true to the pyramid is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the play its own Arc: the exciting force that opens it, the climax that turns it, and the tragic force and final suspense that carry it to its catastrophe. Read it in the order the acts fire, never out of sequence."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  }
+}
