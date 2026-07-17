@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-flow",
+  "version": "0.1.0",
+  "description": "khai engine content, the flow domain: total absorption arising when a clear-goaled, immediately-feedbacked activity holds a balance between challenge and skill, both pulled high and matched.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/flow"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "flow",
+    "tagline": "Flow as process: total absorption arising when a clear-goaled, immediately-feedbacked activity holds a balance between challenge and skill -- both pulled high and matched -- until action and awareness merge and the activity becomes worth doing for its own sake.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_flow.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_challenge_skill_balance.md",
+        "type": "process",
+        "parent": "process_flow.md"
+      },
+      {
+        "file": "position_absorbed.md",
+        "type": "position",
+        "parent": "process_flow.md"
+      },
+      {
+        "file": "process_immersion.md",
+        "type": "process",
+        "parent": "process_flow.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_flow.md) declares flow as an entry gated by match: a clear-goaled, immediately-feedbacked activity taken up the moment its challenge sits level with the persona's own skill, both pulled high.",
+      "issue": "One entry condition, one stance, one running state. The challenge-skill balance names the gate (matched, or the persona reads back to anxiety or boredom instead); the absorbed position names the autotelic stance held while inside; immersion names the running merge of action and awareness that carries the run. All three compose under the root, so entering flow carries the gate, the stance, and the merge together.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the activity it holds a matched challenge and skill against.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and the persona links a real activity under Projection. Whether the match is true -- neither slack nor overwhelming -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona the activity it holds under Projection, matched to its own skill. Read it in the merge of action and awareness once the match holds, never narrated as a label."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.27",
+    "vitest": "^4.1.10"
+  }
+}

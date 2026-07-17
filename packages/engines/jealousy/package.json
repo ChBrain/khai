@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-jealousy",
+  "version": "0.1.0",
+  "description": "khai engine content, the jealousy domain: a rival, real or imagined, threatens a valued bond the persona already holds -- what it takes to appraise the threat, guard the bond, and hold the line.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/jealousy"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "jealousy",
+    "tagline": "Jealousy as process: a rival, real or imagined, threatens a valued bond the persona already holds -- the appraisal of the threat, the stance of guarding it, and the vigilance, confrontation, and mate-guarding that follow.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_jealousy.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_threat_appraisal.md",
+        "type": "process",
+        "parent": "process_jealousy.md"
+      },
+      {
+        "file": "position_jealous.md",
+        "type": "position",
+        "parent": "process_jealousy.md"
+      },
+      {
+        "file": "process_guarding.md",
+        "type": "process",
+        "parent": "process_jealousy.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The anchor (process_jealousy.md) declares jealousy as what it is in the room: a rival, real or imagined, inside a bond the persona already holds, not a gap between the persona and a good someone else has. The law makes the three-party threat a thing the scene can carry.",
+      "issue": "The threat, read three ways beneath the bond. One process appraises how real and how close the rival's claim is (threat appraisal); one position names the persona once it has read a threat worth acting on (jealous); one process names what the guarding becomes -- vigilance, confrontation, mate-guarding (guarding). The bond is the anchor; the members are the pressure a rival puts on it.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so a threatened bond is read as jealousy wherever it sits. The link: the persona who is guarding links the jealous stance and the process it is in under Projection.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and a real jealous position or jealousy process is linked. Whether the threat actually bears the weight the scene needs is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then place the jealousy: name the bond, the rival, and which process it is in -- still being appraised, or already being guarded. Read it in the vigilance the persona cannot set down, not in the accusation alone."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.27",
+    "vitest": "^4.1.10"
+  }
+}

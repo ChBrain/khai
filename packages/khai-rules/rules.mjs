@@ -209,10 +209,20 @@ export function checkLinks(text, baseDir, { exempt = new Set() } = {}) {
   let m;
   while ((m = re.exec(text))) {
     const target = m[1].split("#")[0];
-    if (!target || /^https?:\/\//.test(target)) continue;
+    // Empty (a pure "#anchor") or an external URI scheme (http://, mailto:, ...)
+    // addresses nothing on this disk -- not a local link to resolve.
+    if (!target || /^[a-z][a-z0-9+.-]*:/i.test(target)) continue;
     if (exempt.has(target.split("/").pop())) continue;
-    if (target.endsWith(".md") && !existsSync(join(baseDir, target)))
-      e.push(`broken link: ${target}`);
+    // A relative link must resolve to a file that exists. The canon writes every
+    // intra-content link to a sibling `.md`, so a target that drops the
+    // extension (`[x](pitch_kri)` for `pitch_kri.md`) is the common miss and the
+    // one the ".md-only" check used to wave through. Resolve the target as
+    // written; only then is a link that points at nothing -- extension or not --
+    // caught. Flag the missing-extension case distinctly so the fix is obvious.
+    if (existsSync(join(baseDir, target))) continue;
+    if (!target.endsWith(".md") && existsSync(join(baseDir, `${target}.md`)))
+      e.push(`broken link: ${target} (missing .md extension; did you mean ${target}.md?)`);
+    else e.push(`broken link: ${target}`);
   }
   return e;
 }
