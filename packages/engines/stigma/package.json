@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-stigma",
+  "version": "0.1.0",
+  "description": "khai engine content, the stigma domain: a deeply discrediting attribute that reduces the bearer, in others' eyes, from a whole and usual person to a tainted, discounted one -- and the bearer's stance toward managing it.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/stigma"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "stigma",
+    "tagline": "Stigma as piece: a deeply discrediting attribute carried by a persona, spoiling their social identity in others' eyes -- the bearer's stance toward it, the discounting it triggers in interaction, and the work of managing a mark that can still be hidden.",
+    "type": "piece",
+    "members": [
+      {
+        "file": "piece_stigma.md",
+        "type": "piece",
+        "parent": null
+      },
+      {
+        "file": "position_bearer.md",
+        "type": "position",
+        "parent": "piece_stigma.md"
+      },
+      {
+        "file": "process_discrediting.md",
+        "type": "process",
+        "parent": "piece_stigma.md"
+      },
+      {
+        "file": "process_passing.md",
+        "type": "process",
+        "parent": "piece_stigma.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Piece. The anchor (piece_stigma.md) declares the stigma as what it is in the room: an attribute deeply discrediting enough to reduce the bearer from a whole and usual person to a tainted, discounted one. The law makes the mark a thing the scene reads, not a private fact the persona merely holds.",
+      "issue": "The mark, read three ways beneath the fact. One position names who carries it (the bearer, holding a spoiled identity); two processes name what happens around it -- the discounting the mark triggers once it is read (discrediting), and the standing work of managing a mark that is not yet known (passing). The attribute is the piece; the members are the interaction it distorts.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so a stigma is read as discrediting wherever it sits. The link: the persona who carries it links the bearer stance and the process it is in under Projection.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and a real bearer position or stigma process is linked. Whether the mark actually discredits the way the scene needs is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then place the stigma: name the attribute, whether the room already reads it or the bearer still controls its disclosure, and which process it is in -- being discounted in the interaction, or being managed out of view. Read it in the room's discount and in what the bearer will not let show."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  }
+}
