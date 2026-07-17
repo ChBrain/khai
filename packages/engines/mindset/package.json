@@ -1,0 +1,67 @@
+{
+  "name": "@chbrain/khai-engine-mindset",
+  "version": "0.1.0",
+  "description": "khai engine content, the mindset domain: mindset as position, the persona's held theory of where ability comes from -- fixed and given, or grown through effort -- and the lens that theory becomes for challenge, effort, and failure.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/mindset"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "mindset",
+    "tagline": "Mindset as position: the persona's held theory of where ability comes from -- a fixed amount set early, or a capacity grown through effort -- the lens that colours every challenge, every effort spent, and every failure met.",
+    "type": "position",
+    "anchor": "position_mindset.md",
+    "expressions": {
+      "fixed": "position_fixed.md",
+      "growth": "position_growth.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_mindset.md) declares mindset as a held theory of where ability comes from -- fixed and given, or grown through effort -- and the system-wide law makes every persona carry one beneath every challenge it meets.",
+      "issue": "Two ready expressions a persona may hold: fixed (ability is a static amount, failure is a verdict on the person, effort is the tell of a low amount) and growth (ability is a capacity built through effort, failure is information, effort is the method). Each is a full position file the build composes onto the anchor, so the persona gets a theory that colours every challenge, not a label. More expressions slot in as sibling files without moving the anchor.",
+      "require": "Two altitudes must hold. One, the law: declared once in the project's Instructions Knowledge chapter ('personas carry a mindset'), so the theory holds system-wide and no persona meets a challenge on neutral ground. Two, the link: each persona carries its mindset under Projection. A persona may also hold a different, even contradicting, theory under Shadow; the gap between the mindset shown and the mindset masked is the character, not a contradiction to reject.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, and each persona carries a mindset under Projection. Whether a Projection mindset and a Shadow mindset cohere into a true persona is semantic, so it is taught and reviewed, never failed by the suite. The engine ships its own structural tests; the reading is guided, not gated.",
+      "setup": "Two steps. Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give each persona its mindset under Projection: one expression, which carries the anchor upward. Where a persona masks a different theory, put it under Shadow. Read it in what the persona reaches for or avoids, and how a setback gets narrated; the room reads the theory beneath the choices, never names it aloud."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "name": "@chbrain/khai-engine-pride",
+  "version": "0.1.0",
+  "description": "khai engine content, the pride domain: pride as process, how a persona reads a standard met as a positive evaluation of the self, and the appraisal becomes a display and a drive -- authentic or hubristic.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/pride"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "pride",
+    "tagline": "Pride as process: how a persona reads a standard met as a positive evaluation of the self, and the appraisal becomes a display and a drive -- toward the act repeated (authentic) or toward the self defended (hubristic).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_pride.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_authentic_pride.md",
+        "type": "process",
+        "parent": "process_pride.md"
+      },
+      {
+        "file": "process_hubristic_pride.md",
+        "type": "process",
+        "parent": "process_pride.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_pride.md) declares pride as an appraisal: a standard is met, the credit lands on the self, and the read becomes a display and a drive.",
+      "issue": "Two facets a persona may run: authentic pride, where the credit lands on the act ('I did well'), and hubristic pride, where the credit lands on the self entire ('I am great'). Both are composed under the root, so the display follows the attribution. They are distinct readings of one success, and the read can retip.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the specific facet it runs in the scene.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real facet. Whether the attribution -- act or self -- is true to the standard met is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its read under Projection, linking authentic or hubristic. Read it in the first beat; the room enacts it, never narrates it."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.14"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  }
+}
