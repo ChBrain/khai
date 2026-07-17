@@ -1,0 +1,68 @@
+{
+  "name": "@chbrain/khai-engine-self-efficacy",
+  "version": "0.1.0",
+  "description": "khai engine content, the self-efficacy domain: self-efficacy as position, the persona's task-specific belief in their own capability to organize and execute the actions a given attainment requires -- built from mastery, vicarious experience, and verbal persuasion.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/self-efficacy"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "self-efficacy",
+    "tagline": "Self-efficacy as position: the persona's task-specific belief in their own capability to organize and execute the actions a given attainment requires -- built and eroded by mastery, vicarious example, and persuasion, never a verdict on global self-worth.",
+    "type": "position",
+    "anchor": "position_self_efficacy.md",
+    "expressions": {
+      "mastery": "position_mastery.md",
+      "vicarious": "position_vicarious.md",
+      "persuasion": "position_persuasion.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_self_efficacy.md) declares self-efficacy as a task-specific belief in one's own capability to execute -- not a global verdict on worth -- and the system-wide law makes every persona carry a read on their own capability beneath every plan.",
+      "issue": "Three ready expressions naming where a persona's efficacy read was built: mastery (grounded in one's own remembered successes, the strongest and most durable source), vicarious (read off watching a similar other succeed or fail, borrowed rather than earned), and persuasion (lent by another's credible word, the most fragile source, apt to fold at the first setback). Each is a full position file the build composes onto the anchor, so the persona gets a capability belief coloured by its source, not a bare label. More expressions (e.g. a physiological-state source) slot in as sibling files without moving the anchor.",
+      "require": "Two altitudes must hold. One, the law: declared once in the project's Instructions Knowledge chapter ('personas carry a self-efficacy'), so the capability read holds system-wide for whatever task is at hand. Two, the link: each persona carries its self-efficacy under Projection. A persona may also hold a different, even contradicting, read under Shadow; the gap between the confidence shown and the doubt masked is the character, not a contradiction to reject.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, and each persona carries a self-efficacy under Projection. Whether a Projection read and a Shadow read cohere into a true persona is semantic, so it is taught and reviewed, never failed by the suite. The engine ships its own structural tests; the reading is guided, not gated.",
+      "setup": "Two steps. Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give each persona its self-efficacy under Projection: one expression, naming the source it was built from. Where a persona masks a different read, put it under Shadow. Read it in how readily the persona commits to the task at hand, never narrated as a global claim about their worth."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  }
+}
