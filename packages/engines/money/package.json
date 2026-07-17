@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-money",
+  "version": "0.1.0",
+  "description": "khai engine content, the money domain: the general equivalent as a piece -- a token that converts anything into anything, the freedom and power of holding it, and the ways it is made abstract or made special.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/money"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "money",
+    "tagline": "Money as piece: the general equivalent -- a token that converts anything into anything and stores value as pure quantity, the freedom and power of the one who holds it, and the pull between money made abstract (conversion) and money made special (earmarking).",
+    "type": "piece",
+    "members": [
+      {
+        "file": "piece_money.md",
+        "type": "piece",
+        "parent": null
+      },
+      {
+        "file": "position_holder.md",
+        "type": "position",
+        "parent": "piece_money.md"
+      },
+      {
+        "file": "process_conversion.md",
+        "type": "process",
+        "parent": "piece_money.md"
+      },
+      {
+        "file": "process_earmarking.md",
+        "type": "process",
+        "parent": "piece_money.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Piece. The anchor (piece_money.md) declares money as what it is in the room: the general equivalent, a token that turns any value into any other and stores it as pure quantity, carrying a power out of proportion to its material. The law makes liquid value a thing the scene can hold, move, and mark.",
+      "issue": "Money, read beneath the sum. One position names what holding it confers (the holder's liquidity, freedom, and command); two processes name its two pulls -- conversion (money dissolving qualities into quantity, one thing exchangeable for another) and earmarking (the same sum made special and moral by where it came from and what it is for). The token is the piece; the members are the power and the meaning it carries.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so a sum is read as liquid power wherever it sits. The link: the persona who holds or spends it links the holder stance and the process it is in under Projection.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and a real holder position or money process is linked. Whether the money carries the meaning the scene needs -- abstract command or earmarked significance -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then set the money: name the sum, who holds it, and which process it is in -- dissolving a quality into a price (conversion), or being marked as special money (earmarking). Read it in what liquidity lets the holder do, and in the meaning a sum refuses to shed."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  }
+}
