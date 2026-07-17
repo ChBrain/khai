@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-escalation",
+  "version": "0.1.0",
+  "description": "khai engine content, the escalation domain: conflict as a self-amplifying spiral -- positions harden, the opponent narrows to an antagonist, and retaliation locks both sides into lose-lose.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/escalation"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "escalation",
+    "tagline": "Escalation as process: conflict spirals through self-amplifying stages -- positions harden, the opposing party narrows to an antagonist, and each retaliation raises the stakes toward lose-lose.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_escalation.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_hardening.md",
+        "type": "process",
+        "parent": "process_escalation.md"
+      },
+      {
+        "file": "position_antagonist.md",
+        "type": "position",
+        "parent": "process_escalation.md"
+      },
+      {
+        "file": "process_retaliation.md",
+        "type": "process",
+        "parent": "process_escalation.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The anchor (process_escalation.md) declares escalation as a spiral: a disagreement tips into a loop neither side is steering, once a response to the dispute becomes bigger than the dispute itself.",
+      "issue": "Three moving parts under the anchor. Hardening (process) names how positions and issues widen and how tactics get heavier together. Antagonist (position) names the stance a persona holds once the opposing party has narrowed to a single hostile motive. Retaliation (process) names the tit-for-tat exchange, each reply calibrated to land harder than the move it answers.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor. The link: each persona links, under Projection, where it sits in the spiral -- hardening a position, holding the antagonist reading, or mid-retaliation.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real member. Whether the spiral is true to the scene, and whether it climbs the stages the scene has actually earned, is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the persona its place in the spiral under Projection, linking the specific member. Read it in the size of each move relative to the one it answers, not in a label the persona wears."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  }
+}
