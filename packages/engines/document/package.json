@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-document",
+  "version": "0.1.0",
+  "description": "khai engine content, the document domain: an inscription that fixes a claim into durable form and travels unchanged -- what it fixes, who bears it, and how it is inscribed and carried.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/document"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "document",
+    "tagline": "Document as piece: an inscription that fixes a claim into durable form and travels unchanged into contexts its author never occupies -- the record, contract, certificate, or file whose authority is that it says the same thing everywhere it goes.",
+    "type": "piece",
+    "members": [
+      {
+        "file": "piece_document.md",
+        "type": "piece",
+        "parent": null
+      },
+      {
+        "file": "position_bearer.md",
+        "type": "position",
+        "parent": "piece_document.md"
+      },
+      {
+        "file": "process_inscription.md",
+        "type": "process",
+        "parent": "piece_document.md"
+      },
+      {
+        "file": "process_circulation.md",
+        "type": "process",
+        "parent": "piece_document.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Piece. The anchor (piece_document.md) declares the document as what it is in the room: an inscription fixed once and carried unchanged, so its claim reads the same wherever it is opened. The law makes fixity itself a thing the scene can carry.",
+      "issue": "The document, read beneath the inscription. One position names who holds and wields its authority (the bearer); two processes name what happens around it -- the act of fixing a claim into durable form (inscription) and its unchanged movement into contexts its author never occupies (circulation). The inscription is the piece; the members are the authority it carries.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so a document is read as fixed and portable wherever it sits. The link: the persona who holds it links the bearer stance and the process it is in under Projection.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and a real bearer position or document process is linked. Whether the document truly carries the fixed authority the scene needs is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then place the document: name the claim it fixes, who bears it, and which process it is in -- being inscribed, or already circulating unchanged. Read it in the fact that no one present wrote it, yet everyone treats it as settled."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  }
+}
