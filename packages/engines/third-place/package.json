@@ -1,0 +1,47 @@
+{
+  "name": "@chbrain/khai-engine-third-place",
+  "version": "0.1.0",
+  "description": "khai third-place engine — the informal public gathering place that hosts community life on neutral ground",
+  "type": "module",
+  "main": "index.mjs",
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "khai": {
+    "engine": "third-place",
+    "tagline": "The informal public gathering place that hosts community life on neutral ground.",
+    "type": "place",
+    "anchor": "place_third_place.md",
+    "expressions": {
+      "neutral-ground": "place_neutral_ground.md",
+      "leveler": "place_leveler.md",
+      "home-away": "place_home_away.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Link the scene's third place to the anchor; link the specific facet (neutral-ground, leveler, or home-away) to the expression under Projection.",
+      "issue": "What does this place make available to a persona that home and work do not?",
+      "require": "A recurring venue with regulars, open to whoever enters without invitation; conversation as the primary activity.",
+      "enforce": "Do not model the formal rite that first admitted a persona among the regulars; that belongs to the ritual engine. This engine models the neutral-ground venue itself, not the rite of entry.",
+      "setup": "Name which facet is load-bearing for the scene -- the ground's neutrality, its leveling of outside status, or its resemblance to home -- and who counts as a regular here."
+    }
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests"
+  }
+}
