@@ -1,0 +1,47 @@
+{
+  "name": "@chbrain/khai-engine-commons",
+  "version": "0.1.0",
+  "description": "khai commons engine — a common-pool resource governed by its own users through crafted institutions",
+  "type": "module",
+  "main": "index.mjs",
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "khai": {
+    "engine": "commons",
+    "tagline": "A common-pool resource governed by its own users through crafted institutions.",
+    "type": "place",
+    "anchor": "place_commons.md",
+    "expressions": {
+      "pool": "place_pool.md",
+      "boundary": "place_boundary.md",
+      "sanction": "place_sanction.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Link the persona's stance toward the commons (pool, boundary, or sanction) to the expression under Projection.",
+      "issue": "What the shared resource is running low on, and whose rules govern who may draw from it.",
+      "require": "A resource that is genuinely shared and genuinely finite; rules that predate this scene, not invented on the spot.",
+      "enforce": "Do not model the felt urge to free-ride or the trust between members here; that belongs to the desire, group, and conformity engines. This engine models the institution, not what it feels like to keep or break its rules.",
+      "setup": "Name the pool being drawn from, who is inside the boundary, and what sanction awaits a rule-breaker."
+    }
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests"
+  }
+}
