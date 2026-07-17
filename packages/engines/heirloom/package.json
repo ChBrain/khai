@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-heirloom",
+  "version": "0.1.0",
+  "description": "khai engine content, the heirloom domain: an object kept out of exchange that carries a lineage's identity and authority across generations -- the possession you keep even while you give others away.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/heirloom"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "heirloom",
+    "tagline": "Heirloom as piece: an object kept out of exchange that carries a lineage's identity and authority across generations -- the possession the line keeps even while it gives everything else away.",
+    "type": "piece",
+    "members": [
+      {
+        "file": "piece_heirloom.md",
+        "type": "piece",
+        "parent": null
+      },
+      {
+        "file": "position_heir.md",
+        "type": "position",
+        "parent": "piece_heirloom.md"
+      },
+      {
+        "file": "process_bequest.md",
+        "type": "process",
+        "parent": "piece_heirloom.md"
+      },
+      {
+        "file": "process_alienation.md",
+        "type": "process",
+        "parent": "piece_heirloom.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Piece. The anchor (piece_heirloom.md) declares the heirloom as what it is in the room: an object deliberately withheld from exchange, carrying a lineage's identity and authority forward across generations. The law makes the kept thing legible as more than property.",
+      "issue": "The heirloom, read three ways beneath the object. One position names who holds it (the heir, in trust, never in outright ownership); two processes name its two fates -- passed down and kept inalienable (bequest), or pulled out of the line and priced (alienation). The object is the piece; the members are what happens around it.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so a kept possession reads as load-bearing wherever it sits. The link: the persona who holds it links the heir stance and the process it is in under Projection.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and a real heir position or heirloom process is linked. Whether the object truly carries the line's identity is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then place the object: name what it is, who holds it in trust, and which process it is in -- passing down the line intact, or crossing out of it. Read it in the ceremony that brings it out and the account recited when it does."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  }
+}
