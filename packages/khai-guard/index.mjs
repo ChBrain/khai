@@ -1061,3 +1061,54 @@ export function checkMembers(engines = [], config = DEFAULT_CONFIG) {
   }
   return { ok: errors.length === 0, errors };
 }
+
+// deadExemptions: the ratchet beside the member-scope gate. An exemption whose
+// collision no longer exists in the tree is dead weight, and a whitelist that
+// keeps dead entries fossilizes into "the list we never look at" — so every
+// removal must be followed by deleting its stem, returning the stem to the
+// gate's hard protection. Detection is computed here; the level is advisory
+// (a warning, never a failure) by design: the entry lives in the governance
+// lane while the removal that kills the collision lives in an engine lane, so
+// a hard fail would deadlock both PRs of every removal. A separate function,
+// not a checkMembers field, so the gate's verdict shape stays stable.
+export function deadExemptions(engines = [], config = DEFAULT_CONFIG) {
+  const policy = config.memberPolicy;
+  if (!policy) return [];
+  const stemOf = (file) =>
+    String(file)
+      .replace(/\.md$/, "")
+      .replace(
+        /^(architecture|engines|instructions|order|plan|play|plot|process|position|piece|place|persona|pitch)_/,
+        "",
+      );
+  const claims = new Map(); // stem -> Set(engine)
+  const slugs = new Set(engines.map((e) => e.engine));
+  for (const { engine, files } of engines) {
+    for (const file of files ?? []) {
+      const stem = stemOf(file);
+      if (!claims.has(stem)) claims.set(stem, new Set());
+      claims.get(stem).add(engine);
+    }
+  }
+  const liveCollision = (stem) => {
+    const owners = [...(claims.get(stem) ?? [])];
+    if (owners.length > 1) return true;
+    const asSlug = stem.replace(/_/g, "-");
+    return slugs.has(asSlug) && owners.length > 0 && !owners.includes(asSlug);
+  };
+  const warnings = [];
+  for (const [label, entries] of [
+    ["homonyms", policy.homonyms ?? []],
+    ["grandfathered", policy.grandfathered ?? []],
+  ]) {
+    for (const stem of entries) {
+      if (!liveCollision(stem)) {
+        warnings.push(
+          `memberPolicy.${label} entry "${stem}" has no live collision — the ratchet: ` +
+            `delete the entry (governance lane) so the gate hard-blocks any re-entry`,
+        );
+      }
+    }
+  }
+  return warnings;
+}
