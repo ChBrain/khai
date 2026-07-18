@@ -1,0 +1,99 @@
+{
+  "name": "@chbrain/khai-engine-dramatic-situations",
+  "version": "0.1.0",
+  "description": "khai engine content, the dramatic-situations domain: Polti's finite set of dramatic situations as plots -- a protagonist, an opposing force, and a contested stake.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/dramatic-situations"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "dramatic-situations",
+    "tagline": "Dramatic situations as plot: Georges Polti's claim that every dramatic collision is one of a bounded set of situations, each a protagonist and an opposing force driving toward a contested stake.",
+    "type": "plot",
+    "members": [
+      {
+        "file": "plot_dramatic_situation.md",
+        "type": "plot",
+        "parent": null
+      },
+      {
+        "file": "plot_supplication.md",
+        "type": "plot",
+        "parent": "plot_dramatic_situation.md"
+      },
+      {
+        "file": "plot_revenge.md",
+        "type": "plot",
+        "parent": "plot_dramatic_situation.md"
+      },
+      {
+        "file": "plot_pursuit.md",
+        "type": "plot",
+        "parent": "plot_dramatic_situation.md"
+      },
+      {
+        "file": "plot_rivalry.md",
+        "type": "plot",
+        "parent": "plot_dramatic_situation.md"
+      },
+      {
+        "file": "plot_self_sacrifice.md",
+        "type": "plot",
+        "parent": "plot_dramatic_situation.md"
+      },
+      {
+        "file": "plot_disaster.md",
+        "type": "plot",
+        "parent": "plot_dramatic_situation.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "plot",
+        "section": "Action",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Plot. The anchor (plot_dramatic_situation.md) declares the situation as such: a bounded role-collision -- a protagonist, an opposing force, and a contested stake -- that a plot instantiates. The law makes every plot's Action legible as one of a finite set of shapes.",
+      "issue": "The collision, read across a representative spread of Polti's 36. Six exemplar situations name their own role-set and stake: supplication (Persecutor, Supplicant, Power), revenge (Avenger, Criminal), pursuit (Fugitive, Punishment), rivalry (Superior Rival, Inferior Rival, Object), self-sacrifice (Hero, Faith), disaster (Vanquished Power, Victorious Enemy). The anchor is the irreducible shape; the remaining situations are compositions the production selects from Polti.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the situation shape is read for every plot. The link: each plot expresses, under Action, which situation's role-collision it instantiates.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and a real situation is linked under a plot's Action. Whether the situation fits the plot's own stakes is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the plot its situation under Action: which exemplar role-collision (or a composed one, selected from Polti's 36) the plot instantiates, and who fills each role."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  }
+}
