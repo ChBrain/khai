@@ -1,7 +1,7 @@
 {
   "name": "@chbrain/khai-engine-time-perception",
   "version": "0.1.1",
-  "description": "khai engine content, the time perception domain: the persona's resting orientation toward duration as felt experience -- continuous, now-anchored, behind, or absorbed.",
+  "description": "khai engine content, the time perception domain: the persona's resting orientation toward duration as felt experience -- continuous, now-anchored, or behind.",
   "type": "module",
   "main": "./index.mjs",
   "exports": {
@@ -30,8 +30,7 @@
     "expressions": {
       "continuous": "position_continuous.md",
       "now": "position_now.md",
-      "behind": "position_behind.md",
-      "absorbed": "position_absorbed.md"
+      "behind": "position_behind.md"
     },
     "requires": [
       {
@@ -49,7 +48,7 @@
     ],
     "card": {
       "wire": "Attaches at Position. The anchor (position_time_perception.md) declares the baseline temporal orientation a persona inhabits: how real the future is as felt experience, not as concept. The law makes every persona carry a temporal frame.",
-      "issue": "Four expressions a persona may hold: continuous (the future is tangible; the past is a navigable reference), now (only the present carries weight; the future is known but not felt), behind (duration registers after the fact; urgency arrives as discovery), absorbed (the temporal sense suspends inside full engagement). Each carries its own structural cost.",
+      "issue": "Three expressions a persona may hold: continuous (the future is tangible; the past is a navigable reference), now (only the present carries weight; the future is known but not felt), behind (duration registers after the fact; urgency arrives as discovery). Each carries its own structural cost. The fourth mode -- the temporal sense suspended inside full engagement -- is not carried here: absorption is the flow engine's whole domain, and time-perception keeps only the border where the clock stops from the inside.",
       "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the temporal frame is present for every persona. The link: each persona links, under Projection, the expression they inhabit.",
       "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real time-perception expression. Whether the temporal frame is true to the scene is semantic, taught and reviewed, never failed by the suite.",
       "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then link the persona to its expression under Projection. Read it in whether the persona moves toward the future or is surprised by its arrival -- the deadline that lands without approach, the absorbed hour that cost the meeting."

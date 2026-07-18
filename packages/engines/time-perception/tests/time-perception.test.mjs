@@ -18,12 +18,7 @@ describe("time-perception: manifest", () => {
     expect(manifest.engine).toBe("time-perception");
     expect(manifest.type).toBe("position");
     expect(manifest.anchor).toBe("position_time_perception.md");
-    expect(Object.keys(manifest.expressions).sort()).toEqual([
-      "absorbed",
-      "behind",
-      "continuous",
-      "now",
-    ]);
+    expect(Object.keys(manifest.expressions).sort()).toEqual(["behind", "continuous", "now"]);
   });
   it("declares both enforceable wiring altitudes, each at its level", () => {
     expect(manifest.requires).toContainEqual({

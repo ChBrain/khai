@@ -10,7 +10,6 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [continuous](position_continuous.md): position
 - [now](position_now.md): position
 - [behind](position_behind.md): position
-- [absorbed](position_absorbed.md): position
 
 See [sources and attribution](REFERENCES.md).
 

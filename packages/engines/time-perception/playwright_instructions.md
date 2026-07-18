@@ -18,7 +18,7 @@ How a Playwright wires the time perception engine into a play. You wire by linki
 
 ## Agent
 
-- From the play's own content, a persona links the time-perception mode it inhabits (continuous, now, behind, or absorbed) under its Projection. Let this mode shape how duration registers as the scene moves and whether the future pulls the persona forward or arrives as a surprise. You link to the engine, you never edit it.
+- From the play's own content, a persona links the time-perception mode it inhabits (continuous, now, or behind) under its Projection; where the temporal sense suspends inside full engagement, wire the flow engine instead. Let this mode shape how duration registers as the scene moves and whether the future pulls the persona forward or arrives as a surprise. You link to the engine, you never edit it.
 
 ## Collaboration
 
@@ -31,6 +31,6 @@ How a Playwright wires the time perception engine into a play. You wire by linki
 ## System
 
 - Do let time-perception shape the persona's relationship to deadlines, plans, and commitments; the mode is below the situation.
-- Do let absorbed personas lose the clock entirely inside engagement without it being a moral failure.
+- Do wire the flow engine where a persona loses the clock entirely inside engagement; that suspension is flow's domain, not a fourth orientation here.
 - Do not conflate time-perception with punctuality or planning ability; those are downstream consequences.
 - Do not edit the engine's files; wire only from the play's side.
