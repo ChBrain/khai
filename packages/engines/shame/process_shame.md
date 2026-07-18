@@ -41,5 +41,6 @@ The press of the standard against the exposed gap, under a real or imagined witn
 
 The persona is now contracted -- smaller, quieter, or gone from the room.
 What was seen is the whole self, not the act alone; the verdict is not "you did wrong" but "you are wrong".
-The read resolves into one of [guilt](process_guilt.md), [embarrassment](process_embarrassment.md), or [humiliation](process_humiliation.md), depending on what was seen, who saw it, and whether the gap can be closed.
+The read resolves into [embarrassment](process_embarrassment.md) or [humiliation](process_humiliation.md), depending on what was seen, who saw it, and whether the gap can be closed.
+Where the verdict lands on the act instead of the self -- "you did wrong", repairable, the self intact -- the read leaves this engine entirely: that resolution is the guilt engine's to run.
 When the gaze lifts or the standard shifts, the process returns here to be read again.

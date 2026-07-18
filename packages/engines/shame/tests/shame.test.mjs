@@ -17,7 +17,7 @@ describe("shame: manifest", () => {
   it("declares the shame process engine", () => {
     expect(manifest.engine).toBe("shame");
     expect(manifest.type).toBe("process");
-    expect(manifest.members).toHaveLength(4);
+    expect(manifest.members).toHaveLength(3);
     expect(manifest.members.find((m) => m.parent === null).file).toBe("process_shame.md");
   });
   it("declares both enforceable wiring altitudes, each at its level", () => {
