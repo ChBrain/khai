@@ -200,7 +200,7 @@ export function checkExtensions(doc, { allowed = new Set() } = {}) {
 // because they are wiring references into an installed engine (resolved via
 // npm, not co-located) -- e.g. a consumer persona links `position_female.md`,
 // which lives in node_modules, not next to the persona.
-export function checkLinks(text, baseDir, { exempt = new Set() } = {}) {
+export function checkLinks(text, baseDir, { exempt = new Set(), resolvePackageDir } = {}) {
   const e = [];
   // Single bounded char-class capture for the link target. No adjacent
   // quantifiers that can match the same input, so the global scan stays
@@ -212,6 +212,25 @@ export function checkLinks(text, baseDir, { exempt = new Set() } = {}) {
     // Empty (a pure "#anchor") or an external URI scheme (http://, mailto:, ...)
     // addresses nothing on this disk -- not a local link to resolve.
     if (!target || /^[a-z][a-z0-9+.-]*:/i.test(target)) continue;
+    // A package-specifier link (`@scope/name/member.md`) references another
+    // package the consumer must DECLARE as a dependency -- the hard-reference
+    // contract of the composite layer. The caller supplies the resolution
+    // (resolvePackageDir: name -> dir for a declared+installed package, else
+    // null); without a resolver the link fails closed, because a reference
+    // nobody can resolve is a claim nobody can check.
+    const pkgMatch = /^(@[^/\s]+\/[^/\s]+)\/(.+)$/.exec(target);
+    if (pkgMatch) {
+      const [, pkgName, rest] = pkgMatch;
+      const pkgDir = resolvePackageDir ? resolvePackageDir(pkgName) : null;
+      if (!pkgDir)
+        e.push(
+          `package link ${target}: "${pkgName}" is not a declared, installed dependency -- ` +
+            `a hard reference must be backed by a dependency the package.json names`,
+        );
+      else if (!existsSync(join(pkgDir, rest)))
+        e.push(`package link ${target}: "${rest}" does not exist in the installed ${pkgName}`);
+      continue;
+    }
     if (exempt.has(target.split("/").pop())) continue;
     // A relative link must resolve to a file that exists. The canon writes every
     // intra-content link to a sibling `.md`, so a target that drops the
@@ -233,26 +252,66 @@ export function checkLinks(text, baseDir, { exempt = new Set() } = {}) {
 // a named section -- e.g. gender requires every persona to link one of its
 // expressions under Projection. The kit only enforces what the engine declared;
 // the rule itself lives nowhere but here, so a requirement has one home.
-export function checkWiring(doc, { section, targets, engine }) {
+// Two extra fields sharpen the check where installed engines collide on a
+// filename (`package`: the engine's own npm name; `ambiguous`: the basenames
+// shipped by more than one installed engine). A bare link satisfies the
+// requirement only while its basename is unambiguous among installed engines;
+// where two engines ship the file, the link must qualify its package
+// (`@scope/engine/member.md`) or it names nothing determinate -- and a link
+// qualified to a DIFFERENT package never satisfies this engine's requirement,
+// however familiar the basename. Both fields are optional: without them the
+// check keeps its original basename behavior.
+export function checkWiring(doc, { section, targets, engine, package: pkgName, ambiguous }) {
   const lines = sectionBody(doc.body, section);
   if (lines === null)
     return [`wiring(${engine}): missing "## ${section}" section to carry the required link`];
-  const found = linkBasenames(lines.join("\n"));
-  if (found.some((b) => targets.has(b))) return [];
+  const found = linkTargets(lines.join("\n"));
+  const ambiguousHits = [];
+  for (const { base, pkg } of found) {
+    if (!targets.has(base)) continue;
+    if (pkg) {
+      // Qualified: counts only for the engine it names.
+      if (!pkgName || pkg === pkgName) return [];
+      continue;
+    }
+    if (ambiguous && ambiguous.has(base)) {
+      ambiguousHits.push(base);
+      continue;
+    }
+    return [];
+  }
+  if (ambiguousHits.length) {
+    const qualified = pkgName ? `${pkgName}/${ambiguousHits[0]}` : `<package>/${ambiguousHits[0]}`;
+    return [
+      `wiring(${engine}): "## ${section}" links [${[...new Set(ambiguousHits)].join(", ")}], ` +
+        `but more than one installed engine ships that file -- a bare link names nothing ` +
+        `determinate; qualify it (${qualified})`,
+    ];
+  }
   const want = [...targets].join(", ");
-  const got = found.length ? found.join(", ") : "no links";
+  const got = found.length
+    ? found.map((f) => (f.pkg ? `${f.pkg}/${f.base}` : f.base)).join(", ")
+    : "no links";
   return [`wiring(${engine}): "## ${section}" must link one of [${want}]; found [${got}]`];
 }
 
 /** Basenames of every relative markdown link target in a block of text. */
 function linkBasenames(text) {
+  return linkTargets(text).map((t) => t.base);
+}
+
+/** Structured link targets: the basename, plus the package a specifier link
+ * (`@scope/name/member.md`) qualifies it with (null for a bare/relative link). */
+function linkTargets(text) {
   const re = /\]\(([^()\s]+)\)/g;
   const out = [];
   let m;
   while ((m = re.exec(text))) {
     const target = m[1].split("#")[0];
     if (!target || /^https?:\/\//.test(target)) continue;
-    out.push(target.split("/").pop());
+    const pkgMatch = /^(@[^/\s]+\/[^/\s]+)\/(.+)$/.exec(target);
+    if (pkgMatch) out.push({ base: pkgMatch[2].split("/").pop(), pkg: pkgMatch[1] });
+    else out.push({ base: target.split("/").pop(), pkg: null });
   }
   return out;
 }
