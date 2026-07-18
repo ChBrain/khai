@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-backstage",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai backstage engine — the region hidden from the audience where the performance is prepared and dropped",
   "type": "module",
   "main": "index.mjs",
@@ -37,7 +37,7 @@
     }
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.17",
+    "@chbrain/khai-tests": "^0.1.28",
     "vitest": "^4.1.10"
   },
   "scripts": {

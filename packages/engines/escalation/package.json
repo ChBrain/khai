@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-escalation",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the escalation domain: conflict as a self-amplifying spiral -- positions harden, the opponent narrows to an antagonist, and retaliation locks both sides into lose-lose.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.20"
+    "@chbrain/khai-arch": "^0.1.21"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.17",
+    "@chbrain/khai-tests": "^0.1.28",
     "vitest": "^4.1.10"
   }
 }

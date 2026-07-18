@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-self-efficacy",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the self-efficacy domain: self-efficacy as position, the persona's task-specific belief in their own capability to organize and execute the actions a given attainment requires -- built from mastery, vicarious experience, and verbal persuasion.",
   "type": "module",
   "main": "./index.mjs",
@@ -59,10 +59,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.8"
+    "@chbrain/khai-arch": "^0.1.21"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.17",
+    "@chbrain/khai-tests": "^0.1.28",
     "vitest": "^4.1.10"
   }
 }

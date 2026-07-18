@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-regulation",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the regulation domain: how a persona intervenes on its own emotion-generative process, before or after the felt push arrives.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.20"
+    "@chbrain/khai-arch": "^0.1.21"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.17",
+    "@chbrain/khai-tests": "^0.1.28",
     "vitest": "^4.1.10"
   }
 }

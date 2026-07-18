@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-flow",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the flow domain: total absorption arising when a clear-goaled, immediately-feedbacked activity holds a balance between challenge and skill, both pulled high and matched.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.20"
+    "@chbrain/khai-arch": "^0.1.21"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.27",
+    "@chbrain/khai-tests": "^0.1.28",
     "vitest": "^4.1.10"
   }
 }

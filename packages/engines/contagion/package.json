@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-contagion",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the contagion domain: emotional contagion as process -- the automatic, largely unconscious mimicry of another's expression, posture, and voice, and the afferent convergence that follows it.",
   "type": "module",
   "main": "./index.mjs",
@@ -70,10 +70,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.8"
+    "@chbrain/khai-arch": "^0.1.21"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.17",
+    "@chbrain/khai-tests": "^0.1.28",
     "vitest": "^4.1.10"
   }
 }

@@ -1,5 +1,15 @@
 # @chbrain/khai-tests
 
+## 0.1.28
+
+### Patch Changes
+
+- a485c1a: Add the science index: `khai-tests science build|verify` inverts every engine's REFERENCES.md Origin table into a generated `docs/SCIENCE.md` (science → engine), collating each scholar across engines by surname. A build-drift gate holds the committed index to source, mirroring the registry gate.
+- Updated dependencies [14b6fd7]
+- Updated dependencies [f0657c2]
+  - @chbrain/khai-arch@0.1.21
+  - @chbrain/khai-rules@0.1.10
+
 ## 0.1.27
 
 ### Patch Changes

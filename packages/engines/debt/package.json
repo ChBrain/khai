@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-debt",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the debt domain: a quantified obligation that binds creditor to debtor -- what is owed, who is bound by it, and how it is carried, cleared, or broken.",
   "type": "module",
   "main": "./index.mjs",
@@ -85,10 +85,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.8"
+    "@chbrain/khai-arch": "^0.1.21"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.17",
+    "@chbrain/khai-tests": "^0.1.28",
     "vitest": "^4.1.10"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-bias",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the bias domain: the resting tilt a persona brings to judgment before the evidence lands -- five motive families, routing through sub-motives to the named biases.",
   "type": "module",
   "main": "./index.mjs",
@@ -1245,10 +1245,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.8"
+    "@chbrain/khai-arch": "^0.1.21"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.17",
+    "@chbrain/khai-tests": "^0.1.28",
     "vitest": "^4.1.10"
   }
 }

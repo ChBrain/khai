@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-regulatory-focus",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the regulatory-focus domain: regulatory focus as position, the persona's resting orientation toward how a goal is pursued -- gain to reach for, or loss to guard against.",
   "type": "module",
   "main": "./index.mjs",
@@ -58,10 +58,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.8"
+    "@chbrain/khai-arch": "^0.1.21"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.17",
+    "@chbrain/khai-tests": "^0.1.28",
     "vitest": "^4.1.10"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-socialization",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the socialization domain: socialization as process, how the objective social world -- built by prior generations and handed to a newcomer ready-made -- is internalized until it reads as reality itself, and how that formation continues past childhood into institutional sub-worlds.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.20"
+    "@chbrain/khai-arch": "^0.1.21"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.17",
+    "@chbrain/khai-tests": "^0.1.28",
     "vitest": "^4.1.10"
   }
 }
