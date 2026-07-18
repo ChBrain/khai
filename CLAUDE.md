@@ -62,6 +62,14 @@ npx khai-guard advise --files <paths>
    may squash-merge it before your commit arrives, and the rest is stranded in
    the branch. Mark it ready only when the change is complete. The guard cannot
    see this — draft state lives on GitHub, not in the diff — so it is on you.
+7. **One phenomenon, one engine — and member files are API.** A new member
+   whose stem another engine already claims (or that restates a whole engine's
+   domain) fails `khai-guard member-check`; that rejection is correct — thin it
+   to a pointer at the owning engine, or (same word, different science) ask the
+   maintainer to whitelist it under `memberPolicy.homonyms`. And because
+   composites hard-link member files by name, **renaming or removing a member
+   is a breaking change**: at least `bump:minor` (the maintainer's label),
+   never a silent patch. Adding members stays patch-free.
 
 ## Lanes at a glance (the full table is in docs/BRANCHING.md)
 
