@@ -47,6 +47,11 @@ free to press against it.
 
 The act is now committed and cannot be uncommitted -- a fact stands in the
 world that did not stand before, and the persona is its author of record.
-Whether the persona reads that fact, owns it, and moves on it is
-[guilt](process_guilt.md)'s to run next; transgression only leaves the fact
-behind.
+The crossing arrives in kinds, each leaving a different account to answer:
+[harm](process_transgression_harm.md) lands the damage on a person the
+persona is bound to, [omission](process_transgression_omission.md) leaves
+the right act unchosen as its window closes, and
+[survival](process_transgression_survival.md) constructs the authorship
+afterward, out of counterfactuals. Whether the persona reads the fact, owns
+it, and moves on it is [guilt](process_guilt.md)'s to run next;
+transgression only leaves the fact behind.
