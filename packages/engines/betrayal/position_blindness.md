@@ -40,4 +40,4 @@ The information was available; the persona's own protective architecture kept it
 
 On that loss: the persona under high blindness stays in the position of dependence past the point an outside observer would call obvious, is often read by others as willfully naive, and pays for the delay in a [discovery](process_discovery.md) that lands all at once rather than in installments -- the accumulated unseen evidence returning as a single detonation instead of a gradual dawning.
 A low-blindness persona pays the opposite cost: they see early, at the price of a dependence they can no longer fully inhabit while watching it.
-This is the most castable position in the engine: two personas at opposite ends of this dial live in different realities about the same facts, right up until discovery closes the gap for one of them by force.
+Two personas at opposite ends of this dial live in different realities about the same facts, right up until discovery closes the gap for one of them by force.
