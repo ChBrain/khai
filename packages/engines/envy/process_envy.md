@@ -39,6 +39,7 @@ The advantage of the near other presses where the advantage of the distant great
 
 ## Echo
 
-The process runs through benign (the gap motivates raising the self), malicious (the gap motivates lowering the other), jealousy (a valued bond guarded against a rival), and resentment (the gap moralized into injustice).
+The process runs through benign (the gap motivates raising the self), malicious (the gap motivates lowering the other), and resentment (the gap moralized into injustice).
 The branches are not stages; the persona may move between them as the gap is read one way and then another.
-What ends the process is not the other's loss but the comparison ceasing to threaten: [benign](process_benign.md), [malicious](process_malicious.md), [jealousy](process_jealousy.md), [resentment](process_resentment.md).
+What ends the process is not the other's loss but the comparison ceasing to threaten: [benign](process_benign.md), [malicious](process_malicious.md), [resentment](process_resentment.md).
+What never runs here is the three-party fear of losing a bond already held to a rival -- that is not envy at all but jealousy, Parrott and Smith's own line, and the jealousy engine's to run.
