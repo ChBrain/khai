@@ -1,5 +1,11 @@
 # @chbrain/khai-guard
 
+## 0.1.18
+
+### Patch Changes
+
+- 14a9fad: Add `khai-guard member-check`: the member-scope gate. One phenomenon, one engine — fails a PR whose new member stem is already claimed by another engine or restates a whole engine's domain, with `memberPolicy.homonyms` (permanent, same word different science) and `memberPolicy.grandfathered` (standing overlaps awaiting their thinning or cluster review) as the exemption lists.
+
 ## 0.1.17
 
 ### Patch Changes
