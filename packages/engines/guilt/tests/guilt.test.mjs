@@ -21,7 +21,7 @@ describe("guilt: conforms to the canon", () => {
 describe("guilt: manifest", () => {
   it("declares the guilt engine and its anchor", () => {
     expect(manifest.engine).toBe("guilt");
-    expect(manifest.members).toHaveLength(4);
+    expect(manifest.members).toHaveLength(15);
     const root = manifest.members.find((m) => m.parent === null);
     expect(root.file).toBe("process_guilt.md");
   });

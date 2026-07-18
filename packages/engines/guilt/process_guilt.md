@@ -43,7 +43,10 @@ authorship is what makes the verdict stick. A wrong the persona did not
 choose -- an accident with no negligence, a harm inflicted by another --
 does not press the lever; only a chosen act, held against a standard the
 persona has made their own, produces the weight. The [culpable](position_culpable.md)
-stance is what carries that weight once it presses.
+stance is what carries that weight once it presses, and how hard the lever
+presses at all is the persona's own dial: their
+[proneness](position_proneness.md) sets the threshold every crossing is
+read against.
 
 ## Echo
 
@@ -51,6 +54,8 @@ The persona now holds an unpaid account: the act stands until it is
 addressed, refused, or worn down by time and repetition. Where the account
 is paid -- through [reparation](process_reparation.md) -- the weight lifts and
 the self that chose is restored to standing without having to forget what it
-chose. Where it goes unpaid and unrefused, the read can widen from the act
-into the whole self; that widening, and the hiding it drives, belongs to the
-persona's other appraisals, not to this one.
+chose. Where it is dodged -- through [refusal](process_refusal.md) -- the
+account reads as closed in the persona's own ledger while standing open in
+everyone else's. Where it goes unpaid and unrefused, the read can widen from
+the act into the whole self; that widening, and the hiding it drives,
+belongs to the persona's other appraisals, not to this one.

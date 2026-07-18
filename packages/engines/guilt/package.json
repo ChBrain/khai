@@ -1,7 +1,7 @@
 {
   "name": "@chbrain/khai-engine-guilt",
   "version": "0.1.1",
-  "description": "khai engine content, the guilt domain: guilt as process, how a persona appraises a specific act against a standard it holds as its own, and the appraisal becomes a reparative pull toward confession, apology, or amends.",
+  "description": "khai engine content, the guilt domain: guilt as process, the transgressor's whole side of the account -- the crossing in kinds, the weight in grades, the disposition, and the paying or the dodging of what is owed.",
   "type": "module",
   "main": "./index.mjs",
   "exports": {
@@ -24,7 +24,7 @@
   ],
   "khai": {
     "engine": "guilt",
-    "tagline": "Guilt as process: how a persona appraises a specific act against a standard it holds as its own, and the appraisal becomes a reparative pull -- confess it, own it, make amends -- rather than a verdict on the whole self.",
+    "tagline": "Guilt as process: the transgressor's side of the account, whole -- a chosen act crosses an owned standard (by harm, omission, or survival), the weight lands at a grade (twinge, carried, haunting) against the persona's own proneness, and the account is paid (reparation, or self-punishment when the road is blocked) or dodged (refusal by denial or condemnation), never a verdict on the whole self.",
     "type": "process",
     "members": [
       {
@@ -38,7 +38,42 @@
         "parent": "process_guilt.md"
       },
       {
+        "file": "process_transgression_harm.md",
+        "type": "process",
+        "parent": "process_transgression.md"
+      },
+      {
+        "file": "process_transgression_omission.md",
+        "type": "process",
+        "parent": "process_transgression.md"
+      },
+      {
+        "file": "process_transgression_survival.md",
+        "type": "process",
+        "parent": "process_transgression.md"
+      },
+      {
         "file": "position_culpable.md",
+        "type": "position",
+        "parent": "process_guilt.md"
+      },
+      {
+        "file": "position_culpable_twinge.md",
+        "type": "position",
+        "parent": "position_culpable.md"
+      },
+      {
+        "file": "position_culpable_carried.md",
+        "type": "position",
+        "parent": "position_culpable.md"
+      },
+      {
+        "file": "position_culpable_haunting.md",
+        "type": "position",
+        "parent": "position_culpable.md"
+      },
+      {
+        "file": "position_proneness.md",
         "type": "position",
         "parent": "process_guilt.md"
       },
@@ -46,6 +81,26 @@
         "file": "process_reparation.md",
         "type": "process",
         "parent": "process_guilt.md"
+      },
+      {
+        "file": "process_reparation_self_punishment.md",
+        "type": "process",
+        "parent": "process_reparation.md"
+      },
+      {
+        "file": "process_refusal.md",
+        "type": "process",
+        "parent": "process_guilt.md"
+      },
+      {
+        "file": "process_refusal_denial.md",
+        "type": "process",
+        "parent": "process_refusal.md"
+      },
+      {
+        "file": "process_refusal_condemnation.md",
+        "type": "process",
+        "parent": "process_refusal.md"
       }
     ],
     "requires": [
@@ -64,10 +119,10 @@
     ],
     "card": {
       "wire": "Attaches at Process. The root (process_guilt.md) declares guilt as an act-focused appraisal: a chosen act meets a standard the persona holds as its own, and the read becomes a reparative pull rather than a verdict on the whole self.",
-      "issue": "The appraisal, read three ways beneath the root. One process names the crossing itself (transgression: the act against the standard, committed and irreversible); one position names the stance it leaves the persona holding (culpable: author of record, account open); one process names the way the account closes (reparation: confession, apology, restitution delivered to the party or standard it is owed).",
+      "issue": "The transgressor's account, whole, in four channels beneath the root. The crossing (transgression) arrives in kinds: harm done to a bound party, omission of the act a closing window demanded, survival read as unearned advantage over the ones who paid. The stance (culpable) carries the weight at a grade: a twinge spent in its own scene, a carried account that travels, a haunting that has become its own trigger. The dial (proneness) sets how readily the engine fires for this persona at all. And the account moves on one of two roads: paid (reparation -- with self-punishment as the inward toll where the outward road is blocked) or dodged (refusal -- by denial of the crossing or condemnation of the judges).",
       "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the specific reading it runs in the scene.",
       "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real guilt reading. Whether the reading is true to the persona's act is semantic, taught and reviewed, never failed by the suite.",
-      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its read under Projection, linking the specific expression -- the transgression it committed, the culpable stance it holds, or the reparation it is attempting. Read it in the pull toward repair, never as a narrated verdict on who the persona is."
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then cast the persona's account under Projection, one rung per channel: which kind of crossing opened it, what grade the weight has reached, where their proneness dial sits, and which road -- paying or dodging -- they are on. Two personas differ most where their exits differ: the one who irons their own hands and the one who condemns the condemners are running the same engine to opposite scenes. Read it in the pull toward repair, never as a narrated verdict on who the persona is."
     }
   },
   "scripts": {

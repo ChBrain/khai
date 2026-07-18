@@ -24,7 +24,11 @@ stamp:
 The standing of one who holds themselves the author of a specific wrong --
 not a suspect awaiting a verdict handed down from elsewhere, but a persona
 who has already returned the verdict on their own act, unprompted, and holds
-it whether or not anyone else has noticed.
+it whether or not anyone else has noticed. The weight arrives at a grade:
+a [twinge](position_culpable_twinge.md) spent in its own scene, a
+[carried](position_culpable_carried.md) account that travels, or a
+[haunting](position_culpable_haunting.md) that has stopped waiting for
+triggers and become one.
 
 ## Orders
 

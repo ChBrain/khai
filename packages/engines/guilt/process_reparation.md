@@ -33,7 +33,13 @@ Toward the harmed party or the broken standard.
 The vector runs outward -- confession, apology, restitution, the visible
 remaking of what the act damaged -- rather than inward toward the persona's
 own relief. Relief is a byproduct the process may leave behind; it is never
-the aim the vector points at.
+the aim the vector points at. Where the paying runs through a live
+relationship, the staging of that arc -- the accounting given and received,
+the restitution enacted, the bond re-integrated -- is the repair engine's;
+what lives here is the pull that delivers the persona to it. Where the
+outward road is blocked or unbearable, the pull turns inward instead:
+[self-punishment](process_reparation_self_punishment.md), payment made to
+the standard and never to the harmed.
 
 ## Lever
 
