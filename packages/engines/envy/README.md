@@ -9,7 +9,6 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [envy](process_envy.md): process (anchor)
 - [benign](process_benign.md): process
 - [malicious](process_malicious.md): process
-- [jealousy](process_jealousy.md): process
 - [resentment](process_resentment.md): process
 
 See [sources and attribution](REFERENCES.md).

@@ -21,7 +21,7 @@ describe("envy: conforms to the canon", () => {
 describe("envy: manifest", () => {
   it("declares the envy engine and its anchor", () => {
     expect(manifest.engine).toBe("envy");
-    expect(manifest.members).toHaveLength(5);
+    expect(manifest.members).toHaveLength(4);
     const root = manifest.members.find((m) => m.parent === null);
     expect(root.file).toBe("process_envy.md");
   });

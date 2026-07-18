@@ -43,11 +43,6 @@
         "parent": "process_envy.md"
       },
       {
-        "file": "process_jealousy.md",
-        "type": "process",
-        "parent": "process_envy.md"
-      },
-      {
         "file": "process_resentment.md",
         "type": "process",
         "parent": "process_envy.md"
@@ -69,7 +64,7 @@
     ],
     "card": {
       "wire": "Attaches at Process. The root (process_envy.md) declares envy as an upward-comparison process: the persona, faced with another's superior good, is moved to close the gap -- by rising, by pulling the other down, by guarding a bond against a rival, or by recoding the gap as injustice.",
-      "issue": "Four branches the comparison may resolve into: benign (raise the self), malicious (lower the other), jealousy (guard a valued bond against a rival), and resentment (the gap moralized into a wrong).",
+      "issue": "Three branches the comparison may resolve into: benign (raise the self), malicious (lower the other), and resentment (the gap moralized into a wrong). The three-party guard of a bond already held is not a branch of envy at all -- Parrott and Smith's own distinction -- and lives whole in the jealousy engine.",
       "require": "The law is declared once in the project's Instructions Knowledge chapter, linking the root. Each persona links, under Projection, the branch its comparison currently runs through.",
       "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real envy branch. Whether the branch is true to the persona's comparison is semantic, not mechanical.",
       "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Give the persona its current branch under Projection. The persona may move between branches as the gap is read one way and then another."
