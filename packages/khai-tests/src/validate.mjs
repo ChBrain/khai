@@ -181,7 +181,7 @@ function targetVerdictErrors(targetsBody, label) {
  */
 export function validateContentFile(
   text,
-  { type, baseDir, owner, allowed, exemptLinks, resolvedLanguage, license },
+  { type, baseDir, owner, allowed, exemptLinks, resolvedLanguage, license, resolvePackageDir },
 ) {
   const contract = types[type];
   if (!contract) return [`unknown khai type "${type}" (not in canon)`];
@@ -291,7 +291,8 @@ export function validateContentFile(
   // asserts whose the content is (engine content). The T slot carries no value
   // check -- it is the group above, enforced solely by the H2 set.
   if (prefix.length && owner) errors.push(...checkOwner(doc, { expected: owner }));
-  if (baseDir) errors.push(...checkLinks(text, baseDir, { exempt: exemptLinks }));
+  if (baseDir)
+    errors.push(...checkLinks(text, baseDir, { exempt: exemptLinks, resolvePackageDir }));
 
   // The declared frontmatter type must match the package's manifest type.
   if (doc.ok && doc.data.khai && doc.data.khai !== type)
@@ -446,6 +447,9 @@ export async function validateEnginePackage(pkgDir, { executeCompose = false } =
       baseDir: pkgDir,
       owner,
       allowed: (manifest.extensions ?? {})[m.file],
+      // Hard links out of an engine/composite member resolve only through the
+      // package's own declared dependencies -- the composite contract.
+      resolvePackageDir: packageDirResolver(pkgDir),
     });
     if (errors.length) results.push({ file: m.file, errors });
   }
@@ -472,6 +476,7 @@ export async function validateEnginePackage(pkgDir, { executeCompose = false } =
     const errors = validateContentFile(readFileSync(piPath, "utf8"), {
       type: "instructions",
       baseDir: pkgDir,
+      resolvePackageDir: packageDirResolver(pkgDir),
     });
     if (errors.length) results.push({ file: PLAYWRIGHT_INSTRUCTIONS, errors });
   }
@@ -576,7 +581,12 @@ function bucket(findings) {
   return out;
 }
 
-function requirementsFromEngine(manifest) {
+function requirementsFromEngine(entry) {
+  // Accept a bare khai manifest (the exported wiringRequirements contract) or
+  // the { khai, name } pair project mode collects, so a requirement can carry
+  // the engine's npm name for qualified-link matching.
+  const manifest = entry?.khai ?? entry;
+  const pkgName = entry?.khai ? entry.name : undefined;
   const reqs = [];
   // Resolve link targets from the canon-normalized member tree, so `link` is
   // shape-agnostic: "anchor" is the root member, "expression" is every leaf (the
@@ -598,6 +608,7 @@ function requirementsFromEngine(manifest) {
       section: r.section,
       // The engine declares how hard it asks; default fail (back-compat).
       level: LEVELS.has(r.level) ? r.level : "fail",
+      package: pkgName,
       targets: new Set(files.filter(Boolean).map((f) => f.split("/").pop())),
     });
   }
@@ -694,7 +705,16 @@ export function titleLeakAudit(doc, resolvedLanguage) {
  */
 export function validateInstanceFile(
   text,
-  { baseDir, requirements = [], owner, levels, resolvedLanguage, license } = {},
+  {
+    baseDir,
+    requirements = [],
+    owner,
+    levels,
+    resolvedLanguage,
+    license,
+    resolvePackageDir,
+    ambiguous,
+  } = {},
 ) {
   const doc = parseDoc(text);
   const type = doc.data?.khai;
@@ -710,6 +730,7 @@ export function validateInstanceFile(
     owner,
     exemptLinks,
     resolvedLanguage,
+    resolvePackageDir,
     // "canon" resolves to whatever licence the installed canon's template for
     // this type stamps; an explicit string pins it; absent means no check
     // (direct callers validating structure only).
@@ -721,12 +742,39 @@ export function validateInstanceFile(
   for (const req of requirements) {
     if (req.on !== type) continue;
     const level = resolveLevel(req, levels);
-    for (const m of checkWiring(doc, req)) findings.push({ level, message: m });
+    for (const m of checkWiring(doc, { ...req, ambiguous })) findings.push({ level, message: m });
   }
   // Reviewer-assist (audit only): does the English `title` carry source-language
   // text? Never gates -- the translate/keep call is the reviewer's.
   findings.push(...titleLeakAudit(doc, resolvedLanguage));
   return findings;
+}
+
+/**
+ * A dependency-scoped package resolver for hard (package-specifier) links: a
+ * package resolves only when the consumer's own package.json DECLARES it (deps
+ * or devDeps) and it is installed (walking up through node_modules, so a
+ * workspace-hoisted install resolves the same as a flat one). Undeclared or
+ * missing -> null, and the link check fails closed: the hard-reference
+ * contract is "a link without a dependency is a build error".
+ */
+function packageDirResolver(fromDir) {
+  const pkgJson = readJsonOr(join(fromDir, "package.json")) ?? {};
+  const declared = new Set([
+    ...Object.keys(pkgJson.dependencies ?? {}),
+    ...Object.keys(pkgJson.devDependencies ?? {}),
+  ]);
+  return (name) => {
+    if (!declared.has(name)) return null;
+    let dir = fromDir;
+    for (;;) {
+      const candidate = join(dir, "node_modules", name);
+      if (existsSync(join(candidate, "package.json"))) return candidate;
+      const parent = dirname(dir);
+      if (parent === dir) return null;
+      dir = parent;
+    }
+  };
 }
 
 /** Read the `khai` manifest from each installed engine under node_modules. */
@@ -738,9 +786,28 @@ function installedEngineManifests(root) {
       .map((name) => join(scopeDir, name, "package.json"))
       .filter((p) => existsSync(p))
       // An installed dependency with a malformed package.json is skipped, not fatal.
-      .map((p) => readJsonOr(p)?.khai)
-      .filter((khai) => khai && khai.engine)
+      .map((p) => readJsonOr(p))
+      .filter((pkg) => pkg?.khai?.engine)
+      .map((pkg) => ({ khai: pkg.khai, name: pkg.name }))
   );
+}
+
+/** Basenames shipped by more than one installed engine: the collisions a bare
+ * wiring link cannot disambiguate, so the kit demands the qualified form. */
+function sharedMemberBasenames(installed) {
+  const owners = new Map();
+  for (const { khai } of installed) {
+    let files;
+    try {
+      files = engineMembers(khai).map((m) => m.file.split("/").pop());
+    } catch {
+      continue;
+    }
+    for (const base of new Set(files)) {
+      owners.set(base, (owners.get(base) ?? 0) + 1);
+    }
+  }
+  return new Set([...owners.entries()].filter(([, n]) => n > 1).map(([base]) => base));
 }
 
 /** Every `.md` under a dir tree that declares `khai:` frontmatter. A leading BOM
@@ -1294,7 +1361,15 @@ export function validateProject({
   levels,
   license = "canon",
 } = {}) {
-  const requirements = wiringRequirements(installedEngineManifests(root));
+  const installed = installedEngineManifests(root);
+  const requirements = wiringRequirements(installed);
+  // The consumer-side ambiguity rule: where two installed engines ship the
+  // same member filename, a bare link names nothing determinate -- checkWiring
+  // demands the package-qualified form for exactly these basenames.
+  const ambiguous = sharedMemberBasenames(installed);
+  // Hard (package-specifier) links resolve only through the project's own
+  // declared dependencies.
+  const resolvePackageDir = packageDirResolver(root);
   const results = [];
   const files = new Set(findInstanceFiles(contentDir));
 
@@ -1314,6 +1389,8 @@ export function validateProject({
       levels,
       resolvedLanguage,
       license,
+      resolvePackageDir,
+      ambiguous,
     });
     if (findings.length) results.push({ file, ...bucket(findings) });
   }
