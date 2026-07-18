@@ -122,5 +122,44 @@
         "allow": []
       }
     ]
+  },
+  "memberPolicy": {
+    "engines": ["packages/engines/*/package.json"],
+    "homonyms": [
+      "approach",
+      "bearer",
+      "contagion",
+      "emotional",
+      "envy",
+      "external",
+      "high",
+      "low",
+      "loyalty",
+      "mastery",
+      "persuasion",
+      "preparation",
+      "pride",
+      "recognition",
+      "resolution",
+      "return",
+      "reward",
+      "searching",
+      "self",
+      "shadow",
+      "trickster"
+    ],
+    "grandfathered": [
+      "absorbed",
+      "ascending",
+      "dominant",
+      "exploratory",
+      "guilt",
+      "internalization",
+      "jealousy",
+      "liminality",
+      "planning",
+      "repair",
+      "trust"
+    ]
   }
 }

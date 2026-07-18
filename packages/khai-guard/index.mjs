@@ -997,3 +997,67 @@ export function checkLockfiles(paths = [], config = DEFAULT_CONFIG) {
   }
   return { ok: offenders.length === 0, offenders };
 }
+
+// checkMembers: the member-scope gate. Atoms must not overlap: one phenomenon,
+// one engine, so a member file whose stem is already claimed by another engine
+// (or that restates a whole engine's domain) is a duplicate reading, not a
+// style choice — the composite layer wires over the atoms and can only do so
+// when each phenomenon has exactly one owner. Pure: it takes the collected
+// manifests and returns every collision; the git/manifest IO lives in the CLI.
+// The policy carries two exemption lists whose difference is the intent:
+// `homonyms` are permanent (same word, different science — the bearer of a
+// document is not the bearer of a stigma); `grandfathered` are known standing
+// overlaps awaiting their thinning or cluster review, shrinking as those land.
+export function checkMembers(engines = [], config = DEFAULT_CONFIG) {
+  const policy = config.memberPolicy;
+  const errors = [];
+  if (!policy) return { ok: true, errors };
+  const allow = new Set([...(policy.homonyms ?? []), ...(policy.grandfathered ?? [])]);
+  // position_locus_of_control.md -> "locus_of_control"; the alternation is the
+  // canon's type vocabulary, not a greedy prefix, so a stem's own underscores
+  // survive.
+  const stemOf = (file) =>
+    String(file)
+      .replace(/\.md$/, "")
+      .replace(
+        /^(architecture|engines|instructions|order|plan|play|plot|process|position|piece|place|persona|pitch)_/,
+        "",
+      );
+  const claims = new Map(); // stem -> [{ engine, file }]
+  const slugs = new Set(engines.map((e) => e.engine));
+  for (const { engine, files } of engines) {
+    for (const file of files ?? []) {
+      const stem = stemOf(file);
+      if (!claims.has(stem)) claims.set(stem, []);
+      claims.get(stem).push({ engine, file });
+    }
+  }
+  for (const [stem, list] of claims) {
+    if (allow.has(stem)) continue;
+    const owners = [...new Set(list.map((c) => c.engine))];
+    if (owners.length > 1) {
+      const detail = list.map((c) => `${c.engine}/${c.file}`).join(", ");
+      errors.push(
+        `member stem "${stem}" is claimed by ${owners.length} engines (${detail}) — ` +
+          `one phenomenon, one owner: thin the duplicate to a pointer at the owning ` +
+          `engine, or list the stem under memberPolicy homonyms/grandfathered`,
+      );
+    }
+    // A stem that names another engine's whole domain (underscores read as the
+    // hyphens an engine slug uses) restates that engine inside this one.
+    const asSlug = stem.replace(/_/g, "-");
+    const foreign = owners.filter((o) => o !== asSlug);
+    if (slugs.has(asSlug) && foreign.length > 0 && owners.length === foreign.length) {
+      const detail = list
+        .filter((c) => c.engine !== asSlug)
+        .map((c) => `${c.engine}/${c.file}`)
+        .join(", ");
+      errors.push(
+        `member stem "${stem}" (${detail}) restates the domain of the "${asSlug}" engine — ` +
+          `link or delegate to that engine instead, or list the stem under memberPolicy ` +
+          `homonyms/grandfathered`,
+      );
+    }
+  }
+  return { ok: errors.length === 0, errors };
+}

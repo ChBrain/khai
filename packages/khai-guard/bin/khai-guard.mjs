@@ -57,6 +57,7 @@ import {
   changesetCheck,
   checkLicenses,
   checkLockfiles,
+  checkMembers,
   resolveConfig,
   parseNameStatus,
   parseChanges,
@@ -795,6 +796,59 @@ function runLockfileCheck() {
   );
 }
 
+// Subcommand: `khai-guard member-check` enforces the member-scope rule. Atoms
+// must not overlap: one phenomenon, one engine, so a member whose stem is
+// already claimed by another engine (or that restates a whole engine's domain)
+// fails the gate — the composite layer wires over the atoms and needs each
+// phenomenon to have exactly one owner. Anchors at the repo toplevel, reads
+// every engine manifest the policy names (members list, or the anchor +
+// expressions shorthand), and exits 1 on a collision the policy's homonyms/
+// grandfathered lists do not exempt. No policy configured = nothing to check
+// (exit 0).
+function runMemberCheck() {
+  chdirRepoToplevel("member-check");
+  const config = loadConfig();
+  const policy = config.memberPolicy;
+  if (!policy) {
+    console.log("KHAI-Guard member-check: no memberPolicy configured; nothing to check.");
+    return;
+  }
+  const tracked = listTrackedFiles("member-check");
+  const matchManifest = picomatch(policy.engines ?? [], { dot: true });
+  const engines = [];
+  for (const f of tracked) {
+    if (!matchManifest(f)) continue;
+    try {
+      const khai = JSON.parse(readFileSync(resolve(process.cwd(), f), "utf8")).khai;
+      if (!khai || !khai.engine) continue;
+      const files = Array.isArray(khai.members)
+        ? khai.members.map((m) => m.file).filter(Boolean)
+        : [khai.anchor, ...Object.values(khai.expressions ?? {})].filter(Boolean);
+      engines.push({ path: f, engine: khai.engine, files });
+    } catch (err) {
+      // A manifest the policy matches but we cannot parse cannot prove its
+      // members are collision-free; surface it and keep scanning rather than
+      // masking every other engine's verdict on one bad file.
+      console.error(`KHAI-Guard member-check: cannot read ${f} — ${err.message}`);
+    }
+  }
+  const { ok, errors } = checkMembers(engines, config);
+  if (!ok) {
+    console.error("::error::KHAI-Guard member-check: member-scope violations:");
+    for (const e of errors) console.error(`  ${e}`);
+    console.error(
+      "\n  Fix: one phenomenon, one owner. Thin the duplicate member to a pointer at\n" +
+        "  the owning engine, or (for a same-word-different-science case) whitelist the\n" +
+        "  stem under memberPolicy.homonyms in khai-guard.config.json.",
+    );
+    process.exit(1);
+  }
+  const total = engines.reduce((n, e) => n + e.files.length, 0);
+  console.log(
+    `KHAI-Guard member-check OK: ${engines.length} engine(s), ${total} member(s), no unexempted collisions.`,
+  );
+}
+
 // argv[2] is the first positional. `khai-guard --base …` leaves it as a flag,
 // which falls through to the gate; only an explicit subcommand diverts.
 if (process.argv[2] === "doctor") runDoctor();
@@ -805,4 +859,5 @@ else if (process.argv[2] === "changeset-check") runChangesetCheck();
 else if (process.argv[2] === "branch") runBranch();
 else if (process.argv[2] === "license-check") runLicenseCheck();
 else if (process.argv[2] === "lockfile-check") runLockfileCheck();
+else if (process.argv[2] === "member-check") runMemberCheck();
 else runGate();
