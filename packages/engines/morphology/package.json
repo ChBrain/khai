@@ -1,0 +1,99 @@
+{
+  "name": "@chbrain/khai-engine-morphology",
+  "version": "0.1.0",
+  "description": "khai engine content, the morphology domain: the wondertale as Propp's fixed function-sequence, run as chained plots.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/morphology"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "morphology",
+    "tagline": "Morphology as play: the wondertale run as Vladimir Propp abstracted it -- a fixed sequence of functions, from the initial lack to the final wedding, chained as six plots.",
+    "type": "play",
+    "members": [
+      {
+        "file": "play_folktale.md",
+        "type": "play",
+        "parent": null
+      },
+      {
+        "file": "plot_preparation.md",
+        "type": "plot",
+        "parent": "play_folktale.md"
+      },
+      {
+        "file": "plot_complication.md",
+        "type": "plot",
+        "parent": "play_folktale.md"
+      },
+      {
+        "file": "plot_donor.md",
+        "type": "plot",
+        "parent": "play_folktale.md"
+      },
+      {
+        "file": "plot_struggle.md",
+        "type": "plot",
+        "parent": "play_folktale.md"
+      },
+      {
+        "file": "plot_return.md",
+        "type": "plot",
+        "parent": "play_folktale.md"
+      },
+      {
+        "file": "plot_recognition.md",
+        "type": "plot",
+        "parent": "play_folktale.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "play",
+        "section": "Arc",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Play. The anchor (play_folktale.md) declares the wondertale as Propp's structural whole: a fixed sequence of functions that always runs in the same order, however many are present in a given tale. The law makes every play that borrows this template run its plots in that order.",
+      "issue": "The sequence, read as six chained plots: preparation (absentation through complicity), complication (villainy/lack through departure), the donor sequence (test, reaction, provision), struggle (guidance through liquidation), return (pursuit, rescue, unrecognized arrival), and recognition (the false hero's claim through wedding or ascension). Each plot's close is the next plot's cue.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the function sequence is read for every play that adopts it. The link: each play links, under Arc, the phases it runs and the order it runs them in.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and a real plot phase is linked under Arc. Whether the phases are true to Propp's order is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the play its function sequence under Arc: which phases run, in Propp's fixed order, and where a given tale skips one. Read it in the sequence's shape, never in a reordering the morphology forbids."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  }
+}
