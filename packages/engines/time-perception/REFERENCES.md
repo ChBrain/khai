@@ -19,7 +19,6 @@ Cognitive psychology and neuroscience of subjective time, applied directly as po
 | **Russell A. Barkley**           | _Taking Charge of Adult ADHD_ (2010); _"The Important Role of Executive Functioning and Self-Regulation in ADHD"_ (2011) | The now-versus-not-now model: ADHD as a disorder of time perception and self-regulation across time; the future as present only when it has become the present.     |
 | **Dan Zakay & Richard A. Block** | _"The Role of Attention in Time Estimation Processes"_ (1995)                                                            | The attentional gate model: how attention allocation determines felt duration; prospective vs. retrospective time estimation and their different cognitive demands. |
 | **Marc Wittmann**                | _Felt Time: The Psychology of How We Perceive Time_ (2016)                                                               | Duration as embodied, felt process -- not a clock readout but a bodily signal; the physiological and psychological substrates of subjective time.                   |
-| **Mihaly Csikszentmihalyi**      | _Flow: The Psychology of Optimal Experience_ (1990)                                                                      | The flow state as temporal suspension: how full engagement removes the subjective sense of duration's passage; absorption as a distinct temporal mode.              |
 
 ## Restrictions
 
@@ -30,6 +29,12 @@ What the engine refuses to model, and to whom it delegates.
 - **Motivation**: The engine models the felt proximity of future outcomes, not the drive toward them. Whether the persona wants something is owned by the motivation engine; this engine governs whether the future in which that something arrives feels real or abstract.
 - **Executive function**: The engine models the temporal medium in which planning operates, not the planning capacity itself. How the persona holds a goal active and sequences action across time is owned by the executive function engine; this engine governs whether the future end state is felt as a tangible target or as a concept without pull.
 
+- **Absorption**: The suspension of the temporal sense inside full
+  engagement -- the clock stopping from the inside -- is the flow engine's
+  whole domain (Csikszentmihalyi), not a fourth orientation here.
+  Time-perception models the resting orientation toward duration;
+  the absorbed state is **delegated to the flow engine**.
+
 ## Encoding
 
 Source to constraint, per file.
@@ -38,4 +43,3 @@ Source to constraint, per file.
 - **[continuous](position_continuous.md)** (expression): The future is tangible; the past is available; the persona moves along a sensed thread. Anchored by Wittmann (continuous felt time as the baseline modal experience).
 - **[now](position_now.md)** (expression): The future is known but weightless; only the present is real. Anchored by Barkley (now versus not-now as the central temporal deficit in ADHD).
 - **[behind](position_behind.md)** (expression): Duration is felt after the fact rather than during; urgency arrives as discovery. Anchored by Barkley (time blindness; the future arriving rather than approaching) and Zakay & Block (the difference between prospective and retrospective time estimation).
-- **[absorbed](position_absorbed.md)** (expression): The temporal sense suspends inside full engagement; the clock stops from the inside. Anchored by Csikszentmihalyi (flow state as temporal suspension) and Wittmann (absorption as a distinct mode of felt duration).
