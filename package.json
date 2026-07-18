@@ -2,7 +2,7 @@
   "name": "@chbrain/khai-workspace",
   "version": "0.0.0",
   "private": true,
-  "description": "khai monorepo — the architecture canon and the engine content packages that conform to it.",
+  "description": "khai monorepo \u2014 the architecture canon and the engine content packages that conform to it.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chbrain/khai.git"
@@ -21,7 +21,8 @@
     "packages/khai-plays",
     "packages/khai-language",
     "packages/khai-tour",
-    "packages/engines/*"
+    "packages/engines/*",
+    "packages/composites/*"
   ],
   "engines": {
     "node": ">=22.12.0"

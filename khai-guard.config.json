@@ -18,7 +18,11 @@
     }
   },
   "licensePolicy": {
-    "packages": ["packages/*/package.json", "packages/engines/*/package.json"],
+    "packages": [
+      "packages/*/package.json",
+      "packages/engines/*/package.json",
+      "packages/composites/*/package.json"
+    ],
     "packageLicenses": ["SEE LICENSE IN LICENSE and LICENSE-CODE"],
     "skills": ["packages/khai-skills/src/*/SKILL.md"],
     "skillLicenses": ["CC-BY-NC-4.0", "CC-BY-NC-SA-4.0"]
@@ -60,6 +64,12 @@
         "layer": "solution",
         "unit": 1,
         "allow": ["packages/engines/{name}/**"]
+      },
+      {
+        "pattern": "composite/*/*",
+        "layer": "solution",
+        "unit": 1,
+        "allow": ["packages/composites/{name}/**"]
       },
       {
         "pattern": "skills/*",
@@ -124,7 +134,7 @@
     ]
   },
   "memberPolicy": {
-    "engines": ["packages/engines/*/package.json"],
+    "engines": ["packages/engines/*/package.json", "packages/composites/*/package.json"],
     "homonyms": [
       "approach",
       "bearer",
