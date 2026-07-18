@@ -306,11 +306,14 @@ function readManifest(pkgDir) {
   return { manifest: pkg.khai, name: pkg.name };
 }
 
-/** Every `.md` in the dir that declares `khai:` frontmatter (a content instance). */
+/** Every `.md` in the dir that declares `khai:` frontmatter (a content instance).
+ * A leading BOM is tolerated in the probe so a BOM-prefixed instance is still
+ * discovered -- and then flagged by checkEncoding ("BOM present") -- instead of
+ * being skipped and left silently unvalidated. */
 function instanceFiles(pkgDir) {
   return readdirSync(pkgDir)
     .filter((f) => f.endsWith(".md"))
-    .filter((f) => /^---\n[\s\S]*?\bkhai:/.test(readFileSync(join(pkgDir, f), "utf8")));
+    .filter((f) => /^\uFEFF?---\r?\n[\s\S]*?\bkhai:/.test(readFileSync(join(pkgDir, f), "utf8")));
 }
 
 /**
@@ -740,7 +743,10 @@ function installedEngineManifests(root) {
   );
 }
 
-/** Every `.md` under a dir tree that declares `khai:` frontmatter. */
+/** Every `.md` under a dir tree that declares `khai:` frontmatter. A leading BOM
+ * is tolerated in the probe so a BOM-prefixed instance is still discovered -- and
+ * then flagged by checkEncoding ("BOM present") -- instead of being skipped and
+ * left silently unvalidated. */
 function findInstanceFiles(dir) {
   const out = [];
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
@@ -749,7 +755,7 @@ function findInstanceFiles(dir) {
     if (entry.isDirectory()) out.push(...findInstanceFiles(full));
     else if (
       entry.name.endsWith(".md") &&
-      /^---\r?\n[\s\S]*?\bkhai:/.test(readFileSync(full, "utf8"))
+      /^\uFEFF?---\r?\n[\s\S]*?\bkhai:/.test(readFileSync(full, "utf8"))
     )
       out.push(full);
   }
