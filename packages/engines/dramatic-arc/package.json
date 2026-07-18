@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-dramatic-arc",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the dramatic-arc domain: Freytag's five-act pyramid, run as chained plots.",
   "type": "module",
   "main": "./index.mjs",
@@ -85,10 +85,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.8"
+    "@chbrain/khai-arch": "^0.1.21"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.17",
+    "@chbrain/khai-tests": "^0.1.28",
     "vitest": "^4.1.10"
   }
 }

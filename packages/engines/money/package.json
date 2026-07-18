@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-money",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the money domain: the general equivalent as a piece -- a token that converts anything into anything, the freedom and power of holding it, and the ways it is made abstract or made special.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.8"
+    "@chbrain/khai-arch": "^0.1.21"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.17",
+    "@chbrain/khai-tests": "^0.1.28",
     "vitest": "^4.1.10"
   }
 }

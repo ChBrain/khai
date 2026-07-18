@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-total-institution",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai total-institution engine — the place where all of life is conducted in one location under one authority, cut off from the wider world",
   "type": "module",
   "main": "index.mjs",
@@ -38,7 +38,7 @@
     }
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.17",
+    "@chbrain/khai-tests": "^0.1.28",
     "vitest": "^4.1.10"
   },
   "scripts": {

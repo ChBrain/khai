@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-totem",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the totem domain: a sacred object set apart from the profane that stands for the group -- what it concentrates, who is bound to it, and what its charging and violation do.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.8"
+    "@chbrain/khai-arch": "^0.1.21"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.17",
+    "@chbrain/khai-tests": "^0.1.28",
     "vitest": "^4.1.10"
   }
 }

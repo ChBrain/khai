@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-jealousy",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the jealousy domain: a rival, real or imagined, threatens a valued bond the persona already holds -- what it takes to appraise the threat, guard the bond, and hold the line.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.20"
+    "@chbrain/khai-arch": "^0.1.21"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.27",
+    "@chbrain/khai-tests": "^0.1.28",
     "vitest": "^4.1.10"
   }
 }

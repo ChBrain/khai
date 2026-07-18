@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-pride",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the pride domain: pride as process, how a persona reads a standard met as a positive evaluation of the self, and the appraisal becomes a display and a drive -- authentic or hubristic.",
   "type": "module",
   "main": "./index.mjs",
@@ -70,10 +70,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.14"
+    "@chbrain/khai-arch": "^0.1.21"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.17",
+    "@chbrain/khai-tests": "^0.1.28",
     "vitest": "^4.1.10"
   }
 }

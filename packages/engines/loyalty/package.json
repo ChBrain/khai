@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-loyalty",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the loyalty domain: loyalty as position, the standing allegiance that raises the cost of leaving and holds exit at bay long enough for voice to be tried.",
   "type": "module",
   "main": "./index.mjs",
@@ -58,10 +58,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.8"
+    "@chbrain/khai-arch": "^0.1.21"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.17",
+    "@chbrain/khai-tests": "^0.1.28",
     "vitest": "^4.1.10"
   }
 }
