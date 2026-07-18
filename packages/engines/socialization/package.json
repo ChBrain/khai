@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-socialization",
+  "version": "0.1.0",
+  "description": "khai engine content, the socialization domain: socialization as process, how the objective social world -- built by prior generations and handed to a newcomer ready-made -- is internalized until it reads as reality itself, and how that formation continues past childhood into institutional sub-worlds.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/socialization"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "socialization",
+    "tagline": "Socialization as process: how the objective social world -- built by prior generations and handed to a newcomer ready-made -- is internalized until it is no longer one possible order among others but reality itself, and how that formation continues past childhood into institutional sub-worlds.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_socialization.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_internalization.md",
+        "type": "process",
+        "parent": "process_socialization.md"
+      },
+      {
+        "file": "position_socialized.md",
+        "type": "position",
+        "parent": "process_socialization.md"
+      },
+      {
+        "file": "process_secondary.md",
+        "type": "process",
+        "parent": "process_socialization.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_socialization.md) declares socialization as the process by which the objective social world -- built before the persona arrived -- becomes the persona's own taken-for-granted reality.",
+      "issue": "The formation, read three ways beneath the root. One process names the mechanism itself (internalization: the objective order retrojected into the persona's own consciousness as simply the way things are); one position names the stance it leaves the persona holding (socialized: a member who takes the given world for granted, not a student rehearsing it); one process names how the formation continues past childhood (secondary: later induction into institutional sub-worlds and role-specific knowledge the primary world did not anticipate).",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the specific reading it runs in the scene.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real socialization reading. Whether the reading is true to the persona's formation is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its read under Projection, linking the specific expression -- the internalization it underwent, the socialized stance it holds, or the secondary induction it is undergoing. Read it in what the persona treats as simply obvious, never as a narrated awareness of the construction."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  }
+}

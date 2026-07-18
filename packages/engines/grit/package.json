@@ -1,0 +1,67 @@
+{
+  "name": "@chbrain/khai-engine-grit",
+  "version": "0.1.0",
+  "description": "khai engine content, the grit domain: grit as position, the persona's resting stamina toward a distant goal -- passion held steady across years, perseverance of effort held through setback and plateau.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/grit"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "grit",
+    "tagline": "Grit as position: the persona's resting stamina toward a distant goal -- passion held steady across years and perseverance of effort held through setback and plateau, the marathon rather than the sprint.",
+    "type": "position",
+    "anchor": "position_grit.md",
+    "expressions": {
+      "passion": "position_passion.md",
+      "perseverance": "position_perseverance.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_grit.md) declares grit as a resting stamina toward a distant goal -- a baseline on two facets, consistency of interest and perseverance of effort -- and the system-wide law makes every persona carry it beneath every plan that reaches past a single scene.",
+      "issue": "Two ready expressions a persona may hold, the two facets of the Grit Scale: passion (the same top-level goal held for years, not traded for the next pursuit that shines) and perseverance (effort that keeps landing on the goal through setback, boredom, and plateau). Each is a full position file the build composes onto the anchor, so the persona gets a stamina that colours every distant reach, not a label. More expressions slot in as sibling files without moving the anchor.",
+      "require": "Two altitudes must hold. One, the law: declared once in the project's Instructions Knowledge chapter ('personas carry a grit'), so the stamina holds system-wide and no persona chases a far goal on borrowed resolve alone. Two, the link: each persona carries its grit under Projection. A persona may also hold a different, even contradicting, stamina under Shadow; the gap between the grit shown and the grit masked is the character, not a contradiction to reject.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, and each persona carries a grit under Projection. Whether a Projection grit and a Shadow grit cohere into a true persona is semantic, so it is taught and reviewed, never failed by the suite. The engine ships its own structural tests; the reading is guided, not gated.",
+      "setup": "Two steps. Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give each persona its grit under Projection: one expression, which carries the anchor upward. Where a persona masks a different stamina, put it under Shadow. Read it in what the persona is still chasing years after it stopped being new; the room reads it beneath the plans, never narrates it."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "name": "@chbrain/khai-engine-self-esteem",
+  "version": "0.1.0",
+  "description": "khai engine content, the self-esteem domain: global self-esteem as position, the persona's resting overall attitude toward the self, positive or negative, that colours every verdict the self meets.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/self-esteem"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "self-esteem",
+    "tagline": "Self-esteem as position: the persona's resting global attitude toward the self, positive or negative, that colours whether a verdict lands as confirmation or as threat.",
+    "type": "position",
+    "anchor": "position_self_esteem.md",
+    "expressions": {
+      "high": "position_high.md",
+      "low": "position_low.md",
+      "contingent": "position_contingent.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_self_esteem.md) declares global self-esteem as the persona's resting overall attitude toward the self -- a standing verdict carried into every moment, not earned fresh each time. The law makes every persona carry one.",
+      "issue": "Three baselines a persona may hold. High: a secure, stable positive regard, the self met without defense. Low: a stable or shaky negative regard, the self met with doubt. Contingent: esteem that holds only while a staked domain keeps delivering, so it rises and falls with the outcome rather than sitting still. Each is a full position file the build composes onto the anchor.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the baseline is read for every persona. The link: each persona carries, under Projection, the one baseline it holds.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real self-esteem baseline. Whether the baseline is true to the persona, and holds under the specific verdicts the play throws at them, is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the persona its baseline under Projection: high, low, or contingent, which carries the anchor upward. Read it in how a compliment or a critique lands, never as a label the persona states about itself."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  }
+}

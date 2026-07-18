@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-monomyth",
+  "version": "0.1.0",
+  "description": "khai engine content, the monomyth domain: the hero's journey as a play -- separation, initiation, and return, run as three chained plots.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/monomyth"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "monomyth",
+    "tagline": "The monomyth as play: a hero leaves the known world, is transformed in a region of trial, and returns carrying a boon -- separation, initiation, and return, run as three chained plots the whole production turns on.",
+    "type": "play",
+    "members": [
+      {
+        "file": "play_monomyth.md",
+        "type": "play",
+        "parent": null
+      },
+      {
+        "file": "plot_departure.md",
+        "type": "plot",
+        "parent": "play_monomyth.md"
+      },
+      {
+        "file": "plot_initiation.md",
+        "type": "plot",
+        "parent": "play_monomyth.md"
+      },
+      {
+        "file": "plot_return.md",
+        "type": "plot",
+        "parent": "play_monomyth.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "play",
+        "section": "Arc",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Play. The anchor (play_monomyth.md) declares the hero's journey as a whole run: separation, initiation, and return, the one story Campbell found under a thousand myths. The law makes a production that installs it read its own arc against the round trip -- crossing, ordeal, and boon brought home.",
+      "issue": "The journey, in three plots. Departure carries the call, the refusal, the mentor's aid, and the crossing of the first threshold; Initiation carries the road of trials, the ordeal in the innermost cave, and the seizing of the boon; Return carries the flight, the recrossing, and the surrender of the boon to the ordinary world. The three chain in order; each plot's close is the next one's cue.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the journey is read for the whole production. The link: the production's own play links, under its Arc, the journey phase its telling rests on.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and a real journey phase is linked. Whether the telling actually crosses, transforms, and returns -- rather than departing and never coming back -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then wire the production's arc to the three plots: which crossing fires the departure, what ordeal the initiation turns on, and whether the boon is carried home in the return. Read the play against the round trip -- a hero who leaves and never returns transformed has not run the monomyth."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  }
+}
