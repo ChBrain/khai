@@ -40,8 +40,8 @@ the whole campaign:
    cut of every step.
 
 What the sequence refuses is part of the direction. A composite cut first
-fails principles one, three, and four at once. A copy thinned before its
-owner is deep turns promotion into deletion, which the order forbids. Seven
+fails principles one, three, and four at once. A copy removed before its
+owner is deep leaves a reading homeless, which the order forbids. Seven
 clusters attacked at once forfeits the pilot's lessons; the drive worked
 because its engines were independent, and the clusters are not.
 
@@ -60,13 +60,22 @@ Run the campaign in phases; each phase clears the ground for the next.
   transgressor's side only, transgression kinds, weight grades, proneness,
   refusal, self-punishment. This is the template PR for every later
   deepening: party boundary held, ladders inside it, no neighbour's ground.
-- **Phase 3, dedup** (three engine lanes): thin the three fresh duplicates,
-  shame's guilt member, envy's jealousy member, time-perception's absorbed
-  member, each to a comparative pointer at its now-deep owner. The pointer's
-  target is the atom; only the family reading waits for phase five.
+- **Phase 3, dedup** (three engine lanes): remove the three fresh
+  duplicates outright, shame's guilt member, envy's jealousy member,
+  time-perception's absorbed member. A pointer member would keep a family
+  slot inside an atom, against the layer's own point, and today the removal
+  breaks nobody; it will never be this cheap again. Each removal folds the
+  one sentence the atom truly owns into its anchor, carries at least a minor
+  bump (member files are API), and is followed by deleting its stem from the
+  grandfathered list, returning the stem to the gate's hard protection. The
+  dead-exemption ratchet nags from every run until that deletion lands.
 - **Phase 4, mechanism** (governance lane): teach khai-tests to resolve
-  package-specifier links through node_modules and to fail a link whose
-  package is not a declared dependency; tests follow; release the kit.
+  package-specifier links through node_modules, for composites and consumer
+  worlds alike, and to fail a link whose package is not a declared
+  dependency. A bare member link stays legal only while exactly one
+  installed engine ships that filename; where two do, the link must qualify
+  its package or fail, so a world on five engines can never wire an
+  ambiguous name. Tests follow; release the kit.
 - **Phase 5, the composite house**: scaffold khai-engines-composites, voice
   and coding contract, guard lanes, gates, changesets; then cut the pilot
   composite, the moral account, wiring guilt, repair, forgiveness, and
@@ -99,7 +108,8 @@ draft until whole; nothing merges but by the Choregos's hand.
 - [ ] the member-collision gate holds in CI, whitelist included, tests live
 - [ ] the bump rule stands in the contract docs
 - [ ] guilt is deep on the transgressor's side and serves as the template
-- [ ] the three fresh duplicates are thinned to pointers at their owners
+- [ ] the three fresh duplicates are removed and their stems ratcheted out
+      of the grandfathered list
 - [ ] khai-tests resolves package-specifier links and fails undeclared ones
 - [ ] the composite house stands with its own contract and gates
 - [ ] the moral-account pilot is cut, green, and wired over published atoms
