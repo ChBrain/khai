@@ -151,6 +151,26 @@ jobs:
       - name: lockfile gate
         run: npx khai-guard lockfile-check
 
+  khai-member-scope:
+    # Hard gate: one phenomenon, one engine. A new member whose stem another
+    # engine already claims (or that restates a whole engine's domain) is a
+    # duplicate reading — the composite layer wires over the atoms and needs
+    # each phenomenon to have exactly one owner. Policy (engines glob +
+    # homonyms/grandfathered exemptions) is in khai-guard.config.json
+    # memberPolicy; scans every tracked engine manifest statically like
+    # license-check, no diff range needed.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: "npm"
+      - name: install
+        run: npm ci
+      - name: member gate
+        run: npx khai-guard member-check
+
   bump-scope:
     # Release-scope flag (the third khai-guard rule; see the bump-check
     # subcommand). patch is free; a changeset declaring minor/major widens the

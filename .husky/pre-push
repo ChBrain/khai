@@ -30,3 +30,9 @@ npx khai-guard bump-check
 # is an npm-workspaces monorepo; the root package-lock.json is the only
 # authoritative lock, so a stray nested lock desyncs Dependabot and CI. ENFORCED.
 npx khai-guard lockfile-check
+
+# KHAI-Guard member-scope: one phenomenon, one engine. A member stem another
+# engine already claims (or that restates a whole engine's domain) is a
+# duplicate reading; thin it to a pointer at the owner, or the maintainer
+# whitelists a same-word-different-science homonym. ENFORCED.
+npx khai-guard member-check
