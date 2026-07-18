@@ -1,0 +1,104 @@
+{
+  "name": "@chbrain/khai-engine-archetypes",
+  "version": "0.1.0",
+  "description": "khai engine content, the archetypes domain: Jung's principal archetypes as personas -- the inherited, collective figures that pattern how a persona is seen and behaves.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/archetypes"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "archetypes",
+    "tagline": "Archetypes as persona: Jung's principal figures of the collective unconscious -- inherited, not learned -- that pattern how a persona is seen and behaves before either side has chosen it.",
+    "type": "persona",
+    "members": [
+      {
+        "file": "persona_archetype.md",
+        "type": "persona",
+        "parent": null
+      },
+      {
+        "file": "persona_self.md",
+        "type": "persona",
+        "parent": "persona_archetype.md"
+      },
+      {
+        "file": "persona_shadow.md",
+        "type": "persona",
+        "parent": "persona_archetype.md"
+      },
+      {
+        "file": "persona_anima.md",
+        "type": "persona",
+        "parent": "persona_archetype.md"
+      },
+      {
+        "file": "persona_animus.md",
+        "type": "persona",
+        "parent": "persona_archetype.md"
+      },
+      {
+        "file": "persona_wise_old_man.md",
+        "type": "persona",
+        "parent": "persona_archetype.md"
+      },
+      {
+        "file": "persona_great_mother.md",
+        "type": "persona",
+        "parent": "persona_archetype.md"
+      },
+      {
+        "file": "persona_trickster.md",
+        "type": "persona",
+        "parent": "persona_archetype.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (persona_archetype.md) declares the archetype as such: an inherited, collective figure that patterns how a persona is seen and behaves, older than the individual and shared across a culture, no khai file of its own above it but the collective unconscious itself.",
+      "issue": "The principal archetypes, read as personas in their own right. The Self (wholeness, the organizing centre), the Shadow (the disowned and repressed), the Anima and Animus (the contrasexual images), the Wise Old Man (meaning and guidance), the Great Mother (nurture and engulfment in one figure), and the Trickster (the boundary-breaker) -- seven figures Jung documented recurring across unrelated cultures with no line of transmission between them.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so every persona is read against the collective figures it may be constellating. The link: each persona links, under Projection, the archetypal figure or figures it carries or is currently cast into.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and a real archetype is linked. Whether a given persona is truly carrying that archetype, or merely resembling it on the surface, is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the persona its archetypal charge under Projection: which collective figure is constellating through them, and where. Read it in the disproportion between a persona's reaction and its stated cause -- that gap is the archetype's footprint."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  }
+}
