@@ -58,6 +58,7 @@ import {
   checkLicenses,
   checkLockfiles,
   checkMembers,
+  deadExemptions,
   resolveConfig,
   parseNameStatus,
   parseChanges,
@@ -833,6 +834,20 @@ function runMemberCheck() {
     }
   }
   const { ok, errors } = checkMembers(engines, config);
+  const warnings = deadExemptions(engines, config);
+  // The ratchet, LOUD but advisory (the bump-check precedent): a dead
+  // exemption straddles two lanes, so it can only nag, never block. It nags
+  // on every run until the governance-lane deletion lands.
+  if (warnings?.length) {
+    console.error("");
+    console.error("  ════════════════════════ KHAI-GUARD RATCHET ════════════════════════");
+    for (const w of warnings) {
+      console.error(`  ${w}`);
+      console.error(`::warning::KHAI-Guard member-check: ${w}`);
+    }
+    console.error("  ═════════════════════════════════════════════════════════════════════");
+    console.error("");
+  }
   if (!ok) {
     console.error("::error::KHAI-Guard member-check: member-scope violations:");
     for (const e of errors) console.error(`  ${e}`);
@@ -844,8 +859,9 @@ function runMemberCheck() {
     process.exit(1);
   }
   const total = engines.reduce((n, e) => n + e.files.length, 0);
+  const ratchet = warnings?.length ? `; ${warnings.length} dead exemption(s) to ratchet` : "";
   console.log(
-    `KHAI-Guard member-check OK: ${engines.length} engine(s), ${total} member(s), no unexempted collisions.`,
+    `KHAI-Guard member-check OK: ${engines.length} engine(s), ${total} member(s), no unexempted collisions${ratchet}.`,
   );
 }
 
