@@ -73,14 +73,15 @@ npx khai-guard advise --files <paths>
 
 ## Lanes at a glance (the full table is in docs/BRANCHING.md)
 
-| You changed…                                                                             | Lane                    |
-| ---------------------------------------------------------------------------------------- | ----------------------- |
-| `packages/khai-arch/**`                                                                  | `arch/<topic>`          |
-| `packages/khai-guard/**`, `.github/**`, `.husky/**`, `khai-guard.config.json`, this file | `governance/<topic>`    |
-| `packages/engines/<name>/**`                                                             | `engine/<name>/<topic>` |
-| `packages/khai-skills/**`, `docs/SKILLS.md`                                              | `skills/<topic>`        |
-| `packages/khai-methods/**`, `docs/METHODS.md`                                            | `methods/<topic>`       |
-| an unowned top-level file only                                                           | `chore/<topic>`         |
+| You changed…                                                                             | Lane                       |
+| ---------------------------------------------------------------------------------------- | -------------------------- |
+| `packages/khai-arch/**`                                                                  | `arch/<topic>`             |
+| `packages/khai-guard/**`, `.github/**`, `.husky/**`, `khai-guard.config.json`, this file | `governance/<topic>`       |
+| `packages/engines/<name>/**`                                                             | `engine/<name>/<topic>`    |
+| `packages/composites/<name>/**`                                                          | `composite/<name>/<topic>` |
+| `packages/khai-skills/**`, `docs/SKILLS.md`                                              | `skills/<topic>`           |
+| `packages/khai-methods/**`, `docs/METHODS.md`                                            | `methods/<topic>`          |
+| an unowned top-level file only                                                           | `chore/<topic>`            |
 
 Lane identity is the first segment of the pattern, so two surfaces sharing a
 prefix are **not** mutually isolated unless the lane fans out per unit. What the
