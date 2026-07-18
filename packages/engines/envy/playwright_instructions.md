@@ -21,7 +21,7 @@ deploy. Authoring guidance, not runtime content, and it does not go on tour.
 
 ## Agent
 
-- From the play's own content, a persona links the envy branch its comparison runs through (benign, malicious, jealousy, or resentment) under its Projection. Let the branch shift as the gap is re-read: a reachable good that turns unattainable can slide from benign toward malicious or resentment. You link to the engine, you never edit it.
+- From the play's own content, a persona links the envy branch its comparison runs through (benign, malicious, or resentment) under its Projection; where a rival threatens a bond already held, wire the jealousy engine instead. Let the branch shift as the gap is re-read: a reachable good that turns unattainable can slide from benign toward malicious or resentment. You link to the engine, you never edit it.
 
 ## Collaboration
 
@@ -29,7 +29,7 @@ deploy. Authoring guidance, not runtime content, and it does not go on tour.
 
 ## Knowledge
 
-- Envy is the pain at another's superior good, the upward social comparison that registers as a threat to the self and seeks to close the gap. It bites at the border of the self -- a near peer, not a distant great. The comparison resolves into benign (raise the self toward the good; emulation), malicious (lower the other; spoil the advantage), jealousy (three-party -- guard a valued relationship against a rival; fear of loss, not lack), or resentment (the gap moralized into injustice; the advantage recoded as unfair). The branches are not stages; the persona may move between them as the gap is read one way and then another.
+- Envy is the pain at another's superior good, the upward social comparison that registers as a threat to the self and seeks to close the gap. It bites at the border of the self -- a near peer, not a distant great. The comparison resolves into benign (raise the self toward the good; emulation), malicious (lower the other; spoil the advantage), or resentment (the gap moralized into injustice; the advantage recoded as unfair). The three-party case -- a rival threatening a valued relationship already held; fear of loss, not lack -- is jealousy, the jealousy engine's to run. The branches are not stages; the persona may move between them as the gap is read one way and then another.
 
 ## System
 

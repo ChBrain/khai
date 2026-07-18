@@ -24,18 +24,13 @@
   ],
   "khai": {
     "engine": "shame",
-    "tagline": "Shame as process: how a persona appraises exposure against a social standard, and the appraisal becomes a response directed at the self or at the one who saw -- guilt, embarrassment, or humiliation.",
+    "tagline": "Shame as process: how a persona appraises exposure against a social standard, and the appraisal becomes a response directed at the self or at the one who saw -- embarrassment, or humiliation; where the verdict lands on the act instead of the self, the read is the guilt engine's.",
     "type": "process",
     "members": [
       {
         "file": "process_shame.md",
         "type": "process",
         "parent": null
-      },
-      {
-        "file": "process_guilt.md",
-        "type": "process",
-        "parent": "process_shame.md"
       },
       {
         "file": "process_embarrassment.md",
@@ -64,7 +59,7 @@
     ],
     "card": {
       "wire": "Attaches at Process. The root (process_shame.md) declares shame as a social appraisal: the self is seen against a standard, the gap is exposed, and the response is aimed at concealment, repair, recovery, or rage.",
-      "issue": "Three readings a persona may run: guilt (act condemned, repair possible), embarrassment (mild exposure, recoverable), and humiliation (verdict imposed by power, rage secondary). Each is a different resolution of the same social appraisal.",
+      "issue": "Two readings a persona may run: embarrassment (mild exposure, recoverable) and humiliation (verdict imposed by power, rage secondary). Each is a different resolution of the same social appraisal. The third resolution -- the verdict on the act alone, repairable, self intact -- is not carried here: it is the guilt engine's, whole, and the seam between the two engines is the border where \"I did a bad thing\" widens into \"I am a bad person\".",
       "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the specific reading it runs in the scene.",
       "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real shame reading. Whether the reading is true to the persona's situation is semantic, taught and reviewed, never failed by the suite.",
       "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its read under Projection, linking the specific expression. Read it in the first beat; the room enacts it, never narrates it."

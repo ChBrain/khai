@@ -18,7 +18,7 @@ How a Playwright wires the shame engine into a play. You wire by linking the pla
 
 ## Agent
 
-- From the play's own content, a persona links the shame mode the moment runs (guilt, embarrassment, or humiliation) under its Projection and what the appraisal is directed at. Let the response shift as the social audience shifts. You link to the engine, you never edit it.
+- From the play's own content, a persona links the shame mode the moment runs (embarrassment or humiliation) under its Projection; where the verdict stays on the act, wire the guilt engine instead and what the appraisal is directed at. Let the response shift as the social audience shifts. You link to the engine, you never edit it.
 
 ## Collaboration
 
@@ -31,6 +31,6 @@ How a Playwright wires the shame engine into a play. You wire by linking the pla
 ## System
 
 - Do set what is exposed and who witnesses it; the engine turns on the appraisal, not the event alone.
-- Do let guilt drive repair and embarrassment drive concealment; the modes have structural tendencies.
+- Do let embarrassment drive concealment and humiliation drive rage; the modes have structural tendencies. The act-focused, repair-driving read is the guilt engine's to wire.
 - Do not conflate shame and guilt; guilt keeps the self intact while repairing the act. Shame attacks the self entire.
 - Do not edit the engine's files; wire only from the play's side.
