@@ -1,0 +1,67 @@
+{
+  "name": "@chbrain/khai-engine-regulatory-focus",
+  "version": "0.1.0",
+  "description": "khai engine content, the regulatory-focus domain: regulatory focus as position, the persona's resting orientation toward how a goal is pursued -- gain to reach for, or loss to guard against.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/regulatory-focus"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "regulatory-focus",
+    "tagline": "Regulatory focus as position: the persona's resting orientation toward how a goal is pursued -- gain to reach for under promotion, or loss to guard against under prevention -- across strategic eagerness and vigilance.",
+    "type": "position",
+    "anchor": "position_regulatory_focus.md",
+    "expressions": {
+      "promotion": "position_promotion.md",
+      "prevention": "position_prevention.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_regulatory_focus.md) declares regulatory focus as a resting orientation toward how goals are pursued -- a gain to reach for, or a loss to guard against -- and the system-wide law makes every persona carry it beneath every pursuit.",
+      "issue": "Two ready expressions a persona may hold: promotion (the goal held as a gain, eager strategies, sensitive to the presence or absence of gains, tolerates an error of commission for a shot at the hit) and prevention (the goal held as a loss to guard, vigilant strategies, sensitive to the presence or absence of loss, tolerates an error of omission to avoid a miss). Each is a full position file the build composes onto the anchor, so the persona gets a strategic inclination that shapes every pursuit, not a label. More expressions slot in as sibling files without moving the anchor.",
+      "require": "Two altitudes must hold. One, the law: declared once in the project's Instructions Knowledge chapter ('personas carry a regulatory focus'), so the inclination holds system-wide and no persona pursues a goal on neutral method. Two, the link: each persona carries its focus under Projection. A persona may also hold a different, even contradicting, focus under Shadow; the gap between the focus shown and the focus masked is the character, not a contradiction to reject.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, and each persona carries a focus under Projection. Whether a Projection focus and a Shadow focus cohere into a true persona is semantic, so it is taught and reviewed, never failed by the suite. The engine ships its own structural tests; the reading is guided, not gated.",
+      "setup": "Two steps. Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give each persona its focus under Projection: one expression, which carries the anchor upward. Where a persona masks a different focus, put it under Shadow. Read it in which errors the persona works hardest to avoid; the room reads it beneath the plan, never narrates it."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  }
+}
