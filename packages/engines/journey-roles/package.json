@@ -1,0 +1,109 @@
+{
+  "name": "@chbrain/khai-engine-journey-roles",
+  "version": "0.1.0",
+  "description": "khai engine content, the journey-roles domain: the recurring character roles of the hero's journey as personas -- functions defined by their relation to the hero.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/journey-roles"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "journey-roles",
+    "tagline": "Journey roles as persona: the recurring character functions of the hero's journey -- hero, mentor, herald, threshold guardian, shapeshifter, shadow, ally, and trickster -- filled by whichever character the story needs to fill it, for as long as it needs the function.",
+    "type": "persona",
+    "members": [
+      {
+        "file": "persona_journey_role.md",
+        "type": "persona",
+        "parent": null
+      },
+      {
+        "file": "persona_hero.md",
+        "type": "persona",
+        "parent": "persona_journey_role.md"
+      },
+      {
+        "file": "persona_mentor.md",
+        "type": "persona",
+        "parent": "persona_journey_role.md"
+      },
+      {
+        "file": "persona_herald.md",
+        "type": "persona",
+        "parent": "persona_journey_role.md"
+      },
+      {
+        "file": "persona_threshold_guardian.md",
+        "type": "persona",
+        "parent": "persona_journey_role.md"
+      },
+      {
+        "file": "persona_shapeshifter.md",
+        "type": "persona",
+        "parent": "persona_journey_role.md"
+      },
+      {
+        "file": "persona_shadow.md",
+        "type": "persona",
+        "parent": "persona_journey_role.md"
+      },
+      {
+        "file": "persona_ally.md",
+        "type": "persona",
+        "parent": "persona_journey_role.md"
+      },
+      {
+        "file": "persona_trickster.md",
+        "type": "persona",
+        "parent": "persona_journey_role.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (persona_journey_role.md) declares a journey role as what it is in the room: a function defined by its relation to the hero's journey, not a fixed character. The law makes every persona eligible to carry one of the eight functions for as long as the story needs it there.",
+      "issue": "The function, read eight ways. Vogler's canonical eight -- hero, mentor, herald, threshold guardian, shapeshifter, shadow, ally, trickster -- name the recurring dramatis personae Campbell found across the monomyth. A role is a mask a character wears, not the character itself: the same persona can carry several masks across a story, and several personas can share one mask in a single scene.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the function is read for every persona. The link: each persona links, under Projection, the journey role(s) it is currently expressing.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and a real journey role is linked. Whether the cast persona earns the mask it wears is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the persona its function under Projection: which role it plays in the current turn of the journey, and note if the mask changes hands across the arc. Read it in the shape of the scene the persona is standing in, not in a label pinned to them forever."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.10"
+  }
+}
