@@ -18,7 +18,7 @@ describe("repair: manifest", () => {
   it("declares the repair process engine", () => {
     expect(manifest.engine).toBe("repair");
     expect(manifest.type).toBe("process");
-    expect(manifest.members).toHaveLength(5);
+    expect(manifest.members).toHaveLength(9);
     expect(manifest.members.find((m) => m.parent === null).file).toBe("process_repair.md");
   });
 
