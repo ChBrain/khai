@@ -42,3 +42,4 @@ Each confirmation of the violation is also a confirmation that the prior picture
 The persona is holding two incompatible things: what they knew and what they now know.
 The discovery does not immediately collapse the prior account; the persona may seek to explain the information away, delay full acknowledgement, or oscillate between believing and not believing.
 When the information is fully held as fact, the move into [disorientation](process_disorientation.md) begins.
+Discovery lands against the persona's own [blindness](position_blindness.md): the higher the dial was set before this moment, the harder the detonation, since more evidence had to accumulate unseen before it could register at all.

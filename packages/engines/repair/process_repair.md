@@ -41,4 +41,5 @@ The repair cannot proceed if either party refuses to hold their part of that ten
 
 The process moves through four phases: rupture (the break is acknowledged; both parties know something is damaged), accounting (the responsible party names what happened and why), restitution (concrete action addresses the harm), and integration (the repair is received; the relationship is remade on new terms).
 The phases do not run once and stop; earlier phases may need to be revisited if the accounting proves incomplete or the restitution proves insufficient.
+Every attempt at repair, in any phase, draws on the same reservoir: [sentiment override](position_sentiment_override.md), the dyad's accumulated regard, decides whether the attempt lands at all.
 What the repair produces is not the original relationship but a relationship that has been tested: [rupture](process_rupture.md), [accounting](process_accounting.md), [restitution](process_restitution.md), [integration](process_integration.md).

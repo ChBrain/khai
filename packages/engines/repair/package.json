@@ -1,7 +1,7 @@
 {
   "name": "@chbrain/khai-engine-repair",
   "version": "0.1.1",
-  "description": "khai engine content, the repair domain: what a relationship undergoes when rupture is addressed rather than abandoned",
+  "description": "khai engine content, the repair domain: what a relationship undergoes when rupture is addressed rather than abandoned, the account taken to castable resolution -- the forms it can arrive in, and the dyad's own reservoir for receiving it",
   "type": "module",
   "main": "./index.mjs",
   "exports": {
@@ -24,7 +24,7 @@
   ],
   "khai": {
     "engine": "repair",
-    "tagline": "what a relationship undergoes when rupture is addressed rather than abandoned",
+    "tagline": "what a relationship undergoes when rupture is addressed rather than abandoned, the account taken to castable resolution",
     "type": "process",
     "members": [
       {
@@ -43,6 +43,21 @@
         "parent": "process_repair.md"
       },
       {
+        "file": "process_accounting_concession.md",
+        "type": "process",
+        "parent": "process_accounting.md"
+      },
+      {
+        "file": "process_accounting_excuse.md",
+        "type": "process",
+        "parent": "process_accounting.md"
+      },
+      {
+        "file": "process_accounting_justification.md",
+        "type": "process",
+        "parent": "process_accounting.md"
+      },
+      {
         "file": "process_restitution.md",
         "type": "process",
         "parent": "process_repair.md"
@@ -50,6 +65,11 @@
       {
         "file": "process_integration.md",
         "type": "process",
+        "parent": "process_repair.md"
+      },
+      {
+        "file": "position_sentiment_override.md",
+        "type": "position",
         "parent": "process_repair.md"
       }
     ],
@@ -69,10 +89,10 @@
     ],
     "card": {
       "wire": "Attaches at Process. The root (process_repair.md) declares repair as a relational process: the movement through rupture, accounting, restitution, and integration that rebuilds a damaged relationship.",
-      "issue": "Four phases: rupture (the break is acknowledged; both parties know something is damaged), accounting (the responsible party names what happened and why), restitution (concrete action addresses the harm), integration (the repair is received; the relationship is remade on new terms).",
+      "issue": "Four phases: rupture (the break is acknowledged; both parties know something is damaged), accounting (the responsible party names what happened and why), restitution (concrete action addresses the harm), integration (the repair is received; the relationship is remade on new terms). The accounting phase now casts to castable resolution: the account arrives in one of three forms -- concession (full ownership, no discount), excuse (responsibility deflected, injury conceded), justification (responsibility accepted, injury denied) -- and every attempt at repair, in any phase, draws on the dyad's own sentiment override, the accumulated regard that decides whether the attempt lands.",
       "require": "The law is declared once in the project's Instructions Knowledge chapter, linking the root. Each persona links, under Projection, the phase it is currently in.",
       "enforce": "Structure is checked; coherence is judged. The kit verifies that the law is declared and each persona links a real repair phase. Whether the phase is true to the relationship is semantic, not mechanical.",
-      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Give the persona its current phase under Projection. Phases may recur if earlier phases are incomplete."
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Give the persona its current phase under Projection. Phases may recur if earlier phases are incomplete. Where the phase is accounting, cast which form the persona's account takes -- concession, excuse, or justification -- and cast the dyad's sentiment override once per pair: where its reservoir sits shapes whether any repair attempt in the scene is read as landing or as manipulation."
     }
   },
   "scripts": {
