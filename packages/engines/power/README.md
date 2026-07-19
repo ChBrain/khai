@@ -12,6 +12,7 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [legitimate](position_legitimate.md): position
 - [referent](position_referent.md): position
 - [expert](position_expert.md): position
+- [informational](position_informational.md): position
 
 See [sources and attribution](REFERENCES.md).
 

@@ -6,9 +6,9 @@ updated: "2026-06-29"
 
 ## Line of Work
 
-Power as **position**: the base from which a persona can move others. The domain models five expressions -- reward (provides what others want), coercive (can impose costs), legitimate (holds authority by role or norm), referent (is identified with and admired), and expert (holds knowledge others need) -- and what each demands of the persona who holds it.
+Power as **position**: the base from which a persona can move others. The domain models six expressions -- reward (provides what others want), coercive (can impose costs), legitimate (holds authority by role or norm), referent (is identified with and admired), expert (holds knowledge others need), and informational (holds content that changes the target on its own force) -- and what each demands of the persona who holds it.
 
-The spine is French and Raven's taxonomy of social power bases (1959), extended by Raven's revision (1965/1993) that separated informational from expert power and distinguished personal from impersonal forms. The five expressions model the five classical bases at their most dramaturgically useful; the engine holds the structural position, not the dynamics of how influence unfolds across the scene.
+The spine is French and Raven's taxonomy of social power bases (1959), extended by Raven's revision (1965/1993) that separated informational from expert power and distinguished personal from impersonal forms. The six expressions model Raven's full taxonomy at its most dramaturgically useful: the five classical bases, plus the sixth whose influence is socially independent -- it survives the influencer's departure because it rests on the content conveyed, not on the relationship. The engine holds the structural position, not the dynamics of how influence unfolds across the scene.
 
 ## Origin
 
@@ -40,3 +40,4 @@ Source to constraint, per file.
 - **[legitimate](position_legitimate.md)** (expression): The persona holds authority by role or norm; compliance rests on the shared belief that the persona has the right to direct. Anchored by French & Raven (1959) -- legitimate power; the domain-specificity constraint.
 - **[referent](position_referent.md)** (expression): Others identify with or admire the persona; influence flows through the desire to align. Anchored by French & Raven (1959) -- referent power; Yukl & Falbe (1991) -- referent power linked to commitment, not mere compliance.
 - **[expert](position_expert.md)** (expression): The persona holds knowledge or skill others need; influence flows through the asymmetry of competence. Anchored by French & Raven (1959) -- expert power; Raven (1965) -- distinction from informational power.
+- **[informational](position_informational.md)** (expression): The persona holds content that changes the target on its own force; the base is spent in the telling, and the change survives the persona's departure. Anchored by Raven (1965) -- informational power as the sixth base, socially independent change; Raven (1993) -- durability relative to the other bases.
