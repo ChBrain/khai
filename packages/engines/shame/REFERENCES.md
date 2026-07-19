@@ -10,7 +10,7 @@ Shame as **process**: how a persona appraises exposure against a social standard
 
 The spine is social appraisal theory applied to the self-referential emotions: shame, guilt, embarrassment, and humiliation are distinct appraisals of what was seen, who saw it, and whose standard was applied. Each produces a different action tendency -- collapse and hide, repair, recover, or rage.
 
-Once the appraisal lands, what the persona does with it is its own channel: Nathanson's Compass of Shame maps four coping scripts around two axes, accepting the verdict or minimizing it, turned on the self or on another, and Elison, Lennon and Pulos confirmed the four-pole structure holds up under measurement. How readily the whole engine fires, and how far the needle swings once it does, is the persona's own shame-proneness -- the same TOSCA instrument that measures guilt-proneness, read as a distinct trait. The humiliation warrant is fixed in this pass to Klein's power-mediated account, replacing a misattributed citation.
+Once the appraisal lands, what the persona does with it is its own channel: Nathanson's Compass of Shame maps four coping scripts around two axes, accepting the verdict or minimizing it, turned on the self or on another, and Elison, Lennon and Pulos confirmed the four-pole structure holds up under measurement. How readily the whole engine fires, and how far the needle swings once it does, is the persona's own shame-proneness -- the same TOSCA instrument that measures guilt-proneness, read as a distinct trait.
 
 ## Origin
 
