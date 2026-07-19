@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-envy",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "khai engine content, the envy domain: the upward comparison through which a persona reckons with another's superior good",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.20"
+    "@chbrain/khai-arch": "^0.1.22"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.17",
+    "@chbrain/khai-tests": "^0.1.29",
     "vitest": "^4.1.10"
   }
 }

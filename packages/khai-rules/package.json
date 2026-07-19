@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-rules",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "khai rule atoms — the pure, canon-agnostic validation mechanism. Each checker takes its contract as an argument and knows nothing about which types exist.",
   "type": "module",
   "main": "./index.mjs",

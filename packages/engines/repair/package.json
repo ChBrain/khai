@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-repair",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "khai engine content, the repair domain: what a relationship undergoes when rupture is addressed rather than abandoned, the account taken to castable resolution -- the forms it can arrive in, and the dyad's own reservoir for receiving it",
   "type": "module",
   "main": "./index.mjs",
@@ -100,10 +100,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.20"
+    "@chbrain/khai-arch": "^0.1.22"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.17",
+    "@chbrain/khai-tests": "^0.1.29",
     "vitest": "^4.1.10"
   }
 }

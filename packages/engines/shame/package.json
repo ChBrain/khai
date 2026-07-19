@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-shame",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "khai engine content, the shame domain: shame as process, how a persona appraises exposure against a social standard and the appraisal produces a response directed at the self or at the one who saw -- resolved by mode (embarrassment, humiliation), by the Compass of Shame the persona runs with the verdict once it lands, and by the persona's own shame-proneness dial.",
   "type": "module",
   "main": "./index.mjs",
@@ -100,10 +100,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.20"
+    "@chbrain/khai-arch": "^0.1.22"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.17",
+    "@chbrain/khai-tests": "^0.1.29",
     "vitest": "^4.1.10"
   }
 }
