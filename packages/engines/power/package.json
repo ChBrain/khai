@@ -32,7 +32,8 @@
       "coercive": "position_coercive.md",
       "legitimate": "position_legitimate.md",
       "referent": "position_referent.md",
-      "expert": "position_expert.md"
+      "expert": "position_expert.md",
+      "informational": "position_informational.md"
     },
     "requires": [
       {

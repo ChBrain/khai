@@ -21,6 +21,7 @@ describe("power: manifest", () => {
     expect(Object.keys(manifest.expressions).sort()).toEqual([
       "coercive",
       "expert",
+      "informational",
       "legitimate",
       "referent",
       "reward",
