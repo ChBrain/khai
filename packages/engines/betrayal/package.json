@@ -1,7 +1,7 @@
 {
   "name": "@chbrain/khai-engine-betrayal",
   "version": "0.1.1",
-  "description": "khai engine content, the betrayal domain: the sequence through which a persona reckons with a trust violation",
+  "description": "khai engine content, the betrayal domain: the sequence through which a persona reckons with a trust violation, cast to the kind of violation (infidelity, confidence, neglect, institutional) and the persona's own blindness dial",
   "type": "module",
   "main": "./index.mjs",
   "exports": {
@@ -24,13 +24,38 @@
   ],
   "khai": {
     "engine": "betrayal",
-    "tagline": "the sequence through which a persona reckons with a trust violation",
+    "tagline": "the sequence through which a persona reckons with a trust violation, cast to the kind of violation (infidelity, confidence, neglect, institutional) and the persona's own blindness dial",
     "type": "process",
     "members": [
       {
         "file": "process_betrayal.md",
         "type": "process",
         "parent": null
+      },
+      {
+        "file": "process_betrayal_infidelity.md",
+        "type": "process",
+        "parent": "process_betrayal.md"
+      },
+      {
+        "file": "process_betrayal_confidence.md",
+        "type": "process",
+        "parent": "process_betrayal.md"
+      },
+      {
+        "file": "process_betrayal_neglect.md",
+        "type": "process",
+        "parent": "process_betrayal.md"
+      },
+      {
+        "file": "process_betrayal_institutional.md",
+        "type": "process",
+        "parent": "process_betrayal.md"
+      },
+      {
+        "file": "position_blindness.md",
+        "type": "position",
+        "parent": "process_betrayal.md"
       },
       {
         "file": "process_discovery.md",
@@ -69,10 +94,10 @@
     ],
     "card": {
       "wire": "Attaches at Process. The root (process_betrayal.md) declares betrayal as a reckoning process: the persona moves through discovery, disorientation, reckoning, and resolution -- not necessarily in sequence, and not necessarily to completion.",
-      "issue": "Four passes a persona may run: discovery (the violation is learned), disorientation (the prior map of the relationship is wrong), reckoning (what to do with the knowledge), and resolution (a new relationship to the person and the fact).",
+      "issue": "Four passes a persona may run: discovery (the violation is learned), disorientation (the prior map of the relationship is wrong), reckoning (what to do with the knowledge), and resolution (a new relationship to the person and the fact). The violation itself arrives in kinds: infidelity (the bond's own exclusivity given to another), confidence (the entrusted thing carried out of the room), and neglect (the support that did not come) -- and, on a different axis, who betrayed: institutional (the depended-upon institution rather than the depended-upon person). Against all of them stands the blindness dial: how much of the violation the persona could see before discovery forced it.",
       "require": "The law is declared once in the project's Instructions Knowledge chapter, linking the root. Each persona links, under Projection, the pass it is currently in.",
       "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real betrayal pass. Whether the pass is true to the persona's situation is semantic, not mechanical.",
-      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Give the persona its current pass under Projection. The persona may move across passes as the play proceeds."
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Cast the kind of violation the persona is reckoning with (infidelity, confidence, neglect, or institutional), and set where the persona's blindness dial sat before discovery. Then give the persona its current pass under Projection. The persona may move across passes as the play proceeds."
     }
   },
   "scripts": {

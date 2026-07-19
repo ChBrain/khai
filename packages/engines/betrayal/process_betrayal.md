@@ -42,3 +42,7 @@ What the persona built on the trustworthy relationship must now be rebuilt on a 
 The process runs through discovery (learning what happened), disorientation (losing the prior map of the relationship), reckoning (deciding what to do with the knowledge), and resolution (establishing a new relationship to the person and the fact).
 The passes do not resolve in a straight line; the persona may move back to disorientation from reckoning as the reckoning makes the full extent of the violation visible.
 What ends the process is not forgetting but a stable account: [discovery](process_discovery.md), [disorientation](process_disorientation.md), [reckoning](process_reckoning.md), [resolution](process_resolution.md).
+
+The violation itself arrives in kinds: [infidelity](process_betrayal_infidelity.md) (the bond's own exclusivity given to another), [confidence](process_betrayal_confidence.md) (the entrusted thing carried out of the room), and [neglect](process_betrayal_neglect.md) (the support that did not come) sit on what was betrayed; [institutional](process_betrayal_institutional.md) betrayal sits on a different axis, who betrayed -- the depended-upon institution rather than the depended-upon person.
+Against all of them stands the persona's own [blindness](position_blindness.md), the dial that decides how much of the violation could be seen before discovery forced it.
+The lie as such -- the deception that may accompany any of these kinds -- is the deception engine's; betrayal reads what the lie did to the bond, not the lie itself.
