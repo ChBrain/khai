@@ -19,8 +19,10 @@ describe("capital: manifest", () => {
     expect(manifest.type).toBe("position");
     expect(manifest.anchor).toBe("position_capital.md");
     expect(Object.keys(manifest.expressions).sort()).toEqual([
+      "consecrated",
       "converted",
       "dominant",
+      "downclassed",
       "marginalized",
       "mismatched",
       "rising",
