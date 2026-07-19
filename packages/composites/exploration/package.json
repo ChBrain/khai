@@ -1,0 +1,81 @@
+{
+  "name": "@chbrain/khai-composite-exploration",
+  "version": "0.1.0",
+  "description": "khai composite content, the exploration domain: the transition Hutt drew between exploration and play -- the curiosity-driven investigation of the novel (what does this do?) giving way to the play made of it (what can I do with this?) -- and the two states where the transition stalls, the investigation that never becomes play and the play with no investigation under it, read whole across the atom engines it depends on.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/exploration"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "exploration",
+    "tagline": "Exploration as composite: the transition Hutt drew between the curiosity-driven investigation of the novel (what does this object do?) and the play made of it once it is understood (what can I do with this?) -- and the drama lives where the transition stalls, the investigation that never crosses into play and the play run over ground never investigated.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_exploration.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "position_exploration_arrested.md",
+        "type": "position",
+        "parent": "process_exploration.md"
+      },
+      {
+        "file": "position_exploration_rote.md",
+        "type": "position",
+        "parent": "process_exploration.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over two atoms it declares as dependencies. The root (process_exploration.md) reads the passage Hutt drew: the curiosity engine's pull toward the unknown (the investigation, what does this do?) giving way to the play-mode engine's mode of engagement (the play made of it, what can I do with this?) once the novel is understood. The composite adds no third stance, only the read of the transition between the disposition and the mode the atoms already hold.",
+      "issue": "Two bridge states the atoms cannot hold alone, the two ways the transition stalls. Arrested: the investigation never crosses into play -- the unknown stays a problem to solve, held under a curiosity that will not release into the ludic; the persona who must keep asking what it does and can never ask what they can do with it. Rote: the play runs over ground never investigated -- the ludic motions gone through with no live curiosity under them, discovery replaced by repetition, play that has forgotten it was ever exploration.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the transition read runs wherever its atoms are cast. The link, advisory: a persona arrested short of play or playing by rote may link the bridge under Projection, and the audit surfaces the ones left unnamed.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production earns the transition -- shows the investigation genuinely giving way to play, or genuinely failing to -- rather than collapsing curiosity and play into one undifferentiated interest is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its two atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the pull from the curiosity engine (what draws the persona to the unknown) and the mode from the play-mode engine (how they engage once inside), then read the transition: investigation giving way to play is the passage working; investigation that never releases is arrested; play with no investigation under it is rote. Read the production in the movement between curiosity and play, never in either stance alone."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-engine-curiosity": "^0.1.1",
+    "@chbrain/khai-engine-play-mode": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.30",
+    "vitest": "^4.1.10"
+  }
+}
