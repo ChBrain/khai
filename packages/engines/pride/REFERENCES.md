@@ -28,10 +28,10 @@ Self-conscious emotion research and the attribution theory of pride, applied dir
 
 What the engine refuses to model, and to whom it delegates.
 
-- **The negative self-conscious readings**: The engine models pride, the positive self-evaluation, not shame (a global self read as exposed and deficient) or guilt (a specific act read as wrong). Those are **delegated to the shame engine** and to a future guilt engine.
+- **The negative self-conscious readings**: The engine models pride, the positive self-evaluation, not shame (a global self read as exposed and deficient) or guilt (a specific act read as wrong). Those are **delegated to the shame and guilt engines**.
 - **The felt affect underneath**: The engine models the appraisal specific to a standard met and credited to the self, not the underlying felt charge any appraisal produces. General felt emotion is **delegated to the emotion engine**.
 - **The standing the win buys, and the routes' own rank structure**: The engine models the persona's own read of the success, and the emotion that fuels reaching for rank -- authentic pride toward prestige, hubristic pride toward dominance -- not the rank, deference, or position that win earns in the group's eyes, nor the ladder, the moves, or the deference order those routes produce. That is **delegated to the status and hierarchy engines**.
-- **A stable trait of self-regard**: The engine models the discrete appraisal an event generates, not the persona's persisting baseline of self-worth. That is **delegated to a future self-esteem engine** (a position, not a process).
+- **A stable trait of self-regard**: The engine models the discrete appraisal an event generates, not the persona's persisting baseline of self-worth. That is **delegated to the self-esteem engine** (a position, not a process).
 
 ## Encoding
 
