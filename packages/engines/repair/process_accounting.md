@@ -42,4 +42,6 @@ The accounting must hold the responsible party's full agency in what happened wh
 
 The accounting phase may require multiple passes; the first account is rarely complete.
 The harmed party may identify gaps, challenge the account's framing, or request detail that the responsible party has not offered.
+The account arrives in a form that decides the arc: [concession](process_accounting_concession.md) owns it whole, [excuse](process_accounting_excuse.md) deflects the agency, [justification](process_accounting_justification.md) disputes the injury.
+An account refused never arrives; that dodge is the guilt engine's refusal to run.
 When the account is received as sufficient -- not as correct in every particular, but as honest and adequate -- the move into [restitution](process_restitution.md) becomes possible.
