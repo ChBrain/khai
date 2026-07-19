@@ -40,3 +40,4 @@ Change the act next time and the credit moves with it -- the persona knows the w
 The persona's display reads as earned confidence, not entitlement -- the posture rises, but it stays open, reaching outward to whoever helped and toward the next thing to try.
 This is the pride that tracks genuine self-worth and pulls the persona toward others, prosocial rather than defensive.
 Where the same success gets reattributed from the act to the self entire, this reading tips into [hubristic pride](process_hubristic_pride.md).
+This is the facet that fuels the [prestige](process_route_prestige.md) route to standing: rank offered for competence shown, not taken.
