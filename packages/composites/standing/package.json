@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-composite-standing",
+  "version": "0.1.0",
+  "description": "khai composite content, the standing domain: one persona's rank read at four altitudes at once -- field capital, structural title, deference order, compliance base -- with the transactional moves negotiating between them, read whole across the atom engines it depends on.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/standing"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "standing",
+    "tagline": "Standing as composite: one persona ranked at four altitudes at once -- the field's read of their capital, the structure's assigned title, the scene's deference order, the base their influence moves on -- and the drama lives in the disagreements, because the altitudes are separate systems that need not agree and every misalignment is a standing scene.",
+    "type": "position",
+    "members": [
+      {
+        "file": "position_standing.md",
+        "type": "position",
+        "parent": null
+      },
+      {
+        "file": "position_standing_misalignment.md",
+        "type": "position",
+        "parent": "position_standing.md"
+      },
+      {
+        "file": "process_standing_conversion.md",
+        "type": "process",
+        "parent": "position_standing.md"
+      },
+      {
+        "file": "process_standing_enactment.md",
+        "type": "process",
+        "parent": "position_standing.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position, over five atoms it declares as dependencies. The root (position_standing.md) reads standing as four ranks held at once: the field's read of the persona's capital (capital), the place a structure assigns (hierarchy), the scene's deference order (status), and the base their influence moves on (power), with the transactional move layer (status-move) negotiating between them scene by scene. The composite adds no fifth rank, only the read across the four the atoms already hold.",
+      "issue": "One bridge state and two bridge motions the atoms cannot stage alone. Misalignment: the held state where the altitudes disagree -- the titled superior nobody defers to, the expert with no title, the moneyed persona the field will not consecrate -- and power without status as the destructive corner. Conversion: rank leaking from one altitude into another, resources hardening into deference, titles minting legitimacy, consecration laundering capital into rank. Enactment: the moment-by-moment moves accumulating into the deference order, rank performed into being or performed away.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the four-rank read runs wherever its atoms are cast. The link, advisory: a persona living on a misalignment or mid-conversion may link the bridge under Projection, and the audit surfaces the ones left unnamed.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's misalignments are staged rather than flattened into one master rank is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its five atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Cast each altitude from its atom as usual -- capital configuration, title position, entry rank, power base, habitual move -- then stage the disagreements: which title is not deferred to, which resource is quietly becoming rank, which persona is performing a standing no altitude has granted. Read the production across the altitudes, never in any single engine's verdict."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-engine-capital": "^0.1.2",
+    "@chbrain/khai-engine-hierarchy": "^0.2.0",
+    "@chbrain/khai-engine-power": "^0.1.2",
+    "@chbrain/khai-engine-status": "^0.1.1",
+    "@chbrain/khai-engine-status-move": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.30",
+    "vitest": "^4.1.10"
+  }
+}
