@@ -18,7 +18,7 @@ describe("betrayal: manifest", () => {
   it("declares the betrayal process engine", () => {
     expect(manifest.engine).toBe("betrayal");
     expect(manifest.type).toBe("process");
-    expect(manifest.members).toHaveLength(5);
+    expect(manifest.members).toHaveLength(10);
     expect(manifest.members.find((m) => m.parent === null).file).toBe("process_betrayal.md");
   });
 
