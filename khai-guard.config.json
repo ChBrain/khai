@@ -145,6 +145,7 @@
       "external",
       "high",
       "internalization",
+      "liminality",
       "low",
       "loyalty",
       "mastery",
@@ -153,6 +154,7 @@
       "preparation",
       "pride",
       "recognition",
+      "repair",
       "resolution",
       "return",
       "reward",
@@ -162,6 +164,6 @@
       "trickster",
       "trust"
     ],
-    "grandfathered": ["ascending", "dominant", "liminality", "repair"]
+    "grandfathered": ["ascending", "dominant"]
   }
 }
