@@ -1,7 +1,7 @@
 {
   "name": "@chbrain/khai-engine-hierarchy",
   "version": "0.1.1",
-  "description": "khai engine content, the hierarchy domain: hierarchy as position, where a persona stands right now -- the rank the room reads on them in the field they are in.",
+  "description": "khai engine content, the hierarchy domain: hierarchy as position, the place a structure assigns a persona in its formal order -- superior, peer, subordinate.",
   "type": "module",
   "main": "./index.mjs",
   "exports": {
@@ -24,16 +24,10 @@
   ],
   "khai": {
     "engine": "hierarchy",
-    "tagline": "Hierarchy as position: where a persona stands right now -- the rank the room reads on them when they enter the field they are in.",
+    "tagline": "Hierarchy as position: the place a structure assigns a persona in its formal order -- who directs, who answers, who stands level.",
     "type": "position",
     "anchor": "position_hierarchy.md",
     "expressions": {
-      "dominant": "position_dominant.md",
-      "established": "position_established.md",
-      "ascending": "position_ascending.md",
-      "declining": "position_declining.md",
-      "excluded": "position_excluded.md",
-      "misplaced": "position_misplaced.md",
       "superior": "position_superior.md",
       "peer": "position_peer.md",
       "subordinate": "position_subordinate.md"
@@ -49,15 +43,15 @@
         "on": "persona",
         "section": "Projection",
         "link": "expression",
-        "level": "fail"
+        "level": "audit"
       }
     ],
     "card": {
-      "wire": "Attaches at Position. The anchor (position_hierarchy.md) declares standing as a rank the field assigns (not a trait the persona owns): a read produced by the persona's capital configuration and by the title, if any, the structure assigns. The law makes every persona carry a read.",
-      "issue": "Nine expressions a persona may hold. Six capital positions read what the room makes of the persona's capital in this field -- dominant, established, ascending, declining, excluded, misplaced -- and three title positions name what a structure assigns -- superior, peer, subordinate. Each is a full position file the build composes onto the anchor; the rank is field-relative, so the same persona reads differently in different rooms.",
-      "require": "Two altitudes must hold. The law: declared once in the project's Instructions Knowledge chapter, so the rank read holds system-wide and no persona enters a field unranked. The link: each persona carries its read under Projection -- at least one capital position, plus a title position where the field assigns title.",
-      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real hierarchy position under Projection. Whether the read is true to the field and the scene is semantic, taught and reviewed, never failed by the suite.",
-      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the persona its read under Projection: the capital position the current field reads on it, and the title position the structure assigns, each carrying the anchor upward. The field is named by the scene; read the rank in the first beat, hold it under every exchange."
+      "wire": "Attaches at Position. The anchor (position_hierarchy.md) declares the assigned place: a rank fixed by the structure before the scene -- who directs whom, who answers to whom, who stands level -- held whether or not the persona could re-earn it today. What the room reads from capital is the capital engine's; the deference order is the status engine's; this engine holds only the assignment.",
+      "issue": "Three expressions a persona may hold, the title grammar any structure assembles from: superior (holds authority by the structure's rule), peer (equal rank, no line either way), subordinate (subject to another's authority by title). Each is a full position file the build composes onto the anchor; the same persona is superior in one structure and subordinate in the next.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so assigned rank is read wherever a structure appears. The link, advisory: a persona standing inside a structure links its title position under Projection, and the audit surfaces the placed personas left unwired -- personas outside any structure carry no title, which is not a fault.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and any linked expression is a real member. Whether the assignment is true to the play's structures, and whether the friction between title and the rest of standing is staged rather than ignored, is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Name the play's structures (the org, the chain of command, the family constitution), then give each persona inside one its title position under Projection. Cast the rest of standing from the neighbouring engines -- capital for the room's read, status for the deference order, power for the base -- and stage the disagreements between them; this engine holds only the assigned place."
     }
   },
   "scripts": {

@@ -26,7 +26,7 @@ describe("hierarchy: manifest", () => {
     expect(manifest.engine).toBe("hierarchy");
     expect(manifest.type).toBe("position");
     expect(manifest.anchor).toBe("position_hierarchy.md");
-    expect(Object.keys(manifest.expressions)).toHaveLength(9);
+    expect(Object.keys(manifest.expressions)).toHaveLength(3);
   });
 
   it("declares both enforceable wiring altitudes, each at its level", () => {
@@ -42,7 +42,7 @@ describe("hierarchy: manifest", () => {
       on: "persona",
       section: "Projection",
       link: "expression",
-      level: "fail",
+      level: "audit",
     });
   });
 });
