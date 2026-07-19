@@ -1,0 +1,88 @@
+{
+  "name": "@chbrain/khai-composite-moral-account",
+  "version": "0.1.0",
+  "description": "khai composite content, the moral-account domain: one wrong, one account, three ledgers -- the transgressor's (guilt), the dyad's (repair), and the wronged party's (forgiveness, betrayal) -- read whole across the atom engines it depends on.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/moral-account"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "moral-account",
+    "tagline": "The moral account as composite: one wrong opens one account held in three ledgers at once, the transgressor's felt debt (guilt), the dyad's spoken account (repair), and the wronged party's grievance and reckoning (forgiveness, betrayal), and the drama lives where the ledgers refuse to agree.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_moral_account.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_account_offered.md",
+        "type": "process",
+        "parent": "process_moral_account.md"
+      },
+      {
+        "file": "process_account_received.md",
+        "type": "process",
+        "parent": "process_moral_account.md"
+      },
+      {
+        "file": "process_account_closed.md",
+        "type": "process",
+        "parent": "process_moral_account.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "plot",
+        "section": "Tension",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over four atoms it declares as dependencies. The root (process_moral_account.md) reads one wrong as one account held in three ledgers at once: the transgressor's felt debt is the guilt engine's, the dyad's spoken account is the repair engine's, and the wronged party's grievance and reckoning are the forgiveness and betrayal engines'. The composite adds no fourth ledger; it wires the seams the atoms refuse to cross.",
+      "issue": "Three bridges, each a handoff the atoms cannot stage alone. Offered: the transgressor's exit road decides which account form reaches the dyad's door, or whether any does. Received: the account lands against the wronged party's stance, blindness, and the dyad's stored regard, none of which the account-giver controls. Closed: the three ledgers close separately or not at all, and every part-closed state, forgiven but unrepaired, repaired but unforgiven, paid but never received, is a standing dramatic engine.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the three-ledger read runs wherever its atoms are cast. The link, advisory: a plot may link under Tension the bridge it stages, and the audit surfaces where a play stages a handoff without naming it.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's three ledgers genuinely refuse to agree, rather than closing in unison like a fable, is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the corners from the atoms as usual, the transgressor from guilt, the dyad from repair, the wronged party from forgiveness and betrayal, then stage the bridges: which exit road carries the account to the door, what it lands against, and which ledgers close. Read the production in the disagreements between ledgers, never in any single engine's verdict."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.21",
+    "@chbrain/khai-engine-betrayal": "^0.1.1",
+    "@chbrain/khai-engine-forgiveness": "^0.1.1",
+    "@chbrain/khai-engine-guilt": "^0.1.1",
+    "@chbrain/khai-engine-repair": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.28",
+    "vitest": "^4.1.10"
+  }
+}
