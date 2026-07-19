@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-hierarchy",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "khai engine content, the hierarchy domain: hierarchy as position, the place a structure assigns a persona in its formal order -- superior, peer, subordinate.",
   "type": "module",
   "main": "./index.mjs",
@@ -62,7 +62,7 @@
     "@chbrain/khai-arch": "^0.1.8"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.17",
+    "@chbrain/khai-tests": "^0.1.30",
     "vitest": "^4.1.10"
   }
 }
