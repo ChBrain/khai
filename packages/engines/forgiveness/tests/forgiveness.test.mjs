@@ -21,7 +21,7 @@ describe("forgiveness: conforms to the canon", () => {
 describe("forgiveness: manifest", () => {
   it("declares the forgiveness engine and its anchor", () => {
     expect(manifest.engine).toBe("forgiveness");
-    expect(manifest.members).toHaveLength(5);
+    expect(manifest.members).toHaveLength(10);
     const root = manifest.members.find((m) => m.parent === null);
     expect(root.file).toBe("process_forgiveness.md");
   });

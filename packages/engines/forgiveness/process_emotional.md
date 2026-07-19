@@ -42,3 +42,4 @@ The press of the warmer emotion against the colder one is what does the work.
 The persona no longer carries the wrong as a live charge.
 This release reaches deeper than conduct and is the one the body registers -- the rumination quiets, the grip loosens, the cost of holding is paid down rather than held open.
 It is slower and less willed than [decisional](process_decisional.md) forgiveness, and it does not require that the relationship be rebuilt; that remains a separate, bilateral question.
+Enright's process model stages this inward work as uncovering, decision, work, and deepening -- staged therapy for one persona's turn, held here as prose, below this engine's casting granularity.

@@ -42,4 +42,5 @@ The press of the debt against that cost is the weight that forgiveness sets down
 The persona has stopped collecting, or has refused to.
 What changes is the persona's stance toward the one who wronged them, not the fact of the wrong; the wrong is not erased, it is released or kept.
 The read resolves into [decisional](process_decisional.md), [emotional](process_emotional.md), [withheld](process_withheld.md), or [self](process_self.md), by what is given up and who is owed.
+Every form moves through the same [stance](position_stance.md) -- avoidant, vengeful, or benevolent -- and how readily it moves at all is set by the persona's own [forgivingness](position_forgivingness.md).
 Whether the relationship is rebuilt is a separate question, and a bilateral one; when a new wrong lands, the process returns here.
