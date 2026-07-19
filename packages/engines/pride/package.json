@@ -1,7 +1,7 @@
 {
   "name": "@chbrain/khai-engine-pride",
   "version": "0.1.1",
-  "description": "khai engine content, the pride domain: pride as process, how a persona reads a standard met as a positive evaluation of the self, and the appraisal becomes a display and a drive -- authentic or hubristic.",
+  "description": "khai engine content, the pride domain: pride as process, how a persona reads a standard met as a positive evaluation of the self, and the appraisal becomes an innate display, a drive -- authentic or hubristic -- and the status route each facet fuels.",
   "type": "module",
   "main": "./index.mjs",
   "exports": {
@@ -24,7 +24,7 @@
   ],
   "khai": {
     "engine": "pride",
-    "tagline": "Pride as process: how a persona reads a standard met as a positive evaluation of the self, and the appraisal becomes a display and a drive -- toward the act repeated (authentic) or toward the self defended (hubristic).",
+    "tagline": "Pride as process: how a persona reads a standard met as a positive evaluation of the self, and the appraisal becomes an innate display, a drive -- toward the act repeated (authentic) or toward the self defended (hubristic) -- and the status route each facet fuels, all read against the persona's own disposition.",
     "type": "process",
     "members": [
       {
@@ -33,13 +33,33 @@
         "parent": null
       },
       {
+        "file": "process_pride_display.md",
+        "type": "process",
+        "parent": "process_pride.md"
+      },
+      {
         "file": "process_authentic_pride.md",
         "type": "process",
         "parent": "process_pride.md"
       },
       {
+        "file": "process_route_prestige.md",
+        "type": "process",
+        "parent": "process_authentic_pride.md"
+      },
+      {
         "file": "process_hubristic_pride.md",
         "type": "process",
+        "parent": "process_pride.md"
+      },
+      {
+        "file": "process_route_dominance.md",
+        "type": "process",
+        "parent": "process_hubristic_pride.md"
+      },
+      {
+        "file": "position_pride_disposition.md",
+        "type": "position",
         "parent": "process_pride.md"
       }
     ],
@@ -59,10 +79,10 @@
     ],
     "card": {
       "wire": "Attaches at Process. The root (process_pride.md) declares pride as an appraisal: a standard is met, the credit lands on the self, and the read becomes a display and a drive.",
-      "issue": "Two facets a persona may run: authentic pride, where the credit lands on the act ('I did well'), and hubristic pride, where the credit lands on the self entire ('I am great'). Both are composed under the root, so the display follows the attribution. They are distinct readings of one success, and the read can retip.",
+      "issue": "Two facets a persona may run: authentic pride, where the credit lands on the act ('I did well'), and hubristic pride, where the credit lands on the self entire ('I am great'). Both are composed under the root, so the display follows the attribution. The display itself is innate and involuntary, biologically prepared rather than learned, and does not distinguish the facets on its own -- attribution has to be read from words and conduct. Each facet fuels a distinct status route: authentic pride toward prestige, rank freely conferred for competence shown; hubristic pride toward dominance, rank taken and held by threat. A trait-level disposition sets how readily the whole engine fires and which facet it habitually resolves toward. They are distinct readings of one success, and the read can retip.",
       "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the specific facet it runs in the scene.",
       "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real facet. Whether the attribution -- act or self -- is true to the standard met is semantic, taught and reviewed, never failed by the suite.",
-      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its read under Projection, linking authentic or hubristic. Read it in the first beat; the room enacts it, never narrates it."
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its read under Projection, linking authentic or hubristic, the route that facet fuels, and the persona's disposition. Read the display in the first beat regardless of facet; the room enacts it, never narrates it."
     }
   },
   "scripts": {

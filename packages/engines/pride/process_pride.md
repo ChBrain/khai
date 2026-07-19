@@ -38,6 +38,7 @@ The feeling is the two landing together -- and how they land, on the act done or
 
 ## Echo
 
-The persona rises -- chest lifted, posture expanded, the recognizable pride display -- and is now carrying the win outward to be seen.
+The persona rises -- chest lifted, posture expanded, [the recognizable pride display](process_pride_display.md) -- and is now carrying the win outward to be seen.
 The read resolves into one of two facets: [authentic pride](process_authentic_pride.md), where the credit lands on the act, or [hubristic pride](process_hubristic_pride.md), where the credit lands on the self entire.
 When the attribution shifts, the feeling returns here to be read again.
+How readily this appraisal fires at all, and which facet it defaults toward, is the persona's own [pride disposition](position_pride_disposition.md).
