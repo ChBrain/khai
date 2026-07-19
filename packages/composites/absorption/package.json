@@ -1,0 +1,82 @@
+{
+  "name": "@chbrain/khai-composite-absorption",
+  "version": "0.1.0",
+  "description": "khai composite content, the absorption domain: the chain where attention locks single-pointed, a challenge-skill match turns the lock into a self-sustaining merge, and felt time dissolves -- and the two states where the chain breaks register, the counterfeit lock that never merges and the capture that shatters a real one, read whole across the atom engines it depends on.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/absorption"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "absorption",
+    "tagline": "Absorption as composite: a chain across three engines -- attention locks the spotlight single-pointed, a challenge-skill match turns the lock into a self-sustaining merge, and felt time dissolves -- and the drama lives where the chain breaks register, the lock that never merges and drags instead, and the capture that shatters a merge already running.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_absorption.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "position_absorption_counterfeit.md",
+        "type": "position",
+        "parent": "process_absorption.md"
+      },
+      {
+        "file": "process_absorption_break.md",
+        "type": "process",
+        "parent": "process_absorption.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over three atoms it declares as dependencies. The root (process_absorption.md) reads absorption as a chain, not a state: the attention engine locks the spotlight single-pointed, the flow engine's challenge-skill match turns that lock into a self-sustaining merge, and the time-perception engine's felt duration dissolves from the inside. The composite adds no fourth link, only the read of the chain firing in register and breaking out of it.",
+      "issue": "Two bridges the atoms cannot hold alone, the two ways the chain breaks register. Counterfeit: attention locks but no match forms, so the merge never comes and time drags instead of dissolving -- the doomscroll, the vigilant watch, rumination; rapt from outside, trapped inside. Break: a bottom-up capture shatters a merge already running, collapsing action-awareness back apart and dumping the persona into clock time all at once.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the chain read runs wherever its atoms are cast. The link, advisory: a persona held in a counterfeit lock or thrown by a break may link the bridge under Projection, and the audit surfaces the ones left unnamed.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production distinguishes real absorption from its counterfeit -- shows the locked-but-dragging state as the trap it is rather than a virtue of focus -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its three atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the lock from the attention engine (which mode holds the beam), the match from the flow engine (is challenge level with skill), and the felt duration from the time-perception engine, then read the chain: locked and matched and time gone is real absorption; locked and unmatched and time heavy is the counterfeit; a capture mid-merge is the break. Read the production across the three links, never in the lock alone."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-engine-attention": "^0.1.1",
+    "@chbrain/khai-engine-flow": "^0.1.1",
+    "@chbrain/khai-engine-time-perception": "^0.2.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.30",
+    "vitest": "^4.1.10"
+  }
+}
