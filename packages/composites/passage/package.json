@@ -1,0 +1,81 @@
+{
+  "name": "@chbrain/khai-composite-passage",
+  "version": "0.1.0",
+  "description": "khai composite content, the passage domain: a rite of passage as two clocks at once -- the collective ceremony and the individual crossing -- and the drama of their phase relation, when the rite runs ahead of the crossing or the crossing ahead of the rite, read whole across the atom engines it depends on.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/passage"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "passage",
+    "tagline": "Passage as composite: a rite of passage is two clocks at once -- the collective ceremony that moves through separation, threshold, and re-entry, and the individual crossing that must actually happen inside a persona -- and the drama lives in their phase relation, when the rite completes over a persona who has not crossed, or a persona crosses with no rite to confer it.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_passage.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "position_passage_hollow.md",
+        "type": "position",
+        "parent": "process_passage.md"
+      },
+      {
+        "file": "position_passage_unmarked.md",
+        "type": "position",
+        "parent": "process_passage.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over two atoms it declares as dependencies. The root (process_passage.md) reads a rite of passage as two clocks: the collective ceremony the ritual engine holds -- separation, the liminal phase, effervescence, incorporation -- and the individual crossing the liminality engine holds -- threshold, suspension, emergence. The composite adds no third clock, only the read of the phase relation between the two the atoms already hold.",
+      "issue": "Two bridge states the atoms cannot hold alone, the two ways the clocks fall out of phase. Hollow: the rite runs ahead of the crossing -- incorporation is performed, the collective declares the persona changed, but the persona is still suspended in the between; the graduation that changed nothing, the ceremony done to an absent self. Unmarked: the crossing runs ahead of the rite -- the persona has genuinely emerged, but no ceremony conferred or witnessed it; the transformation nobody ratified, the modern passage sped through unmarked.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the two-clock read runs wherever its atoms are cast. The link, advisory: a persona living in a hollow or unmarked passage may link the bridge under Projection, and the audit surfaces the ones left unnamed.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production earns the phase gap -- shows the rite and the crossing genuinely out of step rather than collapsing them into one moment -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its two atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the collective clock from the ritual engine (which phase the ceremony is in) and the individual clock from the liminality engine (which threshold state the persona inhabits), then read the phase relation: are they locked, is the rite ahead (hollow), is the crossing ahead (unmarked). Read the production in the gap between the two clocks, never in either engine alone."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-engine-liminality": "^0.1.1",
+    "@chbrain/khai-engine-ritual": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.30",
+    "vitest": "^4.1.10"
+  }
+}
