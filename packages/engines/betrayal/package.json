@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-betrayal",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "khai engine content, the betrayal domain: the sequence through which a persona reckons with a trust violation, cast to the kind of violation (infidelity, confidence, neglect, institutional) and the persona's own blindness dial",
   "type": "module",
   "main": "./index.mjs",
@@ -105,10 +105,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.20"
+    "@chbrain/khai-arch": "^0.1.22"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.17",
+    "@chbrain/khai-tests": "^0.1.29",
     "vitest": "^4.1.10"
   }
 }

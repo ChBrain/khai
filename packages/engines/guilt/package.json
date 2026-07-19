@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-guilt",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "khai engine content, the guilt domain: guilt as process, the transgressor's whole side of the account -- the crossing in kinds, the weight in grades, the disposition, and the paying or the dodging of what is owed.",
   "type": "module",
   "main": "./index.mjs",
@@ -130,10 +130,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.21"
+    "@chbrain/khai-arch": "^0.1.22"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.28",
+    "@chbrain/khai-tests": "^0.1.29",
     "vitest": "^4.1.10"
   }
 }

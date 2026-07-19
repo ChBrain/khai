@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-self-conscious",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the self-conscious domain: one appraisal of the self against a standard, two valences and one attribution axis -- act or whole self -- yielding guilt, shame, authentic pride, and hubris, read whole across the atom engines it depends on.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,13 +75,13 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.21",
-    "@chbrain/khai-engine-guilt": "^0.1.1",
-    "@chbrain/khai-engine-pride": "^0.1.1",
-    "@chbrain/khai-engine-shame": "^0.1.1"
+    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-engine-guilt": "^0.1.2",
+    "@chbrain/khai-engine-pride": "^0.1.2",
+    "@chbrain/khai-engine-shame": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.28",
+    "@chbrain/khai-tests": "^0.1.29",
     "vitest": "^4.1.10"
   }
 }
