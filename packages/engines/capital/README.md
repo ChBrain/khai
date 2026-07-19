@@ -8,8 +8,10 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 
 - [capital](position_capital.md): position (anchor)
 - [dominant](position_dominant.md): position
+- [consecrated](position_consecrated.md): position
 - [converted](position_converted.md): position
 - [rising](position_rising.md): position
+- [downclassed](position_downclassed.md): position
 - [marginalized](position_marginalized.md): position
 - [mismatched](position_mismatched.md): position
 
