@@ -40,3 +40,4 @@ Remove the act and the credit still stands, because it was never pinned to the a
 The persona's display reads as arrogance -- the posture rises and stays up, dominance sought over warmth, prickly to challenge, the standing itself treated as the prize rather than the doing.
 This is the pride that tracks arrogance, dominance-seeking, and narcissism rather than self-worth.
 Where the credit narrows back from the self to the specific act done, this reading tips into [authentic pride](process_authentic_pride.md).
+This is the facet that fuels the [dominance](process_route_dominance.md) route to standing: rank held by threat, not offered.

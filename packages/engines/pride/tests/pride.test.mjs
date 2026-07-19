@@ -25,7 +25,7 @@ describe("pride: manifest", () => {
   it("declares the pride process engine", () => {
     expect(manifest.engine).toBe("pride");
     expect(manifest.type).toBe("process");
-    expect(manifest.members).toHaveLength(3);
+    expect(manifest.members).toHaveLength(7);
     expect(manifest.members.find((m) => m.parent === null).file).toBe("process_pride.md");
   });
 
