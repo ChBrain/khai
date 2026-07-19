@@ -141,12 +141,15 @@
       "contagion",
       "emotional",
       "envy",
+      "exploratory",
       "external",
       "high",
+      "internalization",
       "low",
       "loyalty",
       "mastery",
       "persuasion",
+      "planning",
       "preparation",
       "pride",
       "recognition",
@@ -156,17 +159,9 @@
       "searching",
       "self",
       "shadow",
-      "trickster"
-    ],
-    "grandfathered": [
-      "ascending",
-      "dominant",
-      "exploratory",
-      "internalization",
-      "liminality",
-      "planning",
-      "repair",
+      "trickster",
       "trust"
-    ]
+    ],
+    "grandfathered": ["ascending", "dominant", "liminality", "repair"]
   }
 }
