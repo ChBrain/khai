@@ -25,7 +25,7 @@ The persona holds a capital configuration: some amount of economic capital (mone
 
 ## Orders
 
-The position demands that the persona act in accordance with what the field rewards. Dominant field positions come with obligations to perform distinction; converted positions demand the translation of one form into another; rising positions demand the acquisition of forms the field does not yet grant them; marginalized positions demand navigation of a field that offers few footholds; mismatched positions demand either the conversion of capital from an adjacent field or the patient accumulation of the forms this field recognises.
+The position demands that the persona act in accordance with what the field rewards. Dominant field positions come with obligations to perform distinction; consecrated positions demand that rank be embodied, never argued; converted positions demand the translation of one form into another; rising positions demand the acquisition of forms the field does not yet grant them; downclassed positions demand the husbanding of a recognition the substance no longer backs; marginalized positions demand navigation of a field that offers few footholds; mismatched positions demand either the conversion of capital from an adjacent field or the patient accumulation of the forms this field recognises.
 
 ## Loses
 
