@@ -1,7 +1,7 @@
 {
   "name": "@chbrain/khai-engine-shame",
   "version": "0.1.1",
-  "description": "khai engine content, the shame domain: shame as process, how a persona appraises exposure against a social standard and the appraisal produces a response directed at the self or at the one who saw.",
+  "description": "khai engine content, the shame domain: shame as process, how a persona appraises exposure against a social standard and the appraisal produces a response directed at the self or at the one who saw -- resolved by mode (embarrassment, humiliation), by the Compass of Shame the persona runs with the verdict once it lands, and by the persona's own shame-proneness dial.",
   "type": "module",
   "main": "./index.mjs",
   "exports": {
@@ -24,7 +24,7 @@
   ],
   "khai": {
     "engine": "shame",
-    "tagline": "Shame as process: how a persona appraises exposure against a social standard, and the appraisal becomes a response directed at the self or at the one who saw -- embarrassment, or humiliation; where the verdict lands on the act instead of the self, the read is the guilt engine's.",
+    "tagline": "Shame as process: how a persona appraises exposure against a social standard, and the appraisal becomes a response directed at the self or at the one who saw -- embarrassment, or humiliation; where the verdict lands on the act instead of the self, the read is the guilt engine's. Once the verdict lands, the Compass of Shame reads which of four poles the persona runs it to (withdrawal, attack self, avoidance, attack other), and the persona's own shame-proneness sets how readily the whole engine fires.",
     "type": "process",
     "members": [
       {
@@ -40,6 +40,36 @@
       {
         "file": "process_humiliation.md",
         "type": "process",
+        "parent": "process_shame.md"
+      },
+      {
+        "file": "process_compass.md",
+        "type": "process",
+        "parent": "process_shame.md"
+      },
+      {
+        "file": "process_compass_withdrawal.md",
+        "type": "process",
+        "parent": "process_compass.md"
+      },
+      {
+        "file": "process_compass_attack_self.md",
+        "type": "process",
+        "parent": "process_compass.md"
+      },
+      {
+        "file": "process_compass_avoidance.md",
+        "type": "process",
+        "parent": "process_compass.md"
+      },
+      {
+        "file": "process_compass_attack_other.md",
+        "type": "process",
+        "parent": "process_compass.md"
+      },
+      {
+        "file": "position_shame_proneness.md",
+        "type": "position",
         "parent": "process_shame.md"
       }
     ],
@@ -59,10 +89,10 @@
     ],
     "card": {
       "wire": "Attaches at Process. The root (process_shame.md) declares shame as a social appraisal: the self is seen against a standard, the gap is exposed, and the response is aimed at concealment, repair, recovery, or rage.",
-      "issue": "Two readings a persona may run: embarrassment (mild exposure, recoverable) and humiliation (verdict imposed by power, rage secondary). Each is a different resolution of the same social appraisal. The third resolution -- the verdict on the act alone, repairable, self intact -- is not carried here: it is the guilt engine's, whole, and the seam between the two engines is the border where \"I did a bad thing\" widens into \"I am a bad person\".",
+      "issue": "Two readings a persona may run: embarrassment (mild exposure, recoverable) and humiliation (verdict imposed by power, rage secondary). Each is a different resolution of the same social appraisal. The third resolution -- the verdict on the act alone, repairable, self intact -- is not carried here: it is the guilt engine's, whole, and the seam between the two engines is the border where \"I did a bad thing\" widens into \"I am a bad person\". Once the verdict lands, the compass reads what the persona does with it, at one of four poles: withdrawal and attack self accept the verdict (one by leaving the field, one by turning inward with anger); avoidance and attack other minimize it (one by drowning it in noise, one by transferring it onto someone lower); attack self and attack other share the anger, aimed at different targets. And the dial (shame-proneness) sets how readily the whole engine fires at all, distinct from the guilt engine's own proneness on the same instrument.",
       "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the specific reading it runs in the scene.",
       "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real shame reading. Whether the reading is true to the persona's situation is semantic, taught and reviewed, never failed by the suite.",
-      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its read under Projection, linking the specific expression. Read it in the first beat; the room enacts it, never narrates it."
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its read under Projection, one rung per channel: the mode it runs (embarrassment or humiliation), the compass pole the verdict resolves to, and where its shame-proneness dial sits. Two personas at opposite poles of the same shame play opposite scenes. Read it in the first beat; the room enacts it, never narrates it."
     }
   },
   "scripts": {
