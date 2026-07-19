@@ -114,6 +114,86 @@ describe("conformance: science index build-drift gate", () => {
   });
 });
 
+// Dormant until the composite-scan source lands: the probe checks whether
+// collectScience walks packages/composites/* at all.
+const COMPOSITE_DORMANT = !readFileSync(
+  new URL("../src/science.mjs", import.meta.url),
+  "utf8",
+).includes('"composites"');
+
+describe.skipIf(COMPOSITE_DORMANT)("conformance: composites index like engines", () => {
+  let dir;
+
+  const references = (rows) =>
+    [
+      "# X: Reference",
+      "",
+      "## Line of Work",
+      "",
+      "What it models.",
+      "",
+      "## Origin",
+      "",
+      "| Source | Key Work | Scope |",
+      "| :--- | :--- | :--- |",
+      ...rows.map(([s, w, sc]) => `| ${s} | ${w} | ${sc} |`),
+      "",
+      "## Restrictions",
+      "",
+      "What it refuses.",
+      "",
+      "## Encoding",
+      "",
+      "Source to constraint.",
+      "",
+    ].join("\n");
+
+  const addPackage = (kind, id, rows) => {
+    const pDir = join(dir, "packages", kind, id);
+    mkdirSync(pDir, { recursive: true });
+    writeFileSync(
+      join(pDir, "package.json"),
+      JSON.stringify({
+        name: `@chbrain/khai-${kind === "composites" ? "composite" : "engine"}-${id}`,
+        khai: { engine: id, type: "process", anchor: `process_${id}.md` },
+      }),
+    );
+    writeFileSync(join(pDir, "REFERENCES.md"), references(rows));
+  };
+
+  beforeEach(() => {
+    dir = join(tmpdir(), `khai-science-c-${process.pid}-${Math.random().toString(36).slice(2)}`);
+    mkdirSync(join(dir, "docs"), { recursive: true });
+    addPackage("engines", "alpha", [["**Erving Goffman**", "_A_ (1971)", "Remedial moves."]]);
+    addPackage("composites", "combo", [["**Erving Goffman**", "_A_ (1971)", "The exchange."]]);
+  });
+
+  afterEach(() => rmSync(dir, { recursive: true, force: true }));
+
+  it("collects a composite's Origin rows, tagged by layer", () => {
+    const { byEngine, records } = collectScience(dir);
+    const combo = byEngine.find((e) => e.engine === "combo");
+    expect(combo?.layer).toBe("composite");
+    expect(byEngine.find((e) => e.engine === "alpha")?.layer).toBe("atom");
+    // The shared scholar collates across the layers.
+    const goffman = records.filter((r) => r.surname === "Goffman");
+    expect(new Set(goffman.map((r) => r.engine))).toEqual(new Set(["alpha", "combo"]));
+  });
+
+  it("italicises composites in the rendered index and passes its own drift gate", () => {
+    const text = buildScienceIndex(dir);
+    expect(text).toContain("_combo_");
+    expect(text).not.toContain("_alpha_");
+    expect(verifyScienceIndex(dir)).toEqual([]);
+  });
+
+  it("flags a stale index when a composite is added but not rebuilt", () => {
+    buildScienceIndex(dir);
+    addPackage("composites", "duet", [["**Aaron Lazare**", "_B_ (2004)", "The offer."]]);
+    expect(verifyScienceIndex(dir).length).toBe(1);
+  });
+});
+
 // Note: the committed docs/SCIENCE.md is NOT gated per-PR against the live
 // engines. The index is a shared generated artifact; coupling every engine PR
 // to it would collide across concurrent PRs. It is refreshed out of band with
