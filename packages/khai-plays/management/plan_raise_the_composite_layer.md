@@ -104,13 +104,13 @@ draft until whole; nothing merges but by the Choregos's hand.
 
 ## Targets
 
-- [ ] the science reindex is merged and the drive's engines are published
-- [ ] the member-collision gate holds in CI, whitelist included, tests live
-- [ ] the bump rule stands in the contract docs
-- [ ] guilt is deep on the transgressor's side and serves as the template
-- [ ] the three fresh duplicates are removed and their stems ratcheted out
+- [x] the science reindex is merged and the drive's engines are published
+- [x] the member-collision gate holds in CI, whitelist included, tests live
+- [x] the bump rule stands in the contract docs
+- [x] guilt is deep on the transgressor's side and serves as the template
+- [x] the three fresh duplicates are removed and their stems ratcheted out
       of the grandfathered list
-- [ ] khai-tests resolves package-specifier links and fails undeclared ones
-- [ ] the composite house stands with its own contract and gates
-- [ ] the moral-account pilot is cut, green, and wired over published atoms
+- [x] khai-tests resolves package-specifier links and fails undeclared ones
+- [x] the composite house stands with its own contract and gates
+- [x] the moral-account pilot is cut, green, and wired over published atoms
 - [ ] each of the seven clusters is reviewed and resolved or waived
