@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-self-conscious",
+  "version": "0.1.0",
+  "description": "khai composite content, the self-conscious domain: one appraisal of the self against a standard, two valences and one attribution axis -- act or whole self -- yielding guilt, shame, authentic pride, and hubris, read whole across the atom engines it depends on.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/self-conscious"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "self-conscious",
+    "tagline": "The self-conscious family as composite: one appraisal of the self against a standard, split by valence (failure or success) and by one attribution axis (the act, or the self entire) into guilt, shame, authentic pride, and hubris -- and the drama lives on the axis, where act-verdicts erode into self-verdicts in both valences at once.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_self_conscious.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_verdict_widening.md",
+        "type": "process",
+        "parent": "process_self_conscious.md"
+      },
+      {
+        "file": "process_verdict_mirror.md",
+        "type": "process",
+        "parent": "process_self_conscious.md"
+      },
+      {
+        "file": "process_verdict_moves.md",
+        "type": "process",
+        "parent": "process_self_conscious.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over three atoms it declares as dependencies. The root (process_self_conscious.md) reads the family as one appraisal with two dials: valence (a standard failed, or met) and attribution (the verdict on the act, or on the self entire). The four corners are the atoms' own ground -- guilt and shame on the failure side, authentic pride and hubris on the success side; the composite adds no fifth reading, only the axis the corners share.",
+      "issue": "Three bridges, each a crossing the atoms cannot stage alone. Widening: the act-verdict eroding into the self-verdict on the failure side, the unpaid account arriving at the border guilt and shame each describe from their own bank. Mirror: the same erosion on the success side, credit drifting from the act to the self entire, authentic pride hardening into hubris. Moves: the same gestures at two attribution levels, shame's attack-self pole beside guilt's self-punishment road, attack-other beside condemnation -- one posture, two verdicts underneath it.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the family read runs wherever its atoms are cast. The link, advisory: a persona living on a crossing may link the bridge under Projection, and the audit surfaces the ones mid-erosion left unnamed.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's erosions are earned scene by scene, rather than announced, is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the corners from the atoms as usual, then stage the crossings: which unpaid account is widening, which success is hardening, and where one posture hides two possible verdicts. Read the production on the axis, never in any single corner."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.21",
+    "@chbrain/khai-engine-guilt": "^0.1.1",
+    "@chbrain/khai-engine-pride": "^0.1.1",
+    "@chbrain/khai-engine-shame": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.28",
+    "vitest": "^4.1.10"
+  }
+}
