@@ -163,9 +163,33 @@ const FRONTMATTER_EXTRAS = {
   play: { description: { required: true } },
   plan: { status: { values: ["draft", "active", "closed"], required: true } },
 };
+
+/**
+ * The provenance vocabulary: every content file declares in frontmatter where
+ * its substance stands relative to the declared source. The file is always the
+ * house's own authorship; provenance says whether the substance derives from
+ * the source. Invention is legitimate -- unmarked invention is the defect:
+ *   - `sourced`    -- the substance derives from the declared work; divergence
+ *                     from the source is a finding.
+ *   - `free`       -- declared invention: the substance knowingly goes beyond
+ *                     or beside the source. A marked invention reviews as
+ *                     clean; fidelity findings do not apply to it.
+ *   - `unverified` -- the sourcing is not yet proven; the file claims no
+ *                     fidelity until resolved.
+ * An absent key reads as `sourced` -- the strictest class is the default, so
+ * silence never launders invention. The key is optional in this bump so fleets
+ * can backfill deliberately; a following bump flips it to required.
+ * @type {string[]}
+ */
+export const provenanceValues = ["sourced", "free", "unverified"];
+
 export function frontmatterExtras(typeId) {
   const extra = FRONTMATTER_EXTRAS[typeId] ?? {};
-  return { voice: { required: false }, ...extra };
+  return {
+    voice: { required: false },
+    provenance: { values: provenanceValues, required: false },
+    ...extra,
+  };
 }
 
 /**
