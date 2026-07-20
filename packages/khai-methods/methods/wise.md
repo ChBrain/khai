@@ -23,8 +23,8 @@ prompts:
     question: "Is the future capability embedded in its greater context, not a local optimum blind to the whole? Gap: unintegrated local wins accrete into Emergent complexity."
 ---
 
-WISE is the future-tense checklist of the target, the Worth, Informed, Simple, and Environment qualities the To-Be capability must hold at the GLUE Destination. Kai Schlüter built it on Tom Graves' SCAN. The test is whether the future capability is worth the transformation, carries the facts it needs, is no more intricate than its purpose demands, and is embedded in its greater context.
+WISE names the four qualities a future capability must hold. Worth: it is worth the investment. Informed: the decision to invest is fact-based, just barely good enough. Simple: the simplest solution that works, to minimise future complexity. Environment: it is embedded in its greater context. Kai Schlüter built WISE on Tom Graves' SCAN.
 
-Each gap breeds a named cause of EPIC complexity: fail Simple and you create Perverse complexity, fail Environment and local optima accrete into Emergent complexity, fail Worth and you build the unneeded, filling the Capability Cemetery. WISE aims the future, where to go to; it pairs with PACE, which moves the present, and with EPIC, which reads the past.
+WISE checks a target before you build it, and each gap breeds a named cause of complexity: fail Simple and you make Perverse, fail Environment and local optima accrete into Emergent, fail Worth and you build the unneeded. On its own it checks; combined with SCAN it scans the future state for complexity; combined with another frame it serves that frame.
 
 References: WISE is Kai Schlüter's, built on Tom Graves' SCAN framework; its Informed criterion draws on Scott Ambler's Just Barely Good Enough, and its Simple criterion on the KISS principle Kai takes from Michael Vizdos.
