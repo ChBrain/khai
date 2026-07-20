@@ -1,0 +1,82 @@
+{
+  "name": "@chbrain/khai-composite-volition",
+  "version": "0.1.0",
+  "description": "khai composite content, the volition domain: the crossing Heckhausen and Gollwitzer drew from wanting to doing -- a goal deliberated, an if-then plan that carries it over the Rubicon into action, and the executive control that holds the pursuit against interference -- and the two states where the crossing fails, the wish that never becomes a will and the will that cannot be carried out, read whole across the atom engines it depends on.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/volition"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "volition",
+    "tagline": "Volition as composite: the crossing from wanting to doing that Heckhausen and Gollwitzer mapped as the Rubicon -- a goal deliberated (the wish), an if-then plan that carries it across into action (the will), and the executive control that holds the pursuit against interference (the doing) -- and the drama lives where the crossing fails, the wish that never becomes a will and the will that cannot be carried out.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_volition.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "position_volition_gap.md",
+        "type": "position",
+        "parent": "process_volition.md"
+      },
+      {
+        "file": "position_volition_stall.md",
+        "type": "position",
+        "parent": "process_volition.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over three atoms it declares as dependencies. The root (process_volition.md) reads the Rubicon crossing: the goal engine's deliberated end (the wish), the implementation-intention engine's if-then plan that carries it across into action (the will), and the executive-function engine's control that holds the pursuit against interference (the doing). The composite adds no fourth phase, only the read of the crossing from wanting to doing and where it fails.",
+      "issue": "Two bridge states the atoms cannot hold alone, the two ways the crossing fails. Gap: the wish that never becomes a will -- a goal deliberated but never bridged into an if-then plan, so the intention never initiates action; the resolution that stays a resolution, the intention-behavior gap. Stall: the will that cannot be carried out -- the plan fires and the cue triggers, but executive control cannot hold the pursuit against a prepotent competing response or under load, so the action begun is not completed.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the crossing read runs wherever its atoms are cast. The link, advisory: a persona stranded in the gap or defeated in the stall may link the bridge under Projection, and the audit surfaces the ones left unnamed.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production earns the crossing -- shows a wish genuinely failing to become a will, or a will genuinely failing to execute, rather than collapsing wanting and doing into one act -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its three atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the wish from the goal engine (what is wanted and how held), the plan from the implementation-intention engine (is there an if-then bridge), and the control from the executive-function engine (can the pursuit be held against interference), then read the crossing: deliberated, planned, and carried through is volition whole; deliberated but never planned is the gap; planned but never executed is the stall. Read the production across the crossing from wanting to doing, never in the wish alone."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-engine-executive-function": "^0.1.1",
+    "@chbrain/khai-engine-goal": "^0.1.1",
+    "@chbrain/khai-engine-implementation-intention": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.30",
+    "vitest": "^4.1.10"
+  }
+}
