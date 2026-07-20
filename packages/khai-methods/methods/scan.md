@@ -25,6 +25,6 @@ prompts:
 
 SCAN is Tom Graves' framework for sensemaking and decision-making, an alternative to Cynefin. It maps four domains against two axes: time-before-action, considered above and real-time below, and certainty, predictable to the left and uncertain to the right, split by the boundary of effective certainty that Graves calls the Inverse-Einstein boundary. Each domain calls for a different class of guidance: Simple takes a rule, Complicated an algorithm, Ambiguous a pattern or guideline, Not-known a principle. The discipline is to notice which domain you are in at each moment and use the matching tactic; diagonal moves, Complicated to Not-known or Ambiguous to Simple, do not work.
 
-SCAN pairs with EPIC as an orthogonal lens: SCAN asks how knowable a situation is and how to act, EPIC asks why its complexity arose. Kai Schlüter's EPIC, PACE, and WISE combine with SCAN into a complexity scanner, though each stands on its own.
+SCAN pairs with EPIC as an orthogonal lens: SCAN asks how knowable a situation is and how to act, EPIC asks why its complexity arose. Kai Schlüter's EPIC, PACE, and WISE each stand on their own and compose with any frame; combined with SCAN they form a complexity scanner.
 
 References: SCAN is Tom Graves' work, packaged here and attributed, never claimed.

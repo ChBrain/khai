@@ -25,6 +25,6 @@ prompts:
 
 EPIC names the four causes of complexity, a diagnostic for why a system is as tangled as it is. Richard Veryard identified the four causes in _On the Causes of Business Complexity_; Kai Schlüter reordered them to spell EPIC. They separate on intent and origin: Emergent drifted from many small, unrelated decisions, with no author and no aim; Perverse was a deliberate attempt to simplify that backfired; Contrived was made on purpose to serve some stakeholders; Irreducible was made by no one, the real complexity of the demand itself, the one cause you carry rather than cut.
 
-On its own EPIC classifies the complexity already there, and three of the four causes you work to prevent or reduce while the fourth, Irreducible, you carry rather than tackle. Combined with SCAN it becomes a complexity scanner, each cause scanned for how knowable it is and met with a matching way of working; combined with another frame it serves that frame instead.
+EPIC is a taxonomy of complexity causes: you classify what is already there, three of the four you work to reduce and the fourth, Irreducible, you carry rather than cut. It composes with any frame you bring and is bound to none; pairing it with SCAN, for one, scans each cause for how knowable it is and meets it with a matching way of working.
 
 References: the four causes are Richard Veryard's (_On the Causes of Business Complexity_); the EPIC ordering is Kai Schlüter's.

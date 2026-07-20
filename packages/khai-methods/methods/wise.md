@@ -25,6 +25,6 @@ prompts:
 
 WISE names the four qualities a future capability must hold. Worth: it is worth the investment. Informed: the decision to invest is fact-based, just barely good enough. Simple: the simplest solution that works, to minimise future complexity. Environment: it is embedded in its greater context. Kai Schlüter built WISE on Tom Graves' SCAN.
 
-WISE checks a target before you build it, and each gap breeds a named cause of complexity: fail Simple and you make Perverse, fail Environment and local optima accrete into Emergent, fail Worth and you build the unneeded. On its own it checks; combined with SCAN it scans the future state for complexity; combined with another frame it serves that frame.
+WISE is a checklist for a target before you build it, and each gap breeds a named cause of complexity: fail Simple and you make Perverse, fail Environment and local optima accrete into Emergent, fail Worth and you build the unneeded. It composes with any frame and is bound to none; pairing it with SCAN, for one, scans the future state for complexity.
 
 References: WISE is Kai Schlüter's, built on Tom Graves' SCAN framework; its Informed criterion draws on Scott Ambler's Just Barely Good Enough, and its Simple criterion on the KISS principle Kai takes from Michael Vizdos.
