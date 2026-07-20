@@ -12,7 +12,7 @@ stamp:
 
 ## Taxonomy
 
-[Nostalgia](process_nostalgia.md), the resource this pass draws is one function of.
+[Nostalgia](process_nostalgia.md), drawn for the existential meaning it can supply.
 
 ## Owner
 
