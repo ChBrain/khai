@@ -4,10 +4,10 @@ name: "EPIC"
 type: analysis
 invented_by:
   - name: "Kai Schlüter"
-year: 2013
+year: 2012
 source:
-  title: "drEAmtime - EPIC SCAN"
-  url: "https://socialea.blogspot.com/2013/02/dreamtime-epic-scan.html"
+  title: "EPIC SCAN in GLUE"
+  url: "https://socialea.blogspot.com/2012/10/epic-scan-in-glue.html"
 prompts:
   - key: emergent
     label: Emergent

@@ -4,20 +4,20 @@ name: "PACE"
 type: analysis
 invented_by:
   - name: "Kai Schlüter"
-year: 2013
+year: 2012
 source:
-  title: "drEAmtime - PACE SCAN"
-  url: "https://socialea.blogspot.com/2013/02/dreamtime-pace-scan.html"
+  title: "PACE SCAN"
+  url: "https://socialea.blogspot.com/2012/10/pace-scan.html"
 prompts:
   - key: people
     label: People
     question: "Are the right people carried through the transformation? People make the difference between success and failure. Gap: serve only a subset of the stakeholders and you manufacture Contrived complexity, a biased solution that unbalances the whole."
   - key: adaption
     label: Adaption
-    question: "Is the complete solution adapted to reach fit-to-purpose, rather than forced as-is onto a context it does not match?"
+    question: "Is the solution adapted to serve the people, rather than forced as-is onto them?"
   - key: communication
     label: Communication
-    question: "Is communication securing that the targets will actually be reached, or is the intent left unshared?"
+    question: "Is communication ensuring the solution serves the people and is accepted by them, or is the intent left unshared?"
   - key: empathic
     label: Empathic
     question: "Is the unspoken being sensed, the tacit needs and resistances that let people and solution form a real fit-to-purpose environment? Empathy reads what is not said."
