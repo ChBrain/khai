@@ -1,0 +1,82 @@
+{
+  "name": "@chbrain/khai-composite-tragic",
+  "version": "0.1.0",
+  "description": "khai composite content, the tragic domain: the emotion of witnessing an undeserved fall -- a loss (grief) taken in (empathy) and shaped by a turn from fortune to misfortune (reversal), the pity and fear that compound produces, and the crossing it makes into catharsis when the aesthetic distance holds -- with the two edges where the crossing fails, taken too near as distress and too far as spectacle, read whole across the atom engines it depends on.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/tragic"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "tragic",
+    "tagline": "The tragic as composite: the emotion of witnessing an undeserved fall -- a loss (grief) taken in (empathy) and shaped by a turn from fortune to misfortune (reversal), the pity and fear that compound answers with, and the crossing it makes into catharsis when the distance holds -- and the drama lives at the two edges where the crossing fails, taken too near as distress and too far as spectacle.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_tragic.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "position_tragic_distress.md",
+        "type": "position",
+        "parent": "process_tragic.md"
+      },
+      {
+        "file": "position_tragic_spectacle.md",
+        "type": "position",
+        "parent": "process_tragic.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over three atoms it declares as dependencies. The root (process_tragic.md) reads the tragic emotion of a witnessed fall: the grief engine's irreversible loss (what the fall inflicts), the empathy engine's channel (through which the witness takes it in as pity), and the reversal engine's peripeteia (the turn from fortune to misfortune that makes it tragic, not merely sad). The composite adds no fourth atom, only the read of the compound -- pity fused with fear -- and its crossing into catharsis.",
+      "issue": "Two bridge states the atoms cannot hold alone, the two edges the crossing fails at. Distress: the distance collapses and the fall is taken as real, so pity and fear arrive at full pressure with no remove to convert them, and the witness is overwhelmed rather than moved. Spectacle: the engagement never lands and the fall is watched cold, so the reversal is seen and no pity or fear is felt, and the witness is unreached rather than moved.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the tragic read runs wherever its atoms are cast. The link, advisory: a persona stranded in distress or left in spectacle may link the bridge under Projection, and the audit surfaces the ones left unnamed.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production earns the tragic -- shows a fall genuinely undeserved, witnessed from a distance that holds, rather than collapsing into sadness or into spectacle -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its three atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the loss from the grief engine (what the fall takes, irreversibly), the channel from the empathy engine (how open the witness is), and the turn from the reversal engine (the peripeteia from fortune to misfortune), then read the compound and its crossing: pity and fear borne from a distance that holds cross into catharsis; taken too near they are distress; taken too far, spectacle. Read the production across the compound, never in the loss alone."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-engine-empathy": "^0.1.1",
+    "@chbrain/khai-engine-grief": "^0.1.1",
+    "@chbrain/khai-engine-reversal": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.30",
+    "vitest": "^4.1.10"
+  }
+}
