@@ -34,6 +34,8 @@ export {
   verifyScienceIndex,
   collectScience,
   renderScienceIndex,
+  collectCollectionScience,
+  renderCollectionIndex,
   surnames,
   SCIENCE_INDEX_PATH,
 } from "./src/science.mjs";
