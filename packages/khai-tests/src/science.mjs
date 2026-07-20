@@ -75,14 +75,44 @@ function parseOriginTable(origin) {
 
 // --- normalization -------------------------------------------------------
 
+// A closed, declared set of non-author Source idioms the house uses on purpose:
+// a row that cites no single named scholar, indexed here as data rather than
+// re-judged per build. Only "Practitioner" (the field-knowledge placeholder)
+// needs declaring — it is a lone capitalised token, indistinguishable in shape
+// from a mononym surname (Aesop, Goffman), so the structural filter below cannot
+// catch it. The other non-author idioms fall out structurally: the honest-note
+// phrases ("Boundary of the effect"), mechanism labels ("The individual
+// calculus") and bare years ("Nobel 2001") all reduce to a token that is not a
+// proper noun, and are dropped by the uppercase-initial rule. Matched after
+// qualifier-stripping, so "Practitioner (medicine)" collapses to it too.
+const NON_AUTHOR = new Set(["practitioner"]);
+
+/** Drop a trailing/inline parenthetical qualifier: "Brooks (communication)" -> "Brooks". */
+const stripQualifier = (s) =>
+  s
+    .replace(/\s*\([^)]*\)\s*/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
 /**
- * Canonical surnames for an authored Source cell, so the same scholar collates
- * across engines however they were written. Multi-author cells contribute one
- * surname each, so a shared author links every engine that cites them:
+ * Canonical surnames for a Source cell, so the same scholar collates across
+ * engines however they were written. Multi-author cells contribute one surname
+ * each, so a shared author links every engine that cites them:
  *   "Amos Tversky & Daniel Kahneman" -> ["Tversky", "Kahneman"]
  *   "Kahneman & Tversky"             -> ["Kahneman", "Tversky"]
  *   "Dan P. McAdams et al."          -> ["McAdams"]
  *   "Mayer, Davis & Schoorman"       -> ["Mayer", "Davis", "Schoorman"]
+ *   "Brooks (communication)"         -> ["Brooks"]   (the qualifier is not a name)
+ *
+ * A Source cell that names no scholar contributes none: the forward map is a
+ * scholar -> engine index, so honest-note and field-marker rows ("Boundary of
+ * the effect", "Practitioner (medicine)") must not manufacture a pseudo-scholar
+ * from a common noun. The rule is computed, not enumerated: a surname is a
+ * proper noun (begins with an uppercase letter), plus the one declared
+ * placeholder NON_AUTHOR cannot tell from a mononym. Everything the builder
+ * drops still renders verbatim in the "By engine" / "By <unit>" section, which
+ * reads the raw Source, so nothing is lost from the index — only the false
+ * author is kept out.
  */
 export function surnames(source) {
   return (
@@ -91,13 +121,19 @@ export function surnames(source) {
       // Split on separators only; trimming handles surrounding whitespace. No
       // whitespace quantifier wraps the alternation, so the match stays linear.
       .split(/[,;&]|\s+and\s+/i)
-      .map((part) => part.trim())
+      .map((part) => stripQualifier(part))
       .filter(Boolean)
+      .filter((part) => !NON_AUTHOR.has(part.toLowerCase()))
       .map((part) => {
         const tokens = part.replace(/[.,]/g, "").split(/\s+/).filter(Boolean);
         return tokens[tokens.length - 1] || part;
       })
-      .filter(Boolean)
+      // A scholar surname is a proper noun: it begins with an uppercase letter.
+      // This is the structural invariant that replaces per-row judgement — it
+      // drops "effect" (Boundary of the effect), "calculus" (The individual
+      // calculus), "2001" (Nobel 2001) and every future idiom of that shape
+      // without a list to maintain.
+      .filter((token) => /^\p{Lu}/u.test(token))
   );
 }
 
