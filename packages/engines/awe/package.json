@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-awe",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "khai engine content, the awe domain: the response through which a persona accommodates a vastness that exceeds its current frame",
   "type": "module",
   "main": "./index.mjs",
@@ -83,7 +83,7 @@
     "@chbrain/khai-arch": "^0.1.20"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.17",
+    "@chbrain/khai-tests": "^0.2.0",
     "vitest": "^4.1.10"
   }
 }

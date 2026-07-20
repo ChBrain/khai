@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-uncanny",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the uncanny domain: the disturbance that fires when the familiar turns strange, or a belief the mind surmounted long ago seems, for a moment, confirmed",
   "type": "module",
   "main": "./index.mjs",
@@ -88,7 +88,7 @@
     "@chbrain/khai-arch": "^0.1.22"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.30",
+    "@chbrain/khai-tests": "^0.2.0",
     "vitest": "^4.1.10"
   }
 }

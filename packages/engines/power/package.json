@@ -65,7 +65,7 @@
     "@chbrain/khai-arch": "^0.1.20"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.30",
+    "@chbrain/khai-tests": "^0.2.0",
     "vitest": "^4.1.10"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-nostalgia",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the nostalgia domain: nostalgia as process, the sentimental, bittersweet longing for one's own past that a persona draws on for self-continuity, connectedness, meaning, and self-positivity.",
   "type": "module",
   "main": "./index.mjs",
@@ -83,7 +83,7 @@
     "@chbrain/khai-arch": "^0.1.22"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.30",
+    "@chbrain/khai-tests": "^0.2.0",
     "vitest": "^4.1.10"
   }
 }
