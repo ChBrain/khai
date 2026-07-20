@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-nostalgia",
+  "version": "0.1.0",
+  "description": "khai engine content, the nostalgia domain: nostalgia as process, the sentimental, bittersweet longing for one's own past that a persona draws on for self-continuity, connectedness, meaning, and self-positivity.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/nostalgia"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "nostalgia",
+    "tagline": "Nostalgia as process: a sentimental, bittersweet longing for one's own past that the persona draws on as a psychological resource, not the past event itself.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_nostalgia.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_continuity.md",
+        "type": "process",
+        "parent": "process_nostalgia.md"
+      },
+      {
+        "file": "process_connectedness.md",
+        "type": "process",
+        "parent": "process_nostalgia.md"
+      },
+      {
+        "file": "process_existential.md",
+        "type": "process",
+        "parent": "process_nostalgia.md"
+      },
+      {
+        "file": "process_positivity.md",
+        "type": "process",
+        "parent": "process_nostalgia.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_nostalgia.md) declares nostalgia as a sentimental, bittersweet longing for the persona's own past: net-positive, self-relevant, and social, drawn on as a resource rather than dwelt in for its own sake.",
+      "issue": "Four functions the drawing-on may serve, by what the persona is short on right now: continuity (a thread between the past self and the present one), connectedness (belonging recovered from remembered others), existential (meaning shored up against threat or doubt), and positivity (self-regard lifted by a self remembered well). Each is a different resource the same bittersweet longing supplies.",
+      "require": "The law is declared once in the project's Instructions Knowledge chapter, linking the root. Each persona links, under Projection, the function its nostalgia is currently serving.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real nostalgia function. Whether the function is true to the persona's remembered past is semantic, not mechanical.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Give the persona its current function under Projection. The persona may move across functions as what it is short on changes."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.30",
+    "vitest": "^4.1.10"
+  }
+}
