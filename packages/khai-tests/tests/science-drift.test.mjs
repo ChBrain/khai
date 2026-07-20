@@ -199,3 +199,44 @@ describe.skipIf(COMPOSITE_DORMANT)("conformance: composites index like engines",
 // to it would collide across concurrent PRs. It is refreshed out of band with
 // `khai-tests science build` (a periodic/post-batch reindex), and the synthetic
 // drift tests above still prove the builder itself is correct.
+
+// Dormant until the deterministic scholar filter lands in src: the probe checks
+// whether a non-author idiom ("Boundary of the effect") still manufactures a
+// pseudo-scholar. Source (the surnames() change) lands first; this activates
+// automatically once it does -- the same "dormant until the source lands" idiom.
+const FILTER_DORMANT = surnames("Boundary of the effect").length !== 0;
+
+describe.skipIf(FILTER_DORMANT)("conformance: surnames() is a deterministic scholar filter", () => {
+  it("recovers a real author hidden behind a qualifier", () => {
+    // The qualifier is a disambiguating tag, not a name; the old rule kept the
+    // tag ("(communication)") and lost the author.
+    expect(surnames("Brooks (communication)")).toEqual(["Brooks"]);
+    expect(surnames("Surowiecki (counterpoint)")).toEqual(["Surowiecki"]);
+    expect(surnames("Twain (attr.)")).toEqual(["Twain"]);
+  });
+
+  it("drops non-author idioms structurally (a surname is a proper noun)", () => {
+    // Honest-note phrases, mechanism labels and bare years are not scholars, and
+    // are dropped by the uppercase-initial invariant with no list to maintain.
+    expect(surnames("Boundary of the effect")).toEqual([]);
+    expect(surnames("Robustness of the effect")).toEqual([]);
+    expect(surnames("The individual calculus")).toEqual([]);
+    expect(surnames("Willful blindness")).toEqual([]);
+    expect(surnames("Nobel 2001")).toEqual([]);
+  });
+
+  it("drops the one declared placeholder, however qualified", () => {
+    expect(surnames("Practitioner")).toEqual([]);
+    expect(surnames("Practitioner (medicine)")).toEqual([]);
+  });
+
+  it("still collates real authors and institutions, particles handled", () => {
+    expect(surnames("Kahneman & Tversky")).toEqual(["Kahneman", "Tversky"]);
+    expect(surnames("Mayer, Davis & Schoorman")).toEqual(["Mayer", "Davis", "Schoorman"]);
+    // a real author survives alongside dropped field markers in a mixed cell
+    expect(surnames("Cummings; aviation & medicine")).toEqual(["Cummings"]);
+    // an institution keeps its capitalised head; a particled name keeps its surname
+    expect(surnames("The Joint Commission")).toEqual(["Commission"]);
+    expect(surnames("John von Neumann")).toEqual(["Neumann"]);
+  });
+});
