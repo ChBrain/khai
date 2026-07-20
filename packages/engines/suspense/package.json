@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-suspense",
+  "version": "0.1.0",
+  "description": "khai engine content, the suspense domain: the anticipatory apprehension a persona holds toward a possible negative outcome, sustained by held-open uncertainty and hope, until the outcome event answers it",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/suspense"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "suspense",
+    "tagline": "Suspense as process: the anticipatory apprehension of a possible negative outcome -- not the fear once it lands, but the hold a persona keeps on what might still happen, sustained by uncertainty short of certainty, a closing interval, and a hope that has not yet given out.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_suspense.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_narrowing.md",
+        "type": "process",
+        "parent": "process_suspense.md"
+      },
+      {
+        "file": "process_closing.md",
+        "type": "process",
+        "parent": "process_suspense.md"
+      },
+      {
+        "file": "process_reprieve.md",
+        "type": "process",
+        "parent": "process_suspense.md"
+      },
+      {
+        "file": "process_spillover.md",
+        "type": "process",
+        "parent": "process_suspense.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_suspense.md) declares suspense as an anticipatory process: a persona holds a possible harm to something it is invested in open at high but not complete certainty, and the hold does not resolve itself -- it waits on the outcome event to answer it.",
+      "issue": "Four facets the hold moves through, by what is foregrounded in the moment: narrowing (the probability tightening toward the feared branch, short of confirmation), closing (the interval to the outcome shortening, itself a mounting cost), reprieve (the countervailing hope that keeps the hold short of resignation), and spillover (the discharge at the outcome, where the arousal built through the hold carries into whatever affect meets it).",
+      "require": "The law is declared once in the project's Instructions Knowledge chapter, linking the root. Each persona links, under Projection, the facet of suspense it is currently in.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real suspense facet. Whether the facet is true to the persona's held-open harm is semantic, not mechanical.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Give the persona its current facet under Projection. The persona may move across facets as the hold develops toward its outcome."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.30",
+    "vitest": "^4.1.10"
+  }
+}
