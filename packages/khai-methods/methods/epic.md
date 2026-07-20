@@ -4,10 +4,10 @@ name: "EPIC"
 type: analysis
 invented_by:
   - name: "Kai Schlüter"
-year: 2012
+year: 2013
 source:
-  title: "EPIC SCAN in GLUE"
-  url: "https://socialea.blogspot.com/2012/10/epic-scan-in-glue.html"
+  title: "drEAmtime - EPIC SCAN"
+  url: "https://socialea.blogspot.com/2013/02/dreamtime-epic-scan.html"
 prompts:
   - key: emergent
     label: Emergent
@@ -25,6 +25,6 @@ prompts:
 
 EPIC names the four causes of complexity, a diagnostic for why a system is as tangled as it is. Richard Veryard identified the four causes in _On the Causes of Business Complexity_; Kai Schlüter reordered them to spell EPIC and connected them to the SCAN and GLUE work. The discrimination runs on two questions, intent and origin: was the complexity intended, and who made it? Emergent has no author and no aim, it drifted from many small decisions; Perverse was a deliberate attempt to simplify that backfired; Contrived was made on purpose to serve some stakeholders; Irreducible was made by no one, it is the real complexity of the demand itself.
 
-EPIC reads the past, the complexity you inherited, and it doubles as a mirror on the present and the future: a poorly run PACE manufactures fresh Contrived complexity, a poorly aimed WISE manufactures Perverse and Emergent. Three of the four you work to prevent or reduce; the fourth, Irreducible, you carry and inhabit rather than tackle. EPIC pairs with SCAN as an orthogonal lens: EPIC asks why the complexity arose, SCAN asks how knowable it is and how to act.
+EPIC reads the past, the complexity you inherited, at the GLUE Defence, and it doubles as a mirror on the present and the future: a poorly run PACE manufactures fresh Contrived complexity, a poorly aimed WISE manufactures Perverse and Emergent. Reading the inherited tangle with EPIC makes the root cause transparent before any transformation begins. Three of the four you work to prevent or reduce; the fourth, Irreducible, you carry and inhabit rather than tackle. EPIC pairs with SCAN as an orthogonal lens: EPIC asks why the complexity arose, SCAN asks how knowable it is and how to act.
 
 References: the four causes are Richard Veryard's (_On the Causes of Business Complexity_); the EPIC ordering and the SCAN and GLUE application are Kai Schlüter's.
