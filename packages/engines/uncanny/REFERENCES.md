@@ -40,7 +40,3 @@ Source to constraint, per file.
 - **[animism](process_animism.md)** (expression): a surmounted belief that thought moves the world (wishing, magic) seems, for a moment, confirmed by an event that lines up with what was merely thought. Anchored by Freud (animism and the omnipotence of thoughts).
 - **[animate](process_animate.md)** (expression): the animate/inanimate sort will not resolve -- a doll, a figure, a severed part acting alone -- and the not-knowing itself is where the disturbance sits. Anchored by Jentsch (intellectual uncertainty over automata) as read and partly contested by Freud, and by Freud's castration-complex reading of dismembered limbs and eyes.
 - **[revenant](process_revenant.md)** (expression): the dead behave as not finished, and the persona's rational conviction that death is final meets the older, discarded belief that it might not be. Anchored by Freud (man's attitude to death and the return of the dead).
-
----
-
-_Authored by KAI HACKS AI: original constraint-based expression of Freud's 1919 psychoanalytic account, applied to persona projection; it does not reproduce Freud's, Jentsch's, or Rank's text and does not claim their findings as its own._
