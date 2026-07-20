@@ -1,0 +1,94 @@
+{
+  "name": "@chbrain/khai-engine-uncanny",
+  "version": "0.1.0",
+  "description": "khai engine content, the uncanny domain: the disturbance that fires when the familiar turns strange, or a belief the mind surmounted long ago seems, for a moment, confirmed",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/uncanny"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "uncanny",
+    "tagline": "The uncanny as process: the disturbance that fires when the intimately known turns strange without ceasing to be known, or when a belief the mind surmounted returns and seems, for a moment, confirmed.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_uncanny.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_double.md",
+        "type": "process",
+        "parent": "process_uncanny.md"
+      },
+      {
+        "file": "process_recurrence.md",
+        "type": "process",
+        "parent": "process_uncanny.md"
+      },
+      {
+        "file": "process_animism.md",
+        "type": "process",
+        "parent": "process_uncanny.md"
+      },
+      {
+        "file": "process_animate.md",
+        "type": "process",
+        "parent": "process_uncanny.md"
+      },
+      {
+        "file": "process_revenant.md",
+        "type": "process",
+        "parent": "process_uncanny.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_uncanny.md) declares the uncanny as a boundary process: something known-and-put-away and something strange-and-present blur together, and neither the familiar reading nor the repressed one wins outright.",
+      "issue": "Five species the blur may take, by what specifically returns: the double (a self that should be singular, doubled), recurrence (involuntary repetition read as design), animism (a surmounted belief that thought moves the world, briefly confirmed), animate (the animate/inanimate sort left undecidable), and revenant (the surmounted belief that the dead are not wholly gone).",
+      "require": "The law is declared once in the project's Instructions Knowledge chapter, linking the root. Each persona links, under Projection, the species of the uncanny the moment is running.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real species. Whether the species is true to the encounter is semantic, not mechanical.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Give the persona its current species under Projection. The persona may move across species as the same encounter is re-read, and returns to the root once the boundary re-settles."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.30",
+    "vitest": "^4.1.10"
+  }
+}
