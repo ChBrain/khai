@@ -25,6 +25,6 @@ prompts:
 
 PACE names the four factors that carry a transformation. People: one person can make the difference between success and failure. Adaption: the solution is adapted to serve the people. Communication: it ensures the solution serves the people and is accepted by them. Empathic: sensing the unspoken lets people and solution form a fit-to-purpose whole. Kai Schlüter built PACE on Tom Graves' SCAN.
 
-PACE is a checklist for how a change moves. Run it on only a subset of the stakeholders rather than the holistic set and you manufacture Contrived complexity, a biased solution that unbalances the whole. It composes with any frame and is bound to none; pairing it with SCAN, for one, scans the change for complexity.
+PACE is a taxonomy of those factors. Run it on only a subset of the stakeholders rather than the holistic set and you manufacture Contrived complexity, a biased solution that unbalances the whole. It composes with any frame and is bound to none; pairing it with SCAN, for one, scans the change for complexity.
 
 References: PACE is Kai Schlüter's, built on Tom Graves' SCAN framework.
