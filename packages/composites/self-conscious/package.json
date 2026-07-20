@@ -81,7 +81,7 @@
     "@chbrain/khai-engine-shame": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.29",
+    "@chbrain/khai-tests": "^0.2.0",
     "vitest": "^4.1.10"
   }
 }

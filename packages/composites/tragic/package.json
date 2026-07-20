@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-tragic",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the tragic domain: the emotion of witnessing an undeserved fall -- a loss (grief) taken in (empathy) and shaped by a turn from fortune to misfortune (reversal), the pity and fear that compound produces, and the crossing it makes into catharsis when the aesthetic distance holds -- with the two edges where the crossing fails, taken too near as distress and too far as spectacle, read whole across the atom engines it depends on.",
   "type": "module",
   "main": "./index.mjs",
@@ -76,7 +76,7 @@
     "@chbrain/khai-engine-reversal": "^0.1.1"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.30",
+    "@chbrain/khai-tests": "^0.2.0",
     "vitest": "^4.1.10"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-volition",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the volition domain: the crossing Heckhausen and Gollwitzer drew from wanting to doing -- a goal deliberated, an if-then plan that carries it over the Rubicon into action, and the executive control that holds the pursuit against interference -- and the two states where the crossing fails, the wish that never becomes a will and the will that cannot be carried out, read whole across the atom engines it depends on.",
   "type": "module",
   "main": "./index.mjs",
@@ -76,7 +76,7 @@
     "@chbrain/khai-engine-implementation-intention": "^0.1.1"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.30",
+    "@chbrain/khai-tests": "^0.2.0",
     "vitest": "^4.1.10"
   }
 }

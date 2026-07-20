@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-absorption",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the absorption domain: the chain where attention locks single-pointed, a challenge-skill match turns the lock into a self-sustaining merge, and felt time dissolves -- and the two states where the chain breaks register, the counterfeit lock that never merges and the capture that shatters a real one, read whole across the atom engines it depends on.",
   "type": "module",
   "main": "./index.mjs",
@@ -76,7 +76,7 @@
     "@chbrain/khai-engine-time-perception": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.30",
+    "@chbrain/khai-tests": "^0.2.0",
     "vitest": "^4.1.10"
   }
 }

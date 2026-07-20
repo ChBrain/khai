@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-standing",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the standing domain: one persona's rank read at four altitudes at once -- field capital, structural title, deference order, compliance base -- with the transactional moves negotiating between them, read whole across the atom engines it depends on.",
   "type": "module",
   "main": "./index.mjs",
@@ -83,7 +83,7 @@
     "@chbrain/khai-engine-status-move": "^0.1.1"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.30",
+    "@chbrain/khai-tests": "^0.2.0",
     "vitest": "^4.1.10"
   }
 }

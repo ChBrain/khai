@@ -82,7 +82,7 @@
     "@chbrain/khai-engine-repair": "^0.1.2"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.29",
+    "@chbrain/khai-tests": "^0.2.0",
     "vitest": "^4.1.10"
   }
 }

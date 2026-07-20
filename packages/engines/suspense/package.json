@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-suspense",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the suspense domain: the anticipatory apprehension a persona holds toward a possible negative outcome, sustained by held-open uncertainty and hope, until the outcome event answers it",
   "type": "module",
   "main": "./index.mjs",
@@ -83,7 +83,7 @@
     "@chbrain/khai-arch": "^0.1.22"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.30",
+    "@chbrain/khai-tests": "^0.2.0",
     "vitest": "^4.1.10"
   }
 }

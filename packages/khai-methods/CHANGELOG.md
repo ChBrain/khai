@@ -1,5 +1,12 @@
 # @chbrain/khai-methods
 
+## 0.0.7
+
+### Patch Changes
+
+- 0275a08: Add the OODA Loop as a planning method: John Boyd's Observe-Orient-Decide-Act cycle for decision-making under competitive tempo, with Orient as the decisive step. Attributed to Boyd's briefing The Essence of Winning and Losing (1996).
+- 3e9102e: Add four analysis methods for complexity and sensemaking: EPIC (the four causes of complexity, Emergent/Perverse/Irreducible/Contrived, a diagnostic for why a system is tangled), PACE (the present-tense transformation checklist, People/Adaption/Communication/Empathic), WISE (the future-tense target checklist, Worth/Informed/Simple/Environment), and SCAN (Tom Graves' Simple/Complicated/Ambiguous/Not-known sensemaking frame). EPIC, PACE, and WISE are Kai Schlüter's, built on Graves' SCAN and Richard Veryard's causes of complexity, each credited in the method references.
+
 ## 0.0.6
 
 ### Patch Changes
