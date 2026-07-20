@@ -42,4 +42,9 @@ The press is the doubled demand: be enlarged by the magnitude, and survive the t
 The persona is small and exhilarated and afraid at once -- the trembling that beauty lacks.
 The fear does not cancel the awe; it sharpens it, and the persona is gripped rather than gladdened.
 This is awe nearest its negative pole: vastness as power, the small self under a sky that could fall.
-When the danger passes or the distance holds, the read returns to [awe](process_awe.md).
+
+The threat colour then resolves in one of two ways.
+When the danger passes, the read returns to [awe](process_awe.md), the trembling spent.
+Or, held from a safe distance where the power is judged fearful without being feared, the defeat itself turns: the imagination fails to take the magnitude in, reason supplies the totality the senses cannot, and the persona feels its own rational vocation raised above the force that overran it.
+This is Kant's sublime -- the negative pleasure in which the check of imagination becomes the elevation of reason.
+It is the one place in awe where the small self is answered by a self enlarged, the mind found sublime above the nature that dwarfed it, and it belongs to threat alone.
