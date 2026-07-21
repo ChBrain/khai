@@ -1373,6 +1373,71 @@ export function castingCoverageErrors(root) {
   return results;
 }
 
+/**
+ * The cast floor (order 1, cut-to-fit): a play that fields personas fields at
+ * least three. A debate needs three voices; two is a duet, one a monologue. The
+ * floor is CONDITIONAL: a play may field no persona at all (a structural play
+ * that demonstrates plot shape, e.g. an engine's folktale, monomyth, or dramatic
+ * arc), so it binds only once a play declares a persona in its Company. Computed,
+ * not judged; the scope is the play's Company (its closed cast).
+ *
+ * The order's companion floor, "at least one plot per beat", is deferred here on
+ * purpose: the canon has no "beat" to count against, so gating it would be judged,
+ * not computed. It returns to the wall once the term is defined (a maintainer
+ * ruling, possibly a canon change), per the audit's ratchet.
+ *
+ * @param {string} root  project root (looks for plays/<id>/)
+ * @returns {{ file: string, errors: string[], warnings: string[], audit: string[] }[]}
+ */
+export function castFloorErrors(root) {
+  const collection = resolveCollectionAt(root);
+  const itemsDir = join(root, collection.dir);
+  if (!existsSync(itemsDir) || !statSync(itemsDir).isDirectory()) return [];
+
+  let subdirs;
+  try {
+    subdirs = readdirSync(itemsDir, { withFileTypes: true })
+      .filter((e) => e.isDirectory() && !e.name.startsWith("."))
+      .map((e) => e.name);
+  } catch {
+    return [];
+  }
+
+  const results = [];
+  for (const id of subdirs) {
+    const playDir = join(itemsDir, id);
+    let files;
+    try {
+      files = readdirSync(playDir).filter((f) => f.endsWith(".md"));
+    } catch {
+      continue;
+    }
+    const playFileName = files.find((f) => f.startsWith(collection.anchor));
+    if (!playFileName) continue; // structure is the registry's concern
+
+    const playPath = join(playDir, playFileName);
+    const parsed = parseDoc(readFileSync(playPath, "utf8"));
+    const companyLines = parsed.body == null ? null : sectionBody(parsed.body, "Company");
+    if (companyLines === null) continue;
+    const personas = new Set(
+      castLinkBasenames(companyLines.join("\n")).filter((b) => b.startsWith("persona_")),
+    );
+    // Conditional floor: a persona-less play is structural, not a debate; exempt.
+    if (personas.size === 0 || personas.size >= 3) continue;
+    results.push({
+      file: playPath,
+      errors: [
+        `cast floor: a play that fields personas fields at least three (a debate needs ` +
+          `three voices); this Company fields ${personas.size} (${[...personas].join(", ")})`,
+      ],
+      warnings: [],
+      audit: [],
+    });
+  }
+
+  return results;
+}
+
 export function validateProject({
   root,
   contentDir = root,
@@ -1448,6 +1513,9 @@ export function validateProject({
     // Every plot must cast at least one element of its item's Company; a dead
     // Company entry is a warning. The dual of castErrors, at the item level.
     results.push(...castingCoverageErrors(root));
+    // A play that fields personas fields at least three (a debate needs three
+    // voices); a persona-less structural play is exempt.
+    results.push(...castFloorErrors(root));
   }
 
   return results;
