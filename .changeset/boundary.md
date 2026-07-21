@@ -1,0 +1,4 @@
+---
+---
+
+Order 4: rule the global/local boundary in one place. `docs/BOUNDARY.md` records what is global (the mechanism: the walls and atoms, the review harness mechanism, the gating and escalation policy, the three methods) and what is local (the voice words, the house's rubric set resolved from its positions, the thresholds and opt-in rubrics, the escalation chain, the canon and content), with the computed classification rule for any future check and the standing-process framing (the frontier moves). It reconciles the order's first draft with what the build settled: no universal rubric set (the set is local), the cut-to-fit floor is local guidance not a wall, the escalation chain is local config, and the boundary is a moving frontier. Governed under the governance lane (added to `khai-guard.config.json`), like BRANCHING.md and CLAUDE.md, because a boundary ruling is policy. Docs and config only; ships nothing, gates nothing new.

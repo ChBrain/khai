@@ -54,6 +54,7 @@
           "khai-guard.config.json",
           ".prettierignore",
           "docs/BRANCHING.md",
+          "docs/BOUNDARY.md",
           "CLAUDE.md",
           "GEMINI.md",
           ".github/copilot-instructions.md"
