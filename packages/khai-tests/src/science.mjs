@@ -73,6 +73,40 @@ function parseOriginTable(origin) {
   return rows;
 }
 
+/**
+ * Malformed Origin rows: the well-formedness wall. `parseOriginTable` silently
+ * SKIPS a table row that is not exactly three cells (`cells.length < 3`), so a
+ * mistyped warrant row (a missing pipe, a merged column) is dropped from the
+ * science index without a trace, losing its citation. This catches such a row:
+ * a markdown table line (opens with `|`) that is neither the separator nor the
+ * header yet does not hold exactly three cells. Mirrors parseOriginTable's own
+ * cell split, so it flags precisely what that function would drop. A meta engine
+ * (the spine) whose warrant is a two-column table is never passed here: the
+ * callers skip an engine with no `khai.type` before parsing its Origin, exactly
+ * as they exclude it from the science map.
+ */
+export function originRowErrors(origin) {
+  const errors = [];
+  for (const raw of origin.split("\n")) {
+    const line = raw.trim();
+    if (!line.startsWith("|")) continue; // not a table row
+    const cells = line
+      .split("|")
+      .slice(1, -1)
+      .map((c) => c.trim());
+    if (cells.length === 0) continue; // a bare "|" line, not a row
+    const first = cells[0];
+    if (/^:?-+:?$/.test(first)) continue; // separator row
+    if (/^source$/i.test(first)) continue; // header row
+    if (cells.length !== 3)
+      errors.push(
+        `Origin row has ${cells.length} column(s), not 3 ` +
+          `(| Source | Key Work | Scope |); the index silently drops it, losing the citation: ${line}`,
+      );
+  }
+  return errors;
+}
+
 // --- normalization -------------------------------------------------------
 
 // A closed, declared set of non-author Source idioms the house uses on purpose:
@@ -186,7 +220,13 @@ export function collectScience(root) {
     if (!khai.type) continue;
     const refPath = join(dir, "REFERENCES.md");
     if (!existsSync(refPath)) continue;
-    const rows = parseOriginTable(sliceChapter(readFileSync(refPath, "utf8"), "Origin"));
+    const origin = sliceChapter(readFileSync(refPath, "utf8"), "Origin");
+    const malformed = originRowErrors(origin);
+    if (malformed.length)
+      throw new Error(
+        `collectScience: engine "${khai.engine}" REFERENCES.md: ${malformed.join("; ")}`,
+      );
+    const rows = parseOriginTable(origin);
     if (rows.length === 0)
       throw new Error(
         `collectScience: engine "${khai.engine}" has no parseable Origin table in REFERENCES.md`,
@@ -338,7 +378,13 @@ export function collectCollectionScience(
   for (const { id, dir } of unitDirs(root, collection)) {
     const refPath = unitWarrant(dir);
     if (!refPath) continue; // a dir with no warrant is not a science-bearing unit
-    const rows = parseOriginTable(sliceChapter(readFileSync(refPath, "utf8"), "Origin"));
+    const origin = sliceChapter(readFileSync(refPath, "utf8"), "Origin");
+    const malformed = originRowErrors(origin);
+    if (malformed.length)
+      throw new Error(
+        `collectCollectionScience: ${collection.dir}/${id} ${basename(refPath)}: ${malformed.join("; ")}`,
+      );
+    const rows = parseOriginTable(origin);
     if (rows.length === 0)
       throw new Error(
         `collectCollectionScience: ${collection.dir}/${id} has no parseable Origin table in ${basename(refPath)}`,
