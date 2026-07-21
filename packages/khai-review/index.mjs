@@ -9,6 +9,20 @@
 // verdict). The judge is injected -- a deterministic mock in tests, a model in
 // production -- so this package carries zero model dependencies and the harness
 // stays reproducibly testable. Adding a check is adding a rubric, not plumbing.
+//
+// The ladder, and it goes both ways. Read UP, code -> ai -> human is
+// ESCALATION, per case, at runtime: a case the deterministic gates cannot
+// settle is judged here, and a finding this lane cannot settle escalates to a
+// person (the collect/reconcile treatment is that top rung). Read DOWN,
+// human -> ai -> code is CONSOLIDATION, over time: a judgement a person keeps
+// making, once it crisps up, becomes a rubric here; once it is crisp enough to
+// be mechanical, a wall in the kit. Same rungs, opposite directions and
+// timescales -- escalation handles what is not yet settled low, consolidation
+// moves the frontier down so less needs escalating next time. This lane is the
+// middle rung, and the frontier is meant to move, so nothing here is fixed: a
+// rubric is a check on its way down, not a permanent home. (The tiers spell the
+// house, read as initials: Computed, AI, Instructed is CAI; Human, AI, Computed,
+// Knowledge is HACK. KAI HACKS AI.)
 
 import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { dirname, join, resolve, relative } from "node:path";
@@ -341,6 +355,128 @@ export function parseH2Sections(text) {
     }
   }
   return sections;
+}
+
+/**
+ * Collapse a chapter body to a single line: strip list markers and blank lines,
+ * join with a space. The Drives/Shadow chapters are prose the model reads as one
+ * criterion, not as markdown to render.
+ * @param {string} body
+ * @returns {string}
+ */
+function flattenChapter(body) {
+  return String(body ?? "")
+    .split("\n")
+    .map((l) => l.replace(/^\s*[-*+]\s+/, "").trim())
+    .filter(Boolean)
+    .join(" ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/**
+ * Build one review rubric from a position and the persona(s) that hold it. The
+ * position's accountability (its Drives, the standing plan it presses toward) is
+ * what it checks; the persona voices are how it reads, held in tension when more
+ * than one holds the seat; the persona shadows are the biases it must distrust in
+ * itself while judging. Kept pure so it tests without the filesystem.
+ * @param {{ title: string, accountability: string, voices: string[], shadows: string[] }} p
+ * @returns {string}
+ */
+export function buildPositionInstruction({ title, accountability, voices = [], shadows = [] }) {
+  const parts = [
+    `You review as ${title}, accountable for this and this alone: ${accountability}`,
+    voices.length
+      ? `Read in ${voices.length > 1 ? "these voices, held in tension" : "this voice"}: ${voices.join(" / ")}.`
+      : "",
+    // Escalation is the basic concept, and it is the same for every position: the
+    // deterministic gates already settle what is coded and unambiguous, so you do
+    // NOT re-judge that; you judge only the ambiguity they cannot reach, and a
+    // finding you raise ESCALATES to a person. You are one rung, never the final
+    // word: a FLAG is a suggestion escalated to the human, it does not gate.
+    "You are one rung in an escalation. The deterministic gates have already settled everything coded and unambiguous; do not re-judge that. Judge only the genuine ambiguity they cannot reach, and with a HIGH BAR: FLAG a passage only when it clearly fails the accountability above in a way no deterministic check catches; a tie goes to PASS. A FLAG ESCALATES the passage to a person as a suggestion, it never gates. When you FLAG, give a rewrite that meets the accountability and keeps the house voice ( , ; : () , never a dash), inventing nothing.",
+    shadows.length ? `Distrust your own shadow while you judge: ${shadows.join(" / ")}` : "",
+  ];
+  return parts.filter(Boolean).join(" ");
+}
+
+/**
+ * Resolve a house's review rubrics from its management positions. What a house
+ * checks for is its own, declared in the team it casts: each position is an
+ * accountability, voiced by the persona(s) that hold it, in tension when more
+ * than one does. This reads that team and turns each position into a rubric the
+ * harness runs. The NUMBER is the house's, never the harness's: a house may cast
+ * three positions or ten, and a different house rightfully chases different
+ * criteria. No universal set, no fixed count, nothing imposed. The mechanism is
+ * global; the team, and so what it checks, is local, exactly as voice is.
+ *
+ * Every position is kept, not tiered: the basic concept is escalation, the same
+ * for all of them. A position is not "a wall" or "a judge"; each spans coded
+ * (what the deterministic gates settle) and judged (the ambiguity only meaning
+ * can decide), and each escalates what it cannot settle. The rubric is that
+ * judged rung, framed to defer to the gates below it and to escalate, never gate,
+ * above it.
+ *
+ * @param {string} managementDir  a house's management/ directory
+ * @returns {Rubric[]}  one rubric per position with a declared accountability,
+ *                      ordered by filename (stable)
+ */
+export function resolvePositionRubrics(managementDir) {
+  let entries;
+  try {
+    entries = readdirSync(managementDir);
+  } catch {
+    return [];
+  }
+  const positionFiles = entries.filter((f) => /^position_.+\.md$/.test(f)).sort();
+  const personaFiles = entries.filter((f) => /^persona_.+\.md$/.test(f));
+
+  // Which personas hold each position: a persona's Taxonomy links its position.
+  const personasByPosition = new Map();
+  for (const pf of personaFiles) {
+    let text;
+    try {
+      text = readFileSync(join(managementDir, pf), "utf8");
+    } catch {
+      continue;
+    }
+    const fm = parseFrontmatter(text);
+    const sections = parseH2Sections(text);
+    const link = (sections["Taxonomy"] ?? "").match(/position_[a-z0-9_]+\.md/);
+    if (!link) continue;
+    if (!personasByPosition.has(link[0])) personasByPosition.set(link[0], []);
+    personasByPosition.get(link[0]).push({
+      voice: fm.voice || null,
+      shadow: flattenChapter(sections["Shadow"]),
+    });
+  }
+
+  const out = [];
+  for (const pf of positionFiles) {
+    let text;
+    try {
+      text = readFileSync(join(managementDir, pf), "utf8");
+    } catch {
+      continue;
+    }
+    const fm = parseFrontmatter(text);
+    const sections = parseH2Sections(text);
+    // The accountability is the position's Drives (its standing plan); a position
+    // that declares none is not a review criterion and is skipped.
+    const accountability = flattenChapter(sections["Drives"]);
+    if (!accountability) continue;
+    const held = personasByPosition.get(pf) ?? [];
+    out.push({
+      id: pf.replace(/^position_/, "").replace(/\.md$/, ""),
+      instruction: buildPositionInstruction({
+        title: fm.title || pf,
+        accountability,
+        voices: held.map((p) => p.voice).filter(Boolean),
+        shadows: held.map((p) => p.shadow).filter(Boolean),
+      }),
+    });
+  }
+  return out;
 }
 
 /**
@@ -826,6 +962,8 @@ export default {
   parseFrontmatter,
   resolveVoice,
   buildVoiceRubric,
+  resolvePositionRubrics,
+  buildPositionInstruction,
   mockJudge,
   createModelJudge,
   collect,
