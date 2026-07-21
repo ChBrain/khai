@@ -68,6 +68,109 @@ export async function review(prose, rubric, judge) {
 }
 
 /**
+ * The skeptic rubric derived from a base rubric: the same criterion, the burden
+ * inverted onto the finding. It is told to REFUTE a prior flag by default, so it
+ * replies "flag" (meaning: the finding is refuted) unless the passage clearly
+ * meets the criterion on its own terms, in which case it replies "pass" (the
+ * finding holds, it could not be refuted). A separate rubric so the base rubric
+ * stays a pure criterion.
+ * @param {Rubric} rubric
+ * @returns {Rubric}
+ */
+export function skepticRubric(rubric) {
+  return {
+    id: `${rubric.id}:skeptic`,
+    anchored: rubric.anchored,
+    instruction:
+      `You are a SKEPTIC, and the burden is on the finding, not the passage. A prior reviewer ` +
+      `flagged this passage against the criterion: "${rubric.instruction}" ` +
+      `Default to REFUTING that flag. Reply "flag" to mean THE FINDING IS REFUTED, unless the ` +
+      `passage clearly and independently meets the criterion for a finding; only then reply ` +
+      `"pass", meaning the finding holds and you could not refute it.`,
+  };
+}
+
+/**
+ * @typedef {Finding & { confirmed: boolean, votes: number, n: number }} RobustFinding
+ */
+
+/**
+ * The robustness wrapper (order 2): a single sample of one model is not a
+ * finding. The rubric is run as N independent judgements and confirmed only on a
+ * declared consensus (K of N flags), so a lone flaky flag does not survive. An
+ * optional skeptic pass, told to refute by default, can then VETO a confirmed
+ * finding: it stands only if the skeptic fails to refute it. And a rubric that
+ * ASSERTS A FACT (`rubric.anchored`) must be handed a retrieved source and may
+ * not self-certify from the model's memory, so without a source it cannot
+ * confirm. The thresholds (n, k), the skeptic, and the anchoring live here in the
+ * harness, not in the model, which is what holds when the model in the slot is
+ * changed. Still advisory: the result is a suggestion, never a gate.
+ *
+ * The two confirmation routes the order names are both expressible: consensus
+ * alone (`skeptic: false`, the default), or a skeptic decision (`n: 1, k: 1,
+ * skeptic: true`, one proposer the skeptic then disposes).
+ *
+ * @param {string} prose
+ * @param {Rubric} rubric
+ * @param {Judge} judge
+ * @param {{ n?: number, k?: number, skeptic?: boolean, source?: string | null }} [opts]
+ * @returns {Promise<RobustFinding>}
+ */
+export async function reviewRobust(prose, rubric, judge, opts = {}) {
+  const { n = 3, k = 2, skeptic = false, source = null } = opts;
+  if (typeof prose !== "string") throw new Error("reviewRobust: prose must be a string");
+  if (!rubric || typeof rubric.instruction !== "string")
+    throw new Error("reviewRobust: a rubric with an instruction is required");
+  if (typeof judge !== "function") throw new Error("reviewRobust: a judge function is required");
+  if (!Number.isInteger(n) || n < 1) throw new Error("reviewRobust: n must be a positive integer");
+  if (!Number.isInteger(k) || k < 1 || k > n)
+    throw new Error("reviewRobust: k must be an integer in 1..n");
+
+  // Source anchoring: a factual rubric may not self-certify from the model's
+  // memory. Without a retrieved source it cannot confirm; the caller supplies one.
+  if (rubric.anchored && (typeof source !== "string" || source.trim() === "")) {
+    return {
+      rubric: rubric.id,
+      verdict: "pass",
+      confirmed: false,
+      votes: 0,
+      n,
+      suggestion: null,
+      reason: "unanchored: a factual rubric needs a retrieved source, not the model's memory",
+    };
+  }
+
+  // A factual rubric judges the passage AGAINST the retrieved source, so the
+  // source rides in front of the passage; a non-factual rubric ignores it.
+  const subject = rubric.anchored ? `RETRIEVED SOURCE:\n${source}\n\nPASSAGE:\n${prose}` : prose;
+
+  // N independent judgements; the flags carry the suggestion and reason.
+  const findings = [];
+  for (let i = 0; i < n; i++) findings.push(await review(subject, rubric, judge));
+  const flags = findings.filter((f) => f.verdict === "flag");
+  const votes = flags.length;
+  let confirmed = votes >= k;
+
+  // Skeptic veto: the finding stands only if the skeptic fails to refute it (a
+  // "pass" from the skeptic). A skeptic "flag" means refuted, and drops it.
+  if (confirmed && skeptic) {
+    const refutation = await review(subject, skepticRubric(rubric), judge);
+    if (refutation.verdict === "flag") confirmed = false;
+  }
+
+  const winner = flags[0] ?? null;
+  return {
+    rubric: rubric.id,
+    verdict: confirmed ? "flag" : "pass",
+    confirmed,
+    votes,
+    n,
+    suggestion: confirmed && winner ? winner.suggestion : null,
+    reason: confirmed && winner ? winner.reason : null,
+  };
+}
+
+/**
  * Review every chapter of an engine's WIRES card against the given rubrics
  * (conciseness by default). Returns only the flags, each tagged with its
  * location, for an advisory PR comment. Pure JSON walk plus the judge.
@@ -715,6 +818,8 @@ export function createModelJudge({
 export default {
   rubrics,
   review,
+  reviewRobust,
+  skepticRubric,
   reviewCard,
   reviewMarkdown,
   parseH2Sections,
