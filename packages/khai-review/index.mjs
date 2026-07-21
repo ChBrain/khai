@@ -302,6 +302,7 @@ export async function reviewCard(
   checks = [rubrics.conciseness],
   repoRoot = process.cwd(),
   pkgDir = null,
+  robust = null,
 ) {
   const card = (manifest && manifest.card) || {};
   const flags = [];
@@ -324,7 +325,13 @@ export async function reviewCard(
         }
         activeRubric = buildVoiceRubric(voice);
       }
-      const f = await review(prose, activeRubric, judge);
+      // Robust when the caller passes thresholds: each rubric is confirmed only
+      // on consensus (and, if asked, an unrefuted skeptic and an anchored
+      // source), so the model in the slot cannot carry a lone flaky flag. Single
+      // shot otherwise (back-compat).
+      const f = robust
+        ? await reviewRobust(prose, activeRubric, judge, robust)
+        : await review(prose, activeRubric, judge);
       if (f.verdict === "flag") flags.push({ where: `card.${chapter}`, current: prose, ...f });
     }
   }
@@ -562,6 +569,7 @@ export async function reviewMarkdown(
   checks = [rubrics.conciseness],
   repoRoot = process.cwd(),
   filePath = filename,
+  robust = null,
 ) {
   const sections = parseH2Sections(text);
   const flags = [];
@@ -579,7 +587,9 @@ export async function reviewMarkdown(
         }
         activeRubric = buildVoiceRubric(voice);
       }
-      const f = await review(body, activeRubric, judge);
+      const f = robust
+        ? await reviewRobust(body, activeRubric, judge, robust)
+        : await review(body, activeRubric, judge);
       if (f.verdict === "flag") {
         flags.push({ where: `${filename}#${title}`, current: body, ...f });
       }

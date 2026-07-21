@@ -28,6 +28,7 @@ import {
   reviewCard,
   reviewMarkdown,
   rubrics,
+  resolvePositionRubrics,
   mockJudge,
   createModelJudge,
   collect,
@@ -144,7 +145,29 @@ async function main() {
   }
   const auditId = cfg.id ?? basename(auditDir);
   const review = cfg.review ?? {};
-  const checks = (review.rubrics ?? ["conciseness"]).map((id) => rubrics[id]).filter(Boolean);
+  // The checks are what a house checks for, and they coexist: named rubrics the
+  // manifest opts into (the voice case, or any extra lens) merged with the
+  // rubrics resolved from the house's own management positions when the manifest
+  // asks (`fromPositions`). No universal set is imposed; the count is the
+  // house's. Back-compat: with neither, the historical conciseness default holds.
+  const named = (review.rubrics ?? (review.fromPositions ? [] : ["conciseness"]))
+    .map((id) => rubrics[id])
+    .filter(Boolean);
+  const positions = review.fromPositions
+    ? resolvePositionRubrics(
+        resolve(
+          repoRoot,
+          typeof review.fromPositions === "string"
+            ? review.fromPositions
+            : (review.management ?? "management"),
+        ),
+      )
+    : [];
+  const checks = [...named, ...positions];
+  // The house's local robustness thresholds (n, k, skeptic): when present, every
+  // rubric runs through the consensus/skeptic/anchor wrapper, so the audit does
+  // not ride on one sample of one model. Absent, the review is single shot.
+  const robust = review.thresholds ?? null;
   const targets = (review.targets ?? []).map((t) => engineAt(t, repoRoot)).filter(Boolean);
 
   const ledgerPath = resolve(flag("--ledger") ?? join(auditDir, "ledger.json"));
@@ -169,7 +192,7 @@ async function main() {
   for (const t of targets) {
     let flags = [];
     try {
-      flags = await reviewCard(t.manifest, judge, checks, repoRoot, t.dir);
+      flags = await reviewCard(t.manifest, judge, checks, repoRoot, t.dir, robust);
       const files = mdFilesUnder(t.dir);
       for (const filePath of files) {
         // Label by path relative to the target dir, so a top-level file keeps
@@ -179,7 +202,15 @@ async function main() {
           const text = readFileSync(filePath, "utf8");
           if (/^---\r?\n[\s\S]*?\bkhai:/.test(text)) {
             const relPath = relative(repoRoot, filePath);
-            const mdFlags = await reviewMarkdown(file, text, judge, checks, repoRoot, relPath);
+            const mdFlags = await reviewMarkdown(
+              file,
+              text,
+              judge,
+              checks,
+              repoRoot,
+              relPath,
+              robust,
+            );
             flags.push(...mdFlags);
           }
         } catch (err) {
