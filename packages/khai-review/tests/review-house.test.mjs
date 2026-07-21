@@ -95,3 +95,52 @@ describe.skipIf(DORMANT)("reviewHouse", () => {
     expect(out.added).toEqual([]);
   });
 });
+
+const DORMANT_ESC = DORMANT || !readFileSync(SRC, "utf8").includes("escalatesTo");
+
+describe.skipIf(DORMANT_ESC)("reviewHouse: escalation target", () => {
+  it("tags a finding with its next rung from the escalation map", async () => {
+    const out = await reviewHouse(
+      mgmt({ "position_roadie.md": ["The Roadie", "drive"] }),
+      "prose",
+      flagFor("roadie"),
+      { n: 3, k: 2, escalation: { roadie: "choregos" } },
+    );
+    expect(out.findings[0].escalatesTo).toBe("choregos"); // the immediate rung, not flattened to human
+  });
+
+  it("defaults an unrouted finding straight to the human", async () => {
+    const out = await reviewHouse(
+      mgmt({ "position_a.md": ["A", "drive"] }),
+      "prose",
+      flagFor("a"),
+      { n: 3, k: 2 },
+    );
+    expect(out.findings[0].escalatesTo).toBe("human");
+  });
+
+  it("routes each rung to its own target in one pass", async () => {
+    const out = await reviewHouse(
+      mgmt({
+        "position_roadie.md": ["The Roadie", "d"],
+        "position_choregos.md": ["The Choregos", "d"],
+      }),
+      "prose",
+      async () => ({ verdict: "flag", suggestion: "x", reason: "y" }),
+      { n: 3, k: 2, escalation: { roadie: "choregos", choregos: "human" } },
+    );
+    const by = Object.fromEntries(out.findings.map((f) => [f.rubric, f.escalatesTo]));
+    expect(by).toEqual({ roadie: "choregos", choregos: "human" });
+  });
+
+  it("carries the target onto the reconciled ledger entries", async () => {
+    const out = await reviewHouse(
+      mgmt({ "position_roadie.md": ["The Roadie", "d"] }),
+      "prose",
+      flagFor("roadie"),
+      { n: 3, k: 2, where: "doc#s", escalation: { roadie: "choregos" } },
+    );
+    expect(out.added[0].escalatesTo).toBe("choregos");
+    expect(out.ledger.find((e) => e.rubric === "roadie").escalatesTo).toBe("choregos");
+  });
+});
