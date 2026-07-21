@@ -502,25 +502,47 @@ export function resolvePositionRubrics(managementDir) {
  * @returns {Promise<{ rubrics: string[], findings: object[], ledger: object[], added: object[], reopened: object[] }>}
  */
 export async function reviewHouse(managementDir, prose, judge, opts = {}) {
-  const { prior = [], where, ...robust } = opts;
+  const { prior = [], where, escalation = {}, ...robust } = opts;
   const rubrics = resolvePositionRubrics(managementDir);
   const fresh = [];
+  // Each finding's next rung: the position it rises to when its own rung cannot
+  // settle it. Read from the `escalation` map (rubric id -> the id it escalates
+  // to), the house's local wiring of its team's chain, defaulting to "human" --
+  // an unrouted finding goes straight to a person. This is the immediate rung,
+  // not the whole chain: the Roadie rises to the Choregos, the Choregos to the
+  // human, each step taken when that rung is stuck. (Config, like the thresholds:
+  // the mechanism is global, the chain is the house's. When the canon grows a
+  // declared escalation field on a position, the resolver reads it instead.)
+  const targetById = new Map();
   for (const rubric of rubrics) {
     const f = await reviewRobust(prose, rubric, judge, robust);
     if (f.confirmed) {
+      const id = where ? `${where}:${rubric.id}` : rubric.id;
+      const escalatesTo = escalation[rubric.id] ?? "human";
+      targetById.set(id, escalatesTo);
       fresh.push({
-        id: where ? `${where}:${rubric.id}` : rubric.id,
+        id,
         where: where ?? undefined,
         rubric: rubric.id,
         reason: f.reason ?? null,
         suggestion: f.suggestion ?? null,
+        escalatesTo,
       });
     }
   }
   // Escalate: reconcile the confirmed findings against the ledger. `added` are
-  // the genuinely new escalations that need a person's eyes.
+  // the genuinely new escalations that need a person's eyes. collect keeps only
+  // its own fields, so carry each finding's next rung back onto the reconciled
+  // entries it produced this run (a prior entry from another run is left as is).
   const { ledger, added, reopened } = collect(prior, fresh);
-  return { rubrics: rubrics.map((r) => r.id), findings: fresh, ledger, added, reopened };
+  const tag = (e) => (targetById.has(e.id) ? { ...e, escalatesTo: targetById.get(e.id) } : e);
+  return {
+    rubrics: rubrics.map((r) => r.id),
+    findings: fresh,
+    ledger: ledger.map(tag),
+    added: added.map(tag),
+    reopened: reopened.map(tag),
+  };
 }
 
 /**
