@@ -480,6 +480,50 @@ export function resolvePositionRubrics(managementDir) {
 }
 
 /**
+ * Run a house's whole management team over one passage, and escalate. This is
+ * order 2 composed end to end: resolve the house's rubrics from its positions
+ * (`resolvePositionRubrics`), run each through the robustness wrapper
+ * (`reviewRobust`) so a finding survives consensus and the skeptic, then
+ * reconcile the confirmed findings into the ledger (`collect`) -- the ledger is
+ * the top rung, the escalation to a person. The judge is injected exactly as
+ * elsewhere in the lane, so the model is a configuration line, not a dependency,
+ * and the whole call tests without one.
+ *
+ * `where` tags each finding with its location (a `file#section`, say) so the
+ * ledger id is stable across runs; `prior` is the committed ledger to reconcile
+ * against. Robustness options (n, k, skeptic, source) pass through to every
+ * rubric. Advisory throughout: a confirmed finding is a suggestion escalated to
+ * the human, never a gate.
+ *
+ * @param {string} managementDir  the house's management/ directory
+ * @param {string} prose          the passage to review
+ * @param {Judge} judge
+ * @param {{ prior?: object[], where?: string, n?: number, k?: number, skeptic?: boolean, source?: string|null }} [opts]
+ * @returns {Promise<{ rubrics: string[], findings: object[], ledger: object[], added: object[], reopened: object[] }>}
+ */
+export async function reviewHouse(managementDir, prose, judge, opts = {}) {
+  const { prior = [], where, ...robust } = opts;
+  const rubrics = resolvePositionRubrics(managementDir);
+  const fresh = [];
+  for (const rubric of rubrics) {
+    const f = await reviewRobust(prose, rubric, judge, robust);
+    if (f.confirmed) {
+      fresh.push({
+        id: where ? `${where}:${rubric.id}` : rubric.id,
+        where: where ?? undefined,
+        rubric: rubric.id,
+        reason: f.reason ?? null,
+        suggestion: f.suggestion ?? null,
+      });
+    }
+  }
+  // Escalate: reconcile the confirmed findings against the ledger. `added` are
+  // the genuinely new escalations that need a person's eyes.
+  const { ledger, added, reopened } = collect(prior, fresh);
+  return { rubrics: rubrics.map((r) => r.id), findings: fresh, ledger, added, reopened };
+}
+
+/**
  * Review H2 section bodies in a markdown file.
  * @param {string} filename relative filename (e.g., position_female.md)
  * @param {string} text content of the markdown file
@@ -964,6 +1008,7 @@ export default {
   buildVoiceRubric,
   resolvePositionRubrics,
   buildPositionInstruction,
+  reviewHouse,
   mockJudge,
   createModelJudge,
   collect,
