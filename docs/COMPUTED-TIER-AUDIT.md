@@ -113,7 +113,7 @@ made concrete.**
 ### 4. shape of the warrant
 
 - **add-wall**: Origin-row well-formedness. `parseOriginTable` (`science.mjs`)
-  silently *skips* a row that is not a clean three-cell row (`cells.length < 3`
+  silently _skips_ a row that is not a clean three-cell row (`cells.length < 3`
   continues). A malformed warrant row is therefore dropped, not flagged. The atom
   gates a line that opens with `|` inside the Origin chapter but does not parse to
   a valid row.
@@ -132,12 +132,12 @@ made concrete.**
   gated in `validateCollectionRegistry`.
 - **add-wall (promotion)**: the dash ban gates on content instances
   (`checkEncoding` plus `checkClauseDash`), but on the WIRES card and the README it
-  is only a *warning* (`engineDocChecks`). The order wants the deterministic slice
+  is only a _warning_ (`engineDocChecks`). The order wants the deterministic slice
   of voice to gate; promote the dash lint to an error on the card and the README.
 - **add-wall (global mechanism, local knob)**: the spelling register. No lint
   exists. This is the deterministic slice the order wants lifted out of the judged
   `voice-conformance` rubric. The mechanism (a register lint) is a global wall; the
-  *word list it enforces is local voice*, so it is parameterised, never hard-coded.
+  _word list it enforces is local voice_, so it is parameterised, never hard-coded.
   This is the cleanest illustration of order 4's rule: the wall is global, the
   words are local.
 
@@ -149,7 +149,7 @@ made concrete.**
 - **stays-maintainer**: the general "the bump matches the change class" beyond the
   count. `bump-check` is deliberately advisory (it prints the banner, never blocks),
   and CLAUDE.md hard rule 4 reserves minor and major to the maintainer's label and
-  forbids self-escalation. So the residual here must *not* be auto-gated; walling it
+  forbids self-escalation. So the residual here must _not_ be auto-gated; walling it
   would collide with the label policy. The computable part is already a wall; the
   rest is correctly a human decision.
 
@@ -174,8 +174,8 @@ codebase.
 
 Every `add-wall` above is global (it lands in `khai-rules` plus `khai-tests`, rides
 the `arch/` or `governance/` lanes, and cannot drift between houses). Exactly one
-carries a local knob: the spelling register lint, whose *mechanism* is global and
-whose *word list* is local voice. Nothing in order 1 is house-only taste. That
+carries a local knob: the spelling register lint, whose _mechanism_ is global and
+whose _word list_ is local voice. Nothing in order 1 is house-only taste. That
 matches the order's own rule, and it means the wall work needs no per-house
 negotiation: the houses inherit these gates by bumping the dependency, and only the
 spelling register asks a house to declare its list on adoption.
