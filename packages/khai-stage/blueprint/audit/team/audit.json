@@ -1,0 +1,8 @@
+{
+  "id": "team",
+  "review": {
+    "fromPositions": true,
+    "thresholds": { "n": 3, "k": 2, "skeptic": true },
+    "targets": ["."]
+  }
+}
