@@ -1,0 +1,5 @@
+---
+"@chbrain/khai-review": patch
+---
+
+Harness (order 2, composed): `reviewHouse(managementDir, prose, judge, opts)` runs a house's whole management team over a passage and escalates. It ties the three pieces together end to end: resolve the house's rubrics from its positions (`resolvePositionRubrics`), run each through the robustness wrapper (`reviewRobust`) so a finding survives consensus and the skeptic, then reconcile the confirmed findings into the ledger (`collect`) -- the ledger is the top rung, the escalation to a person. The judge stays injected, so the whole call tests without a model and the provider is a configuration line. `where` tags each finding's location so the ledger id is stable across runs; `prior` reconciles against the committed ledger; robustness options (n, k, skeptic, source) pass through to every rubric. Advisory throughout: a confirmed finding is a suggestion escalated to the human, never a gate. Grounded against this repo's own team: its three positions run over a passage, a consensus-confirmed finding escalates into the ledger as open, and a later clean run marks it cleared. Set at patch as the free level.
