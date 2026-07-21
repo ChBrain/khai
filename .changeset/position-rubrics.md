@@ -1,0 +1,7 @@
+---
+"@chbrain/khai-review": patch
+---
+
+Harness (order 2): resolve a house's review rubrics from its management positions. What a house checks for is its own, declared in the team it casts: each position is an accountability (its Drives, the standing plan it presses toward), voiced by the persona(s) that hold it, in tension when more than one does. `resolvePositionRubrics(managementDir)` reads that team and turns each position into a rubric the harness runs; `buildPositionInstruction` is the pure composition. The number is the house's, never the harness's: a house may cast three positions or ten, and a different house rightfully chases different criteria. No universal set, no fixed count, nothing imposed; the mechanism is global, the team local, exactly as voice is.
+
+Every position is kept, not tiered: the basic concept is escalation, the same for all of them. A position is not a wall or a judge; each spans coded (what the deterministic gates settle) and judged (the ambiguity only meaning can decide), and each escalates what it cannot settle. Each rubric is framed as that judged rung: it defers to the gates below (does not re-judge the coded, unambiguous part) and escalates above (a flag is a suggestion raised to a person, never a gate). Verified against this repo: its three positions (Choregos, Director, Roadie) resolve to three rubrics, the Choregos carrying Nicias and Pericles in tension. Set at patch as the free level.
