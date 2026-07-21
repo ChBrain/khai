@@ -1373,6 +1373,78 @@ export function castingCoverageErrors(root) {
   return results;
 }
 
+/**
+ * Play-level orphan (order 1, completeness): a content instance that sits in a
+ * play directory but the play never lists. The play file is the play's manifest,
+ * its Company declaring the cast and its Triggers chaining the plots, so every
+ * instance file beside it must be linked from it, exactly as an engine's every
+ * member must be declared in the manifest (the engine orphan check, lifted to
+ * the play). `castingCoverageErrors` only runs the other direction (a listed
+ * element no plot casts is a dead entry, a warning); this catches the reverse, a
+ * file on disk the play never names (a present-but-unlisted element). Computed,
+ * not judged.
+ *
+ * Conservative on a play file that links nothing local: there is no manifest to
+ * measure against, so it is skipped, mirroring how castingCoverageErrors skips an
+ * empty Company. The play anchor itself is never its own orphan; a non-instance
+ * file (a README, no `khai:` frontmatter) is not content and is ignored.
+ *
+ * @param {string} root  project root (looks for plays/<id>/)
+ * @returns {{ file: string, errors: string[], warnings: string[], audit: string[] }[]}
+ */
+export function playOrphanErrors(root) {
+  const collection = resolveCollectionAt(root);
+  const itemsDir = join(root, collection.dir);
+  if (!existsSync(itemsDir) || !statSync(itemsDir).isDirectory()) return [];
+
+  let subdirs;
+  try {
+    subdirs = readdirSync(itemsDir, { withFileTypes: true })
+      .filter((e) => e.isDirectory() && !e.name.startsWith("."))
+      .map((e) => e.name);
+  } catch {
+    return [];
+  }
+
+  const results = [];
+  for (const id of subdirs) {
+    const playDir = join(itemsDir, id);
+    let files;
+    try {
+      files = readdirSync(playDir).filter((f) => f.endsWith(".md"));
+    } catch {
+      continue;
+    }
+    const playFileName = files.find((f) => f.startsWith(collection.anchor));
+    if (!playFileName) continue; // structure is the registry's concern
+
+    // The play's manifest: every basename it links (Company cast + Triggers plots).
+    const referenced = new Set(
+      castLinkBasenames(readFileSync(join(playDir, playFileName), "utf8")),
+    );
+    if (referenced.size === 0) continue; // nothing declared: no manifest to measure against
+
+    for (const f of files) {
+      if (f === playFileName) continue;
+      // Only a khai content instance is billable; a plain doc (no frontmatter) is not.
+      const text = readFileSync(join(playDir, f), "utf8");
+      if (!/^﻿?---\r?\n[\s\S]*?\bkhai:/.test(text)) continue;
+      if (!referenced.has(f))
+        results.push({
+          file: join(playDir, f),
+          errors: [
+            `play orphan: "${f}" sits in the play but the play never lists it ` +
+              `(its Company or Triggers); link it where it belongs, or remove it`,
+          ],
+          warnings: [],
+          audit: [],
+        });
+    }
+  }
+
+  return results;
+}
+
 export function validateProject({
   root,
   contentDir = root,
@@ -1448,6 +1520,9 @@ export function validateProject({
     // Every plot must cast at least one element of its item's Company; a dead
     // Company entry is a warning. The dual of castErrors, at the item level.
     results.push(...castingCoverageErrors(root));
+    // The reverse of castingCoverageErrors: a file in a play dir the play never
+    // lists (a present-but-unlisted element), the engine orphan check at the play.
+    results.push(...playOrphanErrors(root));
   }
 
   return results;
