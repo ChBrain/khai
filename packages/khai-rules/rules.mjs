@@ -361,6 +361,42 @@ export function looseFiles(files) {
   return files.filter((f) => degree.get(f.name) === 0).map((f) => f.name);
 }
 
+// --- title collision: no two elements across KINDS share a display title ----
+// The order's collision clause, computed. Each element is { file, kind, title }
+// (title = the H1 name, `# Type: Name` -> Name). Within one scope (a play's
+// cast, an engine's members) a display title shared by elements of DIFFERENT
+// kinds is a collision: a bare title names one element, so a plot and a piece
+// that both read "The Fall" name nothing determinate, and a whole-phenomenon
+// piece that reuses the play title hides inside it. Repetition WITHIN a kind is
+// a separate concern (two personas is the norm) and is not flagged here.
+// Pure: the caller collects the elements per scope and passes them in. `exempt`
+// is a set of file basenames to skip (the Playwright wiring guide is
+// dev-steering named after the phenomenon it documents, not a cast element, so
+// it collides with the root member by design; an engine feeds members only and
+// never sees it, a house discovers it by frontmatter and exempts it here).
+export function titleCollisions(elements, { exempt = new Set() } = {}) {
+  const byTitle = new Map();
+  for (const el of elements) {
+    if (exempt.has(el.file) || exempt.has(el.file.split("/").pop())) continue;
+    const title = (el.title ?? "").trim();
+    if (!title) continue;
+    const key = title.toLowerCase();
+    if (!byTitle.has(key)) byTitle.set(key, []);
+    byTitle.get(key).push(el);
+  }
+  const errors = [];
+  for (const group of byTitle.values()) {
+    const kinds = new Set(group.map((g) => g.kind));
+    if (kinds.size < 2) continue;
+    const shown = group.map((g) => `${g.kind} (${g.file})`).join(", ");
+    errors.push(
+      `display-title collision: "${group[0].title.trim()}" is shared across kinds by ${shown}; ` +
+        `a title names one element, so two kinds may not carry it`,
+    );
+  }
+  return errors;
+}
+
 // --- clause dash: the LLM's favourite punctuation, not the house voice -----
 // em/en-dash are caught by checkEncoding; this catches the *spaced hyphen*
 // " - " used as a clause separator (the em-dash in disguise). The house voice

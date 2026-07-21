@@ -36,6 +36,7 @@ import {
   checkNoFooter,
   checkHasFrontmatter,
   looseFiles,
+  titleCollisions,
   sectionBody,
 } from "@chbrain/khai-rules";
 import { resolveLanguage } from "@chbrain/khai-language";
@@ -435,14 +436,20 @@ export async function validateEnginePackage(pkgDir, { executeCompose = false } =
   }
   const referenced = new Set(members.map((m) => m.file));
 
-  // referenced files exist + conform (each against its declared member type)
+  // referenced files exist + conform (each against its declared member type).
+  // Collect each member's display title (the H1 name) so the collision check
+  // below can find two kinds sharing one title. Only manifest members are
+  // billed here, so the Playwright guide (not a member) is never in the set and
+  // its by-design root-name reuse cannot false-fire.
+  const titleElements = [];
   for (const m of members) {
     const path = join(pkgDir, m.file);
     if (!existsSync(path)) {
       results.push({ file: m.file, errors: [`manifest references missing file: ${m.file}`] });
       continue;
     }
-    const errors = validateContentFile(readFileSync(path, "utf8"), {
+    const text = readFileSync(path, "utf8");
+    const errors = validateContentFile(text, {
       type: m.type,
       baseDir: pkgDir,
       owner,
@@ -452,6 +459,18 @@ export async function validateEnginePackage(pkgDir, { executeCompose = false } =
       resolvePackageDir: packageDirResolver(pkgDir),
     });
     if (errors.length) results.push({ file: m.file, errors });
+    const { name } = checkH1(parseDoc(text), { type: m.type });
+    if (name) titleElements.push({ file: m.file, kind: m.type, title: name });
+  }
+
+  // collision: no two members across kinds share a display title (computed). A
+  // meta engine is the spine, not a cast: its parts (instructions, architecture)
+  // are two facets of one spine and may co-name it, so the collision check --
+  // which polices a navigable cast -- does not apply to it, exactly as the WIRES
+  // card and generated README do not.
+  if (!isMeta) {
+    const collisions = titleCollisions(titleElements);
+    if (collisions.length) results.push({ file: "package.json", errors: collisions });
   }
 
   // no orphan content: every khai instance file must be a declared member
@@ -1380,9 +1399,14 @@ export function validateProject({
     }
   }
 
+  // Collect each instance's display title per directory (the play/cast scope),
+  // so the collision check below can find two kinds sharing one title within a
+  // single play.
+  const elementsByDir = new Map();
   for (const file of files) {
+    const text = readFileSync(file, "utf8");
     const resolvedLanguage = resolveLanguage(file, root);
-    const findings = validateInstanceFile(readFileSync(file, "utf8"), {
+    const findings = validateInstanceFile(text, {
       baseDir: dirname(file),
       requirements,
       owner,
@@ -1393,10 +1417,29 @@ export function validateProject({
       ambiguous,
     });
     if (findings.length) results.push({ file, ...bucket(findings) });
+    const doc = parseDoc(text);
+    const kind = doc.data?.khai;
+    const { name } = typeof kind === "string" ? checkH1(doc, { type: kind }) : { name: null };
+    if (name) {
+      const dir = dirname(file);
+      if (!elementsByDir.has(dir)) elementsByDir.set(dir, []);
+      elementsByDir.get(dir).push({ file: basename(file), kind, title: name });
+    }
   }
 
   // A needed position without a persona is a failure (computed, not judged).
   results.push(...castErrors(files));
+
+  // collision: within a play (a directory of instances) no two elements across
+  // kinds share a display title, and a whole-phenomenon piece may not reuse the
+  // play title. The Playwright wiring guide is dev-steering named after the
+  // phenomenon, not a cast element, so it is exempt (as it is from the loose and
+  // orphan checks).
+  const exemptTitles = new Set([PLAYWRIGHT_INSTRUCTIONS]);
+  for (const [dir, elements] of elementsByDir) {
+    const collisions = titleCollisions(elements, { exempt: exemptTitles });
+    if (collisions.length) results.push({ file: dir, errors: collisions, warnings: [], audit: [] });
+  }
 
   const itemsDir = join(root, resolveCollectionAt(root).dir);
   if (existsSync(itemsDir) && statSync(itemsDir).isDirectory()) {
