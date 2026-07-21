@@ -2,6 +2,7 @@
   "id": "voice-conformance",
   "review": {
     "rubrics": ["voice-conformance"],
+    "thresholds": { "n": 3, "k": 2 },
     "targets": ["."]
   }
 }
