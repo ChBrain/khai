@@ -23,9 +23,13 @@ import { listMethods } from "./index.mjs";
 /** Where the generated index lives, relative to the repo root. */
 export const METHODS_INDEX_PATH = "docs/METHODS.md";
 
-// Escape the two characters that would break a markdown link's text span; the
-// rest of the frontmatter is controlled in-house and renders verbatim.
-const linkText = (s) => String(s ?? "").replace(/([[\]])/g, "\\$1");
+// Escape a markdown link's text span. Backslash first (so the escape character
+// itself is escaped, not left to bypass the rest), then the brackets that would
+// otherwise close the span; the rest of the frontmatter renders verbatim.
+const linkText = (s) =>
+  String(s ?? "")
+    .replace(/\\/g, "\\\\")
+    .replace(/([[\]])/g, "\\$1");
 
 /** The attribution names as one string: "Mary Gorman & Ellen Gottesdiener". */
 function inventors(m) {
