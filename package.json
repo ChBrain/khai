@@ -32,6 +32,8 @@
     "build:skills": "npm run build -w @chbrain/khai-skills",
     "check:skills": "npm run check -w @chbrain/khai-skills",
     "drift:skills": "npm run drift -w @chbrain/khai-skills",
+    "build:methods": "npm run build -w @chbrain/khai-methods",
+    "verify:methods": "npm run verify -w @chbrain/khai-methods",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "changeset": "changeset",
