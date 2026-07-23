@@ -1,5 +1,17 @@
 # @chbrain/khai-tests
 
+## 0.2.2
+
+### Patch Changes
+
+- 787f31f: Wall (order 1, collision): add the `titleCollisions` atom to khai-rules and gate it in the conformance kit. Within one scope (an engine's members, a play's cast) no two elements of different kinds may share a display title (the H1 name), and a whole-phenomenon piece may not reuse the play title; a bare title must name one element. Same-kind repetition is not flagged (two personas is the norm). The Playwright wiring guide is exempt (dev-steering named after the phenomenon, not a cast element) and a meta engine (the spine, not a cast) is exempt, mirroring how both are already exempt from the loose, orphan, card, and README checks. Verified green across all current engines, composites, and fixtures; no whitelist needed. Set at patch as the free level; a new gate may warrant a minor at the maintainer's `bump:minor` label.
+- 760329e: Wall (order 1, warrant-shape): gate Origin-row well-formedness. `parseOriginTable` silently skipped a table row that is not exactly three cells, so a mistyped warrant row (a missing pipe, a merged column) was dropped from the science index without a trace, losing its citation. `collectScience` and `collectCollectionScience` now throw on a malformed Origin row (a `| ... |` line that is neither the separator nor the header yet does not hold exactly three cells), naming the engine and the offending line, mirroring the existing zero-rows throw. Scoped to science-bearing engines by construction: the callers already skip an engine with no `khai.type` before parsing its Origin, so the meta spine's deliberately two-column warrant is never flagged. Verified green: the real repo collects 114 science engines with no throw. Set at patch as the free level; a new gate may warrant a minor at the maintainer's `bump:minor` label.
+- 856287d: Wall (order 1, completeness): gate the play-level orphan. A content instance that sits in a play directory but the play never lists (in its Company or Triggers) is a present-but-unlisted element, the reverse of `castingCoverageErrors` (which only flags a listed element no plot casts). This is the engine orphan check lifted to the play: the play file is the play's manifest, so every instance beside it must be linked from it. Conservative on a play that links nothing local (skipped, as `castingCoverageErrors` skips an empty Company); a non-instance doc (no `khai:` frontmatter) is ignored. Verified green: the real discussion play lists all eight of its local instance files. Set at patch as the free level; a new gate may warrant a minor at the maintainer's `bump:minor` label.
+- Updated dependencies [f83a54c]
+- Updated dependencies [787f31f]
+  - @chbrain/khai-stage@0.0.21
+  - @chbrain/khai-rules@0.1.12
+
 ## 0.2.1
 
 ### Patch Changes

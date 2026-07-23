@@ -1,5 +1,0 @@
----
-"@chbrain/khai-review": patch
----
-
-Harness (order 2): add the robustness wrapper. `reviewRobust` runs a rubric as N independent judgements and confirms only on a declared consensus (K of N flags), so a lone flaky flag does not survive; an optional skeptic pass (`skepticRubric`), told to refute by default, can veto a confirmed finding (it stands only if the skeptic fails to refute); and a rubric that asserts a fact (`rubric.anchored`) must be handed a retrieved source and may not self-certify from the model's memory, so without a source it cannot confirm. The thresholds, the skeptic, and the anchoring live in the harness; the judge stays injected, so this is tested without a model and the provider is a configuration line. Both confirmation routes the order names are expressible: consensus alone, or a skeptic decision (n=1, k=1, skeptic=true). Still advisory: never gates. No new rubrics here (the universal-rubric selection is a separate, judgment-laden choice). Set at patch as the free level; a new capability may warrant a minor at the maintainer's `bump:minor` label.
