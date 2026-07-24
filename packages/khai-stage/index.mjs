@@ -8,6 +8,7 @@
 import { readdirSync, readFileSync, mkdirSync, writeFileSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join, relative } from "node:path";
+import prettier from "prettier";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const BLUEPRINT = join(here, "blueprint");
@@ -66,7 +67,14 @@ const walk = (dir, base = dir) =>
  *
  * @param {{ source: string, targetDir: string, manager?: string, playwright?: string, roadie?: string, director?: string }} opts
  */
-export function stageHouse({ source, targetDir, manager, playwright, roadie, director } = {}) {
+export async function stageHouse({
+  source,
+  targetDir,
+  manager,
+  playwright,
+  roadie,
+  director,
+} = {}) {
   const s = slug(source);
   if (!s)
     throw new Error("khai-stage: a source is required, e.g. stageHouse({ source: 'buechner' })");
@@ -121,6 +129,23 @@ export function stageHouse({ source, targetDir, manager, playwright, roadie, dir
   };
   writeFileSync(join(targetDir, "registry.json"), JSON.stringify(registry, null, 2) + "\n");
   written.push("registry.json");
+
+  // Format the stamped markdown so the house is clean by construction. Filling
+  // the source into an aligned markdown table changes its cell widths (a short
+  // source like "l2" narrows a column padded for the {{SOURCE_TITLE}} token),
+  // and the house CI runs `format:check`; without this the first run is red
+  // before a play is written. We format only markdown, the one surface
+  // substitution can dirty, using the house's own .prettierrc so the generator
+  // and the gate never disagree. Nothing is exempted, so the warrant stays
+  // gated for the operator's later edits.
+  const prettierOpts = JSON.parse(readFileSync(join(targetDir, ".prettierrc"), "utf8"));
+  for (const rel of written) {
+    if (!rel.endsWith(".md")) continue;
+    const abs = join(targetDir, rel);
+    const src = readFileSync(abs, "utf8");
+    const out = await prettier.format(src, { ...prettierOpts, parser: "markdown" });
+    if (out !== src) writeFileSync(abs, out);
+  }
 
   return {
     repo: `khai-plays-${s}`,
