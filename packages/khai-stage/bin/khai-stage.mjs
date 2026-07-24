@@ -12,7 +12,7 @@ if (!source) {
   process.exit(1);
 }
 
-const result = stageHouse({
+const result = await stageHouse({
   source,
   targetDir: process.argv[3] || `khai-plays-${source}`,
   manager: process.argv[4],

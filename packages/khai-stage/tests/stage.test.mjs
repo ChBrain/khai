@@ -6,9 +6,9 @@ import { stageHouse, slug } from "../index.mjs";
 
 let dir;
 let result;
-beforeAll(() => {
+beforeAll(async () => {
   dir = mkdtempSync(join(tmpdir(), "khai-stage-"));
-  result = stageHouse({ source: "Demo Source", targetDir: dir });
+  result = await stageHouse({ source: "Demo Source", targetDir: dir });
 });
 afterAll(() => rmSync(dir, { recursive: true, force: true }));
 
@@ -121,10 +121,10 @@ describe("khai-stage: the stamped house", () => {
     expect(reg.plays).toEqual([]);
   });
 
-  it("casts the Director: stamps the position, the plan, and a per-house persona", () => {
+  it("casts the Director: stamps the position, the plan, and a per-house persona", async () => {
     const d = mkdtempSync(join(tmpdir(), "khai-stage-dir-"));
     try {
-      stageHouse({ source: "Demo Source", targetDir: d, director: "Some Director" });
+      await stageHouse({ source: "Demo Source", targetDir: d, director: "Some Director" });
       expect(existsSync(join(d, "management/position_director.md"))).toBe(true);
       expect(existsSync(join(d, "management/plan_stage_the_score.md"))).toBe(true);
       // the .tmpl persona is renamed per house and filled; no default copy left.
