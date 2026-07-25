@@ -1,0 +1,109 @@
+{
+  "name": "@chbrain/khai-engine-addiction",
+  "version": "0.1.0",
+  "description": "khai engine content, the addiction domain: how a persona comes to pursue a behaviour past its cost because it pays out in a reward currency the organism has come to need -- across the craving, relief, acclaim, and closeness drives.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/addiction"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "addiction",
+    "tagline": "Addiction as process: how a persona comes to pursue a behaviour past its cost because it pays out in a reward currency the organism has come to need -- the shift from wanting a thing to needing it, across the craving, relief, acclaim, and closeness drives (the daily dose of dopamine, endorphin, serotonin, and oxytocin).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_addiction.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_craving.md",
+        "type": "process",
+        "parent": "process_addiction.md"
+      },
+      {
+        "file": "process_relief.md",
+        "type": "process",
+        "parent": "process_addiction.md"
+      },
+      {
+        "file": "process_acclaim.md",
+        "type": "process",
+        "parent": "process_addiction.md"
+      },
+      {
+        "file": "process_closeness.md",
+        "type": "process",
+        "parent": "process_addiction.md"
+      },
+      {
+        "file": "piece_dopamine.md",
+        "type": "piece",
+        "parent": "process_addiction.md"
+      },
+      {
+        "file": "piece_endorphin.md",
+        "type": "piece",
+        "parent": "process_addiction.md"
+      },
+      {
+        "file": "piece_serotonin.md",
+        "type": "piece",
+        "parent": "process_addiction.md"
+      },
+      {
+        "file": "piece_oxytocin.md",
+        "type": "piece",
+        "parent": "process_addiction.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_addiction.md) declares addiction as the compulsive over-recruitment of a reward currency: a behaviour is pursued past its cost because the organism has learned to need what it pays out, and the pull shifts from the pleasure of getting it to the relief of not being without it.",
+      "issue": "Four drives a persona may run, one per currency the compulsion is denominated in: craving (the wanting itself -- cue-triggered pursuit that grows even as the liking fades, carried on dopamine), relief (the masking of pain and distress, chased for escape not gain, carried on the body's own opioids), acclaim (rank and recognition pursued to hold up mood, carried on serotonergic tone), and closeness (attachment needed past the point it is returned, carried on oxytocin). Each currency is a piece in its own right -- dopamine, endorphin, serotonin, oxytocin, objects that carry more weight than they show -- and they cross-link where one counters another: the dopamine wanting outruns the endorphin liking, the serotonin of secure rank quiets the dopamine chase, an oxytocin bond can stand in for it. A drive links down to the piece it spends; the pieces link across to the ones they oppose.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the drive the moment runs -- and therefore what currency it is chasing and what cost it is discounting to keep chasing it.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real addiction drive. Whether the compulsion is true to the scene -- the tolerance, the cost ignored, the wanting outliving the liking -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its drive under Projection. Read it in what the persona returns to past its cost -- the craving that no longer pleases, the relief chased to escape the dip, the acclaim or the closeness that has become a need rather than a want."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
