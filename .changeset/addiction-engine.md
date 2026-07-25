@@ -1,0 +1,9 @@
+---
+"@chbrain/khai-engine-addiction": patch
+---
+
+Add the addiction engine: the compulsion process, how a persona comes to pursue a behaviour past its cost because it pays out in a reward currency the organism has come to need -- the shift from wanting a thing to needing it. You enter through the root (`process_addiction.md`): the pull comes loose from how good the reward is and tracks how bad its absence has become, the same payout buys less over time, and the wanting sensitizes past the liking.
+
+Under the root, in a flat tree (the heritage pattern), four drives and four hormone pieces. The drives name the phenomenon: `craving` (cue-triggered wanting that grows as the liking fades), `relief` (pain masked, the baseline sunk so stopping returns the withheld pain), `acclaim` (rank chased to hold up mood), and `closeness` (a bond needed past what it returns). The pieces are the currencies each drive spends -- `dopamine`, `endorphin`, `serotonin`, `oxytocin` -- objects that carry more weight than they show. Beyond the taxonomy up-links to the root, the graph carries smart cross-links: each drive links down to the piece it spends, and the pieces link across where one counters another (the dopamine wanting outruns the endorphin liking; the serotonin of secure rank quiets the dopamine chase; an oxytocin bond can stand in for it).
+
+Bounded against reward (valuation across time), habit (automaticity), motivation (the source of drive), mood/emotion (the felt tone), and desire (the resting style of wanting); it owns only the want that has turned into need. Warranted (LORE) on Berridge & Robinson (incentive sensitization; wanting vs liking), Koob & Volkow (the addiction cycle and allostasis), Pert & Snyder (the endogenous opioid system), Raleigh & McGuire (serotonin and social rank), and Young & Wang (the neurobiology of pair bonding). Set at patch as the free level; a new engine may warrant a minor at the maintainer's `bump:minor` label.
