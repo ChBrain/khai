@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-register",
+  "version": "0.1.0",
+  "description": "khai engine content, the register domain: a specialized variety of language layered on the base tongue that binds a community of users and gates who can follow -- across the shorthand, badge, closure, and translation modes.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/register"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "register",
+    "tagline": "Register as position: a specialized variety of language a persona commands -- a code layered on the base tongue, tied to a domain and a community -- that binds insiders and gates outsiders at once, across the shorthand, badge, closure, and translation modes.",
+    "type": "position",
+    "members": [
+      {
+        "file": "position_register.md",
+        "type": "position",
+        "parent": null
+      },
+      {
+        "file": "position_shorthand.md",
+        "type": "position",
+        "parent": "position_register.md"
+      },
+      {
+        "file": "position_badge.md",
+        "type": "position",
+        "parent": "position_register.md"
+      },
+      {
+        "file": "position_closure.md",
+        "type": "position",
+        "parent": "position_register.md"
+      },
+      {
+        "file": "position_translation.md",
+        "type": "position",
+        "parent": "position_register.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The root (position_register.md) declares a register as a specialized variety of language the persona commands -- a code layered on the base tongue, tied to a domain and a community, that a lay speaker of the same tongue cannot fully follow. It rides the base language (so it does not carry to a peer who lacks that tongue), and it does communion and closure at once: the same code that makes the persona fast and exact among peers shuts the outsider out.",
+      "issue": "Four modes the register runs in: shorthand (the compressed, presupposing code that lets insiders be fast and exact), badge (the mark of membership -- commanding it shows the persona is of the community, and reads others' belonging from how they use it), closure (the wall -- the same code shuts the lay listener out, by design or by side effect), and translation (the bridge -- dropping the code to carry the meaning across to the outsider in the plain tongue they share). Each is a distinct thing the register does at the boundary between insider and out.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the register mode the moment runs -- and therefore what its code is doing to the line between those who follow and those who do not.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real register mode. Whether the code is true to the scene -- the shorthand that presupposes, the badge that tests, the wall that shuts out, the bridge that lets in -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its mode under Projection. Read it in what the persona's specialized speech does to the room -- the peers who follow at speed, the outsider who nods without following, the belonging shown or withheld, the moment the persona drops the code to be understood -- and delegate the base tongue and its channels to the language engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
