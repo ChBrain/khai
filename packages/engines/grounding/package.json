@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-grounding",
+  "version": "0.1.0",
+  "description": "khai engine content, the grounding domain: how two personas build mutual understanding turn by turn, each contribution accepted on evidence it landed -- across the acknowledgment, demonstration, clarification, and misgrounding moves.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/grounding"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "grounding",
+    "tagline": "Grounding as process: how two personas build mutual understanding turn by turn -- each contribution offered and then accepted on the evidence that it landed, against the common ground they share -- to the point where they can go on, across the acknowledgment, demonstration, clarification, and misgrounding moves.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_grounding.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_acknowledgment.md",
+        "type": "process",
+        "parent": "process_grounding.md"
+      },
+      {
+        "file": "process_demonstration.md",
+        "type": "process",
+        "parent": "process_grounding.md"
+      },
+      {
+        "file": "process_clarification.md",
+        "type": "process",
+        "parent": "process_grounding.md"
+      },
+      {
+        "file": "process_misgrounding.md",
+        "type": "process",
+        "parent": "process_grounding.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_grounding.md) declares grounding as the joint work two personas do to establish mutual understanding: a contribution is not landed when it is said but when the addressee returns evidence it was understood well enough to go on, and only then does it enter the common ground. The law makes understanding a thing built together across turns, not delivered in one.",
+      "issue": "Four moves by which the ground is built or lost: acknowledgment (light positive evidence -- the continuer, the token, the relevant next turn that lets the talk go on), demonstration (strong evidence -- the readback or paraphrase that shows understanding and lets the speaker confirm it), clarification (repair -- trouble in understanding flagged and fixed before the talk resumes), and misgrounding (the failure -- evidence skipped or faked, the criterion assumed met when it is not, so the error compounds unseen). Each is a distinct way mutual understanding is reached, checked, mended, or missed.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the grounding move the moment runs -- and therefore whether the ground is being laid, shown, mended, or silently lost.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real grounding move. Whether the grounding is true to the scene -- the evidence that really lands or only seems to, the repair that mends or fails, the nod that means go-on rather than I-follow -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its move under Projection. Read it in the evidence of understanding that passes between two personas -- the continuer, the readback, the 'wait, which one?', the nod given over ground not actually shared -- never in the bare content of what is said. Delegate the one-pass gap between said and understood to the language engine and the mending of a damaged relationship to the repair engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
