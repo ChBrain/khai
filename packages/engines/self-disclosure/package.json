@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-self-disclosure",
+  "version": "0.1.0",
+  "description": "khai engine content, the self-disclosure domain: how a persona reveals themselves to another and deepens a relationship layer by layer -- across the breadth, deepening, reciprocity, and retreat movements.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/self-disclosure"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "self-disclosure",
+    "tagline": "Self-disclosure as process: how a persona reveals themselves to another and deepens a relationship layer by layer -- opening the self across topics and inward toward the core, paced by what is returned -- across the breadth, deepening, reciprocity, and retreat movements.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_self_disclosure.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_breadth.md",
+        "type": "process",
+        "parent": "process_self_disclosure.md"
+      },
+      {
+        "file": "process_deepening.md",
+        "type": "process",
+        "parent": "process_self_disclosure.md"
+      },
+      {
+        "file": "process_reciprocity.md",
+        "type": "process",
+        "parent": "process_self_disclosure.md"
+      },
+      {
+        "file": "process_retreat.md",
+        "type": "process",
+        "parent": "process_self_disclosure.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_self_disclosure.md) declares self-disclosure as the revealing of the self that builds a relationship: the self is an onion of layers, and a tie deepens as the persona opens those layers to another -- across topics (breadth) and inward toward the core (depth) -- penetrating only as far as reciprocity and reward allow, and re-closing when they fail.",
+      "issue": "Four movements a persona's disclosure may run: breadth (widen the self across many topics while each stays shallow -- the broad, easy acquaintance), deepening (reach inward to an intimate, vulnerable layer on a topic -- the narrow, deep confidant), reciprocity (match the other's opening in kind, the dance that paces the deepening and grows liking), and retreat (depenetration -- re-close the layers as a tie cools, costs mount, or a disclosure is betrayed). Each is a distinct way the self is opened or closed to another.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the disclosure movement the moment runs -- and therefore how much of themselves they are opening or closing, and how far the tie is deepening or thinning.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real disclosure movement. Whether the disclosure is true to the scene -- the pacing, the reciprocity met or refused, the vulnerability that binds or exposes, the withdrawal that thins the tie -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its movement under Projection. Read it in what the persona reveals and holds back over time -- the many light topics, the one deep confidence, the opening returned or left hanging, the self re-closing as the tie cools. Delegate the withheld fact itself to the secret engine and the bet the disclosure rests on to trust."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
