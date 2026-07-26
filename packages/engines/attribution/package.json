@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-attribution",
+  "version": "0.1.0",
+  "description": "khai engine content, the attribution domain: how a persona assigns a cause to an outcome -- along locus and stability -- and the emotion and expectation that follow, across the disposition, effort, circumstance, and chance readings.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/attribution"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "attribution",
+    "tagline": "Attribution as process: how a persona assigns a cause to an outcome -- along the locus and the stability of the cause -- and the emotion and expectation that follow from where it lands, across the disposition, effort, circumstance, and chance readings.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_attribution.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_disposition.md",
+        "type": "process",
+        "parent": "process_attribution.md"
+      },
+      {
+        "file": "process_effort.md",
+        "type": "process",
+        "parent": "process_attribution.md"
+      },
+      {
+        "file": "process_circumstance.md",
+        "type": "process",
+        "parent": "process_attribution.md"
+      },
+      {
+        "file": "process_chance.md",
+        "type": "process",
+        "parent": "process_attribution.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_attribution.md) declares attribution as the persona's answer to 'why did that happen?': a cause is assigned to an outcome along two axes -- its locus (in the actor or in the world) and its stability (lasting or passing) -- and where the cause lands sets what the persona feels about the outcome and what they expect the next time.",
+      "issue": "Four readings a persona may run, the corners of locus by stability: disposition (internal and stable -- the actor's character, ability, or intent), effort (internal and unstable -- how hard they tried, the one corner they control), circumstance (external and stable -- the task, the system, the role), and chance (external and unstable -- luck, timing, a fluke). Each carries a different emotion and a different expectancy: a failure read as stable closes the future, one read as unstable leaves it open.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the attribution reading the moment runs -- and therefore what they now feel about the outcome and what they expect to follow.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real attribution reading. Whether the causal reading is true to the scene -- and whether the systematic slant on it is left to the bias engine rather than asserted here -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its reading under Projection. Read it in the account the persona gives of an outcome -- the failure hung on a fixed lack or on a night's slack, the win credited to the self or to the odds -- and route the systematic tilt (over-blaming the person, sparing the self) to the bias engine, which owns the errors."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
