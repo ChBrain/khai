@@ -1,0 +1,94 @@
+{
+  "name": "@chbrain/khai-engine-face",
+  "version": "0.1.0",
+  "description": "khai engine content, the face domain: the public self-image a persona claims in interaction, and how a persona manages a face-threatening act -- across the bald, solidarity, deference, hint, and forbear strategies.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/face"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "face",
+    "tagline": "Face as process: the public self-image a persona claims in interaction -- the want to be approved of and the want to be unimpeded -- and how a persona softens or bares a face-threatening act, across the bald, solidarity, deference, hint, and forbear strategies.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_face.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_bald.md",
+        "type": "process",
+        "parent": "process_face.md"
+      },
+      {
+        "file": "process_solidarity.md",
+        "type": "process",
+        "parent": "process_face.md"
+      },
+      {
+        "file": "process_deference.md",
+        "type": "process",
+        "parent": "process_face.md"
+      },
+      {
+        "file": "process_hint.md",
+        "type": "process",
+        "parent": "process_face.md"
+      },
+      {
+        "file": "process_forbear.md",
+        "type": "process",
+        "parent": "process_face.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_face.md) declares face as the public self-image a persona claims and works to keep in interaction -- two wants at once: positive face, to be approved of and included, and negative face, to be unimpeded and left autonomous. Many acts threaten face -- a request, a refusal, a correction, a disagreement -- and the persona weighs the threat and chooses how much to redress it.",
+      "issue": "Five strategies a persona may run to do a face-threatening act, ordered by the redress they pay: bald (on the record, no softening), solidarity (redress to the other's want to be liked -- draw near, claim common ground), deference (redress to the other's want to be unimpeded -- hedge, minimise, give an out), hint (off the record, said so it can be denied and the hearer left to infer), and forbear (do not do the act at all, the threat weighed too great to risk). The heavier the threat, the more redress or the more the act is withheld.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the face strategy the moment runs -- and therefore how much of the other's face, and their own, the act is made to cost.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real face strategy. Whether the strategy is true to the scene -- the bluntness that reads as command or as rudeness, the warmth that presumes closeness, the deference that keeps distance, the hint that may be missed, the thing left unsaid -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its strategy under Projection. Read it in how a persona does a threatening act -- the bare demand, the buttering-up, the careful hedging, the deniable hint, the request that never comes -- weighed against the distance, the power, and the size of the imposition. Delegate the act being softened to the speech-act engine and the rank behind the weight to status."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
