@@ -1,0 +1,94 @@
+{
+  "name": "@chbrain/khai-engine-speech-act",
+  "version": "0.1.0",
+  "description": "khai engine content, the speech act domain: how a persona does something by saying it -- the illocutionary force that makes an utterance an act, and the meaning it carries past the literal -- across the assertive, directive, commissive, expressive, and declaration acts.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/speech-act"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "speech-act",
+    "tagline": "Speech act as process: how a persona does something by saying it -- the illocutionary force that makes an utterance an act rather than a description, and the meaning it carries past the literal -- across the assertive, directive, commissive, expressive, and declaration acts.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_speech_act.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_assertive.md",
+        "type": "process",
+        "parent": "process_speech_act.md"
+      },
+      {
+        "file": "process_directive.md",
+        "type": "process",
+        "parent": "process_speech_act.md"
+      },
+      {
+        "file": "process_commissive.md",
+        "type": "process",
+        "parent": "process_speech_act.md"
+      },
+      {
+        "file": "process_expressive.md",
+        "type": "process",
+        "parent": "process_speech_act.md"
+      },
+      {
+        "file": "process_declaration.md",
+        "type": "process",
+        "parent": "process_speech_act.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_speech_act.md) declares that a persona speaks not only to describe the world but to act in it: an utterance carries an illocutionary force -- the force, not the words, is what makes it an assertion, a request, a promise, a thanks, or a pronouncement -- and it can mean past what it literally says, the hearer recovering the rest by presuming the speaker cooperates. An act comes off only when its felicity conditions hold.",
+      "issue": "Five acts a persona may run, the illocutionary points an utterance can take: assertive (commit to the truth of a claim -- state, report, describe), directive (get the hearer to act -- request, order, ask), commissive (bind the speaker to a future act -- promise, offer, threaten), expressive (perform a feeling about a state of affairs -- thank, apologise, congratulate), and declaration (change the world by saying it, given the standing to -- pronounce, name, resign, dismiss). Each does a different deed by being said.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the speech act the moment runs -- and therefore what deed its words do and what it commits, asks, or changes.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real speech act. Whether the act is true to the scene -- the promise that binds, the order that lands only with standing, the apology that repairs, the pronouncement that changes a status -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its act under Projection. Read it in what the persona's words do rather than say -- the claim put on the record, the obligation placed on another, the self bound to a future, the feeling performed, the status changed by the saying -- and delegate the channel it rides to the language engine and the standing a declaration needs to power and role."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
