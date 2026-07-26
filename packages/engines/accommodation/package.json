@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-accommodation",
+  "version": "0.1.0",
+  "description": "khai engine content, the accommodation domain: how a persona adjusts the style of their speech toward or away from another to manage social distance and identity -- across the attunement, divergence, holding, and overaccommodation strategies.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/accommodation"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "accommodation",
+    "tagline": "Accommodation as process: how a persona adjusts the style of their speech -- accent, rate, vocabulary, formality -- toward or away from another to manage the social distance between them and to signal who they are, across the attunement, divergence, holding, and overaccommodation strategies.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_accommodation.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_attunement.md",
+        "type": "process",
+        "parent": "process_accommodation.md"
+      },
+      {
+        "file": "process_divergence.md",
+        "type": "process",
+        "parent": "process_accommodation.md"
+      },
+      {
+        "file": "process_holding.md",
+        "type": "process",
+        "parent": "process_accommodation.md"
+      },
+      {
+        "file": "process_overaccommodation.md",
+        "type": "process",
+        "parent": "process_accommodation.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_accommodation.md) declares accommodation as the adjustment of communicative style toward or away from an interlocutor: not what is said but how -- accent, speed, word choice, formality -- moved to close social distance, widen it, or hold it. The law makes the shape of a persona's speech a signal of where they stand relative to the other, chosen and motivated, not the reflex beneath it.",
+      "issue": "Four strategies a persona's speech may run: attunement (converge -- shift the style toward the other's to win approval, closeness, or a smoother exchange), divergence (accentuate the differences to mark distinctiveness, assert identity, or hold distance and power), holding (maintenance -- keep one's own style unchanged whatever the other's, a non-move that where convergence was due reads as quiet divergence), and overaccommodation (adjust past what is wanted or needed -- the patronizing over-shift, or its twin under-adjustment -- so the attempt to close distance opens it). Each is a distinct way style is tuned toward or away from another.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the accommodation strategy the moment runs -- and therefore how their style is moving relative to the other, and what social distance that movement sets.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real accommodation strategy. Whether the adjustment is true to the scene -- the convergence that wins or over-extends, the divergence that draws a line, the non-move read as refusal, the over-shift that patronizes -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its strategy under Projection. Read it in how the persona's manner of speaking moves against the other's -- the accent that slides toward theirs, the register held apart, the simplification that lands as insult -- never as the content of what is said. Delegate the automatic, unchosen mimicry to the contagion engine and the variety of language being drawn from to the register engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
