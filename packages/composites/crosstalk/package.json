@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-crosstalk",
+  "version": "0.1.0",
+  "description": "khai composite content, the crosstalk domain: two personas each grounding against their own frame, so every attempt to understand misfires into a fresh misgrounding and the gap widens turn by turn -- across the mismatch, loop, and impasse bridges over grounding, framing, and accommodation.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/crosstalk"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "crosstalk",
+    "tagline": "Crosstalk as composite: two personas each grounding against their own frame, so every attempt to understand misfires into a fresh misgrounding and the gap widens turn by turn -- the talking-past loop across grounding, framing, and accommodation, told in the mismatch, loop, and impasse bridges, and the drama lives in the spiral neither can see out of.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_crosstalk.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_mismatch.md",
+        "type": "process",
+        "parent": "process_crosstalk.md"
+      },
+      {
+        "file": "process_loop.md",
+        "type": "process",
+        "parent": "process_crosstalk.md"
+      },
+      {
+        "file": "process_impasse.md",
+        "type": "process",
+        "parent": "process_crosstalk.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "plot",
+        "section": "Tension",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over three atoms it declares as dependencies. The root (process_crosstalk.md) reads two personas talking past each other as one loop held across three engines: framing supplies the mismatched frames each grounds against, grounding supplies the misgrounding that results, and accommodation supplies the divergence that widens it. The composite adds no fourth engine; it wires the loop the atoms refuse to stage alone.",
+      "issue": "Three bridges, each a handoff the atoms cannot stage apart. Mismatch: two frames enter, each party grounds against their own, so the evidence of understanding is honest to the giver and false to the receiver -- misgrounding by structure, not carelessness. Loop: each misgrounded turn becomes the next turn's input, style diverging as frustration mounts, the gap widening while both take themselves to be the reasonable one. Impasse: a clarification aimed at the frame catches it and re-grounds the two, or the loop hardens and they estrange over a gap neither could see.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the talking-past read runs wherever its atoms are cast. The link, advisory: a plot may link under Tension the bridge it stages, and the audit surfaces where a play stages the loop without naming it.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's two personas genuinely misground by a frame each cannot see, rather than merely disagreeing, is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the two sides from the atoms -- each with their own frame from framing, each grounding from grounding, each tuning style from accommodation -- then stage the bridges: the frames that fail to meet, the loop that compounds, and the catch-or-harden that ends it. Read the production in the widening gap the two cannot see, never in either one being simply wrong."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-engine-accommodation": "^0.1.0",
+    "@chbrain/khai-engine-framing": "^0.1.0",
+    "@chbrain/khai-engine-grounding": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
