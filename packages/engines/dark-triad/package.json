@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-dark-triad",
+  "version": "0.1.0",
+  "description": "khai engine content, the dark triad domain: the aversive dispositional core a persona may arrive carrying -- cold self-advancement at others' expense -- across the narcissism, machiavellianism, and psychopathy traits.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/dark-triad"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "dark-triad",
+    "tagline": "Dark triad as position: the aversive dispositional core a persona may arrive carrying -- cold self-advancement at others' expense, the empathy that would slow it turned low -- across the narcissism, machiavellianism, and psychopathy traits, the dark complement of temperament's bright five.",
+    "type": "position",
+    "members": [
+      {
+        "file": "position_dark_triad.md",
+        "type": "position",
+        "parent": null
+      },
+      {
+        "file": "position_narcissism.md",
+        "type": "position",
+        "parent": "position_dark_triad.md"
+      },
+      {
+        "file": "position_machiavellianism.md",
+        "type": "position",
+        "parent": "position_dark_triad.md"
+      },
+      {
+        "file": "position_psychopathy.md",
+        "type": "position",
+        "parent": "position_dark_triad.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The root (position_dark_triad.md) declares the shared dark core a persona may arrive carrying: a resting disposition of cold self-advancement -- others read as instruments rather than ends -- with the empathy and the restraint that would slow it turned low. It is a trait a persona holds, not an act they commit; the acts it reaches for belong to the behaviour engines.",
+      "issue": "Three traits a persona may run, the variants the core resolves into: narcissism (a grandiose self that needs admiration to stay inflated, brittle the moment the mirror cracks), machiavellianism (a cool, strategic cynicism that plays people toward an end by whatever works), and psychopathy (callous affect and impulsivity, unbraked by others' pain or by consequence). Each is a distinct resting shape of the same self-serving, low-empathy disposition.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the dark-triad trait it rests on -- and therefore what the room comes to read in it and what it drives toward.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real dark-triad trait. Whether the disposition is true to the scene -- and whether the harm it reaches for is carried by the behaviour engines rather than asserted here -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its trait under Projection. Read it in what the persona does when no one is checking -- the admiration hunted, the person played toward an end, the cold reach for the near reward -- and route the act itself through deception, betrayal, or aggression, which own the harm this disposition inclines toward."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
