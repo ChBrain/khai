@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-framing",
+  "version": "0.1.0",
+  "description": "khai engine content, the framing domain: how the same content, presented in a different frame, yields a different judgment -- across the valence, emphasis, metaphor, and exemplar operations.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/framing"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "framing",
+    "tagline": "Framing as process: how the same content, presented in a different frame -- as a gain or a loss, with one consideration made salient, through a metaphor, or as a vivid case rather than the pattern -- yields a different judgment, across the valence, emphasis, metaphor, and exemplar operations.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_framing.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_valence.md",
+        "type": "process",
+        "parent": "process_framing.md"
+      },
+      {
+        "file": "process_emphasis.md",
+        "type": "process",
+        "parent": "process_framing.md"
+      },
+      {
+        "file": "process_metaphor.md",
+        "type": "process",
+        "parent": "process_framing.md"
+      },
+      {
+        "file": "process_exemplar.md",
+        "type": "process",
+        "parent": "process_framing.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_framing.md) declares framing as the presentation-form of content: the same fact, choice, or issue put in a different frame -- a gain or a loss, one dimension made salient, a metaphor, a vivid case or the abstract pattern -- and the judgment moves with the frame, not only the substance. The law makes how something is presented a lever on what is concluded from it, there being no frameless telling.",
+      "issue": "Four framing operations a persona may run: valence (state the same outcome as a gain or a loss -- equivalence framing that flips risk preference by sign alone), emphasis (foreground one of an issue's several dimensions, so the consideration made salient drives the verdict), metaphor (construe the target through a source domain -- crime as a beast or a virus -- importing the source's inferences), and exemplar (present a vivid particular case or the abstract pattern, shifting where cause and cure are assigned). Each is a distinct way the same content is shaped toward a different judgment.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the framing operation the moment runs -- and therefore how the presentation is shaping the judgment that follows.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real framing operation. Whether the frame is true to the scene -- the gain/loss flip, the dimension foregrounded, the metaphor's imported logic, the case that grips where the pattern would not -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its operation under Projection. Read it in how the same content is put -- the sure thing dressed as a loss, the rally called a safety issue, the crime likened to a plague, the one family standing in for the statistic -- and in the judgment the framing tips, never as the bare fact. Delegate the resolving of the choice to the decision engine and the standing tilt before the evidence to bias."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
