@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-gratitude",
+  "version": "0.1.0",
+  "description": "khai engine content, the gratitude domain: how a persona appraises a benefit received as freely and benevolently given, and the prosocial impulse that follows -- across the benefaction, indebtedness, appreciation, and transcendence modes.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/gratitude"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "gratitude",
+    "tagline": "Gratitude as process: how a persona appraises a benefit received as freely and benevolently given, and the prosocial impulse that follows -- the warm turn toward the source, across the benefaction, indebtedness, appreciation, and transcendence modes.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_gratitude.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_benefaction.md",
+        "type": "process",
+        "parent": "process_gratitude.md"
+      },
+      {
+        "file": "process_indebtedness.md",
+        "type": "process",
+        "parent": "process_gratitude.md"
+      },
+      {
+        "file": "process_appreciation.md",
+        "type": "process",
+        "parent": "process_gratitude.md"
+      },
+      {
+        "file": "process_transcendence.md",
+        "type": "process",
+        "parent": "process_gratitude.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_gratitude.md) declares gratitude as the appraisal of a benefit received -- something good the persona did not have to be given -- as freely, costlessly to the receiver, and benevolently given, and the warm impulse it creates to turn toward the source, acknowledge it, and return or pass on the good.",
+      "issue": "Four modes a persona may run: benefaction (gratitude to an identified benefactor -- the benefit reveals their regard, and the persona is drawn closer), indebtedness (the same benefit appraised as an obligation not a gift -- discomfort and the pull to repay and be free, where gratitude would have bound), appreciation (gratitude with no benefactor -- for fortune, a near-miss, a good day, being alive), and transcendence (gratitude directed beyond persons -- to the sacred, nature, life itself). Each is a distinct turn the received good can take.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the gratitude mode the moment runs -- and therefore how it reads the benefit it has received and where its impulse turns.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real gratitude mode. Whether the appraisal is true to the scene -- the benefit read as gift or as debt, the warmth or the weight -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its mode under Projection. Read it in what the persona does with a good they received -- the drawing-closer, the hurried repayment that keeps distance, the noticing of what was always there, the thanks turned toward something larger than any giver."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
