@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-social-identity",
+  "version": "0.1.0",
+  "description": "khai engine content, the social identity domain: the part of the self a persona draws from group membership -- the group-belonging 'we' -- and how they hold a group whose standing is in question, across the identification, mobility, creativity, and competition stances.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/social-identity"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "social-identity",
+    "tagline": "Social identity as position: the part of the self a persona draws from the groups they belong to -- the group-belonging 'we' to the identity engine's 'I' -- and how they hold a group whose standing is in question, across the identification, mobility, creativity, and competition stances.",
+    "type": "position",
+    "members": [
+      {
+        "file": "position_social_identity.md",
+        "type": "position",
+        "parent": null
+      },
+      {
+        "file": "position_identification.md",
+        "type": "position",
+        "parent": "position_social_identity.md"
+      },
+      {
+        "file": "position_mobility.md",
+        "type": "position",
+        "parent": "position_social_identity.md"
+      },
+      {
+        "file": "position_creativity.md",
+        "type": "position",
+        "parent": "position_social_identity.md"
+      },
+      {
+        "file": "position_competition.md",
+        "type": "position",
+        "parent": "position_social_identity.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The root (position_social_identity.md) declares social identity as the part of the self a persona draws from group membership: a 'we' carried beside the 'I', a standing sense of which categories they are in and what those categories are worth, sorting the world into in-group and out-group and taking the in-group's standing as the persona's own.",
+      "issue": "Four stances a persona may hold toward a group whose standing is in question: identification (the secure merger of self with the in-group -- solidarity, favouritism, the group's wins and wounds felt as one's own), mobility (the exit -- pass into a higher-standing group as an individual, boundaries read as permeable), creativity (the reframe -- hold the group but change the terms of comparison to recover positive distinctiveness), and competition (the contest -- mobilise with the group to change the actual status order). Each is a distinct way the self drawn from a group is held when the comparison comes out badly.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the social-identity stance it holds -- and therefore how it reads the line between us and them and what it does when the in-group's standing is threatened.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real social-identity stance. Whether the stance is true to the scene -- and whether the intergroup bias on the read is left to the bias engine rather than asserted here -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its stance under Projection. Read it in what the persona does when the group they belong to is compared and found wanting -- the doubling-down, the quiet exit, the reframe that finds a new pride, the turn to collective contest -- and leave the in-group bias on the perception to the bias engine, which owns it."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.8"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
