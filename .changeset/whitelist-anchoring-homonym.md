@@ -1,0 +1,4 @@
+---
+---
+
+Whitelist `anchoring` under `memberPolicy.homonyms`, mirroring `framing` and `reactance`: a word that legitimately lives at two altitudes -- the static valuation tilt catalogued in the `bias` codex (`position_anchoring.md`, one node among the cognitive biases: the pull of a number that fixes the scale every later guess is read against) and the standalone estimation-process engine it deserves in its own right (Tversky & Kahneman's anchoring-and-adjustment: a reference enters, the estimate is drawn toward it, and adjustment stops short -- across the adjustment, accessibility, and planting mechanisms). This clears the member-scope gate for a forthcoming `anchoring` engine, exactly as `framing` and `reactance` already clear it for their engines over the `bias` codex's corresponding position members. Governance config only; ships nothing. The ratchet's dead-exemption warning is expected until the `anchoring` engine lands and makes the collision live.
