@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-anchoring",
+  "version": "0.1.0",
+  "description": "khai engine content, the anchoring domain: the estimation process through which a persona's numeric judgment is drawn toward a reference value that entered first, and adjustment from it stops short -- across the adjustment, accessibility, and planting forms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/anchoring"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "anchoring",
+    "tagline": "Anchoring as process: the estimation through which a persona's numeric judgment is drawn toward a reference value that entered first, and adjustment from it stops short -- across the adjustment, accessibility, and planting forms.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_anchoring.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_adjustment.md",
+        "type": "process",
+        "parent": "process_anchoring.md"
+      },
+      {
+        "file": "process_accessibility.md",
+        "type": "process",
+        "parent": "process_anchoring.md"
+      },
+      {
+        "file": "process_planting.md",
+        "type": "process",
+        "parent": "process_anchoring.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_anchoring.md) declares anchoring as the estimation drawn to a reference: a persona forming a numeric or magnitude judgment under uncertainty takes a value that entered first -- relevant or not, chosen or merely present -- as the point every later guess is read against, and adjusts away from it too little. The law makes the first figure a gravity well the estimate cannot fully escape.",
+      "issue": "Three mechanisms the anchor works through. Adjustment: from a starting value, often self-generated, the persona steps toward the truth but stops as soon as the estimate feels plausible, short of where it should land. Accessibility: a value supplied from outside primes anchor-consistent evidence, so what comes to mind is what would be true if the anchor were near, and the target is judged closer to it. Planting: the anchor set on purpose -- a first offer, a list price, a named figure -- placed to drag another persona's estimate toward it.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the mechanism the moment runs -- and therefore how the estimate is being bent, by adjusting too little, by an anchor priming its own evidence, or by a figure planted to move them.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real mechanism of anchoring. Whether the pull is true to the scene -- a genuine estimate under uncertainty, the anchor's grip read right, the adjustment insufficient rather than absent -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its mechanism under Projection. Read it as an estimate bent toward a first figure -- the guess that stops too soon, the anchor that colors what comes to mind, the offer that moves the counterpart -- never as a considered weighing of the evidence cold. Delegate the mode of choosing to the decision engine, the bargaining process the planted anchor serves to the negotiation engine, and the standing catalogued tilt to the bias engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
