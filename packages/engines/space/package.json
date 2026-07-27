@@ -1,0 +1,68 @@
+{
+  "name": "@chbrain/khai-engine-space",
+  "version": "0.1.0",
+  "description": "khai engine content, the space domain: the physical setting as a party to what happens in it -- acting on the persona who enters and claimed by the persona in return, so bare space becomes lived place -- across the affordance, territory, and atmosphere expressions.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/space"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "space",
+    "tagline": "Space as place: the physical setting as a party to what happens in it -- acting on the persona who enters and claimed by the persona in return, so bare space becomes lived place -- across the affordance, territory, and atmosphere expressions.",
+    "type": "place",
+    "anchor": "place_space.md",
+    "expressions": {
+      "affordance": "place_affordance.md",
+      "territory": "place_territory.md",
+      "atmosphere": "place_atmosphere.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place. The anchor (place_space.md) reads the physical setting as a party to the scene, not a backdrop: the built and natural environment acts on the persona who enters -- affording some conduct and refusing other, carrying a mood -- and the persona acts back, claiming and marking the space and charging it with meaning, so bare space becomes lived place. The law makes the setting itself a mover, distinct from the other people who happen to be in it.",
+      "issue": "Three faces the setting turns to the persona. Affordance: what the space offers and scripts -- the actions its layout and features invite, and the standing behavioral program a setting carries and pulls from whoever enters, the church that hushes even near-empty. Territory: what the persona claims back -- the region bounded, marked, personalized, and defended, privacy regulated by the borders one draws in space. Atmosphere: how the setting feels -- the mood it induces and the approach or avoidance that follows, the affective charge that turns space into a place one is drawn to or flees.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the setting reads as a mover wherever it is cast. The link: each persona links, under Projection, the face of the setting the moment turns -- the conduct it affords, the ground they claim, or the mood it lays on them.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real face of the setting. Whether the space is true to the scene -- the setting genuinely acting rather than decorating, the affordance or the claim or the mood read right -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the persona its face of the setting under Projection. Read it as the setting moving the scene -- the conduct the space invites, the ground the persona claims, the mood the place lays on them -- never as mere backdrop. Delegate the mass of other people as an environment to the crowd engine, the matching of others' conduct to the conformity engine, and the specific attention-refilling setting to the restorative-environment engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
