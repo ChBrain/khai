@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-savoring",
+  "version": "0.1.0",
+  "description": "khai engine content, the savoring domain: how a persona attends to and prolongs a positive experience -- turning toward a good moment to make it fuller and last, the mirror of coping -- across the sharpening, sharing, keeping, and dampening ways.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/savoring"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "savoring",
+    "tagline": "Savoring as process: how a persona attends to and prolongs a positive experience -- turning toward a good moment to make it fuller and last, the mirror of coping -- across the sharpening, sharing, keeping, and dampening ways.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_savoring.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_sharpening.md",
+        "type": "process",
+        "parent": "process_savoring.md"
+      },
+      {
+        "file": "process_sharing.md",
+        "type": "process",
+        "parent": "process_savoring.md"
+      },
+      {
+        "file": "process_keeping.md",
+        "type": "process",
+        "parent": "process_savoring.md"
+      },
+      {
+        "file": "process_dampening.md",
+        "type": "process",
+        "parent": "process_savoring.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_savoring.md) declares savoring as the up-regulation and prolonging of positive experience: not the generating of a good feeling but the tending of it -- the attention and effort that make a pleasure more intense while it lasts and stretch it before and after. The mirror of coping: where coping softens what hurts, savoring heightens and holds what pleases. The law makes a good moment a thing a persona can dwell in and enlarge, or let pass thin.",
+      "issue": "Four ways of savoring, three that amplify and one that kills. Sharpening: narrow attention onto the good and let absorption take over, so a pleasure fully met is a larger pleasure. Sharing: tell someone or let it show, so the good grows in the telling and the witness's answer. Keeping: bank the moment as a memory and feel its transience, stretching the pleasure beyond its instant. Dampening: turn attention against the good -- fault-finding, distraction, kill-joy thinking -- so the positive passes thin and quick, savoring's own failure.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the way of savoring the moment runs -- and therefore whether the good is being intensified, extended, or cut short.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real way of savoring. Whether the savoring is true to the scene -- the pleasure genuinely enlarged by the dwelling, or genuinely killed by the killjoy who cannot receive it -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its way of savoring under Projection. Read it in what the persona does with a good moment -- the full attention paid or withheld, the telling or the swallowing, the snapshot taken, the reflexive undercutting -- never in the emotion itself. Delegate the specific goods heightened (pride, gratitude, awe) to their engines and the neutral machinery of regulating any feeling to the regulation engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
