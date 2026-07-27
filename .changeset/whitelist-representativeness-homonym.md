@@ -1,0 +1,4 @@
+---
+---
+
+Whitelist `representativeness` under `memberPolicy.homonyms`, mirroring `framing`, `reactance`, and `anchoring`: a word that legitimately lives at two altitudes -- the static valuation tilt catalogued in the `bias` codex (`position_representativeness.md`, one node among the cognitive biases: judging by resemblance to a prototype) and the standalone judgment-process engine it deserves in its own right (Tversky & Kahneman's representativeness heuristic -- category and probability judged by similarity to a stereotype, overriding statistical structure -- across the priors, conjunction, and randomness forms). This clears the member-scope gate for a forthcoming `representativeness` engine, exactly as `anchoring` already clears it for its engine over the `bias` codex's bare `position_anchoring.md`. Governance config only; ships nothing. The ratchet's dead-exemption warning is expected until the `representativeness` engine lands and makes the collision live.
