@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-courage",
+  "version": "0.1.0",
+  "description": "khai engine content, the courage domain: how a persona moves toward a thing they fear for the sake of a good worth the facing -- not fearlessness but action taken with the fear present, the mean between cowardice and recklessness -- across the physical, conviction, and vital courages.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/courage"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "courage",
+    "tagline": "Courage as process: how a persona moves toward a thing they fear for the sake of a good worth the facing -- not fearlessness but action taken with the fear present and against its pull, the mean between cowardice and recklessness -- across the physical, conviction, and vital courages.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_courage.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_physical.md",
+        "type": "process",
+        "parent": "process_courage.md"
+      },
+      {
+        "file": "process_conviction.md",
+        "type": "process",
+        "parent": "process_courage.md"
+      },
+      {
+        "file": "process_vital.md",
+        "type": "process",
+        "parent": "process_courage.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_courage.md) declares courage as movement toward a feared thing for the sake of a good worth the facing -- not the absence of fear but action taken with it present, the mean between cowardice (fear felt too much) and recklessness (fear felt too little). The law makes the fear a price the act pays, not an obstacle it lacks.",
+      "issue": "Three courages, by what is at risk. Physical: the body is threatened -- injury, pain, death -- and the persona moves toward it anyway, the oldest and most legible courage. Conviction: standing is threatened -- reputation, belonging, livelihood -- and the persona acts on a principle anyway, the slower and lonelier moral courage. Vital: the threat comes from within -- illness, despair, a truth about oneself -- and the persona faces it rather than fleeing into denial, the quietest and often the most demanding. Each is the same movement through fear, against a different fear.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the courage the moment runs -- and therefore what they fear, what good they face it for, and whether the fear is rightly sized or tips toward cowardice or recklessness.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real courage. Whether the courage is true to the scene -- the fear genuinely present and genuinely overridden, the good genuinely worth it, the act neither rash nor merely easy -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its courage under Projection. Read it in the fear that is present and moved through -- the flinch overridden, the unpopular word said, the diagnosis faced -- never as fearlessness, which is not courage but its absence of occasion. Delegate the felt fear itself to the emotion engine and the whole state of being under threat to the jeopardy composite."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
