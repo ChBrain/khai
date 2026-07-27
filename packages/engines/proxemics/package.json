@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-proxemics",
+  "version": "0.1.0",
+  "description": "khai engine content, the proxemics domain: the regulation of the physical distance a persona keeps from other persons -- the portable bubble whose size encodes the relationship -- across the zone, intrusion, and equilibrium forms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/proxemics"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "proxemics",
+    "tagline": "Proxemics as process: the regulation of the physical distance a persona keeps from other persons -- the portable bubble whose size encodes the relationship -- across the zone, intrusion, and equilibrium forms.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_proxemics.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_zone.md",
+        "type": "process",
+        "parent": "process_proxemics.md"
+      },
+      {
+        "file": "process_intrusion.md",
+        "type": "process",
+        "parent": "process_proxemics.md"
+      },
+      {
+        "file": "process_equilibrium.md",
+        "type": "process",
+        "parent": "process_proxemics.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_proxemics.md) declares proxemics as the regulation of interpersonal distance: a persona carries a portable bubble of personal space and holds others at a distance that encodes the relationship -- the closer the tie, the closer the body allowed -- reading and setting closeness through the gap between persons rather than through any claim on a place. The law makes the distance kept a signal and a boundary in its own right.",
+      "issue": "Three forms the distance-regulation takes. Zone: the graded distances that encode the relationship -- intimate, personal, social, and public bands, each admitting a different degree of tie, so how near a persona stands says how close they are. Intrusion: the encroachment of another into the bubble -- the too-close body that triggers discomfort, arousal, and the urge to flee or restore the gap, personal space felt only when it is breached. Equilibrium: the mutual regulation of closeness -- distance traded against gaze, angle, and other intimacy signals so the total stays comfortable, one persona's approach met by the other's compensating pull-back.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the form the moment runs -- and therefore how the distance is working, as a zone that signals the tie, an intrusion that breaches the bubble, or an equilibrium that trades distance against other intimacy.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real form of proxemics. Whether the distance is true to the scene -- a genuine interpersonal gap encoding a genuine tie, the zone or the intrusion or the equilibrium read right, the bubble felt where it is breached -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its form under Projection. Read it as the distance between persons doing work -- the zone that admits or holds off, the intrusion that presses too close, the equilibrium that pulls back as the other leans in -- never as a claim on a region. Delegate the claiming and marking of a place to the space engine, the mass of bodies as an environment to the crowd engine, and the intimacy the closeness signals to the self-disclosure engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
