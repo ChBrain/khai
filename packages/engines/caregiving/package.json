@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-caregiving",
+  "version": "0.1.0",
+  "description": "khai engine content, the caregiving domain: the behavioral system through which a persona is moved to protect and provide for a vulnerable other whose need is felt -- the reciprocal complement to attachment's care-seeking -- across the sensitivity, overprotection, and burnout forms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/caregiving"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "caregiving",
+    "tagline": "Caregiving as process: the behavioral system through which a persona is moved to protect and provide for a vulnerable other whose need is felt -- the reciprocal complement to attachment's care-seeking -- across the sensitivity, overprotection, and burnout forms.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_caregiving.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_sensitivity.md",
+        "type": "process",
+        "parent": "process_caregiving.md"
+      },
+      {
+        "file": "process_overprotection.md",
+        "type": "process",
+        "parent": "process_caregiving.md"
+      },
+      {
+        "file": "process_burnout.md",
+        "type": "process",
+        "parent": "process_caregiving.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_caregiving.md) declares caregiving as the behavioral system that answers another's need: a persona reads a vulnerable other -- a child, the sick, the old, anyone whose distress registers -- and is moved to protect and provide for them, the reciprocal of the attachment system's reaching for a secure base. Where attachment seeks care, caregiving gives it. The law makes another's need a call the persona is disposed to answer.",
+      "issue": "Three forms the care takes. Sensitivity: attuned care -- the need read accurately and answered as it actually is, neither too much nor too little, the responsiveness that lets the other feel held and still free. Overprotection: care that overshoots -- controlling, intrusive, need-anticipating help that denies the other's autonomy and keeps them dependent, protection past what the other requires. Burnout: care that depletes the giver -- the erosion of the caregiver under sustained demand, the compassion worn thin, the tending that empties the one who tends.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the form the moment runs -- and therefore how they are caring, attuned to the real need, overshooting it, or emptied by the giving.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real form of caregiving. Whether the care is true to the scene -- a genuine need answered, the responsiveness or the overshoot or the depletion read right, the vulnerable other actually held or smothered or failed -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its form under Projection. Read it in the answering of another's need -- the attuned response, the smothering help, the worn-thin tending -- never as the persona's own reaching for care, which is the attachment engine's. Delegate the feeling-with that moves the care to the empathy engine and the discrete transfer of a resource to the gift engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
