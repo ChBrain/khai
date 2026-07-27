@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-contempt",
+  "version": "0.1.0",
+  "description": "khai engine content, the contempt domain: the downward look through which a persona reckons with another judged beneath them -- regard withdrawn, worth lowered, the cold mirror of envy's upward gaze -- across the disdain, scorn, and condescension forms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/contempt"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "contempt",
+    "tagline": "Contempt as process: the downward look through which a persona reckons with another judged beneath them -- regard withdrawn, worth lowered, the cold mirror of envy's upward gaze -- across the disdain, scorn, and condescension forms.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_contempt.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_disdain.md",
+        "type": "process",
+        "parent": "process_contempt.md"
+      },
+      {
+        "file": "process_scorn.md",
+        "type": "process",
+        "parent": "process_contempt.md"
+      },
+      {
+        "file": "process_condescension.md",
+        "type": "process",
+        "parent": "process_contempt.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_contempt.md) declares contempt as the downward look: a persona judges another as beneath them -- lesser in worth, ability, or standing -- and withdraws regard rather than raising a hot objection. Where anger says you have wronged me and disgust says you revolt me, contempt says you are beneath me, colder and more lasting than either. The law makes another's judged inferiority a warrant to discount them.",
+      "issue": "Three forms the downward look takes. Disdain: the cold withdrawal -- regard quietly withheld, the other dropped beneath notice, dismissed rather than attacked. Scorn: the hot form -- the sneer, the mockery, the open derision that lowers the other aloud, often before an audience. Condescension: the veiled form -- contempt wearing benevolence, the patronizing talk-down that treats the other as lesser while presenting it as care, so the lowering is deniable.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the form of contempt the moment runs -- and therefore how the other is being lowered, coldly, openly, or under a mask, and how deep the devaluation cuts.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real form of contempt. Whether the contempt is true to the scene -- the other genuinely held beneath rather than merely opposed, the coldness or the sneer or the mask read right, the corrosion it works on the tie -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its form under Projection. Read it in the placing of another below -- the cool snub, the withering sneer, the patronizing help -- never as mere anger, which opposes an equal, where contempt looks down on a lesser. Delegate the upward reckoning with another's superiority to the envy engine and the rank itself to the status engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
