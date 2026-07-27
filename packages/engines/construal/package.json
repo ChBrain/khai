@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-construal",
+  "version": "0.1.0",
+  "description": "khai engine content, the construal domain: the process through which psychological distance sets the level at which a persona mentally represents a thing -- far lifting to the abstract, near dropping to the concrete -- across the abstraction, concreteness, and traversal forms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/construal"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "construal",
+    "tagline": "Construal as process: the process through which psychological distance sets the level at which a persona mentally represents a thing -- far lifting to the abstract, near dropping to the concrete -- across the abstraction, concreteness, and traversal forms.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_construal.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_abstraction.md",
+        "type": "process",
+        "parent": "process_construal.md"
+      },
+      {
+        "file": "process_concreteness.md",
+        "type": "process",
+        "parent": "process_construal.md"
+      },
+      {
+        "file": "process_traversal.md",
+        "type": "process",
+        "parent": "process_construal.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_construal.md) declares construal as the setting of mental altitude by distance: how far a thing is from the persona's direct experience -- in time, in space, in social remove, or in likelihood -- sets the level at which they represent it, the far seen in abstract, schematic, essential terms and the near in concrete, detailed, contextual ones. The law makes psychological distance the dial on how coarsely or finely a thing is mentally drawn.",
+      "issue": "Three forms the distance-to-construal link takes. Abstraction: the far pole -- distance lifts the representation to high-level construal, the gist over the detail, the why over the how, the central and desirable over the peripheral and feasible, the schematic essence stripped of context. Concreteness: the near pole -- nearness drops the representation to low-level construal, the detail over the gist, the how over the why, the feasible and peripheral, the specifics held in their context. Traversal: the four distances are one -- far-in-time, far-in-space, far-from-self, and unlikely all remove a thing from the here-and-now-and-real alike and are cognitively interchangeable, so a shift on any moves construal, and construal in turn cues distance.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the form the moment runs -- and therefore how distance is setting their construal, lifting it to the abstract, dropping it to the concrete, or carrying across the interchangeable dimensions of remove.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real form of construal. Whether the construal is true to the scene -- a genuine distance setting a genuine level of representation, the far drawn abstractly and the near concretely, the dimensions read as one -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its form under Projection. Read it as distance setting mental altitude -- the far thing seen in gist and essence, the near thing in detail and context, and the remove on one dimension carrying to the others -- never as the mere passage of time or the physical setting itself. Delegate the felt duration of time to the time-perception engine and the physical setting to the space engine; this owns distance as the dial on construal."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
