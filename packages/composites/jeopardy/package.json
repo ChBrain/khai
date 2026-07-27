@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-jeopardy",
+  "version": "0.1.0",
+  "description": "khai composite content, the jeopardy domain: a persona under a threat that has not yet fallen, meeting it at once with the baseline they bring, the anticipatory hold on what might happen, and the response to a demand that exceeds resources -- across the onset, mounting, and release bridges over apprehension, suspense, and stress.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/jeopardy"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "jeopardy",
+    "tagline": "Jeopardy as composite: a persona under a threat that has not yet fallen, meeting it at once with the baseline they bring, the anticipatory hold on what might happen, and the response to a demand that exceeds resources -- across the onset, mounting, and release bridges over apprehension, suspense, and stress, and the drama lives where disposition, dread, and response fall out of step.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_jeopardy.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_onset.md",
+        "type": "process",
+        "parent": "process_jeopardy.md"
+      },
+      {
+        "file": "process_mounting.md",
+        "type": "process",
+        "parent": "process_jeopardy.md"
+      },
+      {
+        "file": "process_release.md",
+        "type": "process",
+        "parent": "process_jeopardy.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "plot",
+        "section": "Tension",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over three atoms it declares as dependencies. The root (process_jeopardy.md) reads a persona under threat as one state held across three engines: apprehension supplies the baseline nervous-system filter that sets how sharply the threat registers, suspense supplies the anticipatory hold on the outcome not yet landed, and stress supplies the response when the demand exceeds resources. The composite adds no fourth engine; it wires the seams the atoms refuse to cross.",
+      "issue": "Three bridges, each a handoff the atoms cannot stage apart. Onset: the threat lands on the disposition, and the same cue opens acute anticipation in a hyperreactive system that a hyporeactive one barely registers -- the baseline sets the gain. Mounting: as the interval closes and the demand grows past resources, the anticipatory hold tips into the stress response, and the two compound -- dread drains resources, depletion sharpens dread. Release: a reprieve discharges both suspense and stress at once, or none comes and the un-ended threat grinds the response into chronic exhaustion.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the under-threat read runs wherever its atoms are cast. The link, advisory: a plot may link under Tension the bridge it stages, and the audit surfaces where a play stages the threat without naming it.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's disposition, dread, and response genuinely fall out of step -- the blunted persona under-reading a real threat, the dread that outlasts the danger -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the persona from the atoms -- their baseline from apprehension, their anticipation from suspense, their response from stress -- then stage the bridges: the threat landing on the disposition, the anticipation tipping into response, and the reprieve that discharges it or the chronic grind when none comes. Read the production where the three fall out of step, never in any single engine's reading alone."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-engine-apprehension": "^0.2.0",
+    "@chbrain/khai-engine-stress": "^0.1.4",
+    "@chbrain/khai-engine-suspense": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
