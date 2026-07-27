@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-love",
+  "version": "0.1.0",
+  "description": "khai composite content, the love domain: the triangle Sternberg drew -- intimacy, passion, and commitment -- and the kinds of love that are its combinations, read as a wiring of self-disclosure, desire, and loyalty across the romantic, abiding, and fatuous bridges.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/love"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "love",
+    "tagline": "Love as composite: the triangle Sternberg drew -- intimacy, passion, and commitment -- and the kinds of love that are its combinations, read as a wiring of self-disclosure, desire, and loyalty, across the romantic, abiding, and fatuous bridges, and the drama lives in which corners are present and how they shift over time.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_love.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_romantic.md",
+        "type": "process",
+        "parent": "process_love.md"
+      },
+      {
+        "file": "process_abiding.md",
+        "type": "process",
+        "parent": "process_love.md"
+      },
+      {
+        "file": "process_fatuous.md",
+        "type": "process",
+        "parent": "process_love.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "plot",
+        "section": "Tension",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over three atoms it declares as dependencies. The root (process_love.md) reads a love by which of Sternberg's three components it is made of: self-disclosure supplies the intimacy (two selves opened to each other), desire supplies the passion (the drive and attraction that pulls them together), and loyalty supplies the commitment (the decision to hold the love and stay). The composite adds no fourth engine; it wires the three corners into the shapes a love can take.",
+      "issue": "Three bridges, the two-cornered loves. Romantic: intimacy and passion without commitment -- drawn and open, in love but not yet pledged. Abiding: intimacy and commitment without passion -- the long, settled love that outlasts desire, Sternberg's companionate. Fatuous: passion and commitment without intimacy -- swept up and bound fast before the slow work of knowing is done. All three corners at once is consummate love; one corner alone is not yet love but its ingredient -- intimacy alone liking, passion alone infatuation, commitment alone the empty love.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the composition read runs wherever its atoms are cast. The link, advisory: a plot may link under Tension the bridge it stages, and the audit surfaces where a play stages a love without naming which corners hold it.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's love genuinely has the corners it claims -- and whether their shifting, passion cooling while intimacy holds, is read truly -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the lovers from the atoms -- their intimacy from self-disclosure, their passion from desire, their commitment from loyalty -- then stage the bridges by which corners hold: romantic, abiding, or fatuous, with consummate the full triangle. Read the production in which corners are present and how they shift, never in the word love alone."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-engine-desire": "^0.1.1",
+    "@chbrain/khai-engine-loyalty": "^0.1.1",
+    "@chbrain/khai-engine-self-disclosure": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
