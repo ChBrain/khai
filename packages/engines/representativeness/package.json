@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-representativeness",
+  "version": "0.1.0",
+  "description": "khai engine content, the representativeness domain: the judgment through which a persona reads the probability that a thing belongs to a category or came from a process off how much it resembles the prototype -- overriding the statistical structure -- across the priors, conjunction, and randomness forms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/representativeness"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "representativeness",
+    "tagline": "Representativeness as process: the judgment through which a persona reads the probability that a thing belongs to a category or came from a process off how much it resembles the prototype -- overriding the statistical structure -- across the priors, conjunction, and randomness forms.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_representativeness.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_priors.md",
+        "type": "process",
+        "parent": "process_representativeness.md"
+      },
+      {
+        "file": "process_conjunction.md",
+        "type": "process",
+        "parent": "process_representativeness.md"
+      },
+      {
+        "file": "process_randomness.md",
+        "type": "process",
+        "parent": "process_representativeness.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_representativeness.md) declares representativeness as the probability read off resemblance: a persona judging whether a thing belongs to a category or came from a process answers by how much it looks like the prototype of that category or process, and lets that likeness override the base rates, sample sizes, and other statistical facts that should govern the judgment. The law makes similarity to the type stand in for probability.",
+      "issue": "Three forms the resemblance-read takes. Priors: the base rate ignored -- a case judged by how well it matches the stereotype, with the prior probability of the category set aside, so a description that fits a small group is read as coming from it however rare that group is. Conjunction: added representative detail read as more probable -- a specific, prototype-fitting story judged likelier than the broader class that contains it, though a conjunction can only be less probable than its parts. Randomness: chance expected to look representative -- a random process held to produce prototypically-random-looking results, so streaks are read as nonrandom, small samples trusted to mirror the population, and a run expected to correct itself.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the form the moment runs -- and therefore how the resemblance is overriding the statistics, by ignoring the base rate, by trusting the fitting detail, or by expecting chance to look like chance.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real form of representativeness. Whether the judgment is true to the scene -- a genuine category or probability read, resemblance genuinely overriding the statistical structure, the base rate or the conjunction or the chance-pattern read wrong in the right way -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its form under Projection. Read it as a probability judged by likeness to a type -- the stereotype trusted over the base rate, the vivid fitting story over the broader class, the streak read as loaded -- never as a reckoning from the actual statistics. Delegate the ease-of-recall sister heuristic to the availability engine, the reference-pull one to the anchoring engine, and the standing catalogued tilt to the bias engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
