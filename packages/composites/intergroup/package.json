@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-intergroup",
+  "version": "0.1.0",
+  "description": "khai composite content, the intergroup domain: the us/them dynamic read from a member's side -- the line that sorts us from them switching on favoritism and prejudice, the tilt hardening into hostility under competition, and the contact that can reduce it -- across the division, enmity, and contact bridges over social-identity, bias, and aggression.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/intergroup"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "intergroup",
+    "tagline": "Intergroup as composite: the us/them dynamic read from a member's side -- the line that sorts us from them switching on favoritism and prejudice, the tilt hardening into hostility under competition, and the contact that can reduce it -- across the division, enmity, and contact bridges over social-identity, bias, and aggression, and the drama lives in a hostility that arbitrary grouping alone can seed.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_intergroup.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_division.md",
+        "type": "process",
+        "parent": "process_intergroup.md"
+      },
+      {
+        "file": "process_enmity.md",
+        "type": "process",
+        "parent": "process_intergroup.md"
+      },
+      {
+        "file": "process_contact.md",
+        "type": "process",
+        "parent": "process_intergroup.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "plot",
+        "section": "Tension",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over three atoms it declares as dependencies. The root (process_intergroup.md) reads the us/them relation from a member's side as one dynamic held across three engines: social-identity supplies the in-group belonging and the contest for standing, bias supplies the tilt toward the out-group (favoritism, prejudice, stereotyping, out-group homogeneity), and aggression supplies the hostile harm. The composite adds no fourth engine; it wires the seams the three make -- a line becoming a bias, a bias becoming enmity, and the contact that can undo both.",
+      "issue": "Three bridges, each a handoff the atoms cannot stage apart. Division: the line drawn -- even an arbitrary one -- switches on the tilt, the in-group favored and the out-group prejudged before a single interaction. Enmity: under competition or felt threat, the standing tilt hardens into aggression, the out-group cast as rival, opposed, harmed, or scapegoated. Contact: met under equal, cooperative terms toward a superordinate goal, the tilt loosens, them-and-us recategorized into a larger we -- or, on the wrong terms, the hostility is confirmed instead.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the us/them read runs wherever its atoms are cast. The link, advisory: a plot may link under Tension the bridge it stages, and the audit surfaces where a play stages the dynamic without naming it.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's hostility genuinely grows from the line itself -- seeded by grouping, not only by real grievance -- and whether contact is staged on the conditions that actually reduce it, is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the member from the atoms -- their belonging and contest from social-identity, their tilt toward the out-group from bias, their hostility from aggression -- then stage the bridges: the line that seeds the tilt, the competition that arms it, the contact that can dissolve it. Read the production where a drawn line becomes a felt enmity, never in any single engine's reading alone."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-engine-aggression": "^0.1.1",
+    "@chbrain/khai-engine-bias": "^0.1.1",
+    "@chbrain/khai-engine-social-identity": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
