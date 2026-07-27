@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-availability",
+  "version": "0.1.0",
+  "description": "khai engine content, the availability domain: the estimation through which a persona judges how frequent or likely a class of events is by how easily instances of it come to mind -- across the retrievability, searchability, and imaginability forms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/availability"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "availability",
+    "tagline": "Availability as process: the estimation through which a persona judges how frequent or likely a class of events is by how easily instances of it come to mind -- across the retrievability, searchability, and imaginability forms.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_availability.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_retrievability.md",
+        "type": "process",
+        "parent": "process_availability.md"
+      },
+      {
+        "file": "process_searchability.md",
+        "type": "process",
+        "parent": "process_availability.md"
+      },
+      {
+        "file": "process_imaginability.md",
+        "type": "process",
+        "parent": "process_availability.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_availability.md) declares availability as the estimate read from ease of recall: a persona judging how frequent or likely a class of events is answers by how readily instances of it come to mind, taking the felt ease of retrieval for the true rate. The law makes what comes easily to mind stand in for what is common in the world -- so the vivid, the recent, and the easily pictured are judged more frequent than they are.",
+      "issue": "Three forms the ease works through. Retrievability: instances differ in how readily they are recalled -- the recent, the salient, the emotionally charged surface first, and their easy retrieval inflates the judged rate, so what is memorable is taken for what is common. Searchability: the judgment depends on how memory is searched -- a class easy to search along one dimension seems more frequent than one hard to search, though the true counts may reverse. Imaginability: for events not stored, the ease of constructing or picturing an instance stands in for its frequency, so what is easy to imagine is judged likely and what resists imagining is judged rare.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the form the moment runs -- and therefore how the estimate is being read from ease, by what comes readily to mind, by how the search runs, or by how easily an instance is pictured.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real form of availability. Whether the estimate is true to the scene -- a genuine frequency or likelihood judgment, the ease-for-frequency substitution read right, the vivid taken for the common -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its form under Projection. Read it as a frequency or likelihood judged by ease of recall -- the memorable taken for the common, the search that finds one class faster, the outcome that is easy to picture judged likely -- never as a counted or reasoned rate. Delegate the storage and retrieval machinery to the memory engine, the reference-pull of a first figure to the anchoring engine, and the standing catalogued tilt to the bias engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
