@@ -1,0 +1,4 @@
+---
+---
+
+Whitelist `reactance` under `memberPolicy.homonyms`, mirroring `framing`: a word that legitimately lives at two altitudes -- the static valuation tilt catalogued in the `bias` codex (`position_reactance.md`, one node among the cognitive biases: forbid the option and the pull toward it doubles) and the standalone motivational-process engine it deserves in its own right (Brehm's psychological reactance: a freedom threatened, aroused, and restored -- the resistance counterpart to `persuasion` and `conformity`). This clears the member-scope gate for a forthcoming `reactance` engine, exactly as `framing` already clears it for the `framing` engine over `pitch-mode`'s frame-control member. Governance config only; ships nothing. The ratchet's dead-exemption warning is expected until the `reactance` engine lands and makes the collision live.
