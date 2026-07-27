@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-rapport",
+  "version": "0.1.0",
+  "description": "khai composite content, the rapport domain: the felt quality of a connection working -- two personas in unconscious synchrony, understanding that keeps landing, and mutual opening that deepens -- reinforcing into the sense of clicking, across the meshing, warming, and veneer bridges over contagion, grounding, and self-disclosure.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/rapport"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "rapport",
+    "tagline": "Rapport as composite: the felt quality of a connection working -- two personas in unconscious synchrony, understanding that keeps landing, and mutual opening that deepens -- reinforcing into the sense of clicking, across the meshing, warming, and veneer bridges over contagion, grounding, and self-disclosure, and the drama lives in the spiral that builds it or the surface that counterfeits it.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_rapport.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_meshing.md",
+        "type": "process",
+        "parent": "process_rapport.md"
+      },
+      {
+        "file": "process_warming.md",
+        "type": "process",
+        "parent": "process_rapport.md"
+      },
+      {
+        "file": "process_veneer.md",
+        "type": "process",
+        "parent": "process_rapport.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "plot",
+        "section": "Tension",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over three atoms it declares as dependencies. The root (process_rapport.md) reads the felt quality of a connection working as one thing held across three engines: contagion supplies the unconscious synchrony of two bodies falling into step, grounding supplies the understanding that keeps landing, and self-disclosure supplies the mutual opening that deepens the tie. The composite adds no fourth engine; it wires the seams the three reinforce into a felt whole.",
+      "issue": "Three bridges, each a handoff the atoms cannot stage apart. Meshing: synchrony and understanding arrive together, so the pair feels aligned beneath the words and met within them at once -- the click before it deepens. Warming: the mesh makes opening safe, matched disclosure returns, and rapport climbs by a spiral of opening met by opening. Veneer: the coordination -- the most visible and most forgeable component -- is produced without the understanding or opening beneath it, and rapport's surface parts company with its substance.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the connection read runs wherever its atoms are cast. The link, advisory: a plot may link under Tension the bridge it stages, and the audit surfaces where a play stages rapport without naming it.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's rapport is genuine or a veneer -- coordination standing in for connection -- rather than merely asserted, is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the pair from the atoms -- their synchrony from contagion, their understanding from grounding, their opening from self-disclosure -- then stage the bridges: the mesh of sync and understanding, the warming spiral of matched disclosure, and the veneer where the surface runs without the substance. Read the production in whether the three genuinely reinforce, never in coordination alone."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-engine-contagion": "^0.1.1",
+    "@chbrain/khai-engine-grounding": "^0.1.0",
+    "@chbrain/khai-engine-self-disclosure": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
