@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-surprise",
+  "version": "0.1.0",
+  "description": "khai engine content, the surprise domain: the response to a violated expectation -- the mind's alarm that its model of the world has just been wrong, interrupting, reorienting, and revising -- across the startle, jolt, sensemaking, and dismissal forms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/surprise"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "surprise",
+    "tagline": "Surprise as process: the response to a violated expectation -- the mind's alarm that its model of the world has just been wrong, interrupting, reorienting, and revising -- across the startle, jolt, sensemaking, and dismissal forms.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_surprise.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_startle.md",
+        "type": "process",
+        "parent": "process_surprise.md"
+      },
+      {
+        "file": "process_jolt.md",
+        "type": "process",
+        "parent": "process_surprise.md"
+      },
+      {
+        "file": "process_sensemaking.md",
+        "type": "process",
+        "parent": "process_surprise.md"
+      },
+      {
+        "file": "process_dismissal.md",
+        "type": "process",
+        "parent": "process_surprise.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_surprise.md) declares surprise as the response to a violated expectation: a thing happens the persona's model said would not, and the mismatch registers before anything else -- pre-valence, prior to whether the news is good or bad, an alarm that the model has just been wrong. The law makes a broken expectation an interrupt, not a mere observation.",
+      "issue": "Four forms of the violation-response. Startle: a sudden intense stimulus fires a reflex jump below appraisal, the flinch wired beneath thought. Jolt: an expectation breaks and the mind lurches, ongoing action halted, attention pinned to the anomaly -- the appraised interrupt, which needs no loud stimulus, only a violated model. Sensemaking: the persona turns to the anomaly, works out what they had wrong, and repairs the model, surprise doing its corrective job. Dismissal: the anomaly is explained away and the model preserved unrevised, so the persona is set up to be surprised the same way again.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the form the surprise takes -- and therefore whether the model is being jolted, repaired, or defended, and how hard the expectation was broken.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real form of surprise. Whether the surprise is true to the scene -- the expectation genuinely held and genuinely broken, the update earned or refused, the jolt scaled to how wrong the model was -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its form under Projection. Read it in the gap between what the persona expected and what came -- the reflex flinch, the mind stopped mid-stride by a quiet upending fact, the model repaired or defended -- never as a mere reaction to intensity. Delegate the valenced feeling it resolves into (delight, dismay) to the emotion engine and the attention it seizes to the attention engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
