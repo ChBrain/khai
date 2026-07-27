@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-reactance",
+  "version": "0.1.0",
+  "description": "khai engine content, the reactance domain: the motivational pushback through which a persona whose freedom is threatened moves to restore it -- against the very force that pressed -- across the defiance, allure, and derogation forms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/reactance"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "reactance",
+    "tagline": "Reactance as process: the motivational pushback through which a persona whose freedom is threatened moves to restore it -- against the very force that pressed -- across the defiance, allure, and derogation forms.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_reactance.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_defiance.md",
+        "type": "process",
+        "parent": "process_reactance.md"
+      },
+      {
+        "file": "process_allure.md",
+        "type": "process",
+        "parent": "process_reactance.md"
+      },
+      {
+        "file": "process_derogation.md",
+        "type": "process",
+        "parent": "process_reactance.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_reactance.md) declares reactance as the motivational pushback: a persona reads a behavioral freedom as threatened or removed -- forbidden, pressured, mandated -- and is aroused to restore it. Where persuasion moves a persona toward a position and conformity moves them toward the group, reactance moves them against the push itself, the boomerang that grows sharper the harder the freedom is pressed. The law makes a threat to freedom a warrant to reclaim it.",
+      "issue": "Three routes the restoration takes. Defiance: direct restoration -- do the threatened act, and do it visibly, so the freedom shows itself reclaimed in the doing. Allure: indirect restoration -- the blocked option's pull rises, the forbidden growing desirable in proportion to the ban rather than to its worth. Derogation: the persona turns on the agent that pressed -- resenting, discrediting, resisting the source, so the freedom is defended by attacking what threatened it.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the route the moment runs -- and therefore how the freedom is being reclaimed, by doing the forbidden thing, by wanting it more, or by turning on the one who pressed.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real route of reactance. Whether the pushback is true to the scene -- a freedom genuinely felt as threatened, the boomerang read right, the move against the push rather than toward a position -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its route under Projection. Read it as a move against the pressure -- the rule broken in the open, the banned option grown sweet, the pusher resented -- never as mere refusal to be swayed, which is the conformity engine's independence, where reactance is pushed the opposite way by the push itself. Delegate the uptake of a message to the persuasion engine and the hostility it recruits to the aggression engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
