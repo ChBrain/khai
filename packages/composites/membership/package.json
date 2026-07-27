@@ -1,0 +1,88 @@
+{
+  "name": "@chbrain/khai-composite-membership",
+  "version": "0.1.0",
+  "description": "khai composite content, the membership domain: one persona's standing bind to a group -- the self they draw from it, the standard it bends them to, a mark it would discredit, and the allegiance that raises the cost of leaving -- across the induction, covering, and tether bridges over social-identity, conformity, stigma, and loyalty.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/membership"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "membership",
+    "tagline": "Membership as composite: one persona's standing bind to a group -- the self they draw from it, the standard it bends them to, a mark it would discredit, and the allegiance that raises the cost of leaving -- across the induction, covering, and tether bridges over social-identity, conformity, stigma, and loyalty, and the drama lives where belonging and its price pull apart.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_membership.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_induction.md",
+        "type": "process",
+        "parent": "process_membership.md"
+      },
+      {
+        "file": "process_covering.md",
+        "type": "process",
+        "parent": "process_membership.md"
+      },
+      {
+        "file": "process_tether.md",
+        "type": "process",
+        "parent": "process_membership.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "plot",
+        "section": "Tension",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over four atoms it declares as dependencies. The root (process_membership.md) reads one persona's bind to a group as a web of pulls held across four engines: social-identity supplies the self drawn from the group, conformity supplies the standard it bends the member to, stigma supplies a mark the group would discredit, and loyalty supplies the allegiance that raises the cost of leaving. The composite adds no fifth engine; it wires the seams the atoms refuse to cross.",
+      "issue": "Three bridges, each a handoff the atoms cannot stage apart. Induction: identification draws the self from the group and, in the same motion, brings the member under its standard -- belonging tightening into conforming. Covering: the member carries a mark the very standard they conform to would discredit, so belonging is held by the labor of passing and covering, a self kept partly unseen. Tether: when belonging turns costly, loyalty raises the exit price past what the member will pay, converting what would be a leaving into voice or a swallowed endurance.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the member's-bind read runs wherever its atoms are cast. The link, advisory: a plot may link under Tension the bridge it stages, and the audit surfaces where a play stages the bind without naming it.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's belonging and its price genuinely pull apart -- the marked member kept in by a loyalty they cannot spend -- rather than a member who simply fits, is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the member from the atoms -- their belonging from social-identity, their conduct from conformity, their mark from stigma, their allegiance from loyalty -- then stage the bridges: the pull-in and shaping, the mark managed to stay, the tether that holds against leaving. Read the production where the pulls contradict, never in any single engine's reading alone."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-engine-conformity": "^0.1.1",
+    "@chbrain/khai-engine-loyalty": "^0.1.1",
+    "@chbrain/khai-engine-social-identity": "^0.1.0",
+    "@chbrain/khai-engine-stigma": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
