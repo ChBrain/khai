@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-needs",
+  "version": "0.1.0",
+  "description": "khai engine content, the needs domain: how a persona's plural needs differ in prepotency -- the more basic pressing harder when unmet -- and split into deficiency needs that quiet when filled and growth needs that do not, across the prepotency, deficiency, and actualization forms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/needs"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "needs",
+    "tagline": "Needs as process: how a persona's plural needs differ in prepotency -- the more basic pressing harder when unmet -- and split into deficiency needs that quiet when filled and growth needs that do not, across the prepotency, deficiency, and actualization forms.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_needs.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_prepotency.md",
+        "type": "process",
+        "parent": "process_needs.md"
+      },
+      {
+        "file": "process_deficiency.md",
+        "type": "process",
+        "parent": "process_needs.md"
+      },
+      {
+        "file": "process_actualization.md",
+        "type": "process",
+        "parent": "process_needs.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_needs.md) declares human motivation as organized around a plurality of needs that differ in prepotency: the more basic a need, the harder it presses when unmet and the more it claims priority -- but the ordering is soft and probabilistic, not a rigid staircase, needs pursued in parallel and higher ones reachable before lower ones are fully filled. The law makes which need currently governs a function of what is unmet and how basic it is, and splits the needs into two kinds by how they behave when fed.",
+      "issue": "Three ways the need-structure moves. Prepotency: the ordering itself -- a more basic unmet need presses harder and tends to claim priority, and a lower need going unmet can reassert itself over a higher one already in play, the sequence real but soft rather than strict. Deficiency: the D-needs -- driven by lack, they motivate by their absence and quiet once filled, the persona pulled only until the deficit is met. Actualization: the being- or growth-needs -- they are not stilled by satisfaction but grow with feeding, pulling the persona toward the fuller expression of what they could become, without a point of enough.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the form the moment runs -- and therefore how the need-structure governs them, by which need is prepotent, by a deficiency that quiets when met, or by a growth that never satiates.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real form of the need-structure. Whether the need is true to the scene -- a genuinely unmet need genuinely pressing, the prepotency or the deficiency or the actualization read right, the ordering kept soft rather than a rigid ladder -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its form under Projection. Read it as plural needs of differing prepotency -- the more basic pressing harder when unmet, the deficiency quieting when filled, the growth never satiating -- and keep the ordering soft, needs pursued in parallel and higher ones reachable before lower ones are full, never a rigid staircase. Delegate the quality and source of motivation to the motivation engine, and the single desired end-state a persona pursues to the goal engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
