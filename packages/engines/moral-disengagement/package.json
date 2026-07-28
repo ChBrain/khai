@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-moral-disengagement",
+  "version": "0.1.0",
+  "description": "khai engine content, the moral-disengagement domain: the cognitive moves by which a persona switches off its own moral self-sanctions to do harm without self-censure -- across the justification, displacement, minimizing, and blaming forms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/moral-disengagement"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "moral-disengagement",
+    "tagline": "Moral disengagement as process: the cognitive moves by which a persona switches off its own moral self-sanctions to do harm without self-censure -- across the justification, displacement, minimizing, and blaming forms.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_moral_disengagement.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_justification.md",
+        "type": "process",
+        "parent": "process_moral_disengagement.md"
+      },
+      {
+        "file": "process_displacement.md",
+        "type": "process",
+        "parent": "process_moral_disengagement.md"
+      },
+      {
+        "file": "process_minimizing.md",
+        "type": "process",
+        "parent": "process_moral_disengagement.md"
+      },
+      {
+        "file": "process_blaming.md",
+        "type": "process",
+        "parent": "process_moral_disengagement.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_moral_disengagement.md) declares moral disengagement as the switching-off of one's own conscience: a persona ordinarily governs its conduct by moral self-sanctions -- the anticipated self-censure that would make a harmful act feel wrong -- and disengagement is the set of cognitive moves that deactivate those sanctions for a specific act, so the persona can do harm and still regard itself as decent. The law makes the persona's moral self-regulation something that can be selectively suspended, not a constant.",
+      "issue": "Four loci the disengagement works at, following the arc from act to victim. Justification: reconstruing the conduct itself -- moral justification, euphemistic labeling, advantageous comparison, so the act is made to look worthy or minor. Displacement: obscuring the agency -- displacing responsibility onto an authority who ordered it, or diffusing it across a group, so no one, and not this persona, quite did it. Minimizing: distorting the consequences -- ignoring, downplaying, or disbelieving the harm, so there is no injury to answer for. Blaming: devaluing the recipient -- dehumanizing the target or blaming them for their own suffering, so they are not a full person wronged but a thing, or a cause of their own hurt.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the form the moment runs -- and therefore how it is disengaging, by reconstruing the act, obscuring its agency, distorting its harm, or devaluing its victim.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real form of moral disengagement. Whether the disengagement is true to the scene -- a genuine moral sanction genuinely switched off, the justification or displacement or minimizing or blaming read right, the persona doing harm and keeping its self-regard -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its form under Projection. Read it as the deactivating of the persona's own conscience for a specific harm -- the act relabeled, the agency displaced, the harm minimized, the victim devalued -- never as the moral judgment of another's conduct nor as the guilt that fires when disengagement fails. Delegate the moral lens for judging others to the moral-judgment engine, the self-sanction that fires when the harm is owned to the guilt engine, and the harmful act itself to the aggression engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
