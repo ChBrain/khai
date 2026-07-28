@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-obedience",
+  "version": "0.1.0",
+  "description": "khai engine content, the obedience domain: how a persona complies with the command of a legitimate authority even against their own conscience -- Milgram's destructive obedience -- across the instrument, legitimacy, and binding forms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/obedience"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "obedience",
+    "tagline": "Obedience as process: how a persona complies with the command of a legitimate authority even against their own conscience -- Milgram's destructive obedience -- across the instrument, legitimacy, and binding forms.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_obedience.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_instrument.md",
+        "type": "process",
+        "parent": "process_obedience.md"
+      },
+      {
+        "file": "process_legitimacy.md",
+        "type": "process",
+        "parent": "process_obedience.md"
+      },
+      {
+        "file": "process_binding.md",
+        "type": "process",
+        "parent": "process_obedience.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_obedience.md) declares obedience as Milgram's account: a persona placed under the command of an authority they take to be legitimate will carry out orders that violate their own conscience, harming another because they were told to. The law makes the command of a legitimate authority a force that can override the persona's own moral restraints -- not persuasion, not the pull of peers, but the vertical pressure of a superior's directive obeyed against what the persona would otherwise do.",
+      "issue": "Three ways the command takes hold. Instrument: the agentic shift -- the persona ceases to see themselves as an autonomous author of their acts and comes to feel an instrument carrying out the authority's will, so responsibility passes upward and the deed feels not theirs. Legitimacy: the perceived right of the authority to command -- backed by role, setting, and symbol -- that grants the order its force, so the persona obeys the office rather than the person. Binding: the factors that hold the persona in and make breaking off hard -- the sequential creep of small steps, the awkwardness of defiance, prior compliance -- against which the proximity of the victim and the distance of the authority raise or lower the obedience.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the form the moment runs -- and therefore how the command is overriding them, by the agentic shift that displaces responsibility, by the legitimacy that licenses the order, or by the binding factors that hold them in.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real form of obedience. Whether the compliance is true to the scene -- a genuine legitimate authority genuinely commanding against conscience, the instrument or the legitimacy or the binding read right, the pressure vertical and not peer -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its form under Projection. Read it as the command of a legitimate authority overriding conscience -- the agentic shift, the licensing legitimacy, the binding factors -- never as the pull of peers, nor as raw coercive power, nor as a self-serving exemption from blame. Delegate the matching of a peer majority to the conformity engine, the capacity to compel by control of resources to the power engine, and the moral self-exemption for a harm to the moral-disengagement engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
