@@ -1,0 +1,41 @@
+---
+updated: "2026-07-28"
+---
+
+# Conditioning: Reference
+
+## Line of Work
+
+Conditioning as **process**: how a neutral cue that reliably predicts a significant outcome comes, by that prediction, to evoke an anticipatory response of its own -- Pavlovian (classical) conditioning, the learning of what predicts what. The domain does not model the response repeated in a stable context until it runs without intention, which is the habit engine's (the instrumental side); nor the discount rate that values the outcome across time, which is the reward engine's; nor the wanting that turns to needing in a reward currency, which is the addiction engine's. It models the predictive learning itself: the cue's information becoming the response's trigger, through the mechanisms by which the link is built, waned, and spread.
+
+The spine is the modern, prediction-based understanding of Pavlovian conditioning. Pavlov's discovery -- that a cue reliably preceding an outcome comes to elicit a conditioned response -- was reinterpreted across the twentieth century from a matter of mere contiguity (cue and outcome together) into a matter of contingency and information (the cue as a predictor). Rescorla showed conditioning depends on the cue improving the prediction of the outcome, not on their pairing; the Rescorla-Wagner model made learning error-driven, proportional to surprise, explaining Kamin's blocking, where a cue already predicted teaches nothing; and Bouton showed extinction to be new learning laid over the old rather than erasure, evidenced by spontaneous recovery, renewal, and reinstatement. Three mechanisms carry it: acquisition, the building of the predictive link by surprise; extinction, its waning by contradicted expectation, without erasure; and generalization, its spread along a gradient of similarity, sharpened by discrimination. The three forms are those: acquisition, extinction, generalization.
+
+## Origin
+
+The behavioral science of Pavlovian conditioning, applied directly as process constraints.
+
+| Source                                   | Key Work                                                                                                                  | Scope                                                                                                                                                                                                                                                                        |
+| :--------------------------------------- | :------------------------------------------------------------------------------------------------------------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Ivan P. Pavlov**                       | _Conditioned Reflexes: An Investigation of the Physiological Activity of the Cerebral Cortex_ (trans. Anrep, 1927)        | The founding account: a neutral stimulus reliably preceding an unconditioned stimulus comes to elicit a conditioned response; acquisition, extinction, spontaneous recovery, generalization, and discrimination named as the basic phenomena. The root and all three forms.  |
+| **Robert A. Rescorla**                   | _"Pavlovian Conditioning: It's Not What You Think It Is"_ (American Psychologist, 1988); contingency vs contiguity (1968) | The reinterpretation: conditioning depends on the cue's predictive relation to the outcome -- its contingency -- not on their pairing; a cue predicts only insofar as it adds information. The root and the acquisition form.                                                |
+| **Robert A. Rescorla & Allan R. Wagner** | _"A Theory of Pavlovian Conditioning: Variations in the Effectiveness of Reinforcement and Nonreinforcement"_ (1972)      | The error-driven model: learning is proportional to surprise -- the discrepancy between the outcome expected and received -- so a fully predicted outcome teaches nothing and redundant cues are blocked. The acquisition form.                                              |
+| **Leon J. Kamin**                        | _"Predictability, Surprise, Attention, and Conditioning"_ (1969)                                                          | Blocking: a cue paired with an outcome already predicted by another cue is not learned, though it is reliably paired -- surprise, not pairing, drives conditioning. The acquisition form.                                                                                    |
+| **Mark E. Bouton**                       | _"Context, Ambiguity, and Unlearning: Sources of Relapse after Behavioral Extinction"_ (2002); renewal and reinstatement  | Extinction as new learning, not erasure: the extinguished response returns with time (spontaneous recovery), with a change of context (renewal), and after a reminder of the outcome (reinstatement) -- the original learning retained beneath the new. The extinction form. |
+
+## Restrictions
+
+What the engine refuses to model, and to whom it delegates.
+
+- **Habit**: The engine models the learning of a cue's prediction and the anticipatory response it evokes, not the response repeated in a stable context until it runs without intention. The wearing of an action into automaticity by repetition is owned by the habit engine (the instrumental, operant side of learning); conditioning is the classical, respondent side -- the cue coming to predict an outcome -- and the two are distinct, one about what a sign foretells and the other about what a repeated act becomes.
+- **Reward**: The engine models the predictive relation between cue and outcome, not the value of the outcome across time. The discount rate that makes near outcomes large and distant ones thin is owned by the reward engine; conditioning owns the learning that a cue predicts the outcome at all, whatever the outcome is worth -- the herald, not the value of the news.
+- **Addiction**: The engine models the conditioned response and its relapse, not the shift from wanting a thing to needing it. The escalation of pursuit past its cost in a reward currency is owned by the addiction engine; conditioning supplies a mechanism that engine draws on -- cue-evoked craving, and the return of an extinguished response -- but owns the predictive learning itself, not the wanting-turned-needing.
+- **Representativeness**: The engine models the spread of a conditioned response along a gradient of stimulus similarity, not the judging of likelihood by resemblance. The probability read off a resemblance to a type is the representativeness engine's; generalization owns the transfer of a learned response to physically resembling cues and its sharpening by differential outcome, not the cognitive inference from an instance to a kind.
+
+## Encoding
+
+Source to constraint, per file.
+
+- **[conditioning](process_conditioning.md)** (the root): The learning of a cue's prediction -- a neutral stimulus that reliably precedes a significant outcome coming to evoke an anticipatory response, by contingency and information rather than mere pairing. Anchored by Pavlov (_Conditioned Reflexes_) and Rescorla (conditioning is not what you think it is).
+- **[acquisition](process_acquisition.md)** (form): The learning route -- the predictive link built by surprise, learning proportional to prediction error, a redundant cue blocked. Anchored by Rescorla & Wagner (the error-driven model) and Kamin (blocking).
+- **[extinction](process_extinction.md)** (form): The waning route -- the cue presented without the outcome and the response fading, as new learning over the old rather than erasure, proven by spontaneous recovery, renewal, and reinstatement. Anchored by Bouton (context, ambiguity, and relapse) and Pavlov (extinction and spontaneous recovery).
+- **[generalization](process_generalization.md)** (form): The spreading route -- the response transferred to resembling cues along a similarity gradient, then sharpened to the true predictor by discrimination. Anchored by Pavlov (generalization and discrimination) and the generalization-gradient tradition.
