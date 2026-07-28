@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-rumination",
+  "version": "0.1.0",
+  "description": "khai engine content, the rumination domain: the persona's repetitive, passive dwelling on its own distress and its causes, circling without resolving -- across the brooding, replaying, and reflection forms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/rumination"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "rumination",
+    "tagline": "Rumination as process: the persona's repetitive, passive dwelling on its own distress and its causes, circling without resolving -- across the brooding, replaying, and reflection forms.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_rumination.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_brooding.md",
+        "type": "process",
+        "parent": "process_rumination.md"
+      },
+      {
+        "file": "process_replaying.md",
+        "type": "process",
+        "parent": "process_rumination.md"
+      },
+      {
+        "file": "process_reflection.md",
+        "type": "process",
+        "parent": "process_rumination.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_rumination.md) declares rumination as the repetitive, passive turning of the mind onto its own distress: a persona dwells on how bad they feel and why, going over the feeling and its causes and consequences again and again without moving to act on them, so the thought circles rather than resolves and the distress it dwells on is deepened by the dwelling. The law makes the mind's return to its own pain a loop that feeds what it examines.",
+      "issue": "Three ways the mind circles. Brooding: the moody, passive dwelling on symptoms and their meaning -- the why-do-I-always, the why-me, the self measured against a standard it has not met, gloom pondered without progress. Replaying: the specific event, slight, or mistake run through again and again -- the argument rewound, the failure relived, the mental rerun that changes nothing but the depth of the groove. Reflection: the more purposeful, analytic turn inward to understand the distress -- the contemplative pole, less toxic than brooding and, handled concretely rather than abstractly, sometimes the edge of genuine problem-solving.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the form the moment runs -- and therefore how the mind is circling, brooding on its gloom, replaying an event, or reflecting to understand.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real form of rumination. Whether the circling is true to the scene -- a genuine dwelling on genuine distress, the brooding or the replaying or the reflection read right, the loop deepening what it dwells on -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its form under Projection. Read it as the mind circling its own distress without resolving -- the moody why-me, the replayed slight, the analytic turn inward -- never as the feeling itself or the deliberate move to regulate it. Delegate the affective state the loop feeds to the mood engine, the future-tilted anxiety of worry to the apprehension engine, and the adaptive repertoire of emotion regulation to the regulation engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
