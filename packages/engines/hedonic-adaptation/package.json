@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-hedonic-adaptation",
+  "version": "0.1.0",
+  "description": "khai engine content, the hedonic-adaptation domain: the process by which a persona's feeling returns toward a stable baseline after a change in circumstance, good or bad, so the change stops registering -- across the habituation, aspiration, and setpoint forms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/hedonic-adaptation"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "hedonic-adaptation",
+    "tagline": "Hedonic adaptation as process: the process by which a persona's feeling returns toward a stable baseline after a change in circumstance, good or bad, so the change stops registering -- across the habituation, aspiration, and setpoint forms.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_hedonic_adaptation.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_habituation.md",
+        "type": "process",
+        "parent": "process_hedonic_adaptation.md"
+      },
+      {
+        "file": "process_aspiration.md",
+        "type": "process",
+        "parent": "process_hedonic_adaptation.md"
+      },
+      {
+        "file": "process_setpoint.md",
+        "type": "process",
+        "parent": "process_hedonic_adaptation.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_hedonic_adaptation.md) declares hedonic adaptation as the return to baseline: after a change in circumstance -- a windfall or a wound, a promotion or a loss -- the feeling it brings fades with time, and the persona drifts back toward the level of well-being they held before, so the change that once thrilled or crushed comes to register barely at all. The law makes the affective punch of any lasting change temporary, the baseline reasserting itself.",
+      "issue": "Three ways the return is worked. Habituation: the response itself weakens -- a constant or repeated good or bad draws less and less feeling as the system desensitizes, the new car thrilling less each week. Aspiration: the standard rises to meet the circumstance -- gains lift the level of what the persona expects and wants, so improved conditions are judged against a raised bar and yield no lasting gain, the treadmill that must run faster to stay in place. Setpoint: the pull of a stable, dispositional baseline -- a level of well-being the persona keeps returning to, set largely by temperament, that outlasts the events pulling them above or below it.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the form the moment runs -- and therefore how the feeling is fading, by the response weakening, by the standard rising, or by the baseline reclaiming them.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real form of hedonic adaptation. Whether the fade is true to the scene -- a genuine change whose feeling genuinely subsides, the habituation or the rising bar or the return to baseline read right, the treadmill felt -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its form under Projection. Read it as feeling returning to baseline -- the thrill that dulls, the bar that rises to swallow the gain, the mood that settles back to its own level -- never as the current feeling itself. Delegate the present affective state to the mood engine, the deliberate prolonging of a good moment to the savoring engine, and the reward-valuation system to the reward engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
