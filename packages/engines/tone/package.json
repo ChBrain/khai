@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-tone",
+  "version": "0.1.0",
+  "description": "khai engine content, the tone domain: how a telling is tuned to a dominant affective key -- the mood it is built to induce and the stance it takes -- across the cue, key, and attitude forms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/tone"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "tone",
+    "tagline": "Tone as process: how a telling is tuned to a dominant affective key -- the mood it is built to induce and the stance it takes -- across the cue, key, and attitude forms.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_tone.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_cue.md",
+        "type": "process",
+        "parent": "process_tone.md"
+      },
+      {
+        "file": "process_key.md",
+        "type": "process",
+        "parent": "process_tone.md"
+      },
+      {
+        "file": "process_attitude.md",
+        "type": "process",
+        "parent": "process_tone.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_tone.md) declares tone as the affective key a telling is tuned to: a scene, a passage, a production carries a dominant feeling-register -- ominous, tender, sardonic, elated -- that colours everything in it before any single event lands, and that is built to induce a matching mood in the audience. The law makes tone a property of the telling, not a state of a persona: the key the work is played in, the mood it sets, and the stance it takes toward what it tells.",
+      "issue": "Three ways the key is set and carried. Cue: the mechanism -- redundant, convergent affect markers (music, light, pace, diction, staging) that establish the key and, once it holds, make the audience more susceptible to each further cue, a loop that sustains the mood. Key: the sustained register itself -- the pervasive atmosphere the telling is steeped in, a dominant feeling the audience enters and is coloured by, holding beneath the beats rather than spiking with them. Attitude: the teller's stance toward subject and audience -- ironic, earnest, tender, mocking -- the posture the telling takes that inflects how its content is meant to be received.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the form the moment runs -- and therefore how the telling's key is working, by the cues that build it, by the sustained register it holds, or by the stance it takes.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real form of tone. Whether the key is true to the telling -- a genuine affective register genuinely sustained, the cue or the key or the attitude read right, tone kept a property of the telling and not confused with a persona's own mood -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its form under Projection. Read it as the affective key a telling is tuned to -- the cues that build the mood, the sustained register it holds, the stance it takes -- never as a persona's own internal mood, nor as a discrete emotion, nor as a frame's tilt on judgment. Delegate the persona's internal affective background to the mood engine, the discrete episodic emotion to the emotion engine, the presentation-frame's tilt on judgment to the framing engine, and the felt ambiance of a physical place to the space engine's atmosphere."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
