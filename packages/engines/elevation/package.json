@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-elevation",
+  "version": "0.1.0",
+  "description": "khai engine content, the elevation domain: how witnessing another's moral excellence lifts a persona -- a warm, expansive uplift that moves them toward the good -- across the witness, warmth, and emulation forms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/elevation"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "elevation",
+    "tagline": "Elevation as process: how witnessing another's moral excellence lifts a persona -- a warm, expansive uplift that moves them toward the good -- across the witness, warmth, and emulation forms.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_elevation.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_witness.md",
+        "type": "process",
+        "parent": "process_elevation.md"
+      },
+      {
+        "file": "process_warmth.md",
+        "type": "process",
+        "parent": "process_elevation.md"
+      },
+      {
+        "file": "process_emulation.md",
+        "type": "process",
+        "parent": "process_elevation.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_elevation.md) declares elevation as the other-praising emotion of moral beauty: witnessing another's act of unexpected kindness, courage, or generosity lifts the persona -- a warm, expansive feeling that raises them toward the good it saw. The law makes the elicitor a virtue seen in another, not a benefit to oneself, and the response an uplift felt for good done to anyone, moving the persona to be and to do better.",
+      "issue": "Three ways the uplift runs. Witness: the elicitor -- perceiving another's moral excellence, an act of virtue that exceeds the ordinary and reveals a higher standard, which is what elevation answers. Warmth: the embodied response -- the open, dilating feeling in the chest, the tears and the tingle, the physical signature of being moved that marks elevation apart from cooler admiration. Emulation: the motivational upshot -- the desire to become a better person, to help, to affiliate with and imitate the exemplar, the good witnessed raising the witness toward it.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the form the moment runs -- and therefore how the moral beauty is lifting them, by the excellence witnessed, by the warmth it opens in the body, or by the pull to emulate the good.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real form of elevation. Whether the uplift is true to the scene -- a genuine moral excellence genuinely lifting the witness, the witness or the warmth or the emulation read right, the elicitor a virtue in another and not a benefit to the self -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its form under Projection. Read it as another's moral excellence lifting the persona toward the good -- the virtue witnessed, the warmth it opens, the pull to emulate -- never as a benefit received by the self, nor as awe at sheer vastness, nor as the automatic catching of another's mood. Delegate the benefit-to-self and its warm turn to the source to the gratitude engine, the accommodation of vastness to the awe engine, and the unconscious mimicry-based spread of affect to the contagion engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}

@@ -1,0 +1,41 @@
+---
+updated: "2026-07-28"
+---
+
+# Elevation: Reference
+
+## Line of Work
+
+Elevation as **process**: how witnessing another's moral excellence -- an act of unexpected kindness, courage, or generosity -- lifts a persona, a warm and expansive uplift that moves them toward the good. The domain does not model a benefit received by the self and the warm turn toward its giver, which is the gratitude engine's; nor the accommodation of a vastness that exceeds one's frame, which is the awe engine's; nor the automatic, unconscious catching of another's affect through mimicry, which is the contagion engine's. It models the other-praising emotion of moral beauty: virtue witnessed in a third party lifting the witness, working through the perception, the embodiment, and the motive by which the good raises the one who sees it.
+
+The spine is Haidt's positive psychology of moral emotion and the wider work on the other-praising emotions. Elevation is the emotion evoked by witnessing acts of moral excellence -- it is elicited not by a benefit to oneself but by seeing another behave with unexpected virtue, felt as a warm, open, often tearful uplift in the chest, and it motivates the witness to become a better person and to act prosocially. Algoe and Haidt placed it within a family of other-praising emotions -- elevation for moral excellence, admiration for non-moral excellence (skill, talent), and gratitude for a benefit to oneself -- distinct in elicitor and action tendency. Silvers and Haidt found the response embodied, and Schnall, Roper, and Fessler showed that elevation increases actual helping. Three routes carry it: witness, warmth, emulation.
+
+## Origin
+
+The positive psychology of moral emotion, applied directly as process constraints.
+
+| Source                                                | Key Work                                                                                                                                          | Scope                                                                                                                                                                                                                                             |
+| :---------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Jonathan Haidt**                                    | _"The Positive Emotion of Elevation"_ (Prevention & Treatment, 2000); _"Elevation and the Positive Psychology of Morality"_ (2003)                | The founding account: elevation as the emotion evoked by witnessing moral excellence -- its warm, uplifting quality and its motivation to become better and to affiliate with the good. The root and all three forms.                             |
+| **Sara B. Algoe & Jonathan Haidt**                    | _"Witnessing Excellence in Action: The 'Other-Praising' Emotions of Elevation, Gratitude, and Admiration"_ (Journal of Positive Psychology, 2009) | The family and its boundaries: elevation (moral excellence), admiration (non-moral excellence), and gratitude (benefit to self) as distinct other-praising emotions with distinct elicitors and action tendencies. The root and the witness form. |
+| **Jonathan Haidt & Others**                           | _"Moral Elevation"_ within the moral emotions program; the Jefferson letter as the founding observation                                           | Elevation as one of the moral emotions, the "other-suffering"/"other-praising" mapping, and the classic observation that reading of great virtue moves the reader to virtue. The root and the emulation form.                                     |
+| **Karen Silvers (Immordino-Yang) & Jonathan Haidt**   | _"Moral Elevation Can Induce Nursing"_ (Emotion, 2008)                                                                                            | The embodiment: elevation recruits a warm, physical, affiliative response, tied to open bodily states -- the felt heat in the chest and the softening toward others. The warmth form.                                                             |
+| **Simone Schnall, Jean Roper & Daniel M. T. Fessler** | _"Elevation Leads to Altruistic Behavior"_ (Psychological Science, 2010)                                                                          | The behavioral consequence: participants induced to feel elevation helped more, and for longer, than controls -- the uplift converting into actual prosocial action. The emulation form.                                                          |
+
+## Restrictions
+
+What the engine refuses to model, and to whom it delegates.
+
+- **Gratitude**: The engine models the uplift of witnessing moral excellence in another, not the warm turn toward a benefactor. A benefit received by the self, appraised as freely and benevolently given, and the prosocial impulse back toward its source, is owned by the gratitude engine; elevation needs no benefit to oneself -- it is felt for good done to strangers, observed -- so the two share a warmth but differ at the root, gratitude's elicitor a gift to the persona and elevation's a virtue done to anyone. The engine delegates the benefit-to-self case to gratitude.
+- **Awe**: The engine models the response to moral beauty, not the accommodation of vastness. The sense of a vastness that exceeds one's current frame and forces its enlargement is owned by the awe engine; elevation can accompany awe but is distinct -- its elicitor is a moral act, its feeling a warm uplift toward the good, where awe's is an accommodation to bigness -- so the engine delegates the vastness-accommodation case to awe and keeps the moral-beauty uplift.
+- **Contagion**: The engine models the willed, aspirational uplift of moral excellence witnessed, not the automatic spread of affect. The unconscious mimicry of another's expression and the afferent convergence that catches their mood is owned by the contagion engine; elevation's emulation is a motivated reach toward the good, not an unchosen catching of feeling, so the engine delegates the automatic affect-spread to contagion and keeps the aspirational motive.
+- **Admiration (sibling, not yet an engine)**: The engine models the response to _moral_ excellence, not to non-moral excellence. Admiration for skill, talent, or achievement -- the other-praising emotion whose elicitor is competence rather than virtue -- is elevation's sibling in the family but a distinct response, cooler and motivating self-improvement in the admired domain rather than moral betterment. The engine owns only the moral-excellence case.
+
+## Encoding
+
+Source to constraint, per file.
+
+- **[elevation](process_elevation.md)** (the root): The other-praising emotion of moral beauty -- witnessing another's virtue lifting the persona, warm and expansive, toward the good; elicited by a deed done to anyone, not a benefit to oneself. Anchored by Haidt (elevation and the positive psychology of morality) and Algoe & Haidt (the other-praising emotions).
+- **[witness](process_witness.md)** (form): The elicitor route -- the perception of another's moral excellence, an act of virtue beyond the ordinary that reveals a higher standard and triggers the uplift. Anchored by Algoe & Haidt (witnessing excellence in action) and Haidt (the elicitor of elevation).
+- **[warmth](process_warmth.md)** (form): The embodied route -- the open, dilating feeling in the chest, the tears and the tingle, the physical signature of being morally moved. Anchored by Silvers & Haidt (moral elevation and the embodied, affiliative response).
+- **[emulation](process_emulation.md)** (form): The motivational route -- the pull to become a better person, to help, to affiliate with and imitate the exemplar, the good witnessed raising the witness toward it. Anchored by Schnall, Roper & Fessler (elevation leads to altruistic behavior) and Haidt (elevation's motivation to virtue).
