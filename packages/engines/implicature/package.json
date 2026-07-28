@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-implicature",
+  "version": "0.1.0",
+  "description": "khai engine content, the implicature domain: how a hearer works out what a speaker means beyond what they literally say, by assuming cooperative talk -- across the maxims, flouting, and scalar forms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/implicature"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "implicature",
+    "tagline": "Implicature as process: how a hearer works out what a speaker means beyond what they literally say, by assuming cooperative talk -- across the maxims, flouting, and scalar forms.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_implicature.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_maxims.md",
+        "type": "process",
+        "parent": "process_implicature.md"
+      },
+      {
+        "file": "process_flouting.md",
+        "type": "process",
+        "parent": "process_implicature.md"
+      },
+      {
+        "file": "process_scalar.md",
+        "type": "process",
+        "parent": "process_implicature.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_implicature.md) declares conversational implicature as Grice's account of speaker meaning beyond the literal: what a persona means is not exhausted by what they say, and the hearer recovers the surplus by assuming the speaker is being cooperative -- appropriately informative, truthful, relevant, and clear. The law makes meaning a thing inferred, not just decoded: the hearer computes what must be meant for the utterance to make sense under the assumption of cooperation.",
+      "issue": "Three ways the surplus is carried. Maxims: the Cooperative Principle and its maxims -- quantity, quality, relation, manner -- the shared expectation of well-formed talk that the hearer banks on and reasons from. Flouting: the overt, deliberate breach of a maxim that, because cooperation is still assumed, forces the hearer to a particularized implicature -- irony flouting quality, pointed brevity or excess flouting quantity, the damning faint praise. Scalar: the generalized, default inference from informativeness -- \"some\" taken to mean \"not all,\" \"warm\" to mean \"not hot\" -- read off the utterance without special context, and cancelable when context defeats it.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the form the moment runs -- and therefore how the meaning is being inferred, by the maxims assumed, by a maxim flouted to imply, or by the scalar default read off the words.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real form of implicature. Whether the inference is true to the exchange -- a genuine surplus meaning genuinely recovered under the cooperative assumption, the maxims or the flouting or the scalar read right, the implicature calculable and cancelable -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its form under Projection. Read it as meaning inferred beyond the literal by assuming cooperation -- the maxims banked on, a maxim flouted to imply, a scalar default read off the words -- never as the literal force of the utterance itself, nor as its presentation effect. Delegate the illocutionary force of the utterance to the speech-act engine, the said/understood gap as lived to the language engine, and the presentation-frame's tilt on judgment to the framing engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
