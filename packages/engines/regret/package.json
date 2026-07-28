@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-regret",
+  "version": "0.1.0",
+  "description": "khai engine content, the regret domain: how a persona measures a choice against the better outcome they can imagine having, and wishes they had chosen otherwise -- across the commission, inaction, and anticipation forms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/regret"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "regret",
+    "tagline": "Regret as process: how a persona measures a choice against the better outcome they can imagine having, and wishes they had chosen otherwise -- across the commission, inaction, and anticipation forms.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_regret.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_commission.md",
+        "type": "process",
+        "parent": "process_regret.md"
+      },
+      {
+        "file": "process_inaction.md",
+        "type": "process",
+        "parent": "process_regret.md"
+      },
+      {
+        "file": "process_anticipation.md",
+        "type": "process",
+        "parent": "process_regret.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_regret.md) declares regret as the agency-plus-counterfactual emotion: the pain of comparing a choice one made against the better outcome one can easily imagine having, and wishing one had chosen otherwise. The law makes regret turn on a decision the persona owns and an alternative they can readily picture -- not on a bad outcome alone, which is mere disappointment, but on a bad outcome one feels one brought about and could have avoided.",
+      "issue": "Three ways the counterfactual bites. Commission: the sharp, immediate regret of a thing done -- an action taken that turned out badly, the abnormal deed easily mutated in imagination, hot and salient in the short term. Inaction: the wistful, enduring regret of a thing not done -- the chance not seized, the road not taken -- which is quieter at first but comes to dominate over a lifetime and to cluster on unrealized potential. Anticipation: the forward-looking regret imagined before the choice -- foreseeing how one would feel if a decision went wrong, and steering the decision to forestall that future feeling.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the form the moment runs -- and therefore how the counterfactual is working on them, by stinging over a deed done, aching over a chance missed, or shaping a choice not yet made to avoid a regret foreseen.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real form of regret. Whether the regret is true to the scene -- a genuine owned choice measured against a genuinely imaginable better outcome, the commission or the inaction or the anticipation read right, the agency and the counterfactual both present -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its form under Projection. Read it as a choice the persona owns measured against a better outcome they can imagine -- the sting of a deed done, the ache of a chance missed, the choice shaped to forestall a foreseen regret -- never as a bad outcome merely suffered, nor as a wrong done to another, nor as a loss mourned. Delegate the outcome-without-agency to the disappointment reading, the moral wrong to the guilt engine, the loss of an attachment to the grief engine, and the global self-defect to the shame engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
