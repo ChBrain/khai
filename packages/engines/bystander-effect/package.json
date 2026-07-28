@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-bystander-effect",
+  "version": "0.1.0",
+  "description": "khai engine content, the bystander-effect domain: how the presence of other witnesses inhibits a persona from helping in an emergency -- the more who could act, the less any one does -- across the diffusion, pluralism, and audience forms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/bystander-effect"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "bystander-effect",
+    "tagline": "Bystander effect as process: how the presence of other witnesses inhibits a persona from helping in an emergency -- the more who could act, the less any one does -- across the diffusion, pluralism, and audience forms.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_bystander_effect.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_diffusion.md",
+        "type": "process",
+        "parent": "process_bystander_effect.md"
+      },
+      {
+        "file": "process_pluralism.md",
+        "type": "process",
+        "parent": "process_bystander_effect.md"
+      },
+      {
+        "file": "process_audience.md",
+        "type": "process",
+        "parent": "process_bystander_effect.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_bystander_effect.md) declares the bystander effect as the inhibition of helping by the presence of others: a persona who witnesses an emergency is less likely to intervene, and slower to, the more other witnesses are present -- the very number that could help making any one less likely to. The law makes the presence of other potential helpers a brake on the individual's own helping, working through the steps by which a witness decides to act or not.",
+      "issue": "Three ways the presence of others inhibits. Diffusion: the responsibility to act is divided among the witnesses, so the more who share it, the less any one feels it is theirs -- no one moves because everyone might. Pluralism: each witness, uncertain, reads the calm of the others as evidence that nothing is wrong, and all stay calm because all are reading each other -- the emergency defined away by mutual inaction. Audience: the fear of misjudging and acting wrongly before onlookers holds the persona back -- the risk of embarrassment if the intervention proves unneeded or inept inhibiting the move to help.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the form the moment runs -- and therefore how the others' presence is staying its hand, by dividing the responsibility, by defining away the emergency, or by threatening it with judgment.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real form of the bystander effect. Whether the inhibition is true to the scene -- a genuine emergency genuinely unmet, the diffusion or the pluralism or the audience read right, the presence of others staying the help -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its form under Projection. Read it as the presence of other witnesses inhibiting the persona's own helping -- the responsibility diffused, the emergency defined away, the intervention feared before an audience -- never as mere callousness nor as the tending of one already being helped. Delegate the effort-drop in a pooled task to the social-facilitation engine, the caregiving system that would tend the victim to the caregiving engine, and the fear of judgment itself to the apprehension engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
