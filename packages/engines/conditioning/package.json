@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-conditioning",
+  "version": "0.1.0",
+  "description": "khai engine content, the conditioning domain: how a neutral cue that reliably predicts a significant outcome comes to evoke an anticipatory response -- across the acquisition, extinction, and generalization forms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/conditioning"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "conditioning",
+    "tagline": "Conditioning as process: how a neutral cue that reliably predicts a significant outcome comes to evoke an anticipatory response -- across the acquisition, extinction, and generalization forms.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_conditioning.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_acquisition.md",
+        "type": "process",
+        "parent": "process_conditioning.md"
+      },
+      {
+        "file": "process_extinction.md",
+        "type": "process",
+        "parent": "process_conditioning.md"
+      },
+      {
+        "file": "process_generalization.md",
+        "type": "process",
+        "parent": "process_conditioning.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_conditioning.md) declares Pavlovian conditioning as predictive learning: a neutral cue that reliably precedes a significant outcome comes to predict it and to evoke an anticipatory response of its own. The law makes the cue's information -- not its mere pairing with the outcome -- the thing learned: what the persona comes to expect when the cue appears, and the response that expectation calls up before the outcome arrives.",
+      "issue": "Three ways the predictive link moves. Acquisition: the cue comes to predict the outcome and evoke the response -- and it is built by contingency and surprise, the cue learned only insofar as it tells the persona something the rest of the scene did not, a prediction already made by another cue blocking a new one. Extinction: the cue presented without the outcome and the response wanes -- but as new learning laid over the old, cue-means-nothing-now rather than an erasure, which is why the old response returns with time, with place, or with a reminder. Generalization: the response spreads to cues resembling the first, then sharpens back to the true predictor as discrimination teaches which cue pays out and which does not.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the form the moment runs -- and therefore how the cue is working on them, by building the prediction, by waning without erasing it, or by spreading and sharpening across resembling cues.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real form of conditioning. Whether the learning is true to the scene -- a genuine predictive cue genuinely evoking an anticipatory response, the acquisition or the extinction or the generalization read right, the cue's information doing the work -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its form under Projection. Read it as a cue that predicts an outcome coming to evoke an anticipatory response -- the prediction built by surprise, the response waning without erasing, the response spreading to like cues and sharpening to the true one -- never as the mere repetition of an action into a habit, nor as the valuing of the outcome itself. Delegate the response-repeated-into-automaticity to the habit engine, the discount rate on the outcome to the reward engine, and the wanting-turned-needing to the addiction engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
