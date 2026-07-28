@@ -1,0 +1,68 @@
+{
+  "name": "@chbrain/khai-engine-self-monitoring",
+  "version": "0.1.0",
+  "description": "khai engine content, the self-monitoring domain: the persona's characteristic degree of watching and tuning its own self-presentation to fit the situation, versus letting it flow from a self held constant -- across the scanning, tuning, and consistency positions.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/self-monitoring"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "self-monitoring",
+    "tagline": "Self-monitoring as position: the persona's characteristic degree of watching and tuning its own self-presentation to fit the situation, versus letting it flow from a self held constant -- across the scanning, tuning, and consistency positions.",
+    "type": "position",
+    "anchor": "position_self_monitoring.md",
+    "expressions": {
+      "scanning": "position_scanning.md",
+      "tuning": "position_tuning.md",
+      "consistency": "position_consistency.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_self_monitoring.md) declares self-monitoring as a standing trait: the degree to which a persona watches its own expressive behavior and self-presentation and tunes it to what the situation calls for, versus letting the presented self flow from inner states held constant across situations. High on the trait, the persona reads the room and fits itself to it; low on it, the persona is the same self everywhere, guided from within. The law makes how much a persona tailors its self-presentation to the audience a fixed feature of who they are.",
+      "issue": "Three positions the trait takes. Scanning: the high-monitor's outward attention -- a sensitivity to social and situational cues, reading the room for the presentation it calls for. Tuning: the high-monitor's expressive control -- the skill and habit of adjusting the presented self to fit the read, the chameleon shifting across situations. Consistency: the low-monitor's inner direction -- a presentation that flows from the persona's own attitudes and feelings and holds steady across situations, the same face in every room whether it fits or not.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor. The link: each persona links, under Projection, the position it holds -- scanning the room, tuning the self to it, or holding one consistent self across all rooms.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real position of self-monitoring. Whether the trait is true to the scene -- a genuine tendency to tailor or to hold constant, the scanning or the tuning or the consistency read right, the fit or the friction it produces -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the persona its position under Projection. Read it as a standing trait of how much the persona tailors its self-presentation -- the room read, the self tuned to fit, or one self held across all rooms -- never as a single act of impression management. Delegate the image the persona defends to the face engine, the managing of feeling for a role's display to the emotional-labor engine, and the misleading of another for gain to the deception engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
