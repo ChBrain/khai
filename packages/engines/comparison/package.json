@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-comparison",
+  "version": "0.1.0",
+  "description": "khai engine content, the social-comparison domain: how a persona evaluates their own opinions and abilities by measuring against others -- across the upward, downward, and similar forms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/comparison"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "comparison",
+    "tagline": "Social comparison as process: how a persona evaluates their own opinions and abilities by measuring against others -- across the upward, downward, and similar forms.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_comparison.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_upward.md",
+        "type": "process",
+        "parent": "process_comparison.md"
+      },
+      {
+        "file": "process_downward.md",
+        "type": "process",
+        "parent": "process_comparison.md"
+      },
+      {
+        "file": "process_similar.md",
+        "type": "process",
+        "parent": "process_comparison.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_comparison.md) declares social comparison as Festinger's account: a persona has a drive to evaluate their opinions and abilities, and where no objective standard is at hand, they measure against other people -- so the self is known by where it stands relative to others rather than in the absolute. The law makes the standing of others the yardstick of the self: what a persona judges themselves to be is read off the gap between themselves and those they compare with.",
+      "issue": "Three ways the measuring runs. Upward: comparison with those who are better off or more able -- which informs and can inspire the reach to improve, but can also threaten, breeding inadequacy or envy when the gap is large and the domain matters. Downward: comparison with those who are worse off -- which enhances the self, the persona feeling better by the contrast, a defense drawn on most under threat. Similar: the selection of the comparison target -- a persona compares most tellingly with those like themselves, because only a similar other yields a diagnostic read on where they truly stand.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the form the moment runs -- and therefore how the self is being measured, by a look upward that informs or threatens, a look downward that enhances, or the choice of a similar other that makes the read diagnostic.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real form of comparison. Whether the measuring is true to the scene -- a genuine self-evaluation against a real other, the upward or the downward or the similar read right, the self known by the gap -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its form under Projection. Read it as a persona measuring their own opinions or abilities against others -- the look upward, the look downward, the similar other chosen as yardstick -- never as the emotion the comparison provokes, nor as the standing itself, nor as the global self-attitude. Delegate the pain at another's superiority to the envy engine, the persona's rank in an order to the status engine, the resting global self-attitude to the self-esteem engine, and the catalog of comparison tilts held as static positions to the bias engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
