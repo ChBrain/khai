@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-dissonance",
+  "version": "0.1.0",
+  "description": "khai engine content, the cognitive-dissonance domain: how the discomfort of holding inconsistent cognitions drives a persona to change an attitude to restore consistency -- across the induced-compliance, free-choice, and earning forms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/dissonance"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "dissonance",
+    "tagline": "Cognitive dissonance as process: how the discomfort of holding inconsistent cognitions drives a persona to change an attitude to restore consistency -- across the induced-compliance, free-choice, and earning forms.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_dissonance.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_induced_compliance.md",
+        "type": "process",
+        "parent": "process_dissonance.md"
+      },
+      {
+        "file": "process_free_choice.md",
+        "type": "process",
+        "parent": "process_dissonance.md"
+      },
+      {
+        "file": "process_earning.md",
+        "type": "process",
+        "parent": "process_dissonance.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_dissonance.md) declares cognitive dissonance as Festinger's account: holding two cognitions that do not fit -- a belief and a discrepant act, a choice and its forgone rival, an effort and a poor return -- produces an uncomfortable drive state, and the persona is pushed to reduce it, most readily by changing the cognition that is easiest to move. The law makes inconsistency itself a motive: not the logic of the clash but the discomfort of it, driving the persona to restore consistency by revising an attitude rather than the act already done.",
+      "issue": "Three routes by which the clash arises and resolves. Induced compliance: acting or speaking against one's attitude with too little external justification, so that -- unable to blame a large reward or a strong threat -- the persona changes the attitude to match the act. Free choice: after a hard decision between close options, the dissonance of the forgone good is reduced by upgrading the chosen and downgrading the rejected, the alternatives spreading apart after the choice. Earning: having suffered or worked hard for a goal, the persona justifies the cost by valuing the goal more, the severity of the initiation raising the prize.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the form the moment runs -- and therefore how the inconsistency is being resolved, by the attitude bent to a counter-attitudinal act, by the alternatives spread after a choice, or by the goal prized for its cost.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real form of dissonance. Whether the resolution is true to the scene -- a genuine inconsistency genuinely uncomfortable, the induced-compliance or the free-choice or the earning read right, the cheapest cognition moved and the act left standing -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its form under Projection. Read it as the discomfort of inconsistency driving a change of attitude to restore consistency -- the attitude bent to the counter-attitudinal act, the alternatives spread after the choice, the goal prized for its cost -- never as a cool logical correction, nor as the excusing of a harm, nor as the sunk-cost persistence in a course. Delegate the catalog of dissonance-driven tilts as static positions to the bias engine, the exemption of a committed harm to the moral-disengagement engine, and the persistence in a failing course to the escalation engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
