@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-emotional-labor",
+  "version": "0.1.0",
+  "description": "khai engine content, the emotional-labor domain: the effort a persona spends to feel or feign the emotion a role demands they display -- managing the heart for a wage or a part -- across the masking, method, and genuine forms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/emotional-labor"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "emotional-labor",
+    "tagline": "Emotional labor as process: the effort a persona spends to feel or feign the emotion a role demands they display -- managing the heart for a wage or a part -- across the masking, method, and genuine forms.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_emotional_labor.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_masking.md",
+        "type": "process",
+        "parent": "process_emotional_labor.md"
+      },
+      {
+        "file": "process_method.md",
+        "type": "process",
+        "parent": "process_emotional_labor.md"
+      },
+      {
+        "file": "process_genuine.md",
+        "type": "process",
+        "parent": "process_emotional_labor.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_emotional_labor.md) declares emotional labor as the managing of feeling to meet a role's display rules: a persona whose part requires a particular emotion -- the served-with-a-smile, the calm nurse, the grave undertaker -- spends effort to show it, and sometimes to feel it, whether or not it arises on its own. The law makes the required display a demand on the heart, and the meeting of it work.",
+      "issue": "Three ways the required emotion is produced. Masking: surface acting -- the display painted on over an unfelt or contrary emotion, the smile without the warmth, felt and shown pulled apart and held apart by effort. Method: deep acting -- the persona works themselves into actually feeling the required emotion, summoning the memory or the frame that makes it real, so the display comes from a feeling induced on purpose. Genuine: the required emotion is spontaneously felt, the part and the heart aligned without acting, the labor vanishing into sincerity.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the form the moment runs -- and therefore how they are meeting the display rule, by masking a feeling they do not have, by inducing the one they must, or by feeling it for real.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real form of emotional labor. Whether the labor is true to the scene -- a genuine display rule met by genuine effort, the surface smile or the induced feeling or the sincere one read right, the cost of the dissonance felt -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its form under Projection. Read it as the work of meeting a required display -- the mask over the unfelt, the feeling summoned to order, the emotion that needs no summoning -- never as the raw feeling itself. Delegate the persona's own emotions to the emotion engine, the general self-directed regulation of feeling to the regulation engine, and the hidden region where the performance is dropped to the backstage engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
