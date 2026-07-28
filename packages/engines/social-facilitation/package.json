@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-social-facilitation",
+  "version": "0.1.0",
+  "description": "khai engine content, the social-facilitation domain: how the presence of others changes a persona's arousal, effort, and performance -- lifting the easy, spoiling the hard, and slackening the pooled -- across the enhancement, choking, and loafing forms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/social-facilitation"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "social-facilitation",
+    "tagline": "Social facilitation as process: how the presence of others changes a persona's arousal, effort, and performance -- lifting the easy, spoiling the hard, and slackening the pooled -- across the enhancement, choking, and loafing forms.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_social_facilitation.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_enhancement.md",
+        "type": "process",
+        "parent": "process_social_facilitation.md"
+      },
+      {
+        "file": "process_choking.md",
+        "type": "process",
+        "parent": "process_social_facilitation.md"
+      },
+      {
+        "file": "process_loafing.md",
+        "type": "process",
+        "parent": "process_social_facilitation.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_social_facilitation.md) declares social facilitation as the effect of others' presence on a persona's own performance: being watched or worked alongside raises arousal, which strengthens the dominant response -- lifting an easy or well-learned task and spoiling a hard or novel one -- while being submerged in a pooled group, where no single effort is seen, slackens it instead. The law makes the mere presence of others a force on the individual's effort and skill, apart from anything they say or ask.",
+      "issue": "Three ways the presence works. Enhancement: on a dominant, well-learned, or simple task, the arousal of an audience or co-actor sharpens performance -- the expert lifted before a crowd, the cyclist faster in a race. Choking: on a non-dominant, complex, or novel task, that same arousal and the felt evaluation spoil performance -- the learner fumbling under watching eyes, the skilled hand seizing up under pressure. Loafing: when a persona's contribution is pooled and unaccountable in a group, effort drops rather than rises -- each hand pulling less on the rope because no hand is seen.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the form the moment runs -- and therefore how others' presence is moving their performance, lifting it, spoiling it, or slackening it.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real form of social facilitation. Whether the effect is true to the scene -- a genuine presence of others moving a genuine performance, the lift or the choke or the slack read right, the task's difficulty and the persona's accountability set correctly -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its form under Projection. Read it as others' presence moving the persona's own effort and skill -- the sharpened simple task, the spoiled hard one, the slackened pooled one -- never as their matching an opinion or obeying a demand. Delegate the mass of bodies as an environment to the crowd engine, the matching of others' positions to the conformity engine, and the raw arousal itself to the body engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
