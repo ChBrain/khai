@@ -1,0 +1,4 @@
+---
+---
+
+Whitelist `obedience` under `memberPolicy.homonyms`, mirroring `anchoring`, `reactance`, and `representativeness`: a word that legitimately lives at two altitudes -- the process-member `conformity` already carries (`process_obedience.md`, obedience as one node within the social-influence family that engine models) and the standalone destructive-obedience engine it deserves in its own right (Milgram's obedience to authority: the agentic shift by which a persona becomes the instrument of a legitimate authority and cedes responsibility, across the instrument, legitimacy, and binding forms). This clears the member-scope gate for a forthcoming `obedience` engine, exactly as the existing whitelists clear it for their engines over the corresponding members. Governance config only; ships nothing. The ratchet's dead-exemption warning is expected until the `obedience` engine lands and makes the collision live.
