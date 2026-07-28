@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-schadenfreude",
+  "version": "0.1.0",
+  "description": "khai engine content, the schadenfreude domain: the pleasure a persona takes in another's misfortune -- the fall of the deserving, the envied, or the disliked felt as a small private joy -- across the comeuppance, leveling, and grudge forms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/schadenfreude"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "schadenfreude",
+    "tagline": "Schadenfreude as process: the pleasure a persona takes in another's misfortune -- the fall of the deserving, the envied, or the disliked felt as a small private joy -- across the comeuppance, leveling, and grudge forms.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_schadenfreude.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_comeuppance.md",
+        "type": "process",
+        "parent": "process_schadenfreude.md"
+      },
+      {
+        "file": "process_leveling.md",
+        "type": "process",
+        "parent": "process_schadenfreude.md"
+      },
+      {
+        "file": "process_grudge.md",
+        "type": "process",
+        "parent": "process_schadenfreude.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_schadenfreude.md) declares schadenfreude as the pleasure taken in another's misfortune: a persona feels a small, often guilty joy when someone falls -- not because they caused the fall, but because the one who fell was deserving, envied, or disliked, and their downfall is felt as a private gain. The law makes another's misfortune a source of the persona's pleasure, the mirror of envy's pain at another's good.",
+      "issue": "Three grounds the pleasure springs from. Comeuppance: the fall is deserved -- the cheat caught, the arrogant humbled, the hypocrite exposed -- and the misfortune is enjoyed as justice served, the world set briefly right. Leveling: the fallen was envied -- a superior brought low closes the painful gap, the tall poppy cut down lifting the self by comparison, the envy's ache eased by the loss. Grudge: the fallen was disliked -- a rival, an enemy, a hated group's failure enjoyed for its own sake, the pleasure of an antagonist's harm needing no justice or envy to license it.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the form the moment runs -- and therefore what makes the misfortune sweet, that it was deserved, that it levels an envied superior, or that it befell one disliked.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real form of schadenfreude. Whether the pleasure is true to the scene -- a genuine misfortune genuinely enjoyed, the comeuppance or the leveling or the grudge read right, the joy private and often guilty -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its form under Projection. Read it as pleasure in another's fall -- the deserved comeuppance, the envied leveled, the disliked undone -- never as the persona causing the harm nor as the pain of envy that may precede it. Delegate the upward pain at another's good to the envy engine, the deservingness appraisal to the moral-judgment engine, and the active wish to harm to the aggression engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
