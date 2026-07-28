@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-scarcity",
+  "version": "0.1.0",
+  "description": "khai engine content, the scarcity domain: how the felt lack of a resource captures the mind -- focusing it on the shortfall while taxing the capacity to think and plan -- across the tunneling, bandwidth, and trap forms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/scarcity"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "scarcity",
+    "tagline": "Scarcity as process: how the felt lack of a resource captures the mind -- focusing it on the shortfall while taxing the capacity to think and plan -- across the tunneling, bandwidth, and trap forms.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_scarcity.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_tunneling.md",
+        "type": "process",
+        "parent": "process_scarcity.md"
+      },
+      {
+        "file": "process_bandwidth.md",
+        "type": "process",
+        "parent": "process_scarcity.md"
+      },
+      {
+        "file": "process_trap.md",
+        "type": "process",
+        "parent": "process_scarcity.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_scarcity.md) declares scarcity as the psychology of having less than one feels one needs: the felt lack of a resource -- money, time, food, company -- capturing the mind and reorganizing it around the shortfall. The law makes the subjective sense of not-enough a force that both sharpens attention on the lack and taxes the mental capacity left for everything else, so that scarcity is not merely a state of the world but a state of the mind it produces.",
+      "issue": "Three ways the lack takes hold. Tunneling: the shortfall seizes attention, focusing the persona so hard on the pressing lack that a focus dividend is won inside the tunnel and everything outside it -- the important but not urgent -- is neglected. Bandwidth: the lack loads the mind, the nagging of the shortfall consuming cognitive capacity and self-control so that fluid intelligence and executive function measurably fall while one is short. Trap: the neglect and the tax compound, the persona borrowing against the future to meet the present lack and so deepening the future's, a self-perpetuating spiral that keeps the scarce scarce.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the form the moment runs -- and therefore how the felt lack is working on them, by narrowing them into the tunnel, by taxing their bandwidth, or by trapping them in the spiral.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real form of scarcity. Whether the capture is true to the scene -- a genuine felt lack genuinely reorganizing the mind, the tunneling or the bandwidth or the trap read right, the shortfall doing the work -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its form under Projection. Read it as the felt lack of a resource capturing and taxing the mind -- the tunnel narrowing onto the shortfall, the bandwidth spent on the nagging lack, the spiral of borrowing against the future -- never as mere poverty of the world nor as a trait of the person. Delegate the resource itself to the money and capital engines, the capacity that is taxed to the executive-function and attention engines, and the demand-exceeds-resources strain to the stress engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
