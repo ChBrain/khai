@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-palimpsest",
+  "version": "0.1.0",
+  "description": "khai engine content, the palimpsest pitch: how a fixed tale is re-pitched into a new key by its relation to a prior telling -- Genette's literature in the second degree -- across the parody, travesty, and transposition transforms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/palimpsest"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "palimpsest",
+    "tagline": "Palimpsest as pitch: how a fixed tale is re-pitched into a new key by its relation to a prior telling -- Genette's literature in the second degree -- across the parody, travesty, and transposition transforms.",
+    "type": "pitch",
+    "members": [
+      {
+        "file": "pitch_palimpsest.md",
+        "type": "pitch",
+        "parent": null
+      },
+      {
+        "file": "pitch_parody.md",
+        "type": "pitch",
+        "parent": "pitch_palimpsest.md"
+      },
+      {
+        "file": "pitch_travesty.md",
+        "type": "pitch",
+        "parent": "pitch_palimpsest.md"
+      },
+      {
+        "file": "pitch_transposition.md",
+        "type": "pitch",
+        "parent": "pitch_palimpsest.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "play",
+        "section": "Arc",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Pitch. The root (pitch_palimpsest.md) declares the palimpsest as Genette's literature in the second degree: a fixed tale re-pitched into a new key by its relation to a prior telling, the source showing through the new tone the way old writing shows through a scraped-and-reused page. The law tunes how the events land without changing what happens -- the run played in a key defined by its transformative debt to an earlier telling, honoured and altered at once.",
+      "issue": "Three transforms carry the re-pitching. Parody: the mocking transform -- a serious source re-keyed to comic deflation, teased loose from its solemnity by one who knows and half-loves it. Travesty: the debasing transform -- a noble tale re-clothed in low, vulgar register, its dignity pulled down and its pomp punctured while the grandeur is still glimpsed beneath. Transposition: the serious transform -- the tale transplanted to new ground and re-keyed in full earnest, the ancient pattern lending the new setting its weight, as the Odyssey carries Ulysses.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the re-pitching is read for the whole run. The link: the production's own play links, under its Arc, the transform its telling is tuned to -- and therefore how the prior telling is made to show through the new key.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and the play links a real transform of the palimpsest. Whether the pitch is true to the run -- a fixed tale genuinely re-keyed by a felt relation to a prior telling, the parody or the travesty or the transposition read right, the events unchanged and only the key retuned -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then the play links, under its Arc, the transform its run is tuned to. Read it as a fixed tale re-pitched by its relation to a prior telling -- the source teased, debased, or transplanted, always showing through the new key -- never as a change to what happens, nor as the affective mechanism the key rides on, nor as the comic effect it may produce. Delegate the science of how an affective key works on an audience to the tone engine, the amusement mechanism to the humor engine, and the structure of the fixed events to the play engines."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
