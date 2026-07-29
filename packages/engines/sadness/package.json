@@ -1,0 +1,94 @@
+{
+  "name": "@chbrain/khai-engine-sadness",
+  "version": "0.1.0",
+  "description": "khai engine content, the sadness domain: the low-approach emotion through which a persona sinks at a loss, a failure, or an unmet goal -- energy withdrawn, the gaze turned inward and down, a call for care -- across the disappointment, sorrow, despair, and melancholy forms, tuned by a standing dysphoria.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/sadness"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "sadness",
+    "tagline": "Sadness as process: the low-approach emotion through which a persona sinks at a loss, a failure, or an unmet goal -- energy withdrawn, the gaze turned inward and down, a call for care -- across the disappointment, sorrow, despair, and melancholy forms, tuned by a standing dysphoria.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_sadness.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_disappointment.md",
+        "type": "process",
+        "parent": "process_sadness.md"
+      },
+      {
+        "file": "process_sorrow.md",
+        "type": "process",
+        "parent": "process_sadness.md"
+      },
+      {
+        "file": "process_despair.md",
+        "type": "process",
+        "parent": "process_sadness.md"
+      },
+      {
+        "file": "process_melancholy.md",
+        "type": "process",
+        "parent": "process_sadness.md"
+      },
+      {
+        "file": "position_dysphoria.md",
+        "type": "position",
+        "parent": "process_sadness.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_sadness.md) declares sadness as the low-approach emotion at a loss: a persona appraises something of value gone or beyond reach, with no clear way to restore it, and sinks -- energy drains, the gaze turns inward and down. Where anger mobilizes against a wrong and fear mobilizes away from a danger, sadness demobilizes at a loss. The law makes an appraised, unmeetable loss a warrant to withdraw effort and to call for care.",
+      "issue": "Four forms the sinking takes, plus the trait. Disappointment: goal-failure -- the mild, common sadness of the gap between the wanted and the got, quickly metabolized. Sorrow: deep loss -- the heavy, aching sadness of something genuinely valued gone, the depth a letdown never reaches. Despair: sadness fused with hopelessness -- the giving-up, effort ceasing, the dangerous bottom of the low emotions. Melancholy: the diffuse, objectless low -- a pervasive, reflective, bittersweet greyness with no named cause. Dysphoria: the trait -- a low resting affective set-point, a ready tilt toward sadness, felt keenly and lifted slowly.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the sadness the moment runs -- which form (disappointment, sorrow, despair, or melancholy), what loss is appraised, and how dysphoric the persona's standing disposition is -- so it reads as a low-approach sinking at a loss, not as mere displeasure.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real sadness. Whether the sadness is true to the scene -- a genuine loss or failure appraised, the form read right, the withdrawal-and-call present, the emotion distinguished from the sustained mourning and the persisting mood it is not -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its sadness under Projection. Read it in the sinking -- the withdrawal of energy, the inward and downward turn, the call for comfort -- never as mere displeasure. Delegate the basic-emotion appraisal taxonomy to the emotion engine, the sustained adaptation to irreversible bereavement to the grief engine, the persisting affective background to the mood engine, the ache of social isolation to the loneliness engine, and the counterfactual sting of a bad choice to the regret engine. This engine owns the emotion of loss itself."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
