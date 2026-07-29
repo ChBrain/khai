@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-condemnation",
+  "version": "0.1.0",
+  "description": "khai composite content, the condemnation domain: one condemnation of another's violation, split by which moral code was broken -- community, autonomy, or divinity -- into contempt, anger, and disgust, read whole across the atom engines it depends on.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/condemnation"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "condemnation",
+    "tagline": "The other-condemning moral emotions as composite: one condemnation of another's violation, split by which moral code was broken -- community, autonomy, or divinity -- into contempt, anger, and disgust (Rozin's CAD triad), and the drama lives where the codes fuse into dehumanization, where hot anger cools into cold contempt, and where one act is coded now one way, now another.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_condemnation.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_code_fusion.md",
+        "type": "process",
+        "parent": "process_condemnation.md"
+      },
+      {
+        "file": "process_code_hardening.md",
+        "type": "process",
+        "parent": "process_condemnation.md"
+      },
+      {
+        "file": "process_code_reading.md",
+        "type": "process",
+        "parent": "process_condemnation.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over three atoms it declares as dependencies. The root (process_condemnation.md) reads the family as one condemnation with one dial: which moral code the violation broke. The three corners are the atoms' own ground -- a wrong to community draws contempt, a wrong to autonomy draws anger, a wrong to divinity draws disgust (Rozin's CAD triad, Shweder's three ethics). The composite adds no fourth emotion, only the code axis the three share, and it is the other-directed mirror of the self-conscious composite: there the appraisal falls on the self, here on another.",
+      "issue": "Three bridges, each a motion the atoms cannot stage alone. Fusion: the codes firing together, and the violator dehumanized where more than one fires at once -- the anger-contempt-disgust cluster that precedes intergroup violence, contempt and disgust denying the target full humanity. Hardening: hot anger cooling into cold contempt as the account stays open, the act-condemnation eroding into a person-condemnation the way guilt widens into shame. Reading: one act coded now as harm, now as betrayal, now as defilement, by the code the reader holds sacred -- the axis on which moral conflict turns.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the family read runs wherever its atoms are cast. The link, advisory: a persona living on a crossing may link the bridge under Projection, and the audit surfaces the ones mid-motion left unnamed.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's fusions and hardenings are earned scene by scene, rather than announced, is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the corners from the atoms as usual, then stage the crossings: which codes are firing at once and dehumanizing, which unanswered anger is cooling into contempt, and where one act is being read through competing codes. Read the production on the code axis, never in any single corner. The reasoned adjudication of which reading is right is the moral-judgment engine's; this composite owns the condemnation, not the verdict."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-engine-anger": "^0.1.0",
+    "@chbrain/khai-engine-contempt": "^0.1.0",
+    "@chbrain/khai-engine-disgust": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
