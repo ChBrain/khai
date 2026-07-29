@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-fear",
+  "version": "0.1.0",
+  "description": "khai engine content, the fear domain: the defensive emotion through which a persona alarms at a present or imminent danger -- threat appraised, the body readied to escape or avoid -- across the panic, phobia, and terror forms, tuned by a standing fearfulness.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/fear"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "fear",
+    "tagline": "Fear as process: the defensive emotion through which a persona alarms at a present or imminent danger -- threat appraised, the body readied to escape or avoid -- across the panic, phobia, and terror forms, tuned by a standing fearfulness.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_fear.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_panic.md",
+        "type": "process",
+        "parent": "process_fear.md"
+      },
+      {
+        "file": "process_phobia.md",
+        "type": "process",
+        "parent": "process_fear.md"
+      },
+      {
+        "file": "process_terror.md",
+        "type": "process",
+        "parent": "process_fear.md"
+      },
+      {
+        "file": "position_fearfulness.md",
+        "type": "position",
+        "parent": "process_fear.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_fear.md) declares fear as the defensive emotion at a present danger: a persona appraises a threat near enough to demand response now, and alarms, the body readied to escape or avoid. Where anger approaches a wrong and disgust rejects a taint, fear withdraws from a danger. It is distinguished from anxiety's anticipation of an absent, uncertain threat -- fear meets a present one. The law makes an appraised present threat a warrant to defend and flee.",
+      "issue": "Three forms the alarm takes, plus the trait. Panic: the flooding form -- an alarm at full autonomic force, the false alarm that feeds itself, escape at any cost. Phobia: the learned form -- a specific object feared out of all proportion, conditioned and evolutionarily prepared, preserved by the avoidance that spares it. Terror: the overwhelming form -- a threat past one's capacity to meet, the freezing horror that immobilizes before it flees and sears into trauma. Fearfulness: the trait -- a standing readiness to detect danger, react strongly, and recover slowly, the behavioral inhibition visible from infancy.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the fear the moment runs -- which form (panic, phobia, or terror), what threat is appraised, and how fearful the persona's standing disposition is -- so it reads as defensive alarm at a present danger, not as mere dislike or worry.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real fear. Whether the fear is true to the scene -- a genuine present threat appraised, the form read right, the defensive withdrawal present, the emotion distinguished from the anticipatory worry and the acute stress-routing it is not -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its fear under Projection. Read it in the defensive alarm -- the surge toward escape from a present danger -- never as mere worry, which anticipates an absent threat. Delegate the basic-emotion appraisal taxonomy to the emotion engine, the acute fight/flight/freeze/fawn routing of overwhelming demand to the stress engine, the anticipation of an absent uncertain threat to the hope engine's dread and the apprehension engine's baseline, and the startle reflex to the surprise engine. This engine owns the defensive emotion at a present danger."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
