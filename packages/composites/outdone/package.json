@@ -1,0 +1,86 @@
+{
+  "name": "@chbrain/khai-composite-outdone",
+  "version": "0.1.0",
+  "description": "khai composite content, the outdone domain: one reckoning with another's superior standing, split by how the persona meets it -- with warmth, with the pull to rise, or with the wish to pull down -- into admiration, benign envy, and malicious envy, read whole across the atom engines it depends on.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/outdone"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "outdone",
+    "tagline": "The responses to upward comparison as composite: one reckoning with another's superior standing, split by how the persona meets it -- warmly, with the pull to rise, or with the wish to pull down -- into admiration, benign envy, and malicious envy (van de Ven), and the drama lives where the responses tip into one another, where warmth sours to envy and benign envy hardens to malicious, and where one comparison is met three ways by the appraisals that sort it.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_outdone.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_outdone_sort.md",
+        "type": "process",
+        "parent": "process_outdone.md"
+      },
+      {
+        "file": "process_outdone_turn.md",
+        "type": "process",
+        "parent": "process_outdone.md"
+      },
+      {
+        "file": "process_outdone_blend.md",
+        "type": "process",
+        "parent": "process_outdone.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over two atoms it declares as dependencies. The root (process_outdone.md) reads the family as one reckoning with another's superior standing, with one dial: how the persona meets it. The three corners are the atoms' own ground -- warmth and the wish to rise toward the other draws admiration, the painful but assimilative pull to gain the same draws benign envy, and the painful, hostile wish to see the other lose it draws malicious envy (van de Ven, Zeelenberg & Pieters). The composite adds no fourth response, only the meeting axis the three share, and it completes the upward-comparison pair opposite the praise composite's freely-given regard.",
+      "issue": "Three bridges, each a motion the atoms cannot stage alone. Sort: one upward comparison met three ways, the appraisals of deservingness and attainability forking it into admiration, benign envy, or malicious envy. Turn: the responses tipping into one another -- warm admiration souring to envy as the advantage begins to frustrate or reads as unfair, benign envy hardening to malicious as the path up closes -- the darkening drift. Blend: the ambivalent state, admiring and envying the same person at once, the respected rival and the frenemy, the pull-toward and the pull-against no single corner holds.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the family read runs wherever its atoms are cast. The link, advisory: a persona living on a crossing may link the bridge under Projection, and the audit surfaces the ones mid-motion left unnamed.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's sours and hardenings are earned scene by scene, rather than announced, is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the corners from the atoms as usual, then stage the crossings: which appraisals are sorting the response, which admiration is souring or which benign envy is hardening as the path up closes, and where a persona admires and envies at once. Read the production on the meeting axis, never in any single corner. The comparing itself is the comparison engine's; the joy when the envied finally falls is schadenfreude's; this composite owns the response to being outdone."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-engine-admiration": "^0.1.0",
+    "@chbrain/khai-engine-envy": "^0.2.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
