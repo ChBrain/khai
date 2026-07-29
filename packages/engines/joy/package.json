@@ -1,0 +1,94 @@
+{
+  "name": "@chbrain/khai-engine-joy",
+  "version": "0.1.0",
+  "description": "khai engine content, the joy domain: the positive-valence emotion through which a persona lifts at a good -- the felt uplift that broadens and builds -- across the pleasure, elation, contentment, and relief forms, tuned by a standing sanguine temperament.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/joy"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "joy",
+    "tagline": "Joy as process: the positive-valence emotion through which a persona lifts at a good -- the felt uplift that broadens and builds -- across the pleasure, elation, contentment, and relief forms, tuned by a standing sanguine temperament.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_joy.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_pleasure.md",
+        "type": "process",
+        "parent": "process_joy.md"
+      },
+      {
+        "file": "process_elation.md",
+        "type": "process",
+        "parent": "process_joy.md"
+      },
+      {
+        "file": "process_contentment.md",
+        "type": "process",
+        "parent": "process_joy.md"
+      },
+      {
+        "file": "process_relief.md",
+        "type": "process",
+        "parent": "process_joy.md"
+      },
+      {
+        "file": "position_sanguine.md",
+        "type": "position",
+        "parent": "process_joy.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_joy.md) declares joy as the positive-valence emotion at a good: a persona meets a gain, an attainment, a need met, a threat lifted, or a pleasure at hand -- often beyond what it expected -- and lifts, the felt uplift that opens outward. Where the negative emotions narrow and defend, joy broadens and builds (Fredrickson). The law makes an appraised good, met in safety, a warrant to open, approach, and play.",
+      "issue": "Four forms the uplift takes, plus the trait. Pleasure: the sensory form -- core hedonic liking, the immediate bodily yes, distinct from the wanting that sought it. Elation: the high-arousal form -- the thrill and exhilaration of a large or unexpected good, joy's flooding peak. Contentment: the low-arousal form -- the calm, settled sufficiency of all being well, joy at rest. Relief: the aversive-removed form -- the exhale of a threat passed or a pain stopped, positive affect by subtraction. Sanguine: the trait -- a high resting positive tone and ready access to joy, the cheerful temperament and affective core of extraversion.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the joy the moment runs -- which form (pleasure, elation, contentment, or relief), what good is appraised, and how sanguine the persona's standing disposition is -- so it reads as a felt uplift that broadens and opens, not as mere absence of trouble.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real joy. Whether the joy is true to the scene -- a genuine good appraised in safety, the form read right, the broadening-and-opening present, the emotion distinguished from the appraisal-specific joys and the wanting it is not -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its joy under Projection. Read it in the uplift-and-opening -- the brightening, the approach, the play -- never as mere relief from trouble alone. Delegate the basic-emotion appraisal taxonomy to the emotion engine; the appraisal-specific joys to their engines (wonder to awe, achievement to pride, the benefactor to gratitude, incongruity to humor, moral beauty to elevation, anticipation to hope); the wanting that precedes the liking to the desire engine; the valuation of outcomes over time to the reward engine; and the prolonging of a good moment to the savoring engine. This engine owns the felt uplift itself."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
