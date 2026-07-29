@@ -138,6 +138,7 @@
     "engines": ["packages/engines/*/package.json", "packages/composites/*/package.json"],
     "homonyms": [
       "anchoring",
+      "anger",
       "approach",
       "bearer",
       "communal",

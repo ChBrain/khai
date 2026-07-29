@@ -1,0 +1,4 @@
+---
+---
+
+Whitelist `anger` under `memberPolicy.homonyms`, so the forthcoming standalone `anger` engine can carry its root member name without colliding with the `emotion` engine's `process_anger.md`. This is the same promotion pattern already cleared for `narcissism`, `disgust`, and others: `emotion` keeps `anger` as one node in its basic-emotion appraisal taxonomy (joy, sadness, anger, fear, disgust), while the standalone engine unfolds anger's internal structure -- the approach-emotion at a wrong, its four forms (frustration, indignation, grievance, rage), and the trait hostility. It also completes the CAD triad at the engine level, joining `contempt` and `disgust`. Governance config only; ships nothing. The member-check ratchet's dead-exemption warning is expected until the `anger` engine lands and makes the collision live.
