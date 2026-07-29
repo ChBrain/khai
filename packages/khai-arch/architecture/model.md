@@ -36,7 +36,7 @@ Enriched by:
   0..n Engines
 ```
 
-Two tunings, two mechanisms, and neither cascades. A **Pitch** is an element file, the playwright's choice of key: the play links one as its default, a plot may link its own so the key can turn over the arc, and two runs of the same events may be keyed to two different pitches. A **`voice`** is a frontmatter field: it tunes the one file that carries it and no other, and that is the point, each file its own register so the cast does not speak in one tone: the play clinical, its doctor authoritative, its patient anxious. On any file below the plot, a linked pitch or an embedded voice tunes that file alone. The key is linked; the voice is embedded.
+Two tunings, two mechanisms, and neither cascades. A **Pitch** is an element file, and the key is an opinion held twice: the playwright casts the play's default in the Company (carrying more than one pitch, the play explains the carry there), a plot may link its own so the key can turn over the arc, and the director staging a run may key it otherwise, so two runs of the same events may be keyed to two different pitches with neither wrong. A **`voice`** is a frontmatter field: it tunes the one file that carries it and no other, and that is the point, each file its own register so the cast does not speak in one tone: the play clinical, its doctor authoritative, its patient anxious. On any file below the plot, a linked pitch or an embedded voice tunes that file alone. The key is linked; the voice is embedded.
 
 ## Playbook
 
