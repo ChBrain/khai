@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-praise",
+  "version": "0.1.0",
+  "description": "khai composite content, the praise domain: one warm regard for another's witnessed good, split by which kind of good it is -- a benefit, a virtue, or a skill -- into gratitude, elevation, and admiration, read whole across the atom engines it depends on.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/praise"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "praise",
+    "tagline": "The other-praising emotions as composite: one warm regard for another's witnessed good, split by which kind of good it is -- a benefit received, a virtue, or a skill -- into gratitude, elevation, and admiration (Algoe & Haidt), and the drama lives where the goods blend into idealization, where deed-praise widens into person-praise, and where one act is read now as benefit, now virtue, now skill.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_praise.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_praise_blend.md",
+        "type": "process",
+        "parent": "process_praise.md"
+      },
+      {
+        "file": "process_praise_lift.md",
+        "type": "process",
+        "parent": "process_praise.md"
+      },
+      {
+        "file": "process_praise_reading.md",
+        "type": "process",
+        "parent": "process_praise.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over three atoms it declares as dependencies. The root (process_praise.md) reads the family as one warm regard with one dial: which kind of good the persona witnesses in another. The three corners are the atoms' own ground -- a benefit received draws gratitude, a witnessed virtue draws elevation, a witnessed skill draws admiration (Algoe & Haidt's other-praising emotions). The composite adds no fourth emotion, only the good-kind axis the three share, and it is the positive mirror of the condemnation composite: there another's violation draws the condemning emotions, here another's good draws the praising ones.",
+      "issue": "Three bridges, each a motion the atoms cannot stage alone. Blend: the goods firing together, and the other idealized where more than one fires at once -- the benefactor who is also exemplar and expert haloed into a hero, the positive mirror of dehumanization. Lift: deed-praise widening into person-praise, the grateful-for-a-gift and impressed-by-a-skill deepening into a regard for the person entire -- you did good becoming you are good, the ascending mirror of anger cooling into contempt. Reading: one good act read now as a benefit to me, now as a virtue, now as a skill, by the good the witness is tuned to see.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the family read runs wherever its atoms are cast. The link, advisory: a persona living on a crossing may link the bridge under Projection, and the audit surfaces the ones mid-motion left unnamed.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's blends and liftings are earned scene by scene, rather than announced, is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the corners from the atoms as usual, then stage the crossings: which goods are firing at once and idealizing, which deed-praise is widening into regard for the person, and where one act is being read for different goods. Read the production on the good-kind axis, never in any single corner. The family's shared payoff -- that witnessing another's good lifts the witness toward the good themselves -- is the composite's to hold."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-engine-admiration": "^0.1.0",
+    "@chbrain/khai-engine-elevation": "^0.1.0",
+    "@chbrain/khai-engine-gratitude": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
