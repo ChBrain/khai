@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-admiration",
+  "version": "0.1.0",
+  "description": "khai engine content, the admiration domain: the warm upward emotion through which a persona meets another's witnessed excellence -- skill, talent, achievement -- with regard rather than resentment, moved to rise toward it, across the inspiration, affiliation, and adoration forms, tuned by a standing admiring disposition.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/admiration"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "admiration",
+    "tagline": "Admiration as process: the warm upward emotion through which a persona meets another's witnessed excellence -- skill, talent, achievement -- with regard rather than resentment, moved to rise toward it, across the inspiration, affiliation, and adoration forms, tuned by a standing admiring disposition.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_admiration.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_inspiration.md",
+        "type": "process",
+        "parent": "process_admiration.md"
+      },
+      {
+        "file": "process_affiliation.md",
+        "type": "process",
+        "parent": "process_admiration.md"
+      },
+      {
+        "file": "process_adoration.md",
+        "type": "process",
+        "parent": "process_admiration.md"
+      },
+      {
+        "file": "position_admiring.md",
+        "type": "position",
+        "parent": "process_admiration.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_admiration.md) declares admiration as the warm upward response to witnessed excellence: a persona meets another's skill, talent, or achievement -- a non-moral excellence -- and warms toward them, moved to rise rather than diminished. It is one of the other-praising emotions (Algoe & Haidt), and the benign face of upward comparison: where envy meets another's superiority with pain and the wish to pull it down, admiration meets it with regard and the wish to rise toward it. The law makes an appraised, deserved excellence a warrant to honor it and be bettered by it.",
+      "issue": "Three forms the upward warmth takes, plus the trait. Inspiration: the emulative form -- admiration firing striving toward a reachable model, the emotion turned to self-improvement and the engine of social learning. Affiliation: the drawing-near form -- the pull to connect with, be near, and stand in the light of the admired. Adoration: the reverent form -- admiration of an excellence felt beyond reach, tipping into worship and devotion where emulation seems impossible, the idol and the hero. Admiring: the trait -- a standing readiness to meet excellence with admiration rather than envy, to find models and be inspired.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the admiration the moment runs -- which form (inspiration, affiliation, or adoration), what excellence is appraised, and how admiring the persona's standing disposition is -- so it reads as a warm upward regard that lifts, not as mere approval or as envy.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real admiration. Whether the admiration is true to the scene -- a genuine excellence appraised, the form read right, the upward warmth present, the emotion distinguished from the envy it is not and the moral elevation it is not -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its admiration under Projection. Read it in the upward warmth -- the regard that lifts and draws toward the excellent -- never as envy, which the same superiority provokes in the resentful. Delegate the witnessing of moral excellence to the elevation engine, the warm response to a benefit received to the gratitude engine, the accommodation of a vastness beyond the frame to the awe engine, and the painful upward comparison that would pull the other down to the envy engine. This engine owns the warm upward response to another's excellence."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
