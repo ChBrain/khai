@@ -6,10 +6,10 @@ mnemonic: "TO TUNE"
 chapters: [Tenor, Undertow, Nerve, Echo]
 subtitle: "the tuning of tone"
 status: published
-version: 0.0.1
+version: 0.0.2
 ---
 
-A pitch is the key a production is played in: the same fixed events, tuned to one dominant tone. It is chosen for a run, not written into the events; a different pitch is a different production of the same tale.
+A pitch is the key a production is played in: the same fixed events, tuned to one dominant tone. It is chosen for a run, not written into the events; a different pitch is a different production of the same tale, so one play may hold two pitches and stage the same plots twice. A pitch attaches by link: any typed file may link a pitch to name the key it is tuned to, the play first among them. It is the linked twin of the `voice` frontmatter field: the pitch is an element that keys a production, the voice is embedded prose that tunes the single file carrying it.
 
 - **T**enor: The dominant register the run is tuned to, the key its events are played in.
 

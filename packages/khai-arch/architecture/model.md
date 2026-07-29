@@ -14,16 +14,18 @@ Read forward (KAI → HACKS → AI) it is how you build one. Read backward, it i
 
 ## Model
 
-A Play is the production. A Plot is one scene inside it. The elements (Process, Position, Piece, Place, Persona) are the cargo each Plot carries. Infrastructure is the runtime. Architecture and Instructions prime it before the session begins; Engines enrich it.
+A Play is the production. A Plot is one scene inside it. The elements (Process, Position, Piece, Place, Persona, Plan) are the cargo each Plot carries: a Plan is cast like the rest, held by a seat and tabled in a scene. A Pitch is not cargo but a key: the Play holds the Pitches it may be played in, and one is chosen per run. Infrastructure is the runtime. Architecture and Instructions prime it before the session begins; Engines enrich it.
 
 ```
 1 Play has
+  0..n Pitches, the keys it may be played in (one chosen per run)
   0..n Plots, each having
     0..n Processes
     0..n Positions
     0..n Pieces
     0..n Places
     0..n Personas
+    0..n Plans, tabled by the cast
 
 Primed by:
   0..1 Architecture
@@ -32,6 +34,8 @@ Primed by:
 Enriched by:
   0..n Engines
 ```
+
+Two tunings, two mechanisms. A **Pitch** is an element file: any typed file may link one to name the key it is tuned to, so a production carries its key by reference and two runs of the same events may link two different pitches. A **`voice`** is a frontmatter field: it tunes the one file that carries it, travels with that file, and is no element at all. The key is linked; the voice is embedded.
 
 ## Playbook
 
