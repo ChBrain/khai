@@ -1,0 +1,94 @@
+{
+  "name": "@chbrain/khai-engine-anger",
+  "version": "0.1.0",
+  "description": "khai engine content, the anger domain: the hot approach-emotion through which a persona flares at a wrong done to it or what it cares about -- other-blame, goal-obstruction, the mobilized urge to set it right -- across the frustration, indignation, grievance, and rage forms, tuned by a standing hostility.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/anger"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "anger",
+    "tagline": "Anger as process: the hot approach-emotion through which a persona flares at a wrong done to it or what it cares about -- other-blame, goal-obstruction, the mobilized urge to set it right -- across the frustration, indignation, grievance, and rage forms, tuned by a standing hostility.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_anger.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_frustration.md",
+        "type": "process",
+        "parent": "process_anger.md"
+      },
+      {
+        "file": "process_indignation.md",
+        "type": "process",
+        "parent": "process_anger.md"
+      },
+      {
+        "file": "process_grievance.md",
+        "type": "process",
+        "parent": "process_anger.md"
+      },
+      {
+        "file": "process_rage.md",
+        "type": "process",
+        "parent": "process_anger.md"
+      },
+      {
+        "file": "position_hostility.md",
+        "type": "position",
+        "parent": "process_anger.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_anger.md) declares anger as the approach-emotion at a wrong: a persona appraises a demeaning offense against itself or what it cares about -- a slight, an injustice, a goal deliberately blocked, someone to blame who could have done otherwise -- and flares toward the source to set it right. Where fear withdraws and disgust rejects, anger approaches. The law makes an appraised, blamed wrong a warrant to confront and correct.",
+      "issue": "Four forms the flare takes, plus the trait. Frustration: goal-blockage -- the obstacle in the way, anger born of aversive thwarting, least tied to blame. Indignation: the moral form -- righteous anger at a norm violated, often on another's behalf, the justice emotion that scales to collective outrage. Grievance: the stored form -- the wrong nursed and kept rather than discharged, the standing sense of having been wronged that outlasts its occasion. Rage: the flooded form -- arousal overtopping control, the correction abandoned for the discharge. Hostility: the trait -- a resting readiness to read the world as hostile and to anger readily, often, and long.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the anger the moment runs -- which form (frustration, indignation, grievance, or rage), what wrong is appraised and who is blamed, and how hostile the persona's standing disposition is -- so it reads as a hot approach at a wrong, not as mere aggression or dislike.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real anger. Whether the anger is true to the scene -- a genuine appraised wrong with someone to blame, the form read right, the approach-orientation present, the emotion distinguished from the aggression it may or may not drive -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its anger under Projection. Read it in the flare-and-approach -- the push toward the offender to set a wrong right -- never as mere aggression, which is the behavior anger may drive but is not. Delegate the basic-emotion appraisal taxonomy to the emotion engine, the behavior of aggression to the aggression engine, the cold downward look to contempt (its CAD sibling), the recoil-from-taint to disgust, and the acute fight-or-flight routing to stress. This engine owns the hot approach-emotion at a wrong."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
