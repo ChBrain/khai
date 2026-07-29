@@ -1359,7 +1359,11 @@ export function castingCoverageErrors(root) {
       }
     }
 
-    const dead = [...company].filter((b) => !cast.has(b));
+    // A pitch keys the run; it is never fielded in a scene. The play links its
+    // default and a plot may link its own to turn the key mid-arc, but a pitch
+    // no plot casts is the normal shape of a keyed production, not a dead
+    // entry (canon: pitch.md — the pitch keys the scope that links it).
+    const dead = [...company].filter((b) => !cast.has(b) && !b.startsWith("pitch_"));
     if (dead.length) {
       results.push({
         file: playPath,
@@ -1368,6 +1372,157 @@ export function castingCoverageErrors(root) {
         audit: [],
       });
     }
+  }
+
+  return results;
+}
+
+/**
+ * Voice echo (collection level): the `voice` frontmatter field exists so each
+ * file holds its own register — the canon's two tunings never cascade, and the
+ * point of the voice is that the cast does not speak in one tone. Two plays
+ * whose declared voices read nearly the same are one register stamped twice,
+ * the uniform mould Cut to Fit forbids, invisible to any single-play check.
+ *
+ * Compared pairwise across every play anchor in the collection with a
+ * word-bigram Dice coefficient. A near match is a warning, not an error: a
+ * shared house coda (a punctuation rule every voice repeats verbatim) lifts
+ * the baseline similarity without making the registers the same, so the
+ * threshold flags only pairs that echo well beyond the shared mechanics.
+ * Calibrated on a 182-play house whose distinct voices top out at 0.40: the
+ * default of 0.6 sits in the empty middle, clear of every honest pair and
+ * below any lightly-reworded stamp. Computed, not judged.
+ *
+ * @param {string} root  project root (looks for the collection dir)
+ * @param {{ threshold?: number }} [opts]  Dice threshold in [0,1], default 0.6
+ * @returns {{ file: string, errors: string[], warnings: string[], audit: string[] }[]}
+ */
+export function voiceEchoWarnings(root, { threshold = 0.6 } = {}) {
+  const collection = resolveCollectionAt(root);
+  const itemsDir = join(root, collection.dir);
+  if (!existsSync(itemsDir) || !statSync(itemsDir).isDirectory()) return [];
+
+  let subdirs;
+  try {
+    subdirs = readdirSync(itemsDir, { withFileTypes: true })
+      .filter((e) => e.isDirectory() && !e.name.startsWith("."))
+      .map((e) => e.name);
+  } catch {
+    return [];
+  }
+
+  const voices = [];
+  for (const id of subdirs) {
+    const playDir = join(itemsDir, id);
+    let files;
+    try {
+      files = readdirSync(playDir).filter((f) => f.endsWith(".md"));
+    } catch {
+      continue;
+    }
+    const playFileName = files.find((f) => f.startsWith(collection.anchor));
+    if (!playFileName) continue;
+    const playPath = join(playDir, playFileName);
+    let voice;
+    try {
+      voice = parseDoc(readFileSync(playPath, "utf8")).data?.voice;
+    } catch {
+      continue;
+    }
+    if (typeof voice !== "string" || !voice.trim()) continue;
+    const words = voice
+      .toLowerCase()
+      .replace(/[^a-z0-9\s]/g, " ")
+      .split(/\s+/)
+      .filter(Boolean);
+    const bigrams = new Set();
+    for (let i = 0; i < words.length - 1; i++) bigrams.add(`${words[i]} ${words[i + 1]}`);
+    if (bigrams.size) voices.push({ file: playPath, bigrams });
+  }
+
+  const results = [];
+  for (let i = 0; i < voices.length; i++) {
+    const echoes = [];
+    for (let j = i + 1; j < voices.length; j++) {
+      let shared = 0;
+      for (const g of voices[i].bigrams) if (voices[j].bigrams.has(g)) shared++;
+      const dice = (2 * shared) / (voices[i].bigrams.size + voices[j].bigrams.size);
+      if (dice >= threshold) echoes.push(`voice echoes ${voices[j].file} (${dice.toFixed(2)})`);
+    }
+    if (echoes.length)
+      results.push({ file: voices[i].file, errors: [], warnings: echoes, audit: [] });
+  }
+
+  return results;
+}
+
+/**
+ * Pitch carry (play level): the play casts its pitch in the Company like the
+ * rest of the cast, and one pitch cast is the default named, owing no more. A
+ * play carrying more than one must explain the carry there, in prose: which is
+ * the default, and when the others take the run (canon: pitch.md). The kit
+ * cannot judge what the prose says, only that it exists — so the computable
+ * rule is that in a multi-pitch Company, every line casting a pitch must carry
+ * prose beyond the bare link. A bare pitch bullet in a single-pitch play is
+ * the normal shape; in a multi-pitch play it is an unexplained carry, an
+ * error. Computed, not judged.
+ *
+ * @param {string} root  project root (looks for the collection dir)
+ * @returns {{ file: string, errors: string[], warnings: string[], audit: string[] }[]}
+ */
+export function pitchCarryErrors(root) {
+  const collection = resolveCollectionAt(root);
+  const itemsDir = join(root, collection.dir);
+  if (!existsSync(itemsDir) || !statSync(itemsDir).isDirectory()) return [];
+
+  let subdirs;
+  try {
+    subdirs = readdirSync(itemsDir, { withFileTypes: true })
+      .filter((e) => e.isDirectory() && !e.name.startsWith("."))
+      .map((e) => e.name);
+  } catch {
+    return [];
+  }
+
+  const results = [];
+  for (const id of subdirs) {
+    const playDir = join(itemsDir, id);
+    let files;
+    try {
+      files = readdirSync(playDir).filter((f) => f.endsWith(".md"));
+    } catch {
+      continue;
+    }
+    const playFileName = files.find((f) => f.startsWith(collection.anchor));
+    if (!playFileName) continue;
+    const playPath = join(playDir, playFileName);
+    const parsed = parseDoc(readFileSync(playPath, "utf8"));
+    const companyLines = parsed.body == null ? null : sectionBody(parsed.body, "Company");
+    if (!companyLines) continue;
+
+    const isPitch = (b) => b.startsWith("pitch_");
+    const pitchCount = new Set(castLinkBasenames(companyLines.join("\n")).filter(isPitch)).size;
+    if (pitchCount <= 1) continue; // one pitch cast is the default named, owing no more
+
+    const errors = [];
+    for (const line of companyLines) {
+      const cast = castLinkBasenames(line).filter(isPitch);
+      if (!cast.length) continue;
+      // The line's residue once every link (text and target alike) is removed:
+      // what is left is the explaining prose, or nothing.
+      const residue = line
+        .replace(/\[[^\]]*\]\([^)]*\)/g, "")
+        .replace(/^[\s>*+-]+/, "")
+        .replace(/[\s:;,.!?…()"'`*_]+/g, "");
+      if (!residue) {
+        errors.push(
+          `unexplained carry: the Company casts ${pitchCount} pitches, but ${cast.join(", ")} ` +
+            "is a bare link (a multi-pitch play explains the carry in prose: " +
+            "which is the default, and when the others take the run)",
+        );
+      }
+    }
+    if (errors.length) results.push({ file: playPath, errors, warnings: [], audit: [] });
   }
 
   return results;
@@ -1520,6 +1675,12 @@ export function validateProject({
     // Every plot must cast at least one element of its item's Company; a dead
     // Company entry is a warning. The dual of castErrors, at the item level.
     results.push(...castingCoverageErrors(root));
+    // The voice is per-file so the cast does not speak in one tone; two plays
+    // whose declared voices nearly match are one register stamped twice.
+    results.push(...voiceEchoWarnings(root));
+    // A play casting one pitch has named its default; carrying more than one,
+    // it explains the carry in the Company or the carry is a finding.
+    results.push(...pitchCarryErrors(root));
     // The reverse of castingCoverageErrors: a file in a play dir the play never
     // lists (a present-but-unlisted element), the engine orphan check at the play.
     results.push(...playOrphanErrors(root));

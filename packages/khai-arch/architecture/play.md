@@ -6,7 +6,7 @@ mnemonic: "ENACTS"
 chapters: [Estate, Name, Arc, Company, Triggers, Stakes]
 subtitle: "the staging of tales"
 status: published
-version: 0.0.2
+version: 0.0.3
 ---
 
 A play is the whole production: many plots run inside it, and one arc binds them into a single telling. It does not play out a scene; it sets what every plot inherits and what they all add up to.
@@ -17,7 +17,7 @@ A play is the whole production: many plots run inside it, and one arc binds them
 
 - **A**rc: The overarching story. How the plots interweave into one telling: the bend that makes ten plots a shape and not a list.
 
-- **C**ompany: The cast the play may field, its Personas and what they carry: the Pieces, Places, Processes, Positions, and Plans in play, and the Pitch or Pitches the play may be keyed to. A plot draws only from here; reach past the Company and it has gone off the play.
+- **C**ompany: The cast the play may field, its Personas and what they carry: the Pieces, Places, Processes, Positions, and Plans in play, and the Pitch or Pitches the play may be keyed to. One pitch cast is the default named; more than one carried must be explained here, in prose: which is the default, and when the others take the run. A plot draws only from here; reach past the Company and it has gone off the play.
 
 - **T**riggers: The conditions that chain the plots. Each plot starts when its entry fires and runs until its exit; one plot's close is the next one's cue.
 
