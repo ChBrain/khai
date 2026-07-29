@@ -1,0 +1,94 @@
+{
+  "name": "@chbrain/khai-engine-disgust",
+  "version": "0.1.0",
+  "description": "khai engine content, the disgust domain: the rejection-and-contamination response through which a persona recoils from an offending object -- revulsion, the impulse to expel or withdraw, the sense of a clinging taint -- across the pathogen, sexual, and sociomoral domains, the contamination mechanism that makes it unique, and the standing sensitivity that tunes it.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/disgust"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "disgust",
+    "tagline": "Disgust as process: the rejection-and-contamination response through which a persona recoils from an offending object -- revulsion, the impulse to expel or withdraw, the sense of a clinging taint -- across the pathogen, sexual, and sociomoral domains, tuned by a standing sensitivity.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_disgust.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_pathogen.md",
+        "type": "process",
+        "parent": "process_disgust.md"
+      },
+      {
+        "file": "process_sexual.md",
+        "type": "process",
+        "parent": "process_disgust.md"
+      },
+      {
+        "file": "process_sociomoral.md",
+        "type": "process",
+        "parent": "process_disgust.md"
+      },
+      {
+        "file": "process_contamination.md",
+        "type": "process",
+        "parent": "process_disgust.md"
+      },
+      {
+        "file": "position_sensitivity.md",
+        "type": "position",
+        "parent": "process_disgust.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_disgust.md) declares disgust as the rejection response: a persona appraises an object as offensive to ingest, touch, or be near -- a potential contaminant -- and recoils, with revulsion and the impulse to expel or withdraw. Oral in origin (the guardian of the mouth), it is unique among emotions in its contamination logic: the offending object is felt to carry a taint that transfers by contact and clings. Where anger says you wronged me and contempt says you are beneath me, disgust says you contaminate me. The law makes appraised contamination a warrant to reject and distance.",
+      "issue": "Three domains the rejection runs, plus the mechanism and the trait. Pathogen: disease avoidance -- spoiled food, body products, illness cues, the behavioral immune system biased toward false alarms. Sexual: mate choice -- recoil from fitness-costly partners and acts, from kin, calibrated and sex-differentiated. Sociomoral: the moral order -- betrayal, cruelty, degradation cast as impurity, condemnation that dehumanizes and forecloses repair. Contamination: the sympathetic-magic mechanism -- contagion (once in contact, always in contact) and similarity -- that makes disgust spread and cling and resist reason. Sensitivity: the standing, heritable trait -- how low the threshold, how broad the recoil -- that tilts moral judgment, disease behavior, and purity attitudes.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the disgust the moment runs -- which domain (pathogen, sexual, or sociomoral), by the contamination logic or not, and how disgust-sensitive the persona is -- so the recoil reads as revulsion-and-taint, not mere dislike or moral anger.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real disgust. Whether the disgust is true to the scene -- the object genuinely felt to contaminate rather than merely to annoy, the domain read right, the clinging taint and the overgeneralization present, the moral recoil distinguished from reasoned condemnation -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its disgust under Projection. Read it in the recoil-and-taint -- the gape, the distancing, the sense the thing spreads and will not wash off -- never as mere anger, which opposes a wrong, where disgust rejects a contaminant. Delegate the basic-emotion appraisal taxonomy to the emotion engine, the downward look at an inferior to contempt (its CAD sibling), the social exclusion of the tainted to stigma, and the moral judgment proper to moral-judgment. This engine owns the rejection response itself."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
