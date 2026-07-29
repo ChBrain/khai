@@ -18,8 +18,9 @@ A Play is the production. A Plot is one scene inside it. The elements (Process, 
 
 ```
 1 Play has
-  0..n Pitches, the keys it may be played in (one chosen per run)
+  0..n Pitches, the keys it may be played in (the playwright's choice; the play links one as its default)
   0..n Plots, each having
+    0..1 Pitch, the key this scene turns to (else the play's default holds)
     0..n Processes
     0..n Positions
     0..n Pieces
@@ -35,7 +36,7 @@ Enriched by:
   0..n Engines
 ```
 
-Two tunings, two mechanisms. A **Pitch** is an element file: any typed file may link one to name the key it is tuned to, so a production carries its key by reference and two runs of the same events may link two different pitches. A **`voice`** is a frontmatter field: it tunes the one file that carries it, travels with that file, and is no element at all. The key is linked; the voice is embedded.
+Two tunings, two mechanisms, and neither cascades. A **Pitch** is an element file, the playwright's choice of key: the play links one as its default, a plot may link its own so the key can turn over the arc, and two runs of the same events may be keyed to two different pitches. A **`voice`** is a frontmatter field: it tunes the one file that carries it and no other, and that is the point, each file its own register so the cast does not speak in one tone: the play clinical, its doctor authoritative, its patient anxious. On any file below the plot, a linked pitch or an embedded voice tunes that file alone. The key is linked; the voice is embedded.
 
 ## Playbook
 

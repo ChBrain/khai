@@ -9,7 +9,7 @@ status: published
 version: 0.0.2
 ---
 
-A pitch is the key a production is played in: the same fixed events, tuned to one dominant tone. It is chosen for a run, not written into the events; a different pitch is a different production of the same tale, so one play may hold two pitches and stage the same plots twice. A pitch attaches by link: any typed file may link a pitch to name the key it is tuned to, the play first among them. It is the linked twin of the `voice` frontmatter field: the pitch is an element that keys a production, the voice is embedded prose that tunes the single file carrying it.
+A pitch is the key a production is played in: the same fixed events, tuned to one dominant tone. It is the playwright's choice for a run, not written into the events; a different pitch is a different production of the same tale, so one play may hold two pitches and stage the same plots twice. A pitch attaches by link, and where it attaches sets what it keys: the play links one pitch as the run's default, a plot may link its own so the key turns over the arc, and any other typed file linking a pitch tunes that file alone. It is the linked twin of the `voice` frontmatter field, and like the voice it never cascades: the pitch keys the scope that links it, the voice tunes the single file carrying it.
 
 - **T**enor: The dominant register the run is tuned to, the key its events are played in.
 

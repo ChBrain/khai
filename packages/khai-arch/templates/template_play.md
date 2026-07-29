@@ -25,7 +25,7 @@ The overarching story: the bend that makes the plots one telling and not a list.
 
 ## Company
 
-The closed cast the play may field: the personas and what they carry, the pieces, places, processes, positions, and plans in play, and the pitch or pitches the play may be keyed to (one is chosen per run). A plot draws only from here; reach past it and the plot has gone off the play. Link each where it has a file; where it does not, ask whether it should use a khai type. To tune a single file's own prose rather than key the production, use the optional `voice` frontmatter field on that file instead of a pitch.
+The closed cast the play may field: the personas and what they carry, the pieces, places, processes, positions, and plans in play, and the pitch or pitches the play may be keyed to: the playwright's choice, with the play linking one as the run's default (a plot may link its own to turn the key mid-arc). A plot draws only from here; reach past it and the plot has gone off the play. Link each where it has a file; where it does not, ask whether it should use a khai type. To tune a single file's own prose rather than key the production, use the optional `voice` frontmatter field on that file instead of a pitch: a voice never cascades, and that is its point, each file its own register so the cast does not speak in one tone.
 
 ## Triggers
 
