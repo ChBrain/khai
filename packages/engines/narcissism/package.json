@@ -1,0 +1,124 @@
+{
+  "name": "@chbrain/khai-engine-narcissism",
+  "version": "0.1.0",
+  "description": "khai engine content, the narcissism domain: the entitled self-importance a persona defends -- its grandiose, vulnerable, communal, and malignant types, the shared self-regulatory dynamic (admiration, rivalry, injury), and the differing aims each type pursues.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/narcissism"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "narcissism",
+    "tagline": "Narcissism as a multi-type engine: the entitled self-importance a persona defends -- across the grandiose, vulnerable, communal, and malignant types (position), the shared self-regulation of admiration, rivalry, and injury (process), and the differing aims each type pursues (plan).",
+    "type": "position",
+    "members": [
+      {
+        "file": "position_narcissism.md",
+        "type": "position",
+        "parent": null
+      },
+      {
+        "file": "position_grandiose.md",
+        "type": "position",
+        "parent": "position_narcissism.md"
+      },
+      {
+        "file": "plan_dominance.md",
+        "type": "plan",
+        "parent": "position_grandiose.md"
+      },
+      {
+        "file": "position_vulnerable.md",
+        "type": "position",
+        "parent": "position_narcissism.md"
+      },
+      {
+        "file": "plan_safety.md",
+        "type": "plan",
+        "parent": "position_vulnerable.md"
+      },
+      {
+        "file": "position_communal.md",
+        "type": "position",
+        "parent": "position_narcissism.md"
+      },
+      {
+        "file": "plan_glory.md",
+        "type": "plan",
+        "parent": "position_communal.md"
+      },
+      {
+        "file": "position_malignant.md",
+        "type": "position",
+        "parent": "position_narcissism.md"
+      },
+      {
+        "file": "plan_conquest.md",
+        "type": "plan",
+        "parent": "position_malignant.md"
+      },
+      {
+        "file": "process_admiration.md",
+        "type": "process",
+        "parent": "position_narcissism.md"
+      },
+      {
+        "file": "process_rivalry.md",
+        "type": "process",
+        "parent": "position_narcissism.md"
+      },
+      {
+        "file": "process_injury.md",
+        "type": "process",
+        "parent": "position_narcissism.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The root (position_narcissism.md) declares narcissism as an entitled self-importance a persona must continually defend: an inflated self held against a reality that keeps threatening it, so the whole disposition is organised around maintaining the grandiose self-image. The law makes this defence the core, and fans it into three altitudes -- the type the persona is (position), the aim that type pursues (plan), and the self-regulation it runs to hold the inflated self up (process).",
+      "issue": "Three altitudes, one core. The types: grandiose (overt dominance and display), vulnerable (covert hypersensitivity and shame), communal (grandiosity won through being the most caring or moral), and malignant (grandiosity fused with antagonism, sadism, and paranoia). The aims: each type pursues a different end -- dominance and admiration, safety from exposure, moral glory, or conquest -- the plan a persona of that type is running. The self-regulation: admiration (assertive self-promotion), rivalry (antagonistic self-defence), and injury (the narcissistic wound and the rage or collapse it triggers), the shared dynamic every type runs to keep the inflated self intact.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the expression the moment runs -- the aim it pursues (which carries its type) or the self-regulation it enacts -- so the play shows which narcissism is at work and how it is defending the inflated self.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real expression of narcissism. Whether the portrayal is true -- a genuine defence of an inflated self, the type and its aim and its self-regulation read right, the grandiosity and the fragility both in view -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its expression under Projection: the aim it pursues (dominance, safety, glory, or conquest -- carrying the grandiose, vulnerable, communal, or malignant type) and the self-regulation it runs (admiration, rivalry, injury). Read it as the defence of an entitled, inflated self -- never as mere confidence, nor as the resting self-attitude, nor as one trait weighed against the dark triad's others. Delegate the aversive-triad comparison to the dark-triad engine, the resting global self-attitude to the self-esteem engine, and the discrete emotion of hubristic pride to the pride engine."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
