@@ -1,0 +1,4 @@
+---
+---
+
+Whitelist `admiration` under `memberPolicy.homonyms`, so the forthcoming standalone `admiration` engine can carry its root member name without colliding with the `narcissism` engine's `process_admiration.md`. This is a same-word-different-science homonym: narcissism's admiration is the NARC self-promotion route -- the grandiose self _seeking_ admiration to stay inflated -- while the admiration engine models admiration _felt for_ another's witnessed excellence, the other-praising emotion (with gratitude and elevation). One word, opposite directions. This clears the member-scope gate for the admiration engine, which completes the atoms for a forthcoming other-praising composite (the positive mirror of the condemnation composite). Governance config only; ships nothing. The member-check ratchet's dead-exemption warning is expected until the `admiration` engine lands and makes the collision live.
