@@ -1457,6 +1457,78 @@ export function voiceEchoWarnings(root, { threshold = 0.6 } = {}) {
 }
 
 /**
+ * Pitch carry (play level): the play casts its pitch in the Company like the
+ * rest of the cast, and one pitch cast is the default named, owing no more. A
+ * play carrying more than one must explain the carry there, in prose: which is
+ * the default, and when the others take the run (canon: pitch.md). The kit
+ * cannot judge what the prose says, only that it exists — so the computable
+ * rule is that in a multi-pitch Company, every line casting a pitch must carry
+ * prose beyond the bare link. A bare pitch bullet in a single-pitch play is
+ * the normal shape; in a multi-pitch play it is an unexplained carry, an
+ * error. Computed, not judged.
+ *
+ * @param {string} root  project root (looks for the collection dir)
+ * @returns {{ file: string, errors: string[], warnings: string[], audit: string[] }[]}
+ */
+export function pitchCarryErrors(root) {
+  const collection = resolveCollectionAt(root);
+  const itemsDir = join(root, collection.dir);
+  if (!existsSync(itemsDir) || !statSync(itemsDir).isDirectory()) return [];
+
+  let subdirs;
+  try {
+    subdirs = readdirSync(itemsDir, { withFileTypes: true })
+      .filter((e) => e.isDirectory() && !e.name.startsWith("."))
+      .map((e) => e.name);
+  } catch {
+    return [];
+  }
+
+  const results = [];
+  for (const id of subdirs) {
+    const playDir = join(itemsDir, id);
+    let files;
+    try {
+      files = readdirSync(playDir).filter((f) => f.endsWith(".md"));
+    } catch {
+      continue;
+    }
+    const playFileName = files.find((f) => f.startsWith(collection.anchor));
+    if (!playFileName) continue;
+    const playPath = join(playDir, playFileName);
+    const parsed = parseDoc(readFileSync(playPath, "utf8"));
+    const companyLines = parsed.body == null ? null : sectionBody(parsed.body, "Company");
+    if (!companyLines) continue;
+
+    const isPitch = (b) => b.startsWith("pitch_");
+    const pitchCount = new Set(castLinkBasenames(companyLines.join("\n")).filter(isPitch)).size;
+    if (pitchCount <= 1) continue; // one pitch cast is the default named, owing no more
+
+    const errors = [];
+    for (const line of companyLines) {
+      const cast = castLinkBasenames(line).filter(isPitch);
+      if (!cast.length) continue;
+      // The line's residue once every link (text and target alike) is removed:
+      // what is left is the explaining prose, or nothing.
+      const residue = line
+        .replace(/\[[^\]]*\]\([^)]*\)/g, "")
+        .replace(/^[\s>*+-]+/, "")
+        .replace(/[\s:;,.!?…()"'`*_]+/g, "");
+      if (!residue) {
+        errors.push(
+          `unexplained carry: the Company casts ${pitchCount} pitches, but ${cast.join(", ")} ` +
+            "is a bare link (a multi-pitch play explains the carry in prose: " +
+            "which is the default, and when the others take the run)",
+        );
+      }
+    }
+    if (errors.length) results.push({ file: playPath, errors, warnings: [], audit: [] });
+  }
+
+  return results;
+}
+
+/**
  * Play-level orphan (order 1, completeness): a content instance that sits in a
  * play directory but the play never lists. The play file is the play's manifest,
  * its Company declaring the cast and its Triggers chaining the plots, so every
@@ -1606,6 +1678,9 @@ export function validateProject({
     // The voice is per-file so the cast does not speak in one tone; two plays
     // whose declared voices nearly match are one register stamped twice.
     results.push(...voiceEchoWarnings(root));
+    // A play casting one pitch has named its default; carrying more than one,
+    // it explains the carry in the Company or the carry is a finding.
+    results.push(...pitchCarryErrors(root));
     // The reverse of castingCoverageErrors: a file in a play dir the play never
     // lists (a present-but-unlisted element), the engine orphan check at the play.
     results.push(...playOrphanErrors(root));
