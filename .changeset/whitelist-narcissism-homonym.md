@@ -1,0 +1,4 @@
+---
+---
+
+Whitelist `narcissism` under `memberPolicy.homonyms`, mirroring `anchoring`, `reactance`, `representativeness`, and `obedience`: a word that legitimately lives at two altitudes -- the single trait-node the `dark-triad` position engine carries (`position_narcissism.md`, narcissism as one corner of the aversive triad) and the standalone multi-type narcissism engine it deserves in its own right (the entitled-self-importance disposition and its grandiose/vulnerable/communal/malignant types, the shared self-regulatory dynamic, and the differing aims each type pursues). This clears the member-scope gate for a forthcoming `narcissism` engine, keeping `dark-triad` a balanced comparative triad while narcissism gets its own depth. Governance config only; ships nothing. The ratchet's dead-exemption warning is expected until the `narcissism` engine lands and makes the collision live.
