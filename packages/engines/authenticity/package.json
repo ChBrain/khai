@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-authenticity",
+  "version": "0.1.0",
+  "description": "khai engine content, the authenticity domain: living and acting from one's true self -- one's own values, feelings, and convictions -- rather than from external pressure or a false front, across the awareness, congruence, and transparency forms, tuned by a standing authenticity.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/authenticity"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "authenticity",
+    "tagline": "Authenticity as process: living and acting from one's true self -- one's own values, feelings, and convictions -- rather than from external pressure or a false front, the alignment of the outward life with the inward truth, across the awareness, congruence, and transparency forms, tuned by a standing authenticity (Kernis & Goldman; Rogers; Wood et al.).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_authenticity.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_awareness.md",
+        "type": "process",
+        "parent": "process_authenticity.md"
+      },
+      {
+        "file": "process_congruence.md",
+        "type": "process",
+        "parent": "process_authenticity.md"
+      },
+      {
+        "file": "process_transparency.md",
+        "type": "process",
+        "parent": "process_authenticity.md"
+      },
+      {
+        "file": "position_authentic.md",
+        "type": "position",
+        "parent": "process_authenticity.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_authenticity.md) declares authenticity as living and acting from one's true self: the persona's outward life -- what it says, chooses, and shows -- aligned with its inward truth, its own values, feelings, and convictions, rather than driven by external pressure or held behind a false front. Where self-monitoring is the tuning of self-presentation to fit the situation, authenticity is the deeper alignment of the shown self with the felt one, whether or not it is watched. The law makes a persona's own values and feelings a warrant to act and show from them, and marks the gap where it does not.",
+      "issue": "Three forms authenticity takes (Kernis & Goldman), plus the trait. Awareness: self-knowledge -- knowing one's own motives, feelings, and values clearly and without distortion, the ground the rest stands on. Congruence: authentic action -- behaving in accord with the true self rather than to please, perform, or gain reward, Rogers' match of expression to experience. Transparency: relational authenticity -- being genuine and open in close relationships, without a false front, letting others see the real self. Authentic: the trait -- a standing disposition to live from the true self, against the self-alienation of a life run on external influence.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so a persona's own truth warrants authentic life and action wherever it is lived. The link: each persona links, under Projection, the authenticity a moment runs -- which forms are present (the self-knowledge, the congruent action, the relational openness) or absent, and how authentic its standing disposition is.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real authenticity. Whether the authenticity is true to the scene -- a genuine alignment of the shown self with the felt one, distinguished from the self-presentational tuning of self-monitoring and the mere disclosure of information -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its authenticity under Projection: what true self is known, whether the action matches it, and how open the persona is in its close ties -- or where a false self is worn and the true one hidden. Read it in the match between the felt and the shown, and its lack in the gap between them -- and keep it distinct: the situational tuning of self-presentation is the self-monitoring engine's, the revealing of personal information is the self-disclosure engine's, the content of who one is is the identity engine's, and the managed emotional display of a work role is the emotional-labor engine's. This engine owns living and acting from the true self."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
