@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-self-relation",
+  "version": "0.1.0",
+  "description": "khai composite content, the self-relation domain: the ways a persona relates to its own self -- evaluating its worth, caring for it in suffering, and being true to it -- read as one stance over the self-esteem, self-compassion, and authenticity engines it depends on, across the modes, fault, and weave bridges.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/self-relation"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "self-relation",
+    "tagline": "Self-relation as composite: the ways a persona relates to its own self -- evaluating its worth (self-esteem), caring for it in suffering (self-compassion), and being true to it (authenticity) -- three modes with different stabilities that interact into one self-stance, across the modes, fault, and weave bridges, read whole over the engines it depends on (Neff & Vonk; Crocker & Wolfe; Kernis).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_self_relation.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_self_relation_modes.md",
+        "type": "process",
+        "parent": "process_self_relation.md"
+      },
+      {
+        "file": "process_self_relation_fault.md",
+        "type": "process",
+        "parent": "process_self_relation.md"
+      },
+      {
+        "file": "process_self_relation_weave.md",
+        "type": "process",
+        "parent": "process_self_relation.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over three atoms it declares as dependencies. The root (process_self_relation.md) reads how a persona relates to its own self as one stance made of three modes: evaluating its worth (the self-esteem engine's), caring for it in suffering (the self-compassion engine's), and being true to it (the authenticity engine's). The three modes are the atoms' own ground -- the judgment is self-esteem's, the warmth self-compassion's, the alignment authenticity's -- and none, alone, sees that a whole self-relation is their weave, nor that they differ in how stable a footing they give. The composite adds no fourth mode, only the stance the three compose and the dynamics among them.",
+      "issue": "Three bridges, each a shape of the self-stance the atoms cannot hold alone. Modes: the three ways of relating to the self held together -- evaluate, care, be-true -- and how a persona's overall self-relation is their particular combination, not any one. Fault: the failure-test, where the modes diverge most sharply -- contingent self-esteem collapses when the success it was staked on fails, self-compassion holds because its care needs no success, and authenticity is tested between owning the failure truly and defending the image (Crocker & Wolfe; Neff & Vonk). Weave: how the modes enable or undercut one another -- self-compassion freeing authenticity by making it safe to be real, authenticity risking the approval contingent esteem depends on, image-protection blocking both.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the whole-self-relation read runs wherever its atoms are cast. The link, advisory: a persona may link the bridge under Projection, and the audit surfaces the ones staged as a single self-feeling when the three modes were live and diverging.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's self-relations genuinely weave -- the three modes present, their stabilities distinct, their interactions staged, especially under failure -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the three modes from the atoms as usual -- the worth-judgment, the self-warmth, the truth-to-self -- then stage the stance: which modes are operative, which footing they rest on, and how they interact, especially at the fault line of failure where they diverge. Read the production's self-relation as a weave of the three, never flattened to one. The content of who the persona is is the identity engine's; the self-evaluative emotions of guilt, shame, and pride are the self-conscious composite's; the disordered grandiose-fragile self-relation is the narcissism engine's. This composite owns the healthy structure of how a self relates to itself."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-engine-self-esteem": "^0.1.0",
+    "@chbrain/khai-engine-self-compassion": "^0.1.0",
+    "@chbrain/khai-engine-authenticity": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
