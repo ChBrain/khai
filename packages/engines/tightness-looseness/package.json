@@ -1,0 +1,67 @@
+{
+  "name": "@chbrain/khai-engine-tightness-looseness",
+  "version": "0.1.0",
+  "description": "khai engine content, the tightness-looseness domain: the strength of the social norms a persona lives under and the latitude its world grants for deviance -- strong rules strongly enforced, or weak rules weakly enforced -- across the tight and loose normative regimes (Gelfand).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/tightness-looseness"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "tightness-looseness",
+    "tagline": "Tightness-looseness as position: the strength of the social norms a persona lives under and the latitude its world grants for deviance -- strong rules strongly enforced under tightness, weak rules weakly enforced under looseness -- across the tight and loose normative regimes (Gelfand).",
+    "type": "position",
+    "anchor": "position_tightness_looseness.md",
+    "expressions": {
+      "tight": "position_tight.md",
+      "loose": "position_loose.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_tightness_looseness.md) declares the strength of the norms a persona lives under and the latitude its world grants for stepping out of them: how clear and strongly enforced the rules are, and how much deviance is tolerated before sanction (Gelfand). This is a property of the normative regime, not of the persona's yielding to it -- upstream of conformity, it sets how much pressure there is to conform in the first place. Where conformity is a persona bending to a norm and obedience a persona bending to an authority, tightness-looseness is the standing severity of the norm field itself, the constraint the situation exerts before anyone yields or refuses. The law makes the strength of a persona's normative world a standing part of the pressure it acts under.",
+      "issue": "Two regimes, the poles of norm strength (Gelfand). Tight: strong norms, narrow latitude -- clear rules strongly enforced, little tolerance for deviance, pervasive monitoring and swift sanction, so the persona lives under high situational constraint and meets it with more self-regulation and impulse control; the regime buys order, coordination, and predictability at the cost of openness. Loose: weak norms, wide latitude -- few or weakly enforced rules, high tolerance for deviance, little monitoring, so the persona lives under low constraint with room to improvise and depart; the regime buys openness, variety, and creativity at the cost of order and coordination. The strength of the field tends to rise with a world's history of threat -- disaster, disease, density, invasion -- and to relax in its absence.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the norm strength of a persona's world holds system-wide beneath its conduct. The link: each persona links, under Projection, the normative regime it acts under -- how tight or loose its world is, and so how much latitude a step out of line is given.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real normative regime. Whether the regime is true to the world -- a genuine strength of norms and tolerance for deviance, its tight and loose poles distinguished, and kept apart from the persona's own yielding -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the scene its regime under Projection: how strong the norms are and how much deviance the world tolerates -- and read it in the pressure the persona acts under, the tight world watching and sanctioning, the loose world letting a departure pass. Keep it the strength of the norm field: the persona's yielding to a norm is the conformity engine's, its yielding to an authority the obedience engine's, the formation of a particular group's norm the group engine's, the persona's own self-monitoring and impulse control its own engines', and the individual self-boundary of independence or interdependence the self-construal engine's. This engine owns how strong the norms are and how little or much a world lets a persona stray from them."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
