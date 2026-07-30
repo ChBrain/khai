@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-confusion",
+  "version": "0.1.0",
+  "description": "khai engine content, the confusion domain: the knowledge emotion of the not-yet-comprehended -- the cognitive disequilibrium when information will not fit, contradicts, or outruns the frame -- across the impasse, resolve, and stall forms, tuned by a standing tolerance of ambiguity.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/confusion"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "confusion",
+    "tagline": "Confusion as process: the knowledge emotion of the not-yet-comprehended -- the cognitive disequilibrium struck when information will not fit, contradicts, or outruns the frame -- forking into effortful sensemaking or hardening disengagement, across the impasse, resolve, and stall forms, tuned by a standing tolerance of ambiguity (Silvia; D'Mello & Graesser).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_confusion.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_confusion_impasse.md",
+        "type": "process",
+        "parent": "process_confusion.md"
+      },
+      {
+        "file": "process_confusion_resolve.md",
+        "type": "process",
+        "parent": "process_confusion.md"
+      },
+      {
+        "file": "process_confusion_stall.md",
+        "type": "process",
+        "parent": "process_confusion.md"
+      },
+      {
+        "file": "position_ambiguity.md",
+        "type": "position",
+        "parent": "process_confusion.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_confusion.md) declares confusion as the knowledge emotion of the not-yet-comprehended: a persona meets information that will not fit -- a contradiction, an anomaly, a gap where understanding stalls -- and the mind is thrown into cognitive disequilibrium, unable to assimilate what it has met. Where surprise is the brief alarm of a violated expectation and interest the pull of the graspable, confusion is the held state of blocked comprehension, the impasse before sense is made. The law makes an appraised failure to comprehend a warrant to halt, flag, and work at the block.",
+      "issue": "Three forms the state takes, plus the trait. Impasse: the trigger -- the cognitive disequilibrium of information that contradicts, an anomaly or a gap where the frame fails to integrate what it meets. Resolve: the productive fork -- confusion held and worked, driving the effortful sensemaking that, when the block is broken, deepens understanding past where fluent processing would have left it. Stall: the unproductive fork -- confusion unresolved, hardening into frustration and then the disengagement of a mind that has given the block up. Ambiguity: the trait -- a standing tolerance of the unresolved, from the low threshold that needs closure fast to the high one that can sit in the not-yet-understood.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so an appraised failure to comprehend warrants confusion wherever it strikes. The link: each persona links, under Projection, the confusion a moment runs -- what fails to integrate, whether the persona works the block or gives it up, and how much ambiguity its standing disposition can hold.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real confusion. Whether the confusion is true to the scene -- a genuine impasse of blocked comprehension, forking to worked resolution or hardened disengagement, distinguished from the mere startle of surprise and the flat disengagement of boredom -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its confusion under Projection: what will not integrate, and whether the persona works the impasse toward resolution or lets it stall into frustration and disengagement. Read it in the halt and the effort at the block -- the re-reading, the frown, the question -- and keep it the impasse of blocked comprehension: the brief alarm of a violated expectation is the surprise engine's, the flat unengaged mind seeking any target is the boredom engine's, the pull toward the graspable is the interest engine's, and the hot response to a blocked goal is anger's frustration form. This engine owns the knowledge emotion of the not-yet-comprehended."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
