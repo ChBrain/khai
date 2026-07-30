@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-self-discrepancy",
+  "version": "0.1.0",
+  "description": "khai engine content, the self-discrepancy domain: the gap a persona feels between its actual self and a self-guide it is measured against -- the ideal self it hopes to be (whose shortfall brings dejection) and the ought self it feels bound to be (whose shortfall brings agitation) -- across the ideal and ought discrepancies, tuned by a standing discrepant profile (Higgins).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/self-discrepancy"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "self-discrepancy",
+    "tagline": "Self-discrepancy as process: the gap a persona feels between its actual self and a self-guide -- the ideal self it hopes to be, whose shortfall brings dejection (sadness, disappointment), and the ought self it feels bound to be, whose shortfall brings agitation (anxiety, guilt) -- across the ideal and ought discrepancies, tuned by a standing discrepant profile (Higgins).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_self_discrepancy.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_ideal.md",
+        "type": "process",
+        "parent": "process_self_discrepancy.md"
+      },
+      {
+        "file": "process_ought.md",
+        "type": "process",
+        "parent": "process_self_discrepancy.md"
+      },
+      {
+        "file": "position_discrepant.md",
+        "type": "position",
+        "parent": "process_self_discrepancy.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_self_discrepancy.md) declares self-discrepancy as the comparison of a persona's actual self against a self-guide, and the emotional consequence of a gap (Higgins). A persona holds guides for who it should be -- the ideal self (its hopes, wishes, aspirations) and the ought self (its duties, obligations, responsibilities) -- and measures its actual self against them; a gap is not neutral but carries a specific affective signature by which guide it falls short of. Where regulatory focus reads the strategic manner in which a goal is pursued (eager toward gains, or vigilant against losses), self-discrepancy reads the felt gap between the self and its standard and the emotion that gap produces. The law makes a persona's shortfall against its own self-guides a source of patterned affect.",
+      "issue": "Two discrepancies, by which guide the actual self falls short of, each with its own emotion (Higgins). Ideal: the gap between the actual self and the ideal self -- the persona failing to be who it hoped to be, which reads as the absence of positive outcomes and brings dejection: sadness, disappointment, discouragement, dissatisfaction, a deflated falling-short. Ought: the gap between the actual self and the ought self -- the persona failing to be who it feels bound to be, which reads as the presence of negative outcomes, a threat, and brings agitation: anxiety, guilt, unease, self-reproach, an on-edge falling-short. Plus the standing profile: discrepant -- how large and accessible a persona's discrepancies chronically are, and whether the ideal or the ought guide dominates its self-evaluation.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so a persona's self-guides and the affect of falling short of them hold system-wide. The link: each persona links, under Projection, the self-discrepancy a moment runs -- which guide its actual self is measured against, how far it falls short, and the dejection or agitation the gap produces.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real self-discrepancy. Whether the discrepancy is true to the scene -- a genuine gap between the actual self and a specific guide, the ideal gap reading as dejection and the ought gap as agitation, and the whole kept apart from the pursuit orientation of regulatory focus -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its discrepancy under Projection: which self-guide it is measured against, how far its actual self falls short, and the resulting affect -- dejection where it fails its ideal, agitation where it fails its ought. Read it in the specific emotional colour of the shortfall, and keep it the self-guide gap: the eager-versus-vigilant manner of pursuing a goal is the regulatory-focus engine's, the dejection emotions themselves are the sadness engine's, the agitation emotions are the anxiety and guilt engines', the global sense of self-worth is the self-esteem engine's, the present self-story is identity's, and the future selves one could become are the possible-selves engine's. This engine owns the gap between the actual self and its guides, and the affect it carries."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
