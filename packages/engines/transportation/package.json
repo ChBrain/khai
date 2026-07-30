@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-transportation",
+  "version": "0.1.0",
+  "description": "khai engine content, the transportation domain: a persona's absorption into a narrative world -- carried out of the real world and into the story by converging attention, imagery, and feeling, with belief softened and counterarguing stilled -- across the entry, imagery, and resonance forms, tuned by a standing transportability.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/transportation"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "transportation",
+    "tagline": "Transportation as process: a persona's absorption into a narrative world -- carried out of the here-and-now and into the story by converging attention, imagery, and feeling, returning changed, with belief softened and counterarguing stilled -- across the entry, imagery, and resonance forms, tuned by a standing transportability (Green & Brock; Gerrig).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_transportation.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_entry.md",
+        "type": "process",
+        "parent": "process_transportation.md"
+      },
+      {
+        "file": "process_imagery.md",
+        "type": "process",
+        "parent": "process_transportation.md"
+      },
+      {
+        "file": "process_resonance.md",
+        "type": "process",
+        "parent": "process_transportation.md"
+      },
+      {
+        "file": "position_transportability.md",
+        "type": "position",
+        "parent": "process_transportation.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_transportation.md) declares transportation as a persona's absorption into a narrative world: reading, watching, or hearing a story, the persona is carried out of the here-and-now, its attention, imagery, and feeling converging on the events of the tale until the real world recedes and it returns, as Gerrig put it, a traveler come back changed (Green & Brock). Where flow is total absorption in a matched challenge the persona is acting in, transportation is absorption into a narrative the persona is receiving -- carried, not performing -- and its signature is a persuasive one: the transported are less able to counterargue and more apt to take on the story's beliefs. The law makes an engaging narrative a warrant to be carried into it.",
+      "issue": "Three forms the state converges from (Green & Brock's components), plus the trait. Entry: the attentional crossing -- the real world receding as the story world becomes the persona's present, the reader who does not hear their name called. Imagery: the sensory picturing -- the story world seen, heard, and felt in the mind's eye, vivid enough to stand in for perception. Resonance: the emotional engagement -- feeling the fortunes of the tale and its people, moved by events one knows are invented. Transportability: the trait -- a standing readiness to be carried into stories, from the reader lost in any book to the one who stays outside every one.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so an engaging narrative warrants transportation wherever a persona meets one. The link: each persona links, under Projection, the transportation a moment runs -- what narrative carries it, which forms are present (the attentional entry, the imagery, the emotional resonance), and how transportable its standing disposition is.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real transportation. Whether the transportation is true to the scene -- a genuine carrying into a narrative world by converging attention, imagery, and feeling, with the belief-softening signature, distinguished from the challenge-matched absorption of flow and the content-agnostic absorption of the absorption composite -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its transportation under Projection: what story carries it, and with which forms -- the attention crossing over, the images rising, the feeling for invented people. Read it in the real world receding and the persona returning changed, less guarded against the story's claims -- and keep it narrative-specific: the total absorption in a matched challenge one is acting in is the flow engine's, the general content-agnostic absorption of attention is the absorption composite's, the audience's moral bond to particular characters is the allegiance engine's, and the general mechanism of influence is the persuasion engine's, of which narrative transportation is one route. This engine owns being carried into a narrative world."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
