@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-metacognition",
+  "version": "0.1.0",
+  "description": "khai engine content, the metacognition domain: a persona's knowing about its own knowing -- the meta-level monitoring of the object-level (does it know, has it learned, will it remember) and the control it exerts back on it (study more, keep searching, give up) -- across the monitoring, steering, and calibration forms, tuned by a standing metacognitive skill.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/metacognition"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "metacognition",
+    "tagline": "Metacognition as process: a persona's knowing about its own knowing -- the meta-level monitoring of the object-level (does it know, has it learned, will it remember) and the control it steers back on it (study more, keep searching, give up) -- across the monitoring, steering, and calibration forms, tuned by a standing metacognitive skill (Nelson & Narens; Flavell; Koriat).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_metacognition.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_monitoring.md",
+        "type": "process",
+        "parent": "process_metacognition.md"
+      },
+      {
+        "file": "process_steering.md",
+        "type": "process",
+        "parent": "process_metacognition.md"
+      },
+      {
+        "file": "process_calibration.md",
+        "type": "process",
+        "parent": "process_metacognition.md"
+      },
+      {
+        "file": "position_metacognitive.md",
+        "type": "position",
+        "parent": "process_metacognition.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_metacognition.md) declares metacognition as a persona's knowing about its own knowing: a meta-level that watches the object-level of cognition and steers it, on Nelson and Narens's two-level model with its two flows -- monitoring, where the meta-level reads the object-level (does it know this, has it learned it, will it remember, is this on the tip of its tongue), and control, where the meta-level acts on the object-level (study this longer, keep searching memory or give up, switch strategy). Where self-monitoring is the watching of one's own self-presentation to others, metacognition is the watching of one's own mind, its knowledge and its learning. The law makes a persona's cognitive states a thing it can read and act on, not merely have.",
+      "issue": "Three forms the loop takes, plus the trait. Monitoring: the meta-level reading the object-level -- judgments of learning, feelings of knowing, the tip-of-the-tongue, and the confidence a persona holds in what it knows and recalls. Steering: the meta-level acting on the object-level -- allocating study time to the not-yet-learned, deciding whether to keep searching memory or abandon the effort, choosing which strategy to bring, all governed by what the monitoring reports. Calibration: the accuracy of the monitoring -- whether the persona's confidence matches its performance, and how over- or under-confident it runs, since a monitor that misreads the object-level steers it wrong. Metacognitive: the trait -- a standing skill at knowing one's own mind, from the persona finely calibrated about what it knows to the one systematically blind to the edges of its knowledge.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so a persona's cognitive states are readable and controllable wherever cognition runs. The link: each persona links, under Projection, the metacognition a moment runs -- what it is monitoring about its own knowing, how it steers its cognition on that reading, and how well-calibrated its standing skill is.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real metacognition. Whether the metacognition is true to the scene -- a genuine reading of the persona's own knowledge states and a control that follows from it, distinguished from the watching of self-presentation and from the object-level cognition itself -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its metacognition under Projection: what it knows about what it knows, and how that steers its effort -- what it studies, what it keeps searching for, when it trusts a memory and when it doubts it. Read it in the persona managing its own cognition, and its calibration in whether its confidence tracks its performance -- and keep it the knowing about knowing: the object-level cognition itself is the wider cognition's, the watching of self-presentation is the self-monitoring engine's, the systematic errors of miscalibration (overconfidence, the Dunning-Kruger effect, the curse of knowledge) are the bias engine's members, and the knowledge emotions that flag a gap are the curiosity, interest, and confusion engines'. This engine owns the monitoring and control of one's own cognition."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
