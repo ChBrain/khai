@@ -1,0 +1,67 @@
+{
+  "name": "@chbrain/khai-engine-self-construal",
+  "version": "0.1.0",
+  "description": "khai engine content, the self-construal domain: a persona's resting sense of where the self is bounded -- as a separate, autonomous individual defined by its own attributes, or as a connected self defined by its relationships, roles, and groups -- across the independent and interdependent construals (Markus & Kitayama; Triandis; Singelis).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/self-construal"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "self-construal",
+    "tagline": "Self-construal as position: a persona's resting sense of where the self is bounded -- as a separate, autonomous individual defined by its own attributes, or as a connected self defined by its relationships, roles, and groups -- across the independent and interdependent construals (Markus & Kitayama; Triandis; Singelis).",
+    "type": "position",
+    "anchor": "position_self_construal.md",
+    "expressions": {
+      "independent": "position_independent.md",
+      "interdependent": "position_interdependent.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_self_construal.md) declares a persona's resting sense of where its self is bounded: whether it takes itself to be a separate, self-contained individual, defined by its own internal attributes and continuous across situations, or a connected self, defined by its relationships, roles, and group memberships and taking its shape from the situation it is in (Markus & Kitayama). Where the construal engine is Construal-Level Theory (the abstraction of a mental representation by psychological distance) -- a different sense of the word entirely -- self-construal is the boundary of the self, the default weighting of I against we that a persona brings before any particular relationship or group. The law makes a persona's self-boundary a standing part of how it reads itself and others.",
+      "issue": "Two construals, the poles of the self-boundary (Markus & Kitayama; Singelis). Independent: the self as a bounded, autonomous unit -- defined by its own traits, abilities, and preferences, stable across contexts, realized by expressing and asserting what is inside it, its worth in standing out and being consistent. Interdependent: the self as fundamentally connected -- defined by its relationships, roles, and group memberships, contextual and flexible, realized by fitting in, reading others, and maintaining harmony, its worth in belonging and in adjusting. The two are separable rather than strictly opposed: a persona (or a culture) tilts toward one as its default, but can hold and draw on both, and the weighting can shift with the situation it is primed into.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so a persona's self-boundary holds system-wide beneath its dealings. The link: each persona links, under Projection, the self-construal it runs on -- whether it meets a moment as a bounded individual expressing itself or as a connected self reading and fitting the situation.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real self-construal. Whether the construal is true to the persona -- a genuine default weighting of self against relationship, its independent and interdependent poles distinguished, and kept apart from the construal-level abstraction that shares its name -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give each persona its construal under Projection: whether it defines itself from within and expresses itself, or defines itself through its ties and adjusts to them -- and read it in how the persona sources its worth and its choices, standing out and holding consistent, or fitting in and reading the room. Keep it the boundary of the self: the identification with a specific group is the social-identity engine's, the present self-story is identity's, the resting sense of one's own worth is the self-esteem engine's, the strength of a culture's norms is the tightness-looseness engine's, and the abstraction of a representation by distance is the construal engine's. This engine owns where a persona draws the line around its self."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
