@@ -1,0 +1,69 @@
+{
+  "name": "@chbrain/khai-engine-moral-identity",
+  "version": "0.1.0",
+  "description": "khai engine content, the moral-identity domain: how central being a moral person is to the persona's self-concept -- the self-regulatory anchor that pulls conduct toward the moral self it is built on -- across the internalized, symbolic, custodian, and peripheral standings.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/moral-identity"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "moral-identity",
+    "tagline": "Moral identity as position: how central being a moral person is to the persona's self-concept -- the self-regulatory anchor whose pull on conduct comes from the need to stay consistent with the moral self one is built on -- across the internalized, symbolic, custodian, and peripheral standings (Aquino & Reed; Blasi).",
+    "type": "position",
+    "anchor": "position_moral_identity.md",
+    "expressions": {
+      "internalized": "position_internalized.md",
+      "symbolic": "position_symbolic.md",
+      "custodian": "position_custodian.md",
+      "peripheral": "position_peripheral.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_moral_identity.md) declares how central being a moral person is to the persona's self-concept -- a self-schema built around moral traits (caring, fair, honest, kind) that a persona holds to different degrees. Where the virtue engine reads a virtue as an event fired in a moment and never classifies the persona, moral identity is the standing centrality of the moral self, and its force on conduct comes from the motive to stay consistent with the self one takes oneself to be (Blasi's self-consistency). The law makes the moral self a standing part of who the persona is, carried beneath its conduct.",
+      "issue": "Four standings a persona may hold, the quadrants of Aquino and Reed's two dimensions -- how deeply moral traits are rooted in the private self (internalization) and how far the moral self is expressed outwardly (symbolization). Internalized: high private centrality, low outward display -- the quiet moral self, morality deep in the self-concept and strongly self-regulating, but not broadcast. Symbolic: high outward expression, lower private centrality -- the moral self enacted and displayed, moral action visible and self-presented. Custodian: both high -- morality core to the self and enacted, the integrated moral identity that governs conduct. Peripheral: both low -- morality not central to the self, its self-regulatory pull weak, moral behavior driven by other motives when it comes.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the moral self holds system-wide beneath every plan. The link: each persona links, under Projection, the moral-identity standing it holds -- how central being moral is to who it is, and whether that centrality lives inwardly, outwardly, in both, or in neither.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real moral-identity standing. Whether the standing is true to the persona -- the centrality genuine, the internalized and symbolic sides distinguished, the self-consistency pull on conduct legible, and the whole kept apart from the event-level firing of a virtue -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give each persona its standing under Projection: how central the moral self is, and where that centrality lives. Read it in how hard the persona works to stay consistent with the moral person it takes itself to be, and in what a breach of that self costs it -- and keep it the standing self-structure: the firing of a virtue as an event is the virtue engine's, the reading of another's conduct against a moral foundation is the moral-judgment engine's, the acute emotions of guilt, shame, and pride are the self-conscious composite's, and the general self-concept is the identity engine's. This engine owns how central being moral is to who the persona is."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
