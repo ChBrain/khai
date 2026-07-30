@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-ostracism",
+  "version": "0.1.0",
+  "description": "khai engine content, the ostracism domain: being ignored and excluded, and the staged response it triggers -- the reflexive pain and threat to belonging, control, self-esteem, and meaningful existence, the reflective coping that follows, and the resignation of prolonged exclusion.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/ostracism"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "ostracism",
+    "tagline": "Ostracism as process: being ignored and excluded, and the staged response it triggers -- a reflexive pain and threat to belonging, control, self-esteem, and meaningful existence, then a reflective coping that fortifies the threatened needs, then the resignation of prolonged exclusion, across the reflexive, reflective, and resignation stages (Williams' temporal need-threat model).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_ostracism.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_reflexive.md",
+        "type": "process",
+        "parent": "process_ostracism.md"
+      },
+      {
+        "file": "process_reflective.md",
+        "type": "process",
+        "parent": "process_ostracism.md"
+      },
+      {
+        "file": "process_resignation.md",
+        "type": "process",
+        "parent": "process_ostracism.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_ostracism.md) declares ostracism as being ignored and excluded -- the group turning its back, the silent treatment, the unanswered bid -- and the threat it lands on four fundamental needs: belonging, control, self-esteem, and meaningful existence (Williams). Where loneliness is the persona's chronic, subjective sense of a gap between the connection it has and wants, ostracism is the acute event of being cut off by others, and its response runs a characteristic temporal arc. The law makes an appraised exclusion a warrant to feel the reflexive pain and to move through the stages that follow.",
+      "issue": "Three stages the response runs (Williams' temporal need-threat model). Reflexive: the immediate sting -- a fast, source-independent social pain that hurts even when the ostracism is trivial, expected, or by a despised group, and the sharp felt threat to the four needs. Reflective: the coping -- the persona appraises the exclusion and moves to fortify the threatened needs, either prosocially (working to reconnect, attending to others, complying) or antisocially (aggression and control-reassertion when belonging feels beyond reach). Resignation: the chronic pole -- when ostracism is prolonged and inescapable, the coping is spent and gives way to alienation, helplessness, depression, and a settled sense of unworthiness.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so an appraised exclusion warrants the ostracism response wherever it falls. The link: each persona links, under Projection, the ostracism a moment runs -- what exclusion is appraised, which of the four needs it most threatens, and which stage the persona is in (the reflexive sting, the reflective coping, or the resignation of the chronically excluded).",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real ostracism. Whether the ostracism is true to the scene -- a genuine exclusion, its reflexive pain source-independent, its coping forked prosocial or antisocial, its resignation earned by prolongation, and the whole distinguished from the chronic subjective gap of loneliness -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its ostracism under Projection: what exclusion is met, which needs it threatens, and which stage it runs. Read it in the sting of being unseen and the scramble to restore the threatened needs -- and keep it the event, not the trait: the chronic subjective sense of insufficient connection is the loneliness engine's, the discrediting mark that invites exclusion is the stigma engine's, and the violation of trust by an intimate is the betrayal engine's. This engine owns being excluded and the staged response to it."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
