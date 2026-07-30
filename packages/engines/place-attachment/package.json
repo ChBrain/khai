@@ -1,0 +1,69 @@
+{
+  "name": "@chbrain/khai-engine-place-attachment",
+  "version": "0.1.0",
+  "description": "khai engine content, the place-attachment domain: the enduring affective bond between a persona and a specific meaningful place -- rootedness, the place as part of the self, and the ache of displacement -- across the rooted, dependence, homesick, and placeless standings.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/place-attachment"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "place-attachment",
+    "tagline": "Place attachment as position: the enduring affective bond between a persona and a specific meaningful place -- the place woven into the self, or needed for what it affords, or ached for when lost -- across the rooted, dependence, homesick, and placeless standings (Low & Altman; Scannell & Gifford).",
+    "type": "position",
+    "anchor": "position_place_attachment.md",
+    "expressions": {
+      "rooted": "position_rooted.md",
+      "dependence": "position_dependence.md",
+      "homesick": "position_homesick.md",
+      "placeless": "position_placeless.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_place_attachment.md) declares the enduring affective bond a persona holds to a specific meaningful place -- a home, a town, a landscape, a room. Where the space engine reads the setting as a mover (what a place affords, holds, offers, or withholds in the moment), place attachment is the person-side bond carried to a particular place over time, and it borrows the attachment frame -- the place as a secure base and safe haven -- applied to place rather than to people. The law makes a persona's bond to place a standing part of who and where it is.",
+      "issue": "Four standings a persona may hold toward its places (Scannell & Gifford; Low & Altman). Rooted: the identity bond -- the place woven into the self, home in the deep sense, a source of belonging and continuity (place-identity; Relph's rootedness). Dependence: the functional bond -- the place valued for what it affords, serving the persona's goals and needs better than an alternative would (place-dependence). Homesick: the severed bond carried -- displaced from a place still held dear, the ache for a home left behind or lost, homesickness and the grief of a changed home. Placeless: the absent bond -- at home nowhere, no place woven into the self, mobile and unrooted (Relph's placelessness).",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so a persona's bond to place holds system-wide beneath its movements. The link: each persona links, under Projection, the place-attachment standing it holds -- which places it is bonded to and how, or whether it is unrooted or displaced.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real place-attachment standing. Whether the standing is true to the persona -- the bond to a specific place, its identity and functional strands distinguished, the ache of displacement earned, and the whole kept apart from the setting's own momentary pull -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give each persona its standing under Projection: which places it holds and how, or whether it is placeless or displaced. Read it in how the persona is oriented by its places -- where it is at home, what a place is worth to it, what leaving or losing one costs -- and keep it the person-side bond to a particular place: the setting read as a mover in the moment is the space engine's, the bond to other people is the attachment engine's, the sentimental longing for the past is the nostalgia engine's, and the acute grief of a loss is the grief engine's. This engine owns the enduring bond a persona holds to a place."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
