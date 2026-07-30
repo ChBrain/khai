@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-extended-self",
+  "version": "0.1.0",
+  "description": "khai engine content, the extended-self domain: a possession experienced as a part of the self -- an object into which a persona's identity extends, so that having it enlarges the self and losing it diminishes it -- across the possessor standing, the appropriation that takes an object into the self, and the dispossession that tears it out (Belk; Csikszentmihalyi & Rochberg-Halton; James).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/extended-self"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "extended-self",
+    "tagline": "Extended self as piece: a possession experienced as a part of the self -- an object into which a persona's identity extends, so that having it enlarges the self and losing it diminishes it -- across the possessor who holds it as self, the appropriation that takes an object in, and the dispossession that tears it out (Belk; Csikszentmihalyi & Rochberg-Halton; James).",
+    "type": "piece",
+    "members": [
+      {
+        "file": "piece_extended_self.md",
+        "type": "piece",
+        "parent": null
+      },
+      {
+        "file": "position_possessor.md",
+        "type": "position",
+        "parent": "piece_extended_self.md"
+      },
+      {
+        "file": "process_appropriation.md",
+        "type": "process",
+        "parent": "piece_extended_self.md"
+      },
+      {
+        "file": "process_dispossession.md",
+        "type": "process",
+        "parent": "piece_extended_self.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Piece. The root (piece_extended_self.md) declares a possession experienced as a part of the self: an ordinary object -- a tool, a garment, a car, a keepsake, a home's contents -- into which a persona's identity has extended, so that the object is not merely owned but is felt as self (Belk; James's material self). Where identity holds the persona's present self-story and place-attachment the bond to a specific place, the extended self is the self stored in a thing: an object cathected with identity, non-fungible to its owner even where fungible to the market. The heirloom, the totem, and the document are special cases of it -- the possession made inalienable to a line, made sacred to a collective, made an inscribed record; this is the ordinary private case beneath them. The law makes a persona's possessions a possible store of its self.",
+      "issue": "One standing and two processes around the object-as-self (Belk; Csikszentmihalyi & Rochberg-Halton). Possessor: the persona whose self a particular object extends into -- holding it not as bare property but as a part of itself, enlarged by having it and threatened by its loss. Appropriation: the taking of an object into the self -- through controlling and mastering it, creating or shaping it, knowing it intimately, or investing time and psychic energy in it, until it crosses from a thing owned to a thing that is self. Dispossession: the tearing of an object out of the self -- loss, theft, damage, or divestment -- which shrinks the self it carried, a wound felt as diminishment and grieved as more than the loss of property; sometimes eased by a deliberate divestment that draws the self back out of the object before letting it go.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so a persona's possessions can carry its self system-wide. The link: each persona links, under Projection, the extended self a moment runs on -- which object it holds as part of itself, how the object came to be self, or what its loss tears away.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real extended-self relation. Whether the relation is true to the scene -- an object genuinely felt as self rather than as mere property, the appropriation that made it so and the diminishment its loss would cost, and the whole kept apart from the present self-story and from the mere valuation of what one owns -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its extended self under Projection: which possession carries a part of who it is, how the object became self, and what its loss would diminish. Read it in the persona treating an object as itself -- guarding it past its price, wounded by its loss beyond the cost of replacing it -- and keep it the possession-as-self: the present self-story is identity's, the bond to a place is place-attachment's, the possession made inalienable to a line is the heirloom engine's, made sacred to a collective the totem engine's, made an inscribed record the document engine's, the mere over-valuation of what one owns is the bias engine's endowment member, and the acute grief of a loss is the grief engine's. This engine owns the object experienced as a part of the self."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
