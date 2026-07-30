@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-coping",
+  "version": "0.1.0",
+  "description": "khai engine content, the coping domain: the effortful, appraisal-driven repertoire a persona deploys against a stressor -- sizing up what is at stake and what can be done, acting on the problem, or escaping it -- across the appraisal, problem-focused, and avoidant forms (Lazarus & Folkman; Carver).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/coping"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "coping",
+    "tagline": "Coping as process: the effortful, appraisal-driven repertoire a persona deploys against a stressor -- sizing up what is at stake and what can be done, acting on the problem, or escaping it -- across the appraisal, problem-focused, and avoidant forms, with the management of the emotional response itself handed to the regulation engine (Lazarus & Folkman; Carver).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_coping.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_appraisal.md",
+        "type": "process",
+        "parent": "process_coping.md"
+      },
+      {
+        "file": "process_problem.md",
+        "type": "process",
+        "parent": "process_coping.md"
+      },
+      {
+        "file": "process_escape.md",
+        "type": "process",
+        "parent": "process_coping.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_coping.md) declares coping as the effortful, appraisal-driven management of a stressor: the transactional account (Lazarus & Folkman), where a demand is appraised as taxing or exceeding the persona's resources, and the persona deploys a deliberate repertoire to handle it. Where stress is the involuntary autonomic routing a threat triggers -- the body's mobilization, no effort required -- coping is the effortful response the persona chooses, launched and steered by how it sizes up the stressor. Where the regulation engine owns the moves that manage an emotion along its timeline, coping owns the handling of the stressor itself, and hands the management of the emotional response across. The law makes a persona's effortful response to a stressor a deliberate, appraisal-driven repertoire rather than a reflex.",
+      "issue": "Three forms of the coping response, launched by appraisal (Lazarus & Folkman; Carver). Appraisal: the sizing-up that starts and steers coping -- primary appraisal of what is at stake (harm already done, threat ahead, or challenge to be met) and secondary appraisal of what can be done about it, updated as the encounter unfolds. Problem-focused: acting on the stressor -- planning, taking active steps, seeking instrumental support, and altering or removing the source of the demand, deployed most where the persona appraises the stressor as changeable. Avoidant: escaping the stressor -- distraction, denial, wishful thinking, and behavioral or mental disengagement, a turning-away that relieves in the short run and, sustained, tends to leave the demand unmet. The management of the emotional response itself -- soothing, reframing, expressing, or suppressing the feeling -- is emotion-focused coping, handed to the regulation engine.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so a persona's effortful response to a stressor holds system-wide. The link: each persona links, under Projection, the coping a moment runs -- how it appraises the stressor, and whether it acts on the problem or escapes it.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real coping response. Whether the coping is true to the scene -- a genuine appraisal-driven, effortful handling of a stressor, its appraisal, problem-focused, and avoidant forms distinguished, and kept apart from the involuntary stress response and the emotion-timeline moves of regulation -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its coping under Projection: how it appraises the stressor -- what is at stake, and what it can do -- and whether it acts on the problem or turns away from it. Read it in the effortful, chosen response to a demand, not the body's reflex, and keep it the handling of the stressor: the involuntary autonomic routing is the stress engine's, the management of the emotional response along its timeline -- emotion-focused coping -- is the regulation engine's, the drawing of meaning from values and beliefs under enduring stress is the meaning engine's, and the long perseverance toward a goal is the grit engine's. This engine owns the effortful, appraisal-driven repertoire deployed against a stressor."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
