@@ -1,0 +1,40 @@
+---
+updated: "2026-07-30"
+---
+
+# Moral Licensing: Reference
+
+## Line of Work
+
+Moral licensing as a **process** engine: the self-regulation of a persona's moral conduct against a set-point, where a recent moral record bears on what the persona permits itself next -- taken across the two directions the balance runs. The domain does not model the switching-off of self-sanction for a specific harm by reinterpreting it, which is the moral-disengagement engine's; nor the credentialing reframe that makes an ambiguous act read as already cleared, which is owned as the bias engine's moral-credential member; nor the standing centrality of morality to the self-concept, which is the moral-identity engine's; nor the felt guilt that often drives compensatory repair, which is the guilt engine's; nor the general reduction of inconsistency, which is the dissonance engine's. It models the balance itself: conduct held near a felt-sufficient set-point, licensed upward into a lapse when the record is in surplus and pulled back into compensatory good when it is in deficit.
+
+The spine is the moral self-regulation literature. Monin and Miller's founding demonstration showed that establishing moral credentials -- a chance to prove oneself unprejudiced -- frees people to later express attitudes that would otherwise look prejudiced, the past good act licensing the later questionable one. Merritt, Effron and Monin's review consolidates the effect and distinguishes its two mechanisms: moral credits, a running balance in which past good deeds are banked and later bad ones spend them, and moral credentials, in which past good deeds change the very meaning of an ambiguous later act so it no longer reads as a transgression -- this engine owns the credits/balance dynamic and delegates the credentialing reframe to the bias engine. Sachdeva, Iliev and Medin frame the whole as self-regulation around a set-point -- their sinning saints and saintly sinners -- in which people who feel moral license themselves to lapse and people whose moral self is threatened compensate, conduct regulated toward sufficiency rather than maximized. Zhong and Liljenquist's Macbeth effect gives the compensatory arm its sharpest form: a threat to one's moral self prompts physical cleansing, the body pressed into the service of moral repair. The altitudes are those: the balance, its indulgence, and its cleansing.
+
+## Origin
+
+The moral self-regulation literature, applied directly as engine constraints across process.
+
+| Source                                          | Key Work                                                                                                   | Scope                                                                                                                                            |
+| :---------------------------------------------- | :--------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Benoit Monin & Dale T. Miller**               | _"Moral Credentials and the Expression of Prejudice"_ (JPSP, 2001)                                         | The founding -- a past good act licensing a later questionable one. The root; the indulgence direction.                                          |
+| **Anna Merritt, Daniel Effron & Benoit Monin**  | _"Moral Self-Licensing: When Being Good Frees Us to Be Bad"_ (Social and Personality Psych. Compass, 2010) | The consolidation and the credits-versus-credentials distinction. The root; the indulgence direction (credits); the bound to bias (credentials). |
+| **Sonya Sachdeva, Rumen Iliev & Douglas Medin** | _"Sinning Saints and Saintly Sinners: The Paradox of Moral Self-Regulation"_ (Psych. Science, 2009)        | The set-point framing -- licensing after moral affirmation, compensation after moral threat. The root; both directions.                          |
+| **Chen-Bo Zhong & Katie Liljenquist**           | _"Washing Away Your Sins: Threatened Morality and Physical Cleansing"_ (Science, 2006)                     | The Macbeth effect -- moral threat prompting physical cleansing as compensatory repair. The cleansing direction.                                 |
+
+## Restrictions
+
+What the engine refuses to model, and to whom it delegates.
+
+- **Moral disengagement**: The engine models the trade against a moral balance, not the deactivation of self-sanction. Moral disengagement -- the cognitive moves (moral justification, euphemistic labeling, displacement of responsibility, dehumanization) that switch off self-censure so a specific harm can be done without guilt (Bandura) -- is owned by the moral-disengagement engine; moral licensing keeps the moral standard intact and the bad act still counted as bad, trading it against a running record rather than reinterpreting it as not-wrong. The act is afforded, not justified: that is the line between the two.
+- **The moral-credential bias**: The engine models the moral-credits balance, not the credentialing reframe. The reframe by which one clean act issues a standing permit, so an ambiguous later act reads as pre-cleared without a fresh check, is owned as the bias engine's moral-credential member (a self-serving judgment bias in the self-credit family). Moral licensing owns the credits dynamic -- the persona spending a genuine surplus on a lapse it still counts as a lapse, and repairing a deficit with compensatory good -- and delegates the meaning-changing credential to bias. The two mechanisms are the credits and credentials of the same literature, split across the two engines.
+- **Moral identity**: The engine models the regulation, not the set-point's basis. Moral identity -- the standing centrality of morality to a persona's self-concept, how much being moral matters to who it is -- is owned by the moral-identity engine; moral licensing is the dynamic that regulates conduct around that standing sense, and it draws on moral identity (a persona for whom morality is central has more to protect and to spend) without being it. The identity is the set-point's ground; the licensing is the balancing around it.
+- **Guilt and disgust**: The engine models the compensatory move, not the emotions that drive or colour it. The felt guilt that often provokes the reach for repair is the guilt engine's; the bodily disgust that the Macbeth effect borrows, the sense of being unclean, is the disgust engine's. Cleansing here is the compensatory behavior itself -- the deficit-repair that restores the moral self -- handing the emotions that motivate and flavor it across.
+- **Dissonance**: The engine models the specifically moral balance, not the general drive to consistency. Cognitive dissonance -- the discomfort of holding inconsistent cognitions and the drive to reduce it -- is owned by the dissonance engine; moral licensing is the narrower self-regulation of moral conduct against a moral set-point, which may recruit dissonance-like discomfort in its cleansing arm but is defined by the moral accounting, not by inconsistency as such.
+
+## Encoding
+
+Source to constraint, per file.
+
+- **[moral-licensing](process_moral_licensing.md)** (the root, process): The self-regulation of conduct against a moral set-point, past record bearing on present permission. Anchored by Sachdeva (the set-point) and Monin & Miller (the founding).
+- **[indulgence](process_indulgence.md)** (process, direction): The licensing arm -- banked moral credit spent on a later lapse the persona feels entitled to, the act afforded not justified. Anchored by Monin & Miller and Merritt/Effron/Monin (the credits model).
+- **[cleansing](process_cleansing.md)** (process, direction): The compensatory arm -- a transgression or moral threat repaired with compensatory good, or with the literal clean that stands in for it. Anchored by Zhong & Liljenquist (the Macbeth effect) and Sachdeva (compensation after threat).

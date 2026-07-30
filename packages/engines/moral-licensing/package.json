@@ -1,0 +1,79 @@
+{
+  "name": "@chbrain/khai-engine-moral-licensing",
+  "version": "0.1.0",
+  "description": "khai engine content, the moral-licensing domain: the self-regulation of a persona's moral conduct against a set-point, where past good buys latitude for a later lapse and past wrong drives compensatory good -- across the indulgence that spends banked moral credit and the cleansing that repairs a moral deficit (Monin & Miller; Sachdeva; Zhong & Liljenquist).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/moral-licensing"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "moral-licensing",
+    "tagline": "Moral licensing as process: the self-regulation of a persona's moral conduct against a set-point -- past good buying latitude for a later lapse, past wrong driving compensatory good -- across the indulgence that spends banked moral credit and the cleansing that repairs a moral deficit (Monin & Miller; Sachdeva; Zhong & Liljenquist).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_moral_licensing.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_indulgence.md",
+        "type": "process",
+        "parent": "process_moral_licensing.md"
+      },
+      {
+        "file": "process_cleansing.md",
+        "type": "process",
+        "parent": "process_moral_licensing.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_moral_licensing.md) declares moral licensing as the self-regulation of conduct against a moral set-point: a persona reads its recent moral record and adjusts its present permission by it, so a run of good deeds loosens the reins and a lapse tightens them (Sachdeva's sinning saints and saintly sinners). It runs in two directions -- indulgence, where banked moral credit is spent on a later questionable act, and cleansing, where a transgression or a threat to the moral self drives compensatory good to restore the balance. Where moral disengagement switches off self-sanction for a specific harm by reinterpreting it, moral licensing keeps the moral standard intact and trades against a running balance -- the act is not justified, it is afforded. The law makes a persona's recent moral record a live influence on what it permits itself next.",
+      "issue": "Two directions of the moral balance (Monin & Miller; Zhong & Liljenquist). Indulgence: the licensing direction -- a prior good deed banks moral credit, and the persona spends it, feeling entitled to a lapse it would not otherwise allow itself; the good record does not make the bad act good, it makes the persona feel it has earned the latitude (the moral-credits model). Cleansing: the compensatory direction -- a transgression, or a mere threat to the persona's sense of itself as moral, opens a deficit the persona moves to close, doing compensatory good (or even literal cleansing) to repair the moral self and rebalance the ledger (the Macbeth effect; compensatory ethics). The two are the up and down of one self-regulating system that holds moral conduct near a set-point rather than maximizing it.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so a persona's recent moral record bears on its present conduct system-wide. The link: each persona links, under Projection, the moral-licensing move a moment runs -- whether it is spending banked credit on a lapse or repairing a deficit with compensatory good.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real moral-licensing move. Whether the move is true to the scene -- a genuine trade against a moral balance rather than a reinterpretation of the act itself, the indulgence reading as earned latitude and the cleansing as deficit-repair, and the whole kept apart from the switching-off of self-sanction -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its move under Projection: what recent record it is reading, and whether it is licensing a lapse against banked credit or cleansing a deficit with compensatory good. Read it in the balance-keeping -- the good deed that quietly buys the later shortcut, the transgression that provokes a burst of virtue -- and keep it the trade against a moral balance: the switching-off of self-sanction for a specific harm is the moral-disengagement engine's, the credentialing reframe that makes an ambiguous act read as pre-cleared is the bias engine's moral-credential member, the standing centrality of morality to the self is the moral-identity engine's, the felt guilt that often drives cleansing is the guilt engine's, and the general reduction of inconsistency is the dissonance engine's. This engine owns the self-regulation of conduct against a moral set-point."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
