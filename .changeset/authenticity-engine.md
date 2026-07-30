@@ -1,0 +1,11 @@
+---
+"@chbrain/khai-engine-authenticity": patch
+---
+
+Add the authenticity engine (multi-type: process, position) -- living and acting from one's true self, one's own values, feelings, and convictions, rather than from external pressure or a false front. The alignment of the outward life with the inward truth: what the persona says, chooses, and shows matched to what it actually is. Rooted in Rogers' congruence and Deci & Ryan's true self, structured on Kernis & Goldman's multicomponent account.
+
+- **Root (process):** `authenticity` -- the shown self aligned with the felt one, whether or not it is watched, against the false front.
+- **Components (process), on Kernis & Goldman:** `awareness` (self-knowledge, clear and undistorted -- knowing one's own motives and feelings, folding their awareness and unbiased-processing components), `congruence` (authentic action -- behaving in accord with the true self rather than to please or gain reward, Rogers' match of expression to experience), `transparency` (relational authenticity -- being genuine and open in close relationships, the real self shown to intimates).
+- **Trait (position):** `authentic` -- a standing disposition to live from the true self, against the self-alienation and accepting-external-influence of Wood et al.'s Authenticity Scale.
+
+Warranted (LORE) on Kernis & Goldman (the four-component conceptualization), Rogers (congruence, the fully functioning person), Wood, Linley & Maltby et al. (the Authenticity Scale and its three factors), Deci & Ryan (autonomy and the true self), and Harter/Winnicott (the false self). Bounded against `self-monitoring` (situational tuning of self-presentation -- one can tune the surface while congruent beneath), `self-disclosure` (revealing personal information vs the wider genuineness of being oneself), `identity` (the content of the self vs living from it), `emotional-labor` (the managed display of a work role), and `self-esteem`/`self-compassion` (evaluation and care of the self, orthogonal to truth to it). Set at patch as the free level. No whitelist required -- the `authenticity` root, `awareness`/`congruence`/`transparency` component stems, and `authentic` trait stem are unique.
