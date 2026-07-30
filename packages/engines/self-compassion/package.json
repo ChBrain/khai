@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-self-compassion",
+  "version": "0.1.0",
+  "description": "khai engine content, the self-compassion domain: the reflexive turn of compassion onto oneself in a moment of suffering, failure, or inadequacy -- warmth where there would be judgment, connection where there would be isolation, balance where there would be over-identification -- across the kindness, humanity, and balance forms, tuned by a standing self-compassionateness.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/self-compassion"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "self-compassion",
+    "tagline": "Self-compassion as process: the reflexive turn of compassion onto oneself in a moment of suffering, failure, or inadequacy -- met with warmth rather than judgment, common humanity rather than isolation, and balanced awareness rather than over-identification -- across the kindness, humanity, and balance forms, tuned by a standing self-compassionateness (Neff; Gilbert).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_self_compassion.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_kindness.md",
+        "type": "process",
+        "parent": "process_self_compassion.md"
+      },
+      {
+        "file": "process_humanity.md",
+        "type": "process",
+        "parent": "process_self_compassion.md"
+      },
+      {
+        "file": "process_balance.md",
+        "type": "process",
+        "parent": "process_self_compassion.md"
+      },
+      {
+        "file": "position_self_compassionate.md",
+        "type": "position",
+        "parent": "process_self_compassion.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_self_compassion.md) declares self-compassion as the reflexive turn of compassion onto oneself: in a moment of suffering, failure, or inadequacy, the persona meets its own pain the way it would a suffering friend -- with warmth, not attack. Where self-esteem is a judgment of worth, earned by success and measured against others, self-compassion is unconditional and non-comparative, extended precisely when the self has fallen short. The law makes a persona's own suffering a warrant to soothe rather than to judge, turning the care system inward.",
+      "issue": "Three forms the stance takes, each a component against its negative (Neff), plus the trait. Kindness: self-kindness against self-judgment -- warmth and understanding toward oneself in place of the harsh inner critic. Humanity: common humanity against isolation -- seeing one's failure as part of the shared human condition rather than as a flaw that cuts one off. Balance: mindful balance against over-identification -- holding painful feelings in clear, even awareness rather than being swept away by them or suppressing them. Self-compassionateness: the trait -- a standing readiness to meet one's own suffering with compassion, from the harshly self-critical to the reliably self-kind.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so a persona's own suffering warrants the compassionate turn wherever it falls. The link: each persona links, under Projection, the self-compassion a moment runs -- which components are present (the kindness, the sense of shared humanity, the balanced awareness), and how self-compassionate its standing disposition is.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real self-compassion. Whether the self-compassion is true to the scene -- a genuine turn of warmth onto one's own suffering, non-evaluative and non-comparative, distinguished from the worth-judgment of self-esteem and the self-indulgence it is often confused with -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its self-compassion under Projection: what suffering or failure is met, and with which components -- the kind word to oneself, the sense of not being alone in it, the balanced holding of the pain. Read it in the softening of the inner voice and the turn from attack to care -- and keep it non-evaluative: the judgment of one's worth is the self-esteem engine's, the compassion turned outward on another is the compassion engine's, the release of a specific self-transgression is the forgiveness engine's, and the present-moment awareness as a practice is the grounding engine's. This engine owns the reflexive turn of compassion onto the suffering self."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
