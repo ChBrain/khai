@@ -1,0 +1,69 @@
+{
+  "name": "@chbrain/khai-engine-possible-selves",
+  "version": "0.1.0",
+  "description": "khai engine content, the possible-selves domain: the future-oriented self-representations a persona carries -- what it hopes to become, dreads becoming, realistically expects to become, and has given up becoming -- across the hoped, feared, expected, and lost standings (Markus & Nurius; Oyserman; King).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/possible-selves"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "possible-selves",
+    "tagline": "Possible selves as position: the future-oriented self-representations a persona carries -- what it hopes to become, dreads becoming, realistically expects to become, and has given up becoming -- across the hoped, feared, expected, and lost standings, motivating most when a hope is balanced by its feared opposite and linked to a strategy (Markus & Nurius; Oyserman; King).",
+    "type": "position",
+    "anchor": "position_possible_selves.md",
+    "expressions": {
+      "hoped": "position_hoped.md",
+      "feared": "position_feared.md",
+      "expected": "position_expected.md",
+      "lost": "position_lost.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_possible_selves.md) declares the future-oriented components of a persona's self-concept: cognitive representations of what it could become -- the selves it hopes for, dreads, realistically expects, and has relinquished (Markus & Nurius). Where self-discrepancy reads the present gap between the actual self and the ideal or ought guides a persona is measured against now, and identity holds the present self-story, possible selves are the temporally forward representations -- the self projected into a future it moves toward or away from, the bridge between self-concept and motivation. The law makes a persona's future selves a standing part of who it takes itself to be becoming.",
+      "issue": "Four standings a persona holds toward its future self (Markus & Nurius; King). Hoped: the desired future self -- what the persona would like to become, the successful, admired, or loved self it reaches for. Feared: the dreaded future self -- what it is afraid of becoming, the failed, alone, or ruined self it moves to avoid, often the sharper motivator. Expected: the probable self -- what it realistically anticipates becoming given its trajectory, neither the dream nor the dread but the likely. Lost: the relinquished self -- a possible self given up, the person it could have been and no longer will be, the road not taken carried as identity (King's lost possible selves). A hope motivates most when balanced by its feared counterpart in the same domain and tied to a concrete strategy (Oyserman).",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so a persona's future selves stand beneath its present conduct system-wide. The link: each persona links, under Projection, the possible self a moment runs on -- which future self it is reaching for or fleeing, what it expects, or what it has let go.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real possible-self standing. Whether the standing is true to the persona -- a genuine future self-representation that pulls or repels present action, its hoped, feared, expected, and lost strands distinguished, and kept apart from the present-self gap of self-discrepancy -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give each persona its possible self under Projection: what it hopes to become, what it fears becoming, what it expects, or what it has given up -- and read the future self in how it steers the present, the hope pulling toward and the fear pushing away, strongest when the two are paired and a path is visible. Keep it the future self-representation: the present gap between the actual self and its ideal or ought guides is the self-discrepancy engine's, the present self-story is identity's, a specific end-state pursued is the goal engine's, and the counterfactual ache over a past choice is the regret engine's. This engine owns the selves a persona could yet become."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
