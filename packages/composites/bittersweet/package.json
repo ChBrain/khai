@@ -1,0 +1,86 @@
+{
+  "name": "@chbrain/khai-composite-bittersweet",
+  "version": "0.1.0",
+  "description": "khai composite content, the bittersweet domain: joy and sadness felt together, the mixed emotion the folk mind calls a contradiction -- across the simultaneous blend, the valence-crossing turn, and the poignancy of meaningful endings, read whole across the atom engines it depends on.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/bittersweet"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "bittersweet",
+    "tagline": "The mixed emotion as composite: joy and sadness felt together, the two the folk mind calls opposites running at once -- across the simultaneous blend, the valence-crossing turn, and the poignancy of meaningful endings (Larsen & McGraw; the evaluative space model), read whole across the joy and sadness engines it depends on.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_bittersweet.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_bittersweet_mix.md",
+        "type": "process",
+        "parent": "process_bittersweet.md"
+      },
+      {
+        "file": "process_bittersweet_turn.md",
+        "type": "process",
+        "parent": "process_bittersweet.md"
+      },
+      {
+        "file": "process_bittersweet_meaning.md",
+        "type": "process",
+        "parent": "process_bittersweet.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over two atoms it declares as dependencies. The root (process_bittersweet.md) reads the mixed emotion as one state: joy and sadness co-activated, held together rather than in turn. The two corners are the atoms' own ground -- the uplift is the joy engine's, the sinking the sadness engine's -- and neither, alone, sees the poignant compound they make together. The composite adds no third emotion, only the co-activation the two share and the shapes it takes, resting on the evaluative-space fact that positivity and negativity are separable systems that can fire at once.",
+      "issue": "Three bridges, each a shape of the mix the atoms cannot stage alone. Mix: the simultaneous blend, joy and sadness at full at once -- the poignant, the tears of joy, the smile that is also a goodbye. Turn: the valence-crossing, one sign flipping into the other -- relief as a dread lifts, the letdown as a joy closes, the oscillation that will not settle. Meaning: the poignancy of endings -- the mix peaking when time is bounded and the moment matters, the last day sweet, not only sad.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the mixed read runs wherever its atoms are cast. The link, advisory: a persona living in a mixed moment may link the bridge under Projection, and the audit surfaces the ones staged as a single feeling when both were live.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's mixes are genuinely felt -- both valences live, not one named and the other implied -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Cast both corners from the atoms as usual, then stage the mix: which moment holds joy and sadness at once, which feeling is crossing from one sign to the other, and where a meaningful ending draws the two together. Read the production as both-at-once, never netted to a single valence. The specific bittersweet longing for one's own past is the nostalgia engine's; the mix as a persisting background tone is the mood engine's; this composite owns the mixed emotion itself."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-engine-joy": "^0.1.0",
+    "@chbrain/khai-engine-sadness": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
