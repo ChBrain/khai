@@ -57,8 +57,8 @@ describe("knowing: manifest", () => {
 });
 
 describe("knowing: the atoms arrive with the package", () => {
-  it("re-exports the three dependency engines", () => {
-    expect(Object.keys(atoms).sort()).toEqual(["confusion", "interest", "surprise"]);
+  it("re-exports the four dependency engines", () => {
+    expect(Object.keys(atoms).sort()).toEqual(["awe", "confusion", "interest", "surprise"]);
     for (const atom of Object.values(atoms)) {
       expect(typeof atom.compose).toBe("function");
       expect(atom.manifest.engine).toBeTruthy();

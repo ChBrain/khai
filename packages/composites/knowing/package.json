@@ -1,7 +1,7 @@
 {
   "name": "@chbrain/khai-composite-knowing",
   "version": "0.1.0",
-  "description": "khai composite content, the knowing domain: the knowledge emotions read as one family -- surprise, interest, and confusion, the feelings of a mind meeting the novel and trying to comprehend it -- across the appraisal sort, the transitions among them, and the arc of a whole knowledge episode, read whole over the atom engines it depends on.",
+  "description": "khai composite content, the knowing domain: the knowledge emotions read as one family -- surprise, interest, confusion, and awe, the feelings of a mind meeting what its understanding does not yet cover -- across the appraisal sort, the transitions among them, and the arc of a whole knowledge episode, read whole over the atom engines it depends on.",
   "type": "module",
   "main": "./index.mjs",
   "exports": {
@@ -24,7 +24,7 @@
   ],
   "khai": {
     "engine": "knowing",
-    "tagline": "The knowledge emotions as composite: surprise, interest, and confusion -- the feelings of a mind meeting the novel and trying to comprehend it -- sharing one appraisal space (novelty and coping potential), across the sort that forks an encounter three ways, the turn where the three tip into one another, and the arc of a whole knowledge episode (Silvia; D'Mello & Graesser), read whole over the atom engines it depends on.",
+    "tagline": "The knowledge emotions as composite: surprise, interest, confusion, and awe -- the feelings of a mind meeting what its understanding does not yet cover -- sharing one appraisal space (from a violated expectation through novelty and coping to a vastness that demands accommodation), across the sort that forks an encounter four ways, the turn where they tip into one another, and the arc of a whole knowledge episode (Silvia; D'Mello & Graesser), read whole over the atom engines it depends on.",
     "type": "process",
     "members": [
       {
@@ -63,11 +63,11 @@
       }
     ],
     "card": {
-      "wire": "Attaches at Process, over three atoms it declares as dependencies. The root (process_knowing.md) reads the knowledge emotions as one family: surprise, interest, and confusion, the feelings that fire as a mind meets the novel and works to comprehend it. The three corners are the atoms' own ground -- the jolt is the surprise engine's, the engagement the interest engine's, the impasse the confusion engine's -- and none, alone, sees the appraisal space they share. The composite adds no fourth emotion, only the shared axis -- novelty-complexity and coping potential -- and the motions along it, resting on the fact that one encounter with the unexpected is sorted among the three by how it is appraised.",
-      "issue": "Three bridges, each a shape of the family the atoms cannot stage alone. Sort: one encounter forked three ways -- the expectation violated draws surprise, and then the novel-and-graspable draws interest while the novel-and-ungraspable draws confusion, the appraisals doing the sorting. Turn: the three tipping into one another as the appraisals shift -- surprise settling into interest or into confusion, interest curdling to confusion as the thing outruns the coping, confusion resolving to interest as it comes within reach. Arc: the trajectory of a whole knowledge episode -- the jolt that opens it, the interest or confusion that carries it, and the resolution toward comprehension or the decay toward disengagement.",
-      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the family read runs wherever its atoms are cast. The link, advisory: a persona in a knowledge episode may link the bridge under Projection, and the audit surfaces the ones staged as a single fixed feeling when the encounter should have moved among the three.",
+      "wire": "Attaches at Process, over four atoms it declares as dependencies. The root (process_knowing.md) reads the knowledge emotions as one family: surprise, interest, confusion, and awe, the feelings that fire as a mind meets what its understanding does not yet cover. The four corners are the atoms' own ground -- the jolt is the surprise engine's, the engagement the interest engine's, the impasse the confusion engine's, the accommodation the awe engine's -- and none, alone, sees the appraisal space they share. The composite adds no fifth emotion, only the shared axis -- from a violated expectation, through novelty and coping potential, to a vastness that overruns the whole frame -- and the motions along it, resting on the fact that one encounter with what exceeds the current understanding is sorted among the four by how it is appraised.",
+      "issue": "Three bridges, each a shape of the family the atoms cannot stage alone. Sort: one encounter forked four ways -- the expectation violated draws surprise; then the novel-and-graspable draws interest, the novel-and-ungraspable draws confusion, and the vast-that-demands-a-new-frame draws awe -- the appraisals doing the sorting along the line from assimilation to accommodation. Turn: the four tipping into one another as the appraisals shift -- surprise settling into interest or confusion, interest curdling to confusion as the thing outruns the coping, confusion opening to interest as it comes within reach, and either cresting into awe when the block proves not a gap but a whole frame overrun. Arc: the trajectory of a whole knowledge episode -- the jolt that opens it, the interest, confusion, or awe that carries it, and the resolution toward comprehension or accommodation, or the decay toward disengagement.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the family read runs wherever its atoms are cast. The link, advisory: a persona in a knowledge episode may link the bridge under Projection, and the audit surfaces the ones staged as a single fixed feeling when the encounter should have moved among the four.",
       "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's knowledge episodes genuinely move -- the jolt sorted, the response turning as the appraisals shift, the arc resolving or decaying -- is semantic, taught and reviewed, never failed by the suite.",
-      "setup": "Install the composite; its atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the three corners from the atoms as usual, then stage the family: which appraisal sorts an encounter into surprise, interest, or confusion; which response is turning into which as the reading shifts; and how the whole episode arcs from the opening jolt to comprehension or disengagement. Read the production as a mind in motion across the three, never pinned to one. The resting inclination toward the unknown that precedes the encounter is the curiosity engine's; the total absorption of a matched challenge is the flow engine's; the vastness that overwhelms the frame is the awe engine's. This composite owns the knowledge-emotion family and the appraisal space its three share."
+      "setup": "Install the composite; its atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the four corners from the atoms as usual, then stage the family: which appraisal sorts an encounter into surprise, interest, confusion, or awe; which response is turning into which as the reading shifts; and how the whole episode arcs from the opening jolt to comprehension, accommodation, or disengagement. Read the production as a mind in motion across the four, never pinned to one. The resting inclination toward the unknown that precedes the encounter is the curiosity engine's; the total absorption of a matched challenge is the flow engine's; the flat disengagement a failed episode decays into is the boredom engine's. This composite owns the knowledge-emotion family and the appraisal space its four share."
     }
   },
   "scripts": {
@@ -78,7 +78,8 @@
     "@chbrain/khai-arch": "^0.1.22",
     "@chbrain/khai-engine-surprise": "^0.1.0",
     "@chbrain/khai-engine-interest": "^0.1.0",
-    "@chbrain/khai-engine-confusion": "^0.1.0"
+    "@chbrain/khai-engine-confusion": "^0.1.0",
+    "@chbrain/khai-engine-awe": "^0.1.0"
   },
   "devDependencies": {
     "@chbrain/khai-tests": "^0.2.0",

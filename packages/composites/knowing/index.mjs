@@ -47,10 +47,11 @@ export default { manifest, chains, raw, compose };
 
 // The atoms this composite wires over, re-exported so a consumer that installs
 // the composite can compose from any corner of the family without a second
-// import. The dependency graph is the citation graph: these three are declared
+// import. The dependency graph is the citation graph: these four are declared
 // in package.json, and every hard link in the members resolves through them.
 import surprise from "@chbrain/khai-engine-surprise";
 import interest from "@chbrain/khai-engine-interest";
 import confusion from "@chbrain/khai-engine-confusion";
+import awe from "@chbrain/khai-engine-awe";
 
-export const atoms = { surprise, interest, confusion };
+export const atoms = { surprise, interest, confusion, awe };
