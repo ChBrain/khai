@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-self-control",
+  "version": "0.1.0",
+  "description": "khai engine content, the self-control domain: the effortful, in-the-moment override of a prepotent impulse or temptation in favor of a standard the persona endorses -- the hot want against the cool ought -- across the restraint, delay, and lapse forms, tuned by a standing disciplined disposition.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/self-control"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "self-control",
+    "tagline": "Self-control as process: the effortful, in-the-moment override of a prepotent impulse or temptation in favor of a standard the persona endorses -- the hot want against the cool ought, resisted, delayed, or lost -- across the restraint, delay, and lapse forms, tuned by a standing disciplined disposition (Baumeister; Mischel; Tangney).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_self_control.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_restraint.md",
+        "type": "process",
+        "parent": "process_self_control.md"
+      },
+      {
+        "file": "process_delay.md",
+        "type": "process",
+        "parent": "process_self_control.md"
+      },
+      {
+        "file": "process_lapse.md",
+        "type": "process",
+        "parent": "process_self_control.md"
+      },
+      {
+        "file": "position_disciplined.md",
+        "type": "position",
+        "parent": "process_self_control.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_self_control.md) declares self-control as the effortful override of a prepotent impulse: a persona feels the pull of something it wants -- the treat, the outburst, the easier road -- and holds it back in favor of a standard it endorses, the hot want mastered by the cool ought (Metcalfe & Mischel's hot/cool system). Where executive function is the cold inhibition of a prepotent response for accuracy, and reward is the valuation that makes the temptation pull, self-control is the felt motivational struggle between an impulse the persona genuinely wants and a goal it genuinely holds. The law makes an impulse-against-standard conflict a warrant to exert control, and to sometimes lose.",
+      "issue": "Three forms the struggle takes, plus the trait. Restraint: the override itself -- inhibiting the prepotent impulse, holding back the wanted-but-unwise, the effortful no. Delay: delay of gratification -- forgoing a smaller-sooner reward for a larger-later one, the cool-system strategies (distraction, reframing, distancing) that let the persona wait (Mischel). Lapse: the failure -- the impulse wins, the override gives out, the diet broken and the word said, whether from a temptation too strong or a will worn thin. Disciplined: the trait -- a standing capacity to override impulse reliably, from the persona who holds every line to the one who yields to each pull.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so an impulse-against-standard conflict warrants the exertion of control wherever it arises. The link: each persona links, under Projection, the self-control a moment runs -- what impulse pulls against what standard, whether it is restrained, delayed, or lost, and how disciplined its standing disposition is.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real self-control. Whether the self-control is true to the scene -- a genuine conflict between a wanted impulse and an endorsed standard, effortfully overridden or genuinely lost, distinguished from the cold cognitive inhibition of executive function and the long-horizon perseverance of grit -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its self-control under Projection: what impulse pulls, what standard resists it, and whether the persona restrains, delays, or lapses. Read it in the effortful holding-back and its cost -- and keep it the hot override: the cold cognitive inhibition of a prepotent response is the executive-function engine's, the valuation and discount that make the temptation pull are the reward engine's, the long-horizon passion and perseverance toward a distant goal is the grit engine's, the if-then plans that pre-empt the conflict are the implementation-intention engine's, and the compulsive craving of dependence is the addiction engine's. This engine owns the in-the-moment override of impulse."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
