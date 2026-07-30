@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-anxiety",
+  "version": "0.1.0",
+  "description": "khai engine content, the anxiety domain: the diffuse, anticipatory apprehension of an uncertain future threat -- objectless where fear is cued, sustained where fear is phasic -- across the worry, vigilance, and looming forms, tuned by a standing intolerance of uncertainty.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/anxiety"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "anxiety",
+    "tagline": "Anxiety as process: the diffuse, anticipatory apprehension of an uncertain future threat -- objectless where fear is cued, sustained where fear is phasic, a readiness for a danger that has not arrived and may not -- across the worry, vigilance, and looming forms, tuned by a standing intolerance of uncertainty (Barlow; LeDoux; Gray & McNaughton).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_anxiety.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_worry.md",
+        "type": "process",
+        "parent": "process_anxiety.md"
+      },
+      {
+        "file": "process_vigilance.md",
+        "type": "process",
+        "parent": "process_anxiety.md"
+      },
+      {
+        "file": "process_looming.md",
+        "type": "process",
+        "parent": "process_anxiety.md"
+      },
+      {
+        "file": "position_uncertainty.md",
+        "type": "position",
+        "parent": "process_anxiety.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_anxiety.md) declares anxiety as the diffuse, anticipatory apprehension of an uncertain future threat: the persona is readied against a danger that has no clear object, is not yet present, and may never come. Where fear is phasic and cued -- a sharp response to an imminent, identified threat -- anxiety is sustained and objectless, a bracing for the possible rather than a reaction to the actual, running on a distinct defensive system (Davis's BNST vs the amygdala; Gray's behavioral inhibition system). The law makes an appraised uncertain future threat a warrant to worry, scan, and brace.",
+      "issue": "Three forms the state takes, plus the trait. Worry: the verbal-cognitive stream -- the chain of what-ifs and future catastrophes, thought rather than pictured, that both engages and avoids the feared (Borkovec). Vigilance: the readied body and scanning mind -- hypervigilance, the attentional bias toward threat, the startle set high, the muscles kept ready for a danger that has not shown. Looming: the anticipatory core -- the sense of a harm drawing nearer, mounting, closing in, the uncertain future felt as an approaching threat (Riskind's looming vulnerability). Intolerance of uncertainty: the trait -- a standing inability to bear the not-knowing, which turns every open question into a threat and is the core vulnerability beneath the state (Dugas; Carleton).",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so an appraised uncertain future threat warrants anxiety wherever it appears. The link: each persona links, under Projection, the anxiety a moment runs -- what uncertain threat is appraised, which forms are present (the worry, the vigilance, the looming), and how much uncertainty its standing disposition can bear.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real anxiety. Whether the anxiety is true to the scene -- a genuine uncertain, anticipatory, objectless apprehension, distinguished from the cued phasic response of fear and the present-stressor mobilization of stress -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its anxiety under Projection: what uncertain future threat is appraised, and with which forms -- the worried stream, the vigilant scanning, the looming approach. Read it in the bracing against a danger not yet arrived -- and keep it diffuse and anticipatory: the sharp, cued response to a present, identified threat is the fear engine's, the physiological mobilization to a present stressor is the stress engine's, the repetitive dwelling on a past or present loss is the rumination engine's, and the perceptual-attentional baseline is the apprehension engine's. This engine owns the apprehension of an uncertain future threat."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
