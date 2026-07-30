@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-self-verification",
+  "version": "0.1.0",
+  "description": "khai engine content, the self-verification domain: a persona's drive to confirm its existing self-concept -- to seek, elicit, and hold onto feedback that matches how it already sees itself, even when that self-view is negative -- across the soliciting, signaling, and resistance routes (Swann).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/self-verification"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "self-verification",
+    "tagline": "Self-verification as process: a persona's drive to confirm its existing self-concept -- to seek, elicit, and hold onto feedback that matches how it already sees itself, even when that self-view is negative -- across the soliciting, signaling, and resistance routes (Swann).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_self_verification.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_soliciting.md",
+        "type": "process",
+        "parent": "process_self_verification.md"
+      },
+      {
+        "file": "process_signaling.md",
+        "type": "process",
+        "parent": "process_self_verification.md"
+      },
+      {
+        "file": "process_resistance.md",
+        "type": "process",
+        "parent": "process_self_verification.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_self_verification.md) declares self-verification as a persona's drive to confirm its existing self-concept: to seek out, elicit, and hold onto information that matches how it already sees itself, so as to keep the self stable and predictable (Swann). Its signature is that the drive runs on the self-view's content, not its favorability -- a persona with a negative self-view verifies it too, preferring feedback that confirms the low self-view to feedback that flatters but disconfirms it, so that verification and enhancement come apart. Where self-esteem is the level of a persona's self-worth and identity the content of its self-story, self-verification is the motive to have that story confirmed by the world, even where the confirmation stings. The law makes a persona's need to be known as it knows itself a standing pressure on how it reads and shapes its world.",
+      "issue": "Three routes the drive runs (Swann). Soliciting: seeking self-confirming feedback and building a self-confirming world -- choosing partners, relationships, roles, and settings that see the persona as it sees itself, and soliciting the appraisals that verify. Signaling: eliciting self-confirming reactions -- displaying identity cues, presenting the self, and behaving so as to pull from others the responses that match the self-view (identity negotiation). Resistance: rejecting self-discrepant feedback -- discounting, avoiding, or withdrawing from appraisals that do not fit, even when they are favorable, so that a too-positive verdict on a negative self-view is resisted as much as an unjust one. Together they hold the self-concept steady against a world that might revise it -- the passive cognitive slant toward self-confirming information belongs to the bias engine; this engine owns the active motive and its interpersonal enactment.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so a persona's drive to confirm its self-concept holds system-wide. The link: each persona links, under Projection, the self-verification a moment runs -- whose confirmation it seeks, how it elicits it, and what disconfirming feedback it resists.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real self-verification. Whether the move is true to the scene -- a genuine drive to confirm the self-view rather than to flatter it, its soliciting, signaling, and resistance distinguished, and kept apart from the enhancement motive it can oppose -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its self-verification under Projection: which self-view it is confirming, how it seeks and elicits the confirmation, and what disconfirming feedback it resists -- and read it sharpest where verification and enhancement part, the persona with a negative self-view holding onto the confirming sting over the disconfirming balm. Keep it the drive to confirm the self-concept: the level of self-worth is the self-esteem engine's, the content of the self-story is identity's, the opposing pull toward flattering feedback is the self-serving member of the bias engine's, the passive cognitive slant toward self-confirming information is the bias engine's, and the general drive to reconcile inconsistent cognitions is the dissonance engine's. This engine owns the motive to be known as one knows oneself."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
