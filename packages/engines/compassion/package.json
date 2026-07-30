@@ -1,0 +1,94 @@
+{
+  "name": "@chbrain/khai-engine-compassion",
+  "version": "0.1.0",
+  "description": "khai engine content, the compassion domain: the warm, other-focused emotion through which a persona meets another's suffering and is moved to relieve it -- across the tenderness and succor of true compassion, and the distress and pity that shadow it, tuned by a standing tenderheartedness.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/compassion"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "compassion",
+    "tagline": "Compassion as process: the warm, other-focused emotion through which a persona meets another's suffering and is moved to relieve it -- across the tenderness and succor of true compassion, and the distress and pity that shadow it, tuned by a standing tenderheartedness.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_compassion.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_tenderness.md",
+        "type": "process",
+        "parent": "process_compassion.md"
+      },
+      {
+        "file": "process_succor.md",
+        "type": "process",
+        "parent": "process_compassion.md"
+      },
+      {
+        "file": "process_distress.md",
+        "type": "process",
+        "parent": "process_compassion.md"
+      },
+      {
+        "file": "process_pity.md",
+        "type": "process",
+        "parent": "process_compassion.md"
+      },
+      {
+        "file": "position_tenderhearted.md",
+        "type": "position",
+        "parent": "process_compassion.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_compassion.md) declares compassion as the warm response to another's suffering: a persona witnesses another's serious, undeserved hardship and is moved -- a warm, other-focused concern with the impulse to relieve it (Goetz, Keltner & Simon-Thomas). Where sadness answers one's own loss, compassion answers another's; where empathy shares the state, compassion adds the wish to help. The law makes an appraised, undeserved suffering a warrant to turn toward it with care.",
+      "issue": "Two faces of true compassion, two shadows, and the trait. Tenderness: the warm affective core -- the soft, protective fondness toward the vulnerable and the hurt. Succor: the action tendency -- the reaching to soothe, aid, and relieve, what separates compassion from a sympathy that only feels. Distress: the self-focused shadow -- empathic distress, where the other's pain floods the self and the persona withdraws to relieve its own arousal, the road to burnout. Pity: the distanced shadow -- the feeling-for from above, the sufferer held as lesser or apart, care with the fellow-feeling missing. Tenderhearted: the trait -- a standing readiness to be moved by suffering and to reach to relieve it.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the compassion the moment runs -- which face (tenderness or succor) or shadow (distress or pity), whose suffering is appraised, and how tenderhearted the persona's standing disposition is -- so it reads as a warm turn toward another's suffering, not as its self-focused or condescending counterfeits.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real compassion. Whether the compassion is true to the scene -- a genuine suffering met with warmth and the wish to help, the face read right, and true compassion distinguished from the distress that withdraws and the pity that looks down -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its compassion under Projection. Read it in the warm turn toward the sufferer -- the tenderness and the reaching to relieve -- and mark when it curdles into the distress that flees or the pity that looks down. Delegate the capacity to take in another's state to the empathy engine, the behavioral system that protects and provides (and its burnout) to the caregiving engine, the response to one's own loss to the sadness and grief engines, and the uplift at another's virtue to the elevation engine. This engine owns the warm response to another's suffering."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
