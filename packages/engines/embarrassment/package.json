@@ -1,0 +1,94 @@
+{
+  "name": "@chbrain/khai-engine-embarrassment",
+  "version": "0.1.0",
+  "description": "khai engine content, the embarrassment domain: the acute self-conscious emotion of unwanted social exposure -- a blunder, a spotlight, a breach witnessed -- and the appeasing fluster it triggers, across the faux pas, conspicuous, cringe, and blush forms, tuned by a standing embarrassability.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/embarrassment"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "embarrassment",
+    "tagline": "Embarrassment as process: the acute self-conscious emotion of unwanted social exposure -- a blunder, a spotlight, a breach witnessed -- and the appeasing fluster it triggers, across the faux pas, conspicuous, cringe, and blush forms, tuned by a standing embarrassability.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_embarrassment.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_faux_pas.md",
+        "type": "process",
+        "parent": "process_embarrassment.md"
+      },
+      {
+        "file": "process_conspicuous.md",
+        "type": "process",
+        "parent": "process_embarrassment.md"
+      },
+      {
+        "file": "process_cringe.md",
+        "type": "process",
+        "parent": "process_embarrassment.md"
+      },
+      {
+        "file": "process_blush.md",
+        "type": "process",
+        "parent": "process_embarrassment.md"
+      },
+      {
+        "file": "position_embarrassability.md",
+        "type": "position",
+        "parent": "process_embarrassment.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_embarrassment.md) declares embarrassment as the flustered response to unwanted social exposure: a persona is caught in a blunder, a breach, or a spotlight before an audience real or imagined, and flushes. Where shame is the deep devaluation of the self against a moral standard, embarrassment is the lighter, sharper sting of a social convention broken in view -- more about the eyes on you than the badness of the self, and it appeases rather than hides. The law makes an appraised unwanted exposure a warrant to fluster and to signal concession.",
+      "issue": "Four forms the fluster takes, plus the trait. Faux pas: the blunder -- a breach of convention exposed, the gaffe, the pratfall, the slip that catches the self out of step. Conspicuous: the spotlight -- the fluster of being watched, singled out, or praised, even with no blunder committed. Cringe: the vicarious form -- empathic embarrassment, the secondhand sting felt for another who exposed themselves. Blush: the appeasement display -- the involuntary reddening, averted gaze, and nervous smile that concede the breach and, by being uncontrollable, are believed. Embarrassability: the trait -- a standing readiness to flush, keenly attuned to how one appears.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the embarrassment the moment runs -- which form (faux pas, conspicuous, cringe, or blush), what exposure is appraised, and how embarrassable the persona's standing disposition is -- so it reads as the appeasing fluster of a social predicament, not as the deep self-devaluation of shame.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real embarrassment. Whether the embarrassment is true to the scene -- a genuine unwanted exposure before an audience, the form read right, the appeasing display present, and the lighter social sting distinguished from shame's deep devaluation -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its embarrassment under Projection. Read it in the fluster and the appeasing display -- the blush, the averted gaze, the scramble to recover -- and keep it lighter and more social than shame, which devalues the self. Delegate the deep moral self-devaluation to the shame engine, the public self-image the breach costs to the face engine, the empathic capacity that carries the cringe to the empathy engine, and the performance under others' eyes to the social-facilitation engine. This engine owns the flustered response to unwanted exposure."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
