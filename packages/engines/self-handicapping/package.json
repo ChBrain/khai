@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-self-handicapping",
+  "version": "0.1.0",
+  "description": "khai engine content, the self-handicapping domain: erecting an obstacle before an outcome so that a failure can be blamed on the obstacle rather than on ability, and a success counts double for coming despite it -- across the acquired and claimed handicaps, tuned by a standing self-handicapper disposition (Berglas & Jones; Rhodewalt).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/self-handicapping"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "self-handicapping",
+    "tagline": "Self-handicapping as process: erecting an obstacle before an outcome so a failure can be blamed on the obstacle rather than on ability, and a success counts double for coming despite it -- across the acquired and claimed handicaps, tuned by a standing self-handicapper disposition (Berglas & Jones; Rhodewalt).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_self_handicapping.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_acquired.md",
+        "type": "process",
+        "parent": "process_self_handicapping.md"
+      },
+      {
+        "file": "process_claimed.md",
+        "type": "process",
+        "parent": "process_self_handicapping.md"
+      },
+      {
+        "file": "position_handicapper.md",
+        "type": "position",
+        "parent": "process_self_handicapping.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_self_handicapping.md) declares self-handicapping as the erecting of an obstacle before an evaluative outcome, so that the outcome can be attributed to the obstacle rather than to the persona's ability (Berglas & Jones). It works an attributional double-bind in advance: if the persona fails, the handicap discounts the failure -- it was the obstacle, not a lack of ability -- and if it succeeds, the handicap augments the success, a win won despite a burden. Where the bias engine's self-serving member is the after-the-fact attribution that credits success and blames failure once the result is known, self-handicapping is anticipatory and behavioral: the excuse is put in place before the outcome, often at the real cost of the performance it protects. The law makes a persona's protection of its ability-image a thing it can build ahead of the test.",
+      "issue": "Two handicaps, by whether the impediment is real, plus the standing disposition (Leary & Shepperd; Rhodewalt). Acquired: a real obstacle created -- withdrawing effort, procrastinating, undertraining, taking on too much, or using a substance -- genuinely impairing the performance so that failure has a cause outside ability, at the price of the outcome itself. Claimed: an impediment merely asserted -- reporting illness, anxiety, stress, bad sleep, or a bad mood -- laying down a verbal excuse in advance without actually degrading the performance, cheaper but weaker. And the disposition: the handicapper -- a standing tendency to reach for handicaps under evaluative threat, chronic in some personas and rare in others, more the resort of those whose sense of their ability is uncertain and prized.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so a persona's anticipatory protection of its ability-image holds system-wide. The link: each persona links, under Projection, the self-handicapping a moment runs -- the obstacle it erects or claims before the test, and how disposed it is to reach for one.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real self-handicap. Whether the handicap is true to the scene -- a genuine obstacle erected before the outcome to control the attribution, its acquired and claimed forms distinguished, and kept apart from the after-the-fact self-serving attribution -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its self-handicap under Projection: what obstacle it builds or asserts before the evaluative moment, and how disposed it is to do so -- and read it in the pre-emptive excuse laid before the test, sharpest where the persona's ability is prized and its success uncertain. Keep it the anticipatory, behavioral protection: the after-the-fact attribution that credits success and blames failure is the bias engine's self-serving member, the post-hoc account offered for a completed act is the repair engine's excuse, the belief in one's own capability is the self-efficacy engine's, and the level of self-worth being defended is the self-esteem engine's. This engine owns the obstacle a persona raises before the outcome to control what its result will mean."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
