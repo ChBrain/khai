@@ -1,0 +1,44 @@
+---
+updated: "2026-07-30"
+---
+
+# Self-Compassion: Reference
+
+## Line of Work
+
+Self-compassion as a **multi-type** engine: the reflexive turn of compassion onto oneself in a moment of suffering, failure, or inadequacy, taken across its three components and the trait that tunes them. The domain does not model the judgment of one's own worth, which is the self-esteem engine's; nor the compassion turned outward on another, which is the compassion engine's; nor the release of a specific self-transgression, which is the forgiveness engine's; nor the repetitive dwelling on one's pain, which is the rumination engine's; nor the present-moment awareness cultivated as a practice, which is the grounding engine's. It models the stance itself: meeting one's own pain the way one would a suffering friend -- with warmth rather than judgment, connection rather than isolation, and balanced awareness rather than over-identification.
+
+The spine is Neff's account of self-compassion. Against the dominant emphasis on self-esteem, Neff proposed self-compassion as a healthier way of relating to oneself: not a global evaluation of worth earned by success and measured against others, but an unconditional, non-comparative kindness extended precisely in the moments one falls short. It is constituted by three components, each defined against its negative: self-kindness versus self-judgment (warmth and understanding rather than harsh criticism), common humanity versus isolation (seeing one's imperfection as part of the shared human condition rather than as an isolating defect), and mindfulness versus over-identification (holding painful feelings in balanced awareness rather than being swept away by or suppressing them). Gilbert's compassion-focused therapy supplies the affective mechanism: an affiliative-soothing system, distinct from the threat and drive systems, that self-compassion activates in place of self-attack. The construct is carefully distinguished from self-esteem (it delivers the resilience without the contingency and comparison) and from self-pity and self-indulgence (which isolate or spare rather than connect and tend). The altitudes are those: the stance, its three components, and its trait.
+
+## Origin
+
+The self-compassion and compassion-focused literature, applied directly as engine constraints across process and position.
+
+| Source                                                  | Key Work                                                                                                             | Scope                                                                                                                                                             |
+| :------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Kristin D. Neff**                                     | _"Self-Compassion: An Alternative Conceptualization of a Healthy Attitude Toward Oneself"_ (Self and Identity, 2003) | Self-compassion as the reflexive turn of compassion onto the self, and its three-component structure. The root and the three components.                          |
+| **Kristin D. Neff**                                     | _"Development and Validation of a Scale Measuring Self-Compassion"_ (2003); the Self-Compassion Scale                | The three components against their negatives -- kindness/judgment, humanity/isolation, mindfulness/over-identification -- and the trait. The forms and the trait. |
+| **Paul Gilbert**                                        | _The Compassionate Mind_ (2009); compassion-focused therapy; the three affect-regulation systems                     | The affiliative-soothing system, distinct from threat and drive, that self-compassion activates in place of self-attack. The root; the kindness component.        |
+| **Kristin D. Neff & Christopher Germer**                | The Mindful Self-Compassion program; self-compassion versus self-esteem                                              | Self-compassion as delivering resilience without self-esteem's contingency and comparison, and the boundary with self-indulgence. The root; the boundaries.       |
+| **Kristin D. Neff, Ya-Ping Hsieh & Kullaya Dejitterat** | Self-compassion, achievement goals, and coping with academic failure                                                 | Self-compassion's relation to failure -- meeting a shortfall with care while still seeing it clearly, not licensing complacency. The self-compassionate trait.    |
+| **Mark R. Leary et al.**                                | _"Self-Compassion and Reactions to Unpleasant Self-Relevant Events"_ (JPSP, 2007)                                    | Self-compassion buffering the self against failure and rejection, distinct from and beyond self-esteem. The trait; the boundary with self-esteem.                 |
+
+## Restrictions
+
+What the engine refuses to model, and to whom it delegates.
+
+- **Self-esteem**: The engine models the compassionate stance toward the suffering self, not the judgment of the self's worth. Self-esteem -- the global evaluation of worth, earned by success and measured against others -- is owned by the self-esteem engine; self-compassion is precisely the alternative Neff drew against it, unconditional and non-comparative, extended when the self has fallen short rather than when it has excelled. The two compose: self-esteem judges the self, self-compassion cares for it regardless of the judgment.
+- **Compassion**: The engine models compassion turned reflexively onto the self, not compassion turned outward on another. The response to another's suffering -- the tenderness, the succor, the felt concern -- is owned by the compassion engine; self-compassion is the same affiliative warmth bent back onto its owner, and it rests on the same soothing system, but its object is the self, which is this engine's.
+- **Forgiveness**: The engine models the standing kind stance toward the suffering self, not the release of a specific wrong one has done. Self-forgiveness -- letting go of a particular transgression, ceasing to hold a specific act against oneself -- is owned by the forgiveness engine; self-compassion is broader and not tied to a wrongdoing, the warmth extended to any suffering, failure, or inadequacy whether or not one is to blame.
+- **Rumination**: The engine models the balanced awareness that holds pain in proportion, not the repetitive dwelling that magnifies it. The recurrent, self-focused cycling on one's distress is owned by the rumination engine; over-identification, the negative pole of self-compassion's balance component, shades into rumination, and this engine owns the balanced alternative to it, handing the cycle itself across.
+- **Grounding**: The engine models one component's balanced awareness of pain, not present-moment awareness as a practice. Mindfulness cultivated as a discipline -- the trained attention to the present -- is owned by the grounding engine; self-compassion's balance is the narrower thing, the even seeing of one's own suffering that lets kindness and humanity meet it at its true size, not the practice that trains it.
+
+## Encoding
+
+Source to constraint, per file.
+
+- **[self-compassion](process_self_compassion.md)** (the root, process): The reflexive turn of compassion onto the suffering self -- warmth in place of self-attack, unconditional and non-comparative. Anchored by Neff (the conceptualization) and Gilbert (the soothing system).
+- **[kindness](process_kindness.md)** (process, component): Self-kindness against self-judgment -- warmth and understanding toward oneself in place of the harsh inner critic. Anchored by Neff (self-kindness) and Gilbert (the affiliative-soothing system).
+- **[humanity](process_humanity.md)** (process, component): Common humanity against isolation -- one's failure seen as part of the shared human condition rather than an isolating defect. Anchored by Neff (common humanity); the component that most separates self-compassion from self-pity.
+- **[balance](process_balance.md)** (process, component): Mindful balance against over-identification -- painful feelings held in even awareness, neither drowned in nor suppressed. Anchored by Neff (the mindfulness component); bounded from grounding's practice and rumination's cycle.
+- **[self-compassionate](position_self_compassionate.md)** (position, trait): A standing readiness to meet one's own suffering with compassion, from the harshly self-critical to the reliably self-kind. Anchored by Neff (the Self-Compassion Scale) and Leary (buffering beyond self-esteem).
