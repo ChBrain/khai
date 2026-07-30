@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-allegiance",
+  "version": "0.1.0",
+  "description": "khai engine content, the allegiance domain: the audience's moral bond to the characters of a story -- monitoring their conduct, sorting them into liked and disliked, and enjoying the tale as their fortunes match the disposition -- across the verdict, rooting, and payoff forms.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/allegiance"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "allegiance",
+    "tagline": "Allegiance as process: the audience's moral bond to the characters of a story -- the untiring moral monitoring that sorts them into liked and disliked, the sympathy and antipathy that follow, and the enjoyment that rides on their fortunes matching the disposition -- across the verdict, rooting, and payoff forms (Zillmann; Raney; M. Smith).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_allegiance.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_verdict.md",
+        "type": "process",
+        "parent": "process_allegiance.md"
+      },
+      {
+        "file": "process_rooting.md",
+        "type": "process",
+        "parent": "process_allegiance.md"
+      },
+      {
+        "file": "process_payoff.md",
+        "type": "process",
+        "parent": "process_allegiance.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_allegiance.md) declares the audience's moral bond to the characters of a story: the spectator morally monitors the people of the tale, sorts them into liked and disliked, and thereafter enjoys the story as their fortunes match that disposition (Zillmann's affective disposition theory; Raney; Murray Smith's structure of sympathy). Where loyalty is a persona's own exit-cost bond to a group inside the story, allegiance is the audience's evaluative bond to characters, formed from outside and above the tale -- the engine of rooting interest, of why an audience cares who wins. The law makes the moral monitoring of characters a warrant to form a disposition and to hope and fear by it.",
+      "issue": "Three forms the bond runs through. Verdict: the moral monitoring -- the audience as an untiring moral monitor, continuously judging the characters' conduct and sorting them into the deserving and the undeserving. Rooting: the disposition itself -- sympathy and the wish to see the liked prosper, antipathy and the wish to see the disliked fall, the felt taking-of-sides that makes the audience partisan. Payoff: the outcome-contingent enjoyment -- the hopes and fears that ride on the disposition, and the satisfaction when the liked triumph and the disliked get their comeuppance, the dissatisfaction when the story lets the deserving lose and the undeserving win.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the audience's moral monitoring of characters warrants a disposition wherever a story is met. The link: each persona, as audience to a story, links under Projection the allegiance a moment runs -- which characters it has sorted which way, on what moral grounds, and how its enjoyment rides on their fortunes.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each audience-persona links a real allegiance. Whether the allegiance is true to the scene -- a genuine moral sorting of characters, sympathy and antipathy that follow from it, and enjoyment contingent on the outcomes matching the disposition, distinguished from a persona's own in-story loyalty -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the audience-persona its allegiance under Projection: which characters it likes and dislikes, on what moral reading, and what it hopes and fears for them. Read it in the taking of sides and the enjoyment that rides on poetic justice -- and keep it the audience's bond to characters, not a character's own tie: a persona's exit-cost bond to a group inside the story is the loyalty engine's, the general mechanism of judging conduct against a moral standard is the moral-judgment engine's, the entry into the story world as a whole is the transportation engine's, and the joy at a disliked character's misfortune is the schadenfreude engine's, which the payoff recruits. This engine owns the audience's moral bond to the people of a tale."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
