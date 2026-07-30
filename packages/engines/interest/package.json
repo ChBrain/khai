@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-interest",
+  "version": "0.1.0",
+  "description": "khai engine content, the interest domain: the knowledge emotion of engagement with the new-yet-graspable -- the felt pull toward something novel, complex, or uncertain that one senses one can understand -- across the novelty, grasp, and broaden forms, and the enduring individual interest it develops into.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/interest"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "interest",
+    "tagline": "Interest as process: the knowledge emotion of engagement with the new-yet-graspable -- appraised on two dials, how novel and complex a thing is and whether one can make sense of it -- the felt pull that broadens attention and drives learning, across the novelty, grasp, and broaden forms, crystallizing into an enduring individual interest (Silvia; Hidi & Renninger).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_interest.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_interest_novel.md",
+        "type": "process",
+        "parent": "process_interest.md"
+      },
+      {
+        "file": "process_interest_grasp.md",
+        "type": "process",
+        "parent": "process_interest.md"
+      },
+      {
+        "file": "process_interest_broaden.md",
+        "type": "process",
+        "parent": "process_interest.md"
+      },
+      {
+        "file": "position_avid.md",
+        "type": "position",
+        "parent": "process_interest.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_interest.md) declares interest as the knowledge emotion: the felt engagement that arises when a persona meets something new, complex, or uncertain and senses it can be understood. Where curiosity is the resting inclination toward the unknown, interest is the emotion itself, live in the moment and appraised on two dials -- the novelty-complexity of the thing and the persona's coping potential, its sense that the thing is graspable. The law makes an appraised new-yet-comprehensible object a warrant to engage, attend, and explore.",
+      "issue": "Three forms the emotion takes, plus the trait. Novelty: the first appraisal -- the new, complex, unexpected, or ambiguous that catches interest, the collative pull toward what departs from the expected. Grasp: the second appraisal -- the sense that the thing is comprehensible, within reach of understanding, that forks interest from confusion when the complexity outruns the coping. Broaden: the function -- interest as the engagement emotion that widens attention, sustains exploration, and builds knowledge and competence over time. Avid: the trait -- an enduring, content-specific individual interest the emotion develops into, the persona settled deep in a domain.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so an appraised new-yet-graspable object warrants engagement wherever it appears. The link: each persona links, under Projection, the interest a moment runs -- what is appraised as novel and complex, whether it reads as graspable, and, where it has settled into a durable individual interest, the domain the persona is avid in.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real interest. Whether the interest is true to the scene -- a genuine appraisal of novelty-complexity met by a sense of coping, the emotion distinguished from the mere disposition to be curious and from the total absorption of flow -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its interest under Projection: what novel or complex thing is engaged, and whether the persona finds it graspable. Read it in the leaning-in, the attention widened and held, the exploration sustained -- and keep it the emotion, not the trait: the resting inclination toward the unknown is the curiosity engine's, the total absorption in a matched challenge is the flow engine's, the startle at the unexpected is the surprise engine's, and the vastness that overwhelms the frame is the awe engine's. This engine owns the knowledge emotion of engagement with the new-yet-graspable."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
