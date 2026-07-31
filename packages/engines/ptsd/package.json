@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-ptsd",
+  "version": "0.1.0",
+  "description": "khai engine content, the ptsd domain: post-traumatic stress disorder -- a trauma that will not become past, a memory stored unprocessed that fires as if the danger were present, driving re-experiencing and hyperarousal and clamped down by an avoidance that only keeps it alive -- across its reexperiencing, evasion, estrangement, and hyperarousal clusters (DSM-5; Ehlers & Clark; Brewin; Foa; van der Kolk).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/ptsd"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "ptsd",
+    "tagline": "PTSD as process: post-traumatic stress disorder -- a trauma that will not become past, a memory stored unprocessed that fires as if the danger were present, driving re-experiencing and hyperarousal and clamped down by an avoidance that only keeps it alive -- across its reexperiencing, evasion, estrangement, and hyperarousal clusters (DSM-5; Ehlers & Clark; Brewin; Foa; van der Kolk).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_ptsd.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_reexperiencing.md",
+        "type": "process",
+        "parent": "process_ptsd.md"
+      },
+      {
+        "file": "process_evasion.md",
+        "type": "process",
+        "parent": "process_ptsd.md"
+      },
+      {
+        "file": "position_estrangement.md",
+        "type": "position",
+        "parent": "process_ptsd.md"
+      },
+      {
+        "file": "process_hyperarousal.md",
+        "type": "process",
+        "parent": "process_ptsd.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_ptsd.md) reads post-traumatic stress disorder as the modern trauma science defines it (DSM-5): the disorder that can follow exposure to actual or threatened death, serious injury, or violation, when the memory of it is not processed into ordinary past-tense autobiography but stored raw -- sensory, timeless, cut loose from context -- so that a cue can fire it as though the event were happening now (Brewin; Ehlers & Clark). It is not the normal stress response, which is the stress engine's, nor future-directed anxiety, which is the anxiety engine's; it is a past that will not become past. It runs a self-maintaining loop, and it fractures into the four symptom clusters DSM-5 names.",
+      "issue": "Four clusters, DSM-5's criteria B through E. Reexperiencing: the past forced into the present -- intrusive memories, nightmares, flashbacks, and intense distress and bodily reactivity when a cue resembles the trauma. Evasion: the effortful avoidance of everything trauma-linked, inner (thoughts, feelings) and outer (people, places, reminders) -- the manoeuvre that brings relief and, by it, keeps the memory from ever updating. Estrangement: persistent negative alterations in cognition and mood -- corroded beliefs about self and world, distorted self-blame, detachment from others, numbing, and the inability to feel the good. Hyperarousal: the body kept on a war footing -- hypervigilance, exaggerated startle, irritability, recklessness, and broken sleep and concentration.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the disorder's mechanics hold system-wide. The link: each persona links, under Projection, the cluster most in play -- reexperiencing, evasion, estrangement, or hyperarousal -- the face through which the trauma is presently surfacing.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real cluster. Whether it is true -- a trauma that genuinely will not become past, a memory that fires as present rather than a bad but processed one, the avoidance that maintains it, rather than ordinary stress or grief -- is semantic, taught and reviewed, never failed by the suite. And it is authored persona-architecture for a play, never a diagnosis of a real person.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the persona the cluster in play under Projection: reexperiencing when the past intrudes on the present, evasion when it shuts out the reminders, estrangement when its view of self and world has corroded and its feeling gone numb, hyperarousal when its body stays braced for a danger already past. Stage the loop, not a mood: a cue fires the re-experiencing, the arousal spikes, the avoidance clamps down, and because the avoidance blocks the memory from ever being processed, the whole thing persists and the estrangement deepens. Keep it the disorder: the acute fight-flight-freeze-fawn response to a present demand is the stress engine's, adaptation to loss is the grief engine's, future-directed dread is the anxiety engine's, and the general machinery of remembering is the memory engine's -- this engine owns the trauma that will not resolve. It is character architecture for authoring, not clinical assessment."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
