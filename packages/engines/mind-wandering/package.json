@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-mind-wandering",
+  "version": "0.1.0",
+  "description": "khai engine content, the mind-wandering domain: self-generated, task-unrelated thought that decouples attention from the world and carries it inward -- the drift away from the task, not the selecting of it -- across the unbidden, zoning-out, and tuning-out modes (Smallwood & Schooler; Killingsworth & Gilbert).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/mind-wandering"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "mind-wandering",
+    "tagline": "self-generated, task-unrelated thought that decouples attention from the world and carries it inward -- the drift away from the task, not the selecting of it -- across the unbidden, zoning-out, and tuning-out modes (Smallwood & Schooler; Killingsworth & Gilbert)",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_mind_wandering.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_unbidden.md",
+        "type": "process",
+        "parent": "process_mind_wandering.md"
+      },
+      {
+        "file": "process_zoning_out.md",
+        "type": "process",
+        "parent": "process_mind_wandering.md"
+      },
+      {
+        "file": "process_tuning_out.md",
+        "type": "process",
+        "parent": "process_mind_wandering.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_mind_wandering.md) declares mind-wandering as self-generated, task-unrelated thought: attention leaves the task and the outer world, decouples from perception, and turns inward to a train of thought the persona did not read off the environment (Smallwood & Schooler). Where the attention engine owns the allocation of the spotlight -- what a persona selects to attend -- this engine owns the drift away from it, the pull off-task to inner content, and the perceptual decoupling by which the world dims as the mind goes. It routes into three modes by how the drift is owned and whether it is noticed.",
+      "issue": "Three modes the drift shows in, by intention and awareness. Unbidden: the mind slips off-task without a decision, the spontaneous drift the persona did not mean to have -- the mode most tied to error and to the sense of a mind that gets away from its owner. Zoning out: the drift runs without meta-awareness, the persona not even knowing it has left the task until something snaps it back -- the deepest decoupling, the page read without reading, the miles driven unremembered. Tuning out: the drift is noticed and often chosen, the persona aware it has disengaged and letting the mind roam -- the mode that plans, rehearses the future, and relieves a dull stretch. The modes are not exclusive: a spontaneous drift can be caught into awareness or sink out of it.",
+      "require": "The law is declared once in the project's Instructions Knowledge chapter, linking the root. Each persona links, under Projection, the mode its mind-wandering is in -- unbidden, zoning out, or tuning out.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real mind-wandering mode. Whether the drift is true to the persona -- self-generated and task-unrelated, decoupled from the world, in the right mode of intention and awareness, and kept distinct from the attention it drifts from, the rumination that circles, and the flow that fully engages -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Give the persona its mode under Projection: unbidden when the mind slips off unmeant, zoning out when it drifts unnoticed, tuning out when it disengages knowingly. Let perception decouple as the mind goes -- the outer world dimming, cues missed -- and let the content run to the self and the future. Keep it the drift away, not the selecting toward: the allocation of the spotlight is the attention engine's, the sticky negative circling is the rumination engine's, the aversive unengaged seeking is the boredom engine's, and the total task absorption is the flow engine's."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}

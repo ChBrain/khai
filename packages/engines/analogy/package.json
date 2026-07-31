@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-analogy",
+  "version": "0.1.0",
+  "description": "khai engine content, the analogy domain: reasoning by structure-mapping -- aligning the relational structure of a known source with a target and carrying inferences across the alignment, deep relational structure driving the match, not surface features -- across the retrieval, mapping, inference, and schema subprocesses (Gentner; Gick & Holyoak).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/analogy"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "analogy",
+    "tagline": "reasoning by structure-mapping -- aligning the relational structure of a known source with a target and carrying inferences across the alignment, deep relational structure driving the match, not surface features -- across the retrieval, mapping, inference, and schema subprocesses (Gentner; Gick & Holyoak)",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_analogy.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_retrieval.md",
+        "type": "process",
+        "parent": "process_analogy.md"
+      },
+      {
+        "file": "process_mapping.md",
+        "type": "process",
+        "parent": "process_analogy.md"
+      },
+      {
+        "file": "process_inference.md",
+        "type": "process",
+        "parent": "process_analogy.md"
+      },
+      {
+        "file": "process_schema.md",
+        "type": "process",
+        "parent": "process_analogy.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_analogy.md) declares analogy as reasoning by structure-mapping: a persona aligns the relational structure of a known source domain with a target and carries inferences across the alignment (Gentner). What makes the analogy sound is the systematicity of the match -- deep, interconnected relations, above all causal ones, rather than shared surface features; a good analogy transfers a system of relations, not a resemblance. Where the framing engine owns the rhetorical shaping of a claim, this engine owns the reasoning and transfer mechanism beneath a comparison. It routes into four subprocesses of the mapping.",
+      "issue": "Four subprocesses of structure-mapping (Gentner; Gick & Holyoak). Retrieval: a source analog is called to mind from a target -- the access step, driven notoriously by surface similarity even where sound mapping needs relational similarity. Mapping: the structural alignment itself, one-to-one correspondences set between the elements of source and target under parallel connectivity and systematicity. Inference: the candidate inferences, the source's unmatched relations projected across the alignment onto the target as new predictions. Schema: the shared relational structure abstracted into a general schema that outlives the pair and eases the next transfer. The four run in sequence but each can be the one a scene turns on.",
+      "require": "The law is declared once in the project's Instructions Knowledge chapter, linking the root. Each persona links, under Projection, the subprocess its analogical reasoning is in -- retrieval, mapping, inference, or schema.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real analogy subprocess. Whether the reasoning is true to the persona -- a mapping of relational structure and not mere surface resemblance, sound in its correspondences and honest about what it transfers, and kept distinct from the rhetorical framing it may serve -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Give the persona its subprocess under Projection: retrieval when a source is being called to mind, mapping when the structures are being aligned, inference when a prediction is carried across, schema when the shared structure is being abstracted. Prize systematicity -- let the analogy turn on deep relational and causal structure, and let a surface-only match be the error the reasoning risks. Keep it the reasoning, not the rhetoric: the persuasive framing of a claim, including framing by metaphor, is the framing engine's; this engine owns the structure-mapping and transfer beneath it."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
