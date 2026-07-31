@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-insight",
+  "version": "0.1.0",
+  "description": "khai engine content, the insight domain: the knowledge emotion of the sudden aha -- a problem at impasse whose representation restructures all at once, the solution arriving whole with high confidence and no feeling-of-warmth ramp -- across the three mechanisms of representational change (Metcalfe & Wiebe; Ohlsson; Knoblich).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/insight"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "insight",
+    "tagline": "the knowledge emotion of the sudden aha -- a problem at impasse whose representation restructures all at once, the solution arriving whole with high confidence and no feeling-of-warmth ramp -- across the three mechanisms of representational change (Metcalfe & Wiebe; Ohlsson; Knoblich)",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_insight.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_re_encoding.md",
+        "type": "process",
+        "parent": "process_insight.md"
+      },
+      {
+        "file": "process_constraint_relaxation.md",
+        "type": "process",
+        "parent": "process_insight.md"
+      },
+      {
+        "file": "process_chunk_decomposition.md",
+        "type": "process",
+        "parent": "process_insight.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_insight.md) declares insight as the sudden aha: a persona stuck at an impasse on a problem, its analytic effort spent, when the problem's representation restructures all at once and the solution arrives whole -- with high confidence and, unlike step-by-step solving, no gradual feeling-of-warmth ramp (Metcalfe & Wiebe: warmth stays flat, then jumps). The mechanism is representational change (Ohlsson): the impasse breaks because the way the problem was framed gives way. It routes into three mechanisms by how the frame changes.",
+      "issue": "Three mechanisms of representational change, the ways an impasse's frame gives way (Ohlsson; Knoblich). Re-encoding: an element of the problem is reinterpreted, or overlooked information added, so a misread part is read anew. Constraint relaxation: a self-imposed constraint the problem never actually required is dropped, opening moves that had been wrongly ruled out. Chunk decomposition: a tight perceptual or conceptual chunk is broken into parts that can be regrouped, freeing components habit had fused. Each unsticks the same impasse a different way, and the aha is the moment the new frame yields the solution.",
+      "require": "The law is declared once in the project's Instructions Knowledge chapter, linking the root. Each persona links, under Projection, the mechanism by which its insight restructured the problem.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real insight mechanism. Whether the insight is true to the persona -- a genuine impasse broken by a sudden restructuring rather than incremental work, the solution arriving whole with no warmth ramp, and kept distinct from the effortful confusion it may follow and the curiosity that drove the search -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Give the persona its mechanism under Projection: re-encoding when a part is reread, constraint relaxation when a needless rule is dropped, chunk decomposition when a fused whole is broken up. Stage the impasse first -- the stuck effort that goes nowhere -- so the aha lands as a sudden restructuring, not a gradual approach. Keep it the sudden break: the effortful, ramped sensemaking of the not-yet-comprehended is the confusion engine's, the appetite that drives the search is the curiosity engine's, and the alarm at a violated expectation is the surprise engine's."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
