@@ -1,0 +1,79 @@
+{
+  "name": "@chbrain/khai-engine-dramatic-irony",
+  "version": "0.1.0",
+  "description": "khai engine content, the dramatic-irony domain: the sustained gap in which the audience holds knowledge a character lacks, and reads the character's every word and act against what the character cannot see -- across the prospective and present-meaning forms of the gap (Pfister; Sternberg).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/dramatic-irony"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "dramatic-irony",
+    "tagline": "the sustained gap of discrepant awareness in which the audience holds knowledge a character lacks, reading the character's every word and act against what it cannot see (Pfister; Sternberg)",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_dramatic_irony.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_foreknowledge.md",
+        "type": "process",
+        "parent": "process_dramatic_irony.md"
+      },
+      {
+        "file": "process_double_meaning.md",
+        "type": "process",
+        "parent": "process_dramatic_irony.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_dramatic_irony.md) declares dramatic irony as discrepant awareness: the audience is given knowledge a character lacks, and the gap between the audience's fuller horizon and the character's narrower one is held open while the character speaks and acts in ignorance (Pfister). This is the audience-to-character asymmetry, not the character-to-character concealment the secret engine owns: the tension is not whether a secret will out between figures but that the room watches a character move through a scene it can read more completely than the character can. It routes into two forms by where the audience's advantage lies.",
+      "issue": "Two forms, by where the gap points. Foreknowledge: the audience knows what is coming that the character does not -- the outcome, the threat, the identity, the fate -- and watches the character move toward it blind, so each step is loaded with the dread or the helpless hope of a room that sees the ending the character cannot (Hitchcock's bomb beneath the table; Oedipus hunting himself). Present-meaning: the audience knows the true sense of the character's present words and situation, which the character misreads -- the line that carries a second meaning only the room hears, the confidence built on a belief the room knows to be false. The one gap points at the future; the other sits in the doubled present.",
+      "require": "The law is declared once in the project's Instructions Knowledge chapter, linking the root -- what the audience is given to know, and which character is held short of it. Each persona under the irony links, under Projection, the form the gap takes on it.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real dramatic-irony form. Whether the irony is true to the scene -- a real gap between what the audience holds and what the character can see, sustained as the character acts within its narrower horizon, and kept distinct from the concealment between characters, the anticipatory hold, and the moment of recognition -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root: give the audience the knowledge, and name the character kept short of it. Give the persona under the irony its form under Projection -- foreknowledge when the room knows what is coming, present-meaning when the room knows the true sense of the now. Keep it the audience-to-character gap: the concealment of knowledge between characters is the secret engine's, the anticipatory dread about an uncertain outcome is the suspense engine's, the sudden reversal for a room that did not know is the surprise engine's, and the character's own discovery of what the audience already knew is the recognition engine's. This engine owns the sustained discrepant awareness itself."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
