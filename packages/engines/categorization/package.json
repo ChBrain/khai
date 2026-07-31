@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-categorization",
+  "version": "0.1.0",
+  "description": "khai engine content, the categorization domain: the sorting of instances into kinds and the forming of the kinds -- graded membership, family resemblance, and the privileged basic level -- across the prototype, exemplar, and theory bases of category membership (Rosch; Murphy).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/categorization"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "categorization",
+    "tagline": "the sorting of instances into kinds and the forming of the kinds -- graded membership, family resemblance, and the privileged basic level -- across the prototype, exemplar, and theory bases of category membership (Rosch; Murphy)",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_categorization.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_prototype.md",
+        "type": "process",
+        "parent": "process_categorization.md"
+      },
+      {
+        "file": "process_exemplars.md",
+        "type": "process",
+        "parent": "process_categorization.md"
+      },
+      {
+        "file": "process_theory.md",
+        "type": "process",
+        "parent": "process_categorization.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_categorization.md) declares categorization as the sorting of instances into kinds and the forming of the kinds themselves. Rosch's findings set its character: membership is graded, not all-or-none -- a robin is a better bird than a penguin (typicality) -- categories cohere by family resemblance, overlapping features rather than a set of necessary-and-sufficient defining ones, and they settle at a privileged basic level, the middle rung (chair, between furniture and kitchen-chair) that is most informative, first learned, and fastest named. Where the representativeness engine uses a category's similarity to judge probability, this engine owns the categories' formation and structure. It routes into three bases by how membership is represented and decided.",
+      "issue": "Three bases of category membership, the field's three views (Murphy). Prototype: membership by similarity to an abstracted central tendency, a summary of the category's typical features against which a new instance is judged. Exemplar: membership by similarity to stored individual instances, the new case matched against remembered members rather than an average. Theory: membership by fit to an intuitive causal or explanatory theory, coherence coming from knowledge of why the features go together, not similarity alone. Each decides the same borderline case a different way, and a persona may lean on one basis or shift between them.",
+      "require": "The law is declared once in the project's Instructions Knowledge chapter, linking the root. Each persona links, under Projection, the basis its categorization runs on -- prototype, exemplar, or theory.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real categorization basis. Whether the categorizing is true to the persona -- graded and family-resemblant rather than defined by strict criteria, settling at the basic level, decided on the right basis, and kept distinct from the heuristic that merely uses categories -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Give the persona its basis under Projection: prototype when it judges by the typical case, exemplar when it judges by a remembered instance, theory when it judges by an account of what makes the kind. Let membership be graded, categories cohere by family resemblance, and naming settle at the basic level. Keep it the formation and structure of categories, not their use: the heuristic that judges probability by category similarity is the representativeness engine's, the social category applied to persons is the bias engine's stereotype member, and the cross-domain mapping of relational structure is the analogy engine's."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
