@@ -1,0 +1,68 @@
+{
+  "name": "@chbrain/khai-engine-structural-model",
+  "version": "0.1.0",
+  "description": "khai engine content, the structural-model domain: the Freudian tripartite psyche in dynamic conflict -- the id's drives pressing for gratification, the superego's conscience forbidding, and the ego mediating between them and reality -- across the id, ego, and superego agencies (Freud).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/structural-model"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "structural-model",
+    "tagline": "Structural model as position: the Freudian tripartite psyche in dynamic conflict -- the id's drives pressing for gratification, the superego's conscience forbidding, and the ego mediating between them and reality -- across the id, ego, and superego agencies (Freud).",
+    "type": "position",
+    "anchor": "position_structural_model.md",
+    "expressions": {
+      "id": "position_id.md",
+      "ego": "position_ego.md",
+      "superego": "position_superego.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_structural_model.md) declares Freud's second topography: the psyche as three agencies in dynamic conflict -- the id, the ego, and the superego -- whose struggle over a drive, a prohibition, and the demands of reality is the standing structure beneath a persona's inner life (Freud, The Ego and the Id). It is a metapsychological model, not the conscious self-concept the identity engine owns nor any single faculty: it is the whole three-way tension, in which the ego is perpetually caught between what the id demands, what the superego forbids, and what reality permits. A persona links whichever agency is, in a given scene, pressing hardest.",
+      "issue": "Three agencies, in standing conflict (Freud). Id: the reservoir of the drives -- libidinal and aggressive -- ruled by the pleasure principle, unconscious, timeless, and heedless of logic or contradiction, pressing for immediate discharge with no regard for consequence or reality. Superego: the internalized moral authority, heir to the parental prohibitions -- a conscience that punishes transgression and even the wish of it with guilt, and an ego-ideal that sets the standard the persona must reach, rewarding it with pride and lashing it with shame when it falls short. Ego: the executive that serves reality, ruled by the reality principle, mediating between the id's demands, the superego's prohibitions, and the outer world -- deferring, redirecting, and defending, the only agency that touches all three.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the three-agency structure holds system-wide beneath the persona's inner life. The link: each persona links, under Projection, the agency pressing hardest in the scene -- id, ego, or superego.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real agency. Whether the structure is true to the persona -- a genuine three-way conflict among drive, conscience, and reality, the ego caught mediating, and kept distinct from the conscious self-concept and the single faculties each agency subsumes -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the persona the agency at work under Projection: id when a drive presses for discharge against all sense, superego when conscience forbids and punishes, ego when the persona mediates and defends against both while serving reality. Stage the conflict, not one voice alone -- the id wants, the superego forbids, the ego brokers. Keep it the metapsychological structure: the conscious self-story is the identity engine's, the ego's specific impulse-override is the self-control engine's, its defensive manoeuvres are the defense engine's, the moral trait it internalizes is the moral-identity engine's, and the drives' reward value is the reward engine's."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
