@@ -1,0 +1,83 @@
+{
+  "name": "@chbrain/khai-composite-post-traumatic-growth",
+  "version": "0.1.0",
+  "description": "khai composite content, the post-traumatic-growth domain: positive transformation beyond the prior baseline wrought through the struggle with trauma -- an assumptive world shattered and rebuilt via meaning-making (meaning), a revised life story (narrative), existential confrontation (mortality), and a remade self (identity) -- across the strength and wisdom movements (Tedeschi & Calhoun; Janoff-Bulman).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/post-traumatic-growth"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "post-traumatic-growth",
+    "tagline": "Post-traumatic growth as composite: positive transformation beyond the prior baseline wrought through the struggle with trauma -- an assumptive world shattered and rebuilt via meaning-making (meaning), a revised life story (narrative), existential confrontation (mortality), and a remade self (identity) -- across the strength and wisdom movements (Tedeschi & Calhoun; Janoff-Bulman).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_post_traumatic_growth.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "position_growth_strength.md",
+        "type": "position",
+        "parent": "process_post_traumatic_growth.md"
+      },
+      {
+        "file": "position_growth_wisdom.md",
+        "type": "position",
+        "parent": "process_post_traumatic_growth.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over four atoms it declares as dependencies. The root (process_post_traumatic_growth.md) reads post-traumatic growth as Tedeschi and Calhoun define it: positive psychological change experienced as a result of the struggle with a highly challenging, trauma-grade event -- growth beyond the prior baseline, not the mere maintenance of it. A seismic event shatters the persona's assumptive world (Janoff-Bulman), and the rebuilding runs through four atoms: the meaning engine's search for and reconstruction of meaning, the narrative engine's revision of the life story, the mortality engine's confrontation with death and the existential, and the identity engine's remaking of the self. The composite adds only the read of that transformation -- growth wrought through the struggle, not despite it, and distinct from the resilience that keeps functioning steady. It routes into two movements the growth takes.",
+      "issue": "Two movements of growth, grouping Tedeschi and Calhoun's domains. Strength: the self transformed -- personal strength (I survived that, I can bear what comes) and new possibilities (paths and purposes the old life did not hold), the remade identity and its agentic, redemptive story. Wisdom: the philosophy of life transformed -- a deepened appreciation of life and what matters in it, existential and spiritual change, and a richer valuing of others, born of having faced mortality and rebuilt meaning. The one grows the persona's sense of what it can do; the other, its sense of what is worth doing.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the growth read runs wherever its atoms are cast. The link, advisory: a persona transformed along the strength or the wisdom movement may link it under Projection, and the audit surfaces the ones left unnamed.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production earns the growth -- a genuine transformation beyond baseline wrought through the struggle, its assumptive world truly shattered and rebuilt, rather than a mere return to normal or an untested claim of growth -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its four atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Stage a trauma grave enough to shatter the assumptive world, then cast the rebuilding: meaning reconstructed (meaning), the life story revised (narrative), mortality confronted (mortality), the self remade (identity). Read the growth as transformation beyond the old baseline, not a return to it -- strength for the remade, more-capable self, wisdom for the deepened philosophy of life. Keep it growth, not maintenance: the holding of stable functioning across the event is the resilience composite's, and growth can coexist with real, ongoing post-traumatic distress. Read the production across the compound, never in the trauma alone."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-engine-identity": "^0.1.1",
+    "@chbrain/khai-engine-meaning": "^0.1.1",
+    "@chbrain/khai-engine-mortality": "^0.1.1",
+    "@chbrain/khai-engine-narrative": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
