@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-self-affirmation",
+  "version": "0.1.0",
+  "description": "khai engine content, the self-affirmation domain: restoring a persona's global sense of self-integrity by affirming a valued domain unrelated to a threat, so the threat need not be defended -- across the affirming move, the fluid adequacy it restores, and the buffering of defensiveness it produces (Steele; Sherman & Cohen).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/self-affirmation"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "self-affirmation",
+    "tagline": "Self-affirmation as process: restoring a persona's global sense of self-integrity by affirming a valued domain unrelated to a threat, so the threat need not be defended -- across the affirming move, the fluid adequacy it restores, and the buffering of defensiveness it produces (Steele; Sherman & Cohen).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_self_affirmation.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_affirming.md",
+        "type": "process",
+        "parent": "process_self_affirmation.md"
+      },
+      {
+        "file": "process_adequacy.md",
+        "type": "process",
+        "parent": "process_self_affirmation.md"
+      },
+      {
+        "file": "process_buffering.md",
+        "type": "process",
+        "parent": "process_self_affirmation.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_self_affirmation.md) declares self-affirmation as the restoring of a persona's global self-integrity -- its sense of being adequate, competent, and morally sound -- by affirming a valued domain unrelated to whatever is threatening it (Steele). Its distinctive move is the substitution across domains: a threat to the self in one area (a failure, a health warning, a stereotype) is met not by defending that area but by reasserting worth in another the persona prizes, and the restored global integrity makes the specific threat less pressing to defend. Where dissonance is the discomfort of inconsistent cognitions and its reduction one thing self-affirmation can do, self-affirmation is the wider system that operates far beyond it -- across health, feedback, and stereotype threat -- restoring integrity rather than resolving a contradiction. The law makes a persona's overall sense of self-worth a resource it can restore from one domain to cover a threat in another.",
+      "issue": "Three moments of the restoration (Steele; Sherman & Cohen). Affirming: the move itself -- bringing forward a valued domain unrelated to the threat, reflecting on a core value, a cherished relationship, or a prized identity, and reasserting the persona's worth there. Adequacy: the fluid global integrity that makes the move work -- the self as a system whose overall sense of being adequate is what a threat endangers and what an affirmation anywhere restores, so worth reasserted in one domain offsets a threat in another rather than answering it point-for-point. Buffering: the consequence -- with integrity restored, the persona's defensiveness falls, and it can take in threatening information, accept critical feedback, resist a stereotype's drag, and bear a stressor with less need to distort it. Together they are why an unrelated affirmation opens a persona that a direct rebuttal would only harden.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so a persona's global self-integrity is a restorable resource system-wide. The link: each persona links, under Projection, the self-affirmation a moment runs -- what unrelated domain it affirms under threat, and how the restored integrity lowers its defensiveness.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real self-affirmation. Whether the affirmation is true to the scene -- a genuine restoring of global integrity from an unrelated valued domain rather than a defense of the threatened one, its affirming, its fluid adequacy, and its buffering distinguished, and kept apart from the mere reduction of a contradiction -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its self-affirmation under Projection: what valued domain unrelated to the threat it affirms, and how that restored sense of overall worth lowers its guard -- and read it in the persona meeting a threat sideways, shored up elsewhere rather than defending the point attacked, and so more open than a cornered self would be. Keep it the restoring of global integrity from an unrelated domain: the discomfort of inconsistent cognitions is the dissonance engine's, the level of self-worth itself is the self-esteem engine's, the drive to confirm a specific self-view is the self-verification engine's, the defensive attributions that self-affirmation loosens are the bias engine's, and the appraisal-driven repertoire against a stressor is the coping engine's. This engine owns the restoration of overall self-integrity that lets a threat go undefended."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
