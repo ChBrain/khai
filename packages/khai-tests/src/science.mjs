@@ -220,7 +220,49 @@ function surnameOf(part) {
  * reads the raw Source, so nothing is lost from the index — only the false
  * author is kept out.
  */
-export function surnames(source) {
+/**
+ * The declared homonym policy for a root: `scholarPolicy.homonyms` in
+ * khai-guard.config.json, a map from a shared surname to the given-name forms
+ * that distinguish the people who share it.
+ *
+ *   { "Hart": ["'t", "Julian Tudor", "Oliver"] }
+ *
+ * This has to be declared and cannot be computed, and the corpus is the reason.
+ * Two different given names under one surname looks identical to one person
+ * written two ways: "Buchanan", "James Buchanan" and "James M Buchanan" are all
+ * the same economist, while "Oliver Hart" and "Julian Tudor Hart" are an
+ * economist and a general practitioner. Any rule that split the second would
+ * split the first, so the index keys on surname by default and separates only
+ * where a maintainer has said the surname is shared.
+ */
+export function scholarHomonyms(root) {
+  const path = join(root, "khai-guard.config.json");
+  if (!existsSync(path)) return {};
+  try {
+    return JSON.parse(readFileSync(path, "utf8"))?.scholarPolicy?.homonyms ?? {};
+  } catch {
+    return {};
+  }
+}
+
+/**
+ * The index key for one author part, given the declared homonyms. Undeclared
+ * surnames key on the surname alone, which is what collates a scholar written
+ * "Kahneman" here and "Daniel Kahneman" there. A declared surname keys as
+ * "Surname (Form)", which sorts beside its namesakes rather than away from them.
+ * A part carrying no declared form keys on the bare surname, so an unresolved
+ * occurrence stays visible instead of being silently attributed to one of them.
+ */
+function scholarKey(part, surname, homonyms) {
+  const forms = homonyms[surname];
+  if (!Array.isArray(forms) || !forms.length) return surname;
+  const tokens = part.replace(/[.,]/g, "").split(/\s+/).filter(Boolean);
+  const given = tokens.slice(0, tokens.length - surname.split(/\s+/).length).join(" ");
+  const form = forms.find((f) => given === f || given.startsWith(`${f} `));
+  return form ? `${surname} (${form})` : surname;
+}
+
+export function surnames(source, homonyms = {}) {
   return (
     source
       .replace(/\bet al\.?/gi, "")
@@ -230,13 +272,14 @@ export function surnames(source) {
       .map((part) => stripQualifier(part))
       .filter(Boolean)
       .filter((part) => !NON_AUTHOR.has(part.toLowerCase()))
-      .map((part) => surnameOf(part))
+      .map((part) => [part, surnameOf(part)])
       // A scholar surname is a proper noun: it begins with an uppercase letter.
       // This is the structural invariant that replaces per-row judgement — it
       // drops "effect" (Boundary of the effect), "calculus" (The individual
       // calculus), "2001" (Nobel 2001) and every future idiom of that shape
       // without a list to maintain.
-      .filter((token) => /^\p{Lu}/u.test(token))
+      .filter(([, token]) => /^\p{Lu}/u.test(token))
+      .map(([part, token]) => scholarKey(part, token, homonyms))
   );
 }
 
@@ -280,6 +323,7 @@ function engineDirs(root) {
 export function collectScience(root) {
   const records = []; // one per (engine, scholar)
   const byEngine = [];
+  const homonyms = scholarHomonyms(root);
   for (const { dir, layer } of engineDirs(root)) {
     const khai = JSON.parse(readFileSync(join(dir, "package.json"), "utf8")).khai;
     if (!khai || !khai.engine) continue;
@@ -309,7 +353,7 @@ export function collectScience(root) {
       sources: rows.map((r) => r.source),
     });
     for (const r of rows)
-      for (const surname of surnames(r.source))
+      for (const surname of surnames(r.source, homonyms))
         records.push({ surname, ...r, engine: khai.engine, layer, root: khai.type || "?" });
   }
   return { records, byEngine };
@@ -444,6 +488,7 @@ export function collectCollectionScience(
 ) {
   const records = []; // one per (unit, scholar)
   const byUnit = [];
+  const homonyms = scholarHomonyms(root);
   for (const { id, dir } of unitDirs(root, collection)) {
     const refPath = unitWarrant(dir);
     if (!refPath) continue; // a dir with no warrant is not a science-bearing unit
@@ -460,7 +505,7 @@ export function collectCollectionScience(
       );
     byUnit.push({ unit: id, sources: rows.map((r) => r.source) });
     for (const r of rows)
-      for (const surname of surnames(r.source)) records.push({ surname, ...r, unit: id });
+      for (const surname of surnames(r.source, homonyms)) records.push({ surname, ...r, unit: id });
   }
   return { records, byUnit };
 }
