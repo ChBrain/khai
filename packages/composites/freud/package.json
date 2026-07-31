@@ -1,0 +1,90 @@
+{
+  "name": "@chbrain/khai-composite-freud",
+  "version": "0.1.0",
+  "description": "khai composite content, the freud domain: the Freudian psyche read as a compound -- a mind divided against itself and largely unconscious, its agencies in conflict (structural-model, the-unconscious), the ego warding off anxiety through defense (anxiety, defense), and the past repeating in present bonds (transference, attachment) -- across its apparatus, warding, and relation movements (Freud, and the tradition that built on him: A. Freud; Hartmann; Bowlby & Ainsworth; Vaillant; Andersen & Chen).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/freud"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "freud",
+    "tagline": "Freud as composite: the Freudian psyche read as a compound -- a mind divided against itself and largely unconscious, its agencies in conflict (structural-model, the-unconscious), the ego warding off anxiety through defense (anxiety, defense), and the past repeating in present bonds (transference, attachment) -- across its apparatus, warding, and relation movements (Freud, and the tradition that built on him: A. Freud; Hartmann; Bowlby & Ainsworth; Vaillant; Andersen & Chen).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_freud.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "position_apparatus.md",
+        "type": "position",
+        "parent": "process_freud.md"
+      },
+      {
+        "file": "position_warding.md",
+        "type": "position",
+        "parent": "process_freud.md"
+      },
+      {
+        "file": "position_relation.md",
+        "type": "position",
+        "parent": "process_freud.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over six atoms it declares as dependencies. The root (process_freud.md) reads the Freudian psyche as Freud and the tradition after him build it: a mind divided against itself and largely unconscious, driven by intrapsychic conflict. The ego stands between the id's drives, the superego's demands, and reality (structural-model), and most of that contention runs below awareness (the-unconscious). When forbidden material threatens to break through, the ego takes fright and wards it off: anxiety is the signal (anxiety), defense the manoeuvre (defense). And what is repressed is not gone -- it returns and repeats, the early relational template (attachment) replayed onto present figures (transference). The composite adds only the read of the psyche as this compound: conflict, mostly unseen, managed by defense, repeated in relationship. It routes into three movements.",
+      "issue": "Three movements of the psyche, grouping the six atoms. Apparatus: the standing structure -- the three agencies of the structural model (id, ego, superego) held largely in the unconscious, the who-is-in-conflict and that the conflict runs unseen. Warding: the defensive economy -- the ego's signal anxiety at threatened breakthrough and the defenses that ward it off, mature to immature, the how-conflict-is-managed. Relation: the object world -- the past that will not stay past, the early attachment template repeated and the repressed transferred onto present figures, the how-the-past-returns. The one is who the persona is made of, the next how it defends, the last how it repeats.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the Freudian read runs wherever its atoms are cast. The link, advisory: a persona whose apparatus, warding, or relation is in play may link the movement under Projection, and the audit surfaces the ones left unnamed.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production earns the Freudian read -- genuine intrapsychic conflict mostly out of awareness, a defense that truly distorts to spare the ego, a transference that truly replays the past rather than reading the present figure straight -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its six atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Stage a persona divided: drive against conscience against reality (structural-model), the contention mostly unconscious (the-unconscious). When the forbidden presses, cast the warding -- anxiety as the signal (anxiety), defense as the manoeuvre (defense) -- and let it distort, because the distortion is the point. Then cast the return: the early bond (attachment) replayed, the repressed transferred onto a present figure (transference). Read the persona across the compound -- conflict, unseen, defended, repeated -- never in one atom alone. Keep the reads distinct: the specific love-and-hate toward one object is the love-hate composite's, and the general structure of opposed evaluation the ambivalence engine's; this composite reads the apparatus, not that affect."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-engine-anxiety": "^0.1.0",
+    "@chbrain/khai-engine-attachment": "^0.1.2",
+    "@chbrain/khai-engine-defense": "^0.1.0",
+    "@chbrain/khai-engine-structural-model": "^0.1.0",
+    "@chbrain/khai-engine-the-unconscious": "^0.1.0",
+    "@chbrain/khai-engine-transference": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
