@@ -866,12 +866,29 @@ export function parseChanges(input) {
  * that release republishes identical content and drifts the version (the
  * spurious `0.<count>.1` patch). Empty/omitted -> the rule is off (shipped set
  * unknown). The git/file IO that reads `files` lives in the CLI.
- * @param {{changed?: {status:string,path:string}[], changesets?: {file:string,entries:unknown[]}[], shipped?: string[], config?: typeof DEFAULT_CONFIG}} args
+ *
+ * `packages` is the workspace's own view of itself, one record per publishable
+ * package: `{name, shipped, released}`. It supersedes the flat `shipped` set,
+ * which reads only the ROOT manifest and is therefore blind in a monorepo (a
+ * private workspace root has no `files`, so the ships-nothing rule silently
+ * switches itself off). When `packages` is given, both per-package rules run
+ * against the package a changeset actually names; when it is empty the legacy
+ * root-only `shipped` behaviour stands, so a single-package house is unchanged.
+ *
+ * `released` is whether the package has ever been published. It gates the
+ * first-release rule: changesets bumps FROM the version in `package.json`, so a
+ * package created at `0.1.0` that has never shipped and carries any releasing
+ * changeset is versioned to `0.1.1` and published there — `0.1.0` never exists
+ * on the registry. A first release must therefore declare no bump; the version
+ * already in the manifest IS the intended initial version, and `changeset
+ * publish` ships any package whose version is not yet on the registry.
+ * @param {{changed?: {status:string,path:string}[], changesets?: {file:string,entries:unknown[]}[], shipped?: string[], packages?: {name:string,shipped?:string[],released?:boolean}[], config?: typeof DEFAULT_CONFIG}} args
  */
 export function changesetCheck({
   changed = [],
   changesets = [],
   shipped = [],
+  packages = [],
   config = DEFAULT_CONFIG,
 } = {}) {
   const globs = config.changesetPolicy?.countDrivenAdd ?? [];
@@ -920,13 +937,70 @@ export function changesetCheck({
   // patch a REFERENCES/docs/tooling PR cuts when it carries a `patch` changeset
   // instead of an `--empty` one. Only checked when the shipped set is known.
   const releasing = changesets.some((c) => Array.isArray(c.entries) && c.entries.length > 0);
-  if (shipped.length > 0 && releasing) {
+  if (packages.length === 0 && shipped.length > 0 && releasing) {
     const isShipped = picomatch(shipped, { dot: true });
     if (!changed.some((c) => isShipped(c.path))) {
       violations.push(
         `this PR changes no shipped package content (nothing under the package \`files\`) but ` +
           `carries a releasing changeset; that release would republish identical content and drift ` +
           `the version. Use an empty changeset instead: \`npx changeset add --empty\`.`,
+      );
+    }
+  }
+
+  // Per-package rules. `packages` gives the name a changeset declares a bump for
+  // a shipped set and a release history, so both rules judge the package the
+  // changeset actually names rather than the repository as a whole. A changeset
+  // naming a package the workspace does not know is left alone: the guard does
+  // not own that manifest and must not guess at it.
+  if (packages.length > 0) {
+    const known = new Map(packages.map((p) => [p.name, p]));
+    // One entry per (package, changeset file), so a package bumped by two
+    // changesets is reported once per changeset rather than folded into one line.
+    const bumps = [];
+    for (const { file, entries } of changesets) {
+      for (const e of Array.isArray(entries) ? entries : []) {
+        if (e && e.package && known.has(e.package)) bumps.push({ file, ...e });
+      }
+    }
+    const firstRelease = [];
+    for (const b of bumps) {
+      const pkg = known.get(b.package);
+      // A never-published package: changesets bumps FROM the manifest version, so
+      // any level here ships the FIRST release one bump above the version the
+      // package was created at, and that initial version never reaches the
+      // registry at all. Dedupe by package: one finding per package, however many
+      // changesets name it.
+      if (pkg.released === false && !firstRelease.includes(b.package)) firstRelease.push(b.package);
+    }
+    if (firstRelease.length > 0) {
+      violations.push(
+        `this PR carries a releasing changeset for ${firstRelease.length === 1 ? "a package that has" : "packages that have"} ` +
+          `never been published (${firstRelease.join(", ")}). \`changeset version\` bumps FROM the version in ` +
+          `\`package.json\`, so the first release would ship one bump above it and the version the package ` +
+          `was created at would never exist on the registry. A first release declares no bump: the manifest ` +
+          `version IS the initial version, and \`changeset publish\` ships any package whose version is not ` +
+          `yet on the registry. Use an empty changeset: \`npx changeset add --empty\`.`,
+      );
+    }
+    // The ships-nothing rule, per package: a release that changes nothing under
+    // that package's own `files` republishes identical content. Skipped for a
+    // first release (already flagged above, and its whole tree is new) and for a
+    // package with no `files` field (shipped set unknown -> rule off, as before).
+    const stale = [];
+    for (const b of bumps) {
+      const pkg = known.get(b.package);
+      if (pkg.released === false) continue;
+      const globs = Array.isArray(pkg.shipped) ? pkg.shipped : [];
+      if (globs.length === 0 || stale.includes(b.package)) continue;
+      const isShipped = picomatch(globs, { dot: true });
+      if (!changed.some((c) => isShipped(c.path))) stale.push(b.package);
+    }
+    if (stale.length > 0) {
+      violations.push(
+        `this PR carries a releasing changeset for ${stale.join(", ")} but changes nothing under ` +
+          `${stale.length === 1 ? "that package's" : "those packages'"} \`files\`; that release would republish identical ` +
+          `content and drift the version. Use an empty changeset instead: \`npx changeset add --empty\`.`,
       );
     }
   }

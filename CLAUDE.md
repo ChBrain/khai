@@ -55,6 +55,13 @@ npx khai-guard advise --files <paths>
    label (the maintainer's call — do not self-escalate). A tooling/docs PR that
    ships no package change still needs an **empty** changeset:
    `npx changeset add --empty`.
+   **A package's FIRST release is the exception: it takes an empty changeset,
+   never a bump.** `changeset version` bumps _from_ the version already in
+   `package.json`, so a new package created at `0.1.0` that carries any level
+   publishes at `0.1.1` and `0.1.0` never exists on the registry. The manifest
+   version IS the initial version; `changeset publish` ships any package whose
+   version is not yet on the registry, with no bump needed to reach it.
+   `khai-guard changeset-check` computes this rather than trusting the reader.
 5. **Never merge.** Open the PR and stop. Merging is the maintainer's.
 6. **A PR with more coming is a draft.** If the change is not whole, open the PR
    as a **draft** (or label it do-not-merge) and say what is still to land.

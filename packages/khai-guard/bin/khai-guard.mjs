@@ -273,6 +273,110 @@ function readShippedGlobs() {
   return globs;
 }
 
+// Normalize a package.json `files` list into globs, relative to `dir` (the
+// package's repo-relative directory, "" at the root). A bare directory entry
+// publishes recursively, so it gains a `/**`; package.json itself is always
+// published. Empty when there is no `files` field — the shipped set is then
+// unknown and the ships-nothing rule stays off rather than firing falsely.
+function shippedGlobsFor(pkg, dir = "") {
+  const files = Array.isArray(pkg.files) ? pkg.files : [];
+  if (files.length === 0) return [];
+  const prefix = dir ? `${dir.replace(/\/+$/, "")}/` : "";
+  const globs = [`${prefix}package.json`];
+  for (const f of files) {
+    const e = String(f)
+      .replace(/^\.?\//, "")
+      .replace(/\/+$/, "");
+    if (!e) continue;
+    globs.push(`${prefix}${e}`);
+    if (!e.includes("*")) globs.push(`${prefix}${e}/**`);
+  }
+  return globs;
+}
+
+// The workspace's view of itself: one record per publishable package, giving the
+// name a changeset names, that package's own shipped set, and whether it has ever
+// been published. Resolves both house shapes: a single-package root (khai-misfits)
+// and an npm workspace whose private root has no `files` at all (khai) — the case
+// that made the root-only shipped read blind.
+//
+// `released` is read from the package's CHANGELOG.md, which `changeset version`
+// writes on the first bump and never removes. That makes it a local, free,
+// deterministic proxy for "has this been published", with no registry call behind
+// a pre-push hook. A package.json added in THIS diff is likewise new, so the
+// caller ORs that in — a package can be added and named by a changeset in the
+// same PR, before any CHANGELOG exists to read.
+function readPackages(changed = []) {
+  const root = resolve(process.cwd());
+  const readManifest = (p) => {
+    try {
+      return JSON.parse(readFileSync(p, "utf8"));
+    } catch {
+      return null;
+    }
+  };
+  const rootPkg = readManifest(join(root, "package.json"));
+  if (!rootPkg) return [];
+
+  // Every directory the workspace globs resolve to. Only the trailing-`*` form
+  // npm workspaces actually use is expanded; anything else is a literal path.
+  const dirs = [];
+  const patterns = Array.isArray(rootPkg.workspaces)
+    ? rootPkg.workspaces
+    : Array.isArray(rootPkg.workspaces?.packages)
+      ? rootPkg.workspaces.packages
+      : [];
+  for (const pattern of patterns) {
+    const p = String(pattern)
+      .replace(/^\.?\//, "")
+      .replace(/\/+$/, "");
+    if (!p) continue;
+    if (p.endsWith("/*")) {
+      const parent = p.slice(0, -2);
+      let entries = [];
+      try {
+        entries = readdirSync(join(root, parent), { withFileTypes: true });
+      } catch {
+        continue;
+      }
+      for (const e of entries) if (e.isDirectory()) dirs.push(`${parent}/${e.name}`);
+    } else if (!p.includes("*")) {
+      dirs.push(p);
+    }
+  }
+  // The root itself is a package when it is publishable (a single-package house).
+  if (!rootPkg.private && rootPkg.name) dirs.unshift("");
+
+  const isNew = new Set(
+    changed.filter((c) => c.status === "A").map((c) => c.path.replace(/^\.?\//, "")),
+  );
+  const raw = [];
+  for (const dir of dirs) {
+    const manifestPath = dir ? `${dir}/package.json` : "package.json";
+    const pkg = readManifest(join(root, manifestPath));
+    if (!pkg || !pkg.name || pkg.private) continue;
+    raw.push({
+      name: pkg.name,
+      shipped: shippedGlobsFor(pkg, dir),
+      hasChangelog: existsSync(join(root, dir, "CHANGELOG.md")),
+      addedHere: isNew.has(manifestPath),
+    });
+  }
+  // A missing CHANGELOG only means "never released" in a house that demonstrably
+  // releases through changesets — i.e. where some sibling HAS one. In a house that
+  // has never cut a release (and in a test fixture) no package has a CHANGELOG, and
+  // reading that as "all unreleased" would flag every ordinary patch. So the absence
+  // is corroborating evidence, never sufficient on its own; a manifest ADDED in this
+  // diff is the one signal that stands alone, since the package cannot predate a PR
+  // that introduces it.
+  const housePublishes = raw.some((p) => p.hasChangelog);
+  return raw.map(({ name, shipped, hasChangelog, addedHere }) => ({
+    name,
+    shipped,
+    released: addedHere ? false : housePublishes ? hasChangelog : true,
+  }));
+}
+
 // `changeset-check`: the changeset-presence gate. A play-count-driven house
 // requires a `minor` changeset when a PR adds a new play (the Version PR is the
 // deploy gate; the reconcile clamps the minor to the count and resets the patch,
@@ -316,6 +420,7 @@ function runChangesetCheck() {
     changed,
     changesets: readChangesets().filter((c) => prChangesets.has(c.file)),
     shipped: readShippedGlobs(),
+    packages: readPackages(changed),
     config,
   });
   if (ok) {
