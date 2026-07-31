@@ -1,0 +1,86 @@
+{
+  "name": "@chbrain/khai-composite-love-hate",
+  "version": "0.1.0",
+  "description": "khai composite content, the love-hate domain: the ambivalence Freud named -- love and hate held toward the same object at once, on the shared neural circuit Zeki & Romaya found -- read as a wiring of the love and hate composites across the holding, turn, and bind bridges.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/love-hate"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "love-hate",
+    "tagline": "Love-hate as composite: the ambivalence Freud named -- love and hate held toward the same object at once, on the shared neural circuit Zeki & Romaya found -- read as a wiring of the love and hate composites, across the holding, turn, and bind bridges, and the drama lives in whether the two are held together, crossing, or locking the persona in place.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_love_hate.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_love_hate_holding.md",
+        "type": "process",
+        "parent": "process_love_hate.md"
+      },
+      {
+        "file": "process_love_hate_turn.md",
+        "type": "process",
+        "parent": "process_love_hate.md"
+      },
+      {
+        "file": "process_love_hate_bind.md",
+        "type": "process",
+        "parent": "process_love_hate.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "plot",
+        "section": "Tension",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over two atoms it declares as dependencies -- and both are themselves composites, the first such wiring in the canon. The root (process_love_hate.md) reads the ambivalence Freud named: love and hate held toward the same object at once. The love composite supplies the love; the hate composite supplies the hate; this composite adds no third feeling but reads what the two make when they run from the same object. Its warrant is Freud's ambivalence -- the coexistence of love and hate at the heart of the closest ties -- joined to the neuroscience Zeki and Romaya found, that love and hate share a common subcortical circuit, so the two are not distant opposites but near neighbours that a single bond can hold together, cross between, or be caught between.",
+      "issue": "Three bridges, the shapes ambivalence takes. Holding: love and hate at full toward the same object at once -- the ambivalent bond proper, the object cherished and resented in one breath, neither feeling cancelling the other. Turn: the crossing -- love curdling to hate or hate thawing to love, and above all the special ferocity of a love betrayed, for hate is sharpest toward a former intimate, the negation of intimacy being love's own intimacy inverted. Bind: the lock -- ambivalence at its most binding, where the object matters too much to leave and hurts too much to hold, the approach-and-avoid that cannot resolve, sharpest in the closest ties and hardest to escape. Love alone or hate alone is not ambivalence but its ingredient; the composite is the two held toward one object.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the ambivalence read runs wherever its atoms are cast. The link, advisory: a plot may link under Tension the bridge it stages, and the audit surfaces where a play stages a love-hate without naming whether the two are held, crossing, or locked.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the love and hate composites in turn. Whether a production's ambivalence genuinely holds both feelings toward one object -- and whether its crossing, a love betrayed hardening to hate, is read truly -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- and, through them, their atoms in turn (self-disclosure, desire, loyalty under love; disgust, anger, contempt under hate). Declare the law in the Instructions Knowledge chapter, linking the root. Cast the ambivalence from the two composites -- the love from the love composite, the hate from the hate composite, both running from the same object -- then stage the bridge: holding when the two are borne together, turn when one crosses into the other, bind when the persona is locked between them. Read the production in whether love and hate are held, crossing, or locking the persona in place, never in the word love-hate alone."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-composite-hate": "^0.1.0",
+    "@chbrain/khai-composite-love": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
