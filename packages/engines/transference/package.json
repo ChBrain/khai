@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-transference",
+  "version": "0.1.0",
+  "description": "khai engine content, the transference domain: a stored representation of a significant other, triggered by a new person's resemblance, applied to them -- so past feelings, expectations, and the very self one was in that bond are carried onto a present figure -- across the positive, negative, and countertransference configurations (Freud; Klein; Andersen & Chen).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/transference"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "transference",
+    "tagline": "the carrying of a past relationship onto a present figure -- a stored representation of a significant other, triggered by resemblance, applied to a new person so its feelings, expectations, and relational self come with it -- across the positive, negative, and countertransference configurations (Freud; Klein; Andersen & Chen)",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_transference.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_transference_positive.md",
+        "type": "process",
+        "parent": "process_transference.md"
+      },
+      {
+        "file": "process_transference_negative.md",
+        "type": "process",
+        "parent": "process_transference.md"
+      },
+      {
+        "file": "process_countertransference.md",
+        "type": "process",
+        "parent": "process_transference.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_transference.md) declares transference as the carrying of a past relationship onto a present one: a stored mental representation of a significant other -- a parent, an early love, a formative figure -- is triggered when a new person resembles them, and is applied to that new person, so the feelings, expectations, and relational patterns owed to the old figure are lived out toward the new (Freud). Andersen and Chen's relational-self research made the mechanism testable: the resemblance activates the significant-other representation, which then colours how the new person is perceived, what is expected of them, the affect they draw, and even the self the persona becomes in their presence. It routes into three configurations.",
+      "issue": "Three configurations of the transferred bond. Positive: the warmth of the old relationship comes over -- affection, idealization, trust, the wish to please and be approved of -- so the new figure is met with a fondness they have not earned and held to a hope they may not meet. Negative: the injury of the old relationship comes over -- hostility, mistrust, fear, resentment -- so the new figure is met with a suspicion or anger they have not provoked, cast in the role of the one who once hurt. Countertransference: the reciprocal -- the new figure's own significant-other representation is triggered in turn, so both are caught applying old patterns to each other, and the analyst, or any responder, transfers back onto the one transferring onto them.",
+      "require": "The law is declared once in the project's Instructions Knowledge chapter, linking the root. Each persona links, under Projection, the configuration its transference takes -- positive, negative, or countertransference.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real transference configuration. Whether the transference is true to the persona -- a genuine past relationship activated by a present resemblance and applied to a figure who did not earn it, shifting affect, expectation, and the self, and kept distinct from the standing bond and the mere projection of a trait -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Give the persona its configuration under Projection: positive when the warmth of an old bond is carried onto the new figure, negative when its injury is, countertransference when the responder transfers back in turn. Stage the resemblance that triggers it and the misfit between the transferred pattern and the person actually there -- the fondness or suspicion they did not earn. Keep it the carried relationship: the standing bond and its working model are the attachment engine's, and the projecting of one's own disowned trait onto another is the bias engine's projection member; transference carries a whole past relationship, not a single attribute."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}

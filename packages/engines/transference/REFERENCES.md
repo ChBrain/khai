@@ -1,0 +1,40 @@
+---
+updated: "2026-07-31"
+---
+
+# Transference: Reference
+
+## Line of Work
+
+Transference as a **process** engine: the carrying of a past relationship onto a present figure -- a stored representation of a significant other, triggered by a new person's resemblance, applied to them so that its feelings, expectations, and relational patterns are lived out toward someone who did not earn them -- taken across the three configurations the transferred bond can take. The domain does not model the standing bond and its working model, which is the attachment engine's; nor the projecting of one's own disowned trait onto another, which is the bias engine's projection member. It models the activation-and-application of a whole past relationship onto a present person, and the misfit that makes.
+
+The spine runs from Freud through object relations to the modern social-cognitive science of the relational self. Freud discovered transference in the clinic: the patient re-experiences, toward the analyst, feelings and conflicts belonging to significant figures from their past, and this re-enactment -- positive when affectionate, negative when hostile -- becomes both the central obstacle and the central instrument of the treatment; he named the analyst's reciprocal re-enactment countertransference. Object-relations theorists, Klein foremost, broadened transference from the repetition of a person to the projection of internalized object relations -- whole internal dramas played out on the present figure. The concept's warrant was then transformed by experimental social psychology: Andersen and Chen's relational-self theory holds that mental representations of significant others are stored in memory and linked to the self one is with them, so that when a new person resembles a significant other, that representation is activated and applied -- shifting how the new person is perceived, what is expected of them, the affect and even the facial affect they evoke, and the self-concept the perceiver adopts. In a large experimental program, resemblance to a participant's own significant other reliably produced these transference effects, moving the concept from clinical inference to demonstrated everyday process. The engine takes the activation-and-application as its root and the positive, negative, and countertransference configurations as its forms. The altitudes are those: the transference, and its three configurations.
+
+## Origin
+
+The clinical and social-cognitive science of transference, applied directly as engine constraints across process.
+
+| Source                                   | Key Work                                                                                          | Scope                                                                                                                                                                                |
+| :--------------------------------------- | :------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Sigmund Freud**                        | _"The Dynamics of Transference"_ (1912); _"Observations on Transference-Love"_ (1915)             | The founding -- transference as the re-experiencing of feelings for past figures toward the analyst, positive and negative, and countertransference. The root and all three forms.   |
+| **Melanie Klein (object relations)**     | _"The Origins of Transference"_ (1952)                                                            | The broadening -- transference as the projection of internalized object relations, whole internal dramas cast onto the present figure. The root; the negative form.                  |
+| **Susan Andersen & Serena Chen**         | _"The Relational Self: An Interpersonal Social-Cognitive Theory"_ (Psychological Review, 2002)    | The modern spine -- significant-other representations activated by resemblance and applied to new persons, shifting affect, expectation, and the self. The root and all three forms. |
+| **Susan Andersen, Noah Glassman et al.** | experimental transference paradigm (Andersen & Glassman, 1996; Andersen, Reznik & Manzella, 1996) | The demonstration -- resemblance to one's own significant other producing transference in affect, expectancy, and self-definition. The root; the positive and negative forms.        |
+
+## Restrictions
+
+What the engine refuses to model, and to whom it delegates.
+
+- **The standing bond (attachment)**: The engine models the activation of a stored relationship onto a new figure, not the bond itself or its working model. How a persona forms and holds an attachment -- secure, anxious, avoidant, disorganized -- and the internal working model of relationships it carries is owned by the attachment engine; transference is what happens when such a stored relationship is triggered by a resemblance and applied to someone new. Attachment is the bond and its template; transference is that template activated onto a present person who did not earn it. Transference draws on attachment's representations, but the carrying-onto is this engine's.
+- **The projection of a trait (bias)**: The engine models the carrying of a whole past relationship, not the projecting of a single disowned attribute. Attributing one's own unacknowledged trait or impulse to another -- projection -- is owned by the bias engine's projection member; transference transfers a relational pattern, an entire configuration of feeling, expectation, and role from a past figure, not one attribute of the self. Projection disowns a part of the self onto another; transference relives a past relationship on them.
+- **The general activation of a schema (priming, categorization)**: The engine models the specific case of a significant-other representation applied to a person, not the generic activation of any concept by a cue. The triggering and application of a category or schema in general is owned by the categorization engine and the cognitive machinery beneath it; transference is the particular, affect-laden case where what is activated is a stored relationship with a significant other and what it is applied to is a present person. The mechanism is a special, relational instance, not the general priming process.
+- **The defenses transference can serve (defense, structural-model)**: The engine models the carrying-over itself, not the defensive use it may be put to. Where transference serves to ward off an intolerable feeling, that defensive function is the defense engine's, and the intrapsychic conflict it plays out belongs to the structural-model engine; transference is the relational process, which can serve defense but is not itself a defense.
+
+## Encoding
+
+Source to constraint, per file.
+
+- **[transference](process_transference.md)** (the root, process): A stored significant-other representation, triggered by resemblance, applied to a present figure, shifting affect, expectation, and the self. Anchored by Freud (transference) and Andersen & Chen (the relational self).
+- **[positive](process_transference_positive.md)** (process, form): The warmth of the old bond carried over -- affection, idealization, trust the new figure did not earn. Anchored by Freud (positive transference) and Andersen et al. (transferred positive affect).
+- **[negative](process_transference_negative.md)** (process, form): The injury of the old bond carried over -- hostility, mistrust, resentment the new figure did not provoke. Anchored by Freud (negative transference) and Klein (projected object relations).
+- **[countertransference](process_countertransference.md)** (process, form): The reciprocal -- the responder's own significant-other representation triggered in turn, both applying old patterns. Anchored by Freud (countertransference) and the relational-self account of its mutuality.
