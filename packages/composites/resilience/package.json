@@ -1,0 +1,81 @@
+{
+  "name": "@chbrain/khai-composite-resilience",
+  "version": "0.1.0",
+  "description": "khai composite content, the resilience domain: stable, healthy functioning maintained across a potentially traumatic event -- an adversity (stress) met by adaptive appraisal and coping (coping) so that functioning holds -- across the stable and recovery trajectories, resilience common rather than rare (Bonanno; Masten).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/resilience"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "resilience",
+    "tagline": "Resilience as composite: stable, healthy functioning maintained across a potentially traumatic event -- an adversity (stress) met by adaptive appraisal and coping (coping) so that functioning holds -- across the stable and recovery trajectories, resilience common rather than rare (Bonanno; Masten).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_resilience.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "position_resilience_stable.md",
+        "type": "position",
+        "parent": "process_resilience.md"
+      },
+      {
+        "file": "position_resilience_recovery.md",
+        "type": "position",
+        "parent": "process_resilience.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over two atoms it declares as dependencies. The root (process_resilience.md) reads resilience as Bonanno defines it: the maintenance of stable, healthy functioning across a potentially traumatic event. It reads the two its atoms hold -- the stress engine's acute response to the adversity, and the coping engine's appraisal and coping through which the persona meets it -- and adds only what no atom holds: the trajectory of functioning across the event, and the finding that this stable outcome is common, ordinary magic built from ordinary adaptive systems (Masten), not a rare heroic trait. It routes into two healthy trajectories by the shape of that outcome curve.",
+      "issue": "Two trajectories of healthy outcome across a PTE (Bonanno). Stable: resilience proper -- functioning barely dips, a mild and transient perturbation, then holds near baseline; the persona is shaken but never substantially felled, and returns to normal life quickly. Recovery: functioning drops markedly for a period -- weeks or months of real disruption -- and then returns to baseline; the bounce-back, distinct from resilience in that the person did fall, then climbed back. Both are healthy outcomes and neither is chronic dysfunction; the composite reads the two ways of coming through, reserving resilience-proper for the stable curve.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the resilience read runs wherever its atoms are cast. The link, advisory: a persona coming through a PTE on the stable or the recovery trajectory may link the form under Projection, and the audit surfaces the ones left unnamed.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production earns the resilience -- a genuine potentially-traumatic event met so that functioning holds or returns, rather than collapsing into chronic dysfunction, and kept distinct from goal stamina and hedonic drift -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its two atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the adversity from the stress engine (the potentially traumatic event and its acute response) and the meeting of it from the coping engine (the appraisal that reads it as bearable and the coping that carries the persona through), then read the trajectory: functioning that barely dips and holds is the stable, resilient curve; functioning that drops and returns is the recovery curve. Read the production across the outcome trajectory, never in the adversity alone, and remember resilience is the common outcome, not the rare one."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-engine-coping": "^0.1.0",
+    "@chbrain/khai-engine-stress": "^0.1.4"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
