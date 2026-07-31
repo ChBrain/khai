@@ -1,0 +1,69 @@
+{
+  "name": "@chbrain/khai-engine-capitalization",
+  "version": "0.1.0",
+  "description": "khai engine content, the capitalization domain: the reception a persona gives a partner's shared good news -- the responder's fork on which the relationship benefit of sharing turns, only the active-constructive reply building the bond -- across the four response styles (Gable; Langston).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/capitalization"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "capitalization",
+    "tagline": "Capitalization as position: the reception a persona gives a partner's shared good news -- the responder's fork on which the relationship benefit of sharing turns, only the active-constructive reply building the bond -- across the four response styles (Gable; Langston).",
+    "type": "position",
+    "anchor": "position_capitalization.md",
+    "expressions": {
+      "active_constructive": "position_active_constructive.md",
+      "passive_constructive": "position_passive_constructive.md",
+      "active_destructive": "position_active_destructive.md",
+      "passive_destructive": "position_passive_destructive.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_capitalization.md) declares the reception a persona gives when a partner shares good news: capitalization is the process by which telling someone about a positive event yields relationship benefits, and the fork on which those benefits turn is the responder's reaction (Gable). The persona is the responder, not the sharer -- the sharer's amplifying of its own good feeling by expressing it is the savoring engine's sharing form, and the general revealing of the self is the self-disclosure engine's. What this engine owns is how the persona receives the other's good news, which decides whether the sharing draws the two closer or leaves the sharer more alone with it. The law makes a persona's way of meeting a partner's good news a standing mover of the bond.",
+      "issue": "Four response styles, crossing two dimensions -- engaged or withdrawn, and for the news or against it (Gable's active/passive by constructive/destructive). Active-constructive: enthusiastic, engaged, drawing the good news out and dwelling in it with the sharer -- the only one of the four that builds the relationship. Passive-constructive: quiet, understated, genuinely pleased but low-key, a warm nod that neither harms nor grows the bond. Active-destructive: engaged but against, seizing on the downside, the risk, the catch, deflating the news while seeming to attend to it. Passive-destructive: withdrawn and away, ignoring the news or turning it to oneself, letting the moment pass unmarked. Only the active-constructive reply capitalizes; the other three leak the benefit or spend it.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so a persona's way of receiving good news holds system-wide. The link: each persona links, under Projection, the response style it gives a partner's good news -- active-constructive, passive-constructive, active-destructive, or passive-destructive.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real capitalization response. Whether the response is true to the persona -- the right style for the bond and the moment, with only the active-constructive reply building it, and kept distinct from the sharer's own savoring and disclosure -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the persona its response under Projection: how it meets a partner's shared good news, on the two axes of engaged-or-withdrawn and for-it-or-against-it. Read the bond in the choice -- the active-constructive reply that dwells in the news and builds the relationship, the passive-constructive nod that holds it steady, the active-destructive deflation that punctures it, the passive-destructive turning-away that starves it. Keep it the responder's fork: the sharer's amplifying of its own delight by expressing it is the savoring engine's, and the general revealing of the self is the self-disclosure engine's."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
