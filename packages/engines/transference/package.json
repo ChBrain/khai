@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-transference",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the transference domain: a stored representation of a significant other, triggered by a new person's resemblance, applied to them -- so past feelings, expectations, and the very self one was in that bond are carried onto a present figure -- across the positive, negative, and countertransference configurations (Freud; Klein; Andersen & Chen).",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

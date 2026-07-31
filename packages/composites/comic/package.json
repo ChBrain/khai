@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-comic",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the comic domain: the mirth comedy is built to produce -- a violation of expectation (surprise) held in a play frame that keeps it benign (humor), the amusement that compound answers with (emotion), and the crossing it makes into laughter when the frame holds and the violation lands -- with the two edges where the crossing fails, taken too hard as offense and too soft as flatness, read whole across the atom engines it depends on.",
   "type": "module",
   "main": "./index.mjs",
@@ -70,13 +70,13 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-arch": "^0.1.23",
     "@chbrain/khai-engine-emotion": "^0.1.2",
     "@chbrain/khai-engine-humor": "^0.1.1",
-    "@chbrain/khai-engine-surprise": "^0.1.0"
+    "@chbrain/khai-engine-surprise": "^0.1.1"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

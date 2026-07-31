@@ -1,0 +1,18 @@
+# @chbrain/khai-engine-joy
+
+## 0.1.1
+
+### Patch Changes
+
+- abb3383: Add the joy engine -- a multi-type engine spanning process and position, completing the emotion taxonomy's five basic nodes as standalone engines (joining anger, disgust, fear, and sadness). Joy is the positive-valence emotion at a good: a persona meets a gain, an attainment, a need met, or a threat lifted -- often beyond what it expected -- and lifts, the felt uplift that broadens and builds (Fredrickson). Where the negative emotions narrow and defend, joy opens.
+
+  The engine owns the core hedonic affects that no appraisal-specific positive-emotion engine holds, organized by source and arousal:
+
+  - **Forms (process):** `pleasure` (the sensory form -- core hedonic "liking," distinct from the "wanting" of desire -- Berridge & Kringelbach), `elation` (the high-arousal peak -- the thrill of a large or unexpected good, the positive prediction error), `contentment` (the low-arousal form -- the calm, settled sufficiency of all being well, Fredrickson's serenity), `relief` (the aversive-removed form -- the exhale of a threat passed or a pain stopped, positive affect by subtraction).
+  - **Trait (position):** `sanguine` -- a high resting positive tone and ready access to joy, the sanguine temperament and affective core of extraversion (trait Positive Affect, Watson & Clark; positive emotionality, Tellegen).
+
+  Promotes joy from the single `emotion/process_joy.md` node to a standalone engine (via the `joy` homonym whitelist), and whitelists `relief` (same-word-different-science: joy's relief the emotion vs `addiction`'s negative-reinforcement relief-seeking). A process root fans into process forms and a position trait; each validates against its own khai chapters. Bounded against `emotion` (joy as one basic affect vs its internal structure), the appraisal-specific positive emotions (`awe`, `pride`, `gratitude`, `humor`, `elevation`, `hope` -- their flavours vs the core uplift), `desire` and `reward` (the "wanting" and the valuation vs the "liking"), `savoring` (the regulation of a good moment vs the emotion), `mood` (the persisting background vs the episode), and `addiction` (the relief-seeking loop vs relief the emotion). Warranted (LORE) on Fredrickson (broaden-and-build; serenity), Berridge & Kringelbach (liking vs wanting), Russell and Watson & Tellegen (the affect circumplex), the relief and reward-prediction-error literatures, and Watson & Clark / Tellegen (trait positive affect). Set at patch as the free level; a new engine may warrant a minor at the maintainer's `bump:minor` label.
+
+- Updated dependencies [5a6714e]
+- Updated dependencies [3c5945c]
+  - @chbrain/khai-arch@0.1.23

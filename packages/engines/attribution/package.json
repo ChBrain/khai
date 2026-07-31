@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-attribution",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the attribution domain: how a persona assigns a cause to an outcome -- along locus and stability -- and the emotion and expectation that follow, across the disposition, effort, circumstance, and chance readings.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.8"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

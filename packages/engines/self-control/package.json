@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-self-control",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the self-control domain: the effortful, in-the-moment override of a prepotent impulse or temptation in favor of a standard the persona endorses -- the hot want against the cool ought -- across the restraint, delay, and lapse forms, tuned by a standing disciplined disposition.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

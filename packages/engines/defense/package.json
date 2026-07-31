@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-defense",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the defense domain: the unconscious, anxiety-driven distortions of reality by which a persona wards off what it cannot consciously bear -- ranked by how much they distort, from the reality-respecting mature defenses through the neurotic to the reality-warping immature -- across the mature, neurotic, and immature levels of the defensive hierarchy (A. Freud; Vaillant; Cramer).",
   "type": "module",
   "main": "./index.mjs",
@@ -59,10 +59,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

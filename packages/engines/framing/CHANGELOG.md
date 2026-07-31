@@ -1,0 +1,13 @@
+# @chbrain/khai-engine-framing
+
+## 0.1.1
+
+### Patch Changes
+
+- 622a46a: Add the framing engine: how the same content -- a fact, a choice, an issue -- presented in a different frame yields a different judgment, though the information is unchanged. The root (`process_framing.md`) declares the framing effect -- there being no frameless telling, every presentation selects some aspects and makes them salient, and the hearer judges from what is made accessible, not from the full and identical facts. Four operations are the ways the same content is shaped: `valence` (state the same outcome as a gain or a loss -- equivalence framing that flips risk preference by sign alone, against a reference point, losses looming larger), `emphasis` (foreground one of an issue's several true dimensions, so the salient consideration and the suppressed ones drive the verdict), `metaphor` (construe the target through a source domain -- crime as a beast or a virus -- importing its inferences, mostly unnoticed as a frame), and `exemplar` (present a vivid case or the abstract pattern -- episodic versus thematic -- shifting where cause and cure are assigned).
+
+  The stem `framing` is a whitelisted homonym: `pitch-mode` owns `position_framing.md` (Klaff frame control -- the sales move of setting the context before the offer), a different science from this engine's cognitive framing effect. Bounded against `decision` (the resolving of the choice a frame tilts vs the tilt itself), `bias` (the standing lean before the evidence vs the shift induced by wording), `persuasion` (the change-of-mind campaign a frame may serve, though framing also runs with no persuader), `attribution` (where responsibility lands once an exemplar frame has shifted it), and `language` (the metaphor as a device of the language vs its framing effect). Warranted (LORE) on Tversky & Kahneman (equivalence framing and prospect theory), Entman (selection and salience), Goffman (frame analysis), Lakoff & Johnson and Thibodeau & Boroditsky (metaphorical framing), Iyengar (episodic vs thematic), and Chong & Druckman (framing theory). Set at patch as the free level; a new engine may warrant a minor at the maintainer's `bump:minor` label.
+
+- Updated dependencies [5a6714e]
+- Updated dependencies [3c5945c]
+  - @chbrain/khai-arch@0.1.23

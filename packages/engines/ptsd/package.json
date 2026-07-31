@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-ptsd",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the ptsd domain: post-traumatic stress disorder -- a trauma that will not become past, a memory stored unprocessed that fires as if the danger were present, driving re-experiencing and hyperarousal and clamped down by an avoidance that only keeps it alive -- across its reexperiencing, evasion, estrangement, and hyperarousal clusters (DSM-5; Ehlers & Clark; Brewin; Foa; van der Kolk).",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

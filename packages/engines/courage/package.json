@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-courage",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the courage domain: how a persona moves toward a thing they fear for the sake of a good worth the facing -- not fearlessness but action taken with the fear present, the mean between cowardice and recklessness -- across the physical, conviction, and vital courages.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-love",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the love domain: the triangle Sternberg drew -- intimacy, passion, and commitment -- and the kinds of love that are its combinations, read as a wiring of self-disclosure, desire, and loyalty across the romantic, abiding, and fatuous bridges.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,13 +75,13 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-arch": "^0.1.23",
     "@chbrain/khai-engine-desire": "^0.1.1",
     "@chbrain/khai-engine-loyalty": "^0.1.1",
-    "@chbrain/khai-engine-self-disclosure": "^0.1.0"
+    "@chbrain/khai-engine-self-disclosure": "^0.1.1"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

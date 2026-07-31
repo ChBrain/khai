@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-sadness",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the sadness domain: the low-approach emotion through which a persona sinks at a loss, a failure, or an unmet goal -- energy withdrawn, the gaze turned inward and down, a call for care -- across the disappointment, sorrow, despair, and melancholy forms, tuned by a standing dysphoria.",
   "type": "module",
   "main": "./index.mjs",
@@ -85,10 +85,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

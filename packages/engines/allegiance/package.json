@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-allegiance",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the allegiance domain: the audience's moral bond to the characters of a story -- monitoring their conduct, sorting them into liked and disliked, and enjoying the tale as their fortunes match the disposition -- across the verdict, rooting, and payoff forms.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-structural-model",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the structural-model domain: the Freudian tripartite psyche in dynamic conflict -- the id's drives pressing for gratification, the superego's conscience forbidding, and the ego mediating between them and reality -- across the id, ego, and superego agencies (Freud).",
   "type": "module",
   "main": "./index.mjs",
@@ -59,10 +59,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

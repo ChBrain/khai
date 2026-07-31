@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-fear",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the fear domain: the defensive emotion through which a persona alarms at a present or imminent danger -- threat appraised, the body readied to escape or avoid -- across the panic, phobia, and terror forms, tuned by a standing fearfulness.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

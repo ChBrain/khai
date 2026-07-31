@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-conditioning",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the conditioning domain: how a neutral cue that reliably predicts a significant outcome comes to evoke an anticipatory response -- across the acquisition, extinction, and generalization forms.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

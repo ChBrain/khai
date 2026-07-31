@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-transportation",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the transportation domain: a persona's absorption into a narrative world -- carried out of the real world and into the story by converging attention, imagery, and feeling, with belief softened and counterarguing stilled -- across the entry, imagery, and resonance forms, tuned by a standing transportability.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

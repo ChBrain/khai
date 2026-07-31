@@ -1,4 +1,0 @@
----
----
-
-Whitelist `communal` and `rivalry` under `memberPolicy.homonyms`, so the forthcoming `narcissism` engine can carry its two literature-exact member names without colliding with unrelated engines. Both are same-word-different-science homonyms: `communal` is a narrative thematic stance in the `narrative` engine (`position_communal.md`) and, separately, communal narcissism in the narcissism engine (Gebauer's grandiosity pursued through warmth and morality); `rivalry` is one of Polti's dramatic situations in `dramatic-situations` (`plot_rivalry.md`) and, separately, the antagonistic self-defence route of the NARC model (Back et al.) in the narcissism engine. These clear the member-scope gate for the `narcissism` engine's `position_communal.md` and `process_rivalry.md`. Governance config only; ships nothing. The ratchet's dead-exemption warning is expected on each stem until the `narcissism` engine lands and makes the collisions live.

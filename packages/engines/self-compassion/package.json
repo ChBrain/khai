@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-self-compassion",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the self-compassion domain: the reflexive turn of compassion onto oneself in a moment of suffering, failure, or inadequacy -- warmth where there would be judgment, connection where there would be isolation, balance where there would be over-identification -- across the kindness, humanity, and balance forms, tuned by a standing self-compassionateness.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

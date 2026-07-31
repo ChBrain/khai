@@ -1,0 +1,17 @@
+# @chbrain/khai-engine-self-compassion
+
+## 0.1.1
+
+### Patch Changes
+
+- a0c33f5: Add the self-compassion engine (multi-type: process, position) -- the reflexive turn of compassion onto oneself in a moment of suffering, failure, or inadequacy. Against the dominant emphasis on self-esteem, Neff proposed self-compassion as a healthier way of relating to oneself: not a global judgment of worth earned by success and measured against others, but an unconditional, non-comparative kindness extended precisely when one falls short. The `compassion` engine already delegated "a self-directed compassion" out as a boundary; this engine fills it.
+
+  - **Root (process):** `self-compassion` -- meeting one's own pain the way one would a suffering friend, warmth in place of self-attack, turning the care system inward.
+  - **Components (process), each against its negative (Neff):** `kindness` (self-kindness against self-judgment -- warmth in place of the harsh inner critic), `humanity` (common humanity against isolation -- one's failure seen as part of the shared human condition, the component that most separates self-compassion from self-pity), `balance` (mindful awareness against over-identification -- painful feelings held clearly and evenly, neither drowned in nor suppressed).
+  - **Trait (position):** `self-compassionate` -- a standing readiness to meet one's own suffering with care rather than attack, from the harshly self-critical to the reliably self-kind (Neff's Self-Compassion Scale).
+
+  Warranted (LORE) on Neff (the conceptualization and the three-component scale), Gilbert (compassion-focused therapy; the affiliative-soothing system distinct from threat and drive), Neff & Germer (self-compassion vs self-esteem, and vs self-indulgence), and Leary et al. (buffering the self beyond self-esteem). Bounded against `self-esteem` (the judgment of worth, earned and comparative -- self-compassion is the unconditional alternative Neff drew against it), `compassion` (the same warmth turned outward on another), `forgiveness` (the release of a specific self-transgression), `rumination` (the repetitive dwelling that over-identification shades into), and `grounding` (present-moment awareness as a practice, where balance is only the even seeing of one's own pain). Set at patch as the free level. No whitelist required -- the `self_compassion` root, `kindness`/`humanity`/`balance` component stems, and `self_compassionate` trait stem are unique.
+
+- Updated dependencies [5a6714e]
+- Updated dependencies [3c5945c]
+  - @chbrain/khai-arch@0.1.23

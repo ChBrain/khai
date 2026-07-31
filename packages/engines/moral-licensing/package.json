@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-moral-licensing",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the moral-licensing domain: the self-regulation of a persona's moral conduct against a set-point, where past good buys latitude for a later lapse and past wrong drives compensatory good -- across the indulgence that spends banked moral credit and the cleansing that repairs a moral deficit (Monin & Miller; Sachdeva; Zhong & Liljenquist).",
   "type": "module",
   "main": "./index.mjs",
@@ -70,10 +70,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

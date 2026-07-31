@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-reactance",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the reactance domain: the motivational pushback through which a persona whose freedom is threatened moves to restore it -- against the very force that pressed -- across the defiance, allure, and derogation forms.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

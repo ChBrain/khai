@@ -1,0 +1,16 @@
+# @chbrain/khai-engine-allegiance
+
+## 0.1.1
+
+### Patch Changes
+
+- bdf70cf: Add the allegiance engine (process) -- the audience's moral bond to the characters of a story. The second reception-side narrative gap, and the sibling of `transportation`: where transportation is entry into the story world, allegiance is the taking of sides among the people found there -- the engine of rooting interest, of why an audience cares who wins. The spectator morally monitors the characters, sorts them into liked and disliked, and enjoys the tale as their fortunes match the disposition (Zillmann's affective disposition theory; Raney; Murray Smith's structure of sympathy).
+
+  - **Root (process):** `allegiance` -- the audience's moral bond to characters, formed from outside the tale, on which enjoyment of their fortunes rides.
+  - **Forms (process):** `verdict` (the moral monitoring -- the audience as untiring moral monitor, sorting characters into the deserving and undeserving), `rooting` (the disposition itself -- sympathy and the wish for the liked to prosper, antipathy and the wish for the disliked to fall), `payoff` (the outcome-contingent enjoyment -- satisfaction when fortunes match the disposition, poetic justice served or denied).
+
+  Warranted (LORE) on Zillmann & Cantor (affective disposition theory, 1977), Raney (expanding disposition theory, 2004), Murray Smith (_Engaging Characters_; recognition/alignment/allegiance), Zillmann (disposition-outcome enjoyment), and Cohen (identification as the distinct experience). Bounded against `loyalty` (a persona's own exit-cost bond to a group inside the story vs the audience's evaluative bond to characters -- different altitudes), `moral-judgment` (the general mechanism vs the audience's sorting-plus-payoff), `transportation` (entry into the world vs the bond to its characters), `schadenfreude` (the joy at misfortune the payoff recruits vs the disposition-outcome contingency itself), and `empathy` (feeling into a character vs taking sides on them -- one can empathize with a disliked character). Set at patch as the free level. No whitelist required -- the `allegiance` root and `verdict`/`rooting`/`payoff` form stems are unique (`allegiance` appears only as prose in `loyalty`, not as a member stem).
+
+- Updated dependencies [5a6714e]
+- Updated dependencies [3c5945c]
+  - @chbrain/khai-arch@0.1.23

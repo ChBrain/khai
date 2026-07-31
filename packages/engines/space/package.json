@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-space",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the space domain: the physical setting as a party to what happens in it -- acting on the persona who enters and claimed by the persona in return, so bare space becomes lived place -- across the affordance, territory, and atmosphere expressions.",
   "type": "module",
   "main": "./index.mjs",
@@ -59,10 +59,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

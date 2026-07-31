@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-caregiving",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the caregiving domain: the behavioral system through which a persona is moved to protect and provide for a vulnerable other whose need is felt -- the reciprocal complement to attachment's care-seeking -- across the sensitivity, overprotection, and burnout forms.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-moral-conviction",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the moral-conviction domain: the metacognitive stamp that an attitude is a moral mandate -- felt as fact and above authority, orthogonal to which foundation fires -- across its mobilizing and intolerant faces (Skitka).",
   "type": "module",
   "main": "./index.mjs",
@@ -58,10 +58,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

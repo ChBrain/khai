@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-admiration",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the admiration domain: the warm upward emotion through which a persona meets another's witnessed excellence -- skill, talent, achievement -- with regard rather than resentment, moved to rise toward it, across the inspiration, affiliation, and adoration forms, tuned by a standing admiring disposition.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

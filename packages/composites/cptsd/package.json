@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-cptsd",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the cptsd domain: complex post-traumatic stress disorder -- the syndrome of prolonged, repeated, inescapable trauma, which carries the whole of core PTSD and adds to it a pervasive disturbance in self-organization: dysregulated affect (regulation), a diminished, worthless self-concept (self-esteem, shame), and severed relationships (attachment) -- across its dysregulation, diminishment, and severance movements (Herman; ICD-11; Cloitre; van der Kolk).",
   "type": "module",
   "main": "./index.mjs",
@@ -75,15 +75,15 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-arch": "^0.1.23",
     "@chbrain/khai-engine-attachment": "^0.1.2",
-    "@chbrain/khai-engine-ptsd": "^0.1.0",
+    "@chbrain/khai-engine-ptsd": "^0.1.1",
     "@chbrain/khai-engine-regulation": "^0.1.1",
     "@chbrain/khai-engine-self-esteem": "^0.1.1",
     "@chbrain/khai-engine-shame": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

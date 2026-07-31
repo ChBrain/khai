@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-insight",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the insight domain: the knowledge emotion of the sudden aha -- a problem at impasse whose representation restructures all at once, the solution arriving whole with high confidence and no feeling-of-warmth ramp -- across the three mechanisms of representational change (Metcalfe & Wiebe; Ohlsson; Knoblich).",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

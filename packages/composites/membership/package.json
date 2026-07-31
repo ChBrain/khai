@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-membership",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the membership domain: one persona's standing bind to a group -- the self they draw from it, the standard it bends them to, a mark it would discredit, and the allegiance that raises the cost of leaving -- across the induction, covering, and tether bridges over social-identity, conformity, stigma, and loyalty.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,14 +75,14 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-arch": "^0.1.23",
     "@chbrain/khai-engine-conformity": "^0.1.1",
     "@chbrain/khai-engine-loyalty": "^0.1.1",
-    "@chbrain/khai-engine-social-identity": "^0.1.0",
+    "@chbrain/khai-engine-social-identity": "^0.1.1",
     "@chbrain/khai-engine-stigma": "^0.1.1"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

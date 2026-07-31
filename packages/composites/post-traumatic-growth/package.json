@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-post-traumatic-growth",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the post-traumatic-growth domain: positive transformation beyond the prior baseline wrought through the struggle with trauma -- an assumptive world shattered and rebuilt via meaning-making (meaning), a revised life story (narrative), existential confrontation (mortality), and a remade self (identity) -- across the strength and wisdom movements (Tedeschi & Calhoun; Janoff-Bulman).",
   "type": "module",
   "main": "./index.mjs",
@@ -70,14 +70,14 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-arch": "^0.1.23",
     "@chbrain/khai-engine-identity": "^0.1.1",
     "@chbrain/khai-engine-meaning": "^0.1.1",
     "@chbrain/khai-engine-mortality": "^0.1.1",
     "@chbrain/khai-engine-narrative": "^0.1.1"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

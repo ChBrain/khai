@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-self-verification",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the self-verification domain: a persona's drive to confirm its existing self-concept -- to seek, elicit, and hold onto feedback that matches how it already sees itself, even when that self-view is negative -- across the soliciting, signaling, and resistance routes (Swann).",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

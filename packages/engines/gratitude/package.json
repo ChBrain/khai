@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-gratitude",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the gratitude domain: how a persona appraises a benefit received as freely and benevolently given, and the prosocial impulse that follows -- across the benefaction, indebtedness, appreciation, and transcendence modes.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.8"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

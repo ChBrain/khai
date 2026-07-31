@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-moral-identity",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the moral-identity domain: how central being a moral person is to the persona's self-concept -- the self-regulatory anchor that pulls conduct toward the moral self it is built on -- across the internalized, symbolic, custodian, and peripheral standings.",
   "type": "module",
   "main": "./index.mjs",
@@ -60,10 +60,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

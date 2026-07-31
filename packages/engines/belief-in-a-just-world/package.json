@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-belief-in-a-just-world",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the belief-in-a-just-world domain: a persona's standing conviction that the world is fair and people get what they deserve -- a worldview that buffers the self and defends itself against the innocent victim -- across the personal and general just-world beliefs (Lerner; Dalbert; Hafer & Begue).",
   "type": "module",
   "main": "./index.mjs",
@@ -58,10 +58,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

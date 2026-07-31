@@ -1,0 +1,16 @@
+# @chbrain/khai-engine-embarrassment
+
+## 0.1.1
+
+### Patch Changes
+
+- b99eedb: Add the embarrassment engine -- a multi-type engine spanning process and position. Embarrassment is the acute, self-conscious emotion of unwanted social exposure: a persona is caught in a blunder, a breach, or a spotlight before an audience real or imagined, and flushes. Where shame is the deep devaluation of the self against a moral standard, embarrassment is the lighter, sharper sting of a social convention broken in view -- more about the eyes on you than the badness of the self, and it appeases rather than hides.
+
+  - **Forms (process):** `faux_pas` (the blunder -- a breach of convention exposed, the gaffe or pratfall), `conspicuous` (the spotlight -- the fluster of being watched, singled out, or praised, even with no blunder committed), `cringe` (the vicarious form -- empathic embarrassment, the secondhand sting felt for another -- Miller 1987), `blush` (the appeasement display -- the involuntary reddening, averted gaze, and nervous smile that concede the breach and, by being uncontrollable, are believed -- Darwin; Keltner & Buswell).
+  - **Trait (position):** `embarrassability` -- a standing readiness to flush, keenly attuned to how one appears, tracking social-evaluative concern (Miller's Embarrassability Scale).
+
+  Promotes embarrassment from the single `shame/process_embarrassment.md` node to a standalone engine (via the `embarrassment` homonym whitelist), keeping `shame` focused on the deep self-devaluation while embarrassment gets its own depth. A process root fans into process forms and a position trait; each validates against its own khai chapters. Bounded against `shame` (the deep moral self-devaluation vs the lighter social fluster), `face` (the public self-image the breach costs vs the emotion of losing it), `empathy` (the capacity that carries the cringe vs the secondhand emotion), and `social-facilitation` (the performance change under an audience vs the felt discomfort of being watched). A fourth self-conscious emotion, it may one day join the `self-conscious` composite. Warranted (LORE) on Miller (embarrassment and embarrassability, 1996), Keltner & Buswell (the appeasement display, 1997), Darwin (the blush), Sabini et al. (the elicitors), Miller (empathic embarrassment, 1987), and Leary and Tangney (social-evaluative concern; the shame boundary). Set at patch as the free level; a new engine may warrant a minor at the maintainer's `bump:minor` label.
+
+- Updated dependencies [5a6714e]
+- Updated dependencies [3c5945c]
+  - @chbrain/khai-arch@0.1.23

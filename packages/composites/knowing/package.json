@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-knowing",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the knowing domain: the knowledge emotions read as one family -- surprise, interest, confusion, and awe, the feelings of a mind meeting what its understanding does not yet cover -- across the appraisal sort, the transitions among them, and the arc of a whole knowledge episode, read whole over the atom engines it depends on.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,14 +75,14 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22",
-    "@chbrain/khai-engine-surprise": "^0.1.0",
-    "@chbrain/khai-engine-interest": "^0.1.0",
-    "@chbrain/khai-engine-confusion": "^0.1.0",
+    "@chbrain/khai-arch": "^0.1.23",
+    "@chbrain/khai-engine-surprise": "^0.1.1",
+    "@chbrain/khai-engine-interest": "^0.1.1",
+    "@chbrain/khai-engine-confusion": "^0.1.1",
     "@chbrain/khai-engine-awe": "^0.1.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

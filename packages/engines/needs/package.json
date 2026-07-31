@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-needs",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the needs domain: how a persona's plural needs differ in prepotency -- the more basic pressing harder when unmet -- and split into deficiency needs that quiet when filled and growth needs that do not, across the prepotency, deficiency, and actualization forms.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

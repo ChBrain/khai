@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-the-unconscious",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the unconscious domain: mental content and process outside awareness that still shapes what a persona feels, judges, and does -- across the dynamic (repressed), adaptive (automatic), and preconscious (accessible) kinds (Freud; Kihlstrom; Wilson).",
   "type": "module",
   "main": "./index.mjs",
@@ -59,10 +59,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

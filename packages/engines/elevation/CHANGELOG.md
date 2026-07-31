@@ -1,0 +1,13 @@
+# @chbrain/khai-engine-elevation
+
+## 0.1.1
+
+### Patch Changes
+
+- c05c6fb: Add the elevation engine: how witnessing another's moral excellence -- an act of unexpected kindness, courage, or generosity -- lifts a persona, a warm and expansive uplift that moves them toward the good. The root (`process_elevation.md`) declares Haidt's other-praising emotion of moral beauty: elicited not by a benefit to oneself but by seeing another behave with unexpected virtue, felt as a warm, open, often tearful uplift in the chest, and motivating the witness to become better and to act prosocially. Three forms carry it: `witness` (the elicitor route -- the perception of another's moral excellence, a deed beyond the ordinary that reveals a higher standard), `warmth` (the embodied route -- the open, dilating feeling in the chest, the tears and the tingle, the physical signature of being morally moved), and `emulation` (the motivational route -- the pull to become a better person, to help, to affiliate with and imitate the exemplar, the good witnessed raising the witness toward it).
+
+  A foundational positive-psychology gap. Bounded against `gratitude` (a benefit received by the self and the warm turn toward its giver vs an uplift felt for good done to anyone), `awe` (the accommodation of a vastness that exceeds one's frame vs the response to moral beauty), and `contagion` (the automatic, unconscious catching of another's affect through mimicry vs elevation's willed, aspirational reach toward the good); admiration for non-moral excellence (skill, talent) is elevation's sibling in the other-praising family but is not yet an engine. No homonym gate: `elevation` and the form stems `witness`/`warmth`/`emulation` are all free. Warranted (LORE) on Haidt ("The Positive Emotion of Elevation", 2000; "Elevation and the Positive Psychology of Morality", 2003), Algoe & Haidt (the other-praising emotions of elevation, gratitude, and admiration, 2009), Silvers & Haidt (moral elevation and the embodied response, 2008), and Schnall, Roper & Fessler (elevation leads to altruistic behavior, 2010). Set at patch as the free level; a new engine may warrant a minor at the maintainer's `bump:minor` label.
+
+- Updated dependencies [5a6714e]
+- Updated dependencies [3c5945c]
+  - @chbrain/khai-arch@0.1.23

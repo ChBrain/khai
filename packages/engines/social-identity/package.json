@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-social-identity",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the social identity domain: the part of the self a persona draws from group membership -- the group-belonging 'we' -- and how they hold a group whose standing is in question, across the identification, mobility, creativity, and competition stances.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.8"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-ostracism",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the ostracism domain: being ignored and excluded, and the staged response it triggers -- the reflexive pain and threat to belonging, control, self-esteem, and meaningful existence, the reflective coping that follows, and the resignation of prolonged exclusion.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

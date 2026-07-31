@@ -1,0 +1,13 @@
+# @chbrain/khai-engine-attribution
+
+## 0.1.1
+
+### Patch Changes
+
+- 9c3c2e7: Add the attribution engine: how a persona assigns a cause to an outcome -- the answer to "why did that happen?" -- and how the placement of that cause sets the emotion and the expectation that follow. The root (`process_attribution.md`) declares the causal reading along two axes, locus (in the actor or in the world) and stability (lasting or passing), with controllability cutting across; where the cause lands drives the sequel. Four readings are the corners of locus by stability: `disposition` (internal, stable -- the actor's character or ability, the leap from an act to a standing trait, the closed future of a fixed lack), `effort` (internal, unstable, controllable -- the trying, the one corner that carries responsibility and keeps the future open), `circumstance` (external, stable -- the wall that clears the actor without crediting them and breeds resignation), and `chance` (external, unstable -- the wind that neither credits nor condemns and leaves the odds resettable).
+
+  Bounded against `bias`, which owns the systematic attribution errors (the fundamental attribution error, self-serving, actor-observer, defensive/hostile/group/ultimate) as resting tilts -- this engine owns the placement, bias the slant, exactly as `decision` and `memory` sit beside their own biases. Also bounded against `locus-of-control` (the generalized trait expectancy vs the single-event reading), `pride`/`shame`/`guilt`/`gratitude` (the feelings the reading triggers), `mindset`/`self-efficacy` (the held theory of ability behind it), and `decision` (the future choice vs the backward-looking cause). Warranted (LORE) on Heider (the naive causal analysis), Kelley (the covariation method), Weiner (the causal dimensions and their consequences), Jones & Davis (correspondent inference), and Abramson, Seligman & Teasdale (the internal-stable failure reading and helplessness). Set at patch as the free level; a new engine may warrant a minor at the maintainer's `bump:minor` label.
+
+- Updated dependencies [5a6714e]
+- Updated dependencies [3c5945c]
+  - @chbrain/khai-arch@0.1.23
