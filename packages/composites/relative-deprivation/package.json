@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-relative-deprivation",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the relative-deprivation domain: the grievance that arises when an unfavorable comparison (comparison) is appraised as unjust and ignites resentment (anger) -- the affective-injustice layer that turns a neutral disadvantage into a felt wrong -- across the egoistic and fraternal forms, the group form driving collective action (Runciman; Smith & Pettigrew).",
   "type": "module",
   "main": "./index.mjs",
@@ -70,12 +70,12 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22",
-    "@chbrain/khai-engine-anger": "^0.1.0",
-    "@chbrain/khai-engine-comparison": "^0.1.0"
+    "@chbrain/khai-arch": "^0.1.23",
+    "@chbrain/khai-engine-anger": "^0.1.1",
+    "@chbrain/khai-engine-comparison": "^0.1.1"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

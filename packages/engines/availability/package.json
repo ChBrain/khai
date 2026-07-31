@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-availability",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the availability domain: the estimation through which a persona judges how frequent or likely a class of events is by how easily instances of it come to mind -- across the retrievability, searchability, and imaginability forms.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

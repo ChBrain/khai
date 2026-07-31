@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-coping",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the coping domain: the effortful, appraisal-driven repertoire a persona deploys against a stressor -- sizing up what is at stake and what can be done, acting on the problem, or escaping it -- across the appraisal, problem-focused, and avoidant forms (Lazarus & Folkman; Carver).",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

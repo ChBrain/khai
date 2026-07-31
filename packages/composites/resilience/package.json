@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-resilience",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the resilience domain: stable, healthy functioning maintained across a potentially traumatic event -- an adversity (stress) met by adaptive appraisal and coping (coping) so that functioning holds -- across the stable and recovery trajectories, resilience common rather than rare (Bonanno; Masten).",
   "type": "module",
   "main": "./index.mjs",
@@ -70,12 +70,12 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22",
-    "@chbrain/khai-engine-coping": "^0.1.0",
+    "@chbrain/khai-arch": "^0.1.23",
+    "@chbrain/khai-engine-coping": "^0.1.1",
     "@chbrain/khai-engine-stress": "^0.1.4"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

@@ -1,0 +1,13 @@
+# @chbrain/khai-engine-social-identity
+
+## 0.1.1
+
+### Patch Changes
+
+- e4f8e46: Add the social-identity engine: the part of the self a persona draws from group membership -- the group-belonging "we" that the identity engine's "I" is the complement of, and the gap the identity engine already delegates. The root (`position_social_identity.md`) declares the self drawn from category membership: the world sorted into in-group and out-group, the in-group's standing taken as the persona's own, and the drive toward positive distinctiveness. Four stances are the ways a persona holds a group whose standing is in question: `identification` (the secure merger of self with the in-group -- solidarity, favouritism, the baseline the others depart from), `mobility` (the individual exit into a higher-standing group, boundaries read as permeable), `creativity` (the reframe that recovers group pride by changing the terms of comparison), and `competition` (the collective contest to change the actual order, where it is read as illegitimate and unstable -- the turn into intergroup conflict).
+
+  Bounded against `identity` (the personal "I" it complements), `bias` (which owns the intergroup perceptual tilts -- in-group favouritism, out-group homogeneity, system justification -- as its Belonging motive family), `group` (Tuckman development over time), `loyalty` (the allegiance that raises the cost of exit), and `stigma`/`status` (the discrediting mark and the rank itself). Warranted (LORE) on Tajfel & Turner (social identity theory and the three strategies), Tajfel (the minimal group paradigm), Turner et al. (self-categorisation), Brewer (optimal distinctiveness), and Ellemers (the socio-structural read that selects the strategy). This is also the last atom needed before an intergroup composite (social-identity + conformity + stigma + loyalty). Set at patch as the free level; a new engine may warrant a minor at the maintainer's `bump:minor` label.
+
+- Updated dependencies [5a6714e]
+- Updated dependencies [3c5945c]
+  - @chbrain/khai-arch@0.1.23

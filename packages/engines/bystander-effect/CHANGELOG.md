@@ -1,0 +1,13 @@
+# @chbrain/khai-engine-bystander-effect
+
+## 0.1.1
+
+### Patch Changes
+
+- 3f53655: Add the bystander-effect engine: how the presence of other witnesses inhibits a persona from helping in an emergency, so that the more people who could act, the less likely and slower any one does. The root (`process_bystander_effect.md`) declares Latané & Darley's account: helping requires passing a series of steps -- noticing, interpreting as an emergency, assuming responsibility, knowing how, and acting -- and others' presence stalls the individual at several, so a victim before many can be less likely to be helped than a victim before one. Three forms carry the inhibition: `diffusion` (the responsibility route -- the duty to act divided among the witnesses until each feels too little of it to move), `pluralism` (the interpretation route -- pluralistic ignorance, each reading the others' calm as evidence nothing is wrong, the emergency defined away by mutual composure), and `audience` (the evaluation route -- audience inhibition, the fear of a misjudged intervention before onlookers holding the persona back).
+
+  A foundational, recognizable social-psychology gap. Bounded against `social-facilitation`'s `loafing` (the effort-drop in a pooled task vs the diffusion of the responsibility to help -- same family, distinct setting), `caregiving` (the behavioral system that tends a victim once help begins vs whether the witness moves to help at all), `apprehension`/`face` (the anxiety of judgment and the image guarded, which `audience` rides on), and `conformity`/`moral-disengagement` (informational influence, and the diffusion that exempts a committed harm vs an omitted help). No homonym gate: `bystander-effect` and the form stems `diffusion`/`pluralism`/`audience` are all free (`inhibition`, `apprehension`, `exposure`, `embarrassment` were taken). Warranted (LORE) on Darley & Latané (diffusion of responsibility, 1968), Latané & Darley (group inhibition / the smoke-filled room, 1968; _The Unresponsive Bystander_, 1970), Latané & Nida (the group-size review, 1981), and Fischer et al. (the meta-analytic review and its boundary conditions, 2011). Set at patch as the free level; a new engine may warrant a minor at the maintainer's `bump:minor` label.
+
+- Updated dependencies [5a6714e]
+- Updated dependencies [3c5945c]
+  - @chbrain/khai-arch@0.1.23

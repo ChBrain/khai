@@ -1,0 +1,13 @@
+# @chbrain/khai-engine-hedonic-adaptation
+
+## 0.1.1
+
+### Patch Changes
+
+- 8b37c0c: Add the hedonic-adaptation engine: the process by which a persona's feeling returns toward a stable baseline after a change in circumstance, good or bad, so the change stops registering. The root (`process_hedonic_adaptation.md`) declares the hedonic treadmill: a lasting change lands only a temporary blow or lift, and the persona drifts back toward the well-being they held before -- why lottery winners and the newly disabled alike return toward their former happiness. Three forms carry the return: `habituation` (the response route -- the affective reaction to a constant weakens with exposure, the new car thrilling less each week), `aspiration` (the standard route -- the bar of what counts as good rises to meet the gain, so improved conditions yield no lasting gain, the treadmill), and `setpoint` (the baseline route -- the pull of a stable, dispositional level of well-being set largely by temperament, resilient to disaster as it is stubborn against fortune).
+
+  The alternate from the same gap audit that surfaced `emotional-labor`. Bounded against `mood` (the present affective state vs the process returning it to baseline), `savoring` (the deliberate prolonging of a good moment -- precisely the counter-move to adaptation), `reward`/`addiction` (the reward-valuation system and the dependency's tolerance vs the general drift of well-being to baseline), and `temperament` (the disposition that sets the baseline's height vs the homing to it). No homonym gate: `hedonic-adaptation` and the form stems `habituation`/`aspiration`/`setpoint` are all free. Warranted (LORE) on Brickman & Campbell (the hedonic treadmill, 1971), Brickman, Coates & Janoff-Bulman (lottery winners and accident victims, 1978), Frederick & Loewenstein (the hedonic-adaptation review, 1999), Lykken & Tellegen (the happiness set-point, 1996), and Diener, Lucas & Scollon (beyond the hedonic treadmill, 2006). Set at patch as the free level; a new engine may warrant a minor at the maintainer's `bump:minor` label.
+
+- Updated dependencies [5a6714e]
+- Updated dependencies [3c5945c]
+  - @chbrain/khai-arch@0.1.23

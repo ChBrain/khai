@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-contempt",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the contempt domain: the downward look through which a persona reckons with another judged beneath them -- regard withdrawn, worth lowered, the cold mirror of envy's upward gaze -- across the disdain, scorn, and condescension forms.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

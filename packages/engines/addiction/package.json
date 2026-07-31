@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-addiction",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the addiction domain: how a persona comes to pursue a behaviour past its cost because it pays out in a reward currency the organism has come to need -- across the craving, relief, acclaim, and closeness drives.",
   "type": "module",
   "main": "./index.mjs",
@@ -100,10 +100,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.8"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

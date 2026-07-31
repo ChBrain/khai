@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-anger",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the anger domain: the hot approach-emotion through which a persona flares at a wrong done to it or what it cares about -- other-blame, goal-obstruction, the mobilized urge to set it right -- across the frustration, indignation, grievance, and rage forms, tuned by a standing hostility.",
   "type": "module",
   "main": "./index.mjs",
@@ -85,10 +85,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

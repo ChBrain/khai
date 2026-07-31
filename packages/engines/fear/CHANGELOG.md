@@ -1,0 +1,16 @@
+# @chbrain/khai-engine-fear
+
+## 0.1.1
+
+### Patch Changes
+
+- e60a629: Add the fear engine -- a multi-type engine spanning process and position. Fear is the defensive emotion at a present danger: a persona appraises a threat near enough to demand response now, and alarms, the body readied to escape or avoid. It is the mirror of anger's approach -- both mobilize hard, but anger advances on a wrong and fear withdraws from a danger -- and it is distinguished from anxiety, which anticipates an absent, uncertain threat.
+
+  - **Forms (process):** `panic` (the flooding form -- an alarm at full autonomic force, the false alarm that feeds itself and teaches the fear of its return), `phobia` (the learned form -- a specific object feared out of all proportion, conditioned and evolutionarily prepared, preserved by the avoidance that forecloses its correction), `terror` (the overwhelming form -- a threat past one's capacity to meet, the freezing horror that immobilizes before it flees and sears into trauma).
+  - **Trait (position):** `fearfulness` -- the standing readiness to detect danger, react strongly, and recover slowly (behavioral inhibition, Kagan; the Behavioral Inhibition System, Gray; harm avoidance, Cloninger), among the most stable of early traits and the strongest temperamental predictor of anxiety disorder.
+
+  Fills a missing basic emotion: of the five the `emotion` root names (joy, sadness, anger, fear, disgust), fear had no engine. Promotes it from the single `emotion/process_fear.md` node to a standalone engine (via the `fear` homonym whitelist), keeping `emotion` a balanced appraisal taxonomy while fear gets its own depth. A process root fans into process forms and a position trait; each validates against its own khai chapters. Bounded against `emotion` (fear as one basic affect vs its internal structure), `stress` (the felt emotion vs the acute fight/flight/freeze/fawn routing of overwhelming demand), `apprehension` (the fear of a present danger vs the baseline nervous-system filter a persona arrives with) and `hope` (vs its dread, the anticipation of an absent bad outcome), `surprise` (vs the startle reflex), and `memory` (vs the traumatic trace terror leaves). Warranted (LORE) on LeDoux (the defensive survival circuit, 1996), Barlow & Davis (the fear/anxiety distinction), Watson, Seligman & Öhman (conditioned fear and preparedness), Kagan, Gray & Cloninger (trait fearfulness), and the Blanchards (defensive-distance). Set at patch as the free level; a new engine may warrant a minor at the maintainer's `bump:minor` label.
+
+- Updated dependencies [5a6714e]
+- Updated dependencies [3c5945c]
+  - @chbrain/khai-arch@0.1.23

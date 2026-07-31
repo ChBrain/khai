@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-interest",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the interest domain: the knowledge emotion of engagement with the new-yet-graspable -- the felt pull toward something novel, complex, or uncertain that one senses one can understand -- across the novelty, grasp, and broaden forms, and the enduring individual interest it develops into.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

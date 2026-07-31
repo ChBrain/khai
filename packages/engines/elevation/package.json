@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-elevation",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the elevation domain: how witnessing another's moral excellence lifts a persona -- a warm, expansive uplift that moves them toward the good -- across the witness, warmth, and emulation forms.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

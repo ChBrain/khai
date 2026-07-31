@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-face",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the face domain: the public self-image a persona claims in interaction, and how a persona manages a face-threatening act -- across the bald, solidarity, deference, hint, and forbear strategies.",
   "type": "module",
   "main": "./index.mjs",
@@ -85,10 +85,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.8"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

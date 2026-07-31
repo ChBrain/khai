@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-dramatic-irony",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the dramatic-irony domain: the sustained gap in which the audience holds knowledge a character lacks, and reads the character's every word and act against what the character cannot see -- across the prospective and present-meaning forms of the gap (Pfister; Sternberg).",
   "type": "module",
   "main": "./index.mjs",
@@ -70,10 +70,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

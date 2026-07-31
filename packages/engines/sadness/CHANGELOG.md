@@ -1,0 +1,16 @@
+# @chbrain/khai-engine-sadness
+
+## 0.1.1
+
+### Patch Changes
+
+- 5ef1557: Add the sadness engine -- a multi-type engine spanning process and position. Sadness is the low-approach emotion at a loss: a persona appraises something of value gone or beyond reach, with no clear way to restore it, and sinks -- energy drains, the gaze turns inward and down. Where anger mobilizes against a wrong and fear flees a danger, sadness demobilizes at a loss; and it points two ways at once -- away from the lost, and toward those who might comfort, its posture a call for care.
+
+  - **Forms (process):** `disappointment` (goal-failure -- the mild, common sadness of the gap between the wanted and the got), `sorrow` (deep loss -- the heavy, aching sadness of something genuinely valued gone), `despair` (hopelessness -- sadness fused with learned helplessness, effort ceasing, the dangerous bottom), `melancholy` (the diffuse, objectless, reflective low the old humoral medicine named).
+  - **Trait (position):** `dysphoria` -- a low resting affective set-point and a ready tilt toward sadness, felt keenly and lifted slowly (the depressive-melancholic disposition; the sadness facet of neuroticism), a standing path toward depression.
+
+  Fills a missing basic emotion: of the five the `emotion` root names (joy, sadness, anger, fear, disgust), sadness had no engine -- and its arrival leaves only `joy` as a bare node. Promotes it from the single `emotion/process_sadness.md` node to a standalone engine (via the `sadness` homonym whitelist), keeping `emotion` a balanced appraisal taxonomy while sadness gets its own depth. A process root fans into process forms and a position trait; each validates against its own khai chapters. Bounded against `emotion` (sadness as one basic affect vs its internal structure), `grief` (the emotion of loss vs the sustained adaptation to an irreversible bereavement), `mood` (the episode vs the persisting affective background), `loneliness` (loss in general vs the ache of social isolation), and `regret` (the sadness of a loss vs the counterfactual sting of a choice). Warranted (LORE) on Nesse (low mood as disengagement from unreachable goals, 2000), Bowlby & Averill (sadness as a social signal for care), Ekman & Izard (the discrete basic emotion), Seligman & Beck (despair, learned helplessness, and the cognitive model of depression), Burton and the humoral tradition (melancholy), and the neuroticism / depressive-temperament literature (dysphoria). Set at patch as the free level; a new engine may warrant a minor at the maintainer's `bump:minor` label.
+
+- Updated dependencies [5a6714e]
+- Updated dependencies [3c5945c]
+  - @chbrain/khai-arch@0.1.23

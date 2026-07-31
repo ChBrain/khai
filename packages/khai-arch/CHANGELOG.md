@@ -1,5 +1,12 @@
 # @chbrain/khai-arch
 
+## 0.1.23
+
+### Patch Changes
+
+- 5a6714e: Canon: the default key mechanism, decided. The play casts its pitch in the Company like the rest of the cast: one pitch cast is the default named and owes no more; a play carrying more than one must explain the carry in the Company, in prose, saying which is the default and when the others take the run. And the key is an opinion held twice, both valid: the playwright writes the play's default, the director staging a run may key it otherwise, and a run keyed against the default is a different production, not a broken one.
+- 3c5945c: Canon: place Plans and Pitch in the containment story, and split the two tunings. The model tree now carries Plans as plot cargo tabled by the cast and Pitches as the keys a play may be played in: the playwright's choice, the play linking one as the run's default and a plot free to link its own so the key can turn over the arc. The play's Company chapter and template enumerate both. The pitch spec states its attachment scope (play keys the run, plot keys its scene, any other file tunes itself alone), and the `voice` frontmatter field is documented as the pitch's embedded twin: neither cascades, by design, so each file holds its own register and the cast does not speak in one tone.
+
 ## 0.1.22
 
 ### Patch Changes

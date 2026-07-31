@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-self-discrepancy",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the self-discrepancy domain: the gap a persona feels between its actual self and a self-guide it is measured against -- the ideal self it hopes to be (whose shortfall brings dejection) and the ought self it feels bound to be (whose shortfall brings agitation) -- across the ideal and ought discrepancies, tuned by a standing discrepant profile (Higgins).",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

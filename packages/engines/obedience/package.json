@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-obedience",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the obedience domain: how a persona complies with the command of a legitimate authority even against their own conscience -- Milgram's destructive obedience -- across the instrument, legitimacy, and binding forms.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

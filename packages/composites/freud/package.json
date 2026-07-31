@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-freud",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the freud domain: the Freudian psyche read as a compound -- a mind divided against itself and largely unconscious, its agencies in conflict (structural-model, the-unconscious), the ego warding off anxiety through defense (anxiety, defense), and the past repeating in present bonds (transference, attachment) -- across its apparatus, warding, and relation movements (Freud, and the tradition that built on him: A. Freud; Hartmann; Bowlby & Ainsworth; Vaillant; Andersen & Chen).",
   "type": "module",
   "main": "./index.mjs",
@@ -75,16 +75,16 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22",
-    "@chbrain/khai-engine-anxiety": "^0.1.0",
+    "@chbrain/khai-arch": "^0.1.23",
+    "@chbrain/khai-engine-anxiety": "^0.1.1",
     "@chbrain/khai-engine-attachment": "^0.1.2",
-    "@chbrain/khai-engine-defense": "^0.1.0",
-    "@chbrain/khai-engine-structural-model": "^0.1.0",
-    "@chbrain/khai-engine-the-unconscious": "^0.1.0",
-    "@chbrain/khai-engine-transference": "^0.1.0"
+    "@chbrain/khai-engine-defense": "^0.1.1",
+    "@chbrain/khai-engine-structural-model": "^0.1.1",
+    "@chbrain/khai-engine-the-unconscious": "^0.1.1",
+    "@chbrain/khai-engine-transference": "^0.1.1"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

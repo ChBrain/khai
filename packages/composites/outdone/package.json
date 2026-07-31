@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-outdone",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the outdone domain: one reckoning with another's superior standing, split by how the persona meets it -- with warmth, with the pull to rise, or with the wish to pull down -- into admiration, benign envy, and malicious envy, read whole across the atom engines it depends on.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,12 +75,12 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22",
-    "@chbrain/khai-engine-admiration": "^0.1.0",
+    "@chbrain/khai-arch": "^0.1.23",
+    "@chbrain/khai-engine-admiration": "^0.1.1",
     "@chbrain/khai-engine-envy": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-intergroup",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the intergroup domain: the us/them dynamic read from a member's side -- the line that sorts us from them switching on favoritism and prejudice, the tilt hardening into hostility under competition, and the contact that can reduce it -- across the division, enmity, and contact bridges over social-identity, bias, and aggression.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,13 +75,13 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-arch": "^0.1.23",
     "@chbrain/khai-engine-aggression": "^0.1.1",
     "@chbrain/khai-engine-bias": "^0.1.1",
-    "@chbrain/khai-engine-social-identity": "^0.1.0"
+    "@chbrain/khai-engine-social-identity": "^0.1.1"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

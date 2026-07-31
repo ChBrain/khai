@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-authenticity",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the authenticity domain: living and acting from one's true self -- one's own values, feelings, and convictions -- rather than from external pressure or a false front, across the awareness, congruence, and transparency forms, tuned by a standing authenticity.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-mind-wandering",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the mind-wandering domain: self-generated, task-unrelated thought that decouples attention from the world and carries it inward -- the drift away from the task, not the selecting of it -- across the unbidden, zoning-out, and tuning-out modes (Smallwood & Schooler; Killingsworth & Gilbert).",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

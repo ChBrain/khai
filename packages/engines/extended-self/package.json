@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-extended-self",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the extended-self domain: a possession experienced as a part of the self -- an object into which a persona's identity extends, so that having it enlarges the self and losing it diminishes it -- across the possessor standing, the appropriation that takes an object into the self, and the dispossession that tears it out (Belk; Csikszentmihalyi & Rochberg-Halton; James).",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

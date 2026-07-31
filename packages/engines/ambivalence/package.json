@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-ambivalence",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the ambivalence domain: the simultaneous holding of a strong positive and a strong negative evaluation toward one object -- opposed feelings co-activated on separable dimensions, not a lukewarm midpoint -- across its potential (structural) and felt (subjective) forms (Bleuler; Freud; Cacioppo; Thompson, Zanna & Griffin).",
   "type": "module",
   "main": "./index.mjs",
@@ -58,10 +58,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

@@ -1,5 +1,0 @@
----
-"@chbrain/khai-review": patch
----
-
-Harness (order 2): make the escalation rungs explicit. `reviewHouse` now tags each confirmed finding with `escalatesTo` -- the next rung it rises to when its own cannot settle it -- read from an `escalation` map in opts (rubric id to the id it escalates to), the house's local wiring of its team's chain, defaulting to "human" so an unrouted finding goes straight to a person. It is the immediate rung, not the flattened chain: the Roadie rises to the Choregos, the Choregos to the human, each step taken when that rung is stuck. The target rides the finding onto the reconciled ledger entries too. Config, like the thresholds: the mechanism is global, the chain is the house's; when the canon grows a declared escalation field on a position, the resolver can read it instead of the config. Grounded against this repo's team: with the chain wired, a Roadie finding escalates to the Choregos and the Choregos to the human; with no config, every finding escalates to the human. Set at patch as the free level.

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-self-handicapping",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the self-handicapping domain: erecting an obstacle before an outcome so that a failure can be blamed on the obstacle rather than on ability, and a success counts double for coming despite it -- across the acquired and claimed handicaps, tuned by a standing self-handicapper disposition (Berglas & Jones; Rhodewalt).",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

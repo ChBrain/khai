@@ -1,0 +1,22 @@
+# @chbrain/khai-composite-condemnation
+
+## 0.1.1
+
+### Patch Changes
+
+- 6a68d62: Add the condemnation composite -- the other-condemning moral emotions read as one family, the other-directed mirror of the `self-conscious` composite. One condemnation of another's violation, split by which moral code was broken -- community, autonomy, or divinity -- into contempt, anger, and disgust (Rozin's CAD triad, over Shweder's three ethics). The composite authors no emotion of its own: it declares the `contempt`, `anger`, and `disgust` engines as dependencies, wires their members by hard package links, and adds only the code axis the three share and the three motions across it.
+
+  - **Root:** `condemnation` -- the family as one appraisal with one dial (the moral code violated), landing in contempt (community), anger (autonomy), or disgust (divinity).
+  - **Bridges (the drama the atoms cannot stage alone):** `code, fusion` (the codes firing together and the violator dehumanized past the reach of amends -- the ANCODI cluster before intergroup violence, the contempt-disgust othering), `code, hardening` (a hot autonomy-anger cooling into a cold community-contempt as the account stays open -- the act-condemnation eroding into a person-condemnation, Gottman's deadliest turn, mirroring guilt widening into shame), `code, reading` (one act coded now as harm, now as betrayal, now as defilement, by the code the reader holds sacred -- Haidt's Moral Foundations, and Rozin's moralization).
+
+  Newly wireable this cycle: the CAD atoms are now all engines (contempt existed; `anger` and `disgust` landed as standalone engines earlier in this series). Warranted (LORE, integrative) on Rozin, Lowery, Imada & Haidt (the CAD Triad, 1999), Shweder (the three ethics), Haidt (Moral Foundations), Matsumoto et al. (the ANCODI hypothesis), Gottman (contempt as anger's terminus), and Rozin (moralization). Bounded against `moral-judgment` (the reasoned verdict vs the emotional condemnation), `self-conscious` (the self-directed appraisal vs this other-directed one), and `aggression`/`stigma` (the enactment and the social mark vs the emotional othering). Set at patch as the free level.
+
+- Updated dependencies [03a3b88]
+- Updated dependencies [4a05b85]
+- Updated dependencies [b53ee6c]
+- Updated dependencies [5a6714e]
+- Updated dependencies [3c5945c]
+  - @chbrain/khai-engine-anger@0.1.1
+  - @chbrain/khai-engine-contempt@0.1.1
+  - @chbrain/khai-engine-disgust@0.1.1
+  - @chbrain/khai-arch@0.1.23

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-surprise",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the surprise domain: the response to a violated expectation -- the mind's alarm that its model of the world has just been wrong, interrupting, reorienting, and revising -- across the startle, jolt, sensemaking, and dismissal forms.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

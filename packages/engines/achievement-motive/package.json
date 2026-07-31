@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-achievement-motive",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the achievement-motive domain: a persona's resting dispositional motive in achievement situations -- the standing pull toward success or away from failure that energizes which goals it adopts -- across the hope-of-success and fear-of-failure motives (Atkinson; McClelland; Elliot & Church; Conroy).",
   "type": "module",
   "main": "./index.mjs",
@@ -58,10 +58,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

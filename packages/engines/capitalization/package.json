@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-capitalization",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the capitalization domain: the reception a persona gives a partner's shared good news -- the responder's fork on which the relationship benefit of sharing turns, only the active-constructive reply building the bond -- across the four response styles (Gable; Langston).",
   "type": "module",
   "main": "./index.mjs",
@@ -60,10 +60,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

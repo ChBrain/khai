@@ -1,4 +1,0 @@
----
----
-
-Whitelist `sadness` under `memberPolicy.homonyms`, so the forthcoming standalone `sadness` engine can carry its root member name without colliding with the `emotion` engine's `process_sadness.md`. This is the same promotion pattern already cleared for `narcissism`, `disgust`, `anger`, and `fear`: `emotion` keeps `sadness` as one node in its basic-emotion appraisal taxonomy (joy, sadness, anger, fear, disgust), while the standalone engine unfolds sadness's internal structure -- the low-approach emotion at a loss, its forms (disappointment, sorrow, despair, melancholy), and the trait dysphoria. With this the emotion taxonomy has four of its five basic nodes promoted; only `joy` remains a bare node. Governance config only; ships nothing. The member-check ratchet's dead-exemption warning is expected until the `sadness` engine lands and makes the collision live.

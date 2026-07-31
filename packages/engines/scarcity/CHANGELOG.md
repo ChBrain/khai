@@ -1,0 +1,13 @@
+# @chbrain/khai-engine-scarcity
+
+## 0.1.1
+
+### Patch Changes
+
+- 91acc9e: Add the scarcity engine: how the felt lack of a resource -- money, time, food, company -- captures the mind and reorganizes it around the shortfall, sharpening attention on the pressing lack while taxing the mental capacity left for everything else. The root (`process_scarcity.md`) declares Mullainathan & Shafir's account: scarcity is not merely a condition of the world but a distinctive psychology, capturing the mind and, at a cost, taxing it, so that the same person reasons and chooses worse while short. Three forms carry it: `tunneling` (the attention route -- the shortfall seizing the beam of attention, a focus dividend won inside the tunnel and the important-but-not-urgent neglected outside it), `bandwidth` (the capacity route -- the nagging lack consuming cognitive resources so that fluid intelligence and executive function measurably fall while one is short), and `trap` (the compounding route -- the neglect and the tax spiraling, the persona borrowing against the future to meet the present and so deepening the future's lack).
+
+  A foundational behavioral-science gap. Bounded against `money`/`capital` (the resource that is short vs the cognition of its felt lack), `attention`/`executive-function` (the faculties seized and taxed vs the shortfall's seizing and taxing of them), `stress` (the demand-exceeds-resources strain vs scarcity's specific cognitive signature -- capture, tunnel, tax, trap), and `goal`/`drive` (the need and the wanting vs what having too little of the needed thing does to the mind). No homonym gate: `scarcity` and the form stems `tunneling`/`bandwidth`/`trap` are all free (`neglect`, `focus`, `closure`, `just_world` were taken). Warranted (LORE) on Mullainathan & Shafir (_Scarcity_, 2013), Shah, Mullainathan & Shafir (some consequences of having too little, _Science_, 2012), and Mani, Mullainathan, Shafir & Zhao (poverty impedes cognitive function, _Science_, 2013). Set at patch as the free level; a new engine may warrant a minor at the maintainer's `bump:minor` label.
+
+- Updated dependencies [5a6714e]
+- Updated dependencies [3c5945c]
+  - @chbrain/khai-arch@0.1.23

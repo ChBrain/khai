@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-embarrassment",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the embarrassment domain: the acute self-conscious emotion of unwanted social exposure -- a blunder, a spotlight, a breach witnessed -- and the appeasing fluster it triggers, across the faux pas, conspicuous, cringe, and blush forms, tuned by a standing embarrassability.",
   "type": "module",
   "main": "./index.mjs",
@@ -85,10 +85,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

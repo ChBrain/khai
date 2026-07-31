@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-self-construal",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the self-construal domain: a persona's resting sense of where the self is bounded -- as a separate, autonomous individual defined by its own attributes, or as a connected self defined by its relationships, roles, and groups -- across the independent and interdependent construals (Markus & Kitayama; Triandis; Singelis).",
   "type": "module",
   "main": "./index.mjs",
@@ -58,10 +58,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

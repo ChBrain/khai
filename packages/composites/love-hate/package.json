@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-love-hate",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the love-hate domain: the ambivalence Freud named -- love and hate held toward the same object at once, on the shared neural circuit Zeki & Romaya found -- read as a wiring of the love and hate composites across the holding, turn, and bind bridges.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,12 +75,12 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22",
-    "@chbrain/khai-composite-hate": "^0.1.0",
-    "@chbrain/khai-composite-love": "^0.1.0"
+    "@chbrain/khai-arch": "^0.1.23",
+    "@chbrain/khai-composite-hate": "^0.1.1",
+    "@chbrain/khai-composite-love": "^0.1.1"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

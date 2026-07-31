@@ -1,0 +1,15 @@
+# @chbrain/khai-composite-love
+
+## 0.1.1
+
+### Patch Changes
+
+- b7a2f44: Add the love composite: the composition of a love -- which of Sternberg's three components it is made of, and how they shift over time. It is not a new engine but a wiring of three: `self-disclosure` supplies the intimacy (the closeness of two selves opened to each other), `desire` supplies the passion (the drive and attraction that pulls them together), and `loyalty` supplies the commitment (the decision to hold the love and stay). The root (`process_love.md`) reads a love by which corners hold; the recognizable kinds are the combinations, and the three bridges are the two-cornered loves: `romantic` (intimacy and passion without commitment -- the being-in-love, aflame and unpledged), `abiding` (intimacy and commitment without passion -- Sternberg's companionate love, the long settled tie that outlasts desire), and `fatuous` (passion and commitment without intimacy -- the whirlwind, bound fast on a feeling before the slow work of knowing). All three corners at once is consummate love; one corner alone is only love's ingredient (intimacy alone liking, passion alone infatuation, commitment alone the empty love).
+
+  Found via a gap audit of the catalogue (love was a glaring absence in an otherwise complete emotional/relational map). Built as a composite because it wires owned atoms rather than restating them: crucially, `desire` already owns the dispositional love-_styles_ (Lee's colours -- passionate, companionate, pragmatic, obsessive, selfless), a different level from Sternberg's relationship-_structure_, so this composite draws on desire for the passion corner and delegates the style back to it (the `companionate` bridge is renamed `abiding` to avoid the stem clash with desire's member). Bounded against `desire` (the individual's love-style vs the relationship's composition), `attachment` (the bond and its security beneath the intimacy), and `grief` (the loss when a love ends). Warranted (LORE) on Sternberg (the triangular theory), Hatfield & Berscheid (passionate vs companionate love), Rubin (loving distinct from liking), and Fisher (the lust/attraction/attachment systems on different timescales). Set at patch as the free level; a new composite may warrant a minor at the maintainer's `bump:minor` label.
+
+- Updated dependencies [5a6714e]
+- Updated dependencies [3c5945c]
+- Updated dependencies [1b1117c]
+  - @chbrain/khai-arch@0.1.23
+  - @chbrain/khai-engine-self-disclosure@0.1.1

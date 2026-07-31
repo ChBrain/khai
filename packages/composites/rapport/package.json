@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-rapport",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the rapport domain: the felt quality of a connection working -- two personas in unconscious synchrony, understanding that keeps landing, and mutual opening that deepens -- reinforcing into the sense of clicking, across the meshing, warming, and veneer bridges over contagion, grounding, and self-disclosure.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,13 +75,13 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-arch": "^0.1.23",
     "@chbrain/khai-engine-contagion": "^0.1.1",
-    "@chbrain/khai-engine-grounding": "^0.1.0",
-    "@chbrain/khai-engine-self-disclosure": "^0.1.0"
+    "@chbrain/khai-engine-grounding": "^0.1.1",
+    "@chbrain/khai-engine-self-disclosure": "^0.1.1"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

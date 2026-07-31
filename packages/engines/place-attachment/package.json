@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-place-attachment",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the place-attachment domain: the enduring affective bond between a persona and a specific meaningful place -- rootedness, the place as part of the self, and the ache of displacement -- across the rooted, dependence, homesick, and placeless standings.",
   "type": "module",
   "main": "./index.mjs",
@@ -60,10 +60,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }

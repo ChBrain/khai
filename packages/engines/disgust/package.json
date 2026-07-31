@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-disgust",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the disgust domain: the rejection-and-contamination response through which a persona recoils from an offending object -- revulsion, the impulse to expel or withdraw, the sense of a clinging taint -- across the pathogen, sexual, and sociomoral domains, the contamination mechanism that makes it unique, and the standing sensitivity that tunes it.",
   "type": "module",
   "main": "./index.mjs",
@@ -85,10 +85,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22"
+    "@chbrain/khai-arch": "^0.1.23"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.2",
     "vitest": "^4.1.10"
   }
 }
