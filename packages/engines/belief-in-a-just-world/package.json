@@ -1,0 +1,67 @@
+{
+  "name": "@chbrain/khai-engine-belief-in-a-just-world",
+  "version": "0.1.0",
+  "description": "khai engine content, the belief-in-a-just-world domain: a persona's standing conviction that the world is fair and people get what they deserve -- a worldview that buffers the self and defends itself against the innocent victim -- across the personal and general just-world beliefs (Lerner; Dalbert; Hafer & Begue).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/belief-in-a-just-world"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "belief-in-a-just-world",
+    "tagline": "Belief in a just world as position: a persona's standing conviction that the world is fair and people get what they deserve -- a worldview that buffers the self toward trust and long effort, and defends itself against the innocent victim -- across the personal and general just-world beliefs (Lerner; Dalbert; Hafer & Begue).",
+    "type": "position",
+    "anchor": "position_just_world_belief.md",
+    "expressions": {
+      "personal": "position_personal.md",
+      "general": "position_general.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_just_world_belief.md) declares a persona's standing conviction that the world is fundamentally fair -- that people get what they deserve and deserve what they get (Lerner). It is a worldview, not a single judgment: a resting assumption that effort is rewarded, that suffering is earned, and that the moral books balance, which a persona needs in order to invest in the future and trust its institutions, and which it defends when reality threatens it. Where the bias engine's just-world-hypothesis member owns the specific attribution move -- the innocent victim searched for the flaw that explains their fate -- this engine owns the standing belief itself and its two validated faces, the personal and the general, of which that victim-derogation is one defense. The law makes a persona's assumption of a fair world a standing mover of how it reads fortune and misfortune.",
+      "issue": "Two just-world beliefs, distinguished by whom the fairness is assumed to hold for (Dalbert). Personal: the belief that the world is fair to me -- that my own efforts will be justly rewarded and my own fate is deserved; this is the adaptive, self-directed face, a psychological resource that buffers stress, sustains trust and hope, and lets the persona defer gratification and invest in long effort, confident the world will settle its accounts. General: the belief that the world is fair to people in general -- that others get what they deserve; this is the harsher, other-directed face, which justifies the status quo, hardens the persona toward the disadvantaged, and, confronted with an innocent victim whose suffering it cannot undo, defends itself by concluding the victim must have deserved it, derogating or blaming them to keep the world just. The personal belief protects the self; the general belief judges the other.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so a persona's just-world conviction holds system-wide beneath its readings of fortune. The link: each persona links, under Projection, the just-world belief it runs on -- how fair it assumes the world to be to itself and to others, and how it defends that assumption.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real just-world belief. Whether the belief is true to the persona -- a standing worldview that both buffers the self and defends itself against the innocent victim, its personal and general faces distinguished, and kept apart from the specific attribution bias it can drive -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the persona its just-world belief under Projection: how fair it assumes the world to be to itself (the resource that lets it trust and invest) and to others (the judgment that hardens it toward the sufferer) -- and read it in how the persona meets fortune and misfortune, crediting the lucky with desert and searching the unlucky for fault. Keep it the standing worldview: the specific victim-derogating attribution -- the sufferer searched for the flaw -- is the bias engine's just-world-hypothesis member, the pleasure at a deserved misfortune is the schadenfreude engine's, the neutral evaluation of one's standing against others is the comparison engine's, and the fairness intuition applied to a particular act is the moral-judgment engine's. This engine owns the standing belief that the world is fair, and its personal and general faces."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
