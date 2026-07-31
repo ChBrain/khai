@@ -1,0 +1,79 @@
+{
+  "name": "@chbrain/khai-engine-altruistic-punishment",
+  "version": "0.1.0",
+  "description": "khai engine content, the altruistic-punishment domain: paying a personal cost to sanction a norm violator, with no material return and often no personal stake -- the costly enforcement of a cooperative norm (Fehr & Gachter; Fehr & Fischbacher).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/altruistic-punishment"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "altruistic-punishment",
+    "tagline": "the costly sanctioning of a norm violator -- a persona paying a personal price, with no material return, to make a defector answer for breaking a cooperative norm (Fehr & Gachter; Fehr & Fischbacher)",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_altruistic_punishment.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_second_party.md",
+        "type": "process",
+        "parent": "process_altruistic_punishment.md"
+      },
+      {
+        "file": "process_third_party.md",
+        "type": "process",
+        "parent": "process_altruistic_punishment.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_altruistic_punishment.md) declares altruistic punishment as the costly sanctioning of a norm violator: a persona spends its own resource -- money, effort, safety, standing -- to make a defector pay for breaking a cooperative norm, expecting no material return and often having taken no personal loss (Fehr). The act is altruistic in the technical sense that it costs the punisher and benefits the group, by deterring defection and shoring up the norm for everyone. It routes into two forms by whether the punisher was party to the violation.",
+      "issue": "Two forms, by the punisher's relation to the harm. Second-party: the persona was in the exchange and was defected on -- it pays to punish the free-rider even when doing so recovers nothing and the encounter will not repeat (Fehr & Gachter's public-goods punishment). Third-party: the persona was an uninvolved observer -- it pays to punish a violation that cost it nothing, purely to enforce a norm it holds for others (Fehr & Fischbacher's third-party punishment). The first is a wronged party declining to let the wrong pay; the second is a bystander declining to let a stranger's wrong stand.",
+      "require": "The law is declared once in the project's Instructions Knowledge chapter, linking the root. Each persona links, under Projection, the form its punishment takes -- whether it sanctions as a wronged party or as an uninvolved third.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real altruistic-punishment form. Whether the act is true to the persona -- a real cost borne, a norm rather than a private grudge enforced, no material return sought, and kept distinct from the disapproval that motivates it and the raw harm it delivers -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Give the persona its current form under Projection: second-party when it pays to punish a defector who wronged it directly, third-party when it pays to punish a violation it merely witnessed. Keep it the costly act, not its feeling or its raw force: the moral disapproval that drives it -- the anger, disgust, and contempt at the violator -- is the condemnation composite's, and the bare mechanics of delivering harm are the aggression engine's; this engine owns the norm-enforcing, cost-bearing sanction itself."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
