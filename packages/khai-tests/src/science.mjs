@@ -121,12 +121,83 @@ export function originRowErrors(origin) {
 // qualifier-stripping, so "Practitioner (medicine)" collapses to it too.
 const NON_AUTHOR = new Set(["practitioner"]);
 
+// A closed, declared set of nobiliary and toponymic particles: tokens that join
+// to the name after them to make one surname ("Le Grand", "Della Porta"). Unlike
+// the uppercase-initial rule below, this one cannot be computed — nothing in the
+// shape of "Le" separates the particle of "Le Grand" from any other short word,
+// so the set is carried here as data. Matched case-insensitively; whether a
+// given occurrence actually joins is decided by surnameOf, not by this list.
+const PARTICLES = new Set([
+  "af",
+  "al",
+  "av",
+  "da",
+  "das",
+  "de",
+  "del",
+  "della",
+  "den",
+  "der",
+  "des",
+  "di",
+  "do",
+  "dos",
+  "du",
+  "el",
+  "la",
+  "le",
+  "les",
+  "ten",
+  "ter",
+  "van",
+  "ver",
+  "von",
+]);
+
 /** Drop a trailing/inline parenthetical qualifier: "Brooks (communication)" -> "Brooks". */
 const stripQualifier = (s) =>
   s
     .replace(/\s*\([^)]*\)\s*/g, " ")
     .replace(/\s+/g, " ")
     .trim();
+
+/**
+ * The surname inside one author part, carrying any particle that belongs to it:
+ *   "Julian Le Grand"     -> "Le Grand"
+ *   "Van Jacobson"        -> "Jacobson"    (Van is his given name)
+ *   "Marquis de Condorcet"-> "Condorcet"
+ *
+ * Two conditions gate the join, and the source itself carries both signals, so
+ * neither is a per-row judgement:
+ *
+ *  1. **The particle is capitalised.** That is how a name declares the particle
+ *     to be part of the surname. "Julian Le Grand" is indexed under Le Grand;
+ *     "Marquis de Condorcet" under Condorcet and "Arnold van Gennep" under
+ *     Gennep, which is also how the rest of the corpus already cites them (as
+ *     bare "von Neumann", bare "Condorcet"), so following the source's own
+ *     casing keeps a lowercase-particle scholar collating on one key instead of
+ *     fracturing into two.
+ *  2. **The particle is not the part's first token.** A capitalised particle in
+ *     first position is a given name, not a particle: "Van Jacobson" is
+ *     Jacobson, and the Van is what his parents called him. Requiring a token
+ *     ahead of it is what tells the two apart.
+ *
+ * The joined surname still begins with the capital that opened the particle, so
+ * the uppercase-initial invariant below reads it unchanged.
+ */
+function surnameOf(part) {
+  const tokens = part.replace(/[.,]/g, "").split(/\s+/).filter(Boolean);
+  if (!tokens.length) return part;
+  let head = tokens.length - 1;
+  while (
+    head > 1 &&
+    PARTICLES.has(tokens[head - 1].toLowerCase()) &&
+    /^\p{Lu}/u.test(tokens[head - 1])
+  ) {
+    head -= 1;
+  }
+  return tokens.slice(head).join(" ");
+}
 
 /**
  * Canonical surnames for a Source cell, so the same scholar collates across
@@ -137,6 +208,7 @@ const stripQualifier = (s) =>
  *   "Dan P. McAdams et al."          -> ["McAdams"]
  *   "Mayer, Davis & Schoorman"       -> ["Mayer", "Davis", "Schoorman"]
  *   "Brooks (communication)"         -> ["Brooks"]   (the qualifier is not a name)
+ *   "Julian Le Grand"                -> ["Le Grand"] (the particle joins: surnameOf)
  *
  * A Source cell that names no scholar contributes none: the forward map is a
  * scholar -> engine index, so honest-note and field-marker rows ("Boundary of
@@ -158,10 +230,7 @@ export function surnames(source) {
       .map((part) => stripQualifier(part))
       .filter(Boolean)
       .filter((part) => !NON_AUTHOR.has(part.toLowerCase()))
-      .map((part) => {
-        const tokens = part.replace(/[.,]/g, "").split(/\s+/).filter(Boolean);
-        return tokens[tokens.length - 1] || part;
-      })
+      .map((part) => surnameOf(part))
       // A scholar surname is a proper noun: it begins with an uppercase letter.
       // This is the structural invariant that replaces per-row judgement — it
       // drops "effect" (Boundary of the effect), "calculus" (The individual
