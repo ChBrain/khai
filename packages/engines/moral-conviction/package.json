@@ -1,0 +1,67 @@
+{
+  "name": "@chbrain/khai-engine-moral-conviction",
+  "version": "0.1.0",
+  "description": "khai engine content, the moral-conviction domain: the metacognitive stamp that an attitude is a moral mandate -- felt as fact and above authority, orthogonal to which foundation fires -- across its mobilizing and intolerant faces (Skitka).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/moral-conviction"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "moral-conviction",
+    "tagline": "Moral conviction as position: the metacognitive stamp that an attitude is a moral mandate -- held as objective fact and independent of authority, orthogonal to which moral concern fires -- across its mobilizing and intolerant faces (Skitka).",
+    "type": "position",
+    "anchor": "position_moral_conviction.md",
+    "expressions": {
+      "mobilization": "position_mobilization.md",
+      "intolerance": "position_intolerance.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_moral_conviction.md) declares a metacognitive property an attitude can carry: the stamp that it is a moral mandate -- grounded in a person's core sense of right and wrong -- rather than a preference, a taste, or a convention (Skitka). It is orthogonal to which concern fires: the moral-judgment engine owns the foundations a verdict runs on -- care, fairness, loyalty, authority, sanctity, liberty; this engine owns the mandate status stamped on top of any of them, the felt difference between `I prefer this` and `this is simply right`. What makes the stamp distinctive is two things it does to the attitude it marks: the position is held as an objective fact, universally and self-evidently true, and it is held as independent of and superior to any authority, rule, or law. The law makes a persona's moral mandates a standing mover of how firmly it holds a position and what it will do about it.",
+      "issue": "Two faces of the same mandate, the double edge Skitka's work documents. Mobilization: the mandate as fuel -- it compels action, sustains sacrifice, hardens resolve against pressure to back down, and licenses the persona to stand firm on principle whatever the cost or the authority ranged against it; moral conviction is the strongest known driver of civic engagement, protest, and refusal to be bought off. Intolerance: the mandate as wall -- it distances the persona from those who disagree, reframes dissent as not merely mistaken but bad, refuses compromise as complicity, resists legitimate authority and procedure when they cross the mandate, and, at the far edge, licenses hostile means toward a morally certain end. The one edge moves the persona to act well and bravely; the other closes it against the person who sees differently. A persona can run high on both at once.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so a persona's capacity to hold positions as moral mandates holds system-wide beneath its particular attitudes. The link: each persona links, under Projection, the face its moral conviction runs on -- the mobilizing fuel, the intolerant wall, or a measure of both -- on the attitudes it treats as mandates rather than preferences.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real moral-conviction face. Whether the conviction is true to the persona -- a mandate held as fact and above authority, driving the persona both to brave action and to intolerance of dissent, and kept distinct from the moral foundation it is stamped on -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the persona its moral conviction under Projection: which of its positions it holds as moral mandates -- true as fact, owing nothing to authority -- and read the two faces in its conduct, the mobilization that makes it act and sacrifice and refuse to fold, and the intolerance that closes it against those who disagree and can license hard means. Keep it the mandate status, not the concern beneath it: which foundation the verdict runs on -- care, fairness, loyalty, authority, sanctity, liberty -- is the moral-judgment engine's; this engine owns only the stamp that turns a position from a preference into an imperative."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
