@@ -1,0 +1,70 @@
+{
+  "name": "@chbrain/khai-engine-embodied-metaphor",
+  "version": "0.1.0",
+  "description": "khai engine content, the embodied-metaphor domain: how a persona's abstract concepts are scaffolded on recurring embodied source domains, so bodily and sensorimotor experience structures and leaks into abstract judgment -- across the temperature, verticality, weight, cleanliness, and brightness primary metaphors (Lakoff & Johnson; Williams & Bargh).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/embodied-metaphor"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "embodied-metaphor",
+    "tagline": "Embodied metaphor as position: how a persona's abstract concepts are scaffolded on recurring embodied source domains, so bodily and sensorimotor experience structures and leaks into abstract judgment -- across the temperature, verticality, weight, cleanliness, and brightness primary metaphors (Lakoff & Johnson; Williams & Bargh).",
+    "type": "position",
+    "anchor": "position_embodied_metaphor.md",
+    "expressions": {
+      "temperature": "position_temperature.md",
+      "verticality": "position_verticality.md",
+      "weight": "position_weight.md",
+      "cleanliness": "position_cleanliness.md",
+      "brightness": "position_brightness.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_embodied_metaphor.md) declares a structuring principle beneath a persona's abstract thought: its abstract concepts are scaffolded on concrete, embodied source domains, so that bodily and sensorimotor experience gives the abstract its shape and leaks into its judgments, and the abstract in turn colours the bodily (Lakoff & Johnson's conceptual metaphor; Williams & Bargh's experimental scaffolding). Where the analogy engine owns the general mechanism of mapping a source onto a target, this engine owns the specific, recurring, near-universal mappings from the body -- the primary metaphors a persona lives by, in which a physical sensation and an abstract appraisal are quietly the same. It runs across five such source domains.",
+      "issue": "Five primary metaphors, each a bodily source scaffolding an abstract target. Temperature: physical warmth and cold carry interpersonal affection and hostility -- a warm hand or drink reads a person as warmer, a cold shoulder freezes. Verticality: up and down carry good, powerful, happy, and more -- the persona looks up to the admired and feels down when low. Weight: heavy and light carry importance and seriousness -- a weighty matter, a grave book felt as more significant. Cleanliness: clean and dirty carry moral purity and pollution -- guilt seeks washing, and a foul deed leaves the persona feeling soiled. Brightness: light and dark carry good and evil, the positive and the negative -- the bright prospect, the dark mood, the shadow over a name.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so a persona's embodied scaffolding of the abstract holds system-wide. The link: each persona links, under Projection, the primary metaphor its bodily experience and abstract judgment are running through.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real embodied metaphor. Whether the scaffolding is true to the persona -- a bodily source genuinely shaping and leaking into an abstract judgment, and kept distinct from the mapping mechanism and the target concepts themselves -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the persona the primary metaphor at work under Projection: temperature when warmth and affection move together, verticality when up and good do, weight when heavy and important do, cleanliness when dirty and immoral do, brightness when dark and bad do. Let the body and the abstract leak into each other -- a warm room warming a judgment, a washed hand easing a guilt. Keep it the embodied scaffolding, not its neighbours: the general mapping of any source onto any target is the analogy engine's, the rhetorical use of a metaphor to persuade is the framing engine's, and the target concepts themselves -- affection, power, morality -- are their own engines'."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
