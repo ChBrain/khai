@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-hate",
+  "version": "0.1.0",
+  "description": "khai composite content, the hate domain: the triangle Sternberg drew as love's mirror -- negation of intimacy, passion, and commitment-to-devaluation -- and the kinds of hate that are its combinations, read as a wiring of disgust, anger, and contempt across the boiling, seething, and burning bridges.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/hate"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "hate",
+    "tagline": "Hate as composite: the triangle Sternberg drew as love's mirror -- negation of intimacy, passion, and commitment-to-devaluation -- and the kinds of hate that are its combinations, read as a wiring of disgust, anger, and contempt, across the boiling, seething, and burning bridges, and the drama lives in which corners are present and how they harden over time.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_hate.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_boiling.md",
+        "type": "process",
+        "parent": "process_hate.md"
+      },
+      {
+        "file": "process_seething.md",
+        "type": "process",
+        "parent": "process_hate.md"
+      },
+      {
+        "file": "process_burning.md",
+        "type": "process",
+        "parent": "process_hate.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "plot",
+        "section": "Tension",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over three atoms it declares as dependencies. The root (process_hate.md) reads a hate by which of Sternberg's three components it is made of -- the deliberate mirror of his triangular theory of love: disgust supplies the negation of intimacy (the distancing and revulsion that push the target away), anger supplies the passion (the hot hostility, the wish to see it harmed), and contempt supplies the commitment (the cold devaluation that fixes the target as beneath regard and bad by nature). The composite adds no fourth engine; it wires the three corners into the shapes a hate can take. Its warrant is not only Sternberg's parallel but the neuroscience: Zeki and Romaya find love and hate share a common subcortical circuit, so building hate as love's structural twin follows the brain.",
+      "issue": "Three bridges, the two-cornered hates (Sternberg's duplex types). Boiling: negation of intimacy and passion without commitment -- hot revulsion, the loathing that recoils and wants harm at once, not yet settled into a fixed verdict. Seething: negation of intimacy and commitment without passion -- cold, settled revilement, the target held at a distance and fixed as beneath regard, disgust gone quiet and permanent. Burning: passion and commitment without the distancing -- the devaluing fury that leans in, the drive to annihilate a target it has judged worthless. All three corners at once is the consummate hate, the burning need for annihilation of a target repellent, hated, and fixed as bad to the core; one corner alone is not yet hate but its ingredient -- disgust alone revulsion, anger alone a passing fury, contempt alone a cold dismissal.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the composition read runs wherever its atoms are cast. The link, advisory: a plot may link under Tension the bridge it stages, and the audit surfaces where a play stages a hate without naming which corners hold it.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's hate genuinely has the corners it claims -- and whether their hardening, a hot loathing settling into a cold fixed verdict, is read truly -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the hate from the atoms -- its negation of intimacy from disgust, its passion from anger, its commitment from contempt -- then stage the bridges by which corners hold: boiling, seething, or burning, with the consummate hate the full triangle. Read the production in which corners are present and how they harden over time, never in the word hate alone; the behavioral infliction of harm the hate may motivate is the aggression engine's, and the moral licensing of that harm the moral-disengagement engine's."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-engine-anger": "^0.1.0",
+    "@chbrain/khai-engine-contempt": "^0.1.0",
+    "@chbrain/khai-engine-disgust": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
