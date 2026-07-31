@@ -1,0 +1,81 @@
+{
+  "name": "@chbrain/khai-composite-relative-deprivation",
+  "version": "0.1.0",
+  "description": "khai composite content, the relative-deprivation domain: the grievance that arises when an unfavorable comparison (comparison) is appraised as unjust and ignites resentment (anger) -- the affective-injustice layer that turns a neutral disadvantage into a felt wrong -- across the egoistic and fraternal forms, the group form driving collective action (Runciman; Smith & Pettigrew).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/relative-deprivation"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "relative-deprivation",
+    "tagline": "Relative deprivation as composite: the grievance that arises when an unfavorable comparison (comparison) is appraised as unjust and ignites resentment (anger) -- the affective-injustice layer that turns a neutral disadvantage into a felt wrong -- across the egoistic and fraternal forms, the group form driving collective action (Runciman; Smith & Pettigrew).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_relative_deprivation.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "position_deprivation_egoistic.md",
+        "type": "position",
+        "parent": "process_relative_deprivation.md"
+      },
+      {
+        "file": "position_deprivation_fraternal.md",
+        "type": "position",
+        "parent": "process_relative_deprivation.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over two atoms it declares as dependencies. The root (process_relative_deprivation.md) reads the grievance of relative deprivation: the comparison engine's upward comparison (the persona or its group measured against a better-off referent) and the anger engine's grievance and indignation (the resentment the disadvantage ignites). The composite adds no third atom, only the read of the compound -- the appraisal of the disadvantage as unjust, undeserved, and wrongful, which is what turns a neutral comparison into a felt deprivation. It routes into two forms by whose deprivation is at stake.",
+      "issue": "Two forms, by the level the comparison is pitched at (Runciman). Egoistic: the persona compares itself as an individual to other individuals and finds itself unfairly short -- the deprivation is personal, and it drives personal resentment, stress, and self-focused striving or withdrawal. Fraternal: the persona compares its group to other groups and finds its group unfairly short -- the deprivation is collective, and it is this group form, not the individual one, that drives collective action, protest, and intergroup hostility.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the relative-deprivation read runs wherever its atoms are cast. The link, advisory: a persona aggrieved at the individual or the group level may link the form under Projection, and the audit surfaces the ones left unnamed.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production earns the relative deprivation -- an unfavorable comparison genuinely appraised as unjust and felt as grievance, rather than a neutral difference or a mere want, pitched at the right level -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its two atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the comparison from the comparison engine (the persona or its group against a better-off referent) and the resentment from the anger engine (the grievance and indignation the gap ignites), then read the compound and its injustice appraisal: a disadvantage judged unfair and undeserved is relative deprivation; a disadvantage merely noted is comparison. Pitch it at the level that fits -- egoistic for the individual's grievance, fraternal for the group's, the fraternal form the one that moves a persona to collective action. Read the production across the compound, never in the comparison alone."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-engine-anger": "^0.1.0",
+    "@chbrain/khai-engine-comparison": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
