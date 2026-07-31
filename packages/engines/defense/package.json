@@ -1,0 +1,68 @@
+{
+  "name": "@chbrain/khai-engine-defense",
+  "version": "0.1.0",
+  "description": "khai engine content, the defense domain: the unconscious, anxiety-driven distortions of reality by which a persona wards off what it cannot consciously bear -- ranked by how much they distort, from the reality-respecting mature defenses through the neurotic to the reality-warping immature -- across the mature, neurotic, and immature levels of the defensive hierarchy (A. Freud; Vaillant; Cramer).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/defense"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "defense",
+    "tagline": "Defense as position: the unconscious, anxiety-driven distortions of reality by which a persona wards off what it cannot consciously bear -- ranked by how much they distort, from the reality-respecting mature defenses through the neurotic to the reality-warping immature -- across the mature, neurotic, and immature levels of the defensive hierarchy (A. Freud; Vaillant; Cramer).",
+    "type": "position",
+    "anchor": "position_defense.md",
+    "expressions": {
+      "mature": "position_mature.md",
+      "neurotic": "position_neurotic.md",
+      "immature": "position_immature.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_defense.md) declares a persona's characteristic defensive level: the unconscious, involuntary way it distorts reality to keep anxiety and unbearable content out of awareness (A. Freud; Vaillant). A defense is not a chosen coping strategy but an automatic operation the persona does not know it is running -- and defenses fall on a maturity hierarchy by how much they warp reality, from the mature, which keep it largely intact, through the neurotic, to the immature, which bend it hard. Where the regulation engine owns the conscious, strategic management of a feeling, and moral disengagement the deactivation of moral self-sanction, defense is the unconscious warding-off itself, the mechanism a persona cannot see. The law makes a persona's habitual defensive altitude a standing part of how it meets what it cannot face.",
+      "issue": "Three levels of the defensive hierarchy, by how much reality is distorted (Vaillant; Cramer). Mature: the adaptive defenses that respect reality while easing the conflict -- sublimation (channeling the impulse into achievement), suppression (deliberately setting a worry aside), humor, altruism, anticipation; these leave the outer world intact and integrate the inner one, and mark the healthiest defensive style. Neurotic: the intermediate defenses common in ordinary distress -- repression (barring an impulse from awareness), reaction-formation (turning it into its opposite), intellectualization and isolation (splitting the feeling from the idea), and the displacement of an impulse onto a safer target; these alter the persona's inner experience more than the world. Immature: the defenses that bend reality hard -- projection (disowning an impulse and seeing it in others), denial of an external fact, acting-out, splitting others into all-good and all-bad, and fantasy; these distort the outer world and strain relationships, common under severe stress and in disordered functioning.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so a persona's defensive style holds system-wide beneath its conscious dealings. The link: each persona links, under Projection, the defensive level a moment runs on -- how, and how much, it is unconsciously distorting what it cannot bear.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real defensive level. Whether the defense is true to the persona -- a genuine unconscious distortion rather than a conscious strategy, its mature, neurotic, and immature levels distinguished, and kept apart from deliberate regulation and from moral self-exculpation -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the persona its defensive level under Projection: how it unconsciously wards off what it cannot face, and how far that warps reality -- the mature persona sublimating or setting aside, the neurotic repressing or displacing, the immature projecting or denying. Read it in the distortion the persona cannot see in itself, and keep it the unconscious warding-off: the conscious, strategic management of a feeling along its timeline is the regulation engine's, the deliberate deactivation of moral self-sanction to do harm is the moral-disengagement engine's, the effortful appraisal-driven handling of a stressor is the coping engine's, and the specific denial of one's own mortality is the mortality engine's. This engine owns the unconscious distortion of reality by which a persona keeps the unbearable from awareness."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
