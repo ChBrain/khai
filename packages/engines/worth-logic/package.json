@@ -1,0 +1,68 @@
+{
+  "name": "@chbrain/khai-engine-worth-logic",
+  "version": "0.1.0",
+  "description": "khai engine content, the worth-logic domain: the cultural logic by which a persona's personal worth is assigned and defended -- where worth comes from and how it is protected -- across the dignity, honor, and face logics (Nisbett & Cohen; Leung & Cohen).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/worth-logic"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "worth-logic",
+    "tagline": "Worth-logic as position: the cultural logic by which a persona's personal worth is assigned and defended -- where worth comes from and how it is protected -- across the dignity, honor, and face logics (Nisbett & Cohen; Leung & Cohen).",
+    "type": "position",
+    "anchor": "position_worth_logic.md",
+    "expressions": {
+      "dignity": "position_dignity.md",
+      "honor": "position_honor.md",
+      "face_worth": "position_face_worth.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_worth_logic.md) declares the cultural logic a persona runs on for personal worth: where its worth comes from, and how it must be defended (Leung & Cohen). This is not the interactional face-work of softening a threat -- that is the face engine's -- but the standing rule beneath a persona's sense of its own worth: whether that worth is inherent and inalienable, or claimed-and-conferred and precarious, or granted by others according to one's place. Three logics answer the question differently, and a persona reads its slights, its defenses, and its self-respect through the one it holds.",
+      "issue": "Three cultural logics of worth (Leung & Cohen; Nisbett & Cohen). Dignity: worth is inherent, equal, and inalienable, each person's by virtue of being a person and not in others' gift -- so it is internally anchored, insults are deflected as powerless to touch it, and disputes go to inner conscience and impartial law. Honor: worth is both self-claimed and socially-conferred, a matter of self-respect and reputation together, and therefore precarious -- it must be actively defended, an insult or challenge answered, often by retaliation, or the worth is forfeit. Face: worth is conferred by others according to one's position in a stable social hierarchy, held by fulfilling the obligations of one's role -- so it is maintained by humility, propriety, and the preserving of harmony, and lost by disrupting the order or failing one's place.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so a persona's worth-logic holds system-wide beneath its sense of worth. The link: each persona links, under Projection, the worth-logic it runs on -- dignity, honor, or face.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real worth-logic. Whether the logic is true to the persona -- worth located and defended in the right way, an insult met as its logic dictates, and kept distinct from the interactional face-work and the worth emotions -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the persona its worth-logic under Projection: dignity when worth is inherent and insults slide off, honor when worth is precarious and a slight must be answered, face when worth is conferred by position and held by propriety and harmony. Read the persona by how it meets an affront -- deflecting it, avenging it, or absorbing it to keep the peace. Keep it the logic of worth, not its neighbours: the softening of a face-threatening act in interaction is the face engine's, the felt pride and shame of worth won or lost are the pride and shame engines', and honor as a personal virtue of integrity is the virtue engine's."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
