@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-composite-cptsd",
+  "version": "0.1.0",
+  "description": "khai composite content, the cptsd domain: complex post-traumatic stress disorder -- the syndrome of prolonged, repeated, inescapable trauma, which carries the whole of core PTSD and adds to it a pervasive disturbance in self-organization: dysregulated affect (regulation), a diminished, worthless self-concept (self-esteem, shame), and severed relationships (attachment) -- across its dysregulation, diminishment, and severance movements (Herman; ICD-11; Cloitre; van der Kolk).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/cptsd"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "cptsd",
+    "tagline": "Complex PTSD as composite: the syndrome of prolonged, repeated, inescapable trauma, which carries the whole of core PTSD and adds to it a pervasive disturbance in self-organization -- dysregulated affect (regulation), a diminished, worthless self-concept (self-esteem, shame), and severed relationships (attachment) -- across its dysregulation, diminishment, and severance movements (Herman; ICD-11; Cloitre; van der Kolk).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_cptsd.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "position_dysregulation.md",
+        "type": "position",
+        "parent": "process_cptsd.md"
+      },
+      {
+        "file": "position_diminishment.md",
+        "type": "position",
+        "parent": "process_cptsd.md"
+      },
+      {
+        "file": "position_severance.md",
+        "type": "position",
+        "parent": "process_cptsd.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over five atoms it declares as dependencies. The root (process_cptsd.md) reads complex PTSD as Herman named it and ICD-11 codified it: the disorder that follows prolonged, repeated, and inescapable trauma -- captivity, chronic childhood abuse, trafficking, sustained war -- rather than a single incident. It carries the whole of core PTSD (the ptsd engine: re-experiencing, evasion, estrangement, hyperarousal) and adds to it what sustained trauma does that a single blow does not: it reshapes the self. Three disturbances in self-organization result -- affect that will not regulate (regulation), a self-concept collapsed into worthlessness and shame (self-esteem, shame), and relationships severed or unreachable (attachment). The composite adds only the read of the syndrome as this compound; it routes into the three disturbances. It is authored persona-architecture for a play, never a diagnosis of a real person.",
+      "issue": "Three movements, ICD-11's disturbances in self-organization, atop the core PTSD the ptsd atom carries. Dysregulation: the affect that will not settle -- heightened reactivity and explosive anger, or its opposite, a numbed shutdown, the regulation engine's levers failing under a load they were never built for. Diminishment: the self-concept collapsed -- persistent beliefs of being diminished, defeated, worthless, steeped in a deep and pervasive shame (the self-esteem engine's low resting attitude, the shame engine's self-directed appraisal). Severance: the bonds cut or unreachable -- a persistent difficulty in feeling close to others and in sustaining relationships, the attachment engine's insecure and disorganized strategies hardened by a trust the trauma broke.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the complex-trauma read runs wherever its atoms are cast. The link, advisory: a persona disturbed along dysregulation, diminishment, or severance may link the movement under Projection, and the audit surfaces the ones left unnamed.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production earns the complex-trauma read -- a genuinely prolonged and inescapable trauma, the full core PTSD plus a real disturbance of self, affect, and bond, rather than a single-incident PTSD or ordinary low self-worth -- is semantic, taught and reviewed, never failed by the suite. And it is character architecture for authoring, never a clinical assessment of a real person.",
+      "setup": "Install the composite; its five atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Stage a trauma prolonged, repeated, and inescapable, not a single incident, and cast the core PTSD (the ptsd engine) plus the three disturbances it deepens: affect that will not regulate (regulation), a self collapsed into worthlessness and shame (self-esteem, shame), and relationships severed (attachment). Read the persona across the compound -- the self reshaped by a trauma it could not escape -- never in the symptom alone. Keep it the complex case: single-incident PTSD is the ptsd engine's, ordinary low self-worth the self-esteem engine's, and the everyday failure of an emotion-regulation attempt the regulation engine's; this composite reads the self-organization that sustained trauma disturbs. It is authored character, not diagnosis."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-engine-attachment": "^0.1.2",
+    "@chbrain/khai-engine-ptsd": "^0.1.0",
+    "@chbrain/khai-engine-regulation": "^0.1.1",
+    "@chbrain/khai-engine-self-esteem": "^0.1.1",
+    "@chbrain/khai-engine-shame": "^0.2.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
