@@ -1,0 +1,67 @@
+{
+  "name": "@chbrain/khai-engine-ambivalence",
+  "version": "0.1.0",
+  "description": "khai engine content, the ambivalence domain: the simultaneous holding of a strong positive and a strong negative evaluation toward one object -- opposed feelings co-activated on separable dimensions, not a lukewarm midpoint -- across its potential (structural) and felt (subjective) forms (Bleuler; Freud; Cacioppo; Thompson, Zanna & Griffin).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/ambivalence"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "ambivalence",
+    "tagline": "Ambivalence as position: the simultaneous holding of a strong positive and a strong negative evaluation toward one object -- opposed feelings co-activated on separable dimensions, not a lukewarm midpoint -- across its potential (structural) and felt (subjective) forms (Bleuler; Freud; Cacioppo; Thompson, Zanna & Griffin).",
+    "type": "position",
+    "anchor": "position_ambivalence.md",
+    "expressions": {
+      "potential": "position_potential.md",
+      "felt": "position_felt.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_ambivalence.md) declares ambivalence as the co-activation of opposed evaluations toward a single object: a strong positive and a strong negative held at once, not cancelled into indifference. Bleuler coined the term and Freud made it central -- the love and hate borne toward the same person -- and the modern evaluative-space model shows why it is possible: positivity and negativity are separable dimensions, so a persona can be high on both, the way it loves and resents the same parent. This is not a lukewarm midpoint on one scale but two full charges at once. It runs in two forms, by whether the conflict is merely present or actually felt.",
+      "issue": "Two forms, the distinction the attitudinal science draws. Potential: structural or objective ambivalence -- both a strong positive and a strong negative evaluation genuinely held, present in the persona whether or not they are feeling the strain, the latent conflict measurable in the intensity and the similarity of the two sides (Thompson, Zanna & Griffin). Felt: subjective ambivalence -- the experienced tension of being torn, the discomfort of wanting and not wanting, which does not simply track the potential but flares when the conflict is made salient, when both sides are brought to mind at once, or when a choice forces them together.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so a persona's opposed evaluations hold system-wide. The link: each persona links, under Projection, the form its ambivalence is in -- potential, the conflict present; or felt, the conflict experienced.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real ambivalence form. Whether it is true to the persona -- two full opposed charges toward one object rather than a weak middling one, in the right form of present-or-felt, and kept distinct from the inconsistency of cognitions and the specific mixed-emotion composites -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the persona its form under Projection: potential when it genuinely holds both a strong positive and a strong negative toward the object, felt when it experiences the tension of being torn between them. Stage two full charges, not a lukewarm average, and let the felt strain flare when both sides are brought to mind or a choice forces them. Keep it the co-activated evaluation: the discomfort of inconsistent cognitions that pushes toward change is the dissonance engine's, and specific affective ambivalences toward a particular object -- love and hate together, joy and sorrow together -- are their own composites, the love-hate and bittersweet composites being instances of the structure this engine names."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
