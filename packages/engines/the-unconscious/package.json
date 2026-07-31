@@ -1,0 +1,68 @@
+{
+  "name": "@chbrain/khai-engine-the-unconscious",
+  "version": "0.1.0",
+  "description": "khai engine content, the unconscious domain: mental content and process outside awareness that still shapes what a persona feels, judges, and does -- across the dynamic (repressed), adaptive (automatic), and preconscious (accessible) kinds (Freud; Kihlstrom; Wilson).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/the-unconscious"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "the-unconscious",
+    "tagline": "The unconscious as position: mental content and process outside awareness that still shapes what a persona feels, judges, and does -- across the dynamic (repressed), adaptive (automatic), and preconscious (accessible) kinds (Freud; Kihlstrom; Wilson).",
+    "type": "position",
+    "anchor": "position_the_unconscious.md",
+    "expressions": {
+      "dynamic": "position_dynamic.md",
+      "adaptive": "position_adaptive.md",
+      "preconscious": "position_preconscious.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_the_unconscious.md) declares the region of mind outside awareness that still shapes a persona: content and process it cannot introspect, yet which colours what it feels, judges, wants, and does. Freud made the unconscious the centre of mental life; a century of science both confirmed that most of the mind runs outside awareness and revised what that unconscious is -- so the engine holds three kinds, the dynamic unconscious Freud described, the adaptive unconscious modern psychology demonstrated, and the preconscious that lies between the two and awareness. A persona links whichever kind is, in a given scene, doing the unseen work.",
+      "issue": "Three kinds of the unconscious, from Freud through the science that built on him. Dynamic: the Freudian unconscious of repression -- content actively kept from awareness because it is unbearable (a forbidden wish, an intolerable memory), motivated and defended, still pressing for expression and returning in disguise as a slip, a dream, a symptom. Adaptive: the cognitive or adaptive unconscious modern psychology documents -- the vast, fast, efficient machinery that runs perception, evaluation, and much of behaviour outside awareness, not because it is repressed but because it was never conscious, the mental butler that judges and acts before the conscious self is consulted. Preconscious: the accessible layer -- content not now in awareness but readily available to it, the antechamber of latent memory and knowledge a persona can call up at will.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the persona's out-of-awareness life holds system-wide beneath its conscious one. The link: each persona links, under Projection, the kind of unconscious doing the work -- dynamic, adaptive, or preconscious.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real kind of the unconscious. Whether it is true to the persona -- content or process genuinely outside awareness yet shaping the persona, of the right kind, and kept distinct from the awareness monitor and the mechanisms that keep it out -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the persona the kind at work under Projection: dynamic when a repressed wish or memory presses and returns disguised, adaptive when fast automatic processing judges or acts before the conscious self is consulted, preconscious when available-but-inattentive content is called up. Show the influence without the awareness -- the persona moved by what it cannot introspect, and surprised or unaware of the cause. Keep it the out-of-awareness region: the monitor that knows what the persona knows is the metacognition engine's, the mechanisms that keep the dynamic unconscious repressed are the defense engine's, and the intrapsychic agency the id is largely unconscious of is the structural-model engine's."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
