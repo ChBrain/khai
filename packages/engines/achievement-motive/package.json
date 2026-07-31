@@ -1,0 +1,67 @@
+{
+  "name": "@chbrain/khai-engine-achievement-motive",
+  "version": "0.1.0",
+  "description": "khai engine content, the achievement-motive domain: a persona's resting dispositional motive in achievement situations -- the standing pull toward success or away from failure that energizes which goals it adopts -- across the hope-of-success and fear-of-failure motives (Atkinson; McClelland; Elliot & Church; Conroy).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/achievement-motive"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "achievement-motive",
+    "tagline": "Achievement motive as position: a persona's resting dispositional motive in achievement situations -- the standing pull toward success or away from failure that energizes which goals it adopts -- across the hope-of-success and fear-of-failure motives (Atkinson; McClelland; Elliot & Church; Conroy).",
+    "type": "position",
+    "anchor": "position_achievement_motive.md",
+    "expressions": {
+      "hope_of_success": "position_hope_of_success.md",
+      "fear_of_failure": "position_fear_of_failure.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_achievement_motive.md) declares a persona's resting dispositional motive in achievement situations -- the standing orientation, prior to any particular goal, that colours how it meets a challenge (Atkinson; McClelland). This is the upstream motive, not the achievement goal it energizes: where the goal engine owns the adopted orientation of a pursuit (mastery or performance, approached or avoided), this engine owns the dispositional pull beneath it, the hope or the dread a persona brings to the test before it frames a goal at all (Elliot & Church's hierarchical model). Two orthogonal motives answer the situation differently, and a persona can run high on one, the other, or both.",
+      "issue": "Two dispositional motives, separable and often both present (Atkinson). Hope of success: the motive to approach success -- the need for achievement, a persona drawn to challenge, energized by the prospect of doing well, oriented toward the satisfaction of accomplishment and disposed to seek out and engage achievement situations. Fear of failure: the motive to avoid failure -- an anxiety about failing and what it would mean, a persona disposed to protect itself from the shame, the lowered self-estimate, and the disapproval that failure threatens, and pulled to avoid or hedge the very situations the other motive seeks (Conroy's multidimensional fear). The resultant tendency is their difference: approach where hope outweighs dread, avoidance where dread outweighs hope.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so a persona's achievement motive holds system-wide beneath its pursuits. The link: each persona links, under Projection, the motive it runs on -- hope of success, fear of failure, or a measure of both.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real achievement motive. Whether the motive is true to the persona -- a dispositional pull toward success or away from failure that colours which challenges it seeks and how it holds them, and kept distinct from the achievement goal it energizes -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the persona its motive under Projection: hope of success when it is drawn toward challenge and the satisfaction of doing well, fear of failure when it is pulled to protect itself from failing and what failing would cost. Read the persona in how it meets an achievement situation before it frames a goal -- seeking the test or hedging it, energized or anxious. Keep it the upstream motive, not the goal: which achievement goal the persona then adopts (mastery or performance, approach or avoidance) is the goal engine's, the promotion-or-prevention orientation of a pursuit is the regulatory-focus engine's, and the source of the drive itself, intrinsic to external, is the motivation engine's."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.22"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.0",
+    "vitest": "^4.1.10"
+  }
+}
