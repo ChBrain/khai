@@ -36,6 +36,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "@chbrain/khai-arch": "*",
     "@chbrain/khai-engine-spine": "*"
   },
   "devDependencies": {

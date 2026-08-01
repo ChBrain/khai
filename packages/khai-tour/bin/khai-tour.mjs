@@ -7,7 +7,7 @@
 
 import { argv, exit } from "process";
 import * as tour from "../lib/index.mjs";
-import { runStage, venuesText } from "../lib/cli.mjs";
+import { runStage, runScenario, venuesText } from "../lib/cli.mjs";
 
 const command = argv[2];
 
@@ -16,6 +16,18 @@ async function main() {
     case "stage": {
       const result = await runStage(argv.slice(3));
       console.log(`Staged ${result.venue} (${result.kind}) -> ${result.outputPath}`);
+      for (const entry of result.entries) {
+        console.log(`  ${entry.role.padEnd(12)} ${entry.path}`);
+      }
+      for (const warning of result.warnings) {
+        console.warn(`  ! ${warning}`);
+      }
+      break;
+    }
+
+    case "scenario": {
+      const result = await runScenario(argv.slice(3));
+      console.log(`Packed scenario -> ${result.outputPath}`);
       for (const entry of result.entries) {
         console.log(`  ${entry.role.padEnd(12)} ${entry.path}`);
       }
@@ -49,6 +61,9 @@ Commands:
   stage     Stage a venue's deployment to an output directory
             --venue <slug> --out <dir> [--artifact <dir>]
             [--collection <name>=<glob> ...] [--engine <text> ...] [--format <fmt>]
+  scenario  Pack a scenario working folder into one flat zip bundle
+            --scenario <dir> --out <dir> [--house <dir>] [--home-url <url>]
+            [--adaption <text> ...] [--engine <text> ...] [--root <dir>]
   venues    List available venues and their kind/source/constraints
   formats   List available output formats
   help      Show this help message

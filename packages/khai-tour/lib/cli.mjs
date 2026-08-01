@@ -4,7 +4,7 @@
  * thin wrapper that wires these to stdout.
  */
 
-import { tour } from "./index.mjs";
+import { tour, packScenario } from "./index.mjs";
 import { venues } from "./profiles.mjs";
 
 /**
@@ -64,6 +64,63 @@ export async function runStage(args) {
     throw new Error("stage requires --venue <slug> and --out <dir>");
   }
   return tour(cfg);
+}
+
+/**
+ * Parse `scenario` arguments into a packScenario() config.
+ *
+ *   scenario --scenario <dir> --out <dir> [--house <dir>] [--home-url <url>]
+ *            [--adaption <text> ...] [--engine <text> ...] [--root <dir>]
+ *
+ * @param {string[]} args - argv after the `scenario` command
+ * @returns {object} a packScenario() config
+ */
+export function parseScenarioArgs(args) {
+  const cfg = { adaption: [], engines: [] };
+  for (let i = 0; i < args.length; i++) {
+    const flag = args[i];
+    const value = () => {
+      const v = args[++i];
+      if (v === undefined) throw new Error(`${flag} expects a value`);
+      return v;
+    };
+    switch (flag) {
+      case "--scenario":
+        cfg.scenarioDir = value();
+        break;
+      case "--out":
+      case "--output":
+        cfg.outputDir = value();
+        break;
+      case "--house":
+        cfg.houseDir = value();
+        break;
+      case "--home-url":
+        cfg.homeUrl = value();
+        break;
+      case "--adaption":
+        cfg.adaption.push(value());
+        break;
+      case "--engine":
+        cfg.engines.push(value());
+        break;
+      case "--root":
+        cfg.root = value();
+        break;
+      default:
+        throw new Error(`Unknown option: ${flag}`);
+    }
+  }
+  return cfg;
+}
+
+/** Run the `scenario` command: parse, validate the required flags, pack. */
+export async function runScenario(args) {
+  const cfg = parseScenarioArgs(args);
+  if (!cfg.scenarioDir || !cfg.outputDir) {
+    throw new Error("scenario requires --scenario <dir> and --out <dir>");
+  }
+  return packScenario(cfg);
 }
 
 /** One venue's two display lines: a heading and a kind-aware detail line (no

@@ -23,8 +23,12 @@ const bullets = (items) => items.map((i) => `- ${i}`).join("\n");
 /** Extract the bullets under a fragment's `## System` heading. The house-rules
  * and adaption fragments are authored as chapter-targeted markdown; compose
  * needs them as a plain list of System rules. Line-based, so no regex
- * backtracking: the per-line patterns are anchored and non-nested. */
-function systemBullets(fragment) {
+ * backtracking: the per-line patterns are anchored and non-nested. Exported so
+ * other callers that compose directly (not through a Venue) -- e.g.
+ * scenario.mjs, which has no Venue to key an adaption by -- can turn spine's
+ * raw houseRules fragment into the same bullet array composeVenue feeds
+ * composeInstructions, without re-deriving the parse. */
+export function systemBullets(fragment) {
   const lines = (fragment ?? "").split(/\r?\n/);
   const start = lines.findIndex((l) => l.trim() === "## System");
   if (start === -1) return [];
