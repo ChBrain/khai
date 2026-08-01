@@ -270,6 +270,173 @@ neurodiversity-affirming atoms first (see Parked, below).
 - **Cluster A PDs** (paranoid / schizoid / schizotypal) — thin atom coverage, low narrative payoff; low priority.
 - **acute stress disorder / adjustment disorder** — the `ptsd` mechanism, or `stress` + `coping`, read within a duration window; a play-arc timing note, not new content.
 
+## Forces by type — the cross-type map (Tier F)
+
+Everything above chases forces on **one** khai type: the `persona`. This tier
+charts the neglected rest. The model: an engine/composite is a **force** that
+attaches to a type via `requires: [{on: <type>, section: <H2>, link: expression}]`
+— the mechanism is fully type-generic (`khai-tests/src/validate.mjs`:
+`if (req.on !== type) continue`), so a force can land on any type's own chapters,
+not only a persona's `Projection`. An eight-agent domain-expert pass (one per
+type, each verified against member files, not directory names) measured the
+imbalance: **`requires.on` today is persona 211, plot 11, play 4, and _zero_ for
+place / piece / plan / process / position.**
+
+The types sort three ways, and the research confirmed the split:
+
+- **Cargo** — things a force acts on: `persona`, `place`, `piece`, `plan`,
+  `process`, `position`, `plot`/`play`. The frontier is here.
+- **Reading / key** — `pitch`: a lens applied from outside the events, not a
+  dynamical object. `model.md`: "a Pitch is not cargo but a key … a reading,
+  never a change to what happens." **Not a force-target; correctly done as-is,
+  nothing to build.**
+- **Machinery** — `instructions`, `order`, `architecture`, `design`: khai's own
+  wiring, not force-targets.
+
+Each row builds to the usual standard on its own lane, as an ordinary engine or
+composite (there is no new library family — a force on a place is just an engine
+in `packages/engines/` that declares `on: place`). Recommended first wave, for
+cleanliness and payoff: `place/soundscape`, `place/weather`, `plot/anagnorisis`
+(also fixes the doc bug below), `process/momentum`, `piece/biography`. **First-of-kind
+flag:** no engine yet declares `on:` a cargo type other than persona/plot/play —
+the first place/piece/plan/process force to land sets that wiring precedent and is
+worth a maintainer eye, the way `ptsd`'s mechanics-first shape was.
+
+**Two corrections surfaced by the pass:**
+
+- **Doc bug:** `dramatic-irony`'s REFERENCES claims anagnorisis is "owned by the
+  recognition engine" — but `recognition` is Honneth/Taylor _social_ recognition,
+  not Aristotelian discovery. So anagnorisis is genuinely unbuilt (row F-plot #1),
+  and the stray delegation should be corrected.
+- **`position` is an office, not an attitude.** The `position` type is a
+  world-owned **role/office** (mnemonic TO HOLD; `position_director`,
+  `position_choregos`), not an attitudinal stance. Attitude-dynamics forces
+  (formation / entrenchment / erosion / conversion) are already built persona-side
+  (`persuasion`, `dissonance`, `reactance`, `ambivalence`, `bias`) — nothing to
+  add there. The real `position` gap is **institutional forces on the office-as-such**
+  (see F-position), which wants its own correctly-scoped research pass.
+
+### Tier F-place — forces on a setting (16 engines + 1 composite)
+
+Nine engines already carry `place`-typed members (`crowd`, `total-institution`,
+`space`, `restorative-environment`, `third-place`, `backstage`, `commons`,
+`liminality`, `psychological-safety`) but all wire `on: persona`; the place's own
+`Shown / Holds / Offers / Withheld` chapters are never targeted. Prior coverage to
+respect: `space` owns Gibson affordances / Barker behavior-settings / Appleton
+prospect-refuge; `restorative-environment` owns Kaplan ART; `place-attachment`
+owns Relph rootedness.
+
+| Candidate                  | Force on the place                                           | Warrant                                    | Confidence                                                      |
+| -------------------------- | ------------------------------------------------------------ | ------------------------------------------ | --------------------------------------------------------------- |
+| **soundscape**             | the auditory field (keynote / signal / soundmark)            | Schafer; Truax; Augoyard & Torgue          | solid — unclaimed sensory channel                               |
+| **weather**                | the transient atmospheric event bearing down today           | Ingold; Golinski; Harris (_Weatherland_)   | solid                                                           |
+| **climate**                | the standing seasonal regime (vs weather's event)            | Köppen; Lamb; Hulme                        | solid                                                           |
+| **geomorphology**          | the ground's sudden violence — quake / eruption / subsidence | Lyell; McPhee; Winchester                  | solid                                                           |
+| **erosion**                | surfaces worn by wind / water / frost over time              | Hutton/Lyell; Strahler; Macfarlane         | solid                                                           |
+| **hydrology**              | the water regime — flood / drought / water-table             | McPhee; M. Davis; Kelman                   | solid                                                           |
+| **fire**                   | combustibility & burn regime, incl. suppression debt         | Pyne; Christensen; M. Davis                | solid                                                           |
+| **succession**             | the biological reclaiming once human use withdraws           | Cowles; Clements; Gleason; Weisman         | solid                                                           |
+| **decay**                  | material entropy — rust / rot / crumble                      | Simmel; Riegl; Trigg; DeSilvey             | solid                                                           |
+| **dereliction**            | the built place an authority stopped maintaining             | Edensor; Ginsberg; Ruskin                  | maintainer-call (merge w/ decay?)                               |
+| **gentrification**         | capital re-entry that displaces prior occupants              | Glass; N. Smith (rent-gap); Zukin          | solid                                                           |
+| **restoration**            | deliberate intervention arresting decay                      | Ruskin vs Viollet-le-Duc; Riegl; Lowenthal | solid                                                           |
+| **street-life**            | design that generates or kills pedestrian vitality           | Jacobs; Whyte; Gehl                        | solid                                                           |
+| **legibility**             | how readable the layout is — the cognitive map               | Lynch; Passini; Golledge                   | solid                                                           |
+| **defensible-space**       | design cues reading a place as claimed/claimable             | Newman; Jeffery (CPTED); Brantingham       | maintainer-call                                                 |
+| **landscape-architecture** | designed terrain engineering a social program                | Olmsted; McHarg; J.B. Jackson              | maintainer-call                                                 |
+| **ambiance** (Böhme)       | the felt, quasi-objective atmosphere of the ensemble         | Schmitz; Böhme; Griffero; Pallasmaa        | maintainer-call (stem/concept collides with `space` atmosphere) |
+
+- **neighborhood-cycle** (composite, blocked): the churn of decline → capital
+  re-entry / displacement → reclamation, over `dereliction` + `gentrification` +
+  `restoration`.
+
+### Tier F-piece — forces on an object (6 engines + 2 composites)
+
+Virgin attach-point: `template_piece.md` has `Load Bearing / Apparent / Yearbook`
+chapters, never targeted. Prior coverage (all `on: persona`): `extended-self`
+(felt/private), `money`, `debt`, `heirloom`, `totem`, `document`.
+
+| Candidate        | Force on / around the piece                               | Warrant                              | Confidence                |
+| ---------------- | --------------------------------------------------------- | ------------------------------------ | ------------------------- |
+| **biography**    | the object's career between commodity and singular status | Kopytoff; Appadurai; D. Miller       | high                      |
+| **signifier**    | designed cues that invite correct use or mislead          | Norman; Gibson; Krippendorff; Gaver  | high                      |
+| **patina**       | the trace of time/use read as damage or age-value         | Riegl; Pye; DeSilvey                 | high                      |
+| **sign-value**   | the coded status-meaning, and its fetish mystification    | Baudrillard; Marx; Veblen; McCracken | medium-high               |
+| **agency**       | the object as delegate — prescribing/forbidding action    | Latour; Akrich; Gell                 | medium                    |
+| **obsolescence** | rendered out-of-date by a shifted standard, not decay     | Slade; Packard; Chapman              | medium (merge w/ patina?) |
+
+- **fetish** (composite, blocked): `sign-value` + `agency` + `biography`.
+- **provenance** (composite, blocked): `biography` + `patina` + `document`.
+
+### Tier F-plan — forces on a plan-as-contested-object (6 engines)
+
+Boundary held hard against the persona-side planning psychology already built
+(`bias`'s planning-fallacy/sunk-cost/escalation, `decision`'s satisficing).
+
+| Candidate        | Force on the plan                                   | Warrant                                    | Confidence                             |
+| ---------------- | --------------------------------------------------- | ------------------------------------------ | -------------------------------------- |
+| **counter-move** | an adversary's interdependent best-response         | Schelling; von Neumann & Morgenstern; Nash | high                                   |
+| **fog-of-war**   | chance + incomplete info degrading execution        | Clausewitz (friction); Moltke; Boyd; Weick | high                                   |
+| **deadline**     | an external clock compressing execution as it nears | Parkinson; Ariely & Wertenbroch            | high                                   |
+| **logistics**    | the resource/supply base and its depletion rate     | van Creveld; Jomini; Goldratt              | high                                   |
+| **obsolescence** | the plan overtaken by events (premises stale)       | Boyd (OODA); Clausewitz; Weick             | high                                   |
+| **disruption**   | a discrete shock invalidating a named assumption    | Perrow; Chapman & Ward                     | maintainer-call (merge w/ fog-of-war?) |
+
+### Tier F-process — forces on an unfolding dynamic (3 engines)
+
+The "physics of unfolding," distinct from any persona experiencing it. Conservative
+result: 3 true residues (catalysis / derailment fold into these).
+
+| Candidate        | Force on the dynamic                                    | Warrant                                             | Confidence  |
+| ---------------- | ------------------------------------------------------- | --------------------------------------------------- | ----------- |
+| **momentum**     | resistance to changing state — lock-in or dead-start    | David (QWERTY); Arthur; Pierson (path dependence)   | high        |
+| **interruption** | broken off mid-run, suspended with a resumption cost    | Zeigarnik; Mark et al.; Trafton & Monk              | high        |
+| **phase-shift**  | crossing a threshold into a new regime (incl. ignition) | Scheffer (critical transitions); Granovetter; Watts | medium-high |
+
+(`tempo` — accel/decel — weaker engine-shape; maintainer-call, build last or not at all.)
+
+### Tier F-plot / play — narrative forces (~12 engines; the axis is near-saturated)
+
+Existing narrative engines already own the structural core; these are the verified
+remainders. `anagnorisis` is strongest (fixes the doc bug above).
+
+| Candidate                            | Force on the plot/play                                         | Warrant                                       | Confidence  |
+| ------------------------------------ | -------------------------------------------------------------- | --------------------------------------------- | ----------- |
+| **anagnorisis**                      | the discovery-scene — false belief → evidence → the turn       | Aristotle; Cave (_Recognitions_)              | high        |
+| **narrative-discourse**              | story-time vs discourse-time (order/duration/frequency)        | Genette (_Narrative Discourse_); Bal; Chatman | high        |
+| **ticking-clock**                    | a depleting external time-window raising stakes                | Carroll; Zillmann (excitation-transfer)       | high        |
+| **deus-ex-machina**                  | an external resolution the arc did not earn                    | Aristotle; Horace                             | high        |
+| **double-plot**                      | a parallel strand mirroring/crossing the main one              | Empson; Bordwell & Thompson                   | high        |
+| **chekhov-gun**                      | a planted element that becomes a later trigger                 | Chekhov; Barthes (_S/Z_); Sternberg           | medium-high |
+| **hamartia**                         | the protagonist's own error that turns the action              | Aristotle                                     | medium      |
+| **red-herring**                      | a planted false inference that misdirects                      | (mystery poetics)                             | medium      |
+| **frame-narrative**                  | a telling nested inside another (diegetic levels)              | Genette; Bal                                  | medium      |
+| **metatheatre**                      | the play acknowledging its own frame (stem: not "fourth-wall") | Abel; Hornby                                  | medium      |
+| **macguffin** / **genre-convention** | (lower confidence / maintainer-call)                           | Hitchcock/Truffaut; genre theory              | low         |
+
+### Tier F-persona — residual gaps (3; persona is otherwise saturated)
+
+The persona audit confirmed extreme saturation (whole classes closed by design).
+Only three narrow residues survived verification.
+
+| Candidate                   | Phenomenon                                                                                    | Warrant                                            | Confidence                                            |
+| --------------------------- | --------------------------------------------------------------------------------------------- | -------------------------------------------------- | ----------------------------------------------------- |
+| **disinhibition**           | holding power itself shifts cognition (approach, less perspective-taking, objectification)    | Keltner, Gruenfeld & Anderson; Galinsky; Guinote   | high                                                  |
+| **circadian-rhythm**        | daily clock oscillation in alertness (chronotype + desync), distinct from fatigue's depletion | Borbély (two-process); Horne & Östberg; Roenneberg | medium                                                |
+| **life-review** (composite) | late-life reappraisal of the whole life story into integrity/despair                          | Butler; Erikson; Wong & Watt                       | medium — over `mortality` + `narrative` + `nostalgia` |
+
+### Tier F-position — the office gap (needs its own scoped pass)
+
+Not attitude-forces (those are persona-side, done). The unbuilt space is
+**institutional forces on the office-as-such**, independent of any incumbent — a
+role crystallizing out of an ad-hoc task, a mandate hardening into ritualism,
+eroding into a sinecure, a vacancy destabilizing into a succession crisis. Warrant:
+Weber (routinization of charisma), Michels (iron law of oligarchy), Selznick
+(institutionalization), Gouldner (succession crisis). Distinct from the persona-side
+`role` / `hierarchy` / `status` engines (how holding/losing registers on the
+incumbent). **Flagged, not charted** — its candidate rows want a dedicated
+organizational-sociology research pass before they are counted.
+
 ## Rejected on inspection (documented so they need not be re-checked)
 
 SDT basic-needs (homonym with `needs` + owned by `motivation`); HEXACO
