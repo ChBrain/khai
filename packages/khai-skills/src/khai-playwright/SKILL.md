@@ -99,7 +99,7 @@ defaults and your play-specific pitch.
 
 A Company member need not be authored to be cast. The house declares a
 repertoire (its own collection, the houses it depends on, the engines it
-depends on: the canon's LOAN spec), and a member that resolves there is a
+depends on: the canon's TO LACK spec), and a member that resolves there is a
 **borrow**: link it, never rewrite it. Author a file only when no shelf holds
 it, so a production owns its occasion, never its world. Cast from the catalog
 (the registries' member lists and their facets) and open only the files of the

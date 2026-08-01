@@ -84,7 +84,7 @@ reads. The impresario does not only build the venue; it announces it.
 
 A house may declare other houses as dependencies the way it declares engines:
 that is its repertoire, the castable world every play inside it may borrow
-from (the canon's LOAN spec). Curating it is your chain-across-houses move:
+from (the canon's TO LACK spec). Curating it is your chain-across-houses move:
 read the bill to see what houses exist, and add or remove a repertoire entry
 as an ordinary dependency change on the house. A workshop is the extreme case
 you may be asked to raise: a house whose own collection stays empty and whose
