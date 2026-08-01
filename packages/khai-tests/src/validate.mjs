@@ -1205,6 +1205,39 @@ export function validateCollectionRegistry(root) {
     }
   }
 
+  // Changelog invariant: the top CHANGELOG heading must not exceed the registry
+  // version. `changeset version` writes the heading at its own bumped number
+  // and the build reconciles the manifest back to the count, healing the
+  // heading with it; a heading above the manifest therefore documents a
+  // version that never shipped, the drift this gate turns from silent to red.
+  // A heading below the version is the normal between-releases state (an item
+  // landed, no release yet) and passes.
+  {
+    const changelogPath = join(root, "CHANGELOG.md");
+    if (existsSync(changelogPath)) {
+      const heading = /^## (\d+)\.(\d+)\.(\d+)[ \t]*$/m.exec(readFileSync(changelogPath, "utf8"));
+      const manifest = /^(\d+)\.(\d+)\.(\d+)/.exec(String(registry.version).trim());
+      if (heading && manifest) {
+        const top = heading.slice(1, 4).map(Number);
+        const shipped = manifest.slice(1, 4).map(Number);
+        const exceeds =
+          top[0] !== shipped[0]
+            ? top[0] > shipped[0]
+            : top[1] !== shipped[1]
+              ? top[1] > shipped[1]
+              : top[2] > shipped[2];
+        if (exceeds) {
+          errors.push(
+            `CHANGELOG.md heads at ${top.join(".")}, above the registry version ` +
+              `${registry.version}; a heading above the manifest documents a version that ` +
+              "never shipped. Run `khai-tests registry build` (the reconcile heals the " +
+              "heading with the manifest)",
+          );
+        }
+      }
+    }
+  }
+
   // Build-drift gate: the committed registry.json must equal what the build
   // (computeRegistry) produces from source. This catches a hand-edited or stale
   // registry — a description no longer matching its play's frontmatter, a missing
