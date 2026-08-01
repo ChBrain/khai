@@ -555,13 +555,14 @@ memory studies), with no collisions against any live engine.
 
 **The corrected model.** A **play** (a run) **produces** a **performance**; that
 performance's canonical written record is **stored on `khai-writing`, a separate
-repo** — the archive, _outside this monorepo_. The in-monorepo performance instance
-is the claim-ticket "on loan" from that external record (`repertoire.md`: "lodged
-with khai-writing and the in-band file permanently on loan from it"). This corrects
-an earlier reading that treated `khai-writing` as a package to mint _inside_ this
-repo (a `writing/*` lane, a `packages/khai-writing`): it is neither. The result
-layer is external, so the born-the-type work splits cleanly into a half that is ours
-and a half that is not.
+repo that already exists** — the archive, _outside this monorepo_. The in-monorepo
+performance instance is the claim-ticket "on loan" from that external record
+(`repertoire.md`: "lodged with khai-writing and the in-band file permanently on loan
+from it"). This corrects an earlier reading that treated `khai-writing` as a package
+to mint _inside_ this repo (a `writing/*` lane, a `packages/khai-writing`): it is
+neither, and it does not need standing up — it is there. The result layer is
+external, so the born-the-type work splits cleanly into a half that is ours and a
+half that is not.
 
 | Candidate            | Force on the performance                                               | Attaches           | Warrant                                                        | Confidence                                                      |
 | -------------------- | ---------------------------------------------------------------------- | ------------------ | -------------------------------------------------------------- | --------------------------------------------------------------- |
@@ -602,10 +603,12 @@ _separate repo_. `checkLinks`'s package-specifier path only resolves through
 `node_modules`, so either (a) `khai-writing` publishes an npm package this repo
 depends on and Lodged links resolve like any dependency (`@chbrain/khai-writing/…`),
 or (b) the loan-ticket carries the reference out-of-band and resolution is looser
-than the package check. **That is a maintainer-scope call**, alongside two others the
-seam needs: whether `khai-writing` already exists or is to be stood up, and whether a
-real Director run is ready to seed instance #3 (else it is synthetic bootstrap
-content). `order_the_repertoire.md` deferred this mint _deliberately_ ("Minted …
+than the package check (`khai-writing` being a plain repo rather than a published
+npm package points at (b), unless it also ships as a dependency). **That is a
+maintainer-scope call**, alongside one other the seam needs: whether a real Director
+run is ready to seed instance #3 (else it is synthetic bootstrap content). The
+"exists or stand up" question is now closed — `khai-writing` is there.
+`order_the_repertoire.md` deferred this mint _deliberately_ ("Minted …
 when the Director's first capture wants writing down; not before") — so this chart
 is a **proposal to the maintainer**, not a unilateral build.
 
