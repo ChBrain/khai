@@ -76,3 +76,32 @@ Adopt the concept; land the mechanism lane by lane, each on its own gate:
 
 Execution is deferred to those lanes; this order records the shape so every
 later change lands under a directive instead of a judgment call.
+
+## Implementation
+
+Each item above lands in its own lane, on its own branch, with its own
+changeset (patch unless the maintainer labels otherwise), source and tests as
+separate PRs with the tests dormant until their source merges. The golden
+fixture for the whole chain is the Interreg Flensburg scenario: six personas
+from three cultures plus a fourth culture's language, the language ladder
+injected, instructions composed from the spine, one flat zip. The tour
+station must reproduce it from the authored layer and a cultures checkout;
+what it packs is what a venue plays.
+
+## Targets
+
+- [x] The proof staged: Interreg Flensburg packed as one flat single shot and
+      performed at a foreign venue from a single upload.
+- [ ] The canon file published: repertoire.md lands and later leaves draft.
+- [ ] The catalog: registry entries ship members with casting facets.
+- [ ] The resolution: conformance answers borrow, build, fail, or qualify
+      against the repertoire.
+- [ ] The tour station: khai-tour scenario packs the guest production.
+- [ ] The fragments: the spine scenario adaption ships; the language engine
+      exports its law, the other engines follow.
+- [ ] The raising: khai-stage declares house dependencies and ignores the
+      scenarios working directory.
+- [ ] The voices: the playwright, roadie, and impresario carry their
+      repertoire clauses; the director stays untouched.
+- [ ] The performance type minted: TO LOAN, on the first capture that wants
+      writing down, not before.
