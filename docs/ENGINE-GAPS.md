@@ -282,16 +282,39 @@ type, each verified against member files, not directory names) measured the
 imbalance: **`requires.on` today is persona 211, plot 11, play 4, and _zero_ for
 place / piece / plan / process / position.**
 
-The types sort three ways, and the research confirmed the split:
+The types (enumerated from `architecture/`, the authoritative definitions — **not**
+from instance frontmatter, which misses any type with zero instances, as
+`performance` below shows) sort four ways:
 
 - **Cargo** — things a force acts on: `persona`, `place`, `piece`, `plan`,
-  `process`, `position`, `plot`/`play`. The frontier is here.
-- **Reading / key** — `pitch`: a lens applied from outside the events, not a
-  dynamical object. `model.md`: "a Pitch is not cargo but a key … a reading,
-  never a change to what happens." **Not a force-target; correctly done as-is,
-  nothing to build.**
-- **Machinery** — `instructions`, `order`, `architecture`, `design`: khai's own
-  wiring, not force-targets.
+  `process`, `position`, `plot`/`play`. The charted frontier.
+- **Reading / key** — `pitch`: **re-examined chapter by chapter (Tenor / Undertow
+  / Nerve / Echo).** Not a force-_target_ — it is structurally excluded from the
+  force graph (`validate.mjs` runs a bespoke `pitchCarryErrors` path _because_ pitch
+  does not fit `requires.on`; 0 of 452 `requires` entries target it; `model.md`: "a
+  Pitch is not cargo but a key"). But that settles _wiring_, not _content_ — and the
+  first pass wrongly stopped there. On content `pitch` is nearly empty: **4
+  instances, all issued by one engine (`palimpsest`), all in a single narrow
+  sub-genus** (Genette's _hypertextual_ keys — a tale re-pitched by its debt to a
+  prior text). The whole genus of **affective / modal keys that are not about a
+  prior text** — Frye's mythoi, Fowler's mode, tonal-register criticism — is
+  **wholly unbuilt** and is real content work on the type itself, issued as new
+  `pitch_*` engines `on: play/Arc` exactly as `palimpsest` is (see F-pitch). Two
+  small off-type force questions ride along: **`bathos`** (a clean new build) and a
+  **within-plot tonal drift** reading of modulation (`on: plot/Cue`, a loose thread).
+- **Record** — `performance`: "what happened," the claim-ticket a run leaves beside
+  the play. A coherent force-target _in principle_, but **the type is not yet born**
+  (`status: draft`, zero instances, no template). It is not blocked in the deep
+  sense the first pass implied: borning it is a **bounded seam** (see F-performance).
+  **Correction:** its "result layer" is **`khai-writing` — just another house** (a
+  khai-stage house that already exists) where plays' performances are stored, **not**
+  a package to mint inside this monorepo. So khai knows about it the way it knows any
+  house — **on the bill** (a `khai-plays` registry card) — and Lodged resolves
+  cross-house through the repertoire, no new machinery. The type-birth half (template,
+  status, a `validate` check, a first instance) is ours on `arch` / governance lanes;
+  the only thing still needing the maintainer is the seed for the first instance.
+- **Machinery** — `instructions`, `order`, `architecture`, `design`, `engines`:
+  khai's own wiring, not force-targets.
 
 Each row builds to the usual standard on its own lane, as an ordinary engine or
 composite (there is no new library family — a force on a place is just an engine
@@ -457,6 +480,147 @@ the precedent, as `ptsd`'s mechanics-first shape got.
 first-of-kind precedent) → `routinization` → `hollowing` → `oligarchization` →
 `office-lifecycle` composite → `interregnum` + `capture` (last; their naming/stem
 flags above want a maintainer call before a PR opens).
+
+### Tier F-pitch — not a force-target, but its own content genus is nearly empty
+
+Two separate questions were collapsed into one "no" the first time, and only the
+first deserved it.
+
+**Wiring (settled no).** `pitch` is a cast element (`model.md`'s cast group) but "a
+key, not cargo": a reading applied from outside the events. It is structurally
+outside the `requires.on` force graph — `validate.mjs` runs a bespoke
+`pitchCarryErrors` path _because_ pitch does not fit `requires.on`. No force ever
+wires `on: pitch`; that holds.
+
+**Content (open, and large).** But `pitch` is a _type with its own instances_, and
+on that axis it is nearly empty: **4 instances, all issued by one engine
+(`palimpsest`), all in a single narrow sub-genus** — Genette's _hypertextual_ keys
+(parody / travesty / transposition: a tale re-pitched by its debt to a prior text).
+The much larger genus that criticism describes — **affective / modal keys that are
+not about a prior text at all**, just the register a production is tuned to (Frye's
+mythoi, Fowler's mode-vs-genre, tonal-register theory) — is **wholly unbuilt**.
+These are new `pitch_*` engines, each with its own Tenor / Undertow / Nerve / Echo,
+wired `on: play/Arc` exactly as `palimpsest` is. This is the buildable frontier the
+first pass wrongly waved off.
+
+**A. Keys worth issuing (new `pitch`-typed content, `on: play/Arc`).**
+
+| Key                   | Register                                                     | Warrant                                              | Boundary                                                                                                         | Confidence  |
+| --------------------- | ------------------------------------------------------------ | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ----------- |
+| **elegiac**           | mourning played as register, loss held at aesthetic distance | Sacks (_The English Elegy_); Fowler (mode)           | vs `grief` (persona emotion) / `nostalgia` — this is the _production's_ stance                                   | high        |
+| **melodramatic**      | moral legibility at heightened pitch, stakes worn openly     | Brooks (_The Melodramatic Imagination_); L. Williams | vs `tragic` composite — legibility/excess, not pity-and-fear; no stem collision                                  | high        |
+| **pastoral**          | the simple set against the complex to comment on the complex | Empson (_Some Versions of Pastoral_); Fowler         | Fowler's own paradigm case for mode ≠ genre — strong fit for pitch's cross-genre design                          | high        |
+| **absurdist**         | cosmic incongruity played deadpan-straight, meaning withheld | Camus (_Sisyphus_); Esslin (_Theatre of the Absurd_) | vs `comic` composite — no play-frame promise of benignness; distinct mechanism                                   | high        |
+| **epic / heroic**     | elevated high-mimetic register, hero superior in degree      | Frye (_Anatomy_); Bakhtin ("Epic and Novel"); Lukács | vs `monomyth`/`dramatic-arc` (structure) and `virtue` (trait) — clean separation                                 | high        |
+| **grotesque**         | horror and comedy fused in one image, unresolved into either | Bakhtin (_Rabelais_); Kayser (_The Grotesque_)       | vs `uncanny` — fusion, not familiar-turned-strange; related, not identical                                       | medium-high |
+| **ironic / satiric**  | Frye's fourth mythos: diminished hero, detachment as stance  | Frye (four mythoi); Fowler (mode)                    | **contested** — `dramatic-irony` (device) and `tone`'s `attitude` already name "ironic"; wants a maintainer read | medium      |
+| **noir / hardboiled** | fatalism and moral compromise played as atmosphere           | Schrader ("Notes on Film Noir")                      | Fowler's line cuts against it — historically situated, arguably a _genre_ not a mode                             | medium      |
+| **gothic**            | dread mixed with the past's unresolved return                | Botting (_Gothic_); Sedgwick                         | crowded neighborhood — `uncanny` (mechanism) and `awe`'s threat form; register, not either                       | medium      |
+| **sentimental**       | pathos cultivated deliberately, the response is the point    | Douglas; Todd (_Sensibility_)                        | thin — risks collapsing into `bittersweet` / `nostalgia`; bar not clearly cleared                                | low         |
+
+**The sharpest finding — hard rejects, not homonyms.** `pitch_tragic`,
+`pitch_comic`, `pitch_uncanny`, `pitch_sublime` must **not** be built. Not "collides
+loosely": each is _literally the same named phenomenon_ already owned at the
+persona / catharsis / audience level by `tragic`, `comic`, `uncanny`, `awe`.
+`member-check`'s one-phenomenon-one-engine rule should and would reject them. If a
+production-level tragic _key_ is ever wanted, that is a maintainer call on whether
+`tragic`'s wiring extends — never a new `pitch_*` engine.
+
+**B. Tonal-force engines living on other types.**
+
+| Candidate                        | Force                                                                           | Wires on                 | Warrant                                           | Verdict                                                                                                                                                                                                        |
+| -------------------------------- | ------------------------------------------------------------------------------- | ------------------------ | ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **bathos**                       | a solemn register collapsing unintentionally into the trivial                   | `on: persona/Projection` | Pope (_Peri Bathous_, 1727)                       | **cleanest new build in the pass** — zero stem collision, clean warrant, holds against `comic`/`tragic` failure-states without touching them                                                                   |
+| **modulation** (whole-key)       | the arc turning over from one named pitch to another                            | (`on: plot`)             | Genette (reaccentuation)                          | **no build** — already handled: a plot relinking _which_ pitch is cast, via `pitchCarryErrors`; do not re-litigate                                                                                             |
+| **modulation** (within-plot)     | one plot's atmospheric baseline drifting scene-to-scene short of a whole recast | `on: plot/Cue`           | key-affect theory; Zillmann (excitation-transfer) | **loose thread** — a first-of-kind `plot/Cue` wiring (existing `on: plot` engines all target Action/Tension); reopens at a finer grain a question F-pitch had closed only at the coarse grain; maintainer call |
+| **tonal-contract / -dissonance** | audience genre/register expectation met or broken                               | `on: persona/Projection` | Frow (_Genre_); Neale                             | **mostly no build** — `dramatic-irony` and `comic`/`tragic` flatness cover the enumerated cases; `dissonance` stem is taken (Festinger); a distinct general form is thin vs `surprise`                         |
+
+**Build-order note (if pursued).** `bathos` first — the one candidate with zero
+stem collision and a boundary that holds cleanly. Then the strongest mode-tier four
+— `elegiac`, `pastoral`, `absurdist`, `epic/heroic` — as a new pitch-issuing engine
+(or a small family) beside `palimpsest`, with `grotesque` close behind. The
+`ironic/satiric` / `noir` / `gothic` / `sentimental` tier is maintainer-adjudicated
+(each leans on a named neighbor). The `plot/Cue` modulation thread is the one item
+worth flagging to a maintainer explicitly, since it reopens a question this doc had
+treated as closed. All rows stay `proposed` pending a per-item go.
+
+### Tier F-performance — forces on a captured run (7 engines) — gated on a bounded born-the-type seam
+
+`performance` (`architecture/performance.md`, mnemonic TO LOAN, chapters Lodged /
+Occasion / Aftermath / Note) is _"what happened"_ — the claim-ticket a run leaves
+beside the play, that _"ages into history the way a plot already is one"_ and is
+cast by later productions (a sequel borrows the premiere). Its afterlife is a
+clean, well-warranted force-space (performance studies / reception history /
+memory studies), with no collisions against any live engine.
+
+**The corrected model.** A **play** (a run) **produces** a **performance**; that
+performance's canonical written record is **stored on `khai-writing` — which is
+just another house** (a khai-stage house that already exists), _outside this
+monorepo_. The in-monorepo performance instance is the claim-ticket "on loan" from
+that external record (`repertoire.md`: "lodged with khai-writing and the in-band file
+permanently on loan from it"). This corrects an earlier reading twice over: it is not
+a package to mint _inside_ this repo (no `writing/*` lane, no `packages/khai-writing`),
+and it needs no bespoke cross-repo resolver either. It is a house, so **khai knows
+about it the way khai knows about any house: on the bill** — a card in the `khai-plays`
+registry (`npx @chbrain/khai-plays register`). A performance's **Lodged** link then
+resolves **cross-house through the repertoire**, exactly the path
+`order_the_repertoire.md` already built ("cross-house links resolve through
+`node_modules` per the composite ruling"). The result layer is external, but its
+resolution is a solved problem, not an open one.
+
+| Candidate            | Force on the performance                                               | Attaches           | Warrant                                                        | Confidence                                                      |
+| -------------------- | ---------------------------------------------------------------------- | ------------------ | -------------------------------------------------------------- | --------------------------------------------------------------- |
+| **canonization**     | a run becomes the definitive version later productions measure against | Note / Aftermath   | J. Assmann (cultural memory); Guillory; Kermode                | high                                                            |
+| **reinterpretation** | a later age re-reads a fixed record against new values                 | Aftermath          | Jauss (reception); Hayden White; E. H. Carr                    | high                                                            |
+| **revival**          | a dormant performance re-cast into a living production                 | Occasion           | Schechner (restored behavior); Taylor (_Archive & Repertoire_) | high                                                            |
+| **supersession**     | a later run overtakes and demotes an earlier one                       | Aftermath / Note   | Carlson (_The Haunted Stage_, ghosting)                        | medium-high                                                     |
+| **mythologization**  | a run accrues legend beyond what the ticket records                    | Note               | J. Assmann (mnemohistory); Halbwachs; Hobsbawm & Ranger        | medium-high                                                     |
+| **decay**            | the record thins into history, its Note going unheard                  | Note / Lodged      | Phelan (_Unmarked_, disappearance); Nora (lieux de mémoire)    | medium                                                          |
+| **contestation**     | rival records of the same evening — whose Aftermath is authoritative   | Aftermath / Lodged | Taylor; historiographical contestation                         | medium (or thin composite over reinterpretation + supersession) |
+
+**The seam (bounded, not a rabbit hole).** Unlike `place`/`piece`/`plan`
+(populated, only lacking force-engines), `performance` is unpopulated: **the type
+must be _born_ first.** But that is a small, sequenceable seam that copies patterns
+this repo already runs — the type-birth after `play`/`plan`/`order`, the house
+registration after every house already on the bill.
+
+_Register the house on the bill (`plays/` lane, `khai-plays` registry):_
+
+0. **a card for `khai-writing`** — `npx @chbrain/khai-plays register writing --repo
+… --package …`, the same one-command registration every other house on the bill
+   used. This is what "khai knows about it" means concretely; once the card is on
+   the bill, `khai-writing` is a declared house and Lodged links resolve to it
+   cross-house through the repertoire, no new machinery.
+
+_The type-birth half — ours, in this monorepo (`arch` / governance lanes):_
+
+1. **`template_performance.md`** added — it is the _only_ element type missing its
+   template. Copy the generic `TO `-mnemonic skeleton (`template_process.md` is the
+   closest sibling); `templates.test.mjs` picks it up automatically. (arch lane)
+2. **a `validate.mjs` `on: performance` check** — a block parallel to the existing
+   `type === "play"/"plan"/"order"` paths, asserting the **Lodged** link resolves
+   ("it must resolve, or this is not yet a performance") through the same cross-house
+   repertoire resolution. Source and its dormant test are **separate PRs** per rule 3. (governance lane)
+3. **at least one real `khai: performance` instance** authored from an actual
+   Director capture and cast, round-tripping through `validate.mjs`.
+4. **status promoted `draft` → `published`** once 0–3 prove the chapters, the same
+   criterion `repertoire.md`'s own order used for itself — not before.
+
+**The resolution question is closed.** `khai-writing` is a house; Lodged resolves
+cross-house through the repertoire, the path `order_the_repertoire.md` already built
+— no `writing/*` lane, no `packages/khai-writing`, no out-of-band resolver. The one
+thing the seam still needs from the maintainer is the seed for step 3: whether a real
+Director run is ready to be lodged, or step 3 is synthetic bootstrap content.
+`order_the_repertoire.md` deferred this mint _deliberately_ ("Minted … when the
+Director's first capture wants writing down; not before") — so this chart is a
+**proposal to the maintainer**, not a unilateral build.
+
+**The seven forces unblock together, not in stages.** Once instance #3 populates
+Lodged / Occasion / Aftermath / Note, all seven can attach `requires: { on:
+"performance", section: <Chapter> }` — there is no internal stagger among them; the
+gate is the type being born. Homonym note: `goal` already has a
+`position_performance.md` member (Dweck/Elliot achievement goals) — a different
+type/namespace, but a future `performance`-root member should avoid the bare stem.
 
 ## Rejected on inspection (documented so they need not be re-checked)
 
