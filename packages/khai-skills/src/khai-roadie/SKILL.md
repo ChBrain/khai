@@ -105,6 +105,19 @@ The package composes the instructions, aggregates the collections, and writes th
 deliverable to the output directory. You never hand-assemble a bundle or hand-edit
 a composed contract.
 
+### The guest production (a scenario on tour)
+
+A **scenario** is a play that is mostly repertoire and thinly its own: the
+playwright authors the thin layer in a working folder, and you take it on tour
+as one flat bundle. The station resolves the play's Company against the
+repertoire (the scenario folder, the house collections, the installed
+engines), widens by the engine ladders the laws demand, composes the deployed
+contract (Standard plus House Rules plus the scenario adaption, engine laws at
+Knowledge, links as member names), and packs one flat zip: no folders, every
+consumable stripped of frontmatter, beyond-bundle links pointing home. You
+judge the scenario folder and the destination; the package computes the rest.
+As everywhere on the tour: you compose and stage, you never author.
+
 ## The Roadie position
 
 The roadie is a position in a house's management, named and deployed alongside
