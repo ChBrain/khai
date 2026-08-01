@@ -345,15 +345,50 @@ export function computeRegistry(root) {
   };
 }
 
+/**
+ * Heal the CHANGELOG heading the reconcile leaves behind. `changeset version`
+ * bumps package.json and writes the top CHANGELOG heading at that bumped
+ * number in one move; the build then reconciles the manifest back to the item
+ * count, so without this the heading keeps a version that never ships and
+ * never existed on the registry. Only the topmost heading is considered, and
+ * only when it equals the exact version being healed away -- a historical
+ * heading (the previous release) never matches `staleVersion` and is never
+ * touched, so a between-releases changelog is safe.
+ * @param {string} root
+ * @param {string} staleVersion - the pre-heal package.json version changesets wrote
+ * @param {string} version - the count-derived version the build reconciled to
+ * @returns {boolean} whether a heading was rewritten
+ */
+export function healChangelogHeading(root, staleVersion, version) {
+  const changelogPath = join(root, "CHANGELOG.md");
+  if (!existsSync(changelogPath)) return false;
+  const changelog = readFileSync(changelogPath, "utf8");
+  // [ \t]* rather than \s*: \s would swallow the newline (a formatting change)
+  // and overlaps the anchor (the polynomial-regex class compose-style code
+  // guards against elsewhere in this workspace).
+  const match = /^## (\d+\.\d+\.\d+)[ \t]*$/m.exec(changelog);
+  if (!match || match[1] !== staleVersion || staleVersion === version) return false;
+  const healed =
+    changelog.slice(0, match.index) +
+    `## ${version}` +
+    changelog.slice(match.index + match[0].length);
+  writeFileSync(changelogPath, healed, "utf8");
+  return true;
+}
+
 export function buildRegistry(root) {
   const { registryData, version, packageJson, packageJsonPath, registryPath } =
     computeRegistry(root);
 
   // Reconcile package.json (the published artifact; registry.json is not in the
-  // package files) so the build is the single writer of the minor.
+  // package files) so the build is the single writer of the minor -- and heal
+  // the CHANGELOG heading changesets wrote at the unreconciled number, so the
+  // single-writer rule covers all three files it promises to.
   if (packageJson.version !== version) {
+    const staleVersion = packageJson.version;
     packageJson.version = version;
     writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2) + "\n", "utf8");
+    healChangelogHeading(root, staleVersion, version);
   }
 
   writeFileSync(registryPath, JSON.stringify(registryData, null, 2) + "\n", "utf8");
