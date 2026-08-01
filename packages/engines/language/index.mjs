@@ -49,4 +49,14 @@ export function compose({ leaf } = {}) {
   return `${chain.map((file) => body(raw[file])).join("\n\n")}\n`;
 }
 
-export default { manifest, chains, raw, compose };
+/**
+ * The engine's law, as the one Knowledge bullet a deployed instructions
+ * contract carries: declared once, linking the root, so the ladder reads
+ * system-wide and no persona escapes it. Links are member names, never paths.
+ */
+export const law =
+  "Language ([the root loop](process_using_language.md)): every Persona runs it; " +
+  "each Persona holds each channel only at the widths its Projection links, and " +
+  "under pressure slides toward the width it holds most firmly.";
+
+export default { manifest, chains, raw, compose, law };
