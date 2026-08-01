@@ -1,5 +1,5 @@
 ---
-updated: "2026-07-30"
+updated: "2026-08-01"
 ---
 
 # Engine & composite gaps — a chase list
@@ -158,29 +158,50 @@ available for reuse:
   `post-traumatic-growth` (over `meaning` + `narrative` + `mortality` +
   `identity`), with hard links resolving across all four declared dependencies.
 
-## Freud — a planned larger effort (not a single gap)
+## Freud — shipped (engine completeness, then the composite)
 
-Raised during the love/hate work and deliberately **not** collapsed into the
-`love-hate` composite: Freud's body of work is larger than any one engine and
-warrants its own planning pass rather than a single chase-row. `love-hate` was
-kept scoped to the ambivalence-of-affect phenomenon (a shared-circuit
-love/hate), and explicitly **not** named "ambivalence," to leave that room open.
-The intended shape, for a future dedicated effort:
+The Freud effort planned here is **built** (2026-08-01). It ran the intended
+shape — the constituent engines first, then the integrative composite over them —
+and each engine's warrant was credited as a **lineage** (the science built _on_
+Freud, not Freud alone) in its Origin table:
 
-- **Several engines**, one per durable Freudian construct with real citable
-  science and a clean engine-shape — candidates to scope and bound individually:
-  the structural model (id / ego / superego), the defense mechanisms (already
-  partly owned — audit against `mortality`, `regulation`, `moral-disengagement`
-  before adding), transference, the drives (eros / thanatos), the unconscious,
-  and general ambivalence (the co-activation of opposed feelings, of which
-  `love-hate` is one instance).
-- **A `Freud` composite** reading over those engines as atoms — the integrative
-  layer, once the atoms exist.
+- **Engines:** `structural-model` (id / ego / superego), `transference`
+  (positive / negative / countertransference), `the-unconscious`
+  (dynamic / adaptive / preconscious), `ambivalence` (potential / felt — the
+  general co-activation of opposed evaluations, of which `love-hate` is one
+  instance). `defense` (mature / immature / neurotic) already existed and was
+  reused as an atom rather than rebuilt.
+- **Composite:** `freud`, reading the Freudian psyche as a compound over six
+  atoms — `structural-model` + `the-unconscious` (apparatus), `anxiety` +
+  `defense` (warding), `transference` + `attachment` (relation).
+- **Follow-up:** `structural-model`'s Origin table was backfilled with its
+  builders-on-top (A. Freud, Hartmann; Solms), bringing it into line with the
+  lineage principle applied across the rest of the effort.
 
-This is a note to plan against, not a queued build; each Freudian engine must
-clear the same LORE-warrant and one-phenomenon-one-engine bars as any other, and
-several overlap existing engines and will need careful boundaries or maintainer
-whitelisting.
+## Clinical tier — opened (chart in progress)
+
+A new **clinical-disorder tier** was opened (2026-08-01), distinct from the
+"apparatus every persona has" that the rest of the inventory (and the `freud`
+composite explicitly) models. It stages disorders as **persona-architecture for
+a play — never a diagnosis of a real person**, and its content says so
+throughout. Two firsts landed:
+
+- **`ptsd`** (engine) — the trauma-loop, over the four DSM-5 clusters
+  (reexperiencing / evasion / estrangement / hyperarousal). The first engine
+  built to foreground **mechanics**: the root's Direction/Lever chapters carry a
+  self-maintaining loop (cue → re-experiencing → arousal → avoidance → the
+  avoidance forecloses updating → repeat), a pattern reusable by any khai-type
+  that needs a dynamic rather than a static stance.
+- **`cptsd`** (composite) — complex PTSD (ICD-11) over five atoms: core `ptsd`
+  plus the three disturbances in self-organization — `regulation`
+  (dysregulation), `self-esteem` + `shame` (diminishment), `attachment`
+  (severance).
+
+The tier's full candidate chart — mood, anxiety, OCD-related, personality,
+dissociative, neurodevelopmental, and addictive/behavioral disorders as
+engine-vs-composite candidates — is being developed (targeted research pass) and
+will be resolved through a management order before build, since opening and
+directing a tier is a scope decision for the Choregos, not a single chase-row.
 
 ## Rejected on inspection (documented so they need not be re-checked)
 
@@ -204,6 +225,15 @@ identity & personality; motivation & volition; social & interpersonal; group,
 intergroup & cultural; cognition, memory & metacognition; moral & prosocial;
 wellbeing & coping; narrative, dramaturgy & aesthetics; environment, embodiment,
 place & time), each verifying candidates against member files and REFERENCES
-before counting a gap. Inventory snapshot: 163 engines, 20 composites (2026-07-30);
-Tier 3 (#20–#36) shipped 2026-07-31, adding 12 engines and 5 composites
-(comic, love-hate, relative-deprivation, resilience, post-traumatic-growth).
+before counting a gap. Inventory snapshot at analysis time: 163 engines, 20
+composites (2026-07-30); Tier 3 (#20–#36) shipped 2026-07-31, adding 12 engines
+and 5 composites (comic, love-hate, relative-deprivation, resilience,
+post-traumatic-growth).
+
+**Current inventory (2026-08-01): 199 engines, 28 composites.** Since the
+analysis snapshot, the tiers above shipped and two further efforts landed: the
+**Freud** effort (engines `structural-model`, `transference`, `the-unconscious`,
+`ambivalence`, then the `freud` composite) and the opening of the **clinical
+tier** (`ptsd` engine, `cptsd` composite). The clinical tier's full candidate
+chart is pending a dedicated research pass and a management order (see the
+"Clinical tier — opened" section above).
