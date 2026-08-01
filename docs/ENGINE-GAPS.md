@@ -425,17 +425,38 @@ Only three narrow residues survived verification.
 | **circadian-rhythm**        | daily clock oscillation in alertness (chronotype + desync), distinct from fatigue's depletion | Borbély (two-process); Horne & Östberg; Roenneberg | medium                                                |
 | **life-review** (composite) | late-life reappraisal of the whole life story into integrity/despair                          | Butler; Erikson; Wong & Watt                       | medium — over `mortality` + `narrative` + `nostalgia` |
 
-### Tier F-position — the office gap (needs its own scoped pass)
+### Tier F-position — forces on the office (6 engines + 1 composite)
 
-Not attitude-forces (those are persona-side, done). The unbuilt space is
-**institutional forces on the office-as-such**, independent of any incumbent — a
-role crystallizing out of an ad-hoc task, a mandate hardening into ritualism,
-eroding into a sinecure, a vacancy destabilizing into a succession crisis. Warrant:
-Weber (routinization of charisma), Michels (iron law of oligarchy), Selznick
-(institutionalization), Gouldner (succession crisis). Distinct from the persona-side
-`role` / `hierarchy` / `status` engines (how holding/losing registers on the
-incumbent). **Flagged, not charted** — its candidate rows want a dedicated
-organizational-sociology research pass before they are counted.
+Not attitude-forces (those are persona-side, done). The `position` type is a
+world-owned **office / role** (mnemonic TO HOLD; chapters Has / Orders / Loses /
+Drives), and the unbuilt space is **institutional forces on the office-as-such**,
+independent of any incumbent. A dedicated organizational-sociology pass charted
+these. Boundary held throughout against the persona-side `role` / `hierarchy` /
+`status` / `power` engines (all `on: persona` — how holding/losing registers on
+the _incumbent_); these force the office itself. Each would declare `on: position`
+against one of the office's own chapters — the **first-of-kind non-persona cargo
+wiring**, so the first to land (`institutionalization`) wants a maintainer eye on
+the precedent, as `ptsd`'s mechanics-first shape got.
+
+| Candidate                | Force on the office                                                              | Attaches        | Warrant                                                                | Confidence                                                                                                                                                         |
+| ------------------------ | -------------------------------------------------------------------------------- | --------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **institutionalization** | an ad-hoc task/function hardening into a standing office with its own mandate    | Has / Drives    | Selznick; Berger & Luckmann; Meyer & Rowan; Zucker                     | high                                                                                                                                                               |
+| **routinization**        | a charismatic/founder role congealing into bureaucratic office, fiat → procedure | Orders / Has    | Weber (routinization of charisma); Eisenstadt; Trice & Beyer           | high                                                                                                                                                               |
+| **hollowing**            | a live office decaying into a sinecure or figurehead — title kept, mandate gone  | Loses / Orders  | Bagehot (dignified vs efficient); Weber; Merton (ritualism)            | high — members `sinecure` / `figurehead`                                                                                                                           |
+| **oligarchization**      | the office self-perpetuating — holding it displaces the mandate as the end       | Drives / Loses  | Michels (iron law); Merton (goal displacement); Selznick (co-optation) | high                                                                                                                                                               |
+| **interregnum**          | the office destabilized at the transfer of incumbency — the vacancy crisis       | Loses / Has     | Gouldner (succession crisis); Grusky; Guest                            | medium-high — **name is `interregnum`, not `succession`** (that stem is F-place's ecological succession)                                                           |
+| **capture**              | the office turned to serve a constituency other than its mandate                 | Orders / Drives | Stigler; Bernstein; Laffont & Tirole; Carpenter & Moss                 | medium-high — office-scoped stems (`process_office_capture`, not bare `captured` — collides with `attention`/`scarcity`); keep in-world, not real-world commentary |
+
+- **office-lifecycle** (composite, blocked): the whole institutional life read as an
+  arc over `institutionalization` → `routinization` → `oligarchization` →
+  `hollowing`, with `interregnum` and `capture` as **discrete bridge events** that
+  can interrupt any stage (not sequence-bound). Mirrors `neighborhood-cycle`
+  (F-place). Blocked until its four atoms land.
+
+**Build order:** `institutionalization` (the root all others presuppose, and the
+first-of-kind precedent) → `routinization` → `hollowing` → `oligarchization` →
+`office-lifecycle` composite → `interregnum` + `capture` (last; their naming/stem
+flags above want a maintainer call before a PR opens).
 
 ## Rejected on inspection (documented so they need not be re-checked)
 
