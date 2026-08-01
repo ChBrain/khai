@@ -116,5 +116,6 @@ per candidate. Each row then builds to the usual standard on its own lane.
 - [x] the composite-over-existing-atoms heuristic is ordered, with
       one-phenomenon-one-engine held inside the tier
 - [x] the normal-range boundary rule and the carry-the-mechanic rule are recorded
-- [ ] the candidate chart is authored into `docs/ENGINE-GAPS.md` from the research
-      pass, approved by the maintainer, and each row deferred to its own lane
+- [x] the enumerated candidate chart is deferred to `docs/ENGINE-GAPS.md` under
+      this order -- authored from the research pass, approved by the maintainer,
+      and each row built on its own lane; no build moves inside this order
