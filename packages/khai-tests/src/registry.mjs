@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
 import { join, dirname, resolve, relative, isAbsolute } from "node:path";
-import { parseDoc } from "@chbrain/khai-rules";
+import { parseDoc, sectionBody } from "@chbrain/khai-rules";
 import { validateCollectionRegistry } from "./validate.mjs";
 import { resolveCollection, resolveCollectionAt, resolveCollections } from "./collection.mjs";
 
@@ -120,11 +120,89 @@ function referencedIds(anchorFile, referencedDir) {
 }
 
 /**
+ * The kinds a member filename may declare: the prefix before its first
+ * underscore, i.e. the whole play canon a play-staged item (a culture, a play
+ * itself, ...) can hold. A filename whose prefix is not in this set is not a
+ * member -- README.md, REFERENCES.md, geo.json, and any other loose file are
+ * skipped, not merely unrecognized.
+ */
+const MEMBER_KINDS = new Set([
+  "persona",
+  "position",
+  "place",
+  "process",
+  "piece",
+  "plan",
+  "plot",
+  "pitch",
+  "play",
+]);
+
+/**
+ * The basename of the first markdown link inside a member's `## Taxonomy`
+ * section body -- the member's parent in the play canon (a persona's position,
+ * a pitch's play, ...). Absent section, or a section with no link (e.g. a
+ * position whose Taxonomy is bare prose, "Parent group: positions"), both
+ * resolve to undefined, so a member with no taxonomy link simply omits the
+ * field rather than failing the build.
+ * @param {string} body  the parsed doc's body (doc.body)
+ * @returns {string|undefined}
+ */
+function firstTaxonomyTarget(body) {
+  const section = sectionBody(body, "Taxonomy");
+  if (!section) return undefined;
+  const m = /\]\(([^()\s]+)\)/.exec(section.join("\n"));
+  if (!m) return undefined;
+  const target = m[1].split("#")[0];
+  if (!target || /^[a-z]+:\/\//i.test(target)) return undefined;
+  return target.split(/[/\\]/).pop();
+}
+
+/**
+ * The members catalog for one item's directory: every khai member file it
+ * holds, reduced to `{ file, kind, title?, type?, taxonomy? }`. This is what
+ * makes a registry a resolvable catalog, not just a title/description index.
+ * Best-effort throughout -- a missing frontmatter field (`title`, `type`) or a
+ * linkless Taxonomy section is simply omitted, never a build failure.
+ * @param {string} itemSubdir
+ * @returns {object[]}
+ */
+function buildMembers(itemSubdir) {
+  const members = [];
+  for (const file of readdirSync(itemSubdir)) {
+    if (!file.endsWith(".md")) continue;
+    const underscoreIdx = file.indexOf("_");
+    if (underscoreIdx === -1) continue;
+    const kind = file.slice(0, underscoreIdx);
+    if (!MEMBER_KINDS.has(kind)) continue;
+
+    const doc = parseDoc(readFileSync(join(itemSubdir, file), "utf8"));
+    const member = { file, kind };
+
+    const title = doc.data?.title;
+    if (typeof title === "string" && title.trim()) member.title = title;
+
+    const type = doc.data?.type;
+    if (typeof type === "string" && type.trim()) member.type = type;
+
+    if (doc.ok) {
+      const taxonomy = firstTaxonomyTarget(doc.body);
+      if (taxonomy) member.taxonomy = taxonomy;
+    }
+
+    members.push(member);
+  }
+  // deterministic order: sort members by file, mirroring the item sort below.
+  return members.sort((a, b) => a.file.localeCompare(b.file));
+}
+
+/**
  * Build the registry entries for one collection: each item's `{ kind, id, title,
- * description }`, plus an optional `iso` (from a `geo.json` sidecar) and, for a
- * referencing collection, the build-derived `references`. A missing collection
- * dir yields no entries (a house may declare a referencing collection before it
- * holds any items).
+ * description }`, plus an optional `iso` (from a `geo.json` sidecar), for a
+ * referencing collection the build-derived `references`, and a `members`
+ * catalog (every khai member file the item's directory holds). A missing
+ * collection dir yields no entries (a house may declare a referencing
+ * collection before it holds any items).
  * @param {string} root
  * @param {{ dir: string, key: string, anchor: string, kind: string, references?: string }} collection
  * @param {{ key: string, dir: string }[]} allCollections  for resolving `references` targets
@@ -200,6 +278,10 @@ function buildItems(root, collection, allCollections) {
       const refs = referencedIds(anchorFile, join(root, referencedDir));
       if (refs.length) entry.references = refs;
     }
+
+    // members last: the catalog is derived from the whole directory, not just
+    // the anchor file, so it rides after the anchor-sourced fields above.
+    entry.members = buildMembers(itemSubdir);
 
     items.push(entry);
   }

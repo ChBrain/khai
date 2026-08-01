@@ -1072,6 +1072,32 @@ export function validateCollectionRegistry(root) {
           }
         }
       }
+
+      // members: optional catalog array (the build stamps it on every entry;
+      // left optional here so a registry built before the field existed still
+      // verifies until rebuilt). Each entry needs at minimum the `file` it
+      // names and the `kind` derived from that filename -- `title`, `type`,
+      // and `taxonomy` are as optional as the frontmatter that feeds them.
+      if (item.members !== undefined) {
+        if (!Array.isArray(item.members)) {
+          errors.push(`${noun} "${item.id}" members must be an array`);
+        } else {
+          for (const member of item.members) {
+            if (typeof member !== "object" || member === null) {
+              errors.push(`${noun} "${item.id}" members entries must be objects`);
+              continue;
+            }
+            if (typeof member.file !== "string" || !member.file) {
+              errors.push(`${noun} "${item.id}" member must have a non-empty file name`);
+            }
+            if (typeof member.kind !== "string" || !member.kind) {
+              errors.push(
+                `${noun} "${item.id}" member "${member.file}" must have a non-empty kind`,
+              );
+            }
+          }
+        }
+      }
     }
 
     // Directory bidirectional sync
