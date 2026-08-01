@@ -282,16 +282,29 @@ type, each verified against member files, not directory names) measured the
 imbalance: **`requires.on` today is persona 211, plot 11, play 4, and _zero_ for
 place / piece / plan / process / position.**
 
-The types sort three ways, and the research confirmed the split:
+The types (enumerated from `architecture/`, the authoritative definitions — **not**
+from instance frontmatter, which misses any type with zero instances, as
+`performance` below shows) sort four ways:
 
 - **Cargo** — things a force acts on: `persona`, `place`, `piece`, `plan`,
-  `process`, `position`, `plot`/`play`. The frontier is here.
-- **Reading / key** — `pitch`: a lens applied from outside the events, not a
-  dynamical object. `model.md`: "a Pitch is not cargo but a key … a reading,
-  never a change to what happens." **Not a force-target; correctly done as-is,
-  nothing to build.**
-- **Machinery** — `instructions`, `order`, `architecture`, `design`: khai's own
-  wiring, not force-targets.
+  `process`, `position`, `plot`/`play`. The charted frontier.
+- **Reading / key** — `pitch`: **re-examined chapter by chapter (Tenor / Undertow
+  / Nerve / Echo) and confirmed _not_ a force-target.** It is structurally excluded
+  from the force graph — `validate.mjs` runs a bespoke `pitchCarryErrors` path
+  _because_ pitch does not fit `requires.on` (0 of 452 `requires` entries target
+  it; `model.md`: "a Pitch is not cargo but a key"). Every tonal force one might
+  imagine already lives elsewhere: a whole alternate key `on: play/Arc` (as
+  `palimpsest`'s parody/travesty do — irony written into a pitch's own Undertow),
+  _which_ pitch is cast `on: plot` (modulation), or audience-facing tonal beats
+  `on: persona` (`dramatic-irony`, `comic`/`tragic` flatness). Nothing to build on
+  `pitch` (see F-pitch).
+- **Record** — `performance`: "what happened," the claim-ticket of a run. A
+  coherent force-target _in principle_ (see F-performance), but **the type is not
+  yet born** (`status: draft`, zero instances, no template, its "result layer"
+  link target undefined) — so its forces are blocked on `arch`-lane governance,
+  deeper than any other Tier F row.
+- **Machinery** — `instructions`, `order`, `architecture`, `design`, `engines`:
+  khai's own wiring, not force-targets.
 
 Each row builds to the usual standard on its own lane, as an ordinary engine or
 composite (there is no new library family — a force on a place is just an engine
@@ -457,6 +470,65 @@ the precedent, as `ptsd`'s mechanics-first shape got.
 first-of-kind precedent) → `routinization` → `hollowing` → `oligarchization` →
 `office-lifecycle` composite → `interregnum` + `capture` (last; their naming/stem
 flags above want a maintainer call before a PR opens).
+
+### Tier F-pitch — re-examined, confirmed not a force-target
+
+Charted as a **no**, with proof, so it is not re-litigated. `pitch` is a cast
+element (it is in `model.md`'s cast group) but "a key, not cargo": a reading
+applied from outside the events. A rigorous chapter-by-chapter pass (Tenor /
+Undertow / Nerve / Echo) found every candidate tonal force already owned, and
+`pitch` structurally outside the `requires.on` force graph:
+
+- **Modulation** (the key turning over the arc) = a `plot` relinking _which_ pitch
+  is cast (`on: plot`), validated by the bespoke `pitchCarryErrors` path, not a
+  force on a pitch's chapters.
+- **Irony / subversion / bathos** (the Undertow slot) = authoring a whole
+  alternate pitch and casting it `on: play/Arc` — exactly what `palimpsest`'s
+  `pitch_parody` / `pitch_travesty` already do (the counter-current written into
+  the pitch's own Undertow), never a force reaching into an existing pitch.
+- **Tonal beats landing or going flat** (the Nerve slot) = audience-facing runtime
+  processes already on `on: persona/Projection`: `dramatic-irony`, and
+  `comic`/`tragic`/`bittersweet` flatness-and-offense. A `dissonance`-named engine
+  would also collide with Festinger's `dissonance` (stem taken).
+
+If any of these are pursued, they are rows on the existing `on: play/Arc` or
+`on: persona/Projection` frontiers, **never `on: pitch`**.
+
+### Tier F-performance — forces on a captured run (7 engines) — BLOCKED on the type being born
+
+`performance` (`architecture/performance.md`, mnemonic TO LOAN, chapters Lodged /
+Occasion / Aftermath / Note) is _"what happened"_ — the claim-ticket a run leaves
+beside the play, that _"ages into history the way a plot already is one"_ and is
+cast by later productions (a sequel borrows the premiere). Its afterlife is a
+clean, well-warranted force-space (performance studies / reception history /
+memory studies), with no collisions against any live engine.
+
+| Candidate            | Force on the performance                                               | Attaches           | Warrant                                                        | Confidence                                                      |
+| -------------------- | ---------------------------------------------------------------------- | ------------------ | -------------------------------------------------------------- | --------------------------------------------------------------- |
+| **canonization**     | a run becomes the definitive version later productions measure against | Note / Aftermath   | J. Assmann (cultural memory); Guillory; Kermode                | high                                                            |
+| **reinterpretation** | a later age re-reads a fixed record against new values                 | Aftermath          | Jauss (reception); Hayden White; E. H. Carr                    | high                                                            |
+| **revival**          | a dormant performance re-cast into a living production                 | Occasion           | Schechner (restored behavior); Taylor (_Archive & Repertoire_) | high                                                            |
+| **supersession**     | a later run overtakes and demotes an earlier one                       | Aftermath / Note   | Carlson (_The Haunted Stage_, ghosting)                        | medium-high                                                     |
+| **mythologization**  | a run accrues legend beyond what the ticket records                    | Note               | J. Assmann (mnemohistory); Halbwachs; Hobsbawm & Ranger        | medium-high                                                     |
+| **decay**            | the record thins into history, its Note going unheard                  | Note / Lodged      | Phelan (_Unmarked_, disappearance); Nora (lieux de mémoire)    | medium                                                          |
+| **contestation**     | rival records of the same evening — whose Aftermath is authoritative   | Aftermath / Lodged | Taylor; historiographical contestation                         | medium (or thin composite over reinterpretation + supersession) |
+
+**The blocker (deeper than any other Tier F row).** Unlike `place`/`piece`/`plan`
+(populated, only lacking force-engines), `performance` is unpopulated: **the type
+must be _born_ first**, on the `arch/` lane / governance —
+
+1. status promoted `draft` → `published` (chapters stable enough to wire against);
+2. a `template_performance.md` added (every sibling element type has one);
+3. at least one real `khai: performance` instance authored and cast, round-tripping
+   through `validate.mjs`;
+4. the **"result layer"** defined — Lodged's link target ("the full captured
+   script … lodged with the result layer") is named nowhere else in the repo, so
+   Lodged cannot yet resolve.
+
+Until the type is born, none of the seven can open a PR. Homonym note: `goal`
+already has a `position_performance.md` member (Dweck/Elliot achievement goals) —
+a different type/namespace, but a future `performance`-root member should avoid the
+bare stem.
 
 ## Rejected on inspection (documented so they need not be re-checked)
 
