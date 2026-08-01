@@ -178,7 +178,7 @@ Freud, not Freud alone) in its Origin table:
   builders-on-top (A. Freud, Hartmann; Solms), bringing it into line with the
   lineage principle applied across the rest of the effort.
 
-## Clinical tier — opened (chart in progress)
+## Clinical tier — opened, and charted (Tier C)
 
 A new **clinical-disorder tier** was opened (2026-08-01), distinct from the
 "apparatus every persona has" that the rest of the inventory (and the `freud`
@@ -197,11 +197,78 @@ throughout. Two firsts landed:
   (dysregulation), `self-esteem` + `shame` (diminishment), `attachment`
   (severance).
 
-The tier's full candidate chart — mood, anxiety, OCD-related, personality,
-dissociative, neurodevelopmental, and addictive/behavioral disorders as
-engine-vs-composite candidates — is being developed (targeted research pass) and
-will be resolved through a management order before build, since opening and
-directing a tier is a scope decision for the Choregos, not a single chase-row.
+The candidate chart below was produced by a targeted two-agent research pass over
+the DSM/ICD families, each candidate verified against the live inventory (member
+files, not directory names) so a disorder already owned as a _form_ of an
+existing engine is not counted as a gap. It is recorded under the management
+order **Open the Clinical Tier**
+(`packages/khai-plays/management/orders/order_open_the_clinical_tier.md`), which
+sets the tier's standing rules: authored persona-architecture never a diagnosis;
+warrant as a lineage; composite-over-existing-atoms first; bound against the
+normal-range neighbour; carry the mechanic. Each row builds to the usual standard
+on its own lane. Recommended build order: `ocd` → `anhedonia` → `depression`
+(strongest single warrant into highest downstream value).
+
+**Two rows the codebase already disclaims by name** — the highest-confidence
+clinical gaps, the same signal that found Tier 1's best rows: `superstition`
+scopes itself to normal-range magical cognition and names "obsessive-compulsive
+ritual" as its clinical extreme → **ocd**; `sadness` footnotes its `despair` form
+as "the boundary with clinical depression" → **depression** (via **anhedonia**).
+
+**Ethics note.** Every stigma-adjacent row here (`antisocial`, `borderline`,
+`narcissism`) is proposed strictly as persona-architecture — a disposition or
+process a fictional character runs, in the register of `aggression` or
+`deception` — never a diagnostic instrument or a claim about a real person.
+Autism is the one construct deliberately **parked** rather than charted for build:
+a DSM-deficit-only frame is wrong for a neurotype, and it needs new
+neurodiversity-affirming atoms first (see Parked, below).
+
+### Tier C1 — foundational engines (single phenomena nothing owns; each unblocks composites)
+
+| #   | Candidate          | Phenomenon                                                                       | Warrant                                                                                                                    | Nearest / boundary                                                                                                                           | E/C               | Status   |
+| --- | ------------------ | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- | -------- |
+| 37  | **ocd**            | intrusive, ego-dystonic obsessions → neutralizing compulsions                    | Rachman (thought–action fusion); Salkovskis (inflated responsibility); Foa & Kozak; Gillan                                 | `superstition` (disclaims "OC ritual" by name); `habit` (automatized ritual); `disgust` (contamination)                                      | Engine (process)  | proposed |
+| 38  | **anhedonia**      | blunted capacity for pleasure/interest — consummatory / anticipatory / social    | Ribot (coinage); Klein; Treadway & Zald; Rizvi et al.; RDoC Positive Valence                                               | `reward` (discount rate — orthogonal); `sadness` (low mood, not blunted responsivity)                                                        | Engine (position) | proposed |
+| 39  | **mania**          | elevated/expansive/irritable activation episode; grandiosity, reduced sleep need | Depue & Iacono (BFS); S. L. Johnson (BAS dysregulation); Akiskal (hyperthymic temperament)                                 | `joy` (appraisal node); `flow` (absorption); homonym w/ `desire/obsessive`'s Lee love-style label                                            | Engine (process)  | proposed |
+| 40  | **social-anxiety** | fear of negative evaluation — anticipatory / performance / post-event            | Clark & Wells (1995); Rapee & Heimberg (1997); Leary (sociometer); Hofmann                                                 | `fear/phobia` (conditioned object-fear, not evaluation); `embarrassment` (acute, not anticipatory-chronic)                                   | Engine (process)  | proposed |
+| 41  | **dissociation**   | disconnection from thought/feeling/memory/identity/surroundings under overwhelm  | Putnam (discrete states); van der Hart et al. (structural dissociation); Bernstein & Putnam (DES); Freyd (betrayal trauma) | `the-unconscious` (repression, not structural split); `ptsd/estrangement` (numbing, not splitting); `defense/immature` (category, not depth) | Engine (process)  | proposed |
+| 42  | **body-image**     | perceived-vs-ideal body; appearance-contingent self-worth                        | Thompson et al. (tripartite); Stice (dual-pathway); Fredrickson & Roberts (objectification); Cash                          | `comparison` (general); `self-discrepancy` (general gaps); `body` (interoception — delegates appearance away)                                | Engine (position) | proposed |
+
+### Tier C2 — composites buildable now (all atoms already exist)
+
+| #   | Candidate                    | Phenomenon                                                                    | Atoms (all exist)                                                              | Warrant / note                                                                                                                    | Status   |
+| --- | ---------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| 43  | **panic-disorder**           | recurrent panic attacks + fear of the next + behavioural restriction          | `fear`(panic) + `anxiety` + `coping`                                           | Klein; Clark (catastrophic misinterpretation). `fear/process_panic.md`'s Echo names it                                            | proposed |
+| 44  | **agoraphobia**              | fear/avoidance of situations where escape or help is hard to get              | `fear` + `anxiety` + `coping`                                                  | Goodwin & Guze; DSM-5 (decoupled from panic). **Merge-vs-split with #43 is a maintainer call**                                    | proposed |
+| 45  | **hoarding**                 | difficulty discarding + saving urges + clutter/distress                       | `extended-self` + `scarcity` + `decision` + `coping`                           | Frost & Hartl; Frost & Steketee (_Stuff_); Mataix-Cols. **E-vs-C maintainer call**; do NOT route through `ocd` (DSM-5 split them) | proposed |
+| 46  | **borderline**               | unstable relationships, affect, self, and impulse control                     | `attachment` + `regulation` + `identity` + `self-control` + `self-esteem`      | Linehan (biosocial/DBT); Kernberg (identity diffusion); Gunderson; Zanarini                                                       | proposed |
+| 47  | **avoidant-personality**     | social inhibition, felt inadequacy, rejection hypersensitivity (Cluster C)    | `attachment`(fearful) + `self-esteem`(low) + `shame`(withdrawal) + `anxiety`   | Millon; Alden & Taylor; Rettew                                                                                                    | proposed |
+| 48  | **antisocial**               | disregard for others' rights, deceit, no remorse, recklessness (Cluster B)    | `dark-triad`(psychopathy) + `aggression` + `deception` + `moral-disengagement` | Cleckley; Hare (PCL-R); DSM-5. `dark-triad` delegates the acts by name                                                            | proposed |
+| 49  | **attention-deficit** (ADHD) | executive dysfunction + hot impulsivity + attentional variability + DMN drift | `executive-function` + `self-control` + `attention` + `mind-wandering`         | Barkley (EF/self-regulation); Sonuga-Barke (dual-pathway); Nigg (hot/cool); Castellanos & Proal                                   | proposed |
+
+### Tier C3 — composites blocked on a Tier-C1 engine landing first (the ptsd→cptsd shape)
+
+| #   | Candidate                              | Phenomenon                                                             | Atoms                                                                           | Note                                                                                                   | Blocked on |
+| --- | -------------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ---------- |
+| 50  | **depression** (MDE)                   | sad mood + anhedonia + neurovegetative + worthlessness, as a syndrome  | `sadness`(despair) + **anhedonia** + `rumination` + `self-esteem` + `body`      | Beck; Seligman; Nesse. Highest-value composite in the set — MDD is the most-requested clinical persona | #38        |
+| 51  | **body-dysmorphic** (BDD)              | preoccupation with a perceived appearance flaw + checking/camouflaging | **ocd** + `self-esteem` + `identity`                                            | Phillips; Veale; Wilhelm. May need thin appearance-schema content even after atoms exist               | #37        |
+| 52  | **bipolar**                            | cycling between depressive and manic/hypomanic episodes                | **mania** + **depression** (the #50 composite)                                  | Goodwin & Jamison. Two-level composite-of-composites (the `love-hate` precedent)                       | #39, #50   |
+| 53  | **dissociative-identity** (DID)        | structural fragmentation of the personality with amnesic barriers      | **dissociation** + `identity` + `cptsd` + `memory`                              | Putnam; van der Hart et al.; Freyd. Three-level (over the `cptsd` composite) — verify hard-link depth  | #41        |
+| 54  | **restrictive-eating** (anorexia-type) | ego-syntonic restriction driven by body-image distortion               | **body-image** + `self-control`(restraint) + `self-discrepancy` + `self-esteem` | Bruch; Fairburn (transdiagnostic); Stice                                                               | #42        |
+| 55  | **binge-eating** (bulimia/BED-type)    | loss-of-control eating as emotion-focused escape                       | **body-image** + `regulation` + `self-control` + `body`                         | Fairburn; Stice (dual-pathway); Heatherton & Baumeister (escape theory)                                | #42        |
+
+### Not gaps — already owned (recorded so they are not re-flagged)
+
+- **narcissistic PD** → the existing `narcissism` engine (grandiose / vulnerable / communal / malignant, plus injury). A separate composite would restate it and fail `member-check`. No build.
+- **GAD** → the `anxiety` engine (worry form + intolerance-of-uncertainty trait). No build.
+- **specific phobia** → `fear`'s `phobia` form, written generically enough to read as the clinical entity. No build.
+
+### Parked / maintainer's call
+
+- **substance-use-disorder** — a possible composite (`addiction` + `self-control` + `coping` + `reward`) adding DSM's impaired-control layer over the already-thorough `addiction` engine (parallel to cptsd-over-ptsd), but optional since `addiction` is behaviour-agnostic and complete. Gambling/behavioural specifics (variable-ratio schedules, near-miss) are unmodelled — a possible `conditioning` extension, low priority.
+- **autism spectrum** — deliberately parked, not charted for build. A DSM-deficit-only frame is an ethics problem for a neurotype; it needs new atoms first (a `sensory-processing` engine — Dunn; a `monotropism`/focused-interest engine — Murray, Lesser & Lawson) and framing against the double-empathy problem (Milton) and mindblindness (Baron-Cohen) as _competing_ warrants. A dedicated pass.
+- **Cluster A PDs** (paranoid / schizoid / schizotypal) — thin atom coverage, low narrative payoff; low priority.
+- **acute stress disorder / adjustment disorder** — the `ptsd` mechanism, or `stress` + `coping`, read within a duration window; a play-arc timing note, not new content.
 
 ## Rejected on inspection (documented so they need not be re-checked)
 
