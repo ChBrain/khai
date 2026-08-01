@@ -17,6 +17,13 @@ export * as aggregator from "./aggregator.mjs";
 export { composeInstructions, composeVenue } from "./compose.mjs";
 export { buildInteractiveBundle } from "./bundle.mjs";
 export { renderPublication } from "./publication.mjs";
+export {
+  buildScenarioBundle,
+  packScenario,
+  resolveScenarioName,
+  loadHouseCollections,
+  discoverEngines,
+} from "./scenario.mjs";
 export { zip } from "./zip.mjs";
 
 /**
