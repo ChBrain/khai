@@ -4,6 +4,13 @@ import { tmpdir } from "node:os";
 import { join, relative } from "node:path";
 import { stageHouse, slug } from "../index.mjs";
 
+// Dormant until the repertoire option lands in the generator: source and
+// tests are separate PRs (the house rule), so the repertoire assertions skip
+// while ../index.mjs does not know the option, and wake once it does.
+const DORMANT = !readFileSync(new URL("../index.mjs", import.meta.url), "utf8").includes(
+  "repertoire",
+);
+
 let dir;
 let result;
 beforeAll(async () => {
@@ -142,5 +149,67 @@ describe("khai-stage: the stamped house", () => {
     const cfg = JSON.parse(readFileSync(join(dir, "khai-guard.config.json"), "utf8"));
     const play = cfg.branchScope.lanes.find((l) => l.pattern === "play/*");
     expect(play.allow).toContain("plays/**");
+  });
+
+  it.skipIf(DORMANT)("ignores the ephemeral scenarios/ working directory", () => {
+    expect(readFileSync(join(dir, ".gitignore"), "utf8")).toContain("scenarios/");
+  });
+
+  it("has no dependencies field when no repertoire is named (today's behavior, untouched)", () => {
+    const pkg = JSON.parse(readFileSync(join(dir, "package.json"), "utf8"));
+    expect(pkg.dependencies).toBeUndefined();
+  });
+
+  it("prints the same handoffs whether or not a repertoire is named, minus the repertoire line", () => {
+    expect(result.handoffs.some((h) => h.includes("repertoire"))).toBe(false);
+  });
+});
+
+describe.skipIf(DORMANT)("khai-stage: --repertoire stages house dependencies", () => {
+  it('adds each named package to dependencies at "*"', async () => {
+    const d = mkdtempSync(join(tmpdir(), "khai-stage-rep-"));
+    try {
+      const res = await stageHouse({
+        source: "Demo Source",
+        targetDir: d,
+        repertoire: "@chbrain/khai-cultures, @chbrain/khai-arch",
+      });
+      const pkg = JSON.parse(readFileSync(join(d, "package.json"), "utf8"));
+      expect(pkg.dependencies).toEqual({
+        "@chbrain/khai-cultures": "*",
+        "@chbrain/khai-arch": "*",
+      });
+      // the printed handoff mentions installing the repertoire
+      expect(res.handoffs.some((h) => h.includes("repertoire"))).toBe(true);
+    } finally {
+      rmSync(d, { recursive: true, force: true });
+    }
+  });
+
+  it("also accepts an array of package names", async () => {
+    const d = mkdtempSync(join(tmpdir(), "khai-stage-rep-arr-"));
+    try {
+      const res = await stageHouse({
+        source: "Demo Source",
+        targetDir: d,
+        repertoire: ["@chbrain/khai-cultures"],
+      });
+      const pkg = JSON.parse(readFileSync(join(d, "package.json"), "utf8"));
+      expect(pkg.dependencies).toEqual({ "@chbrain/khai-cultures": "*" });
+    } finally {
+      rmSync(d, { recursive: true, force: true });
+    }
+  });
+
+  it("omitted, behavior is identical to a plain stage (no dependencies field, same handoffs)", async () => {
+    const d = mkdtempSync(join(tmpdir(), "khai-stage-rep-none-"));
+    try {
+      const res = await stageHouse({ source: "Demo Source", targetDir: d });
+      const pkg = JSON.parse(readFileSync(join(d, "package.json"), "utf8"));
+      expect(pkg.dependencies).toBeUndefined();
+      expect(res.handoffs).toEqual(result.handoffs);
+    } finally {
+      rmSync(d, { recursive: true, force: true });
+    }
   });
 });
