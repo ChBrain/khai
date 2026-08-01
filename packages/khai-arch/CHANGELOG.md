@@ -1,5 +1,12 @@
 # @chbrain/khai-arch
 
+## 0.1.25
+
+### Patch Changes
+
+- b55e2b1: The performance type minted: TO LOAN (Lodged, Occasion, Aftermath, Note), the claim ticket a run leaves beside the play, its script lodged with the result layer, borrowable onward.
+- 924cb2f: The repertoire re-keyed: mnemonic TO LACK (Library, Answer, Crafted, Kept), yielding the loan word to the performance type.
+
 ## 0.1.24
 
 ### Patch Changes

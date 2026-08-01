@@ -1,5 +1,14 @@
 # @chbrain/khai-tests
 
+## 0.2.4
+
+### Patch Changes
+
+- 679b66c: The registry build heals the top CHANGELOG heading with the manifest (the single-writer rule covers all three files), and validate fails a heading above the registry version: a version that never shipped. Fixes the count-moving release drift (khai issue 1040).
+- Updated dependencies [b55e2b1]
+- Updated dependencies [924cb2f]
+  - @chbrain/khai-arch@0.1.25
+
 ## 0.2.3
 
 ### Patch Changes

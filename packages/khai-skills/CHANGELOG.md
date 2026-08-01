@@ -1,5 +1,14 @@
 # @chbrain/khai-skills
 
+## 0.0.32
+
+### Patch Changes
+
+- f66891a: The repertoire spec mentions follow the re-key: LOAN becomes TO LACK.
+- Updated dependencies [b55e2b1]
+- Updated dependencies [924cb2f]
+  - @chbrain/khai-arch@0.1.25
+
 ## 0.0.31
 
 ### Patch Changes
