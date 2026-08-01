@@ -90,18 +90,16 @@ what it packs is what a venue plays.
 
 ## Targets
 
-- [x] The proof staged: Interreg Flensburg packed as one flat single shot and
-      performed at a foreign venue from a single upload.
-- [ ] The canon file published: repertoire.md lands and later leaves draft.
-- [ ] The catalog: registry entries ship members with casting facets.
-- [ ] The resolution: conformance answers borrow, build, fail, or qualify
-      against the repertoire.
-- [ ] The tour station: khai-tour scenario packs the guest production.
-- [ ] The fragments: the spine scenario adaption ships; the language engine
-      exports its law, the other engines follow.
-- [ ] The raising: khai-stage declares house dependencies and ignores the
-      scenarios working directory.
-- [ ] The voices: the playwright, roadie, and impresario carry their
-      repertoire clauses; the director stays untouched.
-- [ ] The performance type minted: TO LOAN, on the first capture that wants
-      writing down, not before.
+- [x] the repertoire concept is recorded: library, own, answer, name; borrow
+      against build computed from link resolution; names as API; qualification
+      in the composite convention
+- [x] the scenario lifecycle is recorded: the playwright prepares, khai-tour
+      produces, the director works on the tour; ephemeral by default, housed
+      if meant to stay, results to khai-writing, learnings home to the lenders
+- [x] the proof is carried: Interreg Flensburg packed as one flat single shot
+      and performed at a foreign venue from a single upload
+- [x] the execution is enumerated and deferred to its own lanes: the canon
+      file, the catalog, the resolution, the tour station, the fragments, the
+      raising, the voices; no lane moves inside this order
+- [x] the performance type (TO LOAN) is named as foreseen and deferred to its
+      own architecture change, on the first capture that wants writing down
