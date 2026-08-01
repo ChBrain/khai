@@ -65,7 +65,7 @@ const walk = (dir, base = dir) =>
  * cannot do itself (branch protection needs the check names to exist; the
  * registry listing is a separate step). It never reaches the network.
  *
- * @param {{ source: string, targetDir: string, manager?: string, playwright?: string, roadie?: string, director?: string }} opts
+ * @param {{ source: string, targetDir: string, manager?: string, playwright?: string, roadie?: string, director?: string, repertoire?: string|string[] }} opts
  */
 export async function stageHouse({
   source,
@@ -74,6 +74,7 @@ export async function stageHouse({
   playwright,
   roadie,
   director,
+  repertoire,
 } = {}) {
   const s = slug(source);
   if (!s)
@@ -91,6 +92,19 @@ export async function stageHouse({
 
   const d = director ? slug(director) : "director";
   const dTitle = director ? title(director) : "Director";
+
+  // The repertoire: packages the house should depend on from the start (e.g. a
+  // cultures house feeding this stage). Comma-separated string or array, both
+  // accepted; each lands in package.json dependencies at "*" so the operator's
+  // first npm install pins the resolved version. Omitted, the house is exactly
+  // what it was before this option existed.
+  const repertoireRaw =
+    repertoire == null
+      ? []
+      : Array.isArray(repertoire)
+        ? repertoire
+        : String(repertoire).split(",");
+  const repertoirePackages = repertoireRaw.map((pkgName) => pkgName.trim()).filter(Boolean);
 
   const tokens = {
     "{{SOURCE_TITLE}}": title(source),
@@ -130,6 +144,15 @@ export async function stageHouse({
   writeFileSync(join(targetDir, "registry.json"), JSON.stringify(registry, null, 2) + "\n");
   written.push("registry.json");
 
+  // The repertoire, if named: each package lands in dependencies at "*", the
+  // range that pins to whatever resolves on the operator's first npm install.
+  // Omitted, package.json is exactly what the blueprint stamped, untouched.
+  if (repertoirePackages.length) {
+    pkg.dependencies = pkg.dependencies || {};
+    for (const name of repertoirePackages) pkg.dependencies[name] = "*";
+    writeFileSync(join(targetDir, "package.json"), JSON.stringify(pkg, null, 2) + "\n");
+  }
+
   // Format the stamped markdown so the house is clean by construction. Filling
   // the source into an aligned markdown table changes its cell widths (a short
   // source like "l2" narrows a column padded for the {{SOURCE_TITLE}} token),
@@ -152,6 +175,11 @@ export async function stageHouse({
     written: written.sort(),
     handoffs: [
       `npm ci  (needs GITHUB_TOKEN for the @chbrain registry), then push; the first CI runs green on the empty house`,
+      ...(repertoirePackages.length
+        ? [
+            `npm install pins the repertoire (${repertoirePackages.join(", ")}) staged into dependencies at "*"`,
+          ]
+        : []),
       `branch protection: require PRs and the checks (test, khai-guard, branch-scope) on main, forbid force-push. Do NOT require the audit "consistency" status: its workflow is path-filtered to audit/**, so it never reports on a non-audit PR and would wedge every such PR ("Expected - waiting"). Apply in Settings > Branches or via gh api, once the first CI run has created the check names.`,
       `RELEASE_TOKEN secret: a PAT with Contents: write and Pull requests: write, so the release workflow can push the version branch + tags and open the Version PR. Without it the house publishes nothing.`,
       `register the house in khai-plays under its Estate identity (README.md), so it appears on the bill`,
