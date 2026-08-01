@@ -1,5 +1,13 @@
 # @chbrain/khai-engine-language
 
+## 0.1.5
+
+### Patch Changes
+
+- e3fd8f1: Export the engine law as the computed Knowledge bullet, linking the root.
+- Updated dependencies [2559760]
+  - @chbrain/khai-arch@0.1.24
+
 ## 0.1.4
 
 ### Patch Changes

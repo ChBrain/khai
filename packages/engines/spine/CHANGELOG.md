@@ -1,5 +1,11 @@
 # @chbrain/khai-engine-spine
 
+## 0.1.5
+
+### Patch Changes
+
+- bf457d6: Ship the scenario adaption: the directorial minimum a guest-production bundle carries.
+
 ## 0.1.4
 
 ### Patch Changes

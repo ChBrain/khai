@@ -1,5 +1,11 @@
 # @chbrain/khai-plays
 
+## 0.0.16
+
+### Patch Changes
+
+- 05ee76c: Order: adopt the repertoire; record the scenario lifecycle and defer the mechanism lane by lane; name the Performance type as foreseen.
+
 ## 0.0.15
 
 ### Patch Changes
