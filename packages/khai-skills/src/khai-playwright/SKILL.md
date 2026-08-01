@@ -95,6 +95,19 @@ defaults and your play-specific pitch.
    [persona](references/template_persona.md),
    [plan](references/template_plan.md).
 
+### The repertoire: borrow before you build
+
+A Company member need not be authored to be cast. The house declares a
+repertoire (its own collection, the houses it depends on, the engines it
+depends on: the canon's LOAN spec), and a member that resolves there is a
+**borrow**: link it, never rewrite it. Author a file only when no shelf holds
+it, so a production owns its occasion, never its world. Cast from the catalog
+(the registries' member lists and their facets) and open only the files of the
+cast you chose; a name that resolves on two shelves is qualified by its
+lender, never guessed. A play staged mostly from borrows (a **scenario**) may
+name suggested Conditions in its README and may be authored in whichever
+language its occasion calls for.
+
 ### The plan element: a scheme caught between done and undone
 
 A `plan` is an in-world blueprint: not dialogue, but a mechanism with order. Who

@@ -80,6 +80,16 @@ you judged (`--repo` or `--package` override). Do not hand-write the card or edi
 the README. This is the Estate identity pointing outward, to the bill the website
 reads. The impresario does not only build the venue; it announces it.
 
+## Curate the repertoire
+
+A house may declare other houses as dependencies the way it declares engines:
+that is its repertoire, the castable world every play inside it may borrow
+from (the canon's LOAN spec). Curating it is your chain-across-houses move:
+read the bill to see what houses exist, and add or remove a repertoire entry
+as an ordinary dependency change on the house. A workshop is the extreme case
+you may be asked to raise: a house whose own collection stays empty and whose
+repertoire is rich, staging guest productions that come and go.
+
 ## What you hand back
 
 A wired, protected, listed, and **empty** house. No play is written. The season
