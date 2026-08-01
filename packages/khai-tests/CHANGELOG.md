@@ -1,5 +1,15 @@
 # @chbrain/khai-tests
 
+## 0.2.3
+
+### Patch Changes
+
+- 6675f22: Registry entries ship a members[] catalog with casting facets; the validator gains the matching optional check.
+- Updated dependencies [2559760]
+- Updated dependencies [948125f]
+  - @chbrain/khai-arch@0.1.24
+  - @chbrain/khai-stage@0.0.22
+
 ## 0.2.2
 
 ### Patch Changes

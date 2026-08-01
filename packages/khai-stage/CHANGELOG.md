@@ -1,5 +1,11 @@
 # @chbrain/khai-stage
 
+## 0.0.22
+
+### Patch Changes
+
+- 948125f: Stamp scenarios/ into the house gitignore; accept --repertoire to seed house dependencies.
+
 ## 0.0.21
 
 ### Patch Changes

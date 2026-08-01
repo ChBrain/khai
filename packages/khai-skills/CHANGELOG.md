@@ -1,5 +1,13 @@
 # @chbrain/khai-skills
 
+## 0.0.31
+
+### Patch Changes
+
+- e0ba3f3: Repertoire clauses: playwright borrows before building, roadie carries the guest production, impresario curates the repertoire. Director untouched.
+- Updated dependencies [2559760]
+  - @chbrain/khai-arch@0.1.24
+
 ## 0.0.30
 
 ### Patch Changes

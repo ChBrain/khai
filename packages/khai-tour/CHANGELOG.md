@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.0.5
+
+### Patch Changes
+
+- 2ff1275: The scenario station: resolve a guest production against the repertoire (build/borrow/fail/collision with lender qualification), widen by engine ladders, compose the deployed contract, gate, pack one flat zip. CLI: khai-tour scenario.
+- Updated dependencies [2559760]
+- Updated dependencies [bf457d6]
+  - @chbrain/khai-arch@0.1.24
+  - @chbrain/khai-engine-spine@0.1.5
+
 ## 0.0.4
 
 ### Patch Changes

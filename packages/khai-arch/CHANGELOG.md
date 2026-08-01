@@ -1,5 +1,11 @@
 # @chbrain/khai-arch
 
+## 0.1.24
+
+### Patch Changes
+
+- 2559760: The repertoire (LOAN, draft): a house declares the castable world in reach; plays borrow before they build.
+
 ## 0.1.23
 
 ### Patch Changes
