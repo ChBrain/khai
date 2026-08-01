@@ -305,14 +305,14 @@ from instance frontmatter, which misses any type with zero instances, as
 - **Record** — `performance`: "what happened," the claim-ticket a run leaves beside
   the play. A coherent force-target _in principle_, but **the type is not yet born**
   (`status: draft`, zero instances, no template). It is not blocked in the deep
-  sense the first pass implied: borning it is a **bounded seam** that splits across
-  two locations (see F-performance). **Correction:** its "result layer" is
-  **`khai-writing`, a separate repo** — plays _produce_ performances, which are
-  _stored on_ `khai-writing` — **not** a package to mint inside this monorepo. So
-  the type-birth half (template, status, a `validate` check, a first instance) is
-  ours on `arch` / governance lanes; the result-layer half is external; and the one
-  genuinely open question is how a performance instance's **Lodged** link resolves
-  _across repos_.
+  sense the first pass implied: borning it is a **bounded seam** (see F-performance).
+  **Correction:** its "result layer" is **`khai-writing` — just another house** (a
+  khai-stage house that already exists) where plays' performances are stored, **not**
+  a package to mint inside this monorepo. So khai knows about it the way it knows any
+  house — **on the bill** (a `khai-plays` registry card) — and Lodged resolves
+  cross-house through the repertoire, no new machinery. The type-birth half (template,
+  status, a `validate` check, a first instance) is ours on `arch` / governance lanes;
+  the only thing still needing the maintainer is the seed for the first instance.
 - **Machinery** — `instructions`, `order`, `architecture`, `design`, `engines`:
   khai's own wiring, not force-targets.
 
@@ -554,15 +554,19 @@ clean, well-warranted force-space (performance studies / reception history /
 memory studies), with no collisions against any live engine.
 
 **The corrected model.** A **play** (a run) **produces** a **performance**; that
-performance's canonical written record is **stored on `khai-writing`, a separate
-repo that already exists** — the archive, _outside this monorepo_. The in-monorepo
-performance instance is the claim-ticket "on loan" from that external record
-(`repertoire.md`: "lodged with khai-writing and the in-band file permanently on loan
-from it"). This corrects an earlier reading that treated `khai-writing` as a package
-to mint _inside_ this repo (a `writing/*` lane, a `packages/khai-writing`): it is
-neither, and it does not need standing up — it is there. The result layer is
-external, so the born-the-type work splits cleanly into a half that is ours and a
-half that is not.
+performance's canonical written record is **stored on `khai-writing` — which is
+just another house** (a khai-stage house that already exists), _outside this
+monorepo_. The in-monorepo performance instance is the claim-ticket "on loan" from
+that external record (`repertoire.md`: "lodged with khai-writing and the in-band file
+permanently on loan from it"). This corrects an earlier reading twice over: it is not
+a package to mint _inside_ this repo (no `writing/*` lane, no `packages/khai-writing`),
+and it needs no bespoke cross-repo resolver either. It is a house, so **khai knows
+about it the way khai knows about any house: on the bill** — a card in the `khai-plays`
+registry (`npx @chbrain/khai-plays register`). A performance's **Lodged** link then
+resolves **cross-house through the repertoire**, exactly the path
+`order_the_repertoire.md` already built ("cross-house links resolve through
+`node_modules` per the composite ruling"). The result layer is external, but its
+resolution is a solved problem, not an open one.
 
 | Candidate            | Force on the performance                                               | Attaches           | Warrant                                                        | Confidence                                                      |
 | -------------------- | ---------------------------------------------------------------------- | ------------------ | -------------------------------------------------------------- | --------------------------------------------------------------- |
@@ -576,9 +580,17 @@ half that is not.
 
 **The seam (bounded, not a rabbit hole).** Unlike `place`/`piece`/`plan`
 (populated, only lacking force-engines), `performance` is unpopulated: **the type
-must be _born_ first.** But that is a small, sequenceable seam that copies a pattern
-this repo already runs for `play`/`plan`/`order`, split across the two locations the
-corrected model names.
+must be _born_ first.** But that is a small, sequenceable seam that copies patterns
+this repo already runs — the type-birth after `play`/`plan`/`order`, the house
+registration after every house already on the bill.
+
+_Register the house on the bill (`plays/` lane, `khai-plays` registry):_
+
+0. **a card for `khai-writing`** — `npx @chbrain/khai-plays register writing --repo
+… --package …`, the same one-command registration every other house on the bill
+   used. This is what "khai knows about it" means concretely; once the card is on
+   the bill, `khai-writing` is a declared house and Lodged links resolve to it
+   cross-house through the repertoire, no new machinery.
 
 _The type-birth half — ours, in this monorepo (`arch` / governance lanes):_
 
@@ -587,30 +599,21 @@ _The type-birth half — ours, in this monorepo (`arch` / governance lanes):_
    closest sibling); `templates.test.mjs` picks it up automatically. (arch lane)
 2. **a `validate.mjs` `on: performance` check** — a block parallel to the existing
    `type === "play"/"plan"/"order"` paths, asserting the **Lodged** link resolves
-   ("it must resolve, or this is not yet a performance"). Source and its dormant
-   test are **separate PRs** per rule 3. (governance lane)
+   ("it must resolve, or this is not yet a performance") through the same cross-house
+   repertoire resolution. Source and its dormant test are **separate PRs** per rule 3. (governance lane)
 3. **at least one real `khai: performance` instance** authored from an actual
    Director capture and cast, round-tripping through `validate.mjs`.
-4. **status promoted `draft` → `published`** once 1–3 prove the chapters, the same
+4. **status promoted `draft` → `published`** once 0–3 prove the chapters, the same
    criterion `repertoire.md`'s own order used for itself — not before.
 
-_The result-layer half — not ours as a package:_ the record lives on the external
-**`khai-writing`** repo. **No `writing/*` lane, no `packages/khai-writing`.**
-
-**The one genuinely open question** (replacing the old "undefined result layer"
-blocker): how a performance instance's **Lodged** link resolves to a record in a
-_separate repo_. `checkLinks`'s package-specifier path only resolves through
-`node_modules`, so either (a) `khai-writing` publishes an npm package this repo
-depends on and Lodged links resolve like any dependency (`@chbrain/khai-writing/…`),
-or (b) the loan-ticket carries the reference out-of-band and resolution is looser
-than the package check (`khai-writing` being a plain repo rather than a published
-npm package points at (b), unless it also ships as a dependency). **That is a
-maintainer-scope call**, alongside one other the seam needs: whether a real Director
-run is ready to seed instance #3 (else it is synthetic bootstrap content). The
-"exists or stand up" question is now closed — `khai-writing` is there.
-`order_the_repertoire.md` deferred this mint _deliberately_ ("Minted …
-when the Director's first capture wants writing down; not before") — so this chart
-is a **proposal to the maintainer**, not a unilateral build.
+**The resolution question is closed.** `khai-writing` is a house; Lodged resolves
+cross-house through the repertoire, the path `order_the_repertoire.md` already built
+— no `writing/*` lane, no `packages/khai-writing`, no out-of-band resolver. The one
+thing the seam still needs from the maintainer is the seed for step 3: whether a real
+Director run is ready to be lodged, or step 3 is synthetic bootstrap content.
+`order_the_repertoire.md` deferred this mint _deliberately_ ("Minted … when the
+Director's first capture wants writing down; not before") — so this chart is a
+**proposal to the maintainer**, not a unilateral build.
 
 **The seven forces unblock together, not in stages.** Once instance #3 populates
 Lodged / Occasion / Aftermath / Note, all seven can attach `requires: { on:
