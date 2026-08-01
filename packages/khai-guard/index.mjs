@@ -936,7 +936,15 @@ export function changesetCheck({
   // identical to the last and drifts the version — the spurious `0.<count>.1`
   // patch a REFERENCES/docs/tooling PR cuts when it carries a `patch` changeset
   // instead of an `--empty` one. Only checked when the shipped set is known.
-  const releasing = changesets.some((c) => Array.isArray(c.entries) && c.entries.length > 0);
+  // A changeset this PR EDITS is not new release intent: the bump was declared by
+  // the PR that added it and already stands on the base, so repairing one (a wrong
+  // package name, a typo in the body) must not read as a bump this diff has to
+  // justify with shipped content. Only an added changeset makes the PR releasing.
+  // A record carrying no `added` flag counts as added, so a caller that does not
+  // track diff status keeps the behaviour it had.
+  const addedChangesets = changesets.filter((c) => c.added !== false);
+  const addedFiles = new Set(addedChangesets.map((c) => c.file));
+  const releasing = addedChangesets.some((c) => Array.isArray(c.entries) && c.entries.length > 0);
   if (packages.length === 0 && shipped.length > 0 && releasing) {
     const isShipped = picomatch(shipped, { dot: true });
     if (!changed.some((c) => isShipped(c.path))) {
@@ -987,8 +995,10 @@ export function changesetCheck({
     // that package's own `files` republishes identical content. Skipped for a
     // first release (already flagged above, and its whole tree is new) and for a
     // package with no `files` field (shipped set unknown -> rule off, as before).
+    // Reads added changesets only, for the same reason the root rule does: an
+    // edited changeset carries a bump this PR did not declare.
     const stale = [];
-    for (const b of bumps) {
+    for (const b of bumps.filter((b) => addedFiles.has(b.file))) {
       const pkg = known.get(b.package);
       if (pkg.released === false) continue;
       const globs = Array.isArray(pkg.shipped) ? pkg.shipped : [];

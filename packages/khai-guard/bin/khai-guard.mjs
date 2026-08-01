@@ -413,12 +413,17 @@ function runChangesetCheck() {
   // docs/governance PR that ships no `files` content (a false positive). Match the
   // added/modified changeset files in the diff (a rename-into parses as an add; a
   // delete is excluded — the PR is removing it, not carrying it).
-  const prChangesets = new Set(
-    changed.filter((c) => c.status === "A" || c.status === "M").map((c) => c.path),
+  // Keep the status: an added changeset is this PR's release intent, an edited one
+  // is a repair to a bump the base already carries. The ships-nothing rules read
+  // the added set only; everything else still sees both.
+  const prChangesets = new Map(
+    changed.filter((c) => c.status === "A" || c.status === "M").map((c) => [c.path, c.status]),
   );
   const { ok, violations, addsCountDriven } = changesetCheck({
     changed,
-    changesets: readChangesets().filter((c) => prChangesets.has(c.file)),
+    changesets: readChangesets()
+      .filter((c) => prChangesets.has(c.file))
+      .map((c) => ({ ...c, added: prChangesets.get(c.file) === "A" })),
     shipped: readShippedGlobs(),
     packages: readPackages(changed),
     config,
