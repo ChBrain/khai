@@ -503,7 +503,14 @@ export function packScenario({ scenarioDir, outputDir, ...rest } = {}) {
   if (!outputDir) throw new Error("packScenario: `outputDir` is required");
   const bundle = buildScenarioBundle({ scenarioDir, ...rest });
   mkdirSync(outputDir, { recursive: true });
-  const name = basename(scenarioDir.replace(/[\\/]+$/, "")) || "scenario";
+  // Trim trailing separators without a regex: an anchored `[\\/]+$` retries a
+  // long separator run from every offset (CodeQL polynomial-redos, the same
+  // class compose.mjs guards against), and `scenarioDir` is caller input.
+  let trimmedDir = scenarioDir;
+  while (trimmedDir.endsWith("/") || trimmedDir.endsWith("\\")) {
+    trimmedDir = trimmedDir.slice(0, -1);
+  }
+  const name = basename(trimmedDir) || "scenario";
   const outputPath = join(outputDir, `${name}.zip`);
   writeFileSync(outputPath, zip(bundle.entries.map((e) => ({ name: e.path, data: e.content }))));
   return {
