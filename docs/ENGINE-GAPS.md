@@ -319,11 +319,14 @@ from instance frontmatter, which misses any type with zero instances, as
 Each row builds to the usual standard on its own lane, as an ordinary engine or
 composite (there is no new library family — a force on a place is just an engine
 in `packages/engines/` that declares `on: place`). Recommended first wave, for
-cleanliness and payoff: `place/soundscape`, `place/weather`, `plot/anagnorisis`
-(also fixes the doc bug below), `process/momentum`, `piece/biography`. **First-of-kind
-flag:** no engine yet declares `on:` a cargo type other than persona/plot/play —
-the first place/piece/plan/process force to land sets that wiring precedent and is
-worth a maintainer eye, the way `ptsd`'s mechanics-first shape was.
+cleanliness and payoff: `place/weather`, `place/soundscape`, `plot/anagnorisis`,
+`process/drift`, `piece/affordance`. **First-of-kind flag:** no engine yet declares
+`on:` a cargo type other than persona/plot/play — the first place/piece/plan/process
+force to land sets that wiring precedent and is worth a maintainer eye, the way
+`ptsd`'s mechanics-first shape was. The two cleanest proofs, by the disclaimed-by-name
+signal that produced Tier 1's best rows, are `process/drift` (`reversal` disclaims
+"drift" outright) and `place/weather`; `piece/affordance` (Norman/Gibson, the design
+family, not `piece/biography`'s history family) is the design-led third.
 
 **Two corrections surfaced by the pass:**
 
@@ -405,18 +408,67 @@ Boundary held hard against the persona-side planning psychology already built
 | **obsolescence** | the plan overtaken by events (premises stale)       | Boyd (OODA); Clausewitz; Weick             | high                                   |
 | **disruption**   | a discrete shock invalidating a named assumption    | Perrow; Chapman & Ward                     | maintainer-call (merge w/ fog-of-war?) |
 
-### Tier F-process — forces on an unfolding dynamic (3 engines)
+### Tier F-process — forces on an unfolding dynamic (9 engines)
 
-The "physics of unfolding," distinct from any persona experiencing it. Conservative
-result: 3 true residues (catalysis / derailment fold into these).
+The "physics of unfolding": what speeds a dynamic, stalls it, locks it in, breaks
+it, couples it to another, tips it into a new regime, or governs the _shape_ of its
+run — independent of who runs it (that would be `on: persona`, saturated) or what
+story it sits in (`on: plot`, near-saturated). Attach-chapters are `process`'s own
+(mnemonic **TO IDLE**): **Initiated by** (the threshold that makes it start),
+**Direction** (the vector once started), **Lever** (carry meeting resistance),
+**Echo** (what the next process inherits). `on: process` is genuinely unbuilt —
+first-of-kind cargo wiring per the cross-type order.
 
-| Candidate        | Force on the dynamic                                    | Warrant                                             | Confidence  |
-| ---------------- | ------------------------------------------------------- | --------------------------------------------------- | ----------- |
-| **momentum**     | resistance to changing state — lock-in or dead-start    | David (QWERTY); Arthur; Pierson (path dependence)   | high        |
-| **interruption** | broken off mid-run, suspended with a resumption cost    | Zeigarnik; Mark et al.; Trafton & Monk              | high        |
-| **phase-shift**  | crossing a threshold into a new regime (incl. ignition) | Scheffer (critical transitions); Granovetter; Watts | medium-high |
+The first pass charted 3 and called it "conservative"; a full sweep (Van de Ven &
+Poole, systems dynamics, critical-transitions, entrainment, punctuated-equilibrium,
+drift literatures — each verified against live member files) found **six more**, and
+three boundary calls the stub got wrong. The reason it under-counted: it kept
+flinching at the boundary, because so many dynamics are _already_ engines (128
+process-typed), and folded real forces-on-a-dynamic into the nearest neighbour.
 
-(`tempo` — accel/decel — weaker engine-shape; maintainer-call, build last or not at all.)
+**The 3 stub rows survive** (refined — what's left after the neighbours):
+
+| Candidate        | Force on the dynamic                                 | Chapter          | Warrant / residue                                                                                                                     | Confidence  |
+| ---------------- | ---------------------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **momentum**     | resistance to changing state — lock-in or dead-start | Echo             | David; Arthur; Pierson. Residue after `scarcity/trap` + `escalation` (both domain-scoped spirals): the domain-neutral inertia itself. | high        |
+| **interruption** | broken off mid-run, suspended with a resumption cost | Direction / Echo | Zeigarnik; Mark; Trafton & Monk. Residue: the general suspend-and-resume tax on a dynamic, whoever is interrupted.                    | high        |
+| **phase-shift**  | crossing a threshold into a new regime (ignition)    | Initiated by     | Scheffer; Granovetter; Watts. Residue after `adoption` (diffusion S-curve) + `bias` (availability-cascade): the single regime-cross.  | medium-high |
+
+**Six new, each verified against live members:**
+
+| Candidate       | Force on the dynamic                                                                                            | Chapter          | Warrant (lineage)                                                                  | Boundary                                                                                                                           | Confidence  |
+| --------------- | --------------------------------------------------------------------------------------------------------------- | ---------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **drift**       | the baseline slides step by unremarked step until the process is somewhere no one chose — no decision, no event | Direction        | Vaughan (normalization of deviance) → Snook (practical drift) → Dekker → Rasmussen | `reversal/process_turn.md` **disclaims "a general deterioration or drift" by name**; not momentum (inertia) or phase-shift (event) | high        |
+| **entrainment** | two dynamics couple until their rhythms phase-lock — content-neutral                                            | Lever            | Huygens → Kuramoto → Strogatz (_Sync_); McNeill (_Keeping Together in Time_)       | `contagion` owns affect-spread, `ritual/effervescence` collective energy; rhythm-locking is unclaimed                              | high        |
+| **bottleneck**  | the whole pace set by the single slowest step; relieving anything else changes nothing                          | Lever            | Liebig (law of the minimum) → Goldratt (_The Goal_, ToC) → queueing theory         | `scarcity` is a persona's bandwidth tax, not a dynamic's throughput ceiling; the rigorous form of "tempo"                          | high        |
+| **ratchet**     | a one-way catch — advances but cannot slip back; each gain locked before the next                               | Echo             | Duesenberry → Tomasello (cultural ratchet) → Scheffer (irreversibility)            | stem `hysteresis` is **taken** (`heritage`, Bourdieu); vs `momentum` = why it stays, ratchet = why it can't reverse                | medium-high |
+| **punctuation** | long stasis alternating with brief bursts of change — the tempo of a whole run                                  | Echo / Direction | Eldredge & Gould → Tushman & Romanelli → Gersick (deep structure)                  | `phase-shift` is a _single_ crossing; this is the _alternation_ across the whole span                                              | medium-high |
+| **oscillation** | a delayed balancing feedback makes it overshoot and swing back, cycling not settling                            | Direction / Echo | Forrester → Meadows (overshoot) → Minsky; Lotka–Volterra                           | `momentum` is one-way inertia; this is the cyclical correction with delay (absorbs the lag/delay question)                         | medium      |
+
+(`dissipation` — a dynamic losing its ordering energy and winding down (Prigogine) —
+is real in principle but overlaps `momentum`'s dead-start and F-place `decay`;
+**parked** unless a maintainer wants it. `tempo` is dropped — its sharp parts went to
+`bottleneck` and `momentum`.)
+
+**Strongest first-of-kind `on: process` proof: `drift`.** Free stem, single-chapter
+attach (Direction), and — the deciding factor — a boundary an existing engine
+(`reversal`) **disclaims by name**, the same highest-confidence signal that produced
+Tier 1's best rows (fear→anxiety, virtue→moral-identity). It sets the `on: process`
+precedent on a boundary no one can dispute. `bottleneck` and `entrainment` are the
+strongest seconds — each proves the wiring generalises to a _different_ chapter (Lever).
+
+**Rejects (documented so they need not be re-checked):** `catalysis` (a threshold/Lever
+parameter, not a force); `derailment` (folds into `interruption` or `reversal`);
+`autocatalysis` / general reinforcing feedback / Van de Ven's four motors (owned in
+domain forms — `scarcity/trap`, `escalation`, `group` Tuckman life-cycle, `goal`
+teleological — a general engine would restate them and fail `member-check`);
+`hysteresis` as a stem (taken by `heritage`; the residue is built as `ratchet`);
+`cascade` (split across `phase-shift` + `adoption` + `bias/availability-cascade`);
+`lag`/`delay` (a parameter; its consequential form is `oscillation`); `tempo` (weak
+shape). **Composites are all blocked** — F-process carries no force-atoms yet, so an
+`instability` / `regime-cycle` reading over oscillation → phase-shift → punctuation
+has nothing to read over until these engines land, exactly as the cross-type order
+anticipates.
 
 ### Tier F-plot / play — narrative forces (~12 engines; the axis is near-saturated)
 
