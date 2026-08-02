@@ -1,0 +1,4 @@
+---
+---
+
+Add the management order "Open the Cross-Type Frontier" (packages/khai-plays/management/orders/). Sets, once for the whole Tier F frontier, the invariant every cross-type force build obeys: no new library family (a force on any type is an ordinary engine/composite declaring requires.on); the first-of-kind rule (the first on: a non-persona/plot/play cargo type sets the wiring precedent and takes the maintainer's eye, as ptsd did for mechanics); attach-chapters are API; one-phenomenon-one-engine holds across types; warrant-is-a-lineage; bound-against-the-faculty; same gates, serial build. Defers the candidate chart to docs/ENGINE-GAPS.md Tier F and every build to its own lane. Names the opening proof (place/weather as the first-of-kind on: place engine) and defers it; the first cross-type composite waits until a surface carries force-atoms to read over. No package change.
