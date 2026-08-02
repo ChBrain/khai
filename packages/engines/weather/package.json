@@ -1,0 +1,204 @@
+{
+  "name": "@chbrain/khai-engine-weather",
+  "version": "0.1.0",
+  "description": "khai engine content, the weather domain: weather as the atmospheric force a place undergoes, channel by channel and band by band.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/weather"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "weather",
+    "tagline": "Weather as process: the atmospheric force a place undergoes, channel by channel and band by band, moving what the place shows before anyone speaks.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_weather.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_wind.md",
+        "type": "process",
+        "parent": "process_weather.md"
+      },
+      {
+        "file": "process_wind_light.md",
+        "type": "process",
+        "parent": "process_wind.md"
+      },
+      {
+        "file": "process_wind_fresh.md",
+        "type": "process",
+        "parent": "process_wind.md"
+      },
+      {
+        "file": "process_wind_gale.md",
+        "type": "process",
+        "parent": "process_wind.md"
+      },
+      {
+        "file": "process_wind_storm.md",
+        "type": "process",
+        "parent": "process_wind.md"
+      },
+      {
+        "file": "process_water.md",
+        "type": "process",
+        "parent": "process_weather.md"
+      },
+      {
+        "file": "process_water_damp.md",
+        "type": "process",
+        "parent": "process_water.md"
+      },
+      {
+        "file": "process_water_shower.md",
+        "type": "process",
+        "parent": "process_water.md"
+      },
+      {
+        "file": "process_water_downpour.md",
+        "type": "process",
+        "parent": "process_water.md"
+      },
+      {
+        "file": "process_water_deluge.md",
+        "type": "process",
+        "parent": "process_water.md"
+      },
+      {
+        "file": "process_heat.md",
+        "type": "process",
+        "parent": "process_weather.md"
+      },
+      {
+        "file": "process_heat_warm.md",
+        "type": "process",
+        "parent": "process_heat.md"
+      },
+      {
+        "file": "process_heat_sweltering.md",
+        "type": "process",
+        "parent": "process_heat.md"
+      },
+      {
+        "file": "process_heat_scorching.md",
+        "type": "process",
+        "parent": "process_heat.md"
+      },
+      {
+        "file": "process_heat_lethal.md",
+        "type": "process",
+        "parent": "process_heat.md"
+      },
+      {
+        "file": "process_cold.md",
+        "type": "process",
+        "parent": "process_weather.md"
+      },
+      {
+        "file": "process_cold_cool.md",
+        "type": "process",
+        "parent": "process_cold.md"
+      },
+      {
+        "file": "process_cold_biting.md",
+        "type": "process",
+        "parent": "process_cold.md"
+      },
+      {
+        "file": "process_cold_numbing.md",
+        "type": "process",
+        "parent": "process_cold.md"
+      },
+      {
+        "file": "process_cold_killing.md",
+        "type": "process",
+        "parent": "process_cold.md"
+      },
+      {
+        "file": "process_sky.md",
+        "type": "process",
+        "parent": "process_weather.md"
+      },
+      {
+        "file": "process_sky_clear.md",
+        "type": "process",
+        "parent": "process_sky.md"
+      },
+      {
+        "file": "process_sky_veiled.md",
+        "type": "process",
+        "parent": "process_sky.md"
+      },
+      {
+        "file": "process_sky_shut.md",
+        "type": "process",
+        "parent": "process_sky.md"
+      },
+      {
+        "file": "process_season.md",
+        "type": "process",
+        "parent": "process_weather.md"
+      },
+      {
+        "file": "process_season_dormant.md",
+        "type": "process",
+        "parent": "process_season.md"
+      },
+      {
+        "file": "process_season_growing.md",
+        "type": "process",
+        "parent": "process_season.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Shown",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place, on the Shown chapter. The root (process_weather.md) declares weather as a loop a place runs whenever its sky turns: a front arrives and the place's conditions begin to move, felt on every face at once before anyone speaks. Weather moves only what space already set; it never re-owns the setting.",
+      "issue": "Six channels, each its own load. Wind, water, heat, cold, and sky are the transient loads a place undergoes; season runs underneath, standing, never arriving. Each transient channel climbs one intensity ladder of four bands, from a load the place tempers without effort to a load it cannot temper at all (sky climbs three); season does not climb, it holds the resting floor the transient channels relax toward. One channel may sit at a different band than another at the same moment.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the weather-world reads system-wide and no place escapes it. The link: each place carries, under Shown, the condition it is under, linking the channel and the band it presents.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the floor: the law is declared and each weathered place links a real channel file at a declared band under Shown. Whether the band is true to the place is semantic, taught and reviewed, never failed by the suite. The place shows the load; it does not narrate it, and it never mirrors a persona's feeling.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each place its read under Shown: link the channel and band the front has brought. Season sets the floor each channel relaxes toward, so a dormant-tilt place sits colder and darker at rest. Read it in the first beat; the place enacts the load, never announces it."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
