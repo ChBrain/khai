@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-composite-artifice",
+  "version": "0.1.0",
+  "description": "khai composite content, the artifice domain: the designed object read whole -- the settlement a made thing strikes among the five design forces (usability, agency, ergonomics, guile, captology), and whether that settlement serves the user, extracts for the maker, or fails to cohere at all.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/artifice"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "artifice",
+    "tagline": "Artifice as composite: the designed object read whole -- the settlement a made thing strikes among the five design forces (usability, agency, ergonomics, guile, captology), and the drama lives in whether that settlement holds for the user (concord), turns to take from them (extraction), or falls apart against itself (discord).",
+    "type": "piece",
+    "members": [
+      {
+        "file": "piece_artifice.md",
+        "type": "piece",
+        "parent": null
+      },
+      {
+        "file": "piece_artifice_concord.md",
+        "type": "piece",
+        "parent": "piece_artifice.md"
+      },
+      {
+        "file": "piece_artifice_extraction.md",
+        "type": "piece",
+        "parent": "piece_artifice.md"
+      },
+      {
+        "file": "piece_artifice_discord.md",
+        "type": "piece",
+        "parent": "piece_artifice.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "piece",
+        "section": "Load Bearing",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Piece, over five atoms it declares as dependencies -- the first composite to wire engines rather than composites, and the first on the piece type. The root (piece_artifice.md) reads the designed object whole: not any one design force but the settlement a made thing strikes among all five. Usability supplies the honest confirmation, agency the conscription, ergonomics the bodily fit, guile the deception, captology the hook; this composite adds no sixth force but reads what the five make together in one object. Its warrant is the synthesis view of design -- Simon's artifact shaped to serve a goal, Alexander's form as the resolution of forces in a context -- so a piece is never one force but their composition, and the ethics of it lives in whom the composition serves.",
+      "issue": "Three bridges, the shapes the settlement takes. Concord: the forces aligned for the user -- the object that fits the body, tells the truth of its state, and enlists openly or not at all, neither tricking nor hooking against the one who uses it; Alexander's good fit, the well-made honest tool. Extraction: the forces aligned for the maker against the user -- the hook and the trick and the coerced enlistment bent to take from the user while wearing the surface of serving them; the attention-economy object, the object designed to extract. Discord: the forces at war with each other -- usable but unfit, honest but hooking, the ergonomics fighting the affordance, so no single reading wins and the object misfits itself; Alexander's misfit. A single force alone is an atom's; the composite is the five held in one object and the settlement they reach.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the artifice read runs wherever its atoms are cast. The link, advisory: a piece may link under Load Bearing the bridge it strikes, and the audit surfaces where a play stages a designed object without naming whether its forces hold for the user, extract for the maker, or fall apart.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the five design engines in turn. Whether a production's object genuinely settles its forces the way the bridge names -- a concord that truly serves, an extraction that truly takes, a discord that truly fails to cohere -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- the five design engines, and through them their own members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the object's forces from the five engines -- the fit from ergonomics, the confirmation from usability, the enlistment from agency, the trick from guile, the hook from captology -- then strike the bridge: concord when the forces align for the user, extraction when they align for the maker against the user, discord when they war with each other. Read the object in the settlement it strikes, never in the word artifice alone -- and remember that a made thing that hooks and fits and deceives at once is not three separate findings but one object, and the composite is what reads it as one."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-usability": "^0.1.0",
+    "@chbrain/khai-engine-agency": "^0.1.0",
+    "@chbrain/khai-engine-ergonomics": "^0.1.0",
+    "@chbrain/khai-engine-guile": "^0.1.0",
+    "@chbrain/khai-engine-captology": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
