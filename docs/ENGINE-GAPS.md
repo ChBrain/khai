@@ -376,7 +376,7 @@ owns Relph rootedness.
   re-entry / displacement → reclamation, over `dereliction` + `gentrification` +
   `restoration`.
 
-### Tier F-piece — forces on an object (6 engines + 3 composites)
+### Tier F-piece — forces on an object (9 engines + 3 composites)
 
 Virgin attach-point: `template_piece.md` has `Place / Load Bearing / Apparent /
 Yearbook` chapters, never targeted (mnemonic TO PLAY). Prior coverage (all
@@ -398,21 +398,34 @@ things changes pieces, not just biography").
 | **sign-value**   | the coded status-meaning, and its fetish mystification    | Baudrillard; Marx; Veblen; McCracken | medium-high               |
 | **obsolescence** | rendered out-of-date by a shifted standard, not decay     | Slade; Packard; Chapman              | medium (merge w/ patina?) |
 
-**Design family** (what the object invites, form-intrinsic) — two engines, one
-composite:
+**Design family** (what the object invites, form-intrinsic) — **five poles**, one
+composite. The domain grew from two poles to five by the discovery loop: building
+the `artifice` composite surfaced three missing engines (the physical pole, and the
+two "bridges" that turned out to be their own phenomena). Each pole is the
+**piece-pole (object side) of a science whose persona-pole is already built** —
+deceptive-design ↔ `deception`, captology ↔ `persuasion`/`conditioning`, exactly as
+`agency` ↔ personal-agency and `usability` ↔ `space`.
 
-| Candidate     | Force on / around the piece                                                                                                                                                                                                               | Warrant                                      | Confidence                                                                       |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- | -------------------------------------------------------------------------------- |
-| **usability** | how the designed form communicates and governs use: a conceptual-model root over `grip` (affordance), `signifier`, `feedback`, `constraint` (Norman-depth; recharts the old `signifier` row, which was a thin proxy for the whole family) | Gibson; Norman; Gaver; Krippendorff; Nielsen | high — **designed; building as proof #3, `on: piece/Apparent`**                  |
-| **agency**    | the object as social delegate — prescribing/forbidding conduct as a political actor (the speed bump that polices; the cap that enforces a program)                                                                                        | Latour; Akrich; Winner; Gell                 | medium-high — the _political_ pole of design (vs `usability`'s _cognitive_ pole) |
+| Pole           | Candidate      | Force on / around the piece                                                                                                            | Warrant                                      | Chapter        | Confidence                |
+| -------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- | -------------- | ------------------------- |
+| **cognitive**  | **usability**  | how the form communicates and governs use: root over `grip`/`signifier`/`feedback`/`constraint`                                        | Gibson; Norman; Gaver; Krippendorff; Nielsen | `Apparent`     | **shipped** (#1058/#1059) |
+| **political**  | **agency**     | the object as social delegate — prescribing/forbidding conduct (the speed bump that polices; the cap that enforces a program)          | Latour; Akrich; Winner; Gell                 | `Load Bearing` | **shipped** (#1060/#1061) |
+| **physical**   | **ergonomics** | the object's physical fit to the body — anthropometric dimensions, reach, force, clearance, the handle sized to the hand               | Dreyfuss; Tilley; Woodson; Pheasant          | `Load Bearing` | high (build #1)           |
+| **deceptive**  | **guile**      | the object designed to mislead for the maker's benefit — dark patterns; the lie is the intent, not a defect (vs usability's false cue) | Brignull; Gray et al.; Mathur et al.         | `Apparent`     | high (build #2)           |
+| **behavioral** | **captology**  | the object designed to shape behavior / form habits — the engineered reinforcement loop, conditioning the user over time               | Fogg; Eyal; Thaler & Sunstein                | `Load Bearing` | high (build #3)           |
 
 - **fetish** (composite, blocked): `sign-value` + `agency` + `biography`.
 - **provenance** (composite, blocked): `biography` + `patina` + `document`.
-- **artifice** (design composite, blocked; working name): `usability` + `agency` —
-  the full force a designed object exerts on conduct, cognitive (Norman) and
-  political (Latour/Winner) together. Waits until both design engines land, per the
-  cross-type order's composite rule. Name tentative — the `design` stem is taken by
-  the machinery type.
+- **artifice** (design composite, blocked; working name — build #4): the **5-atom**
+  capstone over the complete pole-set — `ergonomics` + `usability` + `agency` +
+  `guile` + `captology` — reading the full force a designed object exerts on conduct:
+  what it **fits**, **communicates**, **enforces**, **deceives**, and **conditions**.
+  The integrative warrant reunites the two halves of Verbeek's mediation the atoms
+  split (`What Things Do` → usability, `Moralizing Technology` → agency). `concord`
+  (constraint + prescription) stays a **seam inside** it, not an atom. Waits until all
+  five poles land, per the cross-type order's composite rule. Name tentative — the
+  `design` stem is taken by the machinery type. First composite to attach `on: piece`
+  (chapter `Load Bearing`, `audit` level) — a first-of-kind for the maintainer's eye.
 
 **Naming resolution (design family).** The object-design engine is `usability`,
 **not** `affordance`: the `affordance` stem is `space`'s (`place_affordance.md` —
@@ -421,10 +434,22 @@ word in the _same science_ at different scale, so it fails the homonym bar rathe
 than earning a whitelist. `usability` is the field's own umbrella term (Norman →
 Nielsen) and names the force at the right altitude; Gibson's affordance is carried
 as the member `grip`. This is the sharp line: `space` owns affordance-of-the-place,
-`usability` owns affordance-of-the-object; the collision _is_ the boundary. The one
-boundary still to arbitrate at build time is `usability/constraint` (legible form)
-vs `agency` (social program) — resolved by keeping `constraint` cognitive (Verbeek)
-and handing the Latourian social-delegate reading to `agency`.
+`usability` owns affordance-of-the-object; the collision _is_ the boundary.
+
+**Naming the three new poles.** The persona-pole stems are taken (`deception`,
+`habit`, `persuasion` are persona-side engines, and `member-check` rejects a root
+that restates their domain), so each design engine takes its own object-side stem,
+all verified free: **`ergonomics`** (Dreyfuss's field name; members
+`anthropometry`/`reach`/`clearance`/`fit`/`tolerance`), **`guile`** (the object's
+guile — not `deception`; Gray's taxonomy `sneaking`/`obstruction`/`nagging`/
+`forced-action`/`interface-interference`), **`captology`** (Fogg's coined umbrella —
+not `persuasion`/`habit`; members from Fogg trigger/motivation/ability, Eyal
+variable-reward/investment, Thaler default/choice-architecture). Boundaries to
+arbitrate at each build: `guile` vs `agency` (both conceal — agency conceals a
+_social-order program_, guile deceives the user into a _transaction against their
+own interest_); `captology` vs `agency/enlistment` (enlistment drafts you
+_structurally, once_; captology _conditions_ you _over time_) and vs the persona-side
+`conditioning`/`addiction` (which model the person, not the object).
 
 ### Tier F-plan — forces on a plan-as-contested-object (6 engines)
 
