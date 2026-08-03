@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-agency",
+  "version": "0.1.0",
+  "description": "khai engine content, the agency domain: the object as social delegate -- how a designed thing prescribes and forbids conduct as a political actor, enforcing a program on whom.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/agency"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "agency",
+    "tagline": "Agency as piece: the object as social delegate -- how a designed thing prescribes and forbids conduct as a political actor, enforcing a program on whom -- the politics of artifacts read on the object, not the setting.",
+    "type": "piece",
+    "members": [
+      {
+        "file": "piece_agency.md",
+        "type": "piece",
+        "parent": null
+      },
+      {
+        "file": "piece_script.md",
+        "type": "piece",
+        "parent": "piece_agency.md"
+      },
+      {
+        "file": "piece_prescription.md",
+        "type": "piece",
+        "parent": "piece_agency.md"
+      },
+      {
+        "file": "piece_delegation.md",
+        "type": "piece",
+        "parent": "piece_agency.md"
+      },
+      {
+        "file": "piece_enlistment.md",
+        "type": "piece",
+        "parent": "piece_agency.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "piece",
+        "section": "Load Bearing",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Piece, on the Load Bearing chapter. The root (piece_agency.md) declares an object's agency as its role as a social delegate: a designed thing carrying a program of action and enforcing it on whoever meets it -- the politics of artifacts read on the object. It reads what the object does to conduct, structurally; it never re-owns how the form communicates use (usability's), a persona's own capacity to act (self-efficacy's, on a position), or a setting's ambient program (space's).",
+      "issue": "Four facets over a delegate root. Script is the program of action inscribed in the form -- the scenario, the roles and sequence it assumes. Prescription is the deontic force: what the object requires and forbids, must and cannot. Delegation is the absent maker's intention handed to the object to enforce in their stead. Enlistment is the reach: whoever meets the object conscripted into a program they did not choose. The politics are borne, not shown -- invisible until the object is gone and the conduct it held reverts.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so agency reads system-wide. The link: a piece that carries a social program links, under Load Bearing, the facet it enforces, one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each delegating piece links a real facet file under Load Bearing. Whether the program is true to the object is semantic, taught and reviewed, never failed by the suite. The object bears its politics structurally; remove it and the conduct it held reverts, which is how the program is known.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each delegate its facet under Load Bearing: the program it scripts, demands, carries for an absent maker, or drafts its users into. Keep the reading political -- what conduct it enforces on whom -- and hand how its form communicates use to usability. Play the program as borne and invisible; it shows only when the object is gone and the conduct reverts."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
