@@ -1,0 +1,94 @@
+{
+  "name": "@chbrain/khai-engine-guile",
+  "version": "0.1.0",
+  "description": "khai engine content, the guile domain: the object designed to mislead for the maker's benefit -- the dark pattern, where the lie is the intent and not a defect.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/guile"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "guile",
+    "tagline": "Guile as piece: the object designed to mislead for the maker's benefit -- the dark pattern, where the lie is the intent and not a defect, deceiving the user into acting against their own interest.",
+    "type": "piece",
+    "members": [
+      {
+        "file": "piece_guile.md",
+        "type": "piece",
+        "parent": null
+      },
+      {
+        "file": "piece_sneaking.md",
+        "type": "piece",
+        "parent": "piece_guile.md"
+      },
+      {
+        "file": "piece_obstruction.md",
+        "type": "piece",
+        "parent": "piece_guile.md"
+      },
+      {
+        "file": "piece_nagging.md",
+        "type": "piece",
+        "parent": "piece_guile.md"
+      },
+      {
+        "file": "piece_forcing.md",
+        "type": "piece",
+        "parent": "piece_guile.md"
+      },
+      {
+        "file": "piece_misdirection.md",
+        "type": "piece",
+        "parent": "piece_guile.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "piece",
+        "section": "Apparent",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Piece, on the Apparent chapter. The root (piece_guile.md) declares an object's guile as designed deception: a form built to mislead the user for the maker's benefit -- the dark pattern, where the object shows one thing on its surface and works another beneath it, against the interest of the one who trusts what is shown. It reads the object's designed deceit; it never re-owns an honest design defect (usability's false cue, which the maker would fix), a social-order program (agency's concealment), or a persona's own deceiving of another (the deception engine's, on a persona).",
+      "issue": "Five facets over a deceit root, after Gray's taxonomy of dark patterns. Sneaking hides or delays what the user would refuse if they saw it. Obstruction makes the path the user wants artificially hard. Nagging pesters by repetition until the user yields. Forcing requires an unwanted act to get the wanted one. Misdirection steers the eye and the click by a rigged interface. The tell is intent: the false 'pull' on a push door is a usability defect; the pre-checked add-on box is guile.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so guile reads system-wide. The link: a piece built to deceive links, under Apparent, the facet of its trick, one of the five.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each deceiving piece links a real facet file under Apparent. Whether the trick is true to the object is semantic, taught and reviewed, never failed by the suite. The object shows one thing and works another; the deceit is in the gap, and it is found by the user it cost.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each deceiving piece its facet under Apparent: what it sneaks, obstructs, nags, forces, or misdirects. Keep it deceptive by intent -- for the maker, against the user -- and hand an honest defect to usability and the object's social program to agency. Play the trick as a trusted surface, not an announced trap; it shows only when the user is caught by it."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
