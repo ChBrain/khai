@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-usability",
+  "version": "0.1.0",
+  "description": "khai engine content, the usability domain: how a piece's designed form communicates and governs its use -- what it affords, signifies, confirms, and forbids.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/usability"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "usability",
+    "tagline": "Usability as piece: how a piece's designed form communicates and governs its use -- what it affords, signifies, confirms, and forbids -- the design of everyday things read on the object, not the setting.",
+    "type": "piece",
+    "members": [
+      {
+        "file": "piece_usability.md",
+        "type": "piece",
+        "parent": null
+      },
+      {
+        "file": "piece_grip.md",
+        "type": "piece",
+        "parent": "piece_usability.md"
+      },
+      {
+        "file": "piece_signifier.md",
+        "type": "piece",
+        "parent": "piece_usability.md"
+      },
+      {
+        "file": "piece_feedback.md",
+        "type": "piece",
+        "parent": "piece_usability.md"
+      },
+      {
+        "file": "piece_constraint.md",
+        "type": "piece",
+        "parent": "piece_usability.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "piece",
+        "section": "Apparent",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Piece, on the Apparent chapter. The root (piece_usability.md) declares a piece's usability as the design of the object acting on its user: how the form communicates and governs its operation -- the design of everyday things read on the object. It reads the object's own design; it never re-owns the affordance of the setting (that is space's), the object's history (biography's), or its social agency (agency's).",
+      "issue": "Four facets over a conceptual-model root. Grip is the action the form affords; signifier is the perceivable cue that says where and how to act; feedback is the response that confirms the action registered; constraint is the form that makes the wrong use hard or impossible. Together they are Norman's apparatus: the form as a set of instructions read before the manual. A well-designed piece looks like what it does; a badly-designed one looks like something else, and the gap is where the user fails.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so usability reads system-wide. The link: a piece that carries designed use links, under Apparent, the design facet it expresses, one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each designed piece links a real facet file under Apparent. Whether the design is true to the object is semantic, taught and reviewed, never failed by the suite. The piece shows its design in its form; the use follows the form, and the design is read before anyone reaches for the manual.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each designed piece its facet under Apparent: what it affords, signals, confirms, or forbids by its form. Keep the design cognitive -- how the form communicates operation -- and hand the object's social program (what conduct it enforces on whom) to agency. Read the form as the first instruction; the object teaches its own use, or fails to."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
