@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-gentrification",
+  "version": "0.1.0",
+  "description": "khai engine content, the gentrification domain: the capital re-entry a place undergoes when the rent-gap disinvestment opened grows wide enough to profit -- reinvestment that upgrades the fabric and withholds the place from its prior occupants, displacing them.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/gentrification"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "gentrification",
+    "tagline": "Gentrification as process: the capital re-entry a place undergoes when the rent-gap disinvestment opened grows wide enough to profit -- reinvestment that upgrades the fabric, sells the place's own character, and withholds the place from its prior occupants, displacing them.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_gentrification.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_rent_gap.md",
+        "type": "process",
+        "parent": "process_gentrification.md"
+      },
+      {
+        "file": "process_upgrading.md",
+        "type": "process",
+        "parent": "process_gentrification.md"
+      },
+      {
+        "file": "process_eviction.md",
+        "type": "process",
+        "parent": "process_gentrification.md"
+      },
+      {
+        "file": "process_commodification.md",
+        "type": "process",
+        "parent": "process_gentrification.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Withheld",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place, on the Withheld chapter. The root (process_gentrification.md) declares gentrification as capital's return to a place it once fled: the rent-gap that disinvestment opened grows wide enough to profit, reinvestment re-enters, and what the place once freely offered is converted into something it now withholds behind a price -- the displacement of its prior occupants read in the place's own chapters. It reads the re-entry and its withholding only; it never re-owns the decline that preceded it (dereliction's), the conservation of the fabric for its age (restoration's), or the feeling of the displaced person (the persona's engines').",
+      "issue": "Four facets over a re-entry root. Rent-gap is the mechanism -- the gap between the place's depressed current value and its potential under reinvestment, which pulls capital back when wide enough, so gentrification is capital's move and not merely taste. Upgrading is the physical transformation -- the loft converted, the brownstone renovated, the fabric improved to realize the gap. Eviction is the social effect -- the prior occupants pushed out by formal notice, unrenewed lease, or a rent they can no longer meet, the Offers of the place turned to Withheld against them. Commodification is the cultural turn -- the neighborhood's own character sold back as authenticity, gentrification profiting from the very difference its displacement erases.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so gentrification reads system-wide and no reinvested place escapes it. The link: a place carries, under Withheld, the facet of gentrification it undergoes, linking one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each gentrifying place links a real facet file under Withheld. Whether the facet is true to the place and its market is semantic, taught and reviewed, never failed by the suite. The place enacts the withholding; it does not narrate it, and it never stands in for a persona's feeling about being priced out.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each gentrifying place its read under Withheld: the facet its re-entry shows -- the rent-gap that draws the capital, the upgrading that realizes it, the eviction that clears the prior occupants, or the commodification that sells the place's character. Keep it the place-force of capital re-entry and displacement -- Offers turned to Withheld -- and hand the decline that came before to dereliction, the conservation of the fabric to restoration, and the displaced person's grief to the persona's own engines. Read gentrification as the family's ambivalence inverted: apparent revival, borne loss."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
