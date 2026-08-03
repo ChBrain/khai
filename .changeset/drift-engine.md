@@ -1,0 +1,4 @@
+---
+---
+
+Add the drift engine (packages/engines/drift): the second proof of the cross-type frontier and the first engine to declare `on: process`. Drift as process, the slow slide of a running process's baseline, no decision and no event, until the process is somewhere no one chose and the moved yardstick makes the distance invisible from inside. A depth-1 engine: the root slide over its three warranted mechanisms -- normalization (Vaughan, the yardstick moves), uncoupling (Snook, practice comes loose from the rule), gradient (Rasmussen/Dekker, a standing pressure tilts the floor toward the boundary). Wires the default law at instructions/Knowledge and one specific link at process/Direction. Bounds against reversal (the sudden turn, which disclaims "drift" by name), momentum (inertia/lock-in), phase-shift (the threshold event), and the meaning engine's Adrift (a persona's felt state). First release; source only, tests to follow as a separate dormant PR.

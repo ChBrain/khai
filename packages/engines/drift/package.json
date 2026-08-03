@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-drift",
+  "version": "0.1.0",
+  "description": "khai engine content, the drift domain: the slow slide of a running process's baseline, unremarked and undecided, until the process is somewhere no one chose.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/drift"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "drift",
+    "tagline": "Drift as process: the slow slide of a running process's baseline, no decision and no event, until the process is somewhere no one chose and the moved yardstick makes the distance invisible from inside.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_drift.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_normalization.md",
+        "type": "process",
+        "parent": "process_drift.md"
+      },
+      {
+        "file": "process_uncoupling.md",
+        "type": "process",
+        "parent": "process_drift.md"
+      },
+      {
+        "file": "process_gradient.md",
+        "type": "process",
+        "parent": "process_drift.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "process",
+        "section": "Direction",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, on the Direction chapter. The root (process_drift.md) declares drift as the slow slide of a running process's baseline -- no decision, no event -- until the process is somewhere no one chose. It bends the vector a running dynamic already has; it never opens a new one, and it is not a turn.",
+      "issue": "Three mechanisms, one slide. Normalization moves the yardstick, so each tolerated exception becomes the new normal. Uncoupling comes loose from the rule, so local fixes accumulate into global fragility. Gradient tilts the floor, so a standing pressure draws the baseline toward the boundary. All three read as reasonable step by step; the drift is in the sequence, seen only from outside or after it breaks.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so drift reads system-wide. The link: a process that drifts carries, under Direction, the mechanism of its slide, linking one of the three forms.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each drifting process links a real mechanism file under Direction. Whether the slide is true to the process is semantic, taught and reviewed, never failed by the suite. The process shows the drift as a moved baseline, never as a decision or an event.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each drifting process its mechanism under Direction. Play the slide as invisible from inside: the yardstick moved with it, so it reads as normal, and the gap shows only when something finally measures against the origin."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
