@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-ergonomics",
+  "version": "0.1.0",
+  "description": "khai engine content, the ergonomics domain: the object's physical fit to the human body -- how its dimensions, reach, clearance, and force demand meet or fail the body that uses it.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/ergonomics"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "ergonomics",
+    "tagline": "Ergonomics as piece: the object's physical fit to the human body -- how its dimensions, reach, clearance, and force demand meet or fail the body that uses it, the design of things to human measure.",
+    "type": "piece",
+    "members": [
+      {
+        "file": "piece_ergonomics.md",
+        "type": "piece",
+        "parent": null
+      },
+      {
+        "file": "piece_anthropometry.md",
+        "type": "piece",
+        "parent": "piece_ergonomics.md"
+      },
+      {
+        "file": "piece_reach.md",
+        "type": "piece",
+        "parent": "piece_ergonomics.md"
+      },
+      {
+        "file": "piece_clearance.md",
+        "type": "piece",
+        "parent": "piece_ergonomics.md"
+      },
+      {
+        "file": "piece_exertion.md",
+        "type": "piece",
+        "parent": "piece_ergonomics.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "piece",
+        "section": "Load Bearing",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Piece, on the Load Bearing chapter. The root (piece_ergonomics.md) declares a piece's ergonomics as the design of the object's physical fit to the body: how its dimensions, reach, clearance, and force demand accommodate or fail the body that must use it -- the design of things to human measure. It reads the object's bodily fit; it never re-owns how the form communicates use (usability's), what conduct it enforces (agency's), or the body's own states (the body engine's, on a persona).",
+      "issue": "Four facets over a fit root. Anthropometry is the object sized to the body's measure, across the range from the small user to the large. Reach is what the body can get to on the object without strain. Clearance is the space it gives the body to fit and pass. Exertion is the force it demands -- the grip, the torque, the load. A piece can be perfectly legible and still not fit: the knob clear in its use and too small for the hand to turn.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so ergonomics reads system-wide. The link: a piece that fits or fails the body links, under Load Bearing, the facet of fit it turns on, one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each fitted piece links a real facet file under Load Bearing. Whether the fit is true to the body is semantic, taught and reviewed, never failed by the suite. The object fits the body or it does not; the misfit shows in the body's strain, not in the object's look.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each fitted piece its facet under Load Bearing: how it is sized, reached, cleared, or how much force it demands. Keep the reading physical -- the body's measure meeting the object's form -- and hand how the form communicates use to usability and the body's own fatigue and pain to the body engine. Play the fit in the body's ease or its strain, not in a stated dimension."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
