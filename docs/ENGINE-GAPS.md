@@ -376,6 +376,50 @@ owns Relph rootedness.
   re-entry / displacement → reclamation, over `dereliction` + `gentrification` +
   `restoration`.
 
+#### The neighborhood-cycle family — charted for build (the second F-place dance)
+
+The place-force template is settled by `weather` (the first F-place engine): a
+force on a setting is a `type: process` engine that wires `on: place` at the
+place's own chapters (`Shown / Holds / Offers / Withheld`), with `process_*`
+members. `weather` wired `on: place/Shown`. This family applies the same wiring
+to the built place's lifecycle, and is the second F-place engines-enable-composite
+dance (after the design domain closed F-piece with `artifice`).
+
+The composite is the target; the engines are what it needs. The cycle's phases
+are three (dereliction → gentrification → restoration); `decay` is the material
+substrate all three act upon, kept a distinct engine (not merged into
+dereliction) and built first, so the phase engines have a real engine to
+reference. This is a **4-engine + 3-atom-composite** dance.
+
+| Force              | Cycle role                                       | Load-bearing place chapter        | Warrant                                          |
+| ------------------ | ------------------------------------------------ | --------------------------------- | ------------------------------------------------ |
+| **decay**          | the material substrate under every phase         | `Shown` (the place shows its rot) | Simmel ("The Ruin"); Riegl; Trigg; DeSilvey      |
+| **dereliction**    | decline — an authority stops maintaining         | `Offers` (function lapses)        | Edensor; Ginsberg; Ruskin                        |
+| **gentrification** | re-entry — capital returns, displacing occupants | `Withheld` (Offers → price-gated) | Glass (coined, 1964); N. Smith (rent-gap); Zukin |
+| **restoration**    | reclamation — intervention arresting decay       | `Shown` (age-value vs renewal)    | Ruskin vs Viollet-le-Duc; Riegl; Lowenthal       |
+
+- **decay vs dereliction** (the flagged maintainer-call, resolved): **kept
+  distinct**. `decay` is what matter does (impersonal entropy); `dereliction` is
+  what an owner stops doing (the social withdrawal that lets decay run). A
+  maintained building still decays but is not derelict. Build decay first as the
+  substrate; both `dereliction` ("given over to decay") and `restoration`
+  ("arresting decay") reference it.
+- **The chapter seam**: `gentrification` converts `Offers → Withheld` — the place
+  that freely offered itself now withholds itself behind a price. The displacement,
+  read in the place's own chapters: the type-native proof the force-model fits
+  place.
+- **neighborhood-cycle** (composite): over the three phase engines
+  (`dereliction` + `gentrification` + `restoration`); `decay` is the referenced
+  substrate, not a wired atom (the design precedent: engines reference neighbors
+  they do not wire). The discovery loop stays open — if assembling the composite
+  needs decay as a fourth atom, that is a finding, as `artifice`'s bridges surfaced
+  guile and captology.
+
+The rest of F-place — the atmospheric siblings (`climate`, `erosion`, `fire`,
+`hydrology`, `geomorphology`, `succession`) and the place-design forces
+(`street-life`, `legibility`) — are standalone engines with no composite, a
+separate later wave.
+
 ### Tier F-piece — forces on an object (9 engines + 3 composites)
 
 Virgin attach-point: `template_piece.md` has `Place / Load Bearing / Apparent /
