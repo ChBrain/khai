@@ -1,0 +1,4 @@
+---
+---
+
+Chart the expanded F-piece design domain in docs/ENGINE-GAPS.md: the discovery loop (building the artifice composite surfaced three missing engines) grew the design family from two poles to five. Records usability (cognitive, shipped), agency (political, shipped), and three engines to build -- ergonomics (physical; Dreyfuss/Tilley), guile (deceptive/dark-patterns; Brignull/Gray), captology (behavioral; Fogg/Eyal/Thaler) -- each the piece-pole of a science whose persona-pole is already built. Revises artifice to the 5-atom capstone over the complete pole-set (concord stays a seam inside, not an atom), first composite to attach on:piece. Records the naming resolution for the three new object-side stems (the persona-pole stems deception/habit/persuasion being taken). Planning-doc only; no package change.
