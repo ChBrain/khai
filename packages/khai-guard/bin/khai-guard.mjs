@@ -56,6 +56,7 @@ import {
   bumpScope,
   changesetCheck,
   checkLicenses,
+  checkDrift,
   checkLockfiles,
   checkMembers,
   deadExemptions,
@@ -1027,24 +1028,23 @@ function runDrift() {
     return;
   }
 
-  const rows = names.map((name) => {
-    const held = lock?.packages?.[`node_modules/${name}`]?.version ?? null;
-    let latest = null;
+  // The bin asks the registry; index.mjs decides. A package the registry will
+  // not serve yields null and is reported as unreachable, never dropped.
+  const latest = {};
+  for (const name of names) {
     try {
-      latest = execFileSync("npm", ["view", name, "version"], {
+      latest[name] = execFileSync("npm", ["view", name, "version"], {
         encoding: "utf8",
         stdio: ["ignore", "pipe", "ignore"],
       }).trim();
     } catch {
-      // A package the registry will not serve is reported as unreachable, never
-      // skipped: a broken token must surface as a finding and not as silence.
-      latest = null;
+      latest[name] = null;
     }
-    return { name, held, latest, behind: Boolean(held && latest && held !== latest) };
-  });
-
-  const behind = rows.filter((r) => r.behind);
-  const unreachable = rows.filter((r) => !r.latest);
+  }
+  const held = Object.fromEntries(
+    names.map((n) => [n, lock?.packages?.[`node_modules/${n}`]?.version ?? null]),
+  );
+  const { rows, behind, unreachable } = checkDrift({ declared, held, latest }, config);
 
   if (process.argv.includes("--json")) {
     console.log(
