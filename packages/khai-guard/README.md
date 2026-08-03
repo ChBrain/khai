@@ -71,6 +71,40 @@ array), or buckets whose globs **overlap** (a path that matches both),
 fail as a config error (exit `2`) rather than silently waving PRs through
 or reporting a phantom mix.
 
+## Drift
+
+`khai-guard drift` reports khai dependencies a house has fallen behind on.
+
+Dependabot cannot see them: `@chbrain/*` sits on GitHub Packages, which needs a
+token on every read even when access is public, and Dependabot holds no
+credential there. A house that ignores those updates loses its only notice that
+it is behind; this restores the notice without the recurring broken pull
+requests.
+
+```bash
+npx khai-guard drift            # a markdown table, plus a warning per finding
+npx khai-guard drift --json     # machine-readable, for a scheduled workflow
+npx khai-guard drift --enforce  # exit 1 on a finding instead of 0
+```
+
+It **reports and never bumps**, and it is advisory by default. A khai bump is a
+migration rather than a version edit: moving a kit pin can require rebuilding a
+house's generated artefacts in the same change, and a release that adds a gate
+needs the content campaign that gate demands. A house being behind is therefore
+not a fault in the change under review, so it must not fail a pull request. Run
+it on a schedule and let the caller decide what to do with the finding.
+
+A package the registry will not serve is reported as **unreachable** rather than
+skipped, so a broken token surfaces as a finding and not as silence.
+
+Configure the scopes to watch; no `driftPolicy` means nothing to check:
+
+```json
+{
+  "driftPolicy": { "scopes": ["@chbrain/"] }
+}
+```
+
 ## Doctor
 
 ```bash
