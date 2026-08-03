@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-captology",
+  "version": "0.1.0",
+  "description": "khai engine content, the captology domain: the object designed to shape behavior and form habits -- the engineered reinforcement loop that conditions the user over time to return.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/captology"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "captology",
+    "tagline": "Captology as piece: the object designed to shape behavior and form habits -- the engineered reinforcement loop that conditions the user over time to return, the persuasive technology of the hook.",
+    "type": "piece",
+    "members": [
+      {
+        "file": "piece_captology.md",
+        "type": "piece",
+        "parent": null
+      },
+      {
+        "file": "piece_trigger.md",
+        "type": "piece",
+        "parent": "piece_captology.md"
+      },
+      {
+        "file": "piece_ability.md",
+        "type": "piece",
+        "parent": "piece_captology.md"
+      },
+      {
+        "file": "piece_jackpot.md",
+        "type": "piece",
+        "parent": "piece_captology.md"
+      },
+      {
+        "file": "piece_investment.md",
+        "type": "piece",
+        "parent": "piece_captology.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "piece",
+        "section": "Load Bearing",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Piece, on the Load Bearing chapter. The root (piece_captology.md) declares an object's captology as persuasive design: a form built to shape the user's behavior and form a habit -- an engineered loop that conditions the user over time to return, borne beneath the ordinary use. It reads the object built to hook; it never re-owns an honest confirmation (usability's feedback), a one-time conscription (agency's enlistment), a deception (guile's trick), or the user's own conditioning and craving (the conditioning and addiction engines', on a persona).",
+      "issue": "Four facets over a hook root, after Fogg's behavior model and Eyal's hook. Trigger is the cue the object plants to start the loop, from an outer prompt to an inner itch. Ability is the action made so easy it is taken without thought. Jackpot is the variable, unpredictable payoff that keeps the user pulling. Investment is what the user puts in that deepens the hook and improves the next turn. Feedback informs; the hook conditions.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so captology reads system-wide. The link: a piece built to hook links, under Load Bearing, the facet of its loop, one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each hooking piece links a real facet file under Load Bearing. Whether the hook is true to the object is semantic, taught and reviewed, never failed by the suite. The object conditions over repeated use; the hook is borne beneath the use, and it is known when the user cannot stop returning to it.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each hooking piece its facet under Load Bearing: the cue it plants, the ease it offers, the variable payoff it deals, or the investment it draws. Keep it behavioral -- conditioning over time, for the maker's engagement -- and hand an honest confirmation to usability, a deception to guile, and the user's own craving to the conditioning and addiction engines. Play the hook as an ordinary use that quietly will not let go, not an announced trap."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
