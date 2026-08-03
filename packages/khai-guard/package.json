@@ -1,7 +1,7 @@
 {
   "name": "@chbrain/khai-guard",
   "version": "0.1.21",
-  "description": "KHAI-Guard: the source/test separation gate. A PR may change the product or its verifiers, never both — split them, tests first.",
+  "description": "KHAI-Guard: the house gate. Lane scope, source/test separation, changesets, licences, members and dependency drift, computed rather than judged.",
   "keywords": [
     "ci",
     "governance",

@@ -975,6 +975,113 @@ function runMemberCheck() {
   );
 }
 
+// Subcommand: `khai-guard drift` reports khai dependencies a house has fallen
+// behind on. Dependabot cannot see them: they sit on GitHub Packages, which
+// needs a token on every read even when access is public, and Dependabot holds
+// no credential there, so a house that ignores them loses its only notice that
+// it is behind. This restores the notice without the broken pull requests.
+//
+// It REPORTS and never bumps, deliberately, and it is advisory by construction:
+// a khai bump is a migration rather than a version edit. Moving a kit pin can
+// require rebuilding a house's generated artefacts in the same change, and a
+// release that adds a gate needs the content campaign that gate demands. So a
+// house being behind is not a fault in the change under review, and must not
+// fail a pull request. Exit is always 0 unless --enforce is passed; the caller
+// (a scheduled workflow) decides what to do with the finding.
+//
+// `--json` prints a machine-readable report for that caller. No driftPolicy
+// configured = nothing to check (exit 0).
+function runDrift() {
+  chdirRepoToplevel("drift");
+  const config = loadConfig();
+  const policy = config.driftPolicy;
+  if (!policy) {
+    console.log("KHAI-Guard drift: no driftPolicy configured; nothing to check.");
+    return;
+  }
+  const scopes = Array.isArray(policy.scopes) ? policy.scopes : [];
+  if (!scopes.length) {
+    console.log("KHAI-Guard drift: driftPolicy names no scopes; nothing to check.");
+    return;
+  }
+
+  let manifest, lock;
+  try {
+    manifest = JSON.parse(readFileSync(resolve(process.cwd(), "package.json"), "utf8"));
+  } catch (err) {
+    console.error(`::error::KHAI-Guard drift: cannot read package.json — ${err.message}`);
+    process.exit(2);
+  }
+  try {
+    lock = JSON.parse(readFileSync(resolve(process.cwd(), "package-lock.json"), "utf8"));
+  } catch {
+    lock = null;
+  }
+
+  const declared = { ...manifest.dependencies, ...manifest.devDependencies };
+  const names = Object.keys(declared)
+    .filter((n) => scopes.some((s) => n.startsWith(s)))
+    .sort();
+  if (!names.length) {
+    console.log("KHAI-Guard drift OK: no dependencies in the named scopes.");
+    return;
+  }
+
+  const rows = names.map((name) => {
+    const held = lock?.packages?.[`node_modules/${name}`]?.version ?? null;
+    let latest = null;
+    try {
+      latest = execFileSync("npm", ["view", name, "version"], {
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "ignore"],
+      }).trim();
+    } catch {
+      // A package the registry will not serve is reported as unreachable, never
+      // skipped: a broken token must surface as a finding and not as silence.
+      latest = null;
+    }
+    return { name, held, latest, behind: Boolean(held && latest && held !== latest) };
+  });
+
+  const behind = rows.filter((r) => r.behind);
+  const unreachable = rows.filter((r) => !r.latest);
+
+  if (process.argv.includes("--json")) {
+    console.log(
+      JSON.stringify({ behind: behind.length, unreachable: unreachable.length, rows }, null, 2),
+    );
+  } else {
+    console.log("| package | lockfile | registry |");
+    console.log("| --- | --- | --- |");
+    for (const r of rows) {
+      const mark = r.behind ? " **behind**" : !r.latest ? " (unreachable)" : "";
+      console.log(
+        `| \`${r.name}\` | ${r.held ?? "unknown"} | ${r.latest ?? "unreachable"}${mark} |`,
+      );
+    }
+  }
+
+  const enforce = process.argv.includes("--enforce");
+  const tag = enforce ? "::error::" : "::warning::";
+  for (const r of unreachable) {
+    console.error(`${tag}KHAI-Guard drift: ${r.name} could not be read from the registry.`);
+  }
+  for (const r of behind) {
+    console.error(
+      `${tag}KHAI-Guard drift: ${r.name} is at ${r.held}, the registry has ${r.latest}.`,
+    );
+  }
+  if (behind.length || unreachable.length) {
+    console.error(
+      "\n  A khai bump is a migration, not a version edit. Read the new CHANGELOG for\n" +
+        "  gates first, rebuild any generated artefacts in the same pull request as the\n" +
+        "  pin move, and run whatever content campaign a new gate demands.",
+    );
+    process.exit(enforce ? 1 : 0);
+  }
+  console.log(`KHAI-Guard drift OK: ${rows.length} package(s) level with the registry.`);
+}
+
 // argv[2] is the first positional. `khai-guard --base …` leaves it as a flag,
 // which falls through to the gate; only an explicit subcommand diverts.
 if (process.argv[2] === "doctor") runDoctor();
@@ -986,4 +1093,5 @@ else if (process.argv[2] === "branch") runBranch();
 else if (process.argv[2] === "license-check") runLicenseCheck();
 else if (process.argv[2] === "lockfile-check") runLockfileCheck();
 else if (process.argv[2] === "member-check") runMemberCheck();
+else if (process.argv[2] === "drift") runDrift();
 else runGate();
