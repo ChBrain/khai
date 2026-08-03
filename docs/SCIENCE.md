@@ -3,7 +3,7 @@
 
 # khai science index
 
-The forward map: **science → engine**. Inverted from the Origin table every engine's `REFERENCES.md` carries, so navigation and the reverse warrant share one source and cannot drift. 233 engines, 958 scholars. Of the engines, 28 are composites (_italicised_): their Origin tables carry the integrative warrant of the layer read, while each corner's primary science stays its atom's.
+The forward map: **science → engine**. Inverted from the Origin table every engine's `REFERENCES.md` carries, so navigation and the reverse warrant share one source and cannot drift. 234 engines, 960 scholars. Of the engines, 29 are composites (_italicised_): their Origin tables carry the integrative warrant of the layer read, while each corner's primary science stays its atom's.
 
 ## By science
 
@@ -19,6 +19,7 @@ The forward map: **science → engine**. Inverted from the Origin table every en
 | ↳ | _freud_ | `process` | Bowlby, Attachment (1969); Ainsworth et al., Patterns of Attachment (1978) <br><sub>John Bowlby & Mary Ainsworth</sub> | Attachment -- the earliest bond re-founded on ethological and observational ground, the relational template of the object world. The relation movement. |
 | **Akrich** | agency | `piece` | "The De-Scription of Technical Objects" (1992) <br><sub>Madeleine Akrich</sub> | The script: the scenario a designer inscribes in an object, and the de-scription a user reads back out by using it. The script facet. |
 | **Albrecht** | place-attachment | `position` | Solastalgia (2005); homesickness as separation distress <br><sub>Glenn Albrecht; the homesickness literature</sub> | The bond severed -- homesickness for a place left, and the distress of a home changed while one still lives in it. The homesick standing. |
+| **Alexander** | _artifice_ | `piece` | Notes on the Synthesis of Form (1964) <br><sub>Christopher Alexander</sub> | Form as the resolution of forces in a context; good fit where the settlement holds, misfit where it does not. The root, and the concord and discord bridges. |
 | **Algoe** | admiration | `process` | "Witnessing Excellence in Action: The 'Other-Praising' Emotions of Elevation, Gratitude, and Admiration" (Journal of Positive Psychology, 2009) <br><sub>Sara B. Algoe & Jonathan Haidt</sub> | The other-praising family and its elicitors: admiration as the response to witnessed non-moral excellence (skill, competence), distinct from elevation (moral excellence) and gratitude (benefit to self). The root. |
 | ↳ | elevation | `process` | "Witnessing Excellence in Action: The 'Other-Praising' Emotions of Elevation, Gratitude, and Admiration" (Journal of Positive Psychology, 2009) <br><sub>Sara B. Algoe & Jonathan Haidt</sub> | The family and its boundaries: elevation (moral excellence), admiration (non-moral excellence), and gratitude (benefit to self) as distinct other-praising emotions with distinct elicitors and action tendencies. The root and the witness form. |
 | ↳ | gratitude | `process` | "Find, Remind, and Bind: The Functions of Gratitude in Everyday Relationships" (2012) <br><sub>Sara B. Algoe</sub> | The relational function of gratitude: a responsive benefit reveals a good partner, reminds the receiver of them, and binds the two closer -- gratitude's work is done on the relationship. The benefaction mode. |
@@ -1126,6 +1127,7 @@ The forward map: **science → engine**. Inverted from the Origin table every en
 | **Otto** | awe | `process` | Das Heilige / The Idea of the Holy (1917) <br><sub>Rudolf Otto</sub> | The numinous: the wholly other read as sacred; the mysterium tremendum et fascinans, dread and fascination held in one encounter. |
 | **Ouwerkerk** | schadenfreude | `process` | Schadenfreude: Understanding Pleasure at the Misfortune of Others (Cambridge University Press, 2014) <br><sub>Wilco W. van Dijk & Jaap W. Ouwerkerk (eds.)</sub> | The consolidating volume: schadenfreude's appraisal antecedents -- deservingness, envy, self-evaluation threat, and disliking -- and their distinct routes to the same pleasure. The root and all three forms. |
 | **Oyserman** | possible-selves | `position` | Identity-based motivation; "Possible selves as roadmaps" (2004); the school-to-jobs intervention <br><sub>Daphna Oyserman et al.</sub> | The motivational mechanism -- balance between hoped and feared, identity congruence, and strategy linkage that makes a possible self regulate behavior. The anchor; all standings. |
+| **Papanek** | _artifice_ | `piece` | Design for the Real World (1971) <br><sub>Victor Papanek</sub> | Design's accountability -- whom the made thing serves, and the made thing turned against the user's good. The extraction bridge, concord's mirror. |
 | **Pargament** | faith | `position` | The Psychology of Religion and Coping (1997) <br><sub>Kenneth Pargament</sub> | Religion as an orienting, coping stance: a search for significance in ways related to the sacred, drawn on especially under strain. |
 | **Park** | disgust | `process` | "The Behavioral Immune System (and Why It Matters)" (2011); Curtis, de Barra & Aunger, disgust as disease-avoidance <br><sub>Mark Schaller & Justin H. Park</sub> | The behavioral immune system: a cheap, false-alarm-biased detector of pathogen cues that triggers avoidance ahead of infection, and its spillover onto persons. The pathogen member. |
 | ↳ | meaning | `position` | "Making sense of the meaning literature: An integrative review of meaning making and its effects on adjustment to stressful life events", Psychological Bulletin, 131(5), 715--744 (2005) <br><sub>Crystal L. Park</sub> | Meaning-making under stress: how the loss of meaning and its reconstruction shape coping and adaptation. |
@@ -1359,7 +1361,8 @@ The forward map: **science → engine**. Inverted from the Origin table every en
 | **Simmel** | gratitude | `process` | "Faithfulness and Gratitude" (in Soziologie, 1908) <br><sub>Georg Simmel</sub> | Gratitude as "the moral memory of mankind": the subjective bond that outlasts the completed exchange and keeps the receiver tied to the giver after the debt itself is settled. The root. |
 | ↳ | money | `piece` | The Philosophy of Money (1900) <br><sub>Georg Simmel</sub> | Money as the pure means become an end; the abstraction and quantification of value, and what a fully monetised world does to qualities. |
 | ↳ | secret | `piece` | "The Sociology of Secrecy and of Secret Societies" (1906) <br><sub>Georg Simmel</sub> | Secrecy as a social form: the knowing/not-knowing asymmetry that binds insiders and divides outsiders, and the tension of revelation. |
-| **Simon** | decision | `process` | "A Behavioural Model of Rational Choice" (1955) <br><sub>Herbert Simon</sub> | Satisficing: selecting the first option that clears a threshold rather than searching for the optimum. |
+| **Simon** | _artifice_ | `piece` | The Sciences of the Artificial (1969) <br><sub>Herbert A. Simon</sub> | Design as the science of the artificial -- the artifact shaped to serve a goal at the interface of inner and outer environment. The root: the object read by the ends it serves. |
+| ↳ | decision | `process` | "A Behavioural Model of Rational Choice" (1955) <br><sub>Herbert Simon</sub> | Satisficing: selecting the first option that clears a threshold rather than searching for the optimum. |
 | **Simon-Thomas** | compassion | `process` | "Compassion: An Evolutionary Analysis and Empirical Review" (Psychological Bulletin, 2010) <br><sub>Jennifer L. Goetz, Dacher Keltner & Emiliana Simon-Thomas</sub> | Compassion as a distinct emotion: the appraisal of undeserved suffering, the tender warmth, and the caregiving motivation. The root, the tenderness face, and the succor face. |
 | **Simons** | surprise | `process` | "Is the Startle Reaction an Emotion?" (1985) <br><sub>Paul Ekman, Wallace V. Friesen & Ronald C. Simons</sub> | The startle reflex distinguished from surprise: a faster, more stereotyped, harder-to-suppress reaction to sudden intense stimulus, running below the level of appraisal. The startle form. |
 | **Simpson** | weather | `process` | the hurricane (1971) and tornado (1971; Enhanced 2007) scales <br><sub>Saffir & Simpson; T. T. Fujita</sub> | The severe end of the ladder: the routing band where the place cannot temper the load. The extension Beaufort's own scale tops out before. |
@@ -1676,6 +1679,7 @@ The forward map: **science → engine**. Inverted from the Origin table every en
 | anxiety | `process` | `process` `position` | `instructions` `persona` | David H. Barlow; Joseph E. LeDoux; Jeffrey A. Gray & Neil McNaughton; Michael Davis; the BNST literature; Thomas D. Borkovec; John H. Riskind; Dan W. Grupe & Jack B. Nitschke; Michel J. Dugas & Robert Ladouceur; R. N. Carleton |
 | apprehension | `position` | `position` | `instructions` `persona` | Murray, Lawson, & Lesser; Elaine Aron; Lucy Jane Miller; Damian Milton; Uta Frith; William Dodson |
 | archetypes | `persona` | `persona` | `instructions` `persona` | C. G. Jung; C. G. Jung; C. G. Jung; C. G. Jung |
+| _artifice_ | `piece` | `piece` | `instructions` `piece` | Herbert A. Simon; Christopher Alexander; Victor Papanek; the five design engines |
 | attachment | `process` | `process` | `instructions` `persona` | John Bowlby; Mary Ainsworth; Main & Solomon; Mikulincer & Shaver |
 | attention | `process` | `process` | `instructions` `persona` | Donald Broadbent; Daniel Kahneman; Norman Mackworth; Michael Posner; Anne Treisman; Corbetta & Shulman |
 | attribution | `process` | `process` | `instructions` `persona` | Fritz Heider; Harold H. Kelley; Bernard Weiner; Edward E. Jones & Keith E. Davis; Lyn Y. Abramson, Martin E. P. Seligman & John D. Teasdale |
@@ -1896,7 +1900,7 @@ The forward map: **science → engine**. Inverted from the Origin table every en
 ## By root type
 
 - **`persona`** (2): archetypes, journey-roles
-- **`piece`** (13): agency, captology, debt, document, ergonomics, extended-self, guile, heirloom, money, secret, stigma, totem, usability
+- **`piece`** (14): agency, _artifice_, captology, debt, document, ergonomics, extended-self, guile, heirloom, money, secret, stigma, totem, usability
 - **`pitch`** (1): palimpsest
 - **`place`** (9): backstage, commons, crowd, liminality, psychological-safety, restorative-environment, space, third-place, total-institution
 - **`play`** (3): dramatic-arc, monomyth, morphology
