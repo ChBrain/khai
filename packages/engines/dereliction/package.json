@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-dereliction",
+  "version": "0.1.0",
+  "description": "khai engine content, the dereliction domain: the decline a place undergoes when an authority stops maintaining it -- the withdrawal of care that hands the place to decay, from deferred upkeep to full ruin.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/dereliction"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "dereliction",
+    "tagline": "Dereliction as process: the decline a place undergoes when an authority stops maintaining it -- the withdrawal of care that hands the place to decay, borne as the place's offers lapse, from deferred upkeep through abandonment and disinvestment to the ruin that is given fully over.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_dereliction.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_disrepair.md",
+        "type": "process",
+        "parent": "process_dereliction.md"
+      },
+      {
+        "file": "process_abandonment.md",
+        "type": "process",
+        "parent": "process_dereliction.md"
+      },
+      {
+        "file": "process_disinvestment.md",
+        "type": "process",
+        "parent": "process_dereliction.md"
+      },
+      {
+        "file": "process_ruin.md",
+        "type": "process",
+        "parent": "process_dereliction.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Offers",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place, on the Offers chapter. The root (process_dereliction.md) declares dereliction as the withdrawal of care by the authority responsible for a place: the keeping stops -- deferred, departed, or redlined away -- and what the place freely offered begins to lapse, handing the fabric to the decay that upkeep held off. It reads the social withdrawal only; it never re-owns the material entropy it unleashes (decay's), the biological reclaiming that follows (succession's), the capital re-entry that later profits from the decline (gentrification's), or the intervention that arrests it (restoration's).",
+      "issue": "Four forms over a withdrawal root. Disrepair is care reduced while the place is still held -- the deferred repair, the slumlord's building, the upkeep no longer spent. Abandonment is care ended -- the authority departs, the place vacated, boarded, written off. Disinvestment is care withdrawn from a whole area at once -- redlining and planned shrinkage, the coordinated flight of capital and services that declines a district together and opens the rent-gap. Ruin is the place given fully over -- open to the sky and the trespasser, its order gone and a new disordered life in it, the excess Edensor prized rather than mourned: dereliction's own age-value.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so dereliction reads system-wide and no neglected place escapes it. The link: a place carries, under Offers, the form of dereliction it undergoes, linking one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each derelict place links a real form file under Offers. Whether the form is true to the withdrawal and the place is semantic, taught and reviewed, never failed by the suite. The place enacts the lapse of what it offered; it does not narrate it, and the withdrawal is a human act, never a persona's feeling mirrored in the stones.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each derelict place its read under Offers: the form its decline takes -- the disrepair still held, the abandonment departed, the disinvestment of the whole zone, or the ruin given fully over. Keep it social -- the withdrawal of care, a choice and reversible by a choice -- and hand the material entropy to decay, the biological reclaiming to succession, the capital re-entry to gentrification, and the arrest to restoration. Read ruin as excess, not only loss: the given-over place is full of memory and of what comes after, not merely empty."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
