@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-decay",
+  "version": "0.1.0",
+  "description": "khai engine content, the decay domain: the material entropy a place undergoes -- matter losing the order imposed on it, rust and rot and crumble working the fabric from within, read as loss or as the value of age.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/decay"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "decay",
+    "tagline": "Decay as process: the material entropy a place undergoes -- matter losing the order imposed on it, rust and rot and crumble working the fabric from within, and the surface aged into patina, read as loss or as the value of age.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_decay.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_rust.md",
+        "type": "process",
+        "parent": "process_decay.md"
+      },
+      {
+        "file": "process_rot.md",
+        "type": "process",
+        "parent": "process_decay.md"
+      },
+      {
+        "file": "process_crumble.md",
+        "type": "process",
+        "parent": "process_decay.md"
+      },
+      {
+        "file": "process_patina.md",
+        "type": "process",
+        "parent": "process_decay.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Shown",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place, on the Shown chapter. The root (process_decay.md) declares decay as the slow loss of the order a maker imposed on matter: metal, wood, and stone giving themselves back to oxide, rot, and grit once the making stops holding them, borne in the place's own fabric and shown before anyone names it. It reads the material process only; it never re-owns the setting itself (space's), the live atmospheric load that feeds it (weather's), the surface worn from outside by an agent (erosion's), or the owner's withdrawal that lets it run (dereliction's).",
+      "issue": "Four modes over an entropy root, each working its own material. Rust is metal returning to oxide, the iron bleeding orange and losing its strength from within. Rot is organic matter breaking down, wood softening and fabric perishing under damp and fungus. Crumble is mineral fabric disintegrating, stone spalling and masonry returning to grit. Patina is the twist: slow, even, benign decay laid down as a surface that reads not as loss but as time made visible and prized -- the age-value a restoration must choose to keep or erase.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so decay reads system-wide and no place's fabric escapes it. The link: a place carries, under Shown, the mode of decay it shows, linking one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each decaying place links a real mode file under Shown. Whether the mode is true to the material and the age is semantic, taught and reviewed, never failed by the suite. The place shows the decay; it enacts the loss, it does not narrate it, and it never stands in for a persona's feeling.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each decaying place its read under Shown: the mode its fabric shows -- the rust on the metal, the rot in the wood, the crumble of the stone, or the patina prized on the surface. Keep it material -- the entropy in the matter, shown before it is named -- and hand the atmospheric load to weather, the worn-from-outside surface to erosion, the owner's withdrawal to dereliction, and the intervention that arrests it to restoration. Read patina as value, not only loss: decay is ambivalent, and the same process that ruins one thing enriches another."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
