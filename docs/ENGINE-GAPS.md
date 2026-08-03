@@ -376,23 +376,55 @@ owns Relph rootedness.
   re-entry / displacement → reclamation, over `dereliction` + `gentrification` +
   `restoration`.
 
-### Tier F-piece — forces on an object (6 engines + 2 composites)
+### Tier F-piece — forces on an object (6 engines + 3 composites)
 
-Virgin attach-point: `template_piece.md` has `Load Bearing / Apparent / Yearbook`
-chapters, never targeted. Prior coverage (all `on: persona`): `extended-self`
-(felt/private), `money`, `debt`, `heirloom`, `totem`, `document`.
+Virgin attach-point: `template_piece.md` has `Place / Load Bearing / Apparent /
+Yearbook` chapters, never targeted (mnemonic TO PLAY). Prior coverage (all
+`on: persona`): `extended-self` (felt/private), `money`, `debt`, `heirloom`,
+`totem`, `document`.
+
+The rows split into **two families**: **history** — what the object _carries_ —
+and **design** — what the object _invites_. The design family is Norman's whole
+apparatus, not the one-line `signifier` the first pass charted; it is recharted
+below as the `usability` engine (the maintainer's correction: "design of everyday
+things changes pieces, not just biography").
+
+**History family** (what the object carries, time-accreted):
 
 | Candidate        | Force on / around the piece                               | Warrant                              | Confidence                |
 | ---------------- | --------------------------------------------------------- | ------------------------------------ | ------------------------- |
 | **biography**    | the object's career between commodity and singular status | Kopytoff; Appadurai; D. Miller       | high                      |
-| **signifier**    | designed cues that invite correct use or mislead          | Norman; Gibson; Krippendorff; Gaver  | high                      |
 | **patina**       | the trace of time/use read as damage or age-value         | Riegl; Pye; DeSilvey                 | high                      |
 | **sign-value**   | the coded status-meaning, and its fetish mystification    | Baudrillard; Marx; Veblen; McCracken | medium-high               |
-| **agency**       | the object as delegate — prescribing/forbidding action    | Latour; Akrich; Gell                 | medium                    |
 | **obsolescence** | rendered out-of-date by a shifted standard, not decay     | Slade; Packard; Chapman              | medium (merge w/ patina?) |
+
+**Design family** (what the object invites, form-intrinsic) — two engines, one
+composite:
+
+| Candidate     | Force on / around the piece                                                                                                                                                                                                               | Warrant                                      | Confidence                                                                       |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- | -------------------------------------------------------------------------------- |
+| **usability** | how the designed form communicates and governs use: a conceptual-model root over `grip` (affordance), `signifier`, `feedback`, `constraint` (Norman-depth; recharts the old `signifier` row, which was a thin proxy for the whole family) | Gibson; Norman; Gaver; Krippendorff; Nielsen | high — **designed; building as proof #3, `on: piece/Apparent`**                  |
+| **agency**    | the object as social delegate — prescribing/forbidding conduct as a political actor (the speed bump that polices; the cap that enforces a program)                                                                                        | Latour; Akrich; Winner; Gell                 | medium-high — the _political_ pole of design (vs `usability`'s _cognitive_ pole) |
 
 - **fetish** (composite, blocked): `sign-value` + `agency` + `biography`.
 - **provenance** (composite, blocked): `biography` + `patina` + `document`.
+- **artifice** (design composite, blocked; working name): `usability` + `agency` —
+  the full force a designed object exerts on conduct, cognitive (Norman) and
+  political (Latour/Winner) together. Waits until both design engines land, per the
+  cross-type order's composite rule. Name tentative — the `design` stem is taken by
+  the machinery type.
+
+**Naming resolution (design family).** The object-design engine is `usability`,
+**not** `affordance`: the `affordance` stem is `space`'s (`place_affordance.md` —
+Gibson's affordance _of the setting_), and object- vs setting-affordance is the same
+word in the _same science_ at different scale, so it fails the homonym bar rather
+than earning a whitelist. `usability` is the field's own umbrella term (Norman →
+Nielsen) and names the force at the right altitude; Gibson's affordance is carried
+as the member `grip`. This is the sharp line: `space` owns affordance-of-the-place,
+`usability` owns affordance-of-the-object; the collision _is_ the boundary. The one
+boundary still to arbitrate at build time is `usability/constraint` (legible form)
+vs `agency` (social program) — resolved by keeping `constraint` cognitive (Verbeek)
+and handing the Latourian social-delegate reading to `agency`.
 
 ### Tier F-plan — forces on a plan-as-contested-object (6 engines)
 
@@ -673,6 +705,27 @@ Lodged / Occasion / Aftermath / Note, all seven can attach `requires: { on:
 gate is the type being born. Homonym note: `goal` already has a
 `position_performance.md` member (Dweck/Elliot achievement goals) — a different
 type/namespace, but a future `performance`-root member should avoid the bare stem.
+
+## Separate track — the reflected self (persona self-concept; NOT the cross-type frontier)
+
+Recorded here to remember, kept **cleanly apart** from the cross-type frontier above:
+this is ordinary `on: persona` psychology, not a forces-on-neglected-nouns track. It
+came from a maintainer research pass on an essay whose science the corpus half-covers.
+The gap: the set handles what people _do_ under social pressure (`conformity`,
+`self-monitoring`, `emotional-labor`, `face`, `role`) but has no engine for how the
+self-concept is _built from reflected social appraisals_, no unifying dramaturgical
+frame, and no biological warrant for change without betrayal of self. Three engines
+are absent (`self-efficacy`, Bandura, is the already-built fourth anchor):
+
+| Candidate                    | Phenomenon                                                                                    | Warrant                         | Note                                                                                            |
+| ---------------------------- | --------------------------------------------------------------------------------------------- | ------------------------------- | ----------------------------------------------------------------------------------------------- |
+| **reflected-appraisal**      | the looking-glass self — other people's gaze becoming a person's own inner voice              | Cooley (1902); Mearns; Sullivan | the distinct Cooley contribution the set is missing; `on: persona`                              |
+| **impression-management**    | the dramaturgical front/back — why people stay on stage even at cost to themselves            | Goffman (1959)                  | consolidates the fragments `backstage` / `role` / `emotional-labor` hold; the unifying frame    |
+| **developmental-plasticity** | the self as a phenotypically plastic system — change without betrayal of a stable disposition | West-Eberhard (2003); Bateson   | no foothold at all today; the biological warrant for change; stem to be checked vs `plasticity` |
+
+No composite is proposed for this track (the essay reads them as a _movement_, but the
+research proposed three engines plus the `self-efficacy` anchor, not a compound). This
+is a **later, separate** effort — not queued behind the frontier, just not lost.
 
 ## Rejected on inspection (documented so they need not be re-checked)
 

@@ -1,0 +1,4 @@
+---
+---
+
+Chart the F-piece design domain in docs/ENGINE-GAPS.md and record a separate persona-self track. F-piece: split the rows into a history family (biography/patina/sign-value/obsolescence) and a design family, and rechart the thin one-line signifier row as the usability engine at Norman-depth (conceptual-model root over grip/signifier/feedback/constraint), with agency (Latour/Winner) as the political pole and an artifice composite (working name) over the two. Records the naming resolution: object-design is usability, not affordance (the affordance stem is space's, same science different scale, so no homonym whitelist); affordance is carried as the grip member. Separately and kept clean apart: a reflected-self cluster (reflected-appraisal/Cooley, impression-management/Goffman, developmental-plasticity/West-Eberhard; self-efficacy already built) -- ordinary on:persona psychology, a later effort, not the frontier. Planning-doc only; no package change.
