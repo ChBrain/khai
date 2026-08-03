@@ -1061,6 +1061,51 @@ export function checkLicenses({ packages = [], skills = [] } = {}, config = DEFA
 // npm-shrinkwrap.json would shadow the root lock (npm prefers it), so any other
 // policed name is an offender even at root. With no lockfilePolicy configured
 // there is nothing to police and `ok` is true.
+/**
+ * The drift comparison, pure: given what a manifest declares, what the lockfile
+ * holds, and what the registry serves, decide which packages are behind.
+ *
+ * The bin does the I/O (reading the manifest and lock, asking the registry) and
+ * the printing; this decides. A package with no known latest is `unreachable`
+ * rather than dropped, because a registry that will not answer must surface as
+ * a finding and never as silence.
+ *
+ * @param {object} input
+ * @param {Record<string,string>} input.declared  manifest deps, name -> range
+ * @param {Record<string,string>} input.held      lockfile versions, name -> version
+ * @param {Record<string,string|null>} input.latest  registry versions, name -> version or null
+ * @param {object} config
+ * @returns {{ok: boolean, rows: Array, behind: Array, unreachable: Array}}
+ */
+export function checkDrift(
+  { declared = {}, held = {}, latest = {} } = {},
+  config = DEFAULT_CONFIG,
+) {
+  const policy = config.driftPolicy;
+  if (!policy) return { ok: true, rows: [], behind: [], unreachable: [] };
+  const scopes = Array.isArray(policy.scopes) ? policy.scopes : [];
+  if (!scopes.length) return { ok: true, rows: [], behind: [], unreachable: [] };
+
+  const rows = Object.keys(declared)
+    .filter((name) => scopes.some((s) => name.startsWith(s)))
+    .sort()
+    .map((name) => {
+      const have = held[name] ?? null;
+      const want = latest[name] ?? null;
+      return {
+        name,
+        held: have,
+        latest: want,
+        behind: Boolean(have && want && have !== want),
+        unreachable: !want,
+      };
+    });
+
+  const behind = rows.filter((r) => r.behind);
+  const unreachable = rows.filter((r) => r.unreachable);
+  return { ok: behind.length === 0 && unreachable.length === 0, rows, behind, unreachable };
+}
+
 export function checkLockfiles(paths = [], config = DEFAULT_CONFIG) {
   const policy = config.lockfilePolicy;
   if (!policy) return { ok: true, offenders: [] };
