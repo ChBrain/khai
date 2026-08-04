@@ -1,0 +1,101 @@
+{
+  "name": "@chbrain/khai-engine-kairos",
+  "version": "0.1.0",
+  "description": "khai engine content, the kairos domain: the qualitative, opportune moment cut from the flow of time -- the window that opens and shuts, the decisive juncture, the skill of timing, and the twist of the pressing moment read as ripe -- the fitting time to act, wired multi-cargo on a plot's beat, a plan's execution, and a process's threshold.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/kairos"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "kairos",
+    "tagline": "Kairos as process: the qualitative, opportune moment cut from time's flow -- the window that opens and shuts, the decisive juncture the outcome pivots on, the skill of timing the seizing, and the twist of the pressing moment read as ripe and full, the fitting time to act rather than the measured passage.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_kairos.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_window.md",
+        "type": "process",
+        "parent": "process_kairos.md"
+      },
+      {
+        "file": "process_juncture.md",
+        "type": "process",
+        "parent": "process_kairos.md"
+      },
+      {
+        "file": "process_timing.md",
+        "type": "process",
+        "parent": "process_kairos.md"
+      },
+      {
+        "file": "process_ripeness.md",
+        "type": "process",
+        "parent": "process_kairos.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "plot",
+        "section": "Cue",
+        "link": "expression",
+        "level": "fail"
+      },
+      {
+        "on": "plan",
+        "section": "Implementation",
+        "link": "expression",
+        "level": "fail"
+      },
+      {
+        "on": "process",
+        "section": "Initiated by",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches multi-cargo, on the moment-chapter of the three unfolding types -- a plot at Cue, a plan at Implementation, and a process at Initiated by. The root (process_kairos.md) declares kairos as the opportune moment cut from chronos's even flow: the fitting time when an act can be done that a moment before or after it cannot. It is the first force to wire on: plan, and the first to wire three cargo types at once, because the fittingness of a moment is one phenomenon whatever unfolds -- a scene's beat, a plan's window, a dynamic's threshold. It reads only the moment's fittingness, and never the measured passage it is cut from (chronos's), the suspense of a depleting clock (ticking-clock's), the imposed deadline (deadline's), or the regime-crossing itself (phase-shift's).",
+      "issue": "Four facets over a moment root, three of the moment and one twist. Window is the opening that opens and shuts -- the gap in the flow the act can pass through, and only while it is open. Juncture is the decisive turn -- the fork the outcome pivots on, many futures before it and one after. Timing is the skill of the seizing -- the fitting act at the fitting instant, neither early nor late. Ripeness is the twist: the same pressing, fleeting moment read not as the window closing but as the time come full, the occasion ripe and right, everything at last in place.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so kairos reads system-wide across every unfolding. The link: a plot, a plan, or a process links, under its moment-chapter (Cue, Implementation, or Initiated by), the facet of the opportune moment it turns on -- one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each unfolding links a real facet file under its moment-chapter. Whether the moment is genuinely opportune -- a window that truly opens and shuts, a juncture the outcome truly pivots on -- is semantic, taught and reviewed, never failed by the suite. The moment is the force; a persona's choice to seize it is agency's and decision's, not kairos's.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each unfolding its moment under the right chapter -- a plot's beat at Cue, a plan's execution at Implementation, a process's threshold at Initiated by -- linking the facet the moment turns on: the window that opens, the juncture that decides, the timing that seizes, or the ripeness that reads the pressing moment as full. Keep it the fittingness of the moment, not the measured flow (chronos), the countdown (ticking-clock), the deadline, or the crossing (phase-shift). Read ripeness as the twist: the fleeting, pressing moment is also the ripe one, the occasion at its fullness."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
