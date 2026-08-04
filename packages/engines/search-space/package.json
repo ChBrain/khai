@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-search-space",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the search space domain: computational complexity as Place and Piece, mapping tractability and intractability limits.",
   "type": "module",
   "main": "./index.mjs",

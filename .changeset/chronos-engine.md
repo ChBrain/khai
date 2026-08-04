@@ -1,4 +1,0 @@
----
----
-
-Add the chronos engine: the measured, sequential passage of time as it bears on a made thing, wired on: piece/Yearbook (the first force on a piece's history chapter). A depth-1 process engine -- a passage root over four facets: age (the quantity accrued from origin), sequence (the ordered, unreorderable history/provenance), endurance (the years survived), and the maturation twist (elapsed time read as fullness rather than loss -- the vintage, distinct from decay's patina). The first element of the time family (chronos measured passage, kairos the opportune moment), read at the object; it keeps the measure and hands the matter the years work to decay and wear, the status-career to biography, the felt duration to time-perception. First release, so an empty changeset (publishes at 0.1.0).

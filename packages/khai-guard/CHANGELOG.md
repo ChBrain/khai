@@ -1,5 +1,11 @@
 # @chbrain/khai-guard
 
+## 0.1.23
+
+### Patch Changes
+
+- 2d08c58: `khai-guard drift --json` now emits only JSON on stdout. The success line was printed after the report regardless of the flag, so the output could not be parsed by the scheduled caller it exists for.
+
 ## 0.1.22
 
 ### Patch Changes
