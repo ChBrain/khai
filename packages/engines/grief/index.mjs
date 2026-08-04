@@ -3,7 +3,7 @@
 // composes the markdown ladder into a ready-to-use instruction set.
 //
 // Grief is a process tree: a root (grief) and its leaves (shock, yearning,
-// restoration, continuing). The canon owns the tree shape, so this loader pulls
+// rebuilding, continuing). The canon owns the tree shape, so this loader pulls
 // the composition chains from @chbrain/khai-arch rather than re-deriving them here.
 
 import { readFileSync } from "node:fs";

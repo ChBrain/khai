@@ -41,4 +41,4 @@ The press of the live reaching against the fixed absence is the acute pain that 
 
 The persona is exhausted by the reaching -- drained by a movement that answers nothing.
 The body learns, slowly, that the reach will not be met; the frequency of the reaching begins to change.
-As the persona turns from confronting the loss to attending to the world around it, the move into [restoration](process_restoration.md) begins.
+As the persona turns from confronting the loss to attending to the world around it, the move into [rebuilding](process_rebuilding.md) begins.

@@ -9,7 +9,7 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [grief](process_grief.md): process (anchor)
 - [shock](process_shock.md): process
 - [yearning](process_yearning.md): process
-- [restoration](process_restoration.md): process
+- [rebuilding](process_rebuilding.md): process
 - [continuing](process_continuing.md): process
 
 See [sources and attribution](REFERENCES.md).
