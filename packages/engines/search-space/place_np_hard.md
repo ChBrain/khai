@@ -33,4 +33,4 @@ The boundary of the unknown. The abyss offers a persona the realization that som
 
 ## Withheld
 
-The verification. The abyss withholds the easy verification that NP offers, leaving the persona with no way to prove an answer is correct without running the entire search again.
+The upper bound on complexity. The abyss withholds any promise that the problem is in NP, meaning it offers no guarantee of polynomial-time verification. While every problem in NP reduces to this place, the place itself may sit outside the NP boundary, withholding checkability entirely.

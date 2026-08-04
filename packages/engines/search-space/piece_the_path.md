@@ -33,4 +33,4 @@ A sequence of connected steps between two points, clean and direct. It looks lik
 
 ## Yearbook
 
-Discovered and formalized by Edsger Dijkstra in 1956, and separately by Richard Bellman and Lester Ford. It has been used in every routing network and map, carrying the history of packet switching and geographic navigation, representing the triumph of greedy and dynamic programming.
+Formalized by Edsger Dijkstra in 1956, and separately by Richard Bellman and Lester Ford Jr. (the Bellman-Ford algorithm). Edward F. Moore also introduced the BFS-based shortest path algorithm in 1957, establishing the direct ancestor of breadth-first class algorithms in P. Crucially, the Yearbook records a stark asymmetry: while finding the shortest path is trivial, finding the longest path (a simple inversion of the metric) is NP-hard. This asymmetry is what makes the Path a load-bearing anchor of tractability.

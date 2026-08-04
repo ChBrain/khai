@@ -1,5 +1,5 @@
 ---
-updated: "2026-08-04"
+date: 2026-08-04
 ---
 
 # Search Space: Reference

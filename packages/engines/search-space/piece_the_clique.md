@@ -25,11 +25,11 @@ Located in the Packing chamber, [Packing](place_packing.md), where nodes are clu
 
 ## Load Bearing
 
-Without the Clique, we cannot represent perfect mutual compatibility in networks. It is the key to identifying highly cohesive groups in social systems, co-expression networks, and scheduling constraints: if we cannot find the maximum clique, we cannot guarantee that a group of choices is fully aligned. The Clique is load bearing because it is the structural core of packing constraints.
+Without the Clique, we cannot represent perfect mutual compatibility in networks. It is the key to identifying highly cohesive groups in social systems, co-expression networks, and scheduling constraints: if we cannot find the maximum clique, we cannot guarantee that a group of choices is fully aligned. The Clique is load bearing because it is the structural core of packing constraints, acting as the direct complement of the Independent Set problem. A clique in a graph is an independent set in the complement graph, a dual relationship that anchors its role in complexity reductions.
 
 ## Apparent
 
-A subgraph in which every pair of distinct vertices is connected by an edge. It looks like a dense, tight group of cooperating agents, a perfect community of mutual connections.
+A subgraph in which every pair of distinct vertices is connected by an edge. It looks like a dense, tight group of cooperating agents, a perfect community of mutual connections, hiding the fact that under graph inversion it is identical to a set of completely disconnected choices.
 
 ## Yearbook
 
