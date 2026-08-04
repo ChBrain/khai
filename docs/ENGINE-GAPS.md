@@ -498,6 +498,74 @@ own interest_); `captology` vs `agency/enlistment` (enlistment drafts you
 _structurally, once_; captology _conditions_ you _over time_) and vs the persona-side
 `conditioning`/`addiction` (which model the person, not the object).
 
+#### The object-restoration engine, and the object-lifecycle (a third family, charted for build)
+
+Surfaced by the place-family rename: `reclamation` handles restoration of a
+**place** (architectural conservation — Ruskin/Viollet/Riegl on buildings), but
+"restoration" in its home sense is a **piece** phenomenon — mending a painting, a
+vessel, a clock, an heirloom — which no piece engine owns. A two-agent research
+pass (object-conservation theory; philosophy of repair and object identity)
+returned a clear verdict: **one engine, not a composite.**
+
+**`restoration` (object mending) — engine, `on: piece`.** One core arbitration
+(Brandi's _aesthetic instance_ vs _historical instance_), operationalised by the
+modern codes (ICOM-CC's preventive/remedial/restoration split; AIC ethics of
+minimal-intervention, reversibility, **distinguishability**). It is an engine, not
+a composite, because its two defining questions are **emergent** — present in no
+composition of existing atoms: the **ship-of-Theseus / constitution** problem (how
+much can be replaced before it is no longer _that_ thing — Plutarch→Hobbes→Locke→
+Wiggins/Sider) and the **visible-vs-invisible fork** (kintsugi's celebrated seam
+vs the Western seamless ideal; Benjamin's aura; Ruskin's "restoration is a lie").
+
+Root = the mended object + the constitution question. Five stances (stems verified
+free), wiring on **`Apparent`** (paralleling the place family's `Shown`; `Yearbook`
+is the alternative given the biography dimension):
+
+| Facet             | The stance a mend takes                                                 | Warrant                                                                    |
+| ----------------- | ----------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| **reversion**     | erase the break, restore to original, invisible repair                  | Viollet-le-Duc; Western seamless restoration; Spelman's conservative pole  |
+| **testimony**     | honour the break, make the mend visible, add a stratum to the life      | kintsugi / boro; Benjamin (aura); Ruskin ("don't lie") — the twist facet   |
+| **stabilization** | arrest the decay, do the minimum, conserve-as-found                     | ICOM-CC _remedial_; Morris/SPAB "anti-scrape"; Brandi minimal-intervention |
+| **continuation**  | keep it alive and _working_ through part-turnover, function over fabric | Locke (organism); Ingold; the running clock; ship-of-Theseus continuity    |
+| **fidelity**      | serve the maker's achievement; restrain from forgery/over-restoration   | Goodman (autographic); Dutton (forgery); Brandi (distinguishability)       |
+
+**Naming.** Named **`restoration`** — freed by renaming the `grief` engine's
+`restoration` member to `rebuilding` (Stroebe & Schut's _restoration orientation_,
+a breaking `bump:minor` change — the maintainer's call; PR #1088). Fallback if that
+is declined: **`mending`** (also free, more universal). Distinct from the existing
+**`repair`** engine (relational rupture→restitution→integration — same English word,
+different science, different type; the reason for the distinct stem).
+
+**Boundaries.** vs `decay` (the breaking; restoration is the response); vs
+`reclamation` (the _place_ parallel — restoration adds the Theseus/provenance/
+function-to-working problems buildings dodge); vs `authenticity` (self-congruence,
+persona-side); vs `heirloom`/`extended-self` (keeping/possessing, not mending); vs
+`palimpsest` (textual re-telling); vs `nostalgia` (the feeling, not the act).
+
+**The object-lifecycle composite (future — build the elements first, then compose).**
+An object turns through a life the way a place does: it is **made → used/worn →
+aged → decayed → mended**, and a composite could read that whole arc as a
+piece-parallel to `neighborhood-cycle`. The elements are "available on plain sight
+if we build them":
+
+- **wear / use** — objects worn out by use; the depleted, the consumed (consumables).
+  A distinct force from age-value; partly overlaps the history-family `patina` row and
+  is adjacent to `obsolescence` (standard-shift, not physical wear).
+- **time / aging** — "time works them"; possibly a force of its own, and possibly not
+  piece-specific at all — **`time` may warrant its own engine** (aging as a universal
+  force, or a piece-scoped `aging`). Needs its own scoping pass before it is charted
+  as an atom.
+- **object-decay** — our `decay` engine is **place**-typed; objects decay too, so this
+  wants either a piece-typed decay or a generalisation. **Stem note:** `decay` already
+  claimed the `patina` stem for its place facet, so the charted history-family
+  `patina` **piece** engine now collides — to resolve (rename/whitelist/merge) when the
+  object-lifecycle work begins.
+- **restoration** — the mending engine above, the object's reclamation phase.
+
+Then a composite over them (the object's life and, as with the place-cycle, the
+question its mending forces: reverted, testified, or let go). Charted, not queued —
+the `restoration` engine is the one build confirmed now.
+
 ### Tier F-plan — forces on a plan-as-contested-object (6 engines)
 
 Boundary held hard against the persona-side planning psychology already built
