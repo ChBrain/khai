@@ -352,29 +352,30 @@ respect: `space` owns Gibson affordances / Barker behavior-settings / Appleton
 prospect-refuge; `restorative-environment` owns Kaplan ART; `place-attachment`
 owns Relph rootedness.
 
-| Candidate                  | Force on the place                                           | Warrant                                    | Confidence                                                      |
-| -------------------------- | ------------------------------------------------------------ | ------------------------------------------ | --------------------------------------------------------------- |
-| **soundscape**             | the auditory field (keynote / signal / soundmark)            | Schafer; Truax; Augoyard & Torgue          | solid — unclaimed sensory channel                               |
-| **weather**                | the transient atmospheric event bearing down today           | Ingold; Golinski; Harris (_Weatherland_)   | solid                                                           |
-| **climate**                | the standing seasonal regime (vs weather's event)            | Köppen; Lamb; Hulme                        | solid                                                           |
-| **geomorphology**          | the ground's sudden violence — quake / eruption / subsidence | Lyell; McPhee; Winchester                  | solid                                                           |
-| **erosion**                | surfaces worn by wind / water / frost over time              | Hutton/Lyell; Strahler; Macfarlane         | solid                                                           |
-| **hydrology**              | the water regime — flood / drought / water-table             | McPhee; M. Davis; Kelman                   | solid                                                           |
-| **fire**                   | combustibility & burn regime, incl. suppression debt         | Pyne; Christensen; M. Davis                | solid                                                           |
-| **succession**             | the biological reclaiming once human use withdraws           | Cowles; Clements; Gleason; Weisman         | solid                                                           |
-| **decay**                  | material entropy — rust / rot / crumble                      | Simmel; Riegl; Trigg; DeSilvey             | solid                                                           |
-| **dereliction**            | the built place an authority stopped maintaining             | Edensor; Ginsberg; Ruskin                  | maintainer-call (merge w/ decay?)                               |
-| **gentrification**         | capital re-entry that displaces prior occupants              | Glass; N. Smith (rent-gap); Zukin          | solid                                                           |
-| **restoration**            | deliberate intervention arresting decay                      | Ruskin vs Viollet-le-Duc; Riegl; Lowenthal | solid                                                           |
-| **street-life**            | design that generates or kills pedestrian vitality           | Jacobs; Whyte; Gehl                        | solid                                                           |
-| **legibility**             | how readable the layout is — the cognitive map               | Lynch; Passini; Golledge                   | solid                                                           |
-| **defensible-space**       | design cues reading a place as claimed/claimable             | Newman; Jeffery (CPTED); Brantingham       | maintainer-call                                                 |
-| **landscape-architecture** | designed terrain engineering a social program                | Olmsted; McHarg; J.B. Jackson              | maintainer-call                                                 |
-| **ambiance** (Böhme)       | the felt, quasi-objective atmosphere of the ensemble         | Schmitz; Böhme; Griffero; Pallasmaa        | maintainer-call (stem/concept collides with `space` atmosphere) |
+| Candidate                                | Force on the place                                           | Warrant                                    | Confidence                                                      |
+| ---------------------------------------- | ------------------------------------------------------------ | ------------------------------------------ | --------------------------------------------------------------- |
+| **soundscape**                           | the auditory field (keynote / signal / soundmark)            | Schafer; Truax; Augoyard & Torgue          | solid — unclaimed sensory channel                               |
+| **weather**                              | the transient atmospheric event bearing down today           | Ingold; Golinski; Harris (_Weatherland_)   | solid                                                           |
+| **climate**                              | the standing seasonal regime (vs weather's event)            | Köppen; Lamb; Hulme                        | solid                                                           |
+| **geomorphology**                        | the ground's sudden violence — quake / eruption / subsidence | Lyell; McPhee; Winchester                  | solid                                                           |
+| **erosion**                              | surfaces worn by wind / water / frost over time              | Hutton/Lyell; Strahler; Macfarlane         | solid                                                           |
+| **hydrology**                            | the water regime — flood / drought / water-table             | McPhee; M. Davis; Kelman                   | solid                                                           |
+| **fire**                                 | combustibility & burn regime, incl. suppression debt         | Pyne; Christensen; M. Davis                | solid                                                           |
+| **succession**                           | the biological reclaiming once human use withdraws           | Cowles; Clements; Gleason; Weisman         | solid                                                           |
+| **decay**                                | material entropy — rust / rot / crumble                      | Simmel; Riegl; Trigg; DeSilvey             | solid                                                           |
+| **dereliction**                          | the built place an authority stopped maintaining             | Edensor; Ginsberg; Ruskin                  | maintainer-call (merge w/ decay?)                               |
+| **gentrification**                       | capital re-entry that displaces prior occupants              | Glass; N. Smith (rent-gap); Zukin          | solid                                                           |
+| **reclamation** (charted as restoration) | deliberate intervention arresting decay                      | Ruskin vs Viollet-le-Duc; Riegl; Lowenthal | solid                                                           |
+| **street-life**                          | design that generates or kills pedestrian vitality           | Jacobs; Whyte; Gehl                        | solid                                                           |
+| **legibility**                           | how readable the layout is — the cognitive map               | Lynch; Passini; Golledge                   | solid                                                           |
+| **defensible-space**                     | design cues reading a place as claimed/claimable             | Newman; Jeffery (CPTED); Brantingham       | maintainer-call                                                 |
+| **landscape-architecture**               | designed terrain engineering a social program                | Olmsted; McHarg; J.B. Jackson              | maintainer-call                                                 |
+| **ambiance** (Böhme)                     | the felt, quasi-objective atmosphere of the ensemble         | Schmitz; Böhme; Griffero; Pallasmaa        | maintainer-call (stem/concept collides with `space` atmosphere) |
 
 - **neighborhood-cycle** (composite, blocked): the churn of decline → capital
   re-entry / displacement → reclamation, over `dereliction` + `gentrification` +
-  `restoration`.
+  `reclamation` (the reclamation-phase engine, charted as `restoration`; renamed
+  to avoid the `grief` engine's `restoration` stem).
 
 #### The neighborhood-cycle family — charted for build (the second F-place dance)
 
@@ -386,30 +387,32 @@ to the built place's lifecycle, and is the second F-place engines-enable-composi
 dance (after the design domain closed F-piece with `artifice`).
 
 The composite is the target; the engines are what it needs. The cycle's phases
-are three (dereliction → gentrification → restoration); `decay` is the material
+are three (dereliction → gentrification → reclamation); `decay` is the material
 substrate all three act upon, kept a distinct engine (not merged into
 dereliction) and built first, so the phase engines have a real engine to
-reference. This is a **4-engine + 3-atom-composite** dance.
+reference. This is a **4-engine + 3-atom-composite** dance. (The reclamation
+phase shipped as `reclamation`, not `restoration`: that stem is the `grief`
+engine's, and strict Viollet-le-Duc restoration is only one of its stances.)
 
 | Force              | Cycle role                                       | Load-bearing place chapter        | Warrant                                          |
 | ------------------ | ------------------------------------------------ | --------------------------------- | ------------------------------------------------ |
 | **decay**          | the material substrate under every phase         | `Shown` (the place shows its rot) | Simmel ("The Ruin"); Riegl; Trigg; DeSilvey      |
 | **dereliction**    | decline — an authority stops maintaining         | `Offers` (function lapses)        | Edensor; Ginsberg; Ruskin                        |
 | **gentrification** | re-entry — capital returns, displacing occupants | `Withheld` (Offers → price-gated) | Glass (coined, 1964); N. Smith (rent-gap); Zukin |
-| **restoration**    | reclamation — intervention arresting decay       | `Shown` (age-value vs renewal)    | Ruskin vs Viollet-le-Duc; Riegl; Lowenthal       |
+| **reclamation**    | reclamation — intervention arresting decay       | `Shown` (age-value vs renewal)    | Ruskin vs Viollet-le-Duc; Riegl; Lowenthal       |
 
 - **decay vs dereliction** (the flagged maintainer-call, resolved): **kept
   distinct**. `decay` is what matter does (impersonal entropy); `dereliction` is
   what an owner stops doing (the social withdrawal that lets decay run). A
   maintained building still decays but is not derelict. Build decay first as the
-  substrate; both `dereliction` ("given over to decay") and `restoration`
+  substrate; both `dereliction` ("given over to decay") and `reclamation`
   ("arresting decay") reference it.
 - **The chapter seam**: `gentrification` converts `Offers → Withheld` — the place
   that freely offered itself now withholds itself behind a price. The displacement,
   read in the place's own chapters: the type-native proof the force-model fits
   place.
 - **neighborhood-cycle** (composite): over the three phase engines
-  (`dereliction` + `gentrification` + `restoration`); `decay` is the referenced
+  (`dereliction` + `gentrification` + `reclamation`); `decay` is the referenced
   substrate, not a wired atom (the design precedent: engines reference neighbors
   they do not wire). The discovery loop stays open — if assembling the composite
   needs decay as a fourth atom, that is a finding, as `artifice`'s bridges surfaced
