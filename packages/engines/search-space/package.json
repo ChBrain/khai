@@ -178,10 +178,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.20"
+    "@chbrain/khai-arch": "^0.1.25"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.1.17",
-    "vitest": "^4.1.9"
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
   }
 }
