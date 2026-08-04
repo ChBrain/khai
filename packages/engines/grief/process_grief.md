@@ -41,5 +41,5 @@ The weight is not the feeling of loss alone, but the relentless encountering of 
 
 The persona is now inside a restructuring it did not choose.
 The process does not run in a sequence; it runs as an oscillation, returning to confront and turning away to rebuild, for as long as the restructuring takes.
-The movements resolve into [shock](process_shock.md), [yearning](process_yearning.md), [restoration](process_restoration.md), and [continuing](process_continuing.md) -- each a different pass in the adaptation work.
+The movements resolve into [shock](process_shock.md), [yearning](process_yearning.md), [rebuilding](process_rebuilding.md), and [continuing](process_continuing.md) -- each a different pass in the adaptation work.
 None is the end; the work is done when the persona can hold the loss and move at once.

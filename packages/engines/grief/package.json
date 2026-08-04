@@ -43,7 +43,7 @@
         "parent": "process_grief.md"
       },
       {
-        "file": "process_restoration.md",
+        "file": "process_rebuilding.md",
         "type": "process",
         "parent": "process_grief.md"
       },
@@ -69,7 +69,7 @@
     ],
     "card": {
       "wire": "Attaches at Process. The root (process_grief.md) declares grief as an adaptation work: the persona oscillates between confronting the loss and rebuilding around it, neither pole held permanently.",
-      "issue": "Four movements a persona may run: shock (the fact not yet real), yearning (the reach toward the absent that fails), restoration (turning to rebuild the changed world), and continuing (carrying the lost thing forward, transformed). Each is a different pass in the adaptation work.",
+      "issue": "Four movements a persona may run: shock (the fact not yet real), yearning (the reach toward the absent that fails), rebuilding (turning to rebuild the changed world), and continuing (carrying the lost thing forward, transformed). Each is a different pass in the adaptation work.",
       "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the movement it is currently in.",
       "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real grief movement. Whether the movement is true to the persona's loss is semantic, taught and reviewed, never failed by the suite.",
       "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its movement under Projection. The persona may shift movements across the arc; update the link as the work progresses."

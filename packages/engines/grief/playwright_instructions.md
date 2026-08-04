@@ -18,7 +18,7 @@ How a Playwright wires the grief engine into a play. You wire by linking the pla
 
 ## Agent
 
-- From the play's own content, a persona links the grief mode the moment runs (shock, yearning, restoration, or continuing) under its Projection. Let the mode shift as time passes and as loss encounters support or renewed absence. You link to the engine, you never edit it.
+- From the play's own content, a persona links the grief mode the moment runs (shock, yearning, rebuilding, or continuing) under its Projection. Let the mode shift as time passes and as loss encounters support or renewed absence. You link to the engine, you never edit it.
 
 ## Collaboration
 
@@ -26,11 +26,11 @@ How a Playwright wires the grief engine into a play. You wire by linking the pla
 
 ## Knowledge
 
-- Grief is adaptation to irreversible loss: the oscillation between confronting the fact of absence and rebuilding the world without what was lost. Shock absorbs the impossibility of the loss. Yearning runs toward what can no longer be reached. Restoration rebuilds the life around the gap. Continuing carries the loss forward, integrated rather than resolved.
+- Grief is adaptation to irreversible loss: the oscillation between confronting the fact of absence and rebuilding the world without what was lost. Shock absorbs the impossibility of the loss. Yearning runs toward what can no longer be reached. Rebuilding reconstructs the life around the gap. Continuing carries the loss forward, integrated rather than resolved.
 
 ## System
 
-- Do let grief move non-linearly; a persona may return to shock from restoration on a triggered memory.
+- Do let grief move non-linearly; a persona may return to shock from rebuilding on a triggered memory.
 - Do honour the loss before asking the persona to adapt; the engine spans from rupture to integration.
 - Do not resolve grief; continuing means living with the loss, not recovering from it.
 - Do not edit the engine's files; wire only from the play's side.
