@@ -12,7 +12,7 @@ stamp:
 
 ## Taxonomy
 
-[Covering](place_covering.md). The Set Cover problem, representing general constraint satisfaction.
+[Covering](place_covering_family.md). The Set Cover problem, representing general constraint satisfaction.
 
 ## Owner
 
@@ -21,7 +21,7 @@ stamp:
 
 ## Place
 
-Located in the Covering chamber, [Covering](place_covering.md), encompassing subsets of the universe.
+Located in the Covering chamber, [Covering](place_covering_family.md), encompassing subsets of the universe.
 
 ## Load Bearing
 

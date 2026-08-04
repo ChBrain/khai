@@ -12,7 +12,7 @@ stamp:
 
 ## Taxonomy
 
-[Covering](place_covering.md). The Vertex Cover problem, representing minimal intersection surveillance.
+[Covering](place_covering_family.md). The Vertex Cover problem, representing minimal intersection surveillance.
 
 ## Owner
 
@@ -21,7 +21,7 @@ stamp:
 
 ## Place
 
-Sits in the Covering chamber, [Covering](place_covering.md), positioned at the intersections of the network.
+Sits in the Covering chamber, [Covering](place_covering_family.md), positioned at the intersections of the network.
 
 ## Load Bearing
 

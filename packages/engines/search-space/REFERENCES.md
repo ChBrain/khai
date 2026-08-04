@@ -42,7 +42,7 @@ Source to constraint, per file.
 - **[place_packing](place_packing.md)** (Place): Packing sub-region, searching for compatible subsets.
 - **[piece_independent_set](piece_independent_set.md)** (Piece): Independent set problem, finding mutually isolated choices (Karp).
 - **[piece_the_clique](piece_the_clique.md)** (Piece): Clique problem, representing mutually compatible choices (Karp).
-- **[place_covering](place_covering.md)** (Place): Covering sub-region, minimizing resources to satisfy constraints.
+- **[place_covering_family](place_covering_family.md)** (Place): Covering sub-region, minimizing resources to satisfy constraints.
 - **[piece_vertex_cover](piece_vertex_cover.md)** (Piece): Vertex cover problem, covering structural edges (Karp).
 - **[piece_set_cover](piece_set_cover.md)** (Piece): Set cover problem, covering a universe of elements with subsets (Karp).
 - **[place_sequencing](place_sequencing.md)** (Place): Sequencing sub-region, visiting all targets in order.

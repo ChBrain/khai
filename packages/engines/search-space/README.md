@@ -14,7 +14,7 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [packing](place_packing.md): place
 - [independent set](piece_independent_set.md): piece
 - [the clique](piece_the_clique.md): piece
-- [covering](place_covering.md): place
+- [covering family](place_covering_family.md): place
 - [vertex cover](piece_vertex_cover.md): piece
 - [set cover](piece_set_cover.md): piece
 - [sequencing](place_sequencing.md): place

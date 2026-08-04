@@ -25,7 +25,7 @@ A grand gallery containing five main chambers. Each chamber is locked with a mas
 
 ## Holds
 
-The five classic families of combinatorial difficulty: [Packing](place_packing.md), [Covering](place_covering.md), [Sequencing](place_sequencing.md), [Partitioning](place_partitioning.md), and [Numerical](place_numerical.md).
+The five classic families of combinatorial difficulty: [Packing](place_packing.md), [Covering](place_covering_family.md), [Sequencing](place_sequencing.md), [Partitioning](place_partitioning.md), and [Numerical](place_numerical.md).
 
 ## Offers
 

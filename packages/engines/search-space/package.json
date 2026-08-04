@@ -71,19 +71,19 @@
         "parent": "place_packing.md"
       },
       {
-        "file": "place_covering.md",
+        "file": "place_covering_family.md",
         "type": "place",
         "parent": "place_np_complete.md"
       },
       {
         "file": "piece_vertex_cover.md",
         "type": "piece",
-        "parent": "place_covering.md"
+        "parent": "place_covering_family.md"
       },
       {
         "file": "piece_set_cover.md",
         "type": "piece",
-        "parent": "place_covering.md"
+        "parent": "place_covering_family.md"
       },
       {
         "file": "place_sequencing.md",
