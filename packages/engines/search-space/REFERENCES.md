@@ -36,19 +36,25 @@ Source to constraint, per file.
 
 - **[place_the_search_space](place_the_search_space.md)** (the root): The overall space of computational complexity, where limits act as a structural refusal.
 - **[place_p](place_p.md)** (Place): The region of tractability, where solutions are cheap to produce and verify.
-- **[piece_the_path](piece_the_path.md)** (Piece): The shortest path problem, the baseline of polynomial-time search (Dijkstra, Bellman-Ford).
+- **[piece_the_path](piece_the_path.md)** (Piece): The shortest path problem, the baseline of polynomial-time search (Dijkstra, Bellman-Ford, Moore).
 - **[place_np](place_np.md)** (Place): The region of easy verification but difficult search.
 - **[place_np_complete](place_np_complete.md)** (Place): The core gallery of NP-completeness, where reductions connect all rooms.
 - **[place_packing](place_packing.md)** (Place): Packing sub-region, searching for compatible subsets.
+- **[piece_independent_set](piece_independent_set.md)** (Piece): Independent set problem, finding mutually isolated choices (Karp).
 - **[piece_the_clique](piece_the_clique.md)** (Piece): Clique problem, representing mutually compatible choices (Karp).
 - **[place_covering](place_covering.md)** (Place): Covering sub-region, minimizing resources to satisfy constraints.
-- **[piece_the_cover](piece_the_cover.md)** (Piece): Vertex cover problem, covering structural edges (Karp).
+- **[piece_vertex_cover](piece_vertex_cover.md)** (Piece): Vertex cover problem, covering structural edges (Karp).
+- **[piece_set_cover](piece_set_cover.md)** (Piece): Set cover problem, covering a universe of elements with subsets (Karp).
 - **[place_sequencing](place_sequencing.md)** (Place): Sequencing sub-region, visiting all targets in order.
+- **[piece_hamiltonian_cycle](piece_hamiltonian_cycle.md)** (Piece): Hamiltonian cycle problem, visiting every vertex exactly once (Karp).
 - **[piece_the_tour](piece_the_tour.md)** (Piece): The Traveling Salesman Problem (TSP), finding the optimal sequence.
 - **[place_partitioning](place_partitioning.md)** (Place): Partitioning sub-region, dividing resources to avoid conflicts.
-- **[piece_the_coloring](piece_the_coloring.md)** (Piece): Graph coloring problem, preventing adjacent conflicts (Stockmeyer).
+- **[piece_graph_coloring](piece_graph_coloring.md)** (Piece): Graph coloring problem, preventing adjacent conflicts (Stockmeyer).
+- **[piece_3d_matching](piece_3d_matching.md)** (Piece): 3D matching problem, tripartite compatibility (Karp).
 - **[place_numerical](place_numerical.md)** (Place): Numerical sub-region, balancing values and weights.
-- **[piece_the_knapsack](piece_the_knapsack.md)** (Piece): Knapsack problem, optimizing under budget limits (Dantzig).
+- **[piece_knapsack](piece_knapsack.md)** (Piece): Knapsack problem, optimizing value under capacity bounds (Dantzig, Karp).
+- **[piece_subset_sum](piece_subset_sum.md)** (Piece): Subset sum problem, finding subset matching target value (Karp).
 - **[place_np_hard](place_np_hard.md)** (Place): NP-hard region, where verification is not guaranteed.
+- **[place_pspace](place_pspace.md)** (Place): PSPACE region, memory-bounded computation.
 - **[place_ppad](place_ppad.md)** (Place): PPAD region, where solutions exist but are hard to reach.
 - **[piece_the_equilibrium](piece_the_equilibrium.md)** (Piece): The Nash equilibrium vector, the limits of market balance (Daskalakis et al.).

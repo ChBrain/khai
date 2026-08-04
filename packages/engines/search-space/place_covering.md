@@ -25,7 +25,7 @@ A room containing a grid of streets and intersections, with shadows falling acro
 
 ## Holds
 
-Covering and domination problems, including the search for [the cover](piece_the_cover.md).
+Covering and domination problems, including the search for [Vertex Cover](piece_vertex_cover.md) and [Set Cover](piece_set_cover.md).
 
 ## Offers
 

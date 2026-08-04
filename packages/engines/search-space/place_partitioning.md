@@ -25,7 +25,7 @@ A room containing a large network of vertices connected by edges. The task is to
 
 ## Holds
 
-Partitioning and coloring problems, including the search for [the coloring](piece_the_coloring.md).
+Partitioning and coloring problems, including the search for [Graph Coloring](piece_graph_coloring.md) and [3D Matching](piece_3d_matching.md).
 
 ## Offers
 

@@ -25,7 +25,7 @@ A room containing a large scale and a pile of weighted, valued items. A traveler
 
 ## Holds
 
-Numerical and knapsack-type problems, including the search for [the knapsack](piece_the_knapsack.md).
+Numerical and knapsack-type problems, including the search for [Knapsack](piece_knapsack.md) and [Subset Sum](piece_subset_sum.md).
 
 ## Offers
 

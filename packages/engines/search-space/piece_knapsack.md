@@ -1,6 +1,6 @@
 ---
 khai: piece
-title: "The Knapsack"
+title: "Knapsack"
 license: CC-BY-NC-SA-4.0
 stamp:
   owner: KAI HACKS AI
@@ -8,11 +8,11 @@ stamp:
   date: "2026-08-04"
 ---
 
-# Piece: The Knapsack
+# Piece: Knapsack
 
 ## Taxonomy
 
-[Numerical](place_numerical.md). The Knapsack problem, representing value optimization under capacity constraints.
+[Numerical](place_numerical.md). The Knapsack problem, representing value optimization under weight limits.
 
 ## Owner
 
@@ -25,7 +25,7 @@ Located in the Numerical chamber, [Numerical](place_numerical.md), placed on the
 
 ## Load Bearing
 
-Without the Knapsack, we cannot model optimal resource allocation within a budget. It is the baseline model for investment portfolio selection, cargo loading, and resource budgeting: if we cannot solve the knapsack problem, our plans will exceed capacity or waste valuable space. The Knapsack is load bearing because it balances value against weight.
+Without the Knapsack, we cannot model optimal resource allocation within a capacity. It is the model for capital budgeting, resource selection, and cargo loading: if we cannot solve the knapsack problem, our plans will exceed capacity or waste valuable space. The Knapsack is load bearing because it is the baseline numerical optimization problem, combining values and weights.
 
 ## Apparent
 

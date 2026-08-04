@@ -61,6 +61,11 @@
         "parent": "place_np_complete.md"
       },
       {
+        "file": "piece_independent_set.md",
+        "type": "piece",
+        "parent": "place_packing.md"
+      },
+      {
         "file": "piece_the_clique.md",
         "type": "piece",
         "parent": "place_packing.md"
@@ -71,7 +76,12 @@
         "parent": "place_np_complete.md"
       },
       {
-        "file": "piece_the_cover.md",
+        "file": "piece_vertex_cover.md",
+        "type": "piece",
+        "parent": "place_covering.md"
+      },
+      {
+        "file": "piece_set_cover.md",
         "type": "piece",
         "parent": "place_covering.md"
       },
@@ -79,6 +89,11 @@
         "file": "place_sequencing.md",
         "type": "place",
         "parent": "place_np_complete.md"
+      },
+      {
+        "file": "piece_hamiltonian_cycle.md",
+        "type": "piece",
+        "parent": "place_sequencing.md"
       },
       {
         "file": "piece_the_tour.md",
@@ -91,7 +106,12 @@
         "parent": "place_np_complete.md"
       },
       {
-        "file": "piece_the_coloring.md",
+        "file": "piece_graph_coloring.md",
+        "type": "piece",
+        "parent": "place_partitioning.md"
+      },
+      {
+        "file": "piece_3d_matching.md",
         "type": "piece",
         "parent": "place_partitioning.md"
       },
@@ -101,12 +121,22 @@
         "parent": "place_np_complete.md"
       },
       {
-        "file": "piece_the_knapsack.md",
+        "file": "piece_knapsack.md",
+        "type": "piece",
+        "parent": "place_numerical.md"
+      },
+      {
+        "file": "piece_subset_sum.md",
         "type": "piece",
         "parent": "place_numerical.md"
       },
       {
         "file": "place_np_hard.md",
+        "type": "place",
+        "parent": "place_the_search_space.md"
+      },
+      {
+        "file": "place_pspace.md",
         "type": "place",
         "parent": "place_the_search_space.md"
       },

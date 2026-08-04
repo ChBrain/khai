@@ -12,16 +12,22 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [np](place_np.md): place
 - [np complete](place_np_complete.md): place
 - [packing](place_packing.md): place
+- [independent set](piece_independent_set.md): piece
 - [the clique](piece_the_clique.md): piece
 - [covering](place_covering.md): place
-- [the cover](piece_the_cover.md): piece
+- [vertex cover](piece_vertex_cover.md): piece
+- [set cover](piece_set_cover.md): piece
 - [sequencing](place_sequencing.md): place
+- [hamiltonian cycle](piece_hamiltonian_cycle.md): piece
 - [the tour](piece_the_tour.md): piece
 - [partitioning](place_partitioning.md): place
-- [the coloring](piece_the_coloring.md): piece
+- [graph coloring](piece_graph_coloring.md): piece
+- [3d matching](piece_3d_matching.md): piece
 - [numerical](place_numerical.md): place
-- [the knapsack](piece_the_knapsack.md): piece
+- [knapsack](piece_knapsack.md): piece
+- [subset sum](piece_subset_sum.md): piece
 - [np hard](place_np_hard.md): place
+- [pspace](place_pspace.md): place
 - [ppad](place_ppad.md): place
 - [the equilibrium](piece_the_equilibrium.md): piece
 
