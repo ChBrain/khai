@@ -1,0 +1,4 @@
+---
+---
+
+Add the restoration engine: the mending of a broken or worn object, on: piece -- the object parallel to reclamation (a process on a place). One core arbitration (Brandi's aesthetic instance against the historical), worked out along two object-specific questions no building faces: how much may be renewed before it is no longer that thing (the ship of Theseus), and whether the mend should show or vanish. Five stances over a mending root: reversion (erase the break), testimony (gild it -- kintsugi, the twist), stabilization (arrest as-found), continuation (keep it working through part-turnover), and fidelity (serve the maker, short of forgery). Wires on: piece at Apparent. The restoration stem was freed by renaming grief's restoration member to rebuilding. Lineage: Brandi, Sagoff, Benjamin, kintsugi/wabi-sabi, Plutarch/Locke (ship of Theseus), Spelman.
