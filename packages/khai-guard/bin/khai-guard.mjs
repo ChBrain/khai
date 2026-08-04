@@ -1000,9 +1000,13 @@ function runDrift() {
     console.log("KHAI-Guard drift: no driftPolicy configured; nothing to check.");
     return;
   }
+  // --json means the caller is a machine: stdout carries the report and nothing
+  // else, so every human line below is either suppressed or sent to stderr.
+  const json = process.argv.includes("--json");
   const scopes = Array.isArray(policy.scopes) ? policy.scopes : [];
   if (!scopes.length) {
-    console.log("KHAI-Guard drift: driftPolicy names no scopes; nothing to check.");
+    if (json) console.log(JSON.stringify({ behind: 0, unreachable: 0, rows: [] }));
+    else console.log("KHAI-Guard drift: driftPolicy names no scopes; nothing to check.");
     return;
   }
 
@@ -1024,7 +1028,8 @@ function runDrift() {
     .filter((n) => scopes.some((s) => n.startsWith(s)))
     .sort();
   if (!names.length) {
-    console.log("KHAI-Guard drift OK: no dependencies in the named scopes.");
+    if (json) console.log(JSON.stringify({ behind: 0, unreachable: 0, rows: [] }));
+    else console.log("KHAI-Guard drift OK: no dependencies in the named scopes.");
     return;
   }
 
@@ -1046,7 +1051,7 @@ function runDrift() {
   );
   const { rows, behind, unreachable } = checkDrift({ declared, held, latest }, config);
 
-  if (process.argv.includes("--json")) {
+  if (json) {
     console.log(
       JSON.stringify({ behind: behind.length, unreachable: unreachable.length, rows }, null, 2),
     );
@@ -1079,7 +1084,9 @@ function runDrift() {
     );
     process.exit(enforce ? 1 : 0);
   }
-  console.log(`KHAI-Guard drift OK: ${rows.length} package(s) level with the registry.`);
+  if (!json) {
+    console.log(`KHAI-Guard drift OK: ${rows.length} package(s) level with the registry.`);
+  }
 }
 
 // argv[2] is the first positional. `khai-guard --base …` leaves it as a flag,
