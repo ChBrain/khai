@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-object-cycle",
+  "version": "0.1.0",
+  "description": "khai composite content, the object-cycle domain: the whole material life an object turns through -- worn by use, decayed by time, and met (or not) by mending -- read as a wiring of the wear, decay, and restoration engines, and whether the object is kept, discarded, or treasured.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/object-cycle"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "object-cycle",
+    "tagline": "Object-cycle as composite: the whole material life an object turns through -- worn by use, decayed by time, and met or not by mending -- read as a wiring of the wear, decay, and restoration engines, and the drama lives in what the owner's care makes of the object's finite life: kept in service (upkeep), used up and let go (discard), or its very marks prized as worth (treasure).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_object_cycle.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_object_cycle_upkeep.md",
+        "type": "process",
+        "parent": "process_object_cycle.md"
+      },
+      {
+        "file": "process_object_cycle_discard.md",
+        "type": "process",
+        "parent": "process_object_cycle.md"
+      },
+      {
+        "file": "process_object_cycle_treasure.md",
+        "type": "process",
+        "parent": "process_object_cycle.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "piece",
+        "section": "Apparent",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Piece, over three atoms it declares as dependencies -- the wear, decay, and restoration engines, the object parallel to the neighborhood-cycle composite (which wires the place-decline family). The root (process_object_cycle.md) reads the whole material life an object turns through: wear's degradation by use, decay's entropy by time, and restoration's mending, across a thing's lifespan. This composite adds no new force; it reads what the three make together over a life, and above all what the owner's care makes of it. Its warrant is the biography-of-things view -- Kopytoff's cultural biography, Appadurai's social life of things -- read as a material arc rather than a career of status.",
+      "issue": "Three bridges, the shapes the life takes, told by what care makes of it. Upkeep: care meets the degradation -- the object mended against wear and decay, its service-life extended, kept in use (the serviced watch, the maintained tool). Discard: care withdraws -- the object used up, let decay, and let go or replaced when spent (the disposable, the thing not worth mending). Treasure: care transfigures -- the wear and decay themselves become the object's worth, its seasoning and patina prized, the thing kept and revered for the very marks of its life (the antique, the heirloom, the well-loved). Wear alone or decay alone is a moment; the composite is the whole life and its fate.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the object-cycle reads wherever its atoms are cast. The link, advisory: an object may link under Apparent the bridge its life is in, and the audit surfaces where a play carries an object across its life without naming what its care makes of it.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the three object engines. Whether a production's object genuinely turns the way the bridge names -- an upkeep that truly keeps, a discard that truly lets go, a treasure that truly prizes the marks -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- wear, decay, restoration, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the life from the three engines -- the use-wear from wear, the time-entropy from decay, the mending from restoration -- then read the bridge by what care makes of it: upkeep when the object is kept in service, discard when it is used up and let go, treasure when its very marks of age and use are prized as worth. Read the object as living a finite material life met by care, never as the word object-cycle alone -- and let treasure gather wear's seasoning and decay's patina into one reading: the thing made more, not less, by its life."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-wear": "^0.1.0",
+    "@chbrain/khai-engine-decay": "^0.1.0",
+    "@chbrain/khai-engine-restoration": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
