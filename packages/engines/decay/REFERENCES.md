@@ -6,15 +6,18 @@ updated: "2026-08-03"
 
 ## Line of Work
 
-Decay as **process**: the material entropy a place undergoes -- matter losing the
-order a maker imposed on it, shown in the place's own fabric before anyone names
-it. The domain does not model the setting itself, which is the space engine's;
-nor the live atmospheric load that feeds it, which is the weather engine's; nor
-the surface worn from outside by an agent, which is the erosion engine's; nor the
-owner's withdrawal that lets it run, which is the dereliction engine's; nor the
-intervention that arrests it, which is the restoration engine's. It models the
-slow breakdown in the matter, and reads it two ways -- as loss, and as the value
-of age.
+Decay as **process**: the material entropy a place or a thing undergoes -- matter
+losing the order a maker imposed on it, shown in the fabric of a place or the
+material of an object before anyone names it. It is one phenomenon on two types,
+and the engine wires to both -- on a place at Shown, on a piece at Apparent (rust
+is rust on a rail or a blade). The domain does not model the setting itself, which
+is the space engine's; nor the live atmospheric load that feeds it, which is the
+weather engine's; nor the surface worn from outside by an agent, which is the
+erosion engine's; nor the owner's withdrawal that lets it run, which is the
+dereliction engine's; nor the degradation an object takes from **use**, which is
+the wear engine's; nor the intervention that arrests it, which is reclamation's on
+a place and restoration's on an object. It models the slow, use-independent
+breakdown in the matter, and reads it two ways -- as loss, and as the value of age.
 
 The spine is the ambivalence at the heart of ruin: that decay is not only the
 negation of a made thing but, held in a certain light, a new form with a worth of
@@ -65,19 +68,28 @@ What the engine refuses to model, and to whom it delegates.
   decays fast because nothing arrests it. Decay is impersonal and runs in any
   matter; dereliction is the human withdrawal that unleashes it, and the two meet
   where the upkeep lapses.
-- **The intervention that arrests it (restoration)**: The deliberate act against
-  decay -- the repair, the conservation, the renewal -- is the restoration engine's;
-  decay is the fall restoration acts upon. Patina is where they meet: whether to
-  preserve the age-value or wipe it back to new is restoration's choice on decay's
-  own product.
+- **The degradation of use, on an object (wear)**: When decay wires on a piece it
+  meets its complement. Wear is what a thing loses to being **used** -- the abrasion,
+  the fatigue, the consumable spent; decay is what it loses to **time**, used or
+  not. The unused blade in the drawer rusts (decay); the daily-swung blade dulls at
+  the edge (wear); a thing both stored and worked takes both, each engine reading
+  its share. Decay is the fall that needs no hand; wear is the fall the hand deals.
+- **The intervention that arrests it (reclamation on a place, restoration on an
+  object)**: The deliberate act against decay -- the repair, the conservation, the
+  renewal -- is reclamation's when the fallen thing is a place and restoration's
+  when it is an object; decay is the fall each acts upon. Patina is where they meet:
+  whether to preserve the age-value or wipe it back to new is that intervention's
+  choice on decay's own product.
 - **A persona's feeling, and the ruin as authored symbol**: How the decay makes a
   persona feel -- the melancholy of the ruin, the unease of rot -- is the persona's
   own engines'; decay delivers the material fact, not the feeling. And decay made
   to **stand for** a persona's fall, the crumbling house that mirrors the dying
-  line, is refused: that is authored key, the play's pitch, not the place's force.
+  line, is refused: that is authored key, the play's pitch, not the force on the
+  place or thing.
 - **The mode itself is not engine content**: The engine declares the four modes
-  exist; which one a given place shows lives on the place, linked under its Shown
-  chapter. The engine refuses to fix a place's decay for it.
+  exist; which one a given place or object shows lives on that place or object,
+  linked under its Shown or Apparent chapter. The engine refuses to fix a thing's
+  decay for it.
 
 ## Encoding
 
