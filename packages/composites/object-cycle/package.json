@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-object-cycle",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the object-cycle domain: the whole material life an object turns through -- worn by use, decayed by time, and met (or not) by mending -- read as a wiring of the wear, decay, and restoration engines, and whether the object is kept, discarded, or treasured.",
   "type": "module",
   "main": "./index.mjs",
@@ -77,7 +77,7 @@
   "dependencies": {
     "@chbrain/khai-arch": "^0.1.25",
     "@chbrain/khai-engine-wear": "^0.1.0",
-    "@chbrain/khai-engine-decay": "^0.1.0",
+    "@chbrain/khai-engine-decay": "^0.2.0",
     "@chbrain/khai-engine-restoration": "^0.1.0"
   },
   "devDependencies": {

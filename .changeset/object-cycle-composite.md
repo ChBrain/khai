@@ -1,4 +1,0 @@
----
----
-
-Add the object-cycle composite: the whole material life an object turns through -- worn by use, decayed by time, met or not by mending -- read as a wiring of the wear, decay, and restoration engines. The object parallel to the neighborhood-cycle composite, on the piece type, and the closer of the object-lifecycle family. Three bridges, told by what the keeper's care makes of the object's finite life: upkeep (mended and kept in service), discard (used up and let go), and treasure (its very marks of wear and age prized as worth -- the twist, gathering wear's seasoning and decay's patina into one reading). Warrant: Kopytoff and Appadurai (the biography of things, read materially), Denis & Pontille, Chapman, Csikszentmihalyi & Rochberg-Halton. Wires on: piece at Apparent, audit level.
