@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-reclamation",
+  "version": "0.1.0",
+  "description": "khai engine content, the reclamation domain: the deliberate intervention -- restoration and conservation -- that arrests a place's decay and takes the fallen place back, and the stance it takes toward the age it inherits.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/reclamation"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "reclamation",
+    "tagline": "Reclamation as process: the deliberate intervention -- restoration and conservation -- that arrests a place's decay and takes the fallen place back, shown in the stance it takes toward the age it inherits, from stabilizing the fabric as found to rebuilding it whole to faking a past that never was.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_reclamation.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_conservation.md",
+        "type": "process",
+        "parent": "process_reclamation.md"
+      },
+      {
+        "file": "process_reconstruction.md",
+        "type": "process",
+        "parent": "process_reclamation.md"
+      },
+      {
+        "file": "process_reuse.md",
+        "type": "process",
+        "parent": "process_reclamation.md"
+      },
+      {
+        "file": "process_facsimile.md",
+        "type": "process",
+        "parent": "process_reclamation.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Shown",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place, on the Shown chapter. The root (process_reclamation.md) declares reclamation as the deliberate intervention that arrests a place's decay and takes the fallen place back -- the field called restoration and conservation, whose whole difficulty is what it does with the age it inherits, shown in the fabric it re-presents. It reads the intervention only; it never re-owns the material decay it arrests (decay's), the social withdrawal that preceded it (dereliction's), or the capital re-entry that displaces for yield rather than keeps for age (gentrification's).",
+      "issue": "Four stances over an intervention root, the poles of the restoration debate. Conservation is Ruskin's: arrest and stabilize, do the minimum, keep the fabric and its age as found, do not restore. Reconstruction is Viollet-le-Duc's: rebuild to a complete, ideal state that may never have existed, erasing the accidents of decay for the idea of the design. Reuse is the adaptive one: keep the fabric by giving it a living new function, the place saved because it is used. Facsimile is the twist: the intervention that produces a lie -- the age wiped for a manufactured wholeness, the past staged as heritage, the reproduction mistaken for the real, rescue as falsification.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so reclamation reads system-wide and no reclaimed place escapes it. The link: a place carries, under Shown, the stance its reclamation takes, linking one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each reclaimed place links a real stance file under Shown. Whether the stance is true to the place and its age is semantic, taught and reviewed, never failed by the suite. The place shows what the intervention made of its age; it does not narrate it, and it never stands in for a persona's feeling about the past.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each reclaimed place its read under Shown: the stance its intervention takes -- the conservation that keeps it as found, the reconstruction that rebuilds it whole, the reuse that keeps it by using it, or the facsimile that fakes a past it never had. Keep it the deliberate intervention on the age -- what the arrest does with the years -- and hand the material decay it arrests to decay, the withdrawal before it to dereliction, and the displacing capital to gentrification. Read facsimile as rescue that falsifies: the family's ambivalence closed, where even the saving hand can produce a counterfeit."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
