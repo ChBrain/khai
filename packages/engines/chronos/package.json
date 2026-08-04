@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-chronos",
+  "version": "0.1.0",
+  "description": "khai engine content, the chronos domain: the measured, sequential passage of time as it bears on a made thing -- the age it gathers from its origin, the ordered history it carries, the years it has endured, and the fullness that only elapsed time confers -- the object dated and aged, read at its Yearbook.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/chronos"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "chronos",
+    "tagline": "Chronos as process: the measured passage of time a made thing gathers -- the age accrued from its origin, the ordered history it carries, the years it has endured, and the twist of the fullness only elapsed time confers, the object dated and aged rather than worn by use or spent by decay.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_chronos.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_age.md",
+        "type": "process",
+        "parent": "process_chronos.md"
+      },
+      {
+        "file": "process_sequence.md",
+        "type": "process",
+        "parent": "process_chronos.md"
+      },
+      {
+        "file": "process_endurance.md",
+        "type": "process",
+        "parent": "process_chronos.md"
+      },
+      {
+        "file": "process_maturation.md",
+        "type": "process",
+        "parent": "process_chronos.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "piece",
+        "section": "Yearbook",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Piece, on the Yearbook chapter -- the object's history told as a story in time, which no force wired before. The root (process_chronos.md) declares chronos as the measured, sequential passage of time as it bears on a made thing: from its origin the clock runs on it, and it gathers age whether or not it is used or touched. It is the measure, not the matter -- it reads how old, in what order, how long endured, and whether the years made the thing more, and it never re-owns the material the years work (decay's and wear's), the object's career between commodity and singular status (biography's), or the opportune moment cut from the flow (kairos's).",
+      "issue": "Four facets over a passage root, three of accrual and one twist. Age is the sheer quantity of time gathered from the origin -- how old, the vintage-year, the era it belongs to. Sequence is the ordered run of dated events it carries -- its provenance, the chain of before and after, none of it reorderable. Endurance is its having lasted -- the survivor, the relic still whole where its cohort is gone. Maturation is the twist: the fullness only elapsed time confers -- the wine matured, the timber seasoned, the object come into its own and prized for the years in it, made more by time rather than merely older.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so chronos reads system-wide and no object escapes its clock. The link: a piece carries, under Yearbook, the facet of measured time its history shows, linking one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each dated object links a real facet file under Yearbook. Whether the facet is true to the object and its years -- an age that is really its age, a maturation that really matured -- is semantic, taught and reviewed, never failed by the suite. The object carries the time it has gathered; it does not narrate it, and it never stands in for a persona's own ageing or felt duration.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each object with a past its read under Yearbook: the facet of measured time it shows -- the age it has gathered, the sequence of its dated history, the endurance of its having lasted, or the maturation that elapsed time brought to fullness. Keep it the measure of time, not its matter -- hand the material the years work to decay and wear, the status-career to biography, and the opportune moment to kairos. Read maturation as time-made-worth, distinct from decay's patina: the fullness a thing grows into by real years, not the surface time marks on its matter."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
