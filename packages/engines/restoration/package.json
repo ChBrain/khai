@@ -1,0 +1,94 @@
+{
+  "name": "@chbrain/khai-engine-restoration",
+  "version": "0.1.0",
+  "description": "khai engine content, the restoration domain: the mending of a broken or worn object, and the stance it takes toward the object's identity and history -- how much may be renewed before it is no longer that thing, and whether the mend should show or vanish.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/restoration"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "restoration",
+    "tagline": "Restoration as process: the mending of a broken or worn object, shown in the stance it takes toward the object's identity and history -- from erasing the break to gilding it, from stabilizing as-found to keeping the thing working through part-turnover, always weighing how much may be renewed before it is no longer that thing.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_restoration.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_reversion.md",
+        "type": "process",
+        "parent": "process_restoration.md"
+      },
+      {
+        "file": "process_testimony.md",
+        "type": "process",
+        "parent": "process_restoration.md"
+      },
+      {
+        "file": "process_stabilization.md",
+        "type": "process",
+        "parent": "process_restoration.md"
+      },
+      {
+        "file": "process_continuation.md",
+        "type": "process",
+        "parent": "process_restoration.md"
+      },
+      {
+        "file": "process_fidelity.md",
+        "type": "process",
+        "parent": "process_restoration.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "piece",
+        "section": "Apparent",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Piece, on the Apparent chapter. The root (process_restoration.md) declares restoration as the mending of a broken or worn object -- the field of object conservation -- whose whole difficulty is one arbitration (Brandi's aesthetic instance against its historical instance) worked out along two object-specific questions no building faces: how much of the thing may be renewed before it is no longer that thing (the ship-of-Theseus constitution), and whether the mend should vanish or declare itself. It reads the intervention on the object only; it never re-owns the deterioration it answers (the decay family's), the mending of a place (reclamation's, on a place), or the mending of a bond (repair's, between persons).",
+      "issue": "Five stances over a mending root. Reversion erases the break and returns the object toward its original, the invisible repair. Testimony honours the break and makes the mend visible, adding a stratum to the object's life -- kintsugi's gilded seam, the twist. Stabilization arrests the damage and does the minimum, conserving the object as-found without restoring its appearance. Continuation keeps the thing alive and working through part-turnover, function over fabric, the ship kept sailing though every plank is replaced. Fidelity serves the maker's achievement and restrains the hand from over-restoration, keeping the mend honest and distinguishable so it never becomes forgery.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so restoration reads system-wide and no mended object escapes it. The link: a piece carries, under Apparent, the stance its mending takes, linking one of the five.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each mended object links a real stance file under Apparent. Whether the stance is true to the object and its history is semantic, taught and reviewed, never failed by the suite. The object shows what the mend made of its break; it does not narrate it, and it never stands in for a persona's feeling about being made whole.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each mended object its read under Apparent: the stance its mending takes -- the reversion that erases the break, the testimony that gilds it, the stabilization that arrests it, the continuation that keeps it working, or the fidelity that serves the maker. Keep it the intervention on the object -- weighing the aesthetic against the historical, and how much may be renewed before the thing is lost -- and hand the deterioration to the decay family, the mending of a place to reclamation, and the mending of a bond to repair. Read testimony as break-made-value: the object more prized for its honoured wound, not less."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
