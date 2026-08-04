@@ -1,0 +1,36 @@
+---
+khai: piece
+title: "The Path"
+license: CC-BY-NC-SA-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.1.0
+  date: "2026-08-04"
+---
+
+# Piece: The Path
+
+## Taxonomy
+
+[P](place_p.md). The shortest path problem, the baseline of tractable search.
+
+## Owner
+
+- Project: khai
+- Engine: search-space
+
+## Place
+
+Sits within the bright corridor of [P](place_p.md), anchoring the logic of networks and flows.
+
+## Load Bearing
+
+Without the Path, we cannot define the baseline of optimization. It is the foundation of route-finding and planning: if the shortest path cannot be found efficiently, then no larger plan that depends on movement can stand. The Path is load bearing because it is the standard by which all search spaces are measured: the tractable line that holds the system together.
+
+## Apparent
+
+A sequence of connected steps between two points, clean and direct. It looks like a simple choice, a clear route from origin to destination that requires no deliberation.
+
+## Yearbook
+
+Formalized by Edsger Dijkstra in 1956, and separately by Richard Bellman and Lester Ford Jr. (the Bellman-Ford algorithm). Edward F. Moore also introduced the BFS-based shortest path algorithm in 1957, establishing the direct ancestor of breadth-first class algorithms in P. Crucially, the Yearbook records a stark asymmetry: while finding the shortest path is trivial, finding the longest path (a simple inversion of the metric) is NP-hard. This asymmetry is what makes the Path a load-bearing anchor of tractability.
