@@ -1,5 +1,5 @@
 ---
-updated: "2026-08-01"
+updated: "2026-08-04"
 ---
 
 # Engine & composite gaps — a chase list
@@ -565,6 +565,91 @@ if we build them":
 Then a composite over them (the object's life and, as with the place-cycle, the
 question its mending forces: reverted, testified, or let go). Charted, not queued —
 the `restoration` engine is the one build confirmed now.
+
+**Shipped (2026-08-04) — the whole object-lifecycle family landed.** The dance ran
+as charted: `restoration` (object mending, `on: piece/Apparent`, #1090), then the
+two degradation forces — `wear` (`on: piece/Load Bearing`, #1092, "worn by use") and
+a **generalized `decay`** (#1094) rather than a new object-entropy engine, resolving
+the flagged `patina` collision: `decay` became khai's first **multi-cargo** engine,
+wiring `on: place/Shown` **and** `on: piece/Apparent` at once (the honest model —
+material entropy is use-independent, so one engine reads both cargo), keeping `patina`
+for both. The closer is the **`object-cycle`** composite (#1095, `on: piece/Apparent`,
+`audit`), over `wear` + `decay` + `restoration`, with `decay` a wired atom (not merely
+referenced) — its three bridges are what the keeper's care makes of the life: **upkeep**
+(mended, kept in service), **discard** (spent and let go), **treasure** (the marks
+prized as worth — the family's ambivalence-twist, gathering wear's seasoning and decay's
+patina into one reading). Tests followed each source per rule 3 (#1091, #1096, #1097,
+#1098). The one open thread that the charting deferred — **time / aging, "needs its own
+scoping pass before it is charted as an atom"** — is now resolved below.
+
+#### The time family — scoped, charted for build (chronos / kairos + passage)
+
+The scoping pass the object-lifecycle deferred ("`time` may warrant its own engine …
+needs its own scoping pass"). Two research passes returned a clear shape: **time is
+neither one engine nor a persona-only phenomenon — it is a small _family_ of two force
+engines that attach type-generically, closed by a composite, with a value-twist facet.**
+
+**Why not one engine.** Time is the medium every dynamic runs in; a single `time`
+engine would restate half the inventory. The disciplined cut is the classical two:
+**chronos** (measured, sequential, flowing duration — the clock running, the lifespan
+elapsing) and **kairos** (the qualitative _opportune_ moment — the right time, the
+window that opens and shuts). These are genuinely distinct forces, not two forms of one.
+
+**Why not persona-only.** `time-perception` (Zimbardo time-perspective; subjective
+duration) already owns the persona's _experience_ of time. Chronos and kairos are the
+force **time exerts on cargo** — a place, a piece, a plan, a process — not a persona's
+read of it. That is exactly the frontier the persona axis misses.
+
+**The multi-cargo hinge.** `decay` just proved a force can wire on more than one type
+(place + piece). The time family is where that becomes the _default_, not the exception:
+chronos passes over anything with a lifespan; kairos can strike any cargo that has a
+right-moment. This is the type-generic attach the cross-type order anticipated —
+`decay`'s generalization was its first demonstration, and chronos is its natural home.
+
+| Force       | What time does to the cargo                                                                   | Type-generic attach (multi-cargo)                         | Warrant                                                                                                                                           | Boundary                                                                                                                                                                                                                                                                                                    |
+| ----------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **chronos** | the measured, sequential passage — duration flowing, the clock running, the age accruing      | `on:` piece / place / plan / process (per `decay`)        | Newton (absolute time); Bergson (_durée_, as the lived counter); Elias (_Time: An Essay_); Kermode (_The Sense of an Ending_ — chronos vs kairos) | vs `decay`/`wear` (time's _material effect_ — chronos is the passage itself, decay is what it does to matter); vs `time-perception` (the persona's experience); vs F-process `momentum`/`punctuation`/`oscillation` (a _dynamic's_ tempo, not time); vs F-plot `narrative-discourse` (the _telling's_ time) |
+| **kairos**  | the opportune moment — the right time, the critical juncture, the window that opens and shuts | `on:` plot / plan / process / persona (the moment seized) | Sipiora & Baumlin (_Rhetoric and Kairos_); Kinneavy; Tillich ("the fullness of time"); Kermode                                                    | vs F-plot `ticking-clock` (a _suspense device_ — a depleting window as stakes; kairos is the qualitative _rightness_ of the moment, not the countdown); vs F-plan `deadline` (an _imposed_ clock; kairos is the _opportune_, not the compelled)                                                             |
+
+- **ripening** (value-twist facet, **not** a standalone engine): time as ally — the
+  thing _made better_ by passage (the aged wine, the matured judgment, the ripened
+  plan, the moment come to fullness). This is the family's **ambivalence-twist**, the
+  same law that surfaced as `decay`→patina, `dereliction`→ruin, `wear`→seasoning,
+  `object-cycle`→treasure: time's twist is ripening — passage read as gain, not only
+  loss. Carried as a facet of `chronos` (or a `passage` bridge), never its own engine.
+- **passage** (composite, blocked): the whole working of time read as an arc over
+  `chronos` + `kairos`, closed the way `object-cycle` and `neighborhood-cycle` close
+  their families — the measured passing and the seized moment together, and the question
+  it forces (endured, seized, or ripened). Blocked until both atoms land.
+
+**Two branches parked for the maintainer** (surfaced by the pass, each wants its own
+scoping):
+
+- **life-course / senescence** (persona-side): the human aging arc — Erikson (stages);
+  Levinson (_Seasons_); Baltes (life-span development); Carstensen (socioemotional
+  selectivity); biological senescence. Heavy adjacency to `mortality`, `possible-selves`,
+  the charted `life-review` composite (F-persona), and `nostalgia` — a maintainer's call
+  whether a distinct engine survives the boundary, and a dedicated pass if so.
+- **social / collective time**: clock-discipline, calendars, the tempo of institutions,
+  social acceleration — Zerubavel (_Hidden Rhythms_; _The Seven Day Circle_); Rosa
+  (_Social Acceleration_); E. P. Thompson ("Time, Work-Discipline and Industrial
+  Capitalism"). Where it wires (`position`/office? `place`? its own cluster) and whether
+  it is one engine or several is unsettled — a dedicated organizational-sociology pass,
+  as F-position got.
+
+**Not gaps — already owned (recorded so they are not re-flagged as "time"):**
+`time-perception` (the persona's experience — do **not** rebuild it as chronos);
+`ticking-clock` (F-plot) and `deadline` (F-plan) (the narrative / plan time-pressure
+devices — kairos is the qualitative-moment force, not those); `circadian-rhythm`
+(F-persona, the biological daily clock); `narrative-discourse` (F-plot, story-time vs
+discourse-time); the F-process tempo engines (`momentum` / `punctuation` / `oscillation`
+own a _dynamic's_ shape-in-time, not time itself).
+
+**Build order:** `chronos` first — the root passage all else presupposes, and the
+`on:`-many multi-cargo precedent at family scale, worth a maintainer eye the way `decay`'s
+generalization got — then `kairos`, then the `passage` composite; `ripening` rides in as
+the twist facet, never queued alone. The two branches stay parked pending their own passes.
+All rows `proposed` pending a per-item go.
 
 ### Tier F-plan — forces on a plan-as-contested-object (6 engines)
 
