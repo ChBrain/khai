@@ -1,0 +1,4 @@
+---
+---
+
+Add the neighborhood-cycle composite: the whole arc a built place turns through -- decline, capital re-entry, and reclamation -- read as a wiring of the dereliction, gentrification, and reclamation engines over the decay they act upon. The second composite to wire engines rather than composites (after artifice), and the first on the place type. Three bridges, told by whom the return serves: turnover (the place reclaimed for capital, the community displaced), stewardship (the cycle kept for its people), and attrition (no human return -- the emptied place's non-human return handed to succession). Warrant: the produced-cycle view (Smith's see-saw, Marcuse's paired abandonment/gentrification) against the older lifecycle determinism (Burgess, Hoover & Vernon). Wires on: place at Shown, audit level.
