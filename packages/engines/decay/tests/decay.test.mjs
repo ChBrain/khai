@@ -16,7 +16,7 @@ describe("decay: conforms to the canon", () => {
 });
 
 describe("decay: manifest", () => {
-  it("declares a process engine on place: an entropy root over four modes", () => {
+  it("declares a process engine on place and piece: an entropy root over four modes", () => {
     expect(manifest.engine).toBe("decay");
     expect(manifest.type).toBe("process");
     expect(manifest.members).toHaveLength(5);
@@ -32,7 +32,7 @@ describe("decay: manifest", () => {
     }
   });
 
-  it("declares both wiring altitudes, the place link at Shown", () => {
+  it("wires multi-cargo: the law, the place link at Shown, and the piece link at Apparent", () => {
     expect(manifest.requires).toContainEqual({
       on: "instructions",
       section: "Knowledge",
@@ -45,6 +45,17 @@ describe("decay: manifest", () => {
       link: "expression",
       level: "fail",
     });
+    expect(manifest.requires).toContainEqual({
+      on: "piece",
+      section: "Apparent",
+      link: "expression",
+      level: "fail",
+    });
+  });
+
+  it("carries exactly one cargo per type: decay is what a thing loses to time, used or not", () => {
+    const cargo = manifest.requires.filter((r) => r.on !== "instructions");
+    expect(cargo.map((r) => r.on).sort()).toEqual(["piece", "place"]);
   });
 });
 
