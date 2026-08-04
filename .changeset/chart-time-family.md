@@ -1,0 +1,4 @@
+---
+---
+
+Chart the time family in ENGINE-GAPS, and mark the object-lifecycle family shipped. Records the time scoping pass the object-lifecycle deferred: time is neither one engine nor persona-only, but a small family of two type-generic force engines -- `chronos` (measured sequential passage) and `kairos` (the opportune moment) -- closed by a `passage` composite, with `ripening` as the ambivalence-twist value facet (time-as-gain). Bounds it against the existing time coverage (time-perception, ticking-clock, deadline, circadian-rhythm, narrative-discourse, the F-process tempo engines) and parks two maintainer-call branches (persona-side life-course/senescence; social/collective time -- Zerubavel/Rosa/Thompson). Also records the object-lifecycle family (restoration/wear/generalized-decay/object-cycle, #1090-#1098) as landed, with decay as khai's first multi-cargo engine. Planning doc only; no package content.
