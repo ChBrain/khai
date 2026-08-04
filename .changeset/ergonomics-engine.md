@@ -1,4 +1,0 @@
----
----
-
-Add the ergonomics engine (packages/engines/ergonomics): the physical pole of the design family (build #1 of the discovery-loop set), sibling to usability (cognitive) and agency (political). Ergonomics as piece, the object's physical fit to the human body -- how its dimensions, reach, clearance, and force demand meet or fail the body that uses it. A depth-1 engine: the fit root over four facets -- anthropometry (Dreyfuss/Pheasant, the object sized to the range of bodies), reach (the reach envelope), clearance (the space to fit and pass), exertion (Kroemer, the force demanded). Wires the default law at instructions/Knowledge and one specific link at piece/Load Bearing. Bounds against usability (legible form vs physical fit -- orthogonal), agency (amoral fit vs enforced program), the body engine (the object's fit vs the body's own states, on a persona), and a persona's skill. First release; source only, tests to follow as a separate dormant PR.

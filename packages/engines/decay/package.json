@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-decay",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "khai engine content, the decay domain: the material entropy a place or a thing undergoes -- matter losing the order imposed on it, rust and rot and crumble working the fabric from within, use-independent, read as loss or as the value of age.",
   "type": "module",
   "main": "./index.mjs",
