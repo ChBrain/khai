@@ -1,0 +1,154 @@
+{
+  "name": "@chbrain/khai-engine-search-space",
+  "version": "0.1.0",
+  "description": "khai engine content, the search space domain: computational complexity as Place and Piece, mapping tractability and intractability limits.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/search-space"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "search-space",
+    "tagline": "The Search Space as place and piece: the computational complexity limits (P, NP, NP-complete, NP-hard, and PPAD) and the classic optimization problems that bear their weight.",
+    "type": "place",
+    "members": [
+      {
+        "file": "place_the_search_space.md",
+        "type": "place",
+        "parent": null
+      },
+      {
+        "file": "place_p.md",
+        "type": "place",
+        "parent": "place_the_search_space.md"
+      },
+      {
+        "file": "piece_the_path.md",
+        "type": "piece",
+        "parent": "place_p.md"
+      },
+      {
+        "file": "place_np.md",
+        "type": "place",
+        "parent": "place_the_search_space.md"
+      },
+      {
+        "file": "place_np_complete.md",
+        "type": "place",
+        "parent": "place_np.md"
+      },
+      {
+        "file": "place_packing.md",
+        "type": "place",
+        "parent": "place_np_complete.md"
+      },
+      {
+        "file": "piece_the_clique.md",
+        "type": "piece",
+        "parent": "place_packing.md"
+      },
+      {
+        "file": "place_covering.md",
+        "type": "place",
+        "parent": "place_np_complete.md"
+      },
+      {
+        "file": "piece_the_cover.md",
+        "type": "piece",
+        "parent": "place_covering.md"
+      },
+      {
+        "file": "place_sequencing.md",
+        "type": "place",
+        "parent": "place_np_complete.md"
+      },
+      {
+        "file": "piece_the_tour.md",
+        "type": "piece",
+        "parent": "place_sequencing.md"
+      },
+      {
+        "file": "place_partitioning.md",
+        "type": "place",
+        "parent": "place_np_complete.md"
+      },
+      {
+        "file": "piece_the_coloring.md",
+        "type": "piece",
+        "parent": "place_partitioning.md"
+      },
+      {
+        "file": "place_numerical.md",
+        "type": "place",
+        "parent": "place_np_complete.md"
+      },
+      {
+        "file": "piece_the_knapsack.md",
+        "type": "piece",
+        "parent": "place_numerical.md"
+      },
+      {
+        "file": "place_np_hard.md",
+        "type": "place",
+        "parent": "place_the_search_space.md"
+      },
+      {
+        "file": "place_ppad.md",
+        "type": "place",
+        "parent": "place_the_search_space.md"
+      },
+      {
+        "file": "piece_the_equilibrium.md",
+        "type": "piece",
+        "parent": "place_ppad.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place. The root (place_the_search_space.md) declares the search space as the region where computational limits act as a structural refusal; the intractability is not a secret, but a physical law of time and space.",
+      "issue": "The hierarchy of limits: P (cheap to release), NP (free to verify, expensive to find), NP-complete (reduction wings, split into the five classic families: packing, covering, sequencing, partitioning, numerical), NP-hard (no promised verification), and PPAD (existence guaranteed, reachability withheld). Named pieces are structural objects placed within these areas that carry yearbooks of search and load-bearing weight.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the search space reads system-wide and no persona escapes it. The link: each persona's task links the Piece it must resolve, or the Play maps its limits to the Place in play.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and a real complexity place or piece is linked. Whether the complexity matches the persona's capability is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then map the scene's task to a piece or place under the correct complexity family. Read it in the first beat: the environment refuses to yield the solution, demanding resources or proving intractability."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.20"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.1.17",
+    "vitest": "^4.1.9"
+  }
+}
