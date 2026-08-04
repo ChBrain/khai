@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-neighborhood-cycle",
+  "version": "0.1.0",
+  "description": "khai composite content, the neighborhood-cycle domain: the whole arc a built place turns through -- decline, capital re-entry, and reclamation -- read as a wiring of the dereliction, gentrification, and reclamation engines, and whom the return serves.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/neighborhood-cycle"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "neighborhood-cycle",
+    "tagline": "Neighborhood-cycle as composite: the whole arc a built place turns through -- decline, capital re-entry, and reclamation -- read as a wiring of the dereliction, gentrification, and reclamation engines over the decay they act upon, and the drama lives in whom the return serves: the community kept (stewardship), the capital served and the community displaced (turnover), or no return at all (attrition).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_neighborhood_cycle.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_neighborhood_cycle_turnover.md",
+        "type": "process",
+        "parent": "process_neighborhood_cycle.md"
+      },
+      {
+        "file": "process_neighborhood_cycle_stewardship.md",
+        "type": "process",
+        "parent": "process_neighborhood_cycle.md"
+      },
+      {
+        "file": "process_neighborhood_cycle_attrition.md",
+        "type": "process",
+        "parent": "process_neighborhood_cycle.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Shown",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place, over three atoms it declares as dependencies -- the dereliction, gentrification, and reclamation engines, the second composite to wire engines rather than composites (after artifice) and the first on the place type. The root (process_neighborhood_cycle.md) reads the whole arc a built place turns through: dereliction's decline, gentrification's capital re-entry, and reclamation's taking-back, over the decay they all act upon. This composite adds no new phase; it reads what the phases make together across a place's life, and above all whom the return serves. Its warrant is the produced-cycle view -- Smith's see-saw of capital and Marcuse's paired abandonment and gentrification -- against the older determinism that read the lifecycle as a natural fate.",
+      "issue": "Three bridges, the shapes the cycle takes, told by whom the return serves. Turnover: the extractive full turn -- decline opens the rent-gap, capital re-enters, the fabric is reclaimed for new occupants and the old ones displaced; the place returns for capital, not for its community. Stewardship: the cycle kept for its people -- decline met by conservation and reinvestment that reclaim without displacing, the place returned for the ones who held it through the fall. Attrition: the cycle with no human return -- the place written off for good, or the community displaced from one disinvested place to the next, worn away by a return that never comes for them; where no human return arrives, the biological one does, which is succession's. Decline alone or return alone is not the cycle; the composite is the whole arc, and its question is for whom.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the cycle reads wherever its atoms are cast. The link, advisory: a place may link under Shown the bridge its cycle is in, and the audit surfaces where a play stages a place across time without naming whom its return serves.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the three cycle engines. Whether a production's cycle genuinely turns the way the bridge names -- a turnover that truly displaces, a stewardship that truly keeps, an attrition that truly abandons -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- the three cycle engines, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the arc from the three engines -- the decline from dereliction, the re-entry from gentrification, the taking-back from reclamation, all over the decay they act on -- then read the bridge by whom the return serves: turnover when the place comes back for capital and the community is displaced, stewardship when it comes back for its people, attrition when it does not come back at all. Read the cycle as produced, not fated -- decline is done and return is chosen -- and never as the word neighborhood-cycle alone."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-dereliction": "^0.1.0",
+    "@chbrain/khai-engine-gentrification": "^0.1.0",
+    "@chbrain/khai-engine-reclamation": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
