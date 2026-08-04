@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-wear",
+  "version": "0.1.0",
+  "description": "khai engine content, the wear domain: the degradation an object undergoes through use -- the tool worn, the part fatigued, the consumable spent, and the surface seasoned by handling, the object used up rather than merely left to time.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/wear"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "wear",
+    "tagline": "Wear as process: the degradation an object undergoes through use -- the surface abraded, the part flexed to failure, the consumable depleted, and the twist of the surface seasoned by handling, the object used up rather than merely left to time.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_wear.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_abrasion.md",
+        "type": "process",
+        "parent": "process_wear.md"
+      },
+      {
+        "file": "process_flexure.md",
+        "type": "process",
+        "parent": "process_wear.md"
+      },
+      {
+        "file": "process_depletion.md",
+        "type": "process",
+        "parent": "process_wear.md"
+      },
+      {
+        "file": "process_seasoning.md",
+        "type": "process",
+        "parent": "process_wear.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "piece",
+        "section": "Load Bearing",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Piece, on the Load Bearing chapter. The root (process_wear.md) declares wear as the degradation an object takes from use rather than from time alone: the hand, the road, the cycle, the burning of it spend the object's capacity to do its work. It is decay's complement -- the unused thing rots where it sits, the used thing wears in the hand -- and it reads the depletion of function only; it never re-owns the use-independent entropy (the decay family's), the mending that answers it (restoration's), or the standard-shift that dates a still-working object (obsolescence's).",
+      "issue": "Four modes over a use root, three of loss and one twist. Abrasion is the surface rubbed away by friction -- the tread gone, the edge dulled, the finish worn through. Flexure is the part weakened and cracked by repeated stress -- the hinge, the cable, the spring worked until it fails. Depletion is the consumable spent -- the fuel burned, the ink emptied, the object used up to nothing. Seasoning is the twist: the same use that ruins one thing improves another, the boot broken in, the handle worn to the hand, the tool made better and more its owner's the more it is used.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so wear reads system-wide and no used object escapes it. The link: a piece carries, under Load Bearing, the mode of wear it undergoes, linking one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each worn object links a real mode file under Load Bearing. Whether the mode is true to the object and its use is semantic, taught and reviewed, never failed by the suite. The object bears what its use spent of it; it does not narrate it, and it never stands in for a persona's own exhaustion.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each used object its read under Load Bearing: the mode its use spends -- the abrasion of its surface, the flexure of its parts, the depletion of its substance, or the seasoning that use lays down as worth. Keep it degradation by use, not by time -- hand the use-independent entropy to the decay family, the mending to restoration, and the standard-shift to obsolescence. Read seasoning as use-made-value: the object worn better and more its own, not only worn out."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
