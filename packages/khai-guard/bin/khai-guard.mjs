@@ -995,14 +995,18 @@ function runMemberCheck() {
 function runDrift() {
   chdirRepoToplevel("drift");
   const config = loadConfig();
-  const policy = config.driftPolicy;
-  if (!policy) {
-    console.log("KHAI-Guard drift: no driftPolicy configured; nothing to check.");
-    return;
-  }
   // --json means the caller is a machine: stdout carries the report and nothing
   // else, so every human line below is either suppressed or sent to stderr.
+  // Read before the first return: an early exit is still a caller waiting to
+  // parse, and prose on that path is the same unparseable stdout as prose on
+  // any other.
   const json = process.argv.includes("--json");
+  const policy = config.driftPolicy;
+  if (!policy) {
+    if (json) console.log(JSON.stringify({ behind: 0, unreachable: 0, rows: [] }));
+    else console.log("KHAI-Guard drift: no driftPolicy configured; nothing to check.");
+    return;
+  }
   const scopes = Array.isArray(policy.scopes) ? policy.scopes : [];
   if (!scopes.length) {
     if (json) console.log(JSON.stringify({ behind: 0, unreachable: 0, rows: [] }));
