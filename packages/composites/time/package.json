@@ -1,0 +1,104 @@
+{
+  "name": "@chbrain/khai-composite-time",
+  "version": "0.1.0",
+  "description": "khai composite content, the time domain: time whole, read over its two faces -- chronos the measured passage and kairos the opportune moment -- and how they meet: in tune (timeliness), out of step (untimeliness), or come together to their fullness. The first multi-cargo composite, wiring on the object's Yearbook and the unfolding's moment-chapter alike.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/time"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "time",
+    "tagline": "Time as composite: time whole, read over its two faces -- chronos the measured passage a thing accrues and kairos the opportune moment that punctuates an unfolding -- and the drama lives in how the two clocks meet: in tune (timeliness), out of step (untimeliness), or come together each at its fullness (the right thing at the right time). The first multi-cargo composite, casting the measured face on an object at Yearbook and the moment face on a plot, plan, or process at its own chapter.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_time.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_time_timeliness.md",
+        "type": "process",
+        "parent": "process_time.md"
+      },
+      {
+        "file": "process_time_untimeliness.md",
+        "type": "process",
+        "parent": "process_time.md"
+      },
+      {
+        "file": "process_time_fullness.md",
+        "type": "process",
+        "parent": "process_time.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "piece",
+        "section": "Yearbook",
+        "link": "expression",
+        "level": "audit"
+      },
+      {
+        "on": "plot",
+        "section": "Cue",
+        "link": "expression",
+        "level": "audit"
+      },
+      {
+        "on": "plan",
+        "section": "Implementation",
+        "link": "expression",
+        "level": "audit"
+      },
+      {
+        "on": "process",
+        "section": "Initiated by",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches multi-cargo, over two atoms it declares as dependencies -- the chronos and kairos engines, the two faces of time. It is the first composite to wire more than one cargo type: the object's Yearbook (where chronos casts the measured passage) and the moment-chapter of each unfolding -- a plot at Cue, a plan at Implementation, a process at Initiated by (where kairos casts the opportune moment). The root (process_time.md) reads time whole: not the measure alone nor the moment alone, but what the two make together and how they meet. This composite adds no new force; it reads the phase relation of chronos's passage and kairos's moment. Its warrant is the classical chronos / kairos pair (Kermode), read as one domain with two faces.",
+      "issue": "Three bridges, the shapes the two clocks make together. Timeliness: the moment lands right on the passage -- the act in season, the ripe moment met when the thing is matured to meet it, both clocks agreeing. Untimeliness: the moment falls out of the passage -- too early, too late, the window missed, or the thing itself out of its era, the anachronism, the two clocks at odds. Fullness: the twist -- the long passage come to maturation meets the moment come to ripeness, the right thing at the right time, both clocks not merely agreeing but each at its fullness. Passage alone or moment alone is one face; the composite is time whole and how its faces meet.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so time reads wherever its atoms are cast. The link, advisory: an object or an unfolding may link under its own chapter the bridge its time is in, and the audit surfaces where a play carries a thing across its time without naming whether its passage and moment fall into step.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the chronos and kairos engines. Whether a production's time genuinely turns the way the bridge names -- a timeliness that truly lands in season, an untimeliness that truly misses, a fullness that truly coincides -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- chronos and kairos, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the two faces from the atoms -- the measured passage from chronos on an object at Yearbook, the opportune moment from kairos on a plot, plan, or process at its own chapter -- then read the bridge by how the two meet: timeliness when the moment lands right on the passage, untimeliness when it falls out of step, fullness when the matured thing meets the ripe moment. Read time as a whole of two faces, never as the word time alone -- and let fullness gather chronos's maturation and kairos's ripeness into one reading: the right thing at the right time."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-chronos": "^0.1.0",
+    "@chbrain/khai-engine-kairos": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}

@@ -1,0 +1,4 @@
+---
+---
+
+Add the time composite: time whole, read over its two faces -- chronos the measured passage and kairos the opportune moment -- and how the two clocks meet. The closer of the time family and the repository's first multi-cargo composite: it wires on the object's Yearbook (chronos's home) and the unfolding's own moment-chapter -- plot/Cue, plan/Implementation, process/Initiated by (kairos's homes) -- all at the advisory audit level, over the two atoms it declares as dependencies. A composite root over three bridges: timeliness (the moment lands right on the passage, both clocks agreeing), untimeliness (too early, too late, or the thing out of its era, the two at odds), and the fullness twist (the matured thing meets the ripe moment -- the right thing at the right time, gathering chronos's maturation and kairos's ripeness). First release, so an empty changeset (publishes at 0.1.0).
