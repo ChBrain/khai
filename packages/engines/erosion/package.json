@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-erosion",
+  "version": "0.1.0",
+  "description": "khai engine content, the erosion domain: the slow wearing of a place's surface from outside -- rock and soil detached and carried off by water, wind, and ice, grain by grain over time -- and laid down elsewhere as new ground; the exogenic counterpart to geomorphology's sudden violence.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/erosion"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "erosion",
+    "tagline": "Erosion as process: the slow wearing of a place's surface from outside -- water scouring, wind deflating, ice and frost shattering, grain by grain over time -- and the twist of that worn material laid down elsewhere as new ground, the exogenic force that lowers the land geomorphology raised.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_erosion.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_scour.md",
+        "type": "process",
+        "parent": "process_erosion.md"
+      },
+      {
+        "file": "process_deflation.md",
+        "type": "process",
+        "parent": "process_erosion.md"
+      },
+      {
+        "file": "process_frost.md",
+        "type": "process",
+        "parent": "process_erosion.md"
+      },
+      {
+        "file": "process_deposition.md",
+        "type": "process",
+        "parent": "process_erosion.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Shown",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place, on the Shown chapter. The root (process_erosion.md) declares erosion as the slow wearing of the place's surface by agents from outside: water, wind, and ice detach and carry off the ground grain by grain, lowering the land over time -- shown in the worn surface before anyone names it. It is the exogenic, gradual counterpart to geomorphology's sudden, endogenic violence, and it never re-owns the ground's own making and breaking (geomorphology's), the water regime that supplies its scour (hydrology's), the atmospheric event above (weather's), or the material entropy of made things (decay's).",
+      "issue": "Four modes over a wearing root, three agents and one twist. Scour is water's cut -- the river incising, the rain washing the slope, the gully and the undercut bank. Deflation is wind's strip -- the loose ground lifted and sandblasted, the dust storm, the desert pavement and the dune's march. Frost is ice's shatter -- water freezing in the cracks and prying rock apart, the scree below the cliff, the ground the glacier ground. Deposition is the twist: the worn material does not vanish but is laid down elsewhere -- the delta, the floodplain, the loess soil, the beach -- the land lost from one place become new ground in another.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so erosion reads system-wide and no surface is fixed. The link: a place carries, under Shown, the mode of wearing it undergoes or the deposition it receives, linking one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each place links a real mode file under Shown. Whether the mode is true to the surface and its agents is semantic, taught and reviewed, never failed by the suite. The place shows what its surface loses or gains; it does not narrate it, and it never stands in for a persona's own wearing down.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each place whose surface is worked its read under Shown: the mode it undergoes -- the scour of water, the deflation of wind, the shatter of frost -- or the deposition it receives. Keep it the slow surface wearing from outside, not the ground's own sudden violence (hand that to geomorphology), the water regime itself (to hydrology), the air above (to weather), or the decay of made things (to decay). Read deposition as the twist: what is lost from one place is not gone but building another."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
