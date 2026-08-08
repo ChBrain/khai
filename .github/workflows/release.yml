@@ -32,9 +32,17 @@ name: release
 # and the PR unmergeable. A PAT is a real identity, so CI fires and the PR
 # merges green through normal branch protection — no admin bypass.
 
+# A push to main is the normal trigger. workflow_dispatch is the recovery one:
+# when a run fails for a reason outside the diff -- an expired RELEASE_TOKEN, a
+# GitHub outage during "Prepare all required actions" -- the changesets simply
+# queue on main and nothing publishes until another push happens to arrive. That
+# left the release down for three days in August 2026, waiting on an unrelated
+# merge. Dispatch re-runs it against main's current head, so the recovery is a
+# button rather than a commit invented to push it.
 on:
   push:
     branches: [main]
+  workflow_dispatch:
 
 concurrency: release-${{ github.ref }}
 
