@@ -952,6 +952,56 @@ No composite is proposed for this track (the essay reads them as a _movement_, b
 research proposed three engines plus the `self-efficacy` anchor, not a compound). This
 is a **later, separate** effort — not queued behind the frontier, just not lost.
 
+## Separate track — the creativity cluster (persona cognition; a gap the analysis missed)
+
+Recorded because a challenge surfaced it and the ten-domain gap analysis did not: khai
+has no `creativity` engine, and that is **correct** — creativity is the paradigm
+multi-component construct (Amabile's componential theory; Csikszentmihalyi's systems
+model; Wallas's four stages), and a monolithic engine would restate its parts and fail
+`member-check`. But the analysis read it as covered because the components largely are —
+and the generative _core_ slipped through. This track records the real gap: not a
+"creativity" engine, but the missing generative engine, two adjacent trait/capacity
+engines, and the composite that integrates them.
+
+**Already built (creativity's components) — recorded so they are not re-flagged:**
+`insight` (the illumination / aha; already cites Mednick's "associative basis of the
+creative process"), `analogy` (creative transfer, Gentner's structure-mapping),
+`mind-wandering` (the incubation substrate), `curiosity` + `interest` (the drive),
+`flow` (the generative state), `play-mode` (Winnicott's creative posture). Most of
+Wallas's stages and Amabile's components are already on the board.
+
+**The genuine unbuilt core:**
+
+| Candidate              | Phenomenon                                                                                                                              | Warrant                                       | Nearest / boundary                                                                                                                                                      | E/C               | Status                                |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- | ------------------------------------- |
+| **divergent-thinking** | the deliberate generation of many novel, varied, useful ideas -- the generative act itself                                              | Guilford (1950, 1967); Torrance (TTCT); Runco | `insight` (sudden restructuring of _one_ stuck problem, not deliberate generation); `analogy` (structure-mapping, not generation); convergent selection is `decision`'s | Engine (process)  | proposed -- the strong build          |
+| **openness**           | openness to experience -- aesthetic sensitivity, ideational fluency, tolerance of ambiguity, the Big-Five trait most tied to creativity | McCrae & Costa; DeYoung (openness/intellect)  | **`temperament` exists** -- verify openness is not already a form there before building; a trait, `on: persona`                                                         | Engine (position) | proposed -- **verify vs temperament** |
+| **imagination**        | forming and manipulating mental representations of what is not present                                                                  | Currie & Ravenscroft; Kind; Byrne             | `mind-wandering` (spontaneous drift, not deliberate construction); `possible-selves` (future self-images specifically); the general capacity is unbuilt                 | Engine (process)  | proposed -- boundary work needed      |
+
+**The composite:**
+
+- **creativity** (composite, blocked): the whole in the integrative sense, over
+  `divergent-thinking` + `insight` + `analogy` + `mind-wandering` (incubation), with
+  intrinsic-motivation (`motivation`) as a referenced driver. Warrant: Amabile
+  (componential), Wallas (preparation → incubation → illumination → verification),
+  Csikszentmihalyi (systems model), Sawyer. Blocked until `divergent-thinking` lands;
+  `insight` / `analogy` / `mind-wandering` already exist as atoms.
+
+**Naming / boundary flags to arbitrate at build:**
+
+- **`fluency` stem is taken** -- Guilford's classic facets are fluency / flexibility /
+  originality / elaboration, but `fluency` is already a member elsewhere. `divergent-thinking`
+  must rename that facet (e.g. `profusion` / `productivity`) or ask the maintainer for a
+  `memberPolicy.homonyms` whitelist. `flexibility` / `originality` / `elaboration` stems are free.
+- **Not gaps:** brainstorming and other ideation techniques are **methods** (a khai-method,
+  not an engine); convergent thinking / idea-selection is `decision`'s and `evaluation`'s; the
+  creative product's _reception_ is audience-side (`transportation` / `allegiance`).
+
+**Build order (if pursued):** `divergent-thinking` first -- the missing core and the
+composite's keystone -- then verify `openness` against `temperament` and `imagination`
+against `mind-wandering`, then the `creativity` composite. This is a **later, separate**
+effort, recorded so it is not lost, not queued ahead of the cross-type frontier.
+
 ## Rejected on inspection (documented so they need not be re-checked)
 
 SDT basic-needs (homonym with `needs` + owned by `motivation`); HEXACO
