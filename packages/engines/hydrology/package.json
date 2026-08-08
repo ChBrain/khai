@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-hydrology",
+  "version": "0.1.0",
+  "description": "khai engine content, the hydrology domain: the water regime of a place -- the water it has in excess, in deficit, in hidden store, and as its own life -- flood and drought and the aquifer and the wellspring, the water that makes and unmakes the place from the surface and below.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/hydrology"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "hydrology",
+    "tagline": "Hydrology as process: the water regime of a place -- the water it has in destructive excess (flood), in destructive deficit (drought), in hidden subsurface store (groundwater), and as the standing gift that makes it livable (wellspring) -- the same water that drowns and parches a place being the water that sustains it.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_hydrology.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_flood.md",
+        "type": "process",
+        "parent": "process_hydrology.md"
+      },
+      {
+        "file": "process_drought.md",
+        "type": "process",
+        "parent": "process_hydrology.md"
+      },
+      {
+        "file": "process_groundwater.md",
+        "type": "process",
+        "parent": "process_hydrology.md"
+      },
+      {
+        "file": "process_wellspring.md",
+        "type": "process",
+        "parent": "process_hydrology.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Shown",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place, on the Shown chapter. The root (process_hydrology.md) declares hydrology as the water regime a place stands in: how much water it has, where, and when -- the water in excess, in deficit, in hidden store, and as its own life, shown in the place before anyone names it. It is the water itself, not what the water does to the ground (erosion's scour) nor the rain-event that feeds it from the sky (weather's); it never re-owns the ground the water runs on (geomorphology's) or the long regime that governs the balance (climate's).",
+      "issue": "Four modes over a water root, two failures, a hidden store, and a twist. Flood is water in destructive excess -- the river over its banks, the place inundated, the low ground drowned. Drought is water in destructive deficit -- the parched land, the well gone dry, the reservoir low, the crop failing for want of rain. Groundwater is the hidden store below -- the aquifer, the spring, the seep, the water-table rising and falling out of sight. Wellspring is the twist: the same water that drowns and parches is the water that makes the place livable -- the perennial river, the oasis, the teeming wetland, the fertile floodplain, the water read as the place's own life.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so hydrology reads system-wide and no place's water is mere scenery. The link: a place carries, under Shown, the mode of its water regime, linking one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each place links a real mode file under Shown. Whether the mode is true to the place and its water is semantic, taught and reviewed, never failed by the suite. The place shows the water it has or lacks; it does not narrate it, and it never stands in for a persona's own flooding or thirst.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each place whose water is an actor its read under Shown: the mode its regime shows -- the flood of excess, the drought of deficit, the groundwater held below, or the wellspring that gives it life. Keep it the water itself, not what the water does to the ground (hand the scour to erosion), the rain-event from the sky (to weather), the ground the water runs on (to geomorphology), or the long regime that governs it (to climate). Read wellspring as the twist: the water that floods and parches is the same water the place lives by."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
