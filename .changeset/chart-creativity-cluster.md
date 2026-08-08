@@ -1,0 +1,4 @@
+---
+---
+
+Chart the creativity cluster in ENGINE-GAPS. Records a gap the ten-domain analysis missed (surfaced by a challenge): khai has no creativity engine, which is correct -- creativity is a multi-component construct and a monolithic engine would fail member-check -- but the generative core slipped through. Notes the components already built (insight, analogy, mind-wandering, curiosity, interest, flow, play-mode), charts the genuine unbuilt core (divergent-thinking as the strong build, plus openness and imagination to verify against temperament and mind-wandering), and a creativity composite over divergent-thinking + insight + analogy + mind-wandering. Flags the fluency stem collision (Guilford's facet, taken elsewhere) and the method/decision/reception boundaries. Planning doc only; no package content.
