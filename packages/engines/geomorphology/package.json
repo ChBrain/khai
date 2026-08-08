@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-geomorphology",
+  "version": "0.1.0",
+  "description": "khai engine content, the geomorphology domain: the ground's own violence, the landform made and broken by forces from within and below -- the place's floor raised, ruptured, poured new, or dropped away, the sudden endogenic counterpart to erosion's slow wearing.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/geomorphology"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "geomorphology",
+    "tagline": "Geomorphology as process: the ground's own violence, the landform made and broken by forces from within and below -- the coast uplifted, the fault quaked, the volcano erupted, the hollow ground subsided -- the place's very floor as its own maker and breaker, the sudden endogenic force behind erosion's slow wearing.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_geomorphology.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_uplift.md",
+        "type": "process",
+        "parent": "process_geomorphology.md"
+      },
+      {
+        "file": "process_quake.md",
+        "type": "process",
+        "parent": "process_geomorphology.md"
+      },
+      {
+        "file": "process_eruption.md",
+        "type": "process",
+        "parent": "process_geomorphology.md"
+      },
+      {
+        "file": "process_subsidence.md",
+        "type": "process",
+        "parent": "process_geomorphology.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Shown",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place, on the Shown chapter. The root (process_geomorphology.md) declares geomorphology as the ground's own violence: the landform made and broken by forces from within and below, the place's very floor raised, ruptured, poured new, or dropped away -- shown in the ground before anyone names it. It is the sudden, endogenic counterpart to erosion's slow exogenic wearing, and it never re-owns the built fabric (space's), the atmospheric load from above (weather's), the water regime (hydrology's), or the material entropy of made things (decay's).",
+      "issue": "Four modes over a ground root, the making and the breaking of the land. Uplift is the ground raised -- the coast lifted, the range built, the land risen by the slow shove of the plates or a single jolt. Quake is the fault ruptured -- the stored strain released, the ground shaken, cracked, and shifted. Eruption is the volcanic -- magma, ash, and new rock born from below, and what it buries. Subsidence is the ground given way -- the sinkhole, the settling, the land dropped beneath its own weight or a drained void. The same violence builds mountains and levels cities: geomorphology is the land as its own maker and breaker.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so geomorphology reads system-wide and no ground is mere backdrop. The link: a place carries, under Shown, the mode of ground-violence it undergoes or bears the mark of, linking one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each place links a real mode file under Shown. Whether the mode is true to the ground and its geology is semantic, taught and reviewed, never failed by the suite. The place shows what its ground did or bears; it does not narrate it, and it never stands in for a persona's own upheaval.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each place whose ground is an actor its read under Shown: the mode its floor undergoes -- the uplift that raised it, the quake that cracked it, the eruption that made or buried it, or the subsidence that dropped it. Keep it the ground's own sudden violence, not the slow surface wearing (hand that to erosion), the water regime (to hydrology), the air from above (to weather), or the decay of made things (to decay). Read the making and the breaking as one force: the land is built and levelled by the same violence."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
