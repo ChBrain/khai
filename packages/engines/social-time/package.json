@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-social-time",
+  "version": "0.1.0",
+  "description": "khai engine content, the social-time domain: the collective structuring of time a place keeps -- the shared cycle it runs on (calendar), the imposed timetable that orders it (schedule), the pace it runs at (tempo), and the twist of shared time as belonging, the collective rhythm read as the gift of being in time together (synchrony).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/social-time"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "social-time",
+    "tagline": "Social-time as process: the collective structuring of time a place keeps -- the shared cycle it runs on (calendar), the imposed timetable that orders it (schedule), the pace it runs at (tempo), and the twist of shared time as belonging, the collective rhythm read as the gift of being in time together rather than only the constraint of the clock (synchrony).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_social-time.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_calendar.md",
+        "type": "process",
+        "parent": "process_social-time.md"
+      },
+      {
+        "file": "process_schedule.md",
+        "type": "process",
+        "parent": "process_social-time.md"
+      },
+      {
+        "file": "process_tempo.md",
+        "type": "process",
+        "parent": "process_social-time.md"
+      },
+      {
+        "file": "process_synchrony.md",
+        "type": "process",
+        "parent": "process_social-time.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Shown",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place, on the Shown chapter. The root (process_social-time.md) declares social-time as the collective structuring of time a place keeps: the shared, socially-made order of time a setting runs on and puts before whoever enters -- the market day, the shift bell, the rush hour, the festival -- not the clock's neutral measure but the sociotemporal order a community builds and lives by (Zerubavel; E. P. Thompson; Rosa). It is the place's collective time, not the measured passage itself (chronos's), the persona's own experience of duration (time-perception's), or the sound and life of the place (soundscape's and street-life's); it is the shared time the place is ordered and known by.",
+      "issue": "Four facets over a collective-time root, three of the ordered time and one twist. Calendar is the shared cycle the place runs on -- the recurring markers that structure its time into a repeating round, the week and the holy day and the festival season and the market day, the socially-made cycle Zerubavel showed is convention, not nature. Schedule is the imposed timetable that orders the place -- clock-discipline, the opening hours, the shift bell, the timetable that sorts the place's life into slots, the mechanical clock disciplining labor and life (Thompson). Tempo is the pace the place runs at -- fast or slow, and quickening, the frantic exchange against the sleepy village, the acceleration of modern life (Rosa). Synchrony is the twist: the moments the whole place moves as one -- the festival, the shared rest, the common hour -- shared time read not as the clock's constraint but as belonging, the collective rhythm that binds a community into a we through being in time together.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so social-time reads system-wide and no place is taken as standing outside collective time. The link: a place carries, under Shown, the facet of its collective time, linking one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each place links a real facet file under Shown. Whether the read is true to the place and its collective time is semantic, taught and reviewed, never failed by the suite. The place shows the time it keeps; it does not narrate it, and it never stands in for the measured passage, a persona's own sense of time, or the place's sound and life.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each place whose collective time is an actor its read under Shown: the facet its time turns on -- the calendar it cycles by, the schedule that orders it, the tempo it runs at, or the synchrony that binds its people. Keep it the collective structuring of time, not the measured passage (hand that to chronos), the persona's own experience of duration (time-perception), or the place's sound and social life (soundscape, street-life). Read synchrony as the twist: the shared time that constrains is also the shared time that belongs."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
