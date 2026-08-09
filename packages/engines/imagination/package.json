@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-imagination",
+  "version": "0.1.0",
+  "description": "khai engine content, the imagination domain: the deliberate forming and manipulation of mental representations of what is not present -- summoning a sensory image to the mind's eye (conjuring), entertaining a proposition as if it held (supposition), and building and running a novel scenario (simulation) -- the voluntary construction of the non-present, apart from the spontaneous drift, the future self, the counterfactual past, and the pretend stance that neighbor it.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/imagination"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "imagination",
+    "tagline": "Imagination as process: the deliberate forming and manipulation of mental representations of what is not present -- summoning a sensory image to the mind's eye (conjuring), entertaining a proposition as if it held without believing it (supposition), and building and running a novel scenario from parts (simulation) -- the voluntary construction of the non-present, apart from the spontaneous drift, the future self, and the counterfactual past that neighbor it.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_imagination.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_conjuring.md",
+        "type": "process",
+        "parent": "process_imagination.md"
+      },
+      {
+        "file": "process_supposition.md",
+        "type": "process",
+        "parent": "process_imagination.md"
+      },
+      {
+        "file": "process_simulation.md",
+        "type": "process",
+        "parent": "process_imagination.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter. The root (process_imagination.md) declares imagination as the deliberate forming and manipulation of mental representations of what is not present: the voluntary act of holding before the mind something not given to the senses -- shown in what the persona conjures, supposes, and simulates, before anyone names it. It is the constructive act itself, not the spontaneous task-unrelated drift (mind-wandering's), the future self-image (possible-selves'), the counterfactual undoing of the actual past (regret's), the reconstruction of what did happen (memory's), or the pretend stance toward an activity (play-mode's); it is the making-present of the not-present, on purpose.",
+      "issue": "Three modes over a constructive root, the standard carving of the imaginative act. Conjuring is the sensory, imagistic mode -- summoning a quasi-perceptual image before the mind's eye, seeing the face that is not there, hearing the tune in the head, the picturing that is like perceiving without the thing perceived. Supposition is the propositional mode -- entertaining that something is the case without believing it, holding 'suppose that P' and reasoning from it, the as-if that runs inferences off a premise it does not endorse. Simulation is the constructive, combinatorial mode -- building a novel scenario from remembered and invented parts and running it forward, the mind's model of an event that never happened, assembled and set in motion to see how it would go.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so imagination reads system-wide and no persona's inner constructing is taken as merely perceiving or recalling. The link: a persona carries, under Projection, the mode of its imagining, linking one of the three.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real mode file under Projection. Whether the read is true to the persona and its imagining is semantic, taught and reviewed, never failed by the suite. The persona shows the constructive act; it does not narrate it, and the drift, the future self, the counterfactual, and the recollection are delegated away.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each persona whose imagining is an actor its read under Projection: the mode its imagination runs in -- the conjuring of a sensory image, the supposition of an as-if premise, or the simulation of a novel scenario. Keep it the deliberate construction of the non-present, not the spontaneous drift (hand that to mind-wandering), the future self-image (possible-selves), the undoing of the actual past (regret), the recollection of what happened (memory), or the pretend stance (play-mode)."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
