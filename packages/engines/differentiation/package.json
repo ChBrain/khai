@@ -1,0 +1,68 @@
+{
+  "name": "@chbrain/khai-engine-differentiation",
+  "version": "0.1.0",
+  "description": "khai engine content, the differentiation domain: a persona's resting capacity to hold a self -- its own thinking and principles -- under relational and emotional pressure, across the fusion pole (the self dissolved into the we), the cutoff pole (the flight from closeness mistaken for autonomy), and the solid self (connected yet self-defined).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/differentiation"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "differentiation",
+    "tagline": "Differentiation as position: a persona's resting capacity to hold a self -- its own thinking and principles -- under relational and emotional pressure, across the fusion pole (the self dissolved into the we, Bowen's togetherness and Minuchin's enmeshment), the cutoff pole (the flight from closeness mistaken for autonomy), and the solid self (close without fusing, separate without cutting off).",
+    "type": "position",
+    "anchor": "position_differentiation.md",
+    "expressions": {
+      "fusion": "position_fusion.md",
+      "cutoff": "position_cutoff.md",
+      "solid-self": "position_solid_self.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_differentiation.md) declares a persona's resting capacity to hold a self under relational and emotional pressure: how far it can keep its own thinking, principles, and course while staying in contact with people who press it to merge, agree, or react (Bowen's differentiation of self). Where self-construal is where a persona draws the boundary of its self as a cultural default -- independent or interdependent, both healthy -- differentiation is the strength of that self under anxiety: whether it holds, or dissolves into the relationship, or flees it. The law makes a persona's differentiation a standing part of how it meets the people who matter to it.",
+      "issue": "Three stances along the capacity, low and high (Bowen; Kerr). Fusion: the self dissolved into the relationship -- the persona takes its feelings, opinions, and worth from the people around it, reacts to their states as its own, and cannot hold a position they oppose; Bowen's togetherness pole, Minuchin's enmeshment, a borrowed pseudo-self that shifts with the room. Cutoff: the same low differentiation managed by distance -- the persona flees closeness, walls off, or breaks contact to keep from fusing, and mistakes the isolation for independence though the reactivity that drove it remains. Solid self: the differentiated pole -- the persona holds its own thinking and course under pressure while staying genuinely in contact, close without fusing and separate without cutting off, a self that does not have to be defended by distance or surrendered to belong.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so a persona's differentiation holds system-wide beneath its close dealings. The link: each persona links, under Projection, the differentiation it runs on -- whether it fuses, cuts off, or holds a solid self under the pressure of the people it is bound to.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real stance. Whether the differentiation is true to the persona -- fusion and cutoff read as the two faces of low differentiation rather than opposites, the solid self distinguished from the cutoff that mimics it, and kept apart from the cultural self-boundary of self-construal -- is semantic, taught and reviewed, never failed by the suite. It is authored persona-architecture, never a diagnosis of a real person.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give each persona its differentiation under Projection: whether under the pressure of a close relationship it fuses (takes its self from the other and cannot hold a position), cuts off (flees or walls off to keep from fusing), or holds a solid self (its own thinking kept while it stays in contact). Read fusion and cutoff as two faces of the same low differentiation, not opposites -- the one who fled and the one who merged are equally unable to be a self in the room. Keep it the capacity to hold a self under pressure: the cultural weighting of I against we is self-construal's, the bond's security is attachment's, and the three-party bind low differentiation drives is triangulation's."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
