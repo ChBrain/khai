@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-divergent-thinking",
+  "version": "0.1.0",
+  "description": "khai engine content, the divergent-thinking domain: the deliberate generation of many varied, novel, useful ideas from one open prompt -- the sheer count (fluency), the spread across categories (flexibility), the rarity of the ideas (originality), and their working-out (elaboration) -- the generative act creativity turns on, distinct from the sudden aha and from the convergent choosing that selects among what it produces.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/divergent-thinking"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "divergent-thinking",
+    "tagline": "Divergent thinking as process: the deliberate generation of many varied, novel ideas from one open prompt -- the sheer count of ideas (fluency), the spread across categories (flexibility), the statistical rarity of the ideas (originality), and their working-out into detail (elaboration) -- the generative act creativity turns on, apart from the sudden aha and the convergent choosing that selects among what it makes.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_divergent-thinking.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_fluency.md",
+        "type": "process",
+        "parent": "process_divergent-thinking.md"
+      },
+      {
+        "file": "process_flexibility.md",
+        "type": "process",
+        "parent": "process_divergent-thinking.md"
+      },
+      {
+        "file": "process_originality.md",
+        "type": "process",
+        "parent": "process_divergent-thinking.md"
+      },
+      {
+        "file": "process_elaboration.md",
+        "type": "process",
+        "parent": "process_divergent-thinking.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter. The root (process_divergent-thinking.md) declares divergent thinking as the generative act of creative cognition: producing many varied, novel ideas from one open-ended prompt, the ideational pool a persona throws up when the task has no single answer -- shown in what the persona generates, before anyone names it. It is the generation itself, not the sudden restructuring of one stuck problem (insight's), the structure-mapping transfer of one source onto one target (analogy's), or the convergent choosing that selects the good ideas from the pool (decision's); it is the fan-out, the many from the one.",
+      "issue": "Four dimensions over a generative root -- Guilford's classic scoring of divergent production, the ways an ideational pool is read. Fluency is the sheer number of ideas the persona throws up, the raw count, the many; a fluent mind fills the page where a blocked one stalls at two. Flexibility is the spread across categories, the number of different kinds of idea, the readiness to jump frames rather than mine one vein -- twenty uses for a brick that are all 'build something' score low flexibility however high the fluency. Originality is the statistical rarity of the ideas, their distance from the obvious and common, the answers few others give. Elaboration is the working-out, the detail and development a bare idea is filled in with, the sketch carried toward a design.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so divergent thinking reads system-wide and no creative persona is played as merely having ideas arrive. The link: a persona carries, under Projection, the dimension of its generating, linking one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real dimension file under Projection. Whether the read is true to the persona and its generating is semantic, taught and reviewed, never failed by the suite. The persona shows the generative act; it does not narrate it, and the choosing of which idea is good is convergent, delegated to decision.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each persona whose generating is an actor its read under Projection: the dimension its divergence turns on -- the fluency of many ideas, the flexibility of many kinds, the originality of rare ones, or the elaboration that works them out. Keep it the generation, not the aha that restructures one problem (hand that to insight), the analogy that maps one source to one target (analogy), or the selection of the best (decision). Novel-and-useful is the pair: divergent thinking supplies the novel and the many; the useful is settled by the convergent choosing that follows."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
