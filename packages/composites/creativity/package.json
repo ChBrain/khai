@@ -1,0 +1,88 @@
+{
+  "name": "@chbrain/khai-composite-creativity",
+  "version": "0.1.0",
+  "description": "khai composite content, the creativity domain: the production of the novel-and-useful read as one process -- effortful generation set down to incubate, the aha surfacing from the drift, and the convergent gate that keeps what is both new and good -- across the incubation, illumination, and verification bridges over divergent-thinking, mind-wandering, insight, and analogy.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/creativity"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "creativity",
+    "tagline": "Creativity as composite: the production of the novel-and-useful read as one process -- effortful generation set down to incubate, the aha surfacing from the drift with a remote map for its vehicle, and the convergent gate that keeps only what is both new and good -- across the incubation, illumination, and verification bridges over divergent-thinking, mind-wandering, insight, and analogy, and the drama lives in the whole cycle turning or the merely-novel mistaken for the creative.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_creativity.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_incubation.md",
+        "type": "process",
+        "parent": "process_creativity.md"
+      },
+      {
+        "file": "process_illumination.md",
+        "type": "process",
+        "parent": "process_creativity.md"
+      },
+      {
+        "file": "process_verification.md",
+        "type": "process",
+        "parent": "process_creativity.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "plot",
+        "section": "Tension",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over four atoms it declares as dependencies. The root (process_creativity.md) reads the making of the novel-and-useful as one process held across four engines: divergent-thinking supplies the generation of the many candidate ideas, mind-wandering supplies the offline drift that incubates them, insight supplies the sudden aha that resolves the impasse, and analogy supplies the remote structure-map the aha often rides. The composite adds no fifth engine; it wires the seams the four reinforce into a process, and it reads the convergent valuation that gates the pool (decision), the intrinsic drive that sustains it (motivation), and the representing it draws on (imagination) as neighbours it names but does not own.",
+      "issue": "Three bridges, each a handoff the atoms cannot stage apart. Incubation: effortful generation stalls at an impasse, the problem is set down, and mind-wandering's drift does the offline work that readies a solution -- neither the generating nor the drifting stages this seam alone. Illumination: the incubated material surfaces as insight's aha, and analogy's remote structure-map is often its vehicle, the far source suddenly aligned to the stuck target -- the seam where drift and mapping become a restructuring. Verification: the pool of novel ideas meets the convergent gate that keeps only the ones that are also useful, and creativity is realized -- or the merely-novel, ungated, is mistaken for the creative, and the original-but-worthless passes for the new-and-good.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the creative-process read runs wherever its atoms are cast. The link, advisory: a plot may link under Tension the bridge it stages, and the audit surfaces where a play stages the creative process without naming it.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's creativity is the whole cycle genuinely turning -- generation incubated, illuminated, and verified into the novel-and-useful -- rather than novelty asserted or the merely-strange passed off as creative, is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the process from the atoms -- the generation from divergent-thinking, the drift from mind-wandering, the aha from insight, the remote map from analogy -- then stage the bridges: the incubation of a set-down impasse, the illumination that surfaces from it, and the verification that keeps the novel-and-useful. Read the production in whether the whole cycle turns, never in novelty alone; the convergent gate is decision's, the sustaining drive motivation's, and the representing imagination's."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-divergent-thinking": "^0.1.0",
+    "@chbrain/khai-engine-mind-wandering": "^0.1.1",
+    "@chbrain/khai-engine-insight": "^0.1.1",
+    "@chbrain/khai-engine-analogy": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
