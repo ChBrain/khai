@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-climate",
+  "version": "0.1.0",
+  "description": "khai engine content, the climate domain: the standing, long-run atmospheric regime a place is set in -- what it expects rather than what it gets on the day -- its baseline type, its reliable seasonal structure, the extreme it is defined by, and the slow shift of the regime itself, the force that governs which of a place's other forces dominate.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/climate"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "climate",
+    "tagline": "Climate as process: the standing, long-run atmospheric regime a place is set in -- what it expects rather than what it gets on the day -- its baseline type (regime), its reliable seasonal structure (seasonality), the extreme it is built for (extremity), and the slow moving of the regime itself (shift), the force that sets the odds every other place-force plays out within.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_climate.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_regime.md",
+        "type": "process",
+        "parent": "process_climate.md"
+      },
+      {
+        "file": "process_seasonality.md",
+        "type": "process",
+        "parent": "process_climate.md"
+      },
+      {
+        "file": "process_extremity.md",
+        "type": "process",
+        "parent": "process_climate.md"
+      },
+      {
+        "file": "process_shift.md",
+        "type": "process",
+        "parent": "process_climate.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Shown",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place, on the Shown chapter. The root (process_climate.md) declares climate as the standing atmospheric regime a place lives in over the decades -- what a place expects, against weather's what it gets on the day -- shown in the whole adapted landscape before anyone names it. It is the long-run regime, not the event in the hour (weather's); it governs which of the place's other forces dominate, and it never re-owns the day's weather, the actual water (hydrology's), the actual burn (fire's), or the actual wearing (erosion's) -- it sets the odds those play out within.",
+      "issue": "Four modes over a regime root. Regime is the place's standing climatic type -- the long-run temperature and moisture it is set in, arid or humid, tropical or polar, the baseline the place is built to. Seasonality is the reliable seasonal structure -- whether and how the place has seasons, the monsoon, the dry summer, the equatorial sameness, the pattern the year always runs. Extremity is the extreme the regime imposes and the place is defined by -- the killing cold, the desert heat, the deep drought-proneness, the harshness life here must be built for. Shift is the regime itself moving -- the slow warming, drying, or cooling over the decades and centuries that strands everything set to the old normal.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so climate reads system-wide and no place's regime is mere scenery. The link: a place carries, under Shown, the facet of its climatic regime, linking one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each place links a real mode file under Shown. Whether the mode is true to the place and its regime is semantic, taught and reviewed, never failed by the suite. The place shows the climate it is set in; it does not narrate it, and it never stands in for a persona's own standing mood or temperament.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each place whose climate is an actor its read under Shown: the facet its regime shows -- the standing type it is set in (regime), the seasonal structure it runs (seasonality), the extreme it is built for (extremity), or the slow shift of the regime itself (shift). Keep it the long-run regime, what the place expects, not the day's weather (hand that to weather), the actual water (to hydrology), the actual burn (to fire), or the actual wearing (to erosion). Read climate as the odds those forces play out within: it governs, it does not itself fall as rain."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
