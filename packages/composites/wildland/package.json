@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-composite-wildland",
+  "version": "0.1.0",
+  "description": "khai composite content, the wildland domain: the setting read as a living, self-shaping agent -- the land that makes and breaks, wears, floods and parches, burns, and reclaims itself on its own vast time, indifferent to us -- a wiring of the geomorphology, erosion, hydrology, fire, and succession engines under the climatic regime, staged as upheaval, wearing, and the wild's reclaiming.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/wildland"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "wildland",
+    "tagline": "Wildland as composite: the setting read as a living, self-shaping agent -- the land that makes and breaks (geomorphology), wears (erosion), floods and parches (hydrology), burns (fire), and reclaims itself (succession), all under the climatic regime -- and the drama is the land's own life, staged in three shapes: upheaval (the sudden making and breaking), wearing (the slow shaping), and reclaiming (the wild taking itself back, the world without us).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_wildland.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_wildland_upheaval.md",
+        "type": "process",
+        "parent": "process_wildland.md"
+      },
+      {
+        "file": "process_wildland_wearing.md",
+        "type": "process",
+        "parent": "process_wildland.md"
+      },
+      {
+        "file": "process_wildland_reclaiming.md",
+        "type": "process",
+        "parent": "process_wildland.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Shown",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place, on the Shown chapter, over five atoms it declares as dependencies -- the geomorphology, erosion, hydrology, fire, and succession engines, the land's-forces family read as one life. The root (process_wildland.md) reads the setting as a living, self-shaping agent: the land that makes and breaks its own ground, wears it, floods and parches it, burns it, and reclaims itself, on its own vast time and indifferent to us. The climate engine is the referenced frame, not a wired atom -- it governs the odds the five play out within rather than acting on the ground itself. This composite adds no new force; it reads what the five make as the land's own life, and stages that into its shapes.",
+      "issue": "Three bridges, the shapes the land's life takes. Upheaval: the land's sudden making and breaking -- the ground raised, ruptured, and poured new (geomorphology), the fire run free (fire's conflagration), the flood (hydrology) -- the violence that remakes the place in an instant or an age. Wearing: the land's slow shaping -- the surface worn grain by grain (erosion), the long drought (hydrology), all at the pace the climatic regime sets -- the patience that lowers mountains and dries seas. Reclaiming: the twist -- the land taking itself back (succession), the burn that renews (fire), the worn ground laid down anew (erosion's deposition) -- the wild's return that is, on the human's ground, the world without us. The land makes, wears, and remakes itself; the composite is that whole life.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so wildland reads wherever its atoms are cast. The link, advisory: a place may link under Shown the shape its land's life is in, and the audit surfaces where a play carries a place through the land's own forces without naming what they make of it.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the five land's-forces engines. Whether a production's land genuinely lives the way the bridge names -- an upheaval that truly remakes, a wearing that truly lowers, a reclaiming that truly returns -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- geomorphology, erosion, hydrology, fire, succession, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the land's life from the five engines -- the making and breaking from geomorphology, the wearing from erosion, the water from hydrology, the burn from fire, the reclaiming from succession -- all within the regime the climate engine sets, then read the bridge: upheaval when the land is remade in a stroke, wearing when it is shaped down over time, reclaiming when the wild takes it back. Read the setting as a living, self-shaping agent, never as the word wildland alone -- and let reclaiming carry the family's keystone: the wild's return that is the human's loss."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-geomorphology": "^0.1.0",
+    "@chbrain/khai-engine-erosion": "^0.1.0",
+    "@chbrain/khai-engine-hydrology": "^0.1.0",
+    "@chbrain/khai-engine-fire": "^0.1.0",
+    "@chbrain/khai-engine-succession": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
