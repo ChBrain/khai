@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-soundscape",
+  "version": "0.1.0",
+  "description": "khai engine content, the soundscape domain: the auditory field of a place -- the constant ground sound it is heard against (keynote), the foreground sounds that carry meaning (signal), the unique sound that marks it as itself (soundmark), and the twist of its silence read as a presence, the place composed as much by what it sounds like as by what it looks like.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/soundscape"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "soundscape",
+    "tagline": "Soundscape as process: the auditory field of a place -- the constant ground sound it is heard against (keynote), the foreground sounds that carry meaning (signal), the unique sound that marks it as itself (soundmark), and the twist of its silence read as a presence rather than a void, the place composed as much by what it sounds like as by what it looks like.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_soundscape.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_keynote.md",
+        "type": "process",
+        "parent": "process_soundscape.md"
+      },
+      {
+        "file": "process_signal.md",
+        "type": "process",
+        "parent": "process_soundscape.md"
+      },
+      {
+        "file": "process_soundmark.md",
+        "type": "process",
+        "parent": "process_soundscape.md"
+      },
+      {
+        "file": "process_silence.md",
+        "type": "process",
+        "parent": "process_soundscape.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Shown",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place, on the Shown chapter -- what the place presents to whoever enters, heard as much as seen. The root (process_soundscape.md) declares soundscape as the place's auditory field: the whole of what it sounds like, composed of the ground it is heard against, the sounds that stand out of it, the one that marks it as itself, and the silence beneath. It is the sound of the place, not the weather that is one of its sources (weather's), the setting's layout and standing mood (space's), a persona's own hearing (the persona's), or an authored score laid over the play (the pitch's).",
+      "issue": "Four facets over an auditory root, three sounds and a twist. Keynote is the ground sound -- the constant background heard unconsciously, the tonal center a place is heard against: the sea in the coastal town, the traffic hum, the wind, the plant's drone. Signal is the foreground sound listened to for its meaning -- the bell, the horn, the siren, the call, the sound that carries information and demands attention. Soundmark is the place's unique signature -- the one sound that identifies this place and no other, community-defining and worth keeping, the aural landmark. Silence is the twist: the absence of sound read not as void but as a presence -- the quiet a place offers, the refuge from the crowded lo-fi din, the hush that is itself a quality of the place.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so soundscape reads system-wide and no place is heard as silent scenery. The link: a place carries, under Shown, the facet of its auditory field, linking one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each place links a real facet file under Shown. Whether the facet is true to the place and its sound is semantic, taught and reviewed, never failed by the suite. The place sounds as it sounds; it does not narrate its sound, and it never stands in for a persona's own inner noise or quiet.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each place whose sound is an actor its read under Shown: the facet its auditory field shows -- the keynote it is heard against, the signal that stands out of it, the soundmark that names it, or the silence it offers. Keep it the sound of the place, not the weather that feeds it (hand that to weather), the layout and standing mood (to space), a persona's hearing (to the persona's own engines), or an authored score (to the play's pitch). Read silence as the twist: the quiet is not the absence of the soundscape but one of its qualities, a presence a place can offer."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
