@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-street-life",
+  "version": "0.1.0",
+  "description": "khai engine content, the street-life domain: the place as a social stage -- the people out and using it (presence), the casual exchange between strangers (mingling), the eyes on the street that watch it (watch), and the twist of the idle lingering read not as waste but as the proof of a place worth being in.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/street-life"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "street-life",
+    "tagline": "Street-life as process: the place as a social stage -- the people out and using it (presence), the casual exchange between strangers it hosts (mingling), the eyes on the street that watch over it (watch), and the twist of the idle lingering read not as waste but as the surest proof of a place worth being in.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_street-life.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_presence.md",
+        "type": "process",
+        "parent": "process_street-life.md"
+      },
+      {
+        "file": "process_mingling.md",
+        "type": "process",
+        "parent": "process_street-life.md"
+      },
+      {
+        "file": "process_watch.md",
+        "type": "process",
+        "parent": "process_street-life.md"
+      },
+      {
+        "file": "process_lingering.md",
+        "type": "process",
+        "parent": "process_street-life.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Shown",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place, on the Shown chapter. The root (process_street-life.md) declares street-life as the human life a public place hosts: the place read as a social stage, alive or dead by the people in it -- shown in who is out and what they are doing before anyone names it. It is the place's social use, not its layout and standing mood (space's), the sound it makes (soundscape's), the weather over it (weather's), or a persona's own errand or mood (the persona's); it is the life between the buildings, the sidewalk ballet the place either holds or fails to.",
+      "issue": "Four facets over a social-stage root, three of the living street and one twist. Presence is the ground -- people out and using the place, the density and rhythm of use, the peopled street against the empty one, people drawing more people. Mingling is the casual public exchange -- the nod, the small talk, the stranger met, the web of light public trust a busy sidewalk builds, the plaza where an external stimulus turns two strangers into talkers. Watch is the eyes on the street -- the informal, unpaid surveillance that use itself provides, the safety of the peopled place where the windows and the sidewalk keep a natural watch. Lingering is the twist: the idle, purposeless staying -- the sitting, the loitering, the hanging around that looks like nothing being done, read not as waste or nuisance but as the surest sign of a place worth being in, the optional life that comes only where the place is good.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so street-life reads system-wide and no public place is taken as dead scenery. The link: a place carries, under Shown, the facet of its social life, linking one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each place links a real facet file under Shown. Whether the read is true to the place and its people is semantic, taught and reviewed, never failed by the suite. The place shows its social life; it does not narrate it, and it never stands in for a persona's own sociability or solitude.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each public place whose social life is an actor its read under Shown: the facet its life shows -- the presence of people using it, the mingling of strangers it hosts, the eyes on the street that watch it, or the idle lingering it invites. Keep it the place's social use, not its layout (hand that to space), its sound (soundscape), the weather (weather), or a persona's own errand and mood (the persona). Read lingering as the twist: the purposeless staying is not waste but the proof of a place worth being in."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
