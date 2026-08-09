@@ -651,6 +651,49 @@ generalization got — then `kairos`, then the `passage` composite; `ripening` r
 the twist facet, never queued alone. The two branches stay parked pending their own passes.
 All rows `proposed` pending a per-item go.
 
+#### The two time branches — scoped (the passes the family deferred)
+
+A dedicated scoping pass on the two branches the time family parked, audited against the
+live catalog. The verdict: **neither broad framing survives; each reduces to one clean cut.**
+The family engines (`chronos`, `kairos`, the `time` composite, `ripening`) are built; this
+resolves what was left parked.
+
+**Branch 1 — life-course / senescence -> the broad arc does NOT survive; the core is
+`time-horizon`.** The neighbours each own a slice and together crowd out a monolithic
+"aging" engine: `mortality` (the death-salience _stance_), `possible-selves` (the future
+self-images), `nostalgia` (longing for one's past), `heritage` (the pre-choice formation
+arrived-carrying), `hedonic-adaptation` (return to baseline), `identity` / `liminality`. A
+single `life-course` engine would restate them and drag in culture-bound developmental-stage
+content — an umbrella, not one phenomenon. The one genuinely-unowned single phenomenon is:
+
+| Candidate        | Phenomenon                                                                                                                                              | Warrant                                                                                                                | Nearest / boundary                                                                                                                                                                                                                                                                                                                                                                                            | E/C                                                | Status                         |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- | ------------------------------ |
+| **time-horizon** | as the _perceived_ time one has left shrinks, priorities reorient — from expansive / future / knowledge-seeking toward emotionally-meaningful / present | Carstensen (socioemotional selectivity); Carstensen, Isaacowitz & Charles; Fung & Carstensen; Fredrickson & Carstensen | `mortality` (death-salience stance / TMT — time-horizon is the motivational _reweighting_ by time-left, not the posture toward death); `possible-selves` (the future selves themselves — time-horizon is which get pursued); `savoring` (present relishing — time-horizon is _why_ a short horizon turns toward it). NOT only aging: a diagnosis, a graduation, a move, a last summer shrinks the horizon too | Engine (persona; position-vs-process a build call) | proposed — the survivable core |
+
+The rest of the aging arc is a **separate parked cluster, not this pass**: `generativity`
+(Erikson's care / legacy vs stagnation — vs `caregiving` / `altruism`), `wisdom` (vs
+`metacognition` / `insight`), `ego-integrity` (Erikson's final stage vs despair), and the
+charted-but-unbuilt `life-review` composite (F-persona). A coherent late-life cluster of its
+own, gated on whether each survives its own boundary — a distinct future pass.
+
+**Branch 2 — social / collective time -> genuinely unowned; one engine, wiring the open
+question.** No engine owns collective/institutional time: `ritual` is threshold-crossing,
+`habit` the personal automatized response, `org` organizational culture, `socialization`
+world-internalization, `tightness-looseness` norm-strength. The sociotemporal order — the
+shared calendar, the schedule, the institutional tempo, clock-discipline — is unbuilt.
+
+| Candidate       | Phenomenon                                                                                                             | Warrant                                                                                                                                        | Provisional facets (3 + twist)                                                                                                                                                                                                                                                                                                                                        | E/C                                                                                                                           | Status                               |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| **social-time** | the collective structuring of time a group or institution runs on — the shared cycle, the imposed timetable, the tempo | Zerubavel (_Hidden Rhythms_; _The Seven Day Circle_); E. P. Thompson ("Time, Work-Discipline"); Rosa (_Social Acceleration_); Sorokin & Merton | `calendar` (the shared cycle that synchronizes — the week, the holiday, the season; Zerubavel); `schedule` (clock-discipline, the imposed timetable that orders labour; Thompson); `tempo` (the pace / acceleration a collective runs at; Rosa); twist `synchrony` (shared time as belonging — the festival, the collective rhythm read as gift, not only constraint) | Engine — **wiring a maintainer call: place (the sociotemporal order a setting runs on) vs position (an institution's tempo)** | proposed — needs the wiring decision |
+
+**Verdict:** the two parked branches resolve to **two clean single-engine builds** —
+`time-horizon` (persona-side, the survivable core of life-course) and `social-time`
+(collective-side, wiring TBD) — plus a separately-parked late-life cluster (generativity /
+wisdom / ego-integrity / life-review). Neither the broad "life-course" nor a "collective-time
+cluster" framing survives; the narrow cuts do. **Build order (if pursued):** `time-horizon`
+first (cleanest, no wiring question), then a short place-vs-position decision and `social-time`.
+Stems checked free. Rows `proposed` pending a per-item go.
+
 ### Tier F-plan — forces on a plan-as-contested-object (6 engines)
 
 Boundary held hard against the persona-side planning psychology already built
