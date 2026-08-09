@@ -1,0 +1,67 @@
+{
+  "name": "@chbrain/khai-engine-time-horizon",
+  "version": "0.1.0",
+  "description": "khai engine content, the time-horizon domain: a persona's resting sense of how much time it has left, and how that horizon reweights its goals -- expansive (an open-ended future, priorities tilted toward knowledge, novelty, and expansion) or limited (a foreshortened future, priorities tilted toward emotional meaning, depth, and the present).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/time-horizon"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "time-horizon",
+    "tagline": "Time-horizon as position: a persona's resting sense of how much time it has left, and how that horizon reweights its goals -- expansive, an open-ended future that tilts toward knowledge, novelty, and expansion, or limited, a foreshortened future that tilts toward emotional meaning, depth, and the present (Carstensen's socioemotional selectivity).",
+    "type": "position",
+    "anchor": "position_time-horizon.md",
+    "expressions": {
+      "expansive": "position_expansive.md",
+      "limited": "position_limited.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The anchor (position_time-horizon.md) declares a persona's resting sense of how much time it has left -- not the clock's time but the time it feels itself to have -- and how that perceived horizon reweights what it wants (Carstensen's socioemotional selectivity theory). Where mortality is the stance a persona takes toward the fact that it ends, time-horizon is the motivational reweighting the amount of time-left produces: an open-ended horizon tilts a persona toward the future and its expansion; a foreshortened one tilts it toward the present and what matters most. The law makes a persona's felt time-horizon a standing part of what it pursues.",
+      "issue": "Two horizons, the poles of perceived time-left (Carstensen; Carstensen, Isaacowitz & Charles). Expansive: the future felt as open-ended, so the persona invests in what pays off later -- gathering knowledge, meeting new people, expanding its world, tolerating the negative and the unfamiliar for future gain, priorities weighted toward breadth and preparation. Limited: the future felt as foreshortened, so the persona invests in what pays off now -- deepening its closest ties, savoring the present, seeking emotional meaning over information, weeding out the shallow and the merely useful, priorities weighted toward depth and the felt moment. The horizon is not fixed to age: any ending -- a diagnosis, a departure, a last season -- foreshortens it, and any reopening -- a reprieve, a fresh start -- expands it, and the goals shift with it.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so a persona's time-horizon holds system-wide beneath what it chooses. The link: each persona links, under Projection, the horizon it runs on -- whether it meets its choices as one with time to spend or one with time to treasure.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real horizon. Whether the horizon is true to the persona -- its reweighting of goals read as a function of perceived time-left rather than of age or mood, and the limited horizon read for its gains and not only its loss -- is semantic, taught and reviewed, never failed by the suite. It is kept apart from the death-stance of mortality and the subjective duration of time-perception.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give each persona its horizon under Projection: whether it feels its future open-ended and invests toward it, or foreshortened and invests in the present and its closest ties -- and read it in what the persona prioritizes and prunes, not in its age. Keep it the reweighting by perceived time-left: the stance toward one's own death is mortality's, the future self-images pursued are possible-selves', the present-moment relishing is savoring's, and the subjective sense of duration and time-perspective is time-perception's. Read the limited horizon two ways: the foreshortening that reads as loss is also the clarity that turns a persona toward what matters most."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
