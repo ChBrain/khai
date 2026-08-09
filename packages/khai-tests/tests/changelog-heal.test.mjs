@@ -167,3 +167,106 @@ describe.skipIf(DORMANT)("validate: the top CHANGELOG heading must not exceed th
     expect(changelogErrors()).toEqual([]);
   });
 });
+
+// khai issue 1071: the heal is for a release only. In a working branch the top
+// heading is the release already on the registry, so healing it to the count
+// the branch is moving toward rewrites published history. The versions cannot
+// discriminate, because a house in sync has heading === manifest in both
+// states; pending changesets can.
+const DORMANT_PENDING = !readFileSync(join(srcDir, "registry.mjs"), "utf8").includes(
+  "hasPendingChangesets",
+);
+
+// A house whose manifest sits below the count-derived version, which is the
+// real branch direction: content has been added, so the build moves the minor
+// up. The top heading equals the manifest, the state a house is in for the
+// first PR after any release, and the only state in which the bug fires.
+function writeBranchHouse(dir) {
+  writeHouse(dir);
+  const pkgPath = join(dir, "package.json");
+  const pkg = JSON.parse(readFileSync(pkgPath, "utf8"));
+  pkg.version = "0.0.5";
+  writeFileSync(pkgPath, JSON.stringify(pkg));
+  writeFileSync(join(dir, "CHANGELOG.md"), "# demo\n\n## 0.0.5\n\n- the release on the registry\n");
+}
+
+function writeChangesetDir(dir, files) {
+  mkdirSync(join(dir, ".changeset"), { recursive: true });
+  for (const [name, body] of Object.entries(files)) {
+    writeFileSync(join(dir, ".changeset", name), body);
+  }
+}
+
+describe.skipIf(DORMANT_PENDING)("hasPendingChangesets", () => {
+  let dir;
+
+  beforeEach(() => {
+    dir = join(tmpdir(), `khai-pending-${process.pid}-${Math.random().toString(36).slice(2)}`);
+    mkdirSync(dir, { recursive: true });
+  });
+
+  afterEach(() => rmSync(dir, { recursive: true, force: true }));
+
+  it("counts a pending changeset", () => {
+    writeChangesetDir(dir, { "brave-pandas-clap.md": '---\n"@chbrain/x": patch\n---\n\nA fix.\n' });
+    expect(registry.hasPendingChangesets(dir)).toBe(true);
+  });
+
+  // What a release looks like after `changeset version` has consumed them: the
+  // directory survives, holding only its furniture.
+  it("ignores the changesets furniture, so a consumed release reads as empty", () => {
+    writeChangesetDir(dir, {
+      "README.md": "# Changesets\n",
+      "config.json": "{}\n",
+      ".gitkeep": "",
+    });
+    expect(registry.hasPendingChangesets(dir)).toBe(false);
+  });
+
+  it("ignores README.md whatever its case", () => {
+    writeChangesetDir(dir, { "readme.md": "# Changesets\n" });
+    expect(registry.hasPendingChangesets(dir)).toBe(false);
+  });
+
+  // Not a changesets repo, so there is no release state to protect: the heal
+  // keeps its previous behaviour. A decision, not an oversight.
+  it("reads a tree with no .changeset directory as nothing pending", () => {
+    expect(registry.hasPendingChangesets(dir)).toBe(false);
+  });
+});
+
+describe.skipIf(DORMANT_PENDING)("buildRegistry heals only when no changeset is pending", () => {
+  let dir;
+
+  beforeEach(() => {
+    dir = join(tmpdir(), `khai-heal-branch-${process.pid}-${Math.random().toString(36).slice(2)}`);
+    writeBranchHouse(dir);
+  });
+
+  afterEach(() => rmSync(dir, { recursive: true, force: true }));
+
+  // The bug: pre-fix this rewrote 0.0.5 to 0.1.0, a version never published.
+  it("leaves a published heading alone in a working branch", () => {
+    writeChangesetDir(dir, { "add-a-thing.md": '---\n"@chbrain/x": minor\n---\n\nAdd a thing.\n' });
+    registry.buildRegistry(dir);
+    // the manifest is still reconciled: the build stays the single writer of it
+    expect(JSON.parse(readFileSync(join(dir, "package.json"), "utf8")).version).toBe("0.1.0");
+    const changelog = readFileSync(join(dir, "CHANGELOG.md"), "utf8");
+    expect(changelog).toContain("## 0.0.5");
+    expect(changelog).not.toContain("## 0.1.0");
+  });
+
+  // The #1040 behaviour, which must survive: same house, changesets consumed.
+  it("heals the heading in a release, with the directory present but empty of changesets", () => {
+    writeChangesetDir(dir, { "README.md": "# Changesets\n", "config.json": "{}\n" });
+    registry.buildRegistry(dir);
+    const changelog = readFileSync(join(dir, "CHANGELOG.md"), "utf8");
+    expect(changelog).toContain("## 0.1.0");
+    expect(changelog).not.toContain("## 0.0.5");
+  });
+
+  it("heals when the house keeps no .changeset directory at all", () => {
+    registry.buildRegistry(dir);
+    expect(readFileSync(join(dir, "CHANGELOG.md"), "utf8")).toContain("## 0.1.0");
+  });
+});
