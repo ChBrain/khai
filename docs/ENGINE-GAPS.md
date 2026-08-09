@@ -1002,6 +1002,84 @@ composite's keystone -- then verify `openness` against `temperament` and `imagin
 against `mind-wandering`, then the `creativity` composite. This is a **later, separate**
 effort, recorded so it is not lost, not queued ahead of the cross-type frontier.
 
+## Separate track -- the family-systems cluster (relational structure; a challenge audited against the catalog)
+
+Recorded because a challenge (2026-08-09) proposed twelve additions across somatics,
+relational dynamics, cognition, and environment, and the audit found the large majority
+**already owned** -- the expected result once the catalog passed 220 engines. The value of
+the pass was not the misses but the one real seam it exposed: khai has no
+**family-systems** content. The tradition (Bowen, Minuchin, Haley) names relational
+_structures_ -- the triangle, the boundary continuum -- that are neither an emotion, a
+dyadic bond, nor a group's development, and nothing in the inventory owns them.
+`structural-model` looks like it might, but it is **Freud's** id/ego/superego (a `position`),
+not Minuchin's structural family therapy; `double-bind` is Bateson's communicational trap
+staged as a **plot**, not the standing structure. The seam is genuinely open.
+
+**Already owned -- the challenge's other ten, recorded so they are not re-flagged:**
+
+| Proposed                         | Already lives in                                                                                                                                                                        | Verdict                                                                              |
+| -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| **apophenia**                    | `bias` -- owns members `apophenia`, `pareidolia`, `clustering_illusion`, `illusory_correlation`                                                                                         | build restates a `bias` member -> fails `member-check`. No build.                    |
+| **sunk-cost**                    | `bias` -- owns `sunk_cost` + `escalation_of_commitment`; the conflict-spiral sense is the `escalation` engine                                                                           | owned twice. No build.                                                               |
+| **spotlight-effect**             | `bias` -- owns `spotlight_effect` + `illusion_of_transparency`                                                                                                                          | the exact pair, owned. No build.                                                     |
+| **mirroring**                    | `contagion` engine (automatic unconscious mimicry + afferent affect-spread) **and** `rapport` composite (the `meshing` bridge over contagion = "two personas in unconscious synchrony") | textbook-covered, twice. No build.                                                   |
+| **interoception**                | `body` engine -- "hunger, fatigue, pain, arousal, sickness pulling on attention until met" (the demand side)                                                                            | the felt-body-pulls-you half is owned; a pure sensing-side split is thin (see flag). |
+| **proprioception / kinesthesia** | `ergonomics` (the object's fit to the body) + `proxemics` (distance regulation)                                                                                                         | the spatial/fit half is owned; body-position-sense alone is low narrative payoff.    |
+| **ennui**                        | `boredom` ("the aversive state of an unengaged mind whose attention seeks a target the situation will not supply")                                                                      | an existential _register_ of an owned phenomenon, not a new force. No build.         |
+| **anticipatory grief**           | between `grief` (adaptation to irreversible loss) + `suspense` (anticipated negative outcome) + `mortality`                                                                             | a `grief` facet at most. No engine.                                                  |
+| **surveillance**                 | `social-facilitation` (presence-of-others changes performance) + `total-institution` (Goffman: all life under one authority) + the new `watch` facet (place-side eyes on the street)    | the Panopticon is already assembled from parts. No build.                            |
+| **confinement**                  | `total-institution` (the all-encompassing controlled place) + `reactance` (the response to restriction) + `space`                                                                       | owned across a place-engine and a persona-engine. No build.                          |
+
+**The genuine unbuilt core (both stems free; a named, rigorous tradition):**
+
+| Candidate           | Phenomenon                                                                                                                                                                        | Warrant                                                                                                                                                                                             | Nearest / boundary                                                                                                                                                                                                                      | E/C                                         | Status                                   |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- | ---------------------------------------- |
+| **triangulation**   | a two-person tension recruits or displaces onto a third to stabilize itself -- the triangle as the basic molecule of a relational system                                          | Bowen (_Family Therapy in Clinical Practice_, 1978; triangles); Minuchin (_Families and Family Therapy_, 1974; detouring, coalitions); Haley (the perverse triangle / cross-generational coalition) | `jealousy` (a rival threatens a held bond -- narrower, affect-first); `group` (Tuckman development, not the three-party structure); `escalation` (dyadic spiral); `double-bind` is Bateson-as-**plot**                                  | Engine -- **process vs plot, a build call** | proposed -- the strong build             |
+| **differentiation** | the degree a persona holds a self under a relationship's emotional pressure -- the enmeshed/fused pole (we-ness, no boundary) against the cutoff/disengaged pole (the rigid wall) | Bowen (differentiation of self; fusion; emotional cutoff); Minuchin (the enmeshed <-> disengaged boundary continuum); Kerr & Bowen                                                                  | `self-construal` (independent/interdependent is Markus & Kitayama's cultural self-location, a different lineage -- **bound carefully**); `attachment` (bond security, not boundary regulation); `extended-self` (identity into objects) | Engine (position)                           | proposed -- **verify vs self-construal** |
+
+**On enmeshment specifically:** it is not its own engine -- it is the low-differentiation
+**pole** of `differentiation` (Minuchin's enmeshed end), paired with cutoff/disengagement
+at the other. Building it standalone would split one axis into two half-engines. One
+`differentiation` engine with `fusion` (enmeshment) and `cutoff` (disengagement) as facets
+holds the whole continuum.
+
+**Possible composite (blocked until the two engines land):**
+
+- **family-system** (composite, blocked): the household read as a single organism -- over
+  `triangulation` + `differentiation` + `double-bind` (Bateson's trap as a member structure)
+  - `socialization` (the ready-made world handed down) + `attachment` (the bonds), with a
+    boundary/hierarchy reading. Warrant: Bowen; Minuchin; Haley; Satir. Blocked until
+    `triangulation` and `differentiation` exist; the other atoms are built. **E-vs-C and the
+    wiring target are a maintainer call** -- a family is arguably a `group`-adjacent standing
+    structure, so this may want a new cargo read rather than a persona-side composite.
+
+**Naming / boundary flags to arbitrate at build:**
+
+- **Type of `triangulation` is the first decision.** The `double-bind` precedent stages a
+  relational structure as a **plot** (the type for an inescapable multi-party bind); a triangle
+  is likewise a structure more than a persona-internal process. But Bowen's triangle is also a
+  thing a single persona _does_ (recruits a third under stress), which reads as `on: persona`
+  process. Decide before writing; it changes the wiring and the member voice.
+- **`differentiation` must be bound hard against `self-construal`.** Both are a resting sense
+  of where the self stops -- but `self-construal` is the cultural independent/interdependent
+  frame (a stable trait of _construal_), while `differentiation` is the Bowenian _capacity_ to
+  stay a self inside family emotional fusion. Related, not the same; the REFERENCES Restrictions
+  must draw the line explicitly or `member-check`/review will read one as the other.
+- **Facet stems checked free:** `triangle`, `detour`, `scapegoat`, `coalition`, `stabilizer`
+  (triangulation); `fusion`, `cutoff`, `disengagement`, `individuation` (differentiation).
+  `displacement` is taken (`moral-disengagement`) and `closeness` is taken (`addiction`) -- avoid both.
+- **A twist is available but not forced** (the `geomorphology`/`legibility` precedent lets an
+  engine carry none): triangulation's honest loss-read-as-value is the **stabilizer** -- the
+  triangled-in third (often the scapegoated child) is doing load-bearing work, holding the
+  system intact, read not only as dysfunction but as the structure's way of surviving its own
+  tension. Offer it if it earns its place; do not force it.
+
+**Build order (if pursued):** `triangulation` first (the keystone and the higher narrative
+payoff -- every love triangle, every scapegoat, every "go tell your father"), then
+`differentiation` (verified against `self-construal`), then the `family-system` composite if
+the maintainer wants it. A **later, separate** effort, recorded so the one real seam the
+challenge found is not lost -- not queued ahead of standing work.
+
 ## Rejected on inspection (documented so they need not be re-checked)
 
 SDT basic-needs (homonym with `needs` + owned by `motivation`); HEXACO
