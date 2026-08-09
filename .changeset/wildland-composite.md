@@ -1,0 +1,4 @@
+---
+---
+
+Add the wildland composite: the setting read as a living, self-shaping agent -- the land that makes and breaks, wears, floods and parches, burns, and reclaims itself, on its own vast time and indifferent to us. The closer of the land's-forces family (F-place), over five atoms it declares as dependencies -- geomorphology, erosion, hydrology, fire, and succession -- with the climate engine as the referenced governing frame (not a wired atom, the neighborhood-cycle precedent). Wires on: place/Shown (audit). A composite root over three bridges: upheaval (the land's sudden making and breaking), wearing (its slow shaping over deep time), and the reclaiming twist (the wild taking itself back -- succession's rewilding, fire's renewal, erosion's deposition -- the world without us, the family's keystone). First release, so an empty changeset (publishes at 0.1.0).
