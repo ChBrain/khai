@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-smellscape",
+  "version": "0.1.0",
+  "description": "khai engine content, the smellscape domain: the olfactory field of a place -- the base smell it sits in (ground), the drifting episodic smells that carry meaning (plume), the signature smell that binds it to memory and marks it as itself (redolence), and the twist of its scentlessness read as a presence rather than a void, the place composed as much by what it smells like as by what it looks like.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/smellscape"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "smellscape",
+    "tagline": "Smellscape as process: the olfactory field of a place -- the base smell it sits in (ground), the drifting episodic smells that carry meaning (plume), the signature smell that binds it to memory and marks it as itself (redolence), and the twist of its scentlessness read as a presence rather than a void, the place composed as much by what it smells like as by what it looks like.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_smellscape.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_ground.md",
+        "type": "process",
+        "parent": "process_smellscape.md"
+      },
+      {
+        "file": "process_plume.md",
+        "type": "process",
+        "parent": "process_smellscape.md"
+      },
+      {
+        "file": "process_redolence.md",
+        "type": "process",
+        "parent": "process_smellscape.md"
+      },
+      {
+        "file": "process_scentless.md",
+        "type": "process",
+        "parent": "process_smellscape.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Shown",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place, on the Shown chapter -- what the place presents to whoever enters, smelled as much as seen. The root (process_smellscape.md) declares smellscape as the place's olfactory field: the whole of what it smells like, composed of the base it sits in, the smells that drift across it, the one that marks it as itself and returns you to it, and the scentlessness beneath. It is the smell of the place, not the weather that is one of its sources (weather's), the setting's layout and standing mood (space's), a persona's own nose and smell-memory (the persona's), the moral revulsion a smell provokes (disgust's), or an authored sensory key laid over the play (the pitch's).",
+      "issue": "Four facets over an olfactory root, three smells and a twist. Ground is the base smell -- the constant background odor a place sits in, smelled unconsciously until it stops: the sea's brine, the bakery street, the pine wood, the tannery's reek. Plume is the drifting foreground smell listened to for its meaning -- the episodic, non-continuous smell that arrives in a gust and is gone, the cooking, the smoke that means danger, the perfume that turns a head, caught and turned toward. Redolence is the place's signature smell -- the one smell that identifies this place and no other and binds it to memory, the involuntary return the smell alone can trigger, the aroma that is the place. Scentless is the twist: the absence of smell read not as void but as a presence -- the deodorized, the antiseptic, the scrubbed clean, the scentlessness a place offers or imposes, itself a quality of the place and not the mere lack of one.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so smellscape reads system-wide and no place is smelled as odorless scenery. The link: a place carries, under Shown, the facet of its olfactory field, linking one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each place links a real facet file under Shown. Whether the facet is true to the place and its smell is semantic, taught and reviewed, never failed by the suite. The place smells as it smells; it does not narrate its smell, and it never stands in for a persona's own smell-memory or for the moral disgust a smell provokes.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each place whose smell is an actor its read under Shown: the facet its olfactory field shows -- the ground it sits in, the plume that drifts across it, the redolence that names it and returns you to it, or the scentlessness it offers. Keep it the smell of the place, not the weather that feeds it (hand that to weather), the layout and standing mood (to space), a persona's own nose and smell-memory (to the persona's engines), the moral revulsion a smell provokes (to disgust), or an authored key (to the play's pitch). Read scentlessness as the twist: the deodorized is not the absence of the smellscape but one of its states, a presence a place can offer or impose."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
