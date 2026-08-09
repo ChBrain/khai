@@ -1123,6 +1123,121 @@ payoff -- every love triangle, every scapegoat, every "go tell your father"), th
 the maintainer wants it. A **later, separate** effort, recorded so the one real seam the
 challenge found is not lost -- not queued ahead of standing work.
 
+## Fresh gap sweep -- seven clusters audited against the 264-engine catalog
+
+A whole-catalog discovery pass (the method that found family-systems), run as six parallel
+domain-expert audits plus one cross-cutting phenomenon a challenge surfaced. Each candidate
+below was checked against the live inventory (taglines + member files, not directory names),
+named against its nearest existing owner, and kept only if it clears the one-phenomenon bar.
+Everything is `proposed` pending a per-item go; the `tipping-point` row is greenlit for build.
+Confidence is marked (**A** strong / **B** solid / **C** borderline).
+
+### The standout -- `tipping-point` (a cross-cutting dynamic-shape force)
+
+The catastrophe/critical-threshold dynamic: a system absorbs load while looking stable
+(sub-critical), crosses a hidden threshold, and jumps **discontinuously** to a state it cannot
+smoothly return from. The trivial trigger is only the last increment, never the cause. khai
+owns the pieces but not the shape: `drift` is the silent creep (explicitly "no event", not the
+snap); `escalation` is the loud mutual spiral; `reversal` is the abstract turn without the
+loading, threshold, or hysteresis; `grief` is the aftermath. The F-process "dynamic-shape" tier
+(`momentum` / `punctuation` / `oscillation`) was charted but never built, so nothing owns the
+nonlinear collapse. **Type-generic** -- the same force stalls a marriage, tips a neighborhood,
+crashes a market, topples a regime. Warrant: Thom (catastrophe theory, the cusp); Zeeman (the
+cusp applied to aggression, riots, panics, with hysteresis); Schelling (tipping / critical
+mass); Gladwell (_The Tipping Point_); Gottman (the relational instance -- negative-sentiment
+override, the roll-off) and the relationship-dissolution "last straw" literature. Shape: root +
+**loading** (sub-critical strain absorbed, the system looking safe) + **criticality** (the
+edge, the disproportionate trigger) + **snap** (the discontinuous jump) + twist **hysteresis**
+(no smooth path back -- the same irreversibility that dooms a broken thing makes a healed thing
+durable). Process, type-generic (F-process). Stems free (`catastrophe` is only Freytag's fifth
+act in `dramatic-arc`; `threshold` is `liminality`'s -- different senses). **Confidence A.
+Greenlit -- build first.**
+
+### Sensory & embodied -- the unfilled senses
+
+| Candidate        | Phenomenon                                                                                                   | Nearest / why distinct                                                                                                                               | Warrant                                                                                       | Type / wiring              | Conf |
+| ---------------- | ------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | -------------------------- | ---- |
+| **smellscape**   | the olfactory field of a place -- ground odor, scent-signals, the signature smell, the direct hook to memory | exact `soundscape` sibling but no place-side smell engine exists; `body` is the persona's internal demands; `disgust` is rejection, not ambient odor | Porteous ("Smellscape", 1985); Henshaw (_Urban Smellscapes_); Classen/Howes/Synnott (_Aroma_) | process, `place`/Shown     | A    |
+| **touch**        | affective/interpersonal contact as a communicative force -- the hand, embrace, shove at zero distance        | `proxemics` regulates distance _before_ contact and hands off at zero; `contagion` is mimicry not touch; `ergonomics` is object-fit                  | Hertenstein (tactile emotion, 2006/09); McGlone (CT-afferents, 2014); Field (_Touch_)         | process, persona<->persona | A    |
+| **intoxication** | the acute altered state -- disinhibition and perceptual narrowing of an active intoxicant, now               | `addiction` is the compulsion across time, not the acute state; `body`/sickness is illness                                                           | Steele & Josephs (alcohol myopia, 1990); Siegel (_Intoxication_)                              | process, `persona`         | B    |
+| taste            | flavor as a felt force, the fifth-sense symmetry                                                             | risks being distributed across `body`/hunger + `savoring` + `disgust`                                                                                | Shepherd (_Neurogastronomy_); Korsmeyer (_Making Sense of Taste_)                             | process, persona/piece     | C    |
+
+Rejected (already owned): pain / arousal / hunger / fatigue / sickness -> all `body` members; interoception -> `body`; proprioception -> `ergonomics`/`proxemics`.
+
+### Power, politics & coercion -- the thin political axis
+
+The catalog is emotion/self/cognition-heavy and light on the political; this is the richest
+cluster.
+
+| Candidate      | Phenomenon                                                                                                    | Nearest / why distinct                                                                                                                                                                                  | Warrant                                                                  | Type / wiring                    | Conf |
+| -------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | -------------------------------- | ---- |
+| **legitimacy** | what makes domination accepted as rightful -- traditional / charismatic / legal-rational, and its crisis      | `power`'s "legitimate power" is one static resource base; `obedience` presupposes a legitimate authority without modeling it; `hierarchy` is assigned rank                                              | Weber (_Economy and Society_); Beetham; Habermas (_Legitimation Crisis_) | position, on `power`/`hierarchy` | A    |
+| **coercion**   | compliance by credible threat of harm -- deterrence vs compellence, brinkmanship, the threat never executed   | `power`'s coercive base is static; `aggression` is harm _delivered_; coercion is harm _withheld and held over_ to shape a choice                                                                        | Schelling (_Arms and Influence_); Wrong (_Power_)                        | process, on `power`/`fear`       | A    |
+| **discipline** | power through internalized visibility -- surveillance, normalization, self-policing subjects (the panopticon) | `total-institution` is Goffman's _place_; `street-life`/`watch` is Jacobs's _protective_ eyes (opposite valence); `obedience` needs a command, discipline needs none                                    | Foucault (_Discipline and Punish_); Bentham (Panopticon)                 | process/place                    | A    |
+| **resistance** | the disguised dissent of the dominated -- public vs hidden transcript, foot-dragging, infrapolitics           | `reactance` is individual/apolitical freedom-pushback; resistance is collective, political, concealed, aimed at domination                                                                              | Scott (_Domination and the Arts of Resistance_); Sharp                   | process, on `power`              | B    |
+| propaganda     | mass, institutional manufacture of consent -- one-to-many, repetition-driven belief-shaping                   | **CONTESTED**: the power audit reads it distinct from dyadic `persuasion`; the communication audit reads it an umbrella over `persuasion`+`framing`+`adoption`+`social-identity`. Resolve before build. | Ellul (_Propaganda_); Herman & Chomsky (_Manufacturing Consent_)         | process                          | C    |
+| corruption     | abuse of _entrusted_ power for private gain                                                                   | leans on `debt`/`gift`/`betrayal`/`role` but no owner                                                                                                                                                   | Klitgaard (C = M + D - A); Rose-Ackerman                                 | process                          | C    |
+
+Rejected: deference -> `status`; scapegoating -> `triangulation` (owns the detoured scapegoat); bureaucracy / mobilization -> umbrellas (`org`/`hierarchy`/`role`; `commons`/`adoption`/`altruistic-punishment`).
+
+### Sacred, spiritual & existential
+
+| Candidate          | Phenomenon                                                                                   | Nearest / why distinct                                                                                                                                                                     | Warrant                                                                                          | Type / wiring       | Conf |
+| ------------------ | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------- | ---- |
+| **mysticism**      | the unitive/ego-dissolution state -- subject-object boundary collapses into felt unity       | `awe` is _dualistic_ (small self before a vast other); mysticism is _no self and no other_; `flow` keeps agency; `faith` is the standing orientation                                       | James (_Varieties_); Stace (_Mysticism and Philosophy_); Griffiths (psilocybin, ego-dissolution) | process, `persona`  | A    |
+| **calling**        | the felt summons toward a specific path experienced as originating _beyond the self_         | `faith` is orientation to a sacred order in general (no directional summons); `meaning` is _whether_ a life matters; `goal`/`grit` are self-authored aims -- calling is the aim _received_ | Weber (Beruf); Dik & Duffy (2009); Bunderson & Thompson                                          | position, `persona` | B    |
+| **hierophany**     | the qualitative rupture by which a place/time becomes _set apart_ -- sacred vs profane space | `totem` is a group-emblem object; `liminality` is the individual threshold; `place-attachment` is bond to any meaningful place, not the sacred/profane break                               | Eliade (_The Sacred and the Profane_)                                                            | process, `place`    | B    |
+| self-transcendence | the standing trait of locating identity/meaning beyond the self                              | risks distribution across `awe` + `meaning` + `mysticism`                                                                                                                                  | Frankl; Reed (Self-Transcendence Theory); Cloninger (TCI)                                        | position            | C    |
+
+Rejected: the numinous / the sublime -> `awe` (its sacred and threat colours, Otto/Burke/Kant cited); purity-pollution / consecration / blasphemy / taboo -> `totem` (Douglas, `desecration` member) + `condemnation`; surrender/devotion -> `faith` (`surrender` member); pilgrimage/communitas -> `ritual`+`liminality`+`journey-roles`.
+
+### Economic & exchange
+
+| Candidate                   | Phenomenon                                                                                                                                                           | Nearest / why distinct                                                                                                                                                                  | Warrant                                                                                          | Type / wiring                   | Conf |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ------------------------------- | ---- |
+| **exchange-mode**           | the relational _register_ a transaction runs under -- communal / equality-matching / market-pricing -- and the rupture of applying the wrong one (cash for a favour) | `money` owns the token + `earmarking`, not the relational frame; `gift` owns the gift cycle; none owns the mode or the taboo-tradeoff violation                                         | Alan P. Fiske (_Structures of Social Life_); Fiske & Tetlock (taboo trade-offs); Heyman & Ariely | position, sib to `worth-logic`  | A    |
+| **psychological-ownership** | the felt _mine_-ness of a target (object, idea, role) -- control, self-investment, territoriality                                                                    | `extended-self` is object-as-_identity_ (disclaims valuation); `bias`/endowment is over-_valuation_; ownership is the possessive/territorial control relation, incl. immaterial targets | Pierce, Kostova & Dirks (2001/03); G. Brown (territoriality)                                     | position, `persona`             | B    |
+| conspicuous-consumption     | visible wasteful spending to signal rank; positional goods (worth depends on others lacking)                                                                         | `status` is the rank; `status-move` a tactic; `capital` the holdings -- distinct is the display-through-spend mechanism. **`member-check` risk vs `status-move`**                       | Veblen (_Leisure Class_); Hirsch (positional goods)                                              | process (or status-move member) | C    |
+| moral-economy               | a community's shared normative claim on the economy -- the just price, subsistence right, and the outrage at profiteering                                            | `commons` is Ostrom's governed CPR (place); none owns the collective moral legitimacy of exchange                                                                                       | E. P. Thompson (_Moral Economy_); Scott (_Moral Economy of the Peasant_)                         | position/process                | C    |
+
+Note: **costly-signaling** (Spence/Zahavi) is the _abstraction over_ conspicuous-consumption -- land one or the other, not both (one-phenomenon). Rejected: bargaining -> `negotiation`; reciprocity -> `gift`; sunk-cost/endowment/windfall -> `bias`; tragedy-of-the-commons -> `commons`+`altruistic-punishment`.
+
+### Communication & discourse
+
+| Candidate            | Phenomenon                                                                                                                     | Nearest / why distinct                                                                                                                                            | Warrant                                                                           | Type / wiring                         | Conf |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------- | ---- |
+| **gossip**           | evaluative talk about an absent third -- reputation policed and traded, the dyad bonded by the shared verdict                  | irreducibly triadic and about the absent; no `reputation` engine; `stigma` is a carried attribute, `status-move` a tactic in-scene                                | Dunbar (_Grooming, Gossip_); Gluckman; Feinberg & Willer                          | process, speaker/hearer/absent-target | A    |
+| **rumor**            | an unverified proposition circulated to make collective sense of an ambiguous, anxious situation -- distorted as it travels    | `adoption` diffuses a _defined_ innovation; `deception` is deliberate/dyadic; rumor is improvised, not necessarily false, spreading where verified info is absent | Allport & Postman (1947, R = importance x ambiguity); Shibutani; DiFonzo & Bordia | process/composite                     | A    |
+| **phatic-communion** | talk whose payload is the _channel_, not information -- greetings, small talk, the contentless upkeep of the social tie        | `grounding` builds shared understanding of _content_; phatic talk carries none -- it maintains the relational channel                                             | Malinowski (1923); Jakobson (phatic function); Laver                              | process                               | B    |
+| information-cascade  | sequential observational herding -- each actor discards their private signal to copy predecessors, locking a fragile consensus | `conformity` is the individual felt pull; the cascade is the emergent collective mechanism and its fragility                                                      | Bikhchandani, Hirshleifer & Welch (1992); Banerjee (1992)                         | composite/process, near `crowd`       | B    |
+| taboo-language       | the forbidden word as hazard, veiled by euphemism -- and the veil wears out (the euphemism treadmill)                          | the _lexical_ force none of `face`/`register`/`framing` own                                                                                                       | Allan & Burridge (_Forbidden Words_); Pinker (euphemism treadmill)                | process                               | C    |
+
+Rejected: propaganda / misinformation -> `deception`+`persuasion`+`framing`+`adoption` (umbrella; and see the CONTESTED power row); code-switching -> `accommodation`+`register`; naming/labeling -> `categorization`+`stigma`+`speech-act`; storytelling-as-influence -> `narrative`+`transportation`.
+
+### Aesthetic & appreciation
+
+Note: the catalog's `wow` is "Way of Working" (job families), so the aesthetic-wonder space is genuinely unclaimed beyond `awe`.
+
+| Candidate     | Phenomenon                                                                                                                        | Nearest / why distinct                                                                                                                                                  | Warrant                                                                                    | Type / wiring             | Conf |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ------------------------- | ---- |
+| **beauty**    | the disinterested pleasure a persona takes in an object's/place's form -- the felt "this is beautiful"                            | `awe` needs vastness/frame-break; `admiration` attaches to a person's excellence; `interest` is about comprehension; `savoring` prolongs an already-positive experience | Kant (_Critique of Judgment_); Fechner; Berlyne; Reber/Schwarz/Winkielman (fluency)        | process, on piece/place   | A    |
+| **cute**      | the appraisal released by infantile morphology (baby-schema) -- tenderness, approach, gentleness, cute-aggression                 | `caregiving` fires on a vulnerable other's _need_; cuteness fires on morphology alone (even objects/cartoons) yielding aesthetic affect                                 | Lorenz (Kindchenschema, 1943); Sherman & Haidt; Nittono (kawaii); Aragon (cute aggression) | process, on piece/persona | B    |
+| **coolness**  | the social-aesthetic judgment of a person/object as cool -- attributed autonomy, approved rebellious deviation                    | `status` is rank (a subordinate can be cool); `admiration` rewards excellence; `adoption` is the spread not the quality                                                 | Warren & Campbell (JCR 2014); Pountain & Robins (_Cool Rules_); Frank                      | process, on persona/piece | B    |
+| **kama-muta** | being _moved_ / touched -- chest-warmth, tears, chills, from a sudden intensification of communal sharing                         | `elevation` needs witnessed moral excellence; `awe` needs vastness; one construct with its own appraisal. Frame as the single being-moved emotion, not an umbrella      | Fiske, Seibt, Schubert, Zickfeld ("kama muta")                                             | process, `persona`        | B    |
+| camp / kitsch | the sensibility that values artifice, exaggeration, failed seriousness (camp); pre-digested sentiment consumed earnestly (kitsch) | `humor` aims at mirth; `nostalgia` longs; `disgust` rejects -- camp reclaims the tasteless as delight                                                                   | Sontag ("Notes on Camp"); Greenberg; Kulka                                                 | position/process          | C    |
+
+Rejected: the sublime -> `awe`; taste-as-class-marker (Bourdieu) -> `capital`+`heritage`+`status`; cringe -> `embarrassment`; aesthetic disgust -> `disgust`; picturesque / frisson -> nodes of `beauty`/`awe`, not standalone.
+
+### Verdict and build order
+
+Roughly two dozen candidates survive across seven clusters -- a deep, genuine frontier, densest in **power/politics** (the catalog's thinnest axis) and the **unfilled senses**. Recommended order, by confidence and value:
+
+1. **`tipping-point`** -- greenlit, cross-cutting, the strongest single find; build first.
+2. The **A-tier singles**: `smellscape`, `touch`, `legitimacy`, `coercion`, `discipline`, `mysticism`, `exchange-mode`, `gossip`, `rumor`, `beauty`.
+3. A possible **power/political cluster** (legitimacy + coercion + discipline + resistance, maybe a `domination` composite) and a **sensory-fill** (smellscape + touch + intoxication, siblings to soundscape) -- each its own family pass if the maintainer wants the composite.
+
+Contested/flagged before any build: `propaganda` (umbrella dispute), `conspicuous-consumption` (member-check vs `status-move`), `costly-signaling` vs `conspicuous-consumption` (pick one), `self-transcendence` (distribution risk). All rows `proposed` pending a per-item go.
+
 ## Rejected on inspection (documented so they need not be re-checked)
 
 SDT basic-needs (homonym with `needs` + owned by `motivation`); HEXACO
