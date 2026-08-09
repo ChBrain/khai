@@ -1,0 +1,94 @@
+{
+  "name": "@chbrain/khai-engine-legibility",
+  "version": "0.1.0",
+  "description": "khai engine content, the legibility domain: the place read as a navigable image -- the channels one moves along (path), the seams that hold sections apart (edge), the sections of common character (district), the focal points one enters (node), and the reference points one steers by (landmark) -- the place held as a mental map or lost as a blur.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/legibility"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "legibility",
+    "tagline": "Legibility as process: the place read as a navigable image -- the channels one moves along (path), the seams that hold its sections apart (edge), the sections of common character (district), the focal points one enters (node), and the reference points one steers by (landmark) -- the place held as a clear mental map or lost as an unreadable blur.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_legibility.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_path.md",
+        "type": "process",
+        "parent": "process_legibility.md"
+      },
+      {
+        "file": "process_edge.md",
+        "type": "process",
+        "parent": "process_legibility.md"
+      },
+      {
+        "file": "process_district.md",
+        "type": "process",
+        "parent": "process_legibility.md"
+      },
+      {
+        "file": "process_node.md",
+        "type": "process",
+        "parent": "process_legibility.md"
+      },
+      {
+        "file": "process_landmark.md",
+        "type": "process",
+        "parent": "process_legibility.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Shown",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place, on the Shown chapter. The root (process_legibility.md) declares legibility as the place read as a navigable image: how clearly a place can be held as a mental map, the quality that lets whoever enters it grasp where they are, where things stand, and how to move -- shown in what the place gives the eye to organize it by, before anyone names it. It is the place's readability, not its layout and standing mood (space's), the sound it makes (soundscape's), the social life it hosts (street-life's), or a persona's own sense of direction (the persona's); it is the image the place offers, the map a place is easy or hard to hold.",
+      "issue": "Five elements over a navigable-image root, the pieces a mental map is built from. Path is the channel one moves along -- the street, the walkway, the transit line, the route that is the backbone of the image, the way most people know a place by moving through it. Edge is the linear seam that is not a path -- the shore, the wall, the tracks, the break that bounds one section from another and holds the image together at its seams. District is the medium-to-large section with a common character one can enter and be inside of -- the quarter, the neighborhood, the recognizable region. Node is the strategic focal point one enters -- the junction, the square, the crossing, the concentration one pauses at and travels to and from. Landmark is the external reference point one does not enter but steers by -- the tower, the hill, the sign, the singular object held at a distance that fixes the place and orients the eye.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so legibility reads system-wide and no place is taken as an undifferentiated blur. The link: a place carries, under Shown, the element of its image, linking one of the five.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each place links a real element file under Shown. Whether the read is true to the place and its image is semantic, taught and reviewed, never failed by the suite. The place shows the element that organizes it; it does not narrate it, and it never stands in for a persona's own sense of direction.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each place whose readability is an actor its read under Shown: the element its image turns on -- the path one moves along, the edge that bounds it, the district one is inside of, the node one enters, or the landmark one steers by. Keep it the place's readability, not its layout (hand that to space), its sound (soundscape), its social life (street-life), or a persona's own way-finding sense (the persona). A place clear in its elements is held as a map; a place poor in them is a blur one is lost in."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
