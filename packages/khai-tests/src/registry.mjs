@@ -346,6 +346,28 @@ export function computeRegistry(root) {
 }
 
 /**
+ * Whether the tree holds changesets that have not been consumed yet, which is
+ * what separates a release from an ordinary working branch. `changeset version`
+ * deletes the changeset files as it writes the CHANGELOG, so during a release
+ * the directory is empty of them; in a branch at least one is pending, because
+ * `changeset-check` requires a PR to carry one. Nothing else in the tree tells
+ * the two apart: the version numbers cannot, since a house between releases has
+ * its manifest and its top heading in agreement either way.
+ *
+ * `config.json` and `.gitkeep` are not `.md`; `README.md` is the changesets
+ * boilerplate and is never a pending change. A repo with no `.changeset` dir at
+ * all is not using changesets, so there is no release state to protect and the
+ * heal keeps its previous behaviour: this is a decision, not an oversight.
+ * @param {string} root
+ * @returns {boolean}
+ */
+export function hasPendingChangesets(root) {
+  const dir = join(root, ".changeset");
+  if (!existsSync(dir)) return false;
+  return readdirSync(dir).some((f) => f.endsWith(".md") && f.toLowerCase() !== "readme.md");
+}
+
+/**
  * Heal the CHANGELOG heading the reconcile leaves behind. `changeset version`
  * bumps package.json and writes the top CHANGELOG heading at that bumped
  * number in one move; the build then reconciles the manifest back to the item
@@ -384,11 +406,17 @@ export function buildRegistry(root) {
   // package files) so the build is the single writer of the minor -- and heal
   // the CHANGELOG heading changesets wrote at the unreconciled number, so the
   // single-writer rule covers all three files it promises to.
+  //
+  // The heal is for a release only. In a working branch the top heading is the
+  // release already on the registry, so healing it to a count the branch is
+  // moving toward rewrites published history into a version that never shipped.
+  // The version numbers cannot tell the two apart, because a house in sync has
+  // heading === manifest in both cases; pending changesets can.
   if (packageJson.version !== version) {
     const staleVersion = packageJson.version;
     packageJson.version = version;
     writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2) + "\n", "utf8");
-    healChangelogHeading(root, staleVersion, version);
+    if (!hasPendingChangesets(root)) healChangelogHeading(root, staleVersion, version);
   }
 
   writeFileSync(registryPath, JSON.stringify(registryData, null, 2) + "\n", "utf8");
