@@ -1,0 +1,4 @@
+---
+---
+
+Add the succession engine: the biological reclaiming of a place, wired on: place/Shown. The sixth and last engine of the land's-forces family (F-place) and its thematic keystone -- the wild returning. A depth-1 process engine -- a reclaiming root over four modes: pioneer (the first tough life on the raw ground), progression (the ordered march of communities, each readying the next), maturity (the mature self-perpetuating community the sequence tends to -- a tendency, not a destiny, per Gleason), and the rewilding twist (the wild taking back what was human -- the abandoned city retaken, Weisman's world without us -- the wild's return that is the human's loss). It is the family's answer to all the rest: the reclaiming that follows every ruin. First release, so an empty changeset (publishes at 0.1.0).

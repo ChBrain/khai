@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-succession",
+  "version": "0.1.0",
+  "description": "khai engine content, the succession domain: the biological reclaiming of a place -- life returning in an ordered sequence once the ground is bared or the human hand withdraws, from the first pioneers through the progression to a mature community, and the twist of the wild taking back what was human.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/succession"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "succession",
+    "tagline": "Succession as process: the biological reclaiming of a place -- life returning in an ordered sequence once the ground is bared or the human hand withdraws -- the first pioneers on the raw ground, the progression of communities each readying the next, the mature community the sequence tends toward, and the twist of the wild taking back what was human.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_succession.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_pioneer.md",
+        "type": "process",
+        "parent": "process_succession.md"
+      },
+      {
+        "file": "process_progression.md",
+        "type": "process",
+        "parent": "process_succession.md"
+      },
+      {
+        "file": "process_maturity.md",
+        "type": "process",
+        "parent": "process_succession.md"
+      },
+      {
+        "file": "process_rewilding.md",
+        "type": "process",
+        "parent": "process_succession.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Shown",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place, on the Shown chapter. The root (process_succession.md) declares succession as the biological reclaiming of a place: life returning in an ordered sequence once the ground is bared or the human hand withdraws -- shown in the green coming back before anyone names it. It is the living reclaiming the ground, not the disturbance that cleared it (geomorphology's, fire's, erosion's), the material rot that precedes it (decay's), the owner's withdrawal that opens it (dereliction's), or the climate that sets what can grow (climate's); it is the life that returns, in the order it returns.",
+      "issue": "Four modes over a reclaiming root, three of the sequence and one twist. Pioneer is the first life on the raw ground -- the lichen, the weed, the fireweed, the fast colonizer that takes bare or burned or new ground and readies it. Progression is the ordered march -- the seres, each community changing the ground and giving way to the next, grass to shrub to wood, in the sequence the place runs toward maturity. Maturity is the mature, self-perpetuating community the sequence tends to -- the old-growth, the climax, the stable end-state (a tendency, not a destiny, for the place and its chances shape which). Rewilding is the twist: the wild taking back what was human -- the field gone to forest, the derelict lot, the abandoned city retaken by the living, the world without us.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so succession reads system-wide and no cleared ground stays bare. The link: a place carries, under Shown, the stage of its reclaiming, linking one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each place links a real mode file under Shown. Whether the stage is true to the place and its ground is semantic, taught and reviewed, never failed by the suite. The place shows the life returning; it does not narrate it, and it never stands in for a persona's own recovery or growth.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each place whose ground is being reclaimed its read under Shown: the stage its reclaiming shows -- the pioneers on the raw ground, the progression of communities, the mature end-community, or the rewilding of what was human. Keep it the life returning, not the disturbance that cleared the ground (hand that to geomorphology, fire, erosion), the rot that precedes it (to decay), the withdrawal that opens it (to dereliction), or the climate that sets the destination (to climate). Read rewilding as the twist: the wild retaking the human place is not only the human's loss but the land's return."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
