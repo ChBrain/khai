@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-tipping-point",
+  "version": "0.1.0",
+  "description": "khai engine content, the tipping-point domain: the dynamic in which a process absorbs accumulating load while appearing stable, crosses a critical threshold, and shifts discontinuously and irreversibly to a new state -- the loading that fills unseen, the criticality where a trivial trigger decides everything, the snap out of all proportion to it, and the ratchet that will not let the old state return.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/tipping-point"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "tipping-point",
+    "tagline": "Tipping-point as process: a running process absorbs accumulating load while appearing stable, crosses a critical threshold, and shifts discontinuously and irreversibly to a new state -- the loading that fills unseen, the criticality where a trivial trigger decides everything, the snap out of all proportion to it, and the ratchet that will not let the old state return.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_tipping-point.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_loading.md",
+        "type": "process",
+        "parent": "process_tipping-point.md"
+      },
+      {
+        "file": "process_criticality.md",
+        "type": "process",
+        "parent": "process_tipping-point.md"
+      },
+      {
+        "file": "process_snap.md",
+        "type": "process",
+        "parent": "process_tipping-point.md"
+      },
+      {
+        "file": "process_ratchet.md",
+        "type": "process",
+        "parent": "process_tipping-point.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "process",
+        "section": "Direction",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, on the Direction chapter. The root (process_tipping-point.md) declares the tipping-point dynamic: a running process that absorbs accumulating load while appearing stable, crosses a hidden critical threshold, and shifts discontinuously and irreversibly to a new state -- the nonlinear collapse where the last small increment is the trigger, never the cause (Thom's catastrophe; Scheffer's critical transition). It is the shape of the sudden turn, not the slow slide that precedes it (drift's -- drift is all slope and no moment; tipping-point is all moment), the loud mutual spiral (escalation's), the abstract inversion of direction (reversal's), or the adaptation to the loss after (grief's); it is the accumulation that snaps. Type-generic: the same dynamic stalls a bond, tips a neighborhood, breaks a market, topples a regime, cast here on a process's Direction.",
+      "issue": "Four phases over a critical-transition root, three of the collapse and one twist. Loading is the sub-critical accumulation -- strain added while the system holds, no proportional signal, the reservoir filling, the system as stable in appearance the moment before as an hour before, because it is stable, until it is not. Criticality is the system at the threshold -- brought by the load to the edge, maximally sensitive, its resilience spent, so the next trivial increment (the last straw, the dropped mug) decides everything a large force could not decide an hour earlier. Snap is the discontinuity -- the sudden, fast jump to the new state, out of all proportion to the trigger, the smooth flow detaching all at once, the regime shifting between one moment and the next. Ratchet is the twist: the new state is its own stable basin, and reversing the trigger does not reverse the state -- undo the last straw and the break does not heal, drop the angle and the stalled wing does not re-fly until far below where it stalled; the same one-way catch that makes a collapse permanent makes a hard-won gain durable, so irreversibility is both the trap and the reason recovery, once reached, holds.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the tipping-point dynamic reads system-wide and no accumulating process is taken as safe merely because it still stands. The link: a process carries, under Direction, the phase of its transition, linking one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each process links a real phase file under Direction. Whether the read is true to the dynamic -- the collapse discontinuous and not a fast ramp, the trigger the last increment and not the cause, the new state genuinely hard to reverse -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each process whose sudden transition is an actor its read under Direction: the phase it is in -- the loading that fills unseen, the criticality where the trivial trigger looms, the snap of the jump, or the ratchet that locks the new state. Keep it the tipping dynamic, not the slow slide before it (hand that to drift), the mutual spiral (escalation), the abstract turn (reversal), or the aftermath (grief). Read the trigger as the last increment and never the cause, and read ratchet two ways: the irreversibility that dooms the broken thing is what makes the healed thing hold."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
