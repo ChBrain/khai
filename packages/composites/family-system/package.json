@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-family-system",
+  "version": "0.1.0",
+  "description": "khai composite content, the family-system domain: the household read as one emotional system rather than a set of individuals -- patterns inherited down the generations, the system's resistance to change, and the one member who carries the whole's tension as its symptom -- across the inheritance, homeostasis, and identified-patient bridges over triangulation, differentiation, and double-bind.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/family-system"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "family-system",
+    "tagline": "Family-system as composite: the household read as one emotional system rather than a set of individuals -- its patterns inherited down the generations, its resistance to any member's change, and the one it makes carry the whole's tension as a symptom -- across the inheritance, homeostasis, and identified-patient bridges over triangulation, differentiation, and double-bind, and the drama lives in the system holding its shape against every attempt to change it.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_family-system.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_inheritance.md",
+        "type": "process",
+        "parent": "process_family-system.md"
+      },
+      {
+        "file": "process_homeostasis.md",
+        "type": "process",
+        "parent": "process_family-system.md"
+      },
+      {
+        "file": "process_identified-patient.md",
+        "type": "process",
+        "parent": "process_family-system.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "plot",
+        "section": "Tension",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over three atoms it declares as dependencies. The root (process_family-system.md) reads the household as one emotional system held across three engines: triangulation supplies the three-party binds that route the system's tension, differentiation supplies the members' capacity (or failure) to hold a self within it, and double-bind supplies the communicational trap a low-differentiated system lays on its own. The composite adds no fourth engine; it wires the whole-system properties the three become that none is alone -- the family as a unit, not the sum of its people.",
+      "issue": "Three bridges, each a property of the whole the atoms cannot stage apart. Inheritance: the system's differentiation level and its triangles pass down the generations, so a fused, triangling family hands its children the same low differentiation and the same readiness to triangle their own -- Bowen's multigenerational transmission, cutoff in one generation becoming fusion-vulnerability in the next. Homeostasis: the system resists change to keep its equilibrium, so any member who differentiates or any symptom that lifts is met by the whole pulling to restore the old balance -- Jackson's family homeostasis, the family fighting to keep its shape. Identified-patient: the system concentrates its unspoken conflict in one member, who carries and expresses for the whole what it cannot own -- the scapegoat, the sick one, the problem child, whose symptom belongs to the system and not to them alone.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the family-as-system read runs wherever its atoms are cast. The link, advisory: a plot may link under Tension the bridge it stages, and the audit surfaces where a play stages a family system without naming it.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's family reads as a genuine system -- its symptom the whole's and not one person's, its resistance to change real -- rather than a set of separate characters, is semantic, taught and reviewed, never failed by the suite. It is authored dramatic architecture, never a diagnosis of a real family.",
+      "setup": "Install the composite; its atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the system from the atoms -- its triangles from triangulation, its members' self-capacity from differentiation, its binds from double-bind -- then stage the bridges: the patterns inherited down the generations, the system's resistance to any member's change, and the one made to carry the whole's tension. Read the production as a system, never as separate people: the identified patient's symptom is the family's, and the family fights to keep it. It is authored architecture for a play, never a diagnosis of a real family."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-triangulation": "^0.1.0",
+    "@chbrain/khai-engine-differentiation": "^0.1.0",
+    "@chbrain/khai-engine-double-bind": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
