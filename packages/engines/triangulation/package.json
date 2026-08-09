@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-triangulation",
+  "version": "0.1.0",
+  "description": "khai engine content, the triangulation domain: the plot in which a two-person tension recruits or displaces onto a third to stabilize itself -- the conflict detoured onto a scapegoat, the covert coalition of two against one, the third caught in the crossfire and pulled both ways, and the triangle read as the system's own load-bearing brace.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/triangulation"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "triangulation",
+    "tagline": "Triangulation as plot: a two-person tension recruits or displaces onto a third to stabilize itself -- the conflict detoured onto a scapegoat, the covert coalition of two against one across a boundary, the third caught in the crossfire and pulled both ways, and the triangle read as the system's own load-bearing brace, the symptom that holds the pair together.",
+    "type": "plot",
+    "members": [
+      {
+        "file": "plot_triangulation.md",
+        "type": "plot",
+        "parent": null
+      },
+      {
+        "file": "plot_detour.md",
+        "type": "plot",
+        "parent": "plot_triangulation.md"
+      },
+      {
+        "file": "plot_coalition.md",
+        "type": "plot",
+        "parent": "plot_triangulation.md"
+      },
+      {
+        "file": "plot_crossfire.md",
+        "type": "plot",
+        "parent": "plot_triangulation.md"
+      },
+      {
+        "file": "plot_stabilizer.md",
+        "type": "plot",
+        "parent": "plot_triangulation.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "plot",
+        "section": "Tension",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Plot, on the Tension chapter. The root (plot_triangulation.md) declares triangulation as the casting of a three-party structure: a two-person tension, unmanageable head-on, recruits or displaces onto a third that binds it -- the triangle Bowen named the smallest stable unit of a relationship system. It is the structure of the three-party bind, not a persona's own trait or the emotion it carries; it models how the tension of a pair is routed through a third so the pair can hold.",
+      "issue": "Four forms over a triangle root, three rigid triads and the systemic reading. Detour is the couple's conflict displaced onto a third -- the child made the problem or the patient, so the pair stays united by attending to the third instead of each other (Minuchin's detour-attack and detour-support). Coalition is the covert alliance of two against one across a boundary -- a parent and child bound against the other parent, the cross-generational coalition that denies the hierarchy it crosses (Haley's perverse triangle). Crossfire is the third caught between -- each side pressing it to side against the other, so any move betrays someone and paralysis is the only safety (Minuchin's triangulation proper, the child pulled both ways). Stabilizer is the triangle read as the system's own brace: the third absorbs the tension the pair cannot hold, so the symptom, the scapegoat, the affair is not only the dysfunction but the thing keeping the pair together -- remove it untimed and the pair, not the third, is what breaks.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so triangulation reads system-wide and no three-party bind is mistaken for a simple conflict. The link: a plot carries, under Tension, the form of its triangle, linking one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each plot links a real form file under Tension. Whether the read is true to the three parties and their bind is semantic, taught and reviewed, never failed by the suite. The plot casts the triangle; it does not narrate it, and it never stands in for a persona's own trait or a diagnosis of a real family.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each plot whose three-party bind is an actor its read under Tension: the form its triangle takes -- the detour of conflict onto a third, the coalition of two against one, the crossfire of a third pulled both ways, or the stabilizer that holds the pair together. Keep it the structure of the bind, not a persona's trait (that is the persona's engines) or the emotion it carries (jealousy, betrayal). Read stabilizer as the systemic turn: the triangled-in third is doing the load-bearing, and the pair is what its removal exposes."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
