@@ -21,6 +21,7 @@
   "files": [
     "index.mjs",
     "rules.mjs",
+    "voice.mjs",
     "parse.mjs",
     "README.md"
   ],
