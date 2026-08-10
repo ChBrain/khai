@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-rumor",
+  "version": "0.1.0",
+  "description": "khai engine content, the rumor domain: unverified news about ambiguous situations, circulated as a community's improvised collective sensemaking under uncertainty. The information vacuum that spawns it (vacuum), the collective account-building that fills it (improvisation), the reshaping it undergoes as it passes (mutation), and the twist of the dismissed unverified word read as essential improvised intelligence rather than only misinformation.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/rumor"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "rumor",
+    "tagline": "Rumor as process: unverified news about ambiguous situations, circulated as a community's improvised collective sensemaking under uncertainty. The information vacuum that spawns it (vacuum), the collective account-building that fills it (improvisation), the reshaping it undergoes as it passes (mutation), and the twist of the dismissed unverified word read as essential improvised intelligence rather than only misinformation.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_rumor.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_vacuum.md",
+        "type": "process",
+        "parent": "process_rumor.md"
+      },
+      {
+        "file": "process_improvisation.md",
+        "type": "process",
+        "parent": "process_rumor.md"
+      },
+      {
+        "file": "process_mutation.md",
+        "type": "process",
+        "parent": "process_rumor.md"
+      },
+      {
+        "file": "process_hearsay.md",
+        "type": "process",
+        "parent": "process_rumor.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter -- how a persona is shown carrying, believing, and passing on the unverified news a community improvises about an ambiguous situation. The root (process_rumor.md) declares rumor: unverified information about events and situations, circulated as a group's improvised collective sensemaking when the demand for news outruns the official supply. It is not evaluative talk about absent persons (gossip's), the spread of affect or behavior itself (contagion's), the cognitive inflation of truth by repeated exposure (bias's), the emotion of collective panic (fear's), the felt state of ambiguity in one persona (confusion's), or a deliberately planted falsehood (a distinct force). It is the unverified account a community builds and passes to make sense of what it cannot yet know.",
+      "issue": "Four facets over a rumor root, three of its life and a twist. Vacuum is the generative gap -- where a situation is important and ambiguous and anxious and the official channels give no account, the demand for news outruns its supply and a space opens that rumor rushes to fill. Improvisation is the collective account-building -- many tellers pooling scraps, guesses, and fragments into a plausible story, the group problem-solving its uncertainty aloud, improvised news assembled from whatever is at hand. Mutation is the reshaping in transmission -- as the account passes from teller to teller it levels away detail, sharpens a few points, and assimilates the rest to the tellers' fears and frames, so the story that arrives is bent toward what its carriers expected to hear. Hearsay is the twist: the dismissed unverified word, condemned as mere rumor and misinformation, read not only as falsehood but as the community's fastest and often truest improvised intelligence, the account that lets an anxious group grasp and act on what no one has yet confirmed.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so rumor reads system-wide and no account is taken as confirmed merely because it circulates. The link: a persona carries, under Projection, the facet of the rumor they build, carry, and pass, linking one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real facet file under Projection. Whether the read is true to rumor -- the account unverified and about a situation, the vacuum real, the mutation toward the tellers' frames, the hearsay both dismissed and load-bearing -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each persona whose building and passing of unverified news is an actor its read under Projection: the vacuum it fills, the improvisation it assembles, the mutation it undergoes, or the hearsay it is dismissed as and runs on. Keep it the unverified news about a situation, not evaluative talk about persons (hand that to gossip), the spread of affect (contagion), the truth-by-repetition bias (bias), collective panic (fear), one persona's confusion (confusion), or a deliberately planted falsehood (a distinct force). Read hearsay as the twist: the dismissed unverified word is not only misinformation but the group's improvised intelligence, fast and often true where no confirmation yet exists."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
