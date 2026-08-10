@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-gossip",
+  "version": "0.1.0",
+  "description": "khai engine content, the gossip domain: evaluative talk about absent third parties -- the reputational record it keeps (ledger), the bond it builds between those who share it (grooming), the norm it enforces by the threat of being talked about (policing), and the twist of its condemned malice read as the group's essential sting rather than only a vice.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/gossip"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "gossip",
+    "tagline": "Gossip as process: evaluative talk about absent third parties -- the reputational record it keeps (ledger), the bond it builds between those who share it (grooming), the norm it enforces by the threat of being talked about (policing), and the twist of its condemned malice read as the group's essential sting rather than only a vice.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_gossip.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_ledger.md",
+        "type": "process",
+        "parent": "process_gossip.md"
+      },
+      {
+        "file": "process_grooming.md",
+        "type": "process",
+        "parent": "process_gossip.md"
+      },
+      {
+        "file": "process_policing.md",
+        "type": "process",
+        "parent": "process_gossip.md"
+      },
+      {
+        "file": "process_venom.md",
+        "type": "process",
+        "parent": "process_gossip.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter -- how a persona is shown speaking, and being spoken of, in the group's evaluative talk about its absent members. The root (process_gossip.md) declares gossip: informal talk that evaluates absent third parties and circulates through a community, at once its reputational memory, its social bond, and its decentralized enforcement. It is not the exclusion the talk may bring (ostracism's), the felt exposure of being talked about (shame's), the vertical command of an authority (obedience's) or its impersonal training (discipline's), the direct pull of a present peer majority (conformity's), or the spread of unverified news about events rather than persons (a distinct force). It is the evaluative talk about the absent, and what that talk does.",
+      "issue": "Four facets over a gossip root, three functions and a twist. Ledger is the reputational record -- gossip as the running account of who did what, who kept faith and who cheated, the social database a persona reads to know whom to trust without having been burned themselves. Grooming is the bond -- gossip as social grooming, the alliance and intimacy built by sharing talk about a third, the confidence that binds the two who share it into a we. Policing is the enforcement -- gossip as decentralized social control, the threat of being talked about that keeps a persona in line and the ridicule that cuts an upstart back down, norms held without any authority to hold them. Venom is the twist: the malice in gossip, the relish of the wounding word, the sin of the tongue the talk is condemned for -- read not only as a vice but as the group's essential sting, the cruelty that gives the norm its teeth and the appetite that recruits the unpaid work of policing.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so gossip reads system-wide and no reputation is taken as simply given rather than made in talk. The link: a persona carries, under Projection, the facet of the gossip they speak and are subject to, linking one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real facet file under Projection. Whether the read is true to gossip -- the talk evaluative and about the absent, the bond and the policing genuine, the venom the condemned face and not a separate cruelty -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each persona whose speaking and being-spoken-of is an actor its read under Projection: the facet its gossip serves -- the ledger it keeps, the grooming bond it builds, the policing it does, or the venom it relishes. Keep it the evaluative talk about the absent, not the exclusion it may bring (hand that to ostracism), the shame it induces (shame), the vertical command or training (obedience, discipline), the present peer majority (conformity), or unverified news about events (a distinct force). Read venom as the twist: the condemned malice is not only a vice but the sting that gives gossip's policing its teeth."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
