@@ -1,0 +1,86 @@
+{
+  "name": "@chbrain/khai-composite-grapevine",
+  "version": "0.1.0",
+  "description": "khai composite content, the grapevine domain: the informal communication network of a community read as one thing -- the unofficial channel through which evaluative talk about persons (gossip) and unverified news about events (rumor) both travel, converting into each other and gating each other's belief -- across the channel, blame, and credence seams over gossip and rumor.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/grapevine"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "grapevine",
+    "tagline": "Grapevine as composite: the informal communication network of a community read as one thing -- the unofficial channel through which evaluative talk about persons (gossip) and unverified news about events (rumor) both travel, converting into each other and gating each other's belief -- across the channel, blame, and credence seams over gossip and rumor, and the drama lives in the network carrying both at once, an event's account becoming a person's verdict and a reputation deciding what news will stick.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_grapevine.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_channel.md",
+        "type": "process",
+        "parent": "process_grapevine.md"
+      },
+      {
+        "file": "process_blame.md",
+        "type": "process",
+        "parent": "process_grapevine.md"
+      },
+      {
+        "file": "process_credence.md",
+        "type": "process",
+        "parent": "process_grapevine.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "plot",
+        "section": "Tension",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over two atoms it declares as dependencies. The root (process_grapevine.md) reads a community's informal communication network -- its grapevine -- as one channel carrying two cargoes: gossip supplies the evaluative talk about absent persons, and rumor supplies the unverified news about ambiguous events. The composite adds no third engine; it wires the seams the two reinforce into a single network, and it reads the exclusion the talk may bring (ostracism), the felt exposure it induces (shame), and the affect that rides the same channel (contagion) as neighbours it names but does not own.",
+      "issue": "Three seams, each a handoff the atoms cannot stage apart. Channel: gossip and rumor run on the same trust-graded, absent-target, off-the-record network -- the grooming ties that carry a confidence are the very edges an unverified account travels, so who is told the one is told the other, and neither atom owns the shared medium. Blame: an ambiguous, anxious event opens rumor's vacuum, and the account the grapevine improvises does not stop at what happened but names who did it -- the event-news converting into a person-verdict, rumor feeding gossip's ledger and policing. Credence: a person's standing in gossip's reputational ledger gates whether a rumor about them is believed -- the record supplies the prior, so the account sticks to the already-suspected and slides off the trusted, gossip deciding what rumor will carry.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the grapevine read runs wherever its atoms are cast. The link, advisory: a plot may link under Tension the seam it stages, and the audit surfaces where a play runs the informal network without naming it.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's grapevine genuinely carries both cargoes -- the event-account turning to a person-verdict, the reputation gating what news will stick -- rather than gossip or rumor run alone, is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the network from the atoms -- the talk about persons from gossip, the news about events from rumor -- then stage the seams: the channel that carries both, the blame that turns an event's account into a person's verdict, and the credence by which a reputation decides what news will stick. Read the production in the network carrying both at once; the exclusion is ostracism's, the felt exposure shame's, and the affect that rides along contagion's."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-gossip": "^0.1.0",
+    "@chbrain/khai-engine-rumor": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
