@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-discipline",
+  "version": "0.1.0",
+  "description": "khai engine content, the discipline domain: Foucault's disciplinary power -- the productive, continuous, impersonal power that makes subjects by watching, measuring, and training them, so a persona holds themselves to the norm even unwatched. The surveillance that sees without being seen, the norm that measures and penalizes deviation, the examination that makes each subject a documented case, and the twist of the docile body read as capable rather than only subjected.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/discipline"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "discipline",
+    "tagline": "Discipline as process: Foucault's disciplinary power -- the productive, continuous, impersonal power that makes subjects by watching, measuring, and training them, so a persona holds themselves to the norm even unwatched. The surveillance that sees without being seen, the norm that measures and penalizes deviation, the examination that makes each subject a documented case, and the twist of the docile body read as capable rather than only subjected.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_discipline.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_surveillance.md",
+        "type": "process",
+        "parent": "process_discipline.md"
+      },
+      {
+        "file": "process_norm.md",
+        "type": "process",
+        "parent": "process_discipline.md"
+      },
+      {
+        "file": "process_examination.md",
+        "type": "process",
+        "parent": "process_discipline.md"
+      },
+      {
+        "file": "process_docility.md",
+        "type": "process",
+        "parent": "process_discipline.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter -- how a persona is produced as a subject by the power that watches and trains them. The root (process_discipline.md) declares disciplinary power: the productive, continuous, impersonal power that makes subjects by distributing, observing, normalizing, and examining them, so the persona internalizes the gaze and governs themselves. It is not the vertical command of a legitimate authority overriding conscience (obedience's), the capacity to compel by controlling resources (power's), the horizontal pull of a peer majority (conformity's), the formal rank a structure assigns (hierarchy's), or the persona's own inner regulation of impulse (self-control's) -- it is the diffuse technique that manufactures a self-regulating subject.",
+      "issue": "Four facets over a disciplinary root, three techniques and a twist. Surveillance is hierarchical observation -- the gaze that sees without being seen, Bentham's panopticon whose watching is unverifiable, so the persona, never sure when watched, watches themselves. Norm is normalizing judgment -- the standard as measure, the micro-penalty for deviation, the rank against the average, the individualizing pressure to be normal that a whole institution turns on the smallest departure. Examination is the individualizing ritual -- the test, the review, the file, the case, where observation and norm combine to make each subject a documented, measured, comparable individual, power exercised as knowledge. Docility is the twist: the docile body made both subjected and capable, discipline read not only as constraint but as production -- the same drill that subjects also skills, self-discipline at once a prison of the internalized gaze and a genuine competence.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so disciplinary power reads system-wide and no subject is taken as freely self-made who was in fact produced. The link: a persona carries, under Projection, the facet of the disciplinary power that makes them, linking one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real facet file under Projection. Whether the read is true to disciplinary power -- the gaze internalized and not merely imposed, the norm impersonal and not a peer's pull, the docility both subjection and capability -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each persona whose making by disciplinary power is an actor its read under Projection: the facet that produces them -- the surveillance that has them watch themselves, the norm that measures and penalizes their deviation, the examination that files them as a case, or the docility that makes them at once subjected and able. Keep it the productive impersonal technique, not the legitimate command (hand that to obedience), the held resource (power), the peer majority (conformity), the formal rank (hierarchy), or the persona's own willpower (self-control). Read docility as the twist: the disciplined subject is not only constrained but produced -- the same training that subjects also makes able."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
