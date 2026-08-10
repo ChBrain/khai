@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-touch",
+  "version": "0.1.0",
+  "description": "khai engine content, the touch domain: the haptic field of a place -- the surface grain the skin reads (texture), the warmth or chill it holds against the body (thermal), the give and resistance the body meets in it (press), and the twist of the touch it withholds read as a presence rather than a lack, the place composed as much by what it feels like as by what it looks like.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/touch"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "touch",
+    "tagline": "Touch as process: the haptic field of a place -- the surface grain the skin reads (texture), the warmth or chill it holds against the body (thermal), the give and resistance the body meets in it (press), and the twist of the touch it withholds read as a presence rather than a lack, the place composed as much by what it feels like as by what it looks like.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_touch.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_texture.md",
+        "type": "process",
+        "parent": "process_touch.md"
+      },
+      {
+        "file": "process_thermal.md",
+        "type": "process",
+        "parent": "process_touch.md"
+      },
+      {
+        "file": "process_press.md",
+        "type": "process",
+        "parent": "process_touch.md"
+      },
+      {
+        "file": "process_untouchable.md",
+        "type": "process",
+        "parent": "process_touch.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Shown",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place, on the Shown chapter -- what the place presents to whoever enters, felt as much as seen. The root (process_touch.md) declares touch as the place's haptic field: the whole of what it feels like against the body, composed of the surface grain the skin reads, the warmth or chill it holds, the give and resistance the body meets, and the touch it withholds. It is the feel of the place, not the weather that is one of its sources (weather's), the setting's layout and standing mood (space's), a persona's own body and touch-memory (the persona's), the symbolic warmth or weight a felt quality stands for (embodied-metaphor's), or touch between persons (theirs).",
+      "issue": "Four facets over a haptic root, three feels and a twist. Texture is the surface grain -- what the skin and hand and foot read of a place's materials: the worn stone, the rough plaster, the polished rail, the cobbles, smooth or coarse, the cutaneous read of the place. Thermal is the warmth or chill it holds against the body -- the sun-warmed wall, the cold church, the humid closeness, the dry heat, the felt temperature of the place, not the meteorological one. Press is the give and resistance the body meets -- the hard bench, the soft ground, the crush of the crowd, the yield of deep carpet, the mechanical push-back of the place on the body. Untouchable is the twist: the touch a place withholds read not as a lack but as a presence -- the relic behind glass, the roped-off, the sterile, the pristine surface no hand has worn, the sacred kept from contact, at once revered and preserved and held cold at arm's length.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so touch reads system-wide and no place is felt as untouched scenery. The link: a place carries, under Shown, the facet of its haptic field, linking one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each place links a real facet file under Shown. Whether the facet is true to the place and its feel is semantic, taught and reviewed, never failed by the suite. The place feels as it feels; it does not narrate its feel, and it never stands in for a persona's own body-sense or for the symbolic warmth a quality is read to mean.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each place whose feel is an actor its read under Shown: the facet its haptic field shows -- the texture the skin reads, the thermal it holds, the press the body meets, or the touch it withholds. Keep it the feel of the place, not the weather that feeds it (hand that to weather), the layout and standing mood (to space), a persona's own body and touch-memory (to the persona's engines), the symbolic warmth or weight it stands for (to embodied-metaphor), or touch between persons (to them). Read untouchable as the twist: the withheld touch is not the absence of the haptic field but one of its states, a presence a place can offer or impose -- revered and preserved and, at once, held cold at arm's length."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
