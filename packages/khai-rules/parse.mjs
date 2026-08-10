@@ -86,8 +86,12 @@ export function parseDoc(text) {
  * whitespace after it (CommonMark). The delimiter lines themselves are marked
  * fenced too -- they never look like headers, and it keeps the walk in one
  * place. An unclosed fence runs to end-of-document, as Markdown specifies.
+ *
+ * Exported because every markdown-aware rule needs the same answer: a rule
+ * about prose (voice.mjs) must skip a code block exactly where the header scan
+ * does, or the two disagree about what the document says.
  */
-function fencedLines(lines) {
+export function fencedLines(lines) {
   const fenced = new Array(lines.length).fill(false);
   let marker = null; // the opening run, e.g. "```" or "~~~~"
   for (let i = 0; i < lines.length; i++) {
