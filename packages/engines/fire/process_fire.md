@@ -28,8 +28,8 @@ Every place with fuel carries a fire in potential; fire is that potential realiz
 ## Direction
 
 Through the fuel, on the place's own combustibility.
-Four modes work the burn: [Ignition](process_ignition.md) is the spark that starts it, [Conflagration](process_conflagration.md) the fire run free, [Exclusion](process_exclusion.md) the fire fought and kept out, and [Renewal](process_renewal.md) the twist -- the making-new fire brings.
-A place does not burn evenly or once: the grassland burns light and often, the forest rarely and total, the fire kept out for a lifetime returns as the worst the place has seen.
+Six modes work the burn: [Ignition](process_ignition.md) is the spark that starts it, [Creep](process_creep.md) the low fire held below the threshold of running, [Conflagration](process_conflagration.md) the fire run free, [Smoulder](process_smoulder.md) the flameless glow that burns on below the surface, [Exclusion](process_exclusion.md) the fire fought and kept out, and [Renewal](process_renewal.md) the twist -- the making-new fire brings.
+A place does not burn evenly or once: the grassland burns light and often, the forest rarely and total, the peat below burns unseen for a season, the fire kept out for a lifetime returns as the worst the place has seen.
 
 ## Lever
 

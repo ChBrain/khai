@@ -1,7 +1,7 @@
 {
   "name": "@chbrain/khai-engine-fire",
   "version": "0.1.0",
-  "description": "khai engine content, the fire domain: the burn regime of a place -- its combustibility and the fire it carries, sparked to ignition, run to conflagration, fought to exclusion, and the twist of the renewal fire brings, the force that both destroys a place and is required to make it new.",
+  "description": "khai engine content, the fire domain: the burn regime of a place -- its combustibility and the fire it carries, sparked to ignition, held low as creep, run to conflagration, sunk into flameless smoulder, fought to exclusion, and the twist of the renewal fire brings, the force that both destroys a place and is required to make it new.",
   "type": "module",
   "main": "./index.mjs",
   "exports": {
@@ -24,7 +24,7 @@
   ],
   "khai": {
     "engine": "fire",
-    "tagline": "Fire as process: the burn regime of a place -- its combustibility and the fire it carries, sparked to ignition, run to conflagration, and fought to exclusion -- and the twist that fire is not only ruin but renewal, the burn a fire-adapted place is made by and cannot do without.",
+    "tagline": "Fire as process: the burn regime of a place -- its combustibility and the fire it carries, sparked to ignition, held low as creep, run to conflagration, sunk into flameless smoulder, and fought to exclusion -- and the twist that fire is not only ruin but renewal, the burn a fire-adapted place is made by and cannot do without.",
     "type": "process",
     "members": [
       {
@@ -38,7 +38,17 @@
         "parent": "process_fire.md"
       },
       {
+        "file": "process_creep.md",
+        "type": "process",
+        "parent": "process_fire.md"
+      },
+      {
         "file": "process_conflagration.md",
+        "type": "process",
+        "parent": "process_fire.md"
+      },
+      {
+        "file": "process_smoulder.md",
         "type": "process",
         "parent": "process_fire.md"
       },
@@ -69,10 +79,10 @@
     ],
     "card": {
       "wire": "Attaches at Place, on the Shown chapter. The root (process_fire.md) declares fire as the burn regime a place carries: its combustibility, and the fire that sparks, runs, is fought, and renews -- shown in the burned and the burnable before anyone names it. It is the combustion itself, not the fire-weather that makes it likely (weather's), the drought that dries the fuel (hydrology's), or the biological regrowth that follows (succession's); the fire from below, the eruption, is geomorphology's, and fire never re-owns it.",
-      "issue": "Four modes over a burn root, three of the fire and one twist. Ignition is the spark that starts it -- the lightning, the ember, the dropped match meeting dry fuel where heat, air, and fuel align. Conflagration is the fire run free -- the front, the crown fire, the firestorm consuming everything it reaches. Exclusion is the fire fought and kept out -- the burn suppressed, and the fuel that builds unburned into a worse fire later, the debt suppression makes. Renewal is the twist: fire is not only ruin but the making-new a fire-adapted place needs -- the seed that only fire cracks open, the ground cleared for it, the soil the ash feeds, the ecosystem that must burn to live.",
-      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so fire reads system-wide and no place's combustibility is mere scenery. The link: a place carries, under Shown, the mode of the fire regime it shows, linking one of the four.",
+      "issue": "Six modes over a burn root, five of the fire and one twist. Ignition is the spark that starts it -- the lightning, the ember, the dropped match meeting dry fuel where heat, air, and fuel align. Creep is the fire held low and frequent -- the backing surface fire, the light burn that clears the litter and spares the canopy, the cool fire a place has often and is maintained by, below the threshold of running. Conflagration is the fire run free -- the front, the crown fire, the firestorm consuming everything it reaches. Smoulder is the flameless glow -- the fire sunk into peat, duff, and root, burning downward and unseen for weeks and months, on retained heat alone, overwintering and re-emerging. Exclusion is the fire fought and kept out -- the burn suppressed, and the fuel that builds unburned into a worse fire later, the debt suppression makes. Renewal is the twist: fire is not only ruin but the making-new a fire-adapted place needs -- the seed that only fire cracks open, the ground cleared for it, the soil the ash feeds, the ecosystem that must burn to live.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so fire reads system-wide and no place's combustibility is mere scenery. The link: a place carries, under Shown, the mode of the fire regime it shows, linking one of the six.",
       "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each place links a real mode file under Shown. Whether the mode is true to the place and its fuel is semantic, taught and reviewed, never failed by the suite. The place shows what burns or is kept from burning; it does not narrate it, and it never stands in for a persona's own burning.",
-      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each place whose fire is an actor its read under Shown: the mode its burn regime shows -- the ignition that starts it, the conflagration that runs it, the exclusion that fights and defers it, or the renewal that fire brings. Keep it the combustion itself, not the fire-weather that primes it (hand that to weather), the drought that dries the fuel (to hydrology), the regrowth that follows (to succession), or the fire from below (to geomorphology). Read renewal as the twist: the fire that destroys the place is the fire a fire-adapted place is made by."
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each place whose fire is an actor its read under Shown: the mode its burn regime shows -- the ignition that starts it, the creep it has low and often, the conflagration that runs it, the smoulder that burns on unseen below, the exclusion that fights and defers it, or the renewal that fire brings. Keep it the combustion itself, not the fire-weather that primes it (hand that to weather), the drought that dries the fuel (to hydrology), the regrowth that follows (to succession), or the fire from below (to geomorphology). Read renewal as the twist: the fire that destroys the place is the fire a fire-adapted place is made by."
     }
   },
   "scripts": {
