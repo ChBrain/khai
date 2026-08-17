@@ -26,6 +26,21 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [pyrocb](process_pyrocb.md): process
 - [firestorm](process_firestorm.md): process
 - [blowup](process_blowup.md): process
+- [pool-fire](process_pool-fire.md): process
+- [jet](process_jet.md): process
+- [flash-fire](process_flash-fire.md): process
+- [vce](process_vce.md): process
+- [bleve](process_bleve.md): process
+- [boilover](process_boilover.md): process
+- [metal](process_metal.md): process
+- [lithium](process_lithium.md): process
+- [dust](process_dust.md): process
+- [self-heating](process_self-heating.md): process
+- [pyrophoric](process_pyrophoric.md): process
+- [oxidizer](process_oxidizer.md): process
+- [hypergolic](process_hypergolic.md): process
+- [arc-flash](process_arc-flash.md): process
+- [polymer](process_polymer.md): process
 
 See [sources and attribution](REFERENCES.md).
 
