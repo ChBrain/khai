@@ -1,0 +1,88 @@
+{
+  "name": "@chbrain/khai-composite-subjection",
+  "version": "0.1.0",
+  "description": "khai composite content, the subjection domain: the person made by institutional power -- the world internalized until it is simply how things are, the conduct trained by continuous watching and measuring, and the self handed over to a command or an enclosing place -- a wiring of the socialization, discipline, obedience, and total-institution engines, staged as the forming, the training, and the surrender.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/subjection"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "subjection",
+    "tagline": "Subjection as composite: the person made by institutional power -- the world handed ready-made and internalized (socialization), the conduct trained by continuous watching and measuring (discipline), and the self handed over to a command or an enclosing place (obedience, total-institution) -- across the forming, the training, and the surrender, and the drama is that the grip is complete only when it stops being felt as a grip.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_subjection.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_subjection_forming.md",
+        "type": "process",
+        "parent": "process_subjection.md"
+      },
+      {
+        "file": "process_subjection_training.md",
+        "type": "process",
+        "parent": "process_subjection.md"
+      },
+      {
+        "file": "process_subjection_surrender.md",
+        "type": "process",
+        "parent": "process_subjection.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter, over four atoms it declares as dependencies -- the socialization, discipline, obedience, and total-institution engines, institutional power read as one making. The root (process_subjection.md) reads a person formed from outside: the ready-made world internalized until it is simply how things are (socialization), the conduct trained by continuous watching, measuring, and norming (discipline), and the self handed over to a command or to an enclosing place that runs all of life (obedience, total-institution). This composite adds no fifth engine; it wires the seam the four make -- power that produces a person rather than merely restraining one -- and reads that its hold is completest where it is no longer felt.",
+      "issue": "Three bridges, the ways institutional power makes a person. The Forming: the world built by prior generations and handed to a newcomer ready-made, internalized through primary and secondary socialization until what was one arrangement among many is simply how things are, and the person is a competent member (socialization). The Training: conduct shaped by a productive, continuous, impersonal power -- the surveillance that need not be watching to work, the norm that ranks and corrects, the examination that documents, producing the docility that makes a body useful (discipline). The Surrender: the twist -- the self handed over, whether to a legitimate authority's command through the binding factors that make a persona an instrument of another's will against its own conscience (obedience), or to the enclosing place that batches all of life under one authority behind a barrier and mortifies the self it admits (total-institution) -- where the making is seen for what it is: what begins as being subjected ends as being a self, and the person most thoroughly formed guards themselves, feels the command as duty, and at last cannot live outside the walls. A person is formed, trained, and handed over; the composite is the whole making of a subject.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so subjection reads wherever its atoms are cast. The link, advisory: a persona may link under Projection the way institutional power is making it, and the audit surfaces where a play carries a persona through internalization, training, and command without naming the making they amount to.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the socialization, discipline, obedience, and total-institution engines. Whether a persona's making rings true -- a forming that truly naturalizes, a training that truly disciplines, a surrender that truly hands the self over -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- socialization, discipline, obedience, and total-institution, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the persona's making from the four engines -- the internalized world from socialization, the trained conduct from discipline, the handed-over self from obedience and total-institution -- then read the bridge: the forming when the world is being made natural, the training when conduct is being shaped by watching and measuring, the surrender when the self is given over to a command or a place. Read the persona as produced by institutional power, never as the word subjection alone -- and let the surrender carry the keystone: the grip is complete only when it stops being felt as a grip."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-socialization": "^0.1.0",
+    "@chbrain/khai-engine-discipline": "^0.1.0",
+    "@chbrain/khai-engine-obedience": "^0.1.0",
+    "@chbrain/khai-engine-total-institution": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
