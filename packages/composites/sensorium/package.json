@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-sensorium",
+  "version": "0.1.0",
+  "description": "khai composite content, the sensorium domain: the place as the body meets it apart from the eye -- the constant field it sits in, the figure that rises from that field, and the withheld sense that registers hardest of all -- a wiring of the smellscape, soundscape, and touch engines, staged as the ground, the figure, and the absence.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/sensorium"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "sensorium",
+    "tagline": "Sensorium as composite: the place as the body meets it apart from the eye -- the constant olfactory, acoustic, and haptic field it sits in (ground), the smell, sound, or pressure that rises from that field and marks the place (figure), and the sense withheld (absence) -- and the drama is that a place is felt hardest where a sense has been taken away.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_sensorium.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_sensorium_ground.md",
+        "type": "process",
+        "parent": "process_sensorium.md"
+      },
+      {
+        "file": "process_sensorium_figure.md",
+        "type": "process",
+        "parent": "process_sensorium.md"
+      },
+      {
+        "file": "process_sensorium_absence.md",
+        "type": "process",
+        "parent": "process_sensorium.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Shown",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place, on the Shown chapter, over three atoms it declares as dependencies -- the smellscape, soundscape, and touch engines, the non-visual sensory fields of a place read as one. The root (process_sensorium.md) reads what a place gives the body before the eye reports anything: the olfactory, acoustic, and haptic fields it sits in, the figures that rise from them, and the sense it withholds. This composite adds no fourth engine; it wires the seam the three share -- each field having a ground, a figure, and an absence read as a presence -- and reads that the withheld sense registers hardest of all.",
+      "issue": "Three bridges, the shape every non-visual field of a place takes. The Ground: the constant field, unnoticed because it does not change -- the base smell a place sits in (ground), the keynote heard beneath everything else (keynote), the surface grain and the warmth or chill the skin reads without being asked (texture, thermal) -- the layer that works below notice precisely because it never stops. The Figure: what rises out of that field and is registered -- the drifting plume, the foreground signal, the give and resistance the body meets (plume, signal, press) -- and what rises and stays, binding the place to memory and naming it: the signature smell and the place's own sound (redolence, soundmark). The Absence: the twist -- the scentless room, the silence, the surface withheld from the hand (scentless, silence, untouchable) -- where the shape is seen for what it is: a sense taken away is not a zero but a signal, and often the loudest one, so a place is felt hardest exactly where it gives the body nothing. A place grounds, figures, and withholds; the composite is the whole of what it gives the body unseen.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so sensorium reads wherever its atoms are cast. The link, advisory: a place may link under Shown the sensory shape it puts before the body, and the audit surfaces where a play gives a place a look without giving it a smell, a sound, or a feel.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the smellscape, soundscape, and touch engines. Whether a place's sensory field rings true -- a ground that truly works unnoticed, a figure that truly rises, an absence that truly presses -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- smellscape, soundscape, and touch, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the place's sensory field from the three engines -- the smell from smellscape, the sound from soundscape, the feel from touch -- then read the bridge: the ground when the constant field is doing its work below notice, the figure when something rises out of it or marks the place, the absence when a sense has been withheld. Read the place as met by the body before the eye reports, never as the word sensorium alone -- and let the absence carry the keystone: a place is felt hardest where a sense has been taken away."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-smellscape": "^0.1.0",
+    "@chbrain/khai-engine-soundscape": "^0.1.0",
+    "@chbrain/khai-engine-touch": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
