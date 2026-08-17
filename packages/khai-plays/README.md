@@ -19,6 +19,7 @@ shape is in `registry/README.md`); it rewrites this file.
 - **[Kleist](https://github.com/ChBrain/khai-plays-kleist)** (programme `@chbrain/khai-plays-kleist`): Broken trust, somnambulists, and sudden violence where a single misread sign shatters the whole order.
 - **[Life 2 Live](https://github.com/ChBrain/L2)** (programme `@chbrain/khai-plays-l2`): "Life Is Very Exciting to Live It Very Embraced." Plays drawn from lived experience, each staged as a systemic production. Hard days held plainly, in a restrained first-person voice, the ordinary detail carrying the weight.
 - **[Misfits](https://github.com/ChBrain/khai-misfits)** (programme `@chbrain/khai-misfits`): Structural traps staged as systems: where local reason sums to collective ruin, no villain needed.
+- **[Phoenix](https://github.com/ChBrain/khai-phoenix)** (programme `@chbrain/khai-phoenix`): A bestiary of fire: each beast one named phenomenon of combustion, speaking for itself, where the obvious way to fight it fails or feeds it.
 - **[Storm](https://github.com/ChBrain/khai-plays-storm)** (programme `@chbrain/khai-plays-storm`): Memory, the North Sea dike, and the past that will not stay buried, from the grey town by the grey sea.
 
 ## Reading the bill

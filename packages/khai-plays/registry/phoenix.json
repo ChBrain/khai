@@ -1,0 +1,7 @@
+{
+  "id": "phoenix",
+  "title": "Phoenix",
+  "package": "@chbrain/khai-phoenix",
+  "blurb": "A bestiary of fire: each beast one named phenomenon of combustion, speaking for itself, where the obvious way to fight it fails or feeds it.",
+  "repo": "https://github.com/ChBrain/khai-phoenix"
+}
