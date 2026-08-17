@@ -26,9 +26,16 @@ seedbank requires. The compartment and extreme-dynamics domain follows: flashove
 backdraft, the rolling gas layer and the thermal layering it forms, the chimney effect and
 the pyrolysis that feeds every fire, and the coupled fire-atmosphere extremes -- the
 convection column, the fire whirl, pyrocumulonimbus, the firestorm that makes its own wind,
-and the eruptive blow-up. Each is fixed as a process -- how it starts and on what fuel, how
-it moves, the carrying force against the resistance, and the outcome and sensory read -- so
-that a phenomenon named is a phenomenon whose chemistry, dynamics, and paradox follow.
+and the eruptive blow-up. The industrial and chemical domain adds the process-plant hazards:
+the pool fire and the pressurised jet fire, the flash fire and the vapour cloud explosion,
+the BLEVE that turns a vessel into a fireball, the boilover that erupts a burning tank, the
+combustible-metal fire and lithium runaway, the dust explosion, the self-heating that lights
+a pile from within, pyrophoric ignition on contact with air, the oxidizer-fed fire that
+carries its own oxygen, hypergolic ignition on mixing, the arc flash of ionised-air plasma,
+and the polymer fire whose smoke kills before its flame. Each is fixed as a process -- how it
+starts and on what fuel, how it moves, the carrying force against the resistance, and the
+outcome and sensory read -- so that a phenomenon named is a phenomenon whose chemistry,
+dynamics, and paradox follow.
 
 The spine is fire science and fire ecology. In the wildland, Rothermel's surface-fire
 spread model and the crown-fire work that followed (Van Wagner's crown-fire thresholds,
@@ -40,20 +47,26 @@ ecology that serotiny serves. In the compartment, Drysdale's fire dynamics fix t
 fire and its rapid-progression phenomena -- flashover, backdraft, rollover, the plume, and
 the pyrolysis beneath them all -- and the coupled fire-atmosphere research reads the extreme
 tier, the columns, whirls, pyrocumulonimbus, and firestorms a large fire generates as its
-own weather.
+own weather. In the industrial plant, fire protection and process-safety engineering fixes
+the hazard set -- the SFPE handbook tradition for pool, jet, and compartment fire behaviour,
+and the process-safety literature (CCPS) for the pressure-and-cloud events, the BLEVE, the
+vapour cloud explosion, the dust deflagration, and the reactive-chemical fires that carry
+their own oxidiser or ignite on contact.
 
 ## Origin
 
 Fire science and fire ecology, applied as a catalog of combustion phenomena across process,
 on the place.
 
-| Source                    | Key Work                                                                   | Scope                                                                                                                                                                        |
-| :------------------------ | :------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Richard C. Rothermel**  | _A Mathematical Model for Predicting Fire Spread in Wildland Fuels_ (1972) | The surface-fire spread model -- wind, slope, and fuel driving rate of spread. The grass, chaparral, and crown-fire dynamics.                                                |
-| **C. E. Van Wagner**      | _"Conditions for the start and spread of crown fire"_ (1977)               | The thresholds for passive, active, and independent crown fire -- canopy base height, bulk density, surface intensity. The crown-fire phenomenon and the spotting it drives. |
-| **Guillermo Rein**        | _"Smouldering Fires and Natural Fuels"_ (2013)                             | Smouldering combustion -- the slow, flameless, oxygen-limited burning of peat and organic soil. The peat and holdover phenomena.                                             |
-| **Norman L. Christensen** | fire ecology; disturbance and fire-adapted regeneration                    | The fire-adapted system -- the seeds that need fire, the regeneration the burn triggers. The serotiny phenomenon.                                                            |
-| **Dougal Drysdale**       | _An Introduction to Fire Dynamics_ (3rd ed., 2011)                         | Compartment fire dynamics -- flashover, backdraft, rollover, thermal layering, the plume, the chimney effect, and pyrolysis. The compartment and extreme-dynamics phenomena. |
+| Source                    | Key Work                                                                                                     | Scope                                                                                                                                                                                                                 |
+| :------------------------ | :----------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Richard C. Rothermel**  | _A Mathematical Model for Predicting Fire Spread in Wildland Fuels_ (1972)                                   | The surface-fire spread model -- wind, slope, and fuel driving rate of spread. The grass, chaparral, and crown-fire dynamics.                                                                                         |
+| **C. E. Van Wagner**      | _"Conditions for the start and spread of crown fire"_ (1977)                                                 | The thresholds for passive, active, and independent crown fire -- canopy base height, bulk density, surface intensity. The crown-fire phenomenon and the spotting it drives.                                          |
+| **Guillermo Rein**        | _"Smouldering Fires and Natural Fuels"_ (2013)                                                               | Smouldering combustion -- the slow, flameless, oxygen-limited burning of peat and organic soil. The peat and holdover phenomena.                                                                                      |
+| **Norman L. Christensen** | fire ecology; disturbance and fire-adapted regeneration                                                      | The fire-adapted system -- the seeds that need fire, the regeneration the burn triggers. The serotiny phenomenon.                                                                                                     |
+| **Dougal Drysdale**       | _An Introduction to Fire Dynamics_ (3rd ed., 2011)                                                           | Compartment fire dynamics -- flashover, backdraft, rollover, thermal layering, the plume, the chimney effect, and pyrolysis. The compartment and extreme-dynamics phenomena.                                          |
+| **SFPE**                  | _SFPE Handbook of Fire Protection Engineering_ (5th ed., 2016)                                               | Industrial fire behaviour -- pool and jet fires, heat flux, flame radiation, and the fire-protection engineering of process plant. The pool, jet, flash-fire, and polymer phenomena.                                  |
+| **CCPS / AIChE**          | _Guidelines for Vapor Cloud Explosion, Pressure Vessel Burst, BLEVE, and Flash Fire Hazards_ (2nd ed., 2010) | Process-safety hazard analysis -- the pressure-and-cloud events and reactive-chemical fires. The VCE, BLEVE, boilover, dust, metal, lithium, self-heating, pyrophoric, oxidizer, hypergolic, and arc-flash phenomena. |
 
 ## Restrictions
 
@@ -80,8 +93,8 @@ What the engine refuses to model, and to whom it delegates.
 
 ## Encoding
 
-Source to constraint, per file. (The wildland and compartment/dynamics domains are built;
-the industrial plant and the made fire follow.)
+Source to constraint, per file. (The wildland, compartment/dynamics, and industrial domains
+are built; the made fire follows.)
 
 - **[combustion](process_combustion.md)** (the root): the typology of fire -- the named phenomena
   of combustion, each with its own fuel, dynamics, sensory signature, and paradox. Anchored by the
@@ -126,8 +139,39 @@ the industrial plant and the made fire follow.)
   stationary self-sustaining inferno. Anchored by the mass-fire literature.
 - **[blowup](process_blowup.md)**: the eruptive fire that surges up confining terrain far beyond
   its expected behaviour. Anchored by the wildland fire-behaviour and terrain-coupling research.
+- **[pool-fire](process_pool-fire.md)**: the Class B liquid burning from its face, its rate set by
+  radiative feedback, spread by water and cut by foam. Anchored by the SFPE handbook.
+- **[jet](process_jet.md)**: the pressurised release burning as a directional torch, put out by
+  shutting the valve, not the flame. Anchored by the SFPE handbook and process-safety practice.
+- **[flash-fire](process_flash-fire.md)**: the drifting cloud deflagrating without blast, over
+  before it can be fought. Anchored by the CCPS flash-fire guidelines.
+- **[vce](process_vce.md)**: the vapour cloud accelerated to blast by congestion, defended only by
+  prevention. Anchored by the CCPS vapour-cloud-explosion guidelines.
+- **[bleve](process_bleve.md)**: the fire-heated vessel bursting into a fireball, answered by
+  evacuation, not attack. Anchored by the CCPS pressure-vessel-burst and BLEVE guidelines.
+- **[boilover](process_boilover.md)**: the burning tank erupting when its heat wave reaches the
+  water bottom, fought from behind the bund. Anchored by the process-safety and tank-fire literature.
+- **[metal](process_metal.md)**: the combustible metal burning as its own fuel, feeding on water
+  and CO2, answered only by Class D powder. Anchored by the combustible-metals fire literature.
+- **[lithium](process_lithium.md)**: the battery cell venting and reigniting from its own oxygen,
+  cooled by flooding rather than smothered. Anchored by the battery thermal-runaway research.
+- **[dust](process_dust.md)**: the suspended dust cloud deflagrating, its secondary blast lofted
+  from the settled layer. Anchored by the dust-explosion (dust-pentagon) literature.
+- **[self-heating](process_self-heating.md)**: the bulk organic pile oxidising to its own
+  ignition, lit by the air that digging admits. Anchored by the spontaneous-combustion literature.
+- **[pyrophoric](process_pyrophoric.md)**: the substance igniting on contact with air, answered by
+  exclusion, not extinguishment. Anchored by the reactive-materials literature.
+- **[oxidizer](process_oxidizer.md)**: the fire carrying its own oxygen, immune to smothering and
+  cooled at best. Anchored by the oxidiser and self-oxidising-materials literature.
+- **[hypergolic](process_hypergolic.md)**: the fuel and oxidiser igniting on contact, where the
+  agent itself may be fuel. Anchored by the hypergolic-propellant and reactive-chemical literature.
+- **[arc-flash](process_arc-flash.md)**: the ionised-air plasma conducting a fault, defused by
+  de-energising, not by water. Anchored by the electrical-safety and arc-flash literature.
+- **[polymer](process_polymer.md)**: the plastic burning with easily quenched flame and lethal
+  smoke, the smoke the real fire. Anchored by the combustion-toxicology and SFPE literature.
 
 ---
 
-_Authored by KAI HACKS AI: original constraint-based expression in the wildland fire-science and
-fire-ecology tradition; it does not reproduce claims or quote directly._
+_Authored by KAI HACKS AI: original constraint-based expression in the fire-science, fire-ecology,
+and fire-protection and process-safety engineering tradition; it does not reproduce claims or
+quote directly._
