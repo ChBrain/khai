@@ -1,5 +1,12 @@
 # @chbrain/khai-guard
 
+## 0.1.24
+
+### Patch Changes
+
+- 8380dbb: drift: honour `--json` on the no-driftPolicy path too, so every early exit
+  emits a parseable empty report rather than prose.
+
 ## 0.1.23
 
 ### Patch Changes

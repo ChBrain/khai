@@ -1,4 +1,0 @@
----
----
-
-Add the duff phenomenon to the combustion catalog's wildland domain: the ground fire that smoulders at the combustion limit through mineral-laced forest floor. Distinct from peat (the mineral-poor, robustly self-sustaining organic-soil smoulder), duff sits on Frandsen's combustion-limit surface -- a marginal, mineral-ballasted char-oxidation front whose propagation is set by moisture, inorganic content, and organic bulk density -- creeping along organic seams and burned-out root channels, and answered by neither infrared (the mineral overburden decouples the surface signature), water (a hydrophobic cap perches it), nor smothering (it is oxygen-transport-limited). Anchored in Frandsen's combustion limits of forest duff, with the decoupled surface signature from Hartford & Frandsen and the fire-induced water repellency from DeBano. The catalog now stands at 51 members.

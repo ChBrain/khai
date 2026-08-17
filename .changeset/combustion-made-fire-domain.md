@@ -1,4 +1,0 @@
----
----
-
-Add the made-fire domain to the combustion catalog, closing all four domains: the fire humans light on purpose and hold to a task -- the backfire and the prescribed burn (fighting or forestalling a wildfire), swidden and fire-stick farming (working the land with fire), the charcoal clamp, the forge, the blast furnace, and the kiln (the craft and metallurgical fires), the incinerator and the flare (destroying waste), the cutting torch and the premixed burner (the worked flame), and the barbecue, the candle, and the cremation (the domestic and body fires). Each fixes the phenomenon's fuel, temperature, dynamics, sensory read, and the paradox by which its control slips. Anchors the domain in Pyne's fire history and the applied combustion crafts. The catalog now stands at 50 members across the wildland, compartment/dynamics, industrial, and made-fire domains.
