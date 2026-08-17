@@ -41,6 +41,21 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [hypergolic](process_hypergolic.md): process
 - [arc-flash](process_arc-flash.md): process
 - [polymer](process_polymer.md): process
+- [backfire](process_backfire.md): process
+- [prescribed](process_prescribed.md): process
+- [swidden](process_swidden.md): process
+- [firestick](process_firestick.md): process
+- [charcoal](process_charcoal.md): process
+- [forge](process_forge.md): process
+- [furnace](process_furnace.md): process
+- [kiln](process_kiln.md): process
+- [incinerator](process_incinerator.md): process
+- [flare](process_flare.md): process
+- [torch](process_torch.md): process
+- [burner](process_burner.md): process
+- [barbecue](process_barbecue.md): process
+- [candle](process_candle.md): process
+- [cremation](process_cremation.md): process
 
 See [sources and attribution](REFERENCES.md).
 

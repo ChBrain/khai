@@ -50,6 +50,24 @@ const INDUSTRIAL = [
   "process_polymer.md",
 ];
 
+const MADE_FIRE = [
+  "process_backfire.md",
+  "process_prescribed.md",
+  "process_swidden.md",
+  "process_firestick.md",
+  "process_charcoal.md",
+  "process_forge.md",
+  "process_furnace.md",
+  "process_kiln.md",
+  "process_incinerator.md",
+  "process_flare.md",
+  "process_torch.md",
+  "process_burner.md",
+  "process_barbecue.md",
+  "process_candle.md",
+  "process_cremation.md",
+];
+
 describe("combustion: conforms to the canon", () => {
   it("the whole package validates (content + manifest + compose)", async () => {
     expect(flatten(await validateEnginePackage(pkgDir, { executeCompose: true }))).toEqual([]);
@@ -64,9 +82,9 @@ describe("combustion: manifest", () => {
     expect(manifest.members.find((m) => m.parent === null).file).toBe("process_combustion.md");
   });
 
-  it("carries the wildland, compartment/dynamics, and industrial domains, every phenomenon hung off the root", () => {
+  it("carries all four domains -- wildland, compartment/dynamics, industrial, made fire -- every phenomenon hung off the root", () => {
     const leaves = manifest.members.filter((m) => m.parent !== null).map((m) => m.file);
-    expect(leaves).toEqual([...WILDLAND, ...DYNAMICS, ...INDUSTRIAL]);
+    expect(leaves).toEqual([...WILDLAND, ...DYNAMICS, ...INDUSTRIAL, ...MADE_FIRE]);
     for (const m of manifest.members.filter((m) => m.parent !== null)) {
       expect(m.parent).toBe("process_combustion.md");
     }
