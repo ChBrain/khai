@@ -1,0 +1,88 @@
+{
+  "name": "@chbrain/khai-composite-presentation",
+  "version": "0.1.0",
+  "description": "khai composite content, the presentation domain: the self performed before an audience -- the face claimed and held on the frontstage, the watching and tuning that fits it to the room, and the feeling managed to sustain it -- a wiring of the face, backstage, self-monitoring, and emotional-labor engines, staged as the front, the tuning, and the cost.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/presentation"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "presentation",
+    "tagline": "Presentation as composite: the self performed before an audience -- the face claimed and held on the frontstage (face, backstage), the watching and tuning that fits it to the room (self-monitoring), and the feeling managed to sustain it (emotional-labor) -- across the front, the tuning, and the cost, and the drama is that the mask worn deeply enough stops being a mask.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_presentation.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_presentation_front.md",
+        "type": "process",
+        "parent": "process_presentation.md"
+      },
+      {
+        "file": "process_presentation_tuning.md",
+        "type": "process",
+        "parent": "process_presentation.md"
+      },
+      {
+        "file": "process_presentation_cost.md",
+        "type": "process",
+        "parent": "process_presentation.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter, over four atoms it declares as dependencies -- the face, backstage, self-monitoring, and emotional-labor engines, the performed self read as one work. The root (process_presentation.md) reads a persona performing itself before an audience: the face it claims and the region where it must be held (face, backstage), the degree to which it watches and tunes that performance to the room (self-monitoring), and the feeling it must manage to sustain it (emotional-labor). This composite adds no fifth engine; it wires the seam the four make -- self-presentation as labour, not display -- and reads that the performance which succeeds best is the one that reaches deepest into the self.",
+      "issue": "Three bridges, the work of a performed self. The Front: the face a persona claims before its audience -- the want to be approved of and the want to be unimpeded, softened or bared in every face-threatening act -- held on the frontstage where the audience can see (face, backstage). The Tuning: how much the persona watches the room and adjusts -- the high self-monitor scanning the situation and tuning the performance to fit it, the low one letting it flow from a self held constant across rooms (self-monitoring). The Cost: the twist -- the feeling managed to sustain the display, masked on the surface or induced by method until it is genuinely felt, and the backstage that is supposed to give the self back (emotional-labor, backstage) -- where the labour is seen for what it is: surface acting strains and shows, deep acting works by actually becoming the feeling, so the mask that fits best is the one that stops being a mask. A self fronts, tunes, and pays; the composite is the whole labour of being seen.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so presentation reads wherever its atoms are cast. The link, advisory: a persona may link under Projection the part of its performance in play, and the audit surfaces where a play carries a persona through face, region, monitoring, and managed feeling without naming the labour they make.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the face, backstage, self-monitoring, and emotional-labor engines. Whether a persona's performance rings true -- a front that truly claims, a tuning that truly fits, a cost that truly reaches the self -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- face, backstage, self-monitoring, and emotional-labor, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the persona's performance from the four engines -- the claimed face and its region from face and backstage, the watching and adjusting from self-monitoring, the managed feeling from emotional-labor -- then read the bridge: the front when the question is the image claimed, the tuning when it is the fit to the room, the cost when it is what sustaining it takes. Read the persona as at work before an audience, never as the word presentation alone -- and let the cost carry the keystone: the mask worn deeply enough stops being a mask."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-face": "^0.1.0",
+    "@chbrain/khai-engine-backstage": "^0.1.0",
+    "@chbrain/khai-engine-self-monitoring": "^0.1.0",
+    "@chbrain/khai-engine-emotional-labor": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
