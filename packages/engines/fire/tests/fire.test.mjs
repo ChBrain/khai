@@ -9,7 +9,9 @@ const flatten = (results) => results.flatMap((r) => r.errors.map((e) => `${r.fil
 
 const MODES = [
   "process_ignition.md",
+  "process_creep.md",
   "process_conflagration.md",
+  "process_smoulder.md",
   "process_exclusion.md",
   "process_renewal.md",
 ];
@@ -21,15 +23,15 @@ describe("fire: conforms to the canon", () => {
 });
 
 describe("fire: manifest", () => {
-  it("declares a process engine on place: a burn root over four modes", () => {
+  it("declares a process engine on place: a burn root over six modes", () => {
     expect(manifest.engine).toBe("fire");
     expect(manifest.type).toBe("process");
-    expect(manifest.members).toHaveLength(5);
+    expect(manifest.members).toHaveLength(7);
     expect(manifest.members.every((m) => m.type === "process")).toBe(true);
     expect(manifest.members.find((m) => m.parent === null).file).toBe("process_fire.md");
   });
 
-  it("hangs all four modes off the fire root", () => {
+  it("hangs all six modes off the fire root", () => {
     const modes = manifest.members.filter((m) => m.parent !== null).map((m) => m.file);
     expect(modes).toEqual(MODES);
     for (const m of manifest.members.filter((m) => m.parent !== null)) {
