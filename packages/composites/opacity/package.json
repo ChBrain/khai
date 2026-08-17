@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-opacity",
+  "version": "0.1.0",
+  "description": "khai composite content, the opacity domain: the self as others may know it -- how much of the true self a persona lets through, sealed as a secret withheld, shown false as a deception built, or opened in true self-disclosure -- a wiring of the secret, self-disclosure, and deception engines, staged as the withheld, the feigned, and the revealed.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/opacity"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "opacity",
+    "tagline": "Opacity as composite: the self as others may know it -- how much of the true self a persona lets through, sealed as a secret withheld, shown false as a deception built, or opened in true self-disclosure -- across the withheld, the feigned, and the revealed, and the drama is that to be truly known a self must give up the safety of not being seen.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_opacity.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_opacity_withheld.md",
+        "type": "process",
+        "parent": "process_opacity.md"
+      },
+      {
+        "file": "process_opacity_feigned.md",
+        "type": "process",
+        "parent": "process_opacity.md"
+      },
+      {
+        "file": "process_opacity_revealed.md",
+        "type": "process",
+        "parent": "process_opacity.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter, over three atoms it declares as dependencies -- the secret, self-disclosure, and deception engines, the projected self read along one axis: how much of the true self shows. The root (process_opacity.md) reads a persona's control of what others may know of it -- the self held back (secret), the self shown false (deception), and the self opened true (self-disclosure) -- three postures toward one boundary. This composite adds no fourth engine; it wires the seam the three make: the truth-status of the projected self, from sealed through faked to revealed.",
+      "issue": "Three bridges, the postures a self takes toward its own boundary. Withheld: the self kept back -- the keeper who holds a secret, the work of concealment that keeps it, the retreat that pulls the opening closed, and the exposure when it gets out (secret) -- the boundary drawn closed and guarded. Feigned: the self shown false -- the false belief constructed, delivered, and maintained against discovery (deception) -- the boundary opened onto a fiction. Revealed: the twist -- the self opened true, widening in breadth and deepening toward the core, paced by what is returned, and the kept thing finally told (self-disclosure, secret's disclosure) -- the boundary surrendered, where being truly known costs the safety of not being seen. A self seals, fakes, or opens; the composite is the whole management of what it lets through.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so opacity reads wherever its atoms are cast. The link, advisory: a persona may link under Projection the posture its self takes toward being known, and the audit surfaces where a play moves a persona through secrecy, disclosure, and deception without naming what it manages.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the secret, self-disclosure, and deception engines. Whether a persona's management of its boundary rings true -- a withholding that truly guards, a feigning that truly misleads, a revealing that truly costs -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- secret, self-disclosure, and deception, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the persona's boundary from the three engines -- the withheld from secret, the feigned from deception, the revealed from self-disclosure -- then read the bridge: withheld when the self is sealed, feigned when it is shown false, revealed when it is opened true. Read the persona as managing what others may know of it, never as the word opacity alone -- and let revealed carry the keystone: to be truly known, a self must give up the safety of not being seen."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-secret": "^0.1.0",
+    "@chbrain/khai-engine-self-disclosure": "^0.1.0",
+    "@chbrain/khai-engine-deception": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
