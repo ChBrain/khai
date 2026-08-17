@@ -1,0 +1,88 @@
+{
+  "name": "@chbrain/khai-composite-capability",
+  "version": "0.1.0",
+  "description": "khai composite content, the capability domain: a persona's belief about its own power -- the theory it holds of where ability comes from and where control lies, the task-specific confidence that theory yields, and the handicap it erects to keep the belief from being tested -- a wiring of the mindset, locus-of-control, self-efficacy, and self-handicapping engines, staged as the theory, the reach, and the guard.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/capability"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "capability",
+    "tagline": "Capability as composite: a persona's belief about its own power -- the theory it holds of where ability comes from and where control lies (mindset, locus-of-control), the task-specific confidence that theory yields (self-efficacy), and the handicap it erects to keep the belief from being tested (self-handicapping) -- across the theory, the reach, and the guard, and the drama is that a self can protect its belief in its own ability only by never letting the ability be cleanly tested.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_capability.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_capability_theory.md",
+        "type": "process",
+        "parent": "process_capability.md"
+      },
+      {
+        "file": "process_capability_reach.md",
+        "type": "process",
+        "parent": "process_capability.md"
+      },
+      {
+        "file": "process_capability_guard.md",
+        "type": "process",
+        "parent": "process_capability.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter, over four atoms it declares as dependencies -- the mindset, locus-of-control, self-efficacy, and self-handicapping engines, a persona's belief about its own power read as one system. The root (process_capability.md) reads what a self holds about what it can do: the theory of where ability comes from and where control lies (mindset, locus-of-control), the task-specific confidence that theory yields (self-efficacy), and the obstacle erected to keep the belief safe from a clean verdict (self-handicapping). This composite adds no fifth engine; it wires the seam the four make -- a self-belief that guides action and defends itself -- and reads that the defence costs the attainment it was meant to protect.",
+      "issue": "Three bridges, the parts of a self's belief about its own power. The Theory: the standing frame a persona holds -- ability as a fixed amount set early or a capacity grown through effort (mindset), and outcomes as depending on its own action or on forces outside it (locus-of-control) -- the lens that colours every challenge before it is met. The Reach: the task-specific confidence that follows -- the belief in its capability to organize and execute what this particular attainment requires, built and eroded by mastery, by watching others, and by what it is told (self-efficacy) -- the belief that decides what is attempted and how long effort is sustained. The Guard: the twist -- the obstacle erected before the outcome so a failure can be blamed on the obstacle rather than on ability, and a success counts double for coming despite it (self-handicapping) -- where the system is seen for what it is: a self protects its belief in its ability by ensuring the ability is never cleanly tested, buying an unfalsifiable self-theory at the price of the attainment. A self theorizes, reaches, and guards; the composite is the whole belief about its own power.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so capability reads wherever its atoms are cast. The link, advisory: a persona may link under Projection the part of its self-belief in play, and the audit surfaces where a play carries a persona through its theory of ability, its confidence, and its excuses without naming the belief they make.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the mindset, locus-of-control, self-efficacy, and self-handicapping engines. Whether a persona's belief about its own power rings true -- a theory that truly colours, a reach that truly decides the attempt, a guard that truly costs -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- mindset, locus-of-control, self-efficacy, and self-handicapping, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the persona's belief about its own power from the four engines -- the theory from mindset and locus-of-control, the task confidence from self-efficacy, the excuse from self-handicapping -- then read the bridge: the theory when the question is where ability and control come from, the reach when it is whether this can be done, the guard when the belief is being protected from a test. Read the persona as holding a belief about its own power, never as the word capability alone -- and let the guard carry the keystone: a self can protect its belief in its ability only by never letting the ability be cleanly tested."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-mindset": "^0.1.0",
+    "@chbrain/khai-engine-locus-of-control": "^0.1.0",
+    "@chbrain/khai-engine-self-efficacy": "^0.1.0",
+    "@chbrain/khai-engine-self-handicapping": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}

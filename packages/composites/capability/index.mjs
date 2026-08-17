@@ -1,0 +1,69 @@
+// Entry point for the capability composite. Reads the declarative `khai` manifest from
+// package.json (the single source of truth for how this composite wires) and composes
+// the markdown ladder into a ready-to-use instruction set. The canon owns the tree
+// shape, so this loader pulls the composition chains from @chbrain/khai-arch; each
+// member validates against its own khai type.
+//
+// Capability reads a persona's belief about its own power (F-persona): it wires the four
+// self-belief engines (mindset, where ability comes from; locus-of-control, where control
+// lies; self-efficacy, the task-specific confidence; self-handicapping, the obstacle that
+// keeps the belief from a clean test) and reads them as one system that both guides action
+// and defends itself. Its three bridges are the parts of that belief: the theory, the
+// reach, and the guard twist.
+
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
+import { compositionOrder } from "@chbrain/khai-arch";
+
+const here = dirname(fileURLToPath(import.meta.url));
+const read = (file) => readFileSync(join(here, file), "utf8");
+
+/** Strip a leading YAML frontmatter block, leaving the prose body. Tolerates CRLF. */
+const body = (md) => md.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, "").trim();
+
+/** The declarative wiring contract, authored in package.json. */
+export const manifest = JSON.parse(read("package.json")).khai;
+
+/** Leaf file -> [root, ..., leaf] composition chain. The canon owns the tree. */
+export const chains = compositionOrder(manifest);
+
+/** Original files, frontmatter intact, keyed by member file (for provenance). */
+export const raw = Object.fromEntries(manifest.members.map((m) => [m.file, read(m.file)]));
+
+/**
+ * Assemble the instruction set for one leaf: the whole chain from the anchor down to
+ * that leaf, anchor first, bodies only. The leaf carries the anchor upward, so
+ * composing a bridge emits the capability root with it.
+ *
+ * @param {{ leaf: string }} opts  leaf is a member file
+ * @returns {string} markdown ready to drop into an LLM context
+ */
+export function compose({ leaf } = {}) {
+  const chain = chains[leaf];
+  if (!chain) {
+    const valid = Object.keys(chains).join(", ");
+    throw new Error(
+      `khai-composite-capability: compose() needs { leaf } to be one of [${valid}]; got ${JSON.stringify(leaf)}`,
+    );
+  }
+  return `${chain.map((file) => body(raw[file])).join("\n\n")}\n`;
+}
+
+export default { manifest, chains, raw, compose };
+
+// The four atoms this composite wires over, re-exported so a consumer that installs the
+// composite can compose from any of the self-belief engines without a second import. The
+// dependency graph is the citation graph: these four are declared in package.json, and
+// every hard link in the members resolves through them.
+import mindset from "@chbrain/khai-engine-mindset";
+import locusOfControl from "@chbrain/khai-engine-locus-of-control";
+import selfEfficacy from "@chbrain/khai-engine-self-efficacy";
+import selfHandicapping from "@chbrain/khai-engine-self-handicapping";
+
+export const atoms = {
+  mindset,
+  "locus-of-control": locusOfControl,
+  "self-efficacy": selfEfficacy,
+  "self-handicapping": selfHandicapping,
+};
