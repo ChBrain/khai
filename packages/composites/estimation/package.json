@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-estimation",
+  "version": "0.1.0",
+  "description": "khai composite content, the estimation domain: how a persona judges a quantity or a likelihood it cannot compute -- by the number that arrived first, by what comes to mind easily, and by what the case resembles -- a wiring of the anchoring, availability, and representativeness engines, staged as the anchor, the ready, and the likeness.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/estimation"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "estimation",
+    "tagline": "Estimation as composite: how a persona judges a quantity or a likelihood it cannot compute -- dragged toward the number that arrived first (anchoring), reading ease of recall as frequency (availability), and reading resemblance as probability (representativeness) -- across the anchor, the ready, and the likeness, and the drama is that the better a story hangs together the more probable it feels and the less probable it is.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_estimation.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_estimation_anchor.md",
+        "type": "process",
+        "parent": "process_estimation.md"
+      },
+      {
+        "file": "process_estimation_ready.md",
+        "type": "process",
+        "parent": "process_estimation.md"
+      },
+      {
+        "file": "process_estimation_likeness.md",
+        "type": "process",
+        "parent": "process_estimation.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter, over three atoms it declares as dependencies -- the anchoring, availability, and representativeness engines, the three classic heuristics read as one operation. The root (process_estimation.md) reads a persona facing a question it cannot compute -- how many, how likely, how long -- and answering an easier one instead without noticing the exchange: what number came first (anchoring), what comes to mind readily (availability), and what the case resembles (representativeness). This composite adds no fourth engine; it wires the seam the three share -- the substitution of a tractable question for the asked one -- and reads that the substitution is not a malfunction but the only reason a judgment arrives in time at all.",
+      "issue": "Three bridges, the substitutions a persona makes for a question it cannot compute. The Anchor: the reference value that entered first, whether relevant or arbitrary, made accessible by its planting and adjusted from too little, so the estimate lands nearer the anchor than the evidence warrants (anchoring). The Ready: frequency and likelihood read off the ease of bringing instances to mind -- what is retrievable, what is searchable, what is vividly imaginable -- so the recent, the dramatic, and the well-reported are judged common (availability). The Likeness: the twist -- probability read as resemblance, the case matched to the type it looks like while its priors go unweighted and randomness is expected to look random, up to the conjunction where a detailed story is judged likelier than the plain one it contains (representativeness) -- where the operation is seen for what it is: every detail that makes an account more representative makes it strictly less probable, so coherence and likelihood run in opposite directions and the mind reads the first as the second. A persona anchors, retrieves, and matches; the composite is the whole business of judging what cannot be computed.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so estimation reads wherever its atoms are cast. The link, advisory: a persona may link under Projection the substitution its judgment is making, and the audit surfaces where a play has a persona estimate without naming what it answered instead.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the anchoring, availability, and representativeness engines. Whether a persona's estimating rings true -- an anchor that truly drags, an ease that truly reads as frequency, a likeness that truly outweighs the odds -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- anchoring, availability, and representativeness, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the persona's estimating from the three engines -- the dragging reference from anchoring, the ease of recall from availability, the match to a type from representativeness -- then read the bridge: the anchor when a number that arrived first is holding the estimate, the ready when what comes to mind is standing in for how often, the likeness when resemblance is standing in for probability. Read the persona as answering an easier question than the one asked, never as the word estimation alone -- and let the likeness carry the keystone: the better a story hangs together, the more probable it feels and the less probable it is."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-anchoring": "^0.1.0",
+    "@chbrain/khai-engine-availability": "^0.1.0",
+    "@chbrain/khai-engine-representativeness": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
