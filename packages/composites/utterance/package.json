@@ -1,0 +1,88 @@
+{
+  "name": "@chbrain/khai-composite-utterance",
+  "version": "0.1.0",
+  "description": "khai composite content, the utterance domain: what a saying carries beyond its words -- the act it performs, the meaning it conveys without stating, and the variety and key it is said in -- a wiring of the speech-act, implicature, register, and tone engines, staged as the deed, the unsaid, and the manner.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/utterance"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "utterance",
+    "tagline": "Utterance as composite: what a saying carries beyond its words -- the act it performs rather than describes (speech-act), the meaning a hearer works out that was never stated (implicature), and the variety and affective key it is said in (register, tone) -- across the deed, the unsaid, and the manner, and the drama is that what a persona cannot be quoted as saying is what it most surely communicated.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_utterance.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_utterance_deed.md",
+        "type": "process",
+        "parent": "process_utterance.md"
+      },
+      {
+        "file": "process_utterance_unsaid.md",
+        "type": "process",
+        "parent": "process_utterance.md"
+      },
+      {
+        "file": "process_utterance_manner.md",
+        "type": "process",
+        "parent": "process_utterance.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter, over four atoms it declares as dependencies -- the speech-act, implicature, register, and tone engines, one saying read for everything it carries past its words. The root (process_utterance.md) reads a persona's utterance as freight rather than content: the act it performs by being said (speech-act), the meaning a hearer works out that was never stated (implicature), and the specialized variety and affective key it arrives in (register, tone). This composite adds no fifth engine; it wires the seam the four make -- the load an utterance carries beyond its words -- and reads that the heaviest part of that load is the part with no words to point at.",
+      "issue": "Three bridges, the freight of a saying. The Deed: the utterance that acts rather than describes -- the assertion that commits the speaker to a truth, the directive that puts an obligation on the hearer, the commissive that binds the speaker to a future, the expressive that discharges a feeling, and the declaration that alters the world by being competently said (speech-act). The Unsaid: the meaning the hearer works out without its being stated -- the maxims of cooperative talk that let an answer beside the point still answer, the flouting that means precisely by breaking them, and the scalar reading by which saying some conveys not all (implicature). The Manner: the twist -- the specialized variety a persona commands, its badge, shorthand, closure, and need of translation, and the affective key the telling is tuned to, its cue, key, and attitude (register, tone) -- where the freight is seen for what it is: the act can be named, the words can be quoted, but the implication and the manner carry the heaviest load and leave nothing to quote, so what a persona cannot be held to is what it most surely got across. A saying does, implies, and is pitched; the composite is the whole cargo of an utterance.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so utterance reads wherever its atoms are cast. The link, advisory: a persona may link under Projection the freight its saying carries, and the audit surfaces where a play gives a persona words without naming what they do, imply, or are pitched in.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the speech-act, implicature, register, and tone engines. Whether a persona's saying rings true -- a deed that truly binds, an implication that truly lands, a manner that truly colours -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- speech-act, implicature, register, and tone, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the persona's saying from the four engines -- the act performed from speech-act, the meaning implied from implicature, the variety and key from register and tone -- then read the bridge: the deed when the saying does something, the unsaid when it conveys what it did not state, the manner when how it arrives outweighs what it contains. Read the utterance as cargo, never as the word utterance alone -- and let the manner carry the keystone: what a persona cannot be quoted as saying is what it most surely communicated."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-speech-act": "^0.1.0",
+    "@chbrain/khai-engine-implicature": "^0.1.0",
+    "@chbrain/khai-engine-register": "^0.1.0",
+    "@chbrain/khai-engine-tone": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
