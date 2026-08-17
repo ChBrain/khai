@@ -15,6 +15,7 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [spotting](process_spotting.md): process
 - [slash](process_slash.md): process
 - [serotiny](process_serotiny.md): process
+- [duff](process_duff.md): process
 - [flashover](process_flashover.md): process
 - [backdraft](process_backdraft.md): process
 - [rollover](process_rollover.md): process

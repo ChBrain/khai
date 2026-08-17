@@ -16,6 +16,7 @@ const WILDLAND = [
   "process_spotting.md",
   "process_slash.md",
   "process_serotiny.md",
+  "process_duff.md",
 ];
 
 const DYNAMICS = [
