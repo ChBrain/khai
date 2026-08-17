@@ -1,5 +1,13 @@
 # @chbrain/khai-tests
 
+## 0.2.5
+
+### Patch Changes
+
+- 941c4d5: registry build: heal the CHANGELOG heading only during a release, discriminating on pending changesets, so a build in a working branch no longer rewrites a published heading to a version that never shipped.
+- Updated dependencies [bbb1699]
+  - @chbrain/khai-rules@0.1.13
+
 ## 0.2.4
 
 ### Patch Changes
