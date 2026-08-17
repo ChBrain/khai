@@ -20,7 +20,8 @@ The catalog is organised by four domains -- the wildland, the compartment, the i
 plant, and the made fire -- built domain by domain and now complete. The wildland domain opens it: the
 crown fire that runs the canopy, the grass fire that outruns a person, the chaparral fire
 whose volatile oils ignite ahead of the front, the peat fire that smoulders unseen for
-months, the holdover that overwinters and re-emerges, the spotting that leaps every line,
+months, the duff fire that creeps at the very limit of combustion through mineral-laced
+forest floor, the holdover that overwinters and re-emerges, the spotting that leaps every line,
 the slash fire that glows for days, and serotiny, the fire-cued regeneration a fire-adapted
 seedbank requires. The compartment and extreme-dynamics domain follows: flashover and
 backdraft, the rolling gas layer and the thermal layering it forms, the chimney effect and
@@ -47,7 +48,9 @@ The spine is fire science and fire ecology. In the wildland, Rothermel's surface
 spread model and the crown-fire work that followed (Van Wagner's crown-fire thresholds,
 Finney's landscape fire modelling) fix how surface, crown, grass, and brush fires ignite,
 spread, and transition; Rein carried the account below the flame to smouldering combustion,
-the peat and organic-soil fires that are Earth's largest and most persistent; Pyne set the
+the peat and organic-soil fires that are Earth's largest and most persistent, and Frandsen
+fixed the combustion limit of ground smouldering -- the moisture, mineral, and bulk-density
+edge at which forest duff will or will not carry a fire; Pyne set the
 regime frame the whole catalog sits within; and Christensen made plain the fire-adapted
 ecology that serotiny serves. In the compartment, Drysdale's fire dynamics fix the enclosure
 fire and its rapid-progression phenomena -- flashover, backdraft, rollover, the plume, and
@@ -74,6 +77,7 @@ on the place.
 | **Richard C. Rothermel**  | _A Mathematical Model for Predicting Fire Spread in Wildland Fuels_ (1972)                                   | The surface-fire spread model -- wind, slope, and fuel driving rate of spread. The grass, chaparral, and crown-fire dynamics.                                                                                                        |
 | **C. E. Van Wagner**      | _"Conditions for the start and spread of crown fire"_ (1977)                                                 | The thresholds for passive, active, and independent crown fire -- canopy base height, bulk density, surface intensity. The crown-fire phenomenon and the spotting it drives.                                                         |
 | **Guillermo Rein**        | _"Smouldering Fires and Natural Fuels"_ (2013)                                                               | Smouldering combustion -- the slow, flameless, oxygen-limited burning of peat and organic soil. The peat and holdover phenomena.                                                                                                     |
+| **William H. Frandsen**   | _"The influence of moisture and mineral soil on the combustion limits of smoldering forest duff"_ (1987)     | The combustion limit of ground smouldering -- moisture, mineral (inorganic) content, and organic bulk density fixing whether forest duff will carry a fire at all. The duff phenomenon.                                              |
 | **Norman L. Christensen** | fire ecology; disturbance and fire-adapted regeneration                                                      | The fire-adapted system -- the seeds that need fire, the regeneration the burn triggers. The serotiny phenomenon.                                                                                                                    |
 | **Dougal Drysdale**       | _An Introduction to Fire Dynamics_ (3rd ed., 2011)                                                           | Compartment fire dynamics -- flashover, backdraft, rollover, thermal layering, the plume, the chimney effect, and pyrolysis. The compartment and extreme-dynamics phenomena.                                                         |
 | **SFPE**                  | _SFPE Handbook of Fire Protection Engineering_ (5th ed., 2016)                                               | Industrial fire behaviour -- pool and jet fires, heat flux, flame radiation, and the fire-protection engineering of process plant. The pool, jet, flash-fire, and polymer phenomena.                                                 |
@@ -129,6 +133,11 @@ extreme dynamics, the industrial plant, and the made fire -- are built.)
   glowing that resists mop-up. Anchored by the wildland fuels literature.
 - **[serotiny](process_serotiny.md)**: fire-cued regeneration -- the sealed cone opened by fire's
   heat onto the cleared seedbed. Anchored by Christensen (fire-adapted regeneration).
+- **[duff](process_duff.md)**: the ground fire at the combustion limit -- a marginal, mineral-ballasted
+  smoulder creeping through the forest floor along organic seams and burned-out root channels,
+  invisible to infrared, shedding water, and too airless to starve. Anchored by Frandsen (combustion
+  limits of duff), with the decoupled surface signature from Hartford & Frandsen and the fire-induced
+  water repellency from DeBano.
 - **[flashover](process_flashover.md)**: the whole room igniting at once at the radiant-flux
   threshold -- and the ventilation that can trigger it. Anchored by Drysdale (compartment fire).
 - **[backdraft](process_backdraft.md)**: the air-starved compartment exploding on inrush -- the
