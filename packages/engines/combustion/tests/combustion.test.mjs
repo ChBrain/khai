@@ -18,6 +18,20 @@ const WILDLAND = [
   "process_serotiny.md",
 ];
 
+const DYNAMICS = [
+  "process_flashover.md",
+  "process_backdraft.md",
+  "process_rollover.md",
+  "process_layering.md",
+  "process_chimney.md",
+  "process_pyrolysis.md",
+  "process_column.md",
+  "process_whirl.md",
+  "process_pyrocb.md",
+  "process_firestorm.md",
+  "process_blowup.md",
+];
+
 describe("combustion: conforms to the canon", () => {
   it("the whole package validates (content + manifest + compose)", async () => {
     expect(flatten(await validateEnginePackage(pkgDir, { executeCompose: true }))).toEqual([]);
@@ -32,9 +46,9 @@ describe("combustion: manifest", () => {
     expect(manifest.members.find((m) => m.parent === null).file).toBe("process_combustion.md");
   });
 
-  it("opens with the wildland domain, every phenomenon hung off the root", () => {
+  it("carries the wildland and compartment/dynamics domains, every phenomenon hung off the root", () => {
     const leaves = manifest.members.filter((m) => m.parent !== null).map((m) => m.file);
-    expect(leaves).toEqual(WILDLAND);
+    expect(leaves).toEqual([...WILDLAND, ...DYNAMICS]);
     for (const m of manifest.members.filter((m) => m.parent !== null)) {
       expect(m.parent).toBe("process_combustion.md");
     }

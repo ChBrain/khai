@@ -15,6 +15,17 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [spotting](process_spotting.md): process
 - [slash](process_slash.md): process
 - [serotiny](process_serotiny.md): process
+- [flashover](process_flashover.md): process
+- [backdraft](process_backdraft.md): process
+- [rollover](process_rollover.md): process
+- [layering](process_layering.md): process
+- [chimney](process_chimney.md): process
+- [pyrolysis](process_pyrolysis.md): process
+- [column](process_column.md): process
+- [whirl](process_whirl.md): process
+- [pyrocb](process_pyrocb.md): process
+- [firestorm](process_firestorm.md): process
+- [blowup](process_blowup.md): process
 
 See [sources and attribution](REFERENCES.md).
 

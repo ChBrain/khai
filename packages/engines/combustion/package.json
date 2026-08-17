@@ -71,6 +71,61 @@
         "file": "process_serotiny.md",
         "type": "process",
         "parent": "process_combustion.md"
+      },
+      {
+        "file": "process_flashover.md",
+        "type": "process",
+        "parent": "process_combustion.md"
+      },
+      {
+        "file": "process_backdraft.md",
+        "type": "process",
+        "parent": "process_combustion.md"
+      },
+      {
+        "file": "process_rollover.md",
+        "type": "process",
+        "parent": "process_combustion.md"
+      },
+      {
+        "file": "process_layering.md",
+        "type": "process",
+        "parent": "process_combustion.md"
+      },
+      {
+        "file": "process_chimney.md",
+        "type": "process",
+        "parent": "process_combustion.md"
+      },
+      {
+        "file": "process_pyrolysis.md",
+        "type": "process",
+        "parent": "process_combustion.md"
+      },
+      {
+        "file": "process_column.md",
+        "type": "process",
+        "parent": "process_combustion.md"
+      },
+      {
+        "file": "process_whirl.md",
+        "type": "process",
+        "parent": "process_combustion.md"
+      },
+      {
+        "file": "process_pyrocb.md",
+        "type": "process",
+        "parent": "process_combustion.md"
+      },
+      {
+        "file": "process_firestorm.md",
+        "type": "process",
+        "parent": "process_combustion.md"
+      },
+      {
+        "file": "process_blowup.md",
+        "type": "process",
+        "parent": "process_combustion.md"
       }
     ],
     "requires": [
@@ -89,7 +144,7 @@
     ],
     "card": {
       "wire": "Attaches at Place, on the Shown chapter -- the specific fire a place shows, named and behaving in its own way. The root (process_combustion.md) declares combustion as a catalog: the named phenomena of fire, each with its own fuel and chemistry, physical dynamics, sensory signature, and extinguishment paradox. It is the specific phenomenon, not the place's burn regime and its modes (fire's), the fire-weather that primes it (weather's), the drought that cures the fuel (hydrology's), the regrowth that follows (succession's), or the fire from below (geomorphology's). Fire reads the regime; combustion reads the type.",
-      "issue": "A catalog over a combustion root, one member per named phenomenon, grouped by domain. The wildland domain opens it: crown is the canopy fire, grass the fast light-fuel front, chaparral the volatile-oil brush fire, peat the flameless organic-soil smoulder, holdover the fire that overwinters and re-emerges, spotting the firebrands that leap ahead of the front, slash the heavy-residue burn, and serotiny the fire-cued regeneration. Each member fixes the phenomenon's fuel, temperature, dynamics, sensory read, and the paradox by which the standard method fails or feeds it.",
+      "issue": "A catalog over a combustion root, one member per named phenomenon, grouped by domain. The wildland domain opens it: crown is the canopy fire, grass the fast light-fuel front, chaparral the volatile-oil brush fire, peat the flameless organic-soil smoulder, holdover the fire that overwinters and re-emerges, spotting the firebrands that leap ahead of the front, slash the heavy-residue burn, and serotiny the fire-cued regeneration. The compartment and extreme-dynamics domain follows: flashover, backdraft, rollover, thermal layering, the chimney effect, pyrolysis, the convection column, the fire whirl, pyrocumulonimbus, firestorm, and the eruptive blow-up. Each member fixes the phenomenon's fuel, temperature, dynamics, sensory read, and the paradox by which the standard method fails or feeds it.",
       "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so combustion reads system-wide and a fire a place shows is read as the specific phenomenon it is. The link: a place carries, under Shown, the combustion phenomenon it shows, linking one member.",
       "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each place links a real phenomenon file under Shown. Whether the phenomenon is true to the place and its fuel -- the chemistry, the dynamics, the sensory signature, the paradox -- is semantic, taught and reviewed, never failed by the suite.",
       "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each place whose fire is an actor the phenomenon it shows under Shown -- the crown fire in the canopy, the grass fire across the range, the peat smouldering below, the firebrands spotting ahead. Keep it the specific phenomenon and its behaviour, not the place's abstract burn regime (hand that to fire), the fire-weather (to weather), the drought (to hydrology), the regrowth (to succession), or the fire from below (to geomorphology). Read each phenomenon by its own paradox: the way the obvious method fails or feeds it."
