@@ -1,0 +1,88 @@
+{
+  "name": "@chbrain/khai-composite-selfhood",
+  "version": "0.1.0",
+  "description": "khai composite content, the selfhood domain: the self as an object to itself -- held against the other selves it is measured by, repaired when threatened, and anchored by the confirmation it seeks -- a wiring of the self-discrepancy, possible-selves, self-affirmation, and self-verification engines, staged as the measure, the repair, and the anchor.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/selfhood"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "selfhood",
+    "tagline": "Selfhood as composite: the self as an object to itself -- measured against the guides it falls short of and the futures it might become (self-discrepancy, possible-selves), repaired elsewhere when threatened (self-affirmation), and anchored by feedback that matches how it already sees itself (self-verification) -- across the measure, the repair, and the anchor, and the drama is that a self needs to be known more than it needs to be thought well of.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_selfhood.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_selfhood_measure.md",
+        "type": "process",
+        "parent": "process_selfhood.md"
+      },
+      {
+        "file": "process_selfhood_repair.md",
+        "type": "process",
+        "parent": "process_selfhood.md"
+      },
+      {
+        "file": "process_selfhood_anchor.md",
+        "type": "process",
+        "parent": "process_selfhood.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter, over four atoms it declares as dependencies -- the self-discrepancy, possible-selves, self-affirmation, and self-verification engines, the self-concept read as one working structure. The root (process_selfhood.md) reads a self taken as an object by the persona that holds it: measured against the guides it falls short of and the futures it might become (self-discrepancy, possible-selves), repaired by affirming a valued domain elsewhere when threatened (self-affirmation), and anchored by feedback that matches how it already sees itself (self-verification). This composite adds no fifth engine; it wires the seam the four make -- a self-concept that compares, defends, and holds itself steady -- and reads that its need for coherence outruns its wish to be flattered.",
+      "issue": "Three bridges, the workings of a self-concept. The Measure: the other selves a persona holds itself against -- the ideal self whose shortfall brings dejection and the ought self whose shortfall brings agitation (self-discrepancy), and the futures it carries, the hoped-for, the feared, the realistically expected, and the lost (possible-selves) -- a self known chiefly by its distance from selves it is not. The Repair: what a persona does when the self-concept is threatened -- affirming a valued domain unrelated to the threat so global integrity is restored and the threat need not be denied, the buffering that lets a hard truth be taken in (self-affirmation). The Anchor: the twist -- the drive to confirm the self-concept already held, soliciting, signaling, and resisting until the feedback matches (self-verification) -- where the structure is seen for what it is: a self will hold to an unflattering view of itself against evidence and prefer the company that confirms it, because being known coherently is what a self cannot do without, and being thought well of is only what it would like. A self measures, repairs, and anchors; the composite is the whole work of holding a self-concept.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so selfhood reads wherever its atoms are cast. The link, advisory: a persona may link under Projection the working of its self-concept in play, and the audit surfaces where a play carries a persona through its self-guides, its threats, and its confirmations without naming the structure they make.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the self-discrepancy, possible-selves, self-affirmation, and self-verification engines. Whether a persona's self-concept rings true -- a measure that truly pains, a repair that truly restores, an anchor that truly holds -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- self-discrepancy, possible-selves, self-affirmation, and self-verification, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the persona's self-concept from the four engines -- the guides and futures from self-discrepancy and possible-selves, the repair from self-affirmation, the confirmation from self-verification -- then read the bridge: the measure when the self is held against another self, the repair when a threat is met by affirming elsewhere, the anchor when the self-view is being held in place. Read the persona as holding a self it must keep coherent, never as the word selfhood alone -- and let the anchor carry the keystone: a self needs to be known more than it needs to be thought well of."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-self-discrepancy": "^0.1.0",
+    "@chbrain/khai-engine-possible-selves": "^0.1.0",
+    "@chbrain/khai-engine-self-affirmation": "^0.1.0",
+    "@chbrain/khai-engine-self-verification": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
