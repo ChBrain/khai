@@ -1,0 +1,86 @@
+{
+  "name": "@chbrain/khai-composite-blaze",
+  "version": "0.1.0",
+  "description": "khai composite content, the blaze domain: a fire read as a living actor across its whole life -- how it takes, how it runs at full cry, and how it ends into persistence or renewal -- a wiring of the fire and combustion engines that braids a place's burn regime with the named phenomenon it becomes, staged as kindling, run, and renewal.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/blaze"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "blaze",
+    "tagline": "Blaze as composite: a fire read as a living actor across its whole life -- how it takes (kindling), how it runs at full cry (run), and how it ends into persistence or renewal (renewal) -- braiding the place's burn regime (fire) with the named phenomenon it becomes (combustion), and the drama is the fire's own arc, from spark to aftermath.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_blaze.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_blaze_kindling.md",
+        "type": "process",
+        "parent": "process_blaze.md"
+      },
+      {
+        "file": "process_blaze_run.md",
+        "type": "process",
+        "parent": "process_blaze.md"
+      },
+      {
+        "file": "process_blaze_renewal.md",
+        "type": "process",
+        "parent": "process_blaze.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Shown",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place, on the Shown chapter, over two atoms it declares as dependencies -- the fire and combustion engines, a place's burn read as one life. The root (process_blaze.md) reads a fire as a living actor with an arc: how it takes, how it runs, and how it ends into persistence or renewal, braiding the place's burn regime (fire) with the named phenomenon it becomes (combustion). This composite adds no new fire; it reads what the two make together -- a single fire lived from spark to aftermath -- and stages that into its arc.",
+      "issue": "Three bridges, the stages of a fire's life. Kindling: how a fire takes -- the regime's ignition becoming a particular birth (fire's ignition), the ember that lands and takes (spotting), the solid gasified into fuel (pyrolysis), the pile that lights itself from within (self-heating), the fire overwintered and re-emerging (holdover), or the fire lit on purpose (backfire). Run: the fire at full cry -- the regime's conflagration and creep (fire) becoming the named run: the canopy crowning (crown), the front outrunning a person (grass), the room igniting at once (flashover), the air-starved room bursting (backdraft), the fire making its own wind (firestorm), the pressurised torch (jet), the eruptive surge (blowup). Renewal: the twist -- the fire's ending that begins again: the regime's smoulder and renewal (fire), the peat that persists unseen (peat), the fire that will overwinter (holdover), and the sealed cone opened onto cleared ground (serotiny) -- the burn that clears and fertilises, the seed that needs the fire. A fire takes, runs, and ends into renewal; the composite is that whole life.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so blaze reads wherever its atoms are cast. The link, advisory: a place may link under Shown the stage its fire's life is in, and the audit surfaces where a play carries a fire through its regime and phenomenon without naming the arc it lives.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the fire and combustion engines. Whether a production's fire genuinely lives the arc the bridge names -- a kindling that truly takes, a run that truly spreads, a renewal that truly begins again -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- fire and combustion, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the fire's life from the two engines -- the burn regime and its modes from fire, the named phenomenon from combustion -- then read the bridge: kindling when the fire takes, run when it spreads at full cry, renewal when its ending begins again. Read the fire as a living actor with an arc, never as the word blaze alone -- and let renewal carry the keystone: the burn's ending that is a beginning, the fire that destroys and renews at once."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-fire": "^0.1.0",
+    "@chbrain/khai-engine-combustion": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
