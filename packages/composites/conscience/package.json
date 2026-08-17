@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-conscience",
+  "version": "0.1.0",
+  "description": "khai composite content, the conscience domain: the moral self that governs a persona's conduct -- how central being moral is to who they are, the attitudes they hold as moral absolutes, and the running moral balance they keep -- a wiring of the moral-identity, moral-conviction, and moral-licensing engines, staged as the core, the mandate, and the ledger.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/conscience"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "conscience",
+    "tagline": "Conscience as composite: the moral self that governs a persona's conduct -- how central being moral is to who they are (moral-identity), the attitudes they hold as moral absolutes (moral-conviction), and the running moral balance they keep (moral-licensing) -- across the core, the mandate, and the ledger, and the drama is that the same moral self-regard that anchors good conduct is what licenses the lapse and hardens the intolerance.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_conscience.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_conscience_core.md",
+        "type": "process",
+        "parent": "process_conscience.md"
+      },
+      {
+        "file": "process_conscience_mandate.md",
+        "type": "process",
+        "parent": "process_conscience.md"
+      },
+      {
+        "file": "process_conscience_ledger.md",
+        "type": "process",
+        "parent": "process_conscience.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter, over three atoms it declares as dependencies -- the moral-identity, moral-conviction, and moral-licensing engines, the moral self read as one governor of conduct. The root (process_conscience.md) reads how morality lives in the self and rules its acts: how central being moral is to who the persona is (moral-identity), which attitudes it stamps as moral absolutes (moral-conviction), and how it regulates its conduct against a moral set-point (moral-licensing). This composite adds no fourth engine; it wires the seam the three make: the moral self as both the guardian of conduct and the alibi for its lapse.",
+      "issue": "Three bridges, the parts of a self's moral government. The Core: how central being moral is to the self -- morality internalized as the true self or worn as a symbolic image, the custodian of standards it can make of a person, or held only at the periphery (moral-identity). The Mandate: the attitude stamped as a moral absolute -- held as objective fact, universal, and independent of authority, which mobilizes a person to act and licenses intolerance of those who dissent (moral-conviction). The Ledger: the twist -- the moral self kept as a running balance, past wrong driving a compensatory cleansing and past good buying the indulgence of a later lapse (moral-licensing) -- where the government is seen for what it is: the conscience that keeps the score is the conscience that licenses the slip. A self anchors, mandates, and audits its own morality; the composite is the whole self-government of conduct.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so conscience reads wherever its atoms are cast. The link, advisory: a persona may link under Projection the part of its moral self-government in play, and the audit surfaces where a play carries a persona through moral identity, conviction, and licensing without naming the self that governs.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the moral-identity, moral-conviction, and moral-licensing engines. Whether a persona's moral self-government rings true -- a core that truly anchors, a mandate that truly brooks no dissent, a ledger that truly licenses -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- moral-identity, moral-conviction, and moral-licensing, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the persona's moral self-government from the three engines -- the core from moral-identity, the mandate from moral-conviction, the ledger from moral-licensing -- then read the bridge: the core when morality is central to the self, the mandate when an attitude is held as a moral absolute, the ledger when conduct is regulated against a moral balance. Read the persona as governed by a moral self, never as the word conscience alone -- and let the ledger carry the keystone: the conscience that keeps the score is the conscience that licenses the slip."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-moral-identity": "^0.1.0",
+    "@chbrain/khai-engine-moral-conviction": "^0.1.0",
+    "@chbrain/khai-engine-moral-licensing": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
