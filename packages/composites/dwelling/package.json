@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-dwelling",
+  "version": "0.1.0",
+  "description": "khai composite content, the dwelling domain: the person held by place -- the place they belong at, the place that restores them, and the place they are rooted in -- a wiring of the third-place, restorative-environment, and place-attachment engines, staged as the gathered, the restored, and the rooted.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/dwelling"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "dwelling",
+    "tagline": "Dwelling as composite: the person held by place -- the place they belong at (third-place), the place that restores them (restorative-environment), and the place they are rooted in (place-attachment) -- across the gathered, the restored, and the rooted, and the drama is that the place that holds a person is the place whose loss can unmake them.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_dwelling.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_dwelling_gathered.md",
+        "type": "process",
+        "parent": "process_dwelling.md"
+      },
+      {
+        "file": "process_dwelling_restored.md",
+        "type": "process",
+        "parent": "process_dwelling.md"
+      },
+      {
+        "file": "process_dwelling_rooted.md",
+        "type": "process",
+        "parent": "process_dwelling.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter, over three atoms it declares as dependencies -- the third-place, restorative-environment, and place-attachment engines, a person read through the places that hold them. The root (process_dwelling.md) reads how a place sustains a self: the place one belongs at (third-place), the place that restores one (restorative-environment), and the place one is rooted in (place-attachment). This composite adds no fourth engine; it wires the seam the three share -- a person gathered, restored, and rooted by place -- and reads that the bond which sustains is the bond whose loss can unmake.",
+      "issue": "Three bridges, the ways a place holds a person. Gathered: the place one belongs at -- the informal public haunt that is neither home nor work, the neutral ground that levels rank and makes a regular of a stranger, a home away from home (third-place). Restored: the place that heals -- the being-away from demand, the soft fascination that holds attention without effort, the extent of a world to wander, where a worn mind recovers (restorative-environment). Rooted: the twist -- the place one is part of, the rootedness and dependence of a self bound to its ground, and the homesickness and placelessness when that ground is lost (place-attachment) -- where the holding is seen for what it is: the place that roots a person is the place whose loss can unmake them. A place gathers, restores, and roots a self; the composite is the whole of being held by place.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so dwelling reads wherever its atoms are cast. The link, advisory: a persona may link under Projection the way a place holds it, and the audit surfaces where a play carries a persona through its belonging, restoration, and rootedness in a place without naming what the place gives.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the third-place, restorative-environment, and place-attachment engines. Whether a persona's being-held-by-place rings true -- a belonging that truly gathers, a restoration that truly heals, a rootedness that truly binds -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- third-place, restorative-environment, and place-attachment, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the persona's being-held-by-place from the three engines -- the belonging from third-place, the restoration from restorative-environment, the rootedness from place-attachment -- then read the bridge: gathered when a place gives belonging, restored when it heals, rooted when it is part of who the persona is. Read the persona as held by the places that sustain it, never as the word dwelling alone -- and let rooted carry the keystone: the place that roots a person is the place whose loss can unmake them."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-third-place": "^0.1.0",
+    "@chbrain/khai-engine-restorative-environment": "^0.1.0",
+    "@chbrain/khai-engine-place-attachment": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
