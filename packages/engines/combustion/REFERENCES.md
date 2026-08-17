@@ -17,7 +17,7 @@ reads a place's **burn regime** -- its abstract modes, ignition to conflagration
 compose: fire gives the regime, combustion gives the fire.
 
 The catalog is organised by four domains -- the wildland, the compartment, the industrial
-plant, and the made fire -- and grows domain by domain. The wildland domain opens it: the
+plant, and the made fire -- built domain by domain and now complete. The wildland domain opens it: the
 crown fire that runs the canopy, the grass fire that outruns a person, the chaparral fire
 whose volatile oils ignite ahead of the front, the peat fire that smoulders unseen for
 months, the holdover that overwinters and re-emerges, the spotting that leaps every line,
@@ -32,10 +32,16 @@ the BLEVE that turns a vessel into a fireball, the boilover that erupts a burnin
 combustible-metal fire and lithium runaway, the dust explosion, the self-heating that lights
 a pile from within, pyrophoric ignition on contact with air, the oxidizer-fed fire that
 carries its own oxygen, hypergolic ignition on mixing, the arc flash of ionised-air plasma,
-and the polymer fire whose smoke kills before its flame. Each is fixed as a process -- how it
-starts and on what fuel, how it moves, the carrying force against the resistance, and the
-outcome and sensory read -- so that a phenomenon named is a phenomenon whose chemistry,
-dynamics, and paradox follow.
+and the polymer fire whose smoke kills before its flame. The made-fire domain closes the
+catalog with the fire humans light on purpose and hold to a task: the backfire and the
+prescribed burn that fight or forestall a wildfire, swidden and fire-stick farming that
+work the land with fire, the charcoal clamp starved of air, the forge and the blast furnace
+and the kiln, the incinerator and the flare that destroy waste, the cutting torch and the
+premixed burner, and the domestic fires -- the barbecue, the candle, and the cremation --
+each read by the moment its control slips. Each is fixed as a process -- how it starts and on
+what fuel, how it moves, the carrying force against the resistance, and the outcome and
+sensory read -- so that a phenomenon named is a phenomenon whose chemistry, dynamics, and
+paradox follow.
 
 The spine is fire science and fire ecology. In the wildland, Rothermel's surface-fire
 spread model and the crown-fire work that followed (Van Wagner's crown-fire thresholds,
@@ -51,22 +57,28 @@ own weather. In the industrial plant, fire protection and process-safety enginee
 the hazard set -- the SFPE handbook tradition for pool, jet, and compartment fire behaviour,
 and the process-safety literature (CCPS) for the pressure-and-cloud events, the BLEVE, the
 vapour cloud explosion, the dust deflagration, and the reactive-chemical fires that carry
-their own oxidiser or ignite on contact.
+their own oxidiser or ignite on contact. In the made fire, the account is Pyne's again --
+the human history of fire as a tool, from the fire-stick to the furnace -- with the applied
+crafts and combustion engineering behind each: wildland firing practice for the backfire and
+the prescribed burn, the collier's and smith's and potter's craft for the charcoal clamp,
+forge, and kiln, metallurgical and process practice for the furnace, incinerator, and flare,
+and the everyday combustion of hearth and cooking fire for the burner, barbecue, and candle.
 
 ## Origin
 
 Fire science and fire ecology, applied as a catalog of combustion phenomena across process,
 on the place.
 
-| Source                    | Key Work                                                                                                     | Scope                                                                                                                                                                                                                 |
-| :------------------------ | :----------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Richard C. Rothermel**  | _A Mathematical Model for Predicting Fire Spread in Wildland Fuels_ (1972)                                   | The surface-fire spread model -- wind, slope, and fuel driving rate of spread. The grass, chaparral, and crown-fire dynamics.                                                                                         |
-| **C. E. Van Wagner**      | _"Conditions for the start and spread of crown fire"_ (1977)                                                 | The thresholds for passive, active, and independent crown fire -- canopy base height, bulk density, surface intensity. The crown-fire phenomenon and the spotting it drives.                                          |
-| **Guillermo Rein**        | _"Smouldering Fires and Natural Fuels"_ (2013)                                                               | Smouldering combustion -- the slow, flameless, oxygen-limited burning of peat and organic soil. The peat and holdover phenomena.                                                                                      |
-| **Norman L. Christensen** | fire ecology; disturbance and fire-adapted regeneration                                                      | The fire-adapted system -- the seeds that need fire, the regeneration the burn triggers. The serotiny phenomenon.                                                                                                     |
-| **Dougal Drysdale**       | _An Introduction to Fire Dynamics_ (3rd ed., 2011)                                                           | Compartment fire dynamics -- flashover, backdraft, rollover, thermal layering, the plume, the chimney effect, and pyrolysis. The compartment and extreme-dynamics phenomena.                                          |
-| **SFPE**                  | _SFPE Handbook of Fire Protection Engineering_ (5th ed., 2016)                                               | Industrial fire behaviour -- pool and jet fires, heat flux, flame radiation, and the fire-protection engineering of process plant. The pool, jet, flash-fire, and polymer phenomena.                                  |
-| **CCPS / AIChE**          | _Guidelines for Vapor Cloud Explosion, Pressure Vessel Burst, BLEVE, and Flash Fire Hazards_ (2nd ed., 2010) | Process-safety hazard analysis -- the pressure-and-cloud events and reactive-chemical fires. The VCE, BLEVE, boilover, dust, metal, lithium, self-heating, pyrophoric, oxidizer, hypergolic, and arc-flash phenomena. |
+| Source                    | Key Work                                                                                                     | Scope                                                                                                                                                                                                                                |
+| :------------------------ | :----------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Richard C. Rothermel**  | _A Mathematical Model for Predicting Fire Spread in Wildland Fuels_ (1972)                                   | The surface-fire spread model -- wind, slope, and fuel driving rate of spread. The grass, chaparral, and crown-fire dynamics.                                                                                                        |
+| **C. E. Van Wagner**      | _"Conditions for the start and spread of crown fire"_ (1977)                                                 | The thresholds for passive, active, and independent crown fire -- canopy base height, bulk density, surface intensity. The crown-fire phenomenon and the spotting it drives.                                                         |
+| **Guillermo Rein**        | _"Smouldering Fires and Natural Fuels"_ (2013)                                                               | Smouldering combustion -- the slow, flameless, oxygen-limited burning of peat and organic soil. The peat and holdover phenomena.                                                                                                     |
+| **Norman L. Christensen** | fire ecology; disturbance and fire-adapted regeneration                                                      | The fire-adapted system -- the seeds that need fire, the regeneration the burn triggers. The serotiny phenomenon.                                                                                                                    |
+| **Dougal Drysdale**       | _An Introduction to Fire Dynamics_ (3rd ed., 2011)                                                           | Compartment fire dynamics -- flashover, backdraft, rollover, thermal layering, the plume, the chimney effect, and pyrolysis. The compartment and extreme-dynamics phenomena.                                                         |
+| **SFPE**                  | _SFPE Handbook of Fire Protection Engineering_ (5th ed., 2016)                                               | Industrial fire behaviour -- pool and jet fires, heat flux, flame radiation, and the fire-protection engineering of process plant. The pool, jet, flash-fire, and polymer phenomena.                                                 |
+| **CCPS / AIChE**          | _Guidelines for Vapor Cloud Explosion, Pressure Vessel Burst, BLEVE, and Flash Fire Hazards_ (2nd ed., 2010) | Process-safety hazard analysis -- the pressure-and-cloud events and reactive-chemical fires. The VCE, BLEVE, boilover, dust, metal, lithium, self-heating, pyrophoric, oxidizer, hypergolic, and arc-flash phenomena.                |
+| **Stephen J. Pyne**       | _Fire: A Brief History_ (2001); _World Fire_ (1995)                                                          | The human history of fire as a tool -- anthropogenic, agricultural, and industrial burning, from the fire-stick to the furnace. The made-fire domain: backfire, prescribed, swidden, fire-stick, and the craft and industrial fires. |
 
 ## Restrictions
 
@@ -93,8 +105,8 @@ What the engine refuses to model, and to whom it delegates.
 
 ## Encoding
 
-Source to constraint, per file. (The wildland, compartment/dynamics, and industrial domains
-are built; the made fire follows.)
+Source to constraint, per file. (All four domains -- the wildland, the compartment and
+extreme dynamics, the industrial plant, and the made fire -- are built.)
 
 - **[combustion](process_combustion.md)** (the root): the typology of fire -- the named phenomena
   of combustion, each with its own fuel, dynamics, sensory signature, and paradox. Anchored by the
@@ -169,9 +181,39 @@ are built; the made fire follows.)
   de-energising, not by water. Anchored by the electrical-safety and arc-flash literature.
 - **[polymer](process_polymer.md)**: the plastic burning with easily quenched flame and lethal
   smoke, the smoke the real fire. Anchored by the combustion-toxicology and SFPE literature.
+- **[backfire](process_backfire.md)**: the counter-fire lit into a wildfire's indraft to widen the
+  black, undone by a wind shift that slops it over the line. Anchored by wildland firing practice.
+- **[prescribed](process_prescribed.md)**: the controlled burn held inside a written prescription,
+  a wildfire the moment it escapes. Anchored by prescribed-fire practice and Pyne.
+- **[swidden](process_swidden.md)**: the slash-and-burn clearing farmed for its ash, impoverishing
+  when the fallow is shortened. Anchored by the shifting-cultivation literature and Pyne.
+- **[firestick](process_firestick.md)**: the frequent cool mosaic burn, whose withholding is what
+  builds the megafire. Anchored by the cultural-burning literature and Pyne.
+- **[charcoal](process_charcoal.md)**: the air-starved clamp that chars wood rather than burning it,
+  ruined by one open vent. Anchored by the collier's craft and pyrolysis chemistry.
+- **[forge](process_forge.md)**: the forced-draft bed that works steel, its oxidising fire burning
+  the very metal. Anchored by the smith's craft and combustion practice.
+- **[furnace](process_furnace.md)**: the blast furnace run for years, wrecked not by fire but by the
+  chill that freezes iron in the hearth. Anchored by metallurgical practice.
+- **[kiln](process_kiln.md)**: the firing curve that transforms ware, destroyed by the thermal shock
+  of too-fast heating or cooling. Anchored by the ceramic and lime and cement literature.
+- **[incinerator](process_incinerator.md)**: the waste burn held above its legal temperature, its
+  dioxins re-forming as the flue gas cools. Anchored by waste-combustion engineering.
+- **[flare](process_flare.md)**: the stack kept always alight, its emergency the pilot loss that
+  vents raw gas. Anchored by process-safety and flaring practice.
+- **[torch](process_torch.md)**: the oxy-fuel flame that cuts steel, its killer the flashback back to
+  the cylinders. Anchored by welding and cutting practice.
+- **[burner](process_burner.md)**: the premixed flame clean and safe when near-invisible, failing by
+  flashback or lift-off. Anchored by combustion engineering and the Bunsen tradition.
+- **[barbecue](process_barbecue.md)**: the radiant bed that cooks by browning, its grease fire turned
+  to a fireball by water. Anchored by cooking-fire and Class-K fire practice.
+- **[candle](process_candle.md)**: the self-feeding wick flame, relightable down its own wax-smoke
+  trail without contact. Anchored by the diffusion-flame literature.
+- **[cremation](process_cremation.md)**: the cremator that reduces a body to bone, overwhelmed by a
+  high-fat body or a pacemaker that explodes. Anchored by cremation-practice engineering.
 
 ---
 
 _Authored by KAI HACKS AI: original constraint-based expression in the fire-science, fire-ecology,
-and fire-protection and process-safety engineering tradition; it does not reproduce claims or
-quote directly._
+fire-protection and process-safety engineering, and fire-history and combustion-craft tradition;
+it does not reproduce claims or quote directly._
