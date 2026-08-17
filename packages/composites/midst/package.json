@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-midst",
+  "version": "0.1.0",
+  "description": "khai composite content, the midst domain: the persona among others -- performance altered by being seen, responsibility divided until no one carries it, and the self massed into a body whose acts have no single author -- a wiring of the social-facilitation, bystander-effect, and crowd engines, staged as the watched, the spread, and the massed.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/midst"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "midst",
+    "tagline": "Midst as composite: the persona among others -- its performance altered simply by being seen (social-facilitation), its responsibility divided until no one carries it (bystander-effect), and itself massed into a body whose acts have no single author (crowd) -- across the watched, the spread, and the massed, and the drama is that the more others are present, the less any one of them is the person who did it.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_midst.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_midst_watched.md",
+        "type": "process",
+        "parent": "process_midst.md"
+      },
+      {
+        "file": "process_midst_spread.md",
+        "type": "process",
+        "parent": "process_midst.md"
+      },
+      {
+        "file": "process_midst_massed.md",
+        "type": "process",
+        "parent": "process_midst.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter, over three atoms it declares as dependencies -- the social-facilitation, bystander-effect, and crowd engines, the bare presence of others read as one force. The root (process_midst.md) reads what happens to a persona simply because others are there, before any command, belonging, or rank: its performance altered by being seen (social-facilitation), its responsibility divided among the witnesses (bystander-effect), and itself pressed into a mass that acts as one (crowd). This composite adds no fourth engine; it wires the seam the three make -- presence working on a persona through the question of who is answerable -- and reads that the crowd of others both sharpens the act and dissolves its author.",
+      "issue": "Three bridges, the ways others' presence works on a persona. The Watched: performance changed by the eyes on it -- the easy task lifted by enhancement, the hard one spoiled by choking, the pooled effort slackened by loafing (social-facilitation). The Spread: responsibility divided among the witnesses -- the diffusion by which the more who could act the less any one does, the pluralism by which each reads the others' stillness as evidence that nothing is wrong, and the audience inhibition that fears looking foolish (bystander-effect). The Massed: the twist -- the persona pressed into a body, its density, its direction, and its discharge (crowd) -- where the force is seen for what it is: presence does not merely add witnesses, it subtracts authorship, so the same gathering that inhibits every single person from helping is the gathering that can do together what no one in it would do alone, because the deed has no one to belong to. A persona is watched, spread, and massed; the composite is the whole work of others simply being there.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so midst reads wherever its atoms are cast. The link, advisory: a persona may link under Projection the way others' presence is working on it, and the audit surfaces where a play puts a persona among others without naming what the presence does.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the social-facilitation, bystander-effect, and crowd engines. Whether a persona's being-among-others rings true -- a watching that truly alters, a spreading that truly stalls, a massing that truly carries -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- social-facilitation, bystander-effect, and crowd, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the persona's being-among-others from the three engines -- the altered performance from social-facilitation, the divided responsibility from bystander-effect, the massed body from crowd -- then read the bridge: the watched when eyes change the doing, the spread when responsibility thins among witnesses, the massed when the many act as one. Read the persona as changed by bare presence, never as the word midst alone -- and let the massed carry the keystone: the more others are present, the less any one of them is the person who did it."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-social-facilitation": "^0.1.0",
+    "@chbrain/khai-engine-bystander-effect": "^0.1.0",
+    "@chbrain/khai-engine-crowd": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
