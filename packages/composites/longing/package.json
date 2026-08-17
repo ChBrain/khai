@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-longing",
+  "version": "0.1.0",
+  "description": "khai composite content, the longing domain: the self aching at a gap between what is and what it wants, remembers, or might have had -- the absent other, the untaken path, and the lost past -- a wiring of the loneliness, regret, and nostalgia engines, staged as the other, the path, and the past.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/longing"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "longing",
+    "tagline": "Longing as composite: the self aching at a gap between what is and what it wants, remembers, or might have had -- the absent other (loneliness), the untaken path (regret), and the lost past (nostalgia) -- across the other, the path, and the past, and the drama is that the ache is the measure of what mattered: a self longs only for what it valued.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_longing.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_longing_other.md",
+        "type": "process",
+        "parent": "process_longing.md"
+      },
+      {
+        "file": "process_longing_path.md",
+        "type": "process",
+        "parent": "process_longing.md"
+      },
+      {
+        "file": "process_longing_past.md",
+        "type": "process",
+        "parent": "process_longing.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter, over three atoms it declares as dependencies -- the loneliness, regret, and nostalgia engines, one longing read across three distances. The root (process_longing.md) reads a persona aching at a gap between what is and what it wants, remembers, or might have had: the absent other (loneliness), the untaken path (regret), and the lost past (nostalgia). This composite adds no fourth engine; it wires the seam the three share -- a felt distance between the actual and the desired, remembered, or possible, registered as longing -- and reads that the ache is the measure of what mattered.",
+      "issue": "Three bridges, the distances a self measures as one longing. The Other: the relational gap -- the pain that the needed connection is not the actual one, the withdrawal and numbness it can bring and the reaching it can drive (loneliness). The Path: the counterfactual gap -- a choice measured against the better outcome the persona can imagine having had, the sting of the road not taken, of commission and of inaction (regret). The Past: the twist -- the temporal gap, the bittersweet longing for one's own past, the ache that restores connectedness, continuity, and meaning (nostalgia) -- where the longing is seen for what it is: a self aches at a gap only because the thing across it mattered, so the pain is the value persisting. A self longs for an absent other, an untaken path, a lost past; the composite is the one ache beneath the three.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so longing reads wherever its atoms are cast. The link, advisory: a persona may link under Projection the distance its longing measures, and the audit surfaces where a play carries a persona through loneliness, regret, and nostalgia without naming the ache they share.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the loneliness, regret, and nostalgia engines. Whether a persona's longing rings true -- an ache that truly measures a gap, a gap that truly marks a value -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- loneliness, regret, and nostalgia, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the persona's longing from the three engines -- the absent other from loneliness, the untaken path from regret, the lost past from nostalgia -- then read the bridge: the other when the gap is a missing connection, the path when it is a better outcome not chosen, the past when it is a cherished time now gone. Read the persona as aching at a distance it cannot close, never as the word longing alone -- and let the past carry the keystone: the ache is the measure of what mattered, a self longs only for what it valued."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-loneliness": "^0.1.0",
+    "@chbrain/khai-engine-regret": "^0.1.0",
+    "@chbrain/khai-engine-nostalgia": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
