@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-striving",
+  "version": "0.1.0",
+  "description": "khai composite content, the striving domain: the standing character a persona brings to any pursuit -- why it strives, how it strives, and how long it stays -- a wiring of the achievement-motive, regulatory-focus, and grit engines, staged as the pull, the stance, and the stay.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/striving"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "striving",
+    "tagline": "Striving as composite: the standing character a persona brings to any pursuit -- why it strives (achievement-motive), how it strives (regulatory-focus), and how long it stays (grit) -- across the pull, the stance, and the stay, and the drama is that the stamina which carries a persona through setback is the stamina that holds it to a path it should have left.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_striving.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_striving_pull.md",
+        "type": "process",
+        "parent": "process_striving.md"
+      },
+      {
+        "file": "process_striving_stance.md",
+        "type": "process",
+        "parent": "process_striving.md"
+      },
+      {
+        "file": "process_striving_stay.md",
+        "type": "process",
+        "parent": "process_striving.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter, over three atoms it declares as dependencies -- the achievement-motive, regulatory-focus, and grit engines, the dispositions a persona brings to pursuit read as one striving character. The root (process_striving.md) reads the standing shape of how a persona goes after what it wants: the motive that energizes it (achievement-motive), the orientation by which it pursues (regulatory-focus), and the stamina by which it stays (grit). This composite adds no fourth engine; it wires the seam the three make -- the dispositional character of striving, prior to any particular goal -- and reads that the stamina which carries a persona through setback is what holds it to a path it should have left.",
+      "issue": "Three bridges, the standing dispositions of a striving self. The Pull: why a persona strives -- the resting motive in achievement situations, the hope of success that draws it toward the attempt or the fear of failure that pulls it away, energizing which goals it will adopt at all (achievement-motive). The Stance: how a persona strives -- the resting orientation toward pursuit, promotion's eagerness for gains to reach or prevention's vigilance against losses to guard, the same goal chased two different ways (regulatory-focus). The Stay: the twist -- how long a persona strives, passion held steady across years and perseverance of effort held through setback and plateau (grit) -- where the disposition is seen for what it is: the stamina that makes achievement possible is the stamina that cannot quit, holding a persona to the dead path as faithfully as to the live one. A self is pulled, takes a stance, and stays; the composite is the whole standing character of its striving.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so striving reads wherever its atoms are cast. The link, advisory: a persona may link under Projection the disposition its striving shows, and the audit surfaces where a play carries a persona through motive, orientation, and stamina without naming the character they make.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the achievement-motive, regulatory-focus, and grit engines. Whether a persona's striving character rings true -- a pull that truly energizes, a stance that truly colours the pursuit, a stay that truly costs -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- achievement-motive, regulatory-focus, and grit, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the persona's striving character from the three engines -- the motive from achievement-motive, the orientation from regulatory-focus, the stamina from grit -- then read the bridge: the pull when the question is why it strives, the stance when it is how, the stay when it is how long. Read the persona as bringing a standing character to any pursuit, never as the word striving alone -- and let the stay carry the keystone: the stamina that carries a persona through setback is the stamina that holds it to a path it should have left."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-achievement-motive": "^0.1.0",
+    "@chbrain/khai-engine-regulatory-focus": "^0.1.0",
+    "@chbrain/khai-engine-grit": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
