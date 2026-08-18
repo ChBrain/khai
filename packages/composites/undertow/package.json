@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-undertow",
+  "version": "0.1.0",
+  "description": "khai composite content, the undertow domain: the ground a persona feels from, read as a fact about what they are looking at -- the set-point drifted and demanding, the resting disposition arrived with, and the affective colour laid on every read before any event arrives -- a wiring of the body, temperament, and mood engines, staged as the demand, the set, and the tint.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/undertow"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "undertow",
+    "tagline": "Undertow as composite: the ground a persona feels from, read as a fact about what they are looking at -- the set-point drifted out of range and pulling attention to itself (body), the resting disposition arrived with and returned to (temperament), and the affective colour laid on every read before any single event arrives (mood) -- across the demand, the set, and the tint, ordered by how easily the persona can locate the source, and the drama is that a state with nothing to attach it to gets attached to whatever is in view.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_undertow.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_undertow_demand.md",
+        "type": "process",
+        "parent": "process_undertow.md"
+      },
+      {
+        "file": "process_undertow_set.md",
+        "type": "process",
+        "parent": "process_undertow.md"
+      },
+      {
+        "file": "process_undertow_tint.md",
+        "type": "process",
+        "parent": "process_undertow.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter, over three atoms it declares as dependencies -- the body, temperament, and mood engines, the standing state a persona judges from. The root (process_undertow.md) reads what is running beneath any particular thing: a set-point out of range pulling the persona toward the deficit and narrowing them around it (body), a baseline of resting tendencies that tilts every act without deciding any (temperament), and a background tone on two axes laid on every read before an event arrives (mood). This composite adds no fourth engine; it wires the seam the three make -- a ground continuously supplying feeling that has no label saying where it came from -- and reads that the persona spends it as evidence about whatever they happen to be judging.",
+      "issue": "Three bridges, ordered by how easily the persona can locate the source. The Demand: a set-point drifted out of range -- fuel, rest, integrity, charge, defence -- registering as a gap and pulling until it is closed, so everything that would serve it comes forward and everything else recedes, resolving as hunger, fatigue, pain, arousal, or sickness (body); the one that names itself, and still narrows what the persona can reach while it runs. The Set: the resting tendencies the persona arrives with and returns to, read by the room within minutes and predicted from, deciding no single act but tilting every one -- where they start, what costs them effort, what they do without trying -- and springing back the moment the effort to work against it stops (temperament); invisible from inside precisely because it never varies, so it presents not as a setting but as what a person is. The Tint: the twist -- a background tone on two axes, pleasant or unpleasant and activated or quiet, carried across a stretch and tilting which feelings fire and how they land (mood) -- where the shape is seen for what it is: this one both varies and arrives unlabelled, so the persona has a changing signal and nowhere to file it, and files it against whatever is in front of them. A persona is pulled, tilted, and coloured before anything happens; the composite is the whole of what they are judging from.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so undertow reads wherever its atoms are cast. The link, advisory: a persona may link under Projection the ground they are running from, and the audit surfaces where a play lets a persona's verdict stand without asking what they had eaten or slept.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the body, temperament, and mood engines. Whether an undertow rings true -- a demand that truly narrows, a set that truly tilts, a tint that truly colours the read -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- body, temperament, and mood, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the persona's ground from the three engines -- the drifted set-point from body, the resting disposition from temperament, the two-axis background tone from mood -- then read the bridge: the demand when a deficit is pulling attention to itself, the set when the baseline is tilting an act without being noticed, the tint when the colour is being spent on the nearest judgement. Read the persona as judging from a ground rather than about a thing, never as the word undertow alone -- and let the tint carry the keystone: a state with nothing to attach it to gets attached to whatever is in view."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-body": "^0.1.0",
+    "@chbrain/khai-engine-temperament": "^0.1.0",
+    "@chbrain/khai-engine-mood": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
