@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-lasting",
+  "version": "0.1.0",
+  "description": "khai composite content, the lasting domain: whether anything of a good thing survives its arrival -- the attention that makes it fuller and longer, the reception it meets when it is told, and the baseline that reclaims it whatever anyone does -- a wiring of the savoring, capitalization, and hedonic-adaptation engines, staged as the attending, the telling, and the fading.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/lasting"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "lasting",
+    "tagline": "Lasting as composite: whether anything of a good thing survives its arrival -- the attention that makes a pleasure fuller and longer or kills it outright (savoring), the reception the telling meets, on which the whole gain of sharing turns (capitalization), and the baseline that reclaims the change whatever anyone does (hedonic-adaptation) -- across the attending, the telling, and the fading, and the drama is that the same return-to-baseline that erases the best of a life is what carries a persona back from the worst of it.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_lasting.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_lasting_attending.md",
+        "type": "process",
+        "parent": "process_lasting.md"
+      },
+      {
+        "file": "process_lasting_telling.md",
+        "type": "process",
+        "parent": "process_lasting.md"
+      },
+      {
+        "file": "process_lasting_fading.md",
+        "type": "process",
+        "parent": "process_lasting.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter, over three atoms it declares as dependencies -- the savoring, capitalization, and hedonic-adaptation engines, the fate of a good thing read as one arc. The root (process_lasting.md) reads what becomes of a good after it arrives: attended to it grows fuller and longer (savoring), told to someone it stands or falls on the reply it meets (capitalization), and left to itself it is absorbed as the feeling returns to the level it held before (hedonic-adaptation). This composite adds no fourth engine; it wires the seam the three make -- a good thing that does not keep itself -- and reads that the fading is not a fault in the machinery but the machinery working.",
+      "issue": "Three bridges, the fates a good thing can meet. The Attending: the persona turns toward the good rather than past it -- narrowing onto it until it fills the field (sharpening), banking it as a memory and letting its own brevity concentrate it (keeping) -- and the same lever thrown the other way, the kill-joy turn that hunts the flaw, deflects the praise, and thins the pleasure on purpose (dampening) -- so a good left unattended fades at its own rate and a good attended to does not. The Telling: the good carried outward, the strongest single amplifier there is (sharing) -- and the fork it lands on, the responder's reception, since only the active-constructive reply that turns toward the news and draws it out builds the bond, while the steady nod, the deflation dressed as attention, and the turning-away leave the sharer more alone with their good news than before they spoke (capitalization). The Fading: the twist -- the response worn down by repetition (habituation), the standard climbing to swallow each gain (aspiration), and the dispositional level reclaiming the persona from fortune and disaster alike (setpoint) -- where the arc is seen for what it is: the return to baseline that steals the best of a life is the same return that carries a persona back from the worst, so the machinery that makes joy temporary is the machinery that makes grief survivable. A persona attends, tells, and fades; the composite is the whole fate of a good.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so lasting reads wherever its atoms are cast. The link, advisory: a persona may link under Projection what is becoming of a good that has arrived, and the audit surfaces where a play grants a persona a windfall and never reads what was left of it.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the savoring, capitalization, and hedonic-adaptation engines. Whether a good's fate rings true -- an attending that truly enlarges, a telling that truly lands or fails, a fading that truly reclaims -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- savoring, capitalization, and hedonic-adaptation, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the fate of a persona's good from the three engines -- the turning-toward or the kill-joy turn from savoring, the responder's fork from capitalization, the return to baseline from hedonic-adaptation -- then read the bridge: the attending when the persona is making more of the good or less, the telling when it has been carried to someone and is waiting on their answer, the fading when the change has stopped registering. Read the persona through what is left of a good, never as the word lasting alone -- and let the fading carry the keystone: what returns a persona from the worst is what takes the best away."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-savoring": "^0.1.0",
+    "@chbrain/khai-engine-capitalization": "^0.1.0",
+    "@chbrain/khai-engine-hedonic-adaptation": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
