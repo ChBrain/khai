@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-appetite",
+  "version": "0.1.0",
+  "description": "khai composite content, the appetite domain: what a persona must have, and how the must was made -- the requirement the organism arrives with, the demand taken in from outside to varying depth, and the requirement manufactured by the pursuing itself -- a wiring of the needs, motivation, and addiction engines, staged as the given, the taken, and the made.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/appetite"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "appetite",
+    "tagline": "Appetite as composite: what a persona must have, and how the must was made -- the requirement the organism arrives with, ordered by prepotency and split between lacks that quiet when filled and growths that do not (needs); the demand taken in from outside, at depths from the act that is its own reason to the should swallowed whole and never owned (motivation); and the requirement manufactured by the pursuing itself, a currency the organism came to count on (addiction) -- across the given, the taken, and the made, and the drama is that from inside they press exactly alike.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_appetite.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_appetite_given.md",
+        "type": "process",
+        "parent": "process_appetite.md"
+      },
+      {
+        "file": "process_appetite_taken.md",
+        "type": "process",
+        "parent": "process_appetite.md"
+      },
+      {
+        "file": "process_appetite_made.md",
+        "type": "process",
+        "parent": "process_appetite.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter, over three atoms it declares as dependencies -- the needs, motivation, and addiction engines, a persona's requirements read by where each one came from. The root (process_appetite.md) reads not what a persona wants but what they must have and how the must was made: the requirement the organism arrives with (needs), the demand taken in from outside at whatever depth it reached (motivation), and the requirement manufactured by the pursuit itself (addiction). This composite adds no fourth engine; it wires the seam the three make -- three provenances for one kind of pressure -- and reads that the provenance is exactly what the persona cannot feel.",
+      "issue": "Three bridges, the provenances of a must. The Given: the plural requirements a persona arrives carrying, ordered by prepotency so that a deficit low in the structure outranks one high in it while the ordering stays soft and parallel rather than a rigid staircase (prepotency) -- and split, decisively, between the lack that mounts as it grows and goes quiet the moment it is filled (deficiency) and the growth that feeds on its own satisfaction and widens rather than discharges (actualization). The Taken: a demand from outside, taken in to a depth that decides everything about the effort it yields -- the act that is its own reason and costs nothing to give (intrinsic), the end genuinely owned (identified), the should swallowed whole and never made the persona's own, acted on to keep the guilt from landing (introjected), the hand still outside (external), and the pull that never formed at all (amotivated). The Made: the twist -- a currency the organism came to count on, where repetition resets the baseline so the payout that once arrived as a bonus becomes the level the persona must reach to feel normal, and the wanting sensitizes as the liking flattens, so the persona is pulled hardest toward what pleases them least (addiction) -- where the shape is seen for what it is: a manufactured must presses exactly like a born one, and only satisfaction tells them apart, since a given lack quiets when filled and a made one does not. A persona arrives with musts, takes some in, and makes others; the composite is the whole of what they cannot do without.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so appetite reads wherever its atoms are cast. The link, advisory: a persona may link under Projection where the must driving them came from, and the audit surfaces where a play gives a persona a compulsion and never says whether it was theirs.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the needs, motivation, and addiction engines. Whether a must rings true -- a given that truly presses by prepotency, a taken that truly sits at its depth, a made that truly outlives its reward -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- needs, motivation, and addiction, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the persona's requirements from the three engines -- the prepotent lack from needs, the internalized demand from motivation, the manufactured need from addiction -- then read the bridge: the given when a basic deficit is claiming the front, the taken when a demand from outside is doing the pressing at whatever depth it reached, the made when a pursuit has installed a requirement the organism did not have. Read the persona by where the must came from, never as the word appetite alone -- and let the made carry the keystone: from inside, a must a persona made presses exactly like one they were born with."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-needs": "^0.1.0",
+    "@chbrain/khai-engine-motivation": "^0.1.0",
+    "@chbrain/khai-engine-addiction": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
