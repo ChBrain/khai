@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-owing",
+  "version": "0.1.0",
+  "description": "khai composite content, the owing domain: how an obligation between two persons is made, carried, and discharged -- the transfer that binds by naming no price, the obligation quantified into a claim, and the general equivalent that can close any account -- a wiring of the gift, debt, and money engines, staged as the giving, the owed, and the settling.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/owing"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "owing",
+    "tagline": "Owing as composite: how an obligation between two persons is made, carried, and discharged -- the transfer that binds precisely by naming no price (gift), the obligation quantified into a claim one holds over another (debt), and the general equivalent that can close any account at all (money) -- across the giving, the owed, and the settling, and the drama is that each stage makes the obligation more exact, until it is exact enough to be paid off and the tie it held goes with it.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_owing.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_owing_giving.md",
+        "type": "process",
+        "parent": "process_owing.md"
+      },
+      {
+        "file": "process_owing_owed.md",
+        "type": "process",
+        "parent": "process_owing.md"
+      },
+      {
+        "file": "process_owing_settling.md",
+        "type": "process",
+        "parent": "process_owing.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter, over three atoms it declares as dependencies -- the gift, debt, and money engines, the obligation between two persons read as one thing at three degrees of exactness. The root (process_owing.md) reads what passes between people and what it leaves behind: a transfer that binds because no price was named (gift), the same bond written as a number one party may call in (debt), and the token that converts anything into anything and so can discharge any claim (money). This composite adds no fourth engine; it wires the seam the three make -- an obligation growing more exact at every stage -- and reads that exactness is what finally dissolves it.",
+      "issue": "Three bridges, the degrees to which an obligation is made exact. The Giving: a transfer that is not a commodity exchange, that must look voluntary or it is not a gift, and whose obligation must not be named or the relationship cannot function -- give, receive, reciprocate, each binding, and the interval between receiving and returning the very thing that makes it a relationship rather than a transaction (gift). The Owed: the bond written as a figure -- a claim the creditor holds on the debtor's future, setting two unequal stances and dressing an unequal tie as a temporary one, running from incurring through servicing to discharge or default, where the moral weight of the owing outlives the sum (debt). The Settling: the twist -- the general equivalent that prices the unlike and converts anything into anything, that buys the holder the freedom to wait where others must act, and that people earmark back into meaning precisely because they feel what the abstraction costs (money) -- where the shape is seen for what it is: a return identical to the gift closes the account, and an account that can be closed exactly is a tie with nothing left holding it. A persona gives, owes, and settles; the composite is the whole life of an obligation.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so owing reads wherever its atoms are cast. The link, advisory: a persona may link under Projection the degree of exactness the obligation between them has reached, and the audit surfaces where a play moves value between two people without reading what it left behind.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the gift, debt, and money engines. Whether an obligation rings true -- a gift that truly binds, a debt that truly sets a claim, a settlement that truly costs the relation -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- gift, debt, and money, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast what passes between two personas from the three engines -- the unpriced transfer from gift, the quantified claim from debt, the general equivalent from money -- then read the bridge: the giving when the obligation must stay unnamed, the owed when it has become a figure one party may call in, the settling when it can be discharged and walked away from. Read the persona as bound by what is still outstanding, never as the word owing alone -- and let the settling carry the keystone: what settles the account ends the relation."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-gift": "^0.1.0",
+    "@chbrain/khai-engine-debt": "^0.1.0",
+    "@chbrain/khai-engine-money": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
