@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-ingraining",
+  "version": "0.1.0",
+  "description": "khai composite content, the ingraining domain: how a response gets installed until it runs without consulting why -- the cue that comes to predict, the outcome valued by its nearness, and the repetition that grooves the act into the context -- a wiring of the conditioning, reward, and habit engines, staged as the pairing, the discount, and the groove.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/ingraining"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "ingraining",
+    "tagline": "Ingraining as composite: how a response gets installed until it runs without consulting why -- the cue that comes to predict an outcome (conditioning), the outcome valued by how near it is (reward), and the repetition that grooves the act into its context (habit) -- across the pairing, the discount, and the groove, and the drama is that each stage shortens the loop between situation and act until the consequence has dropped out of it altogether.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_ingraining.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_ingraining_pairing.md",
+        "type": "process",
+        "parent": "process_ingraining.md"
+      },
+      {
+        "file": "process_ingraining_discount.md",
+        "type": "process",
+        "parent": "process_ingraining.md"
+      },
+      {
+        "file": "process_ingraining_groove.md",
+        "type": "process",
+        "parent": "process_ingraining.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter, over three atoms it declares as dependencies -- the conditioning, reward, and habit engines, the installing of a response read as one pipeline. The root (process_ingraining.md) reads how conduct gets laid down: a neutral cue acquiring the power to predict (conditioning), an outcome weighed by how near it stands (reward), and a response repeated in a stable context until it runs without being summoned (habit). This composite adds no fourth engine; it wires the seam the three make -- a loop from situation to act that shortens at every stage -- and reads that what is finally installed no longer consults the reason it was installed for.",
+      "issue": "Three bridges, the stages by which a response is laid down. The Pairing: a neutral cue that reliably precedes something significant comes to evoke the response in advance, acquired over repetitions, spreading by generalization to what resembles it, and fading by extinction when the prediction stops being kept (conditioning) -- the first shortening, since the outcome no longer has to arrive to be answered. The Discount: the outcome weighed by its distance, the near looming large and the far thinning out, so a persona reads its choices through a discount rate that makes the immediate heavy, the deferred faint, and delay itself something to be escaped (reward) -- the second shortening, since the consequence far enough away barely enters the sum. The Groove: the twist -- the response repeated in a stable context until repetition passes a threshold and it no longer needs summoning, cued by the setting rather than chosen, running with an automaticity that stops consulting the goal, and revealed only when friction removes the cue (habit) -- where the pipeline is seen for what it is: a cue can fire when the response is no longer wanted, because the strength of the link lies in the pairing and not in what the act is now worth. A persona pairs, discounts, and grooves; the composite is the whole installing of conduct.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so ingraining reads wherever its atoms are cast. The link, advisory: a persona may link under Projection the stage at which a response is being installed, and the audit surfaces where a play has a persona act out of habit without naming what laid it down.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the conditioning, reward, and habit engines. Whether a persona's installing rings true -- a pairing that truly predicts, a discount that truly bends the choice, a groove that truly runs unbidden -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- conditioning, reward, and habit, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the persona's installed conduct from the three engines -- the predictive cue from conditioning, the temporal weighing from reward, the context-cued automaticity from habit -- then read the bridge: the pairing when a cue is acquiring its power, the discount when nearness is deciding what an outcome is worth, the groove when the act has stopped being chosen. Read the persona as running conduct that was installed, never as the word ingraining alone -- and let the groove carry the keystone: what is finally installed no longer consults the reason it was installed for."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-conditioning": "^0.1.0",
+    "@chbrain/khai-engine-reward": "^0.1.0",
+    "@chbrain/khai-engine-habit": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
