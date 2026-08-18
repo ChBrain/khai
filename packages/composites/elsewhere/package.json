@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-elsewhere",
+  "version": "0.1.0",
+  "description": "khai composite content, the elsewhere domain: the mind in a place it is not -- the scene built on purpose and held apart from belief, the story world entered with the guard lowered by the entering, and the past assembled from a trace and returned as a report -- a wiring of the imagination, transportation, and memory engines, staged as the conjured, the borrowed, and the rebuilt.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/elsewhere"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "elsewhere",
+    "tagline": "Elsewhere as composite: the mind in a place it is not -- the scene built on purpose and quarantined from belief so it can be worked (imagination), the story world entered with the guard lowered by the entering itself (transportation), and the past assembled from a trace and a cue and handed back as a report (memory) -- across the conjured, the borrowed, and the rebuilt, ordered by how much the persona knows they are constructing, and the drama is that the faculty trusted most is the one running with no quarantine at all.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_elsewhere.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_elsewhere_conjured.md",
+        "type": "process",
+        "parent": "process_elsewhere.md"
+      },
+      {
+        "file": "process_elsewhere_borrowed.md",
+        "type": "process",
+        "parent": "process_elsewhere.md"
+      },
+      {
+        "file": "process_elsewhere_rebuilt.md",
+        "type": "process",
+        "parent": "process_elsewhere.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter, over three atoms it declares as dependencies -- the imagination, transportation, and memory engines, the one constructive faculty read at three settings of the guard. The root (process_elsewhere.md) reads what a mind does when it is not where it is: it builds a scene on purpose and holds it apart from belief (imagination), it is carried into a world someone else built and comes back changed (transportation), and it assembles a past from a trace and a cue and files the assembly back (memory). This composite adds no fourth engine; it wires the seam the three make -- the same recombining machinery, differing only in whether the persona knows it is running -- and reads that the case presenting as retrieval is the one constructing unmarked.",
+      "issue": "Three bridges, ordered by how much the persona knows they are constructing. The Conjured: the deliberate turn from the present to hold before the mind what is not there -- the quasi-perceptual image summoned before the mind's eye (conjuring), the as-if premise entertained without belief (supposition), and the novel scenario assembled from remembered and invented parts and run forward to see how it would go (simulation) -- all inside an offline quarantine, the made state marked off from what is believed and perceived, which is exactly what lets it be turned, extended, and combined. The Borrowed: attention, imagery, and feeling converging on a tale until the room recedes and the story's events become the persona's present, entered as one of entry, imagery, and resonance and tuned by a standing transportability -- and the quarantine spent rather than held, since the transported persona is less able to counterargue, its defences lowered by the very engagement, so a story moves and persuades where an argument cannot. The Rebuilt: the twist -- a cue landing on a trace, the persona assembling what was from the two together and filling the gaps with what fits, returning it changed and filing it back changed, so the past carried forward is the last reconstruction and not the original -- where the seam is seen for what it is: the same flexible recombination that makes a future scenario possible is what makes a memory unreliable, and here alone nobody marked the construction as one. A persona conjures, borrows, and rebuilds; the composite is the whole of being somewhere it is not.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so elsewhere reads wherever its atoms are cast. The link, advisory: a persona may link under Projection which construction they are running, and the audit surfaces where a play treats a persona's recollection as evidence.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the imagination, transportation, and memory engines. Whether a construction rings true -- a quarantine truly held, a guard truly lowered, a gap truly filled with what fits -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- imagination, transportation, and memory, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the persona's constructions from the three engines -- the deliberate made representation from imagination, the entered narrative world from transportation, the assembled past from memory -- then read the bridge: the conjured when the persona is building and knows it, the borrowed when they are in a world someone else made and the guard is down, the rebuilt when what is returning presents as report. Read the persona as constructing in all three, never as the word elsewhere alone -- and let the rebuilt carry the keystone: the faculty a persona trusts most is the one running with no quarantine at all."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-imagination": "^0.1.0",
+    "@chbrain/khai-engine-transportation": "^0.1.0",
+    "@chbrain/khai-engine-memory": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
