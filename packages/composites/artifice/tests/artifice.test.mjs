@@ -1,7 +1,7 @@
 // The artifice composite tests only what is composite-specific: canon
 // conformance through the shared kit (which resolves the hard package links
-// through the declared dependencies -- here, five engines), the manifest
-// contract, compose(), and that all five atoms arrive with the package.
+// through the declared dependencies -- here, six engines), the manifest
+// contract, compose(), and that all six atoms arrive with the package.
 
 import { describe, it, expect } from "vitest";
 import { fileURLToPath } from "node:url";
@@ -54,15 +54,40 @@ describe("artifice: manifest", () => {
   });
 });
 
-describe("artifice: the atoms are five design engines", () => {
-  it("re-exports all five dependency engines", () => {
+describe("artifice: the atoms are six design engines", () => {
+  it("re-exports all six dependency engines", () => {
     expect(Object.keys(atoms).sort()).toEqual([
       "agency",
       "captology",
+      "choice-architecture",
       "ergonomics",
       "guile",
       "usability",
     ]);
+  });
+
+  // The sixth force is the one an object cannot be without: five of the atoms
+  // read something a maker may simply not have done, and choice-architecture
+  // reads a setting that exists whether or not anyone set it. That asymmetry is
+  // what the composite's three bridges were re-cut around, so pin the atom's own
+  // shape here -- a piece engine over an arrangement root and four facets.
+  it("wires the arrangement atom as a piece engine over four facets", () => {
+    const ca = atoms["choice-architecture"].manifest;
+    expect(ca.engine).toBe("choice-architecture");
+    expect(ca.type).toBe("piece");
+    expect(ca.members.find((m) => m.parent === null).file).toBe("piece_choice_architecture.md");
+    expect(ca.members.filter((m) => m.parent !== null).map((m) => m.file)).toEqual([
+      "piece_preset.md",
+      "piece_sludge.md",
+      "piece_ordering.md",
+      "piece_assortment.md",
+    ]);
+  });
+
+  it("keeps every atom on the piece type, so all six read on one object", () => {
+    for (const [name, atom] of Object.entries(atoms)) {
+      expect(atom.manifest.type, name).toBe("piece");
+    }
   });
 });
 
