@@ -52,6 +52,7 @@
           ".github/**",
           ".husky/**",
           "khai-guard.config.json",
+          "vitest.config.mjs",
           ".prettierignore",
           "docs/BRANCHING.md",
           "docs/BOUNDARY.md",
