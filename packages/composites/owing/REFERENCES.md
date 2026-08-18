@@ -24,16 +24,26 @@ the standing composite's; nor a shared resource governed by its own users, which
 engine's; nor the felt lack that captures the mind, which is the scarcity engine's. It owns the
 claim: what one persona is still carrying because of something another handed over.
 
-The spine is a single line of argument running from anthropology through sociology to the history
-of money, all of it converging on one observation -- that what binds two people is the part of
-the account that has not been squared. Mauss established the triple obligation, to give, to
+The spine is Graeber's _Debt_, which is where the three degrees are argued as one history rather
+than asserted here. His central distinction is this composite's: unlike other forms of obligation
+a debt can be _precisely quantified_, and it is the quantification that lets a debt become simple,
+cold, and impersonal, and therefore transferable. Beneath it he sets what he calls human
+economies, running on the radical incalculability of a life and on open-ended reciprocity -- bonds
+made and remade through gifts and sociability, where nothing is squared because nothing is
+counted; above it he sets the coinage of the Axial age, which put a figure on portions of those
+economies, and he argues the passage between them is not gradual but forced, the informal
+indebtedness of a human economy replaced by mathematically precise and enforceable debt through
+violence, usually a state's. That is the ladder: incalculable, quantified, dischargeable, with the
+cost of each step named. Gregory's _Gifts and Commodities_ sets the same axis in the ethnographic
+register. What this composite adds on top is the reading of the last step as a loss to the parties
+rather than only to the society -- that what can be settled in full is what stops holding anyone.
+The atoms supply the degrees. Mauss established the triple obligation, to give, to
 receive, and to reciprocate, and the structural fact that the gift must appear free; Bourdieu
 named the mechanism as misrecognition, and located the bond in the **interval** between gift and
 counter-gift, since a return that arrives at once and in equal measure converts a relationship
-into a transaction. Graeber carried the same logic to quantified obligation: a debt is what
-happens when a bond is made exact enough to be enforced and transferred, and the creditor-debtor
-relation is unequal for as long as it stands, with Nietzsche's genealogy supplying the tie between
-_Schuld_ as debt and _Schuld_ as guilt. Simmel completed the arc: money as the pure means become
+into a transaction. On the quantified degree, Nietzsche's genealogy supplies the tie between
+_Schuld_ as debt and _Schuld_ as guilt, and the weight of owing that outlives the sum. Simmel
+completed the arc: money as the pure means become
 an end, dissolving personal ties into a universal quantity, buying its holder a freedom whose
 price is that qualities become comparable -- against which Zelizer documented the counter-move,
 earmarking, in which people dress fungible sums back in meaning precisely because they feel what
@@ -43,16 +53,19 @@ settling.
 ## Origin
 
 The anthropology of exchange, the morality of debt, and the sociology of money, wired as a
-composite over the gift, debt, and money engines.
+composite over the gift, debt, and money engines. The first two rows are the **joining** -- the
+published work that argues these degrees are one progression -- and the rest anchor the individual
+bridges.
 
-| Source                  | Key Work                                                                              | Scope                                                                                                                                                                                                                  |
-| :---------------------- | :------------------------------------------------------------------------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Marcel Mauss**        | _The Gift: The Form and Reason for Exchange in Archaic Societies_ (1925; trans. 1990) | The triple obligation to give, receive, and reciprocate; gift exchange set against commodity exchange; the social function of the gift's apparent freedom. The giving bridge and the root.                             |
-| **Pierre Bourdieu**     | _Outline of a Theory of Practice_ (1972; trans. 1977), ch. 4                          | Misrecognition as structural necessity, and the interval between gift and counter-gift as what makes an exchange a relationship -- an immediate, equal return closes the account. The giving bridge, and the keystone. |
-| **David Graeber**       | _Debt: The First 5,000 Years_ (2011)                                                  | Debt as quantified, enforceable, transferable obligation; the inequality of the creditor-debtor relation while the claim stands; the morality that makes debts binding. The owed bridge.                               |
-| **Georg Simmel**        | _The Philosophy of Money_ (1900)                                                      | Money as the general equivalent that dissolves personal ties into quantity, and the freedom it buys its holder at the cost of qualities becoming comparable. The settling bridge, the keystone.                        |
-| **Viviana Zelizer**     | _The Social Meaning of Money_ (1994)                                                  | Earmarking: people marking fungible sums as special by source and destination, defeating money's own logic -- the counter-move that shows what the abstraction costs. The settling bridge.                             |
-| **Friedrich Nietzsche** | _On the Genealogy of Morality_ (1887), 2nd essay                                      | The creditor-debtor relation as an origin of moral feeling; the tie between debt and guilt, and the weight of owing that outlives the sum. The owed bridge.                                                            |
+| Source                  | Key Work                                                                              | Scope                                                                                                                                                                                                                                                                                                                                                                                 |
+| :---------------------- | :------------------------------------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **David Graeber**       | _Debt: The First 5,000 Years_ (2011)                                                  | **The joining.** The three degrees as one history: human economies running on the incalculability of a life and open-ended reciprocity; the quantification that alone lets an obligation become impersonal and therefore transferable; and the coinage that put a figure on portions of those economies -- the passage between them forced rather than gradual. Also the owed bridge. |
+| **Chris A. Gregory**    | _Gifts and Commodities_ (1982)                                                        | **The joining, in the ethnographic register.** The gift/commodity axis as a single analytic distinction rather than two subjects -- objects that carry a relation between persons set against objects that carry a quantity between things.                                                                                                                                           |
+| **Marcel Mauss**        | _The Gift: The Form and Reason for Exchange in Archaic Societies_ (1925; trans. 1990) | The triple obligation to give, receive, and reciprocate; gift exchange set against commodity exchange; the social function of the gift's apparent freedom. The giving bridge and the root.                                                                                                                                                                                            |
+| **Pierre Bourdieu**     | _Outline of a Theory of Practice_ (1972; trans. 1977), ch. 4                          | Misrecognition as structural necessity, and the interval between gift and counter-gift as what makes an exchange a relationship -- an immediate, equal return closes the account. The giving bridge, and the keystone.                                                                                                                                                                |
+| **Georg Simmel**        | _The Philosophy of Money_ (1900)                                                      | Money as the general equivalent that dissolves personal ties into quantity, and the freedom it buys its holder at the cost of qualities becoming comparable. The settling bridge, the keystone.                                                                                                                                                                                       |
+| **Viviana Zelizer**     | _The Social Meaning of Money_ (1994)                                                  | Earmarking: people marking fungible sums as special by source and destination, defeating money's own logic -- the counter-move that shows what the abstraction costs. The settling bridge.                                                                                                                                                                                            |
+| **Friedrich Nietzsche** | _On the Genealogy of Morality_ (1887), 2nd essay                                      | The creditor-debtor relation as an origin of moral feeling; the tie between debt and guilt, and the weight of owing that outlives the sum. The owed bridge.                                                                                                                                                                                                                           |
 
 ## Restrictions
 
