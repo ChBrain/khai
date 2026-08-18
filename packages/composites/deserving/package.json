@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-deserving",
+  "version": "0.1.0",
+  "description": "khai composite content, the deserving domain: what a persona holds another to have coming -- the foundation that fires and names the conduct right or wrong, the price the persona will pay out of pocket to make the breaker answer, and the small lift felt when the fall arrives -- a wiring of the moral-judgment, altruistic-punishment, and schadenfreude engines, staged as the lens, the price, and the lift.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/deserving"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "deserving",
+    "tagline": "Deserving as composite: what a persona holds another to have coming -- the moral foundation that fires first and names the conduct right or wrong before the reasons are gathered (moral-judgment), the price the persona will pay out of its own pocket to make a norm-breaker answer, with nothing material coming back (altruistic-punishment), and the small lift felt when the fall arrives, frequently hidden and reliably present (schadenfreude) -- across the lens, the price, and the lift, ordered by what the persona will avow, and the drama is that the response they will not admit to is the one that reports their verdict most exactly.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_deserving.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_deserving_lens.md",
+        "type": "process",
+        "parent": "process_deserving.md"
+      },
+      {
+        "file": "process_deserving_price.md",
+        "type": "process",
+        "parent": "process_deserving.md"
+      },
+      {
+        "file": "process_deserving_lift.md",
+        "type": "process",
+        "parent": "process_deserving.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter, over three atoms it declares as dependencies -- the moral-judgment, altruistic-punishment, and schadenfreude engines, a persona's whole response to what someone else did and what became of them. The root (process_deserving.md) reads one judgment of desert showing up three ways: the fast verdict a moral foundation lays down before the reasons are gathered (moral-judgment), the sanction the persona will absorb a personal cost to impose (altruistic-punishment), and the private gladness when the fall lands (schadenfreude). This composite adds no fourth engine; it wires the seam the three make -- deservingness, read as a lens, spent as a price, and felt as a lift -- and reads that the felt one is the least avowed and the most exact.",
+      "issue": "Three bridges, ordered by what a persona will avow. The Lens: a standing set of moral foundations of which one lights first -- care, fairness, loyalty, authority, sanctity, or liberty -- laying the verdict down before the argument is assembled, so the conduct arrives already weighed and there is no plain seeing left to start from (moral-judgment). The Price: the breach read as a norm violation rather than a private slight, met by a persona willing to be the one who answers it -- docking the defector, refusing the deal, exposing the cheat, spending money, effort, safety, or standing with nothing material coming back and retaliation possible, second-party where the persona was wronged and third-party where it was not (altruistic-punishment); the cost is the point, since an act that paid its author would need no explaining. The Lift: the twist -- the fall of the deserving felt as justice, of the envied as relief, of the disliked for itself, a pleasure the persona did not cause and frequently hides, knowing it unbecoming (schadenfreude) -- where the seam is seen for what it is: the same deservingness judgment that licenses the sanction licenses the gladness, so the response a persona would deny is the one that reports the verdict without the argument attached. A persona judges, pays, and is gladdened; the composite is the whole of what they hold another to have coming.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so deserving reads wherever its atoms are cast. The link, advisory: a persona may link under Projection what they hold another to have coming, and the audit surfaces where a play shows a fall and never says who was glad.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the moral-judgment, altruistic-punishment, and schadenfreude engines. Whether a desert rings true -- a foundation that truly fires first, a price truly absorbed, a lift truly licensed by the target's standing -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- moral-judgment, altruistic-punishment, and schadenfreude, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the persona's response from the three engines -- the foundation that fires from moral-judgment, the costly sanction from altruistic-punishment, the private gladness from schadenfreude -- then read the bridge: the lens when the verdict is landing ahead of its reasons, the price when the persona is spending to make someone answer, the lift when a fall has arrived and been enjoyed. Read the persona through what they hold another to have coming, never as the word deserving alone -- and let the lift carry the keystone: the response a persona will not avow is the one that reports their verdict most exactly."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-moral-judgment": "^0.1.0",
+    "@chbrain/khai-engine-altruistic-punishment": "^0.1.0",
+    "@chbrain/khai-engine-schadenfreude": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
