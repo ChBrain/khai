@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-assent",
+  "version": "0.1.0",
+  "description": "khai composite content, the assent domain: how a persona holds something true, and what evidence can reach -- the belief that disconfirmation bears on and settles, the link that cannot be disproved from within, and the orientation held prior to any claim proved or disproved -- a wiring of the belief, superstition, and faith engines, staged as the exposed, the sealed, and the prior.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/assent"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "assent",
+    "tagline": "Assent as composite: how a persona holds something true, and what evidence can reach -- the belief that disconfirming evidence bears on, and settles by updating, rationalizing, denying, converting, or suspending (belief); the link between things that share no mechanism, which does not yield because it cannot be disproved from within (superstition); and the standing orientation toward an unseen order, held prior to and apart from any single claim proved or disproved (faith) -- across the exposed, the sealed, and the prior, and the drama is that being out of reach of evidence is not one condition but two, and only one of them is an evasion.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_assent.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_assent_exposed.md",
+        "type": "process",
+        "parent": "process_assent.md"
+      },
+      {
+        "file": "process_assent_sealed.md",
+        "type": "process",
+        "parent": "process_assent.md"
+      },
+      {
+        "file": "process_assent_prior.md",
+        "type": "process",
+        "parent": "process_assent.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter, over three atoms it declares as dependencies -- the belief, superstition, and faith engines, a persona's holdings read by what evidence can do to them. The root (process_assent.md) reads the relation rather than the content: a conviction that disconfirming evidence bears on and forces to a settlement (belief), a link between things sharing no mechanism whose failures are absorbed as a broken condition rather than counted against it (superstition), and an orientation toward an unseen order that was never a claim in the market for proof (faith). This composite adds no fourth engine; it wires the seam the three make -- three distances between a holding and the evidence that could touch it -- and reads that the last two are unarguable for opposite reasons.",
+      "issue": "Three bridges, the distances between a holding and the evidence that bears on it. The Exposed: a conviction the world can press on, where the weight of the reading meets the hold of the belief and one gives way -- the model corrected (update), the slack in the evidence worked until the wanted conclusion survives (rationalize), the reading refused outright (deny), the long-strained frame flipping wholesale for a rival (convert), or the contradiction carried unresolved (suspend) -- and only the first is what the persona would have said they were doing (belief). The Sealed: a link read by contact, resemblance, control, sign, or luck, routed round the mechanism, where the null result reads as the wrong rite, the broken condition, or the dormant charge but never as no link at all, so the read changes when the persona stops granting it power and not when an outcome contradicts it (superstition). The Prior: the twist -- a standing orientation toward an unseen order, held before any tenet is stated or tested, that does not argue the order into being and cannot be argued out of it, and whose cost is that the footing includes a relation that cannot be verified (faith) -- where the shape is seen for what it is: the sealed and the prior are equally out of reach of evidence, and they are out of reach for opposite reasons, one a claim built so nothing counts against it and one no claim at all. A persona is pressed, is sealed, or stands prior; the composite is the whole of what a holding will and will not answer to.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so assent reads wherever its atoms are cast. The link, advisory: a persona may link under Projection the distance at which they hold what they hold, and the audit surfaces where a play brings a persona evidence and assumes it lands.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the belief, superstition, and faith engines. Whether a holding rings true -- an exposure that truly settles, a seal that truly absorbs, a prior that truly stands beneath -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- belief, superstition, and faith, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the persona's holdings from the three engines -- the settlement with evidence from belief, the mechanism-free link from superstition, the standing orientation from faith -- then read the bridge: the exposed when a reading is pressing and a settlement is being made, the sealed when a failure is being absorbed rather than counted, the prior when what is held was never up for proof. Read the persona by what their holding will answer to, never as the word assent alone -- and let the prior carry the keystone: being out of reach of evidence is not one condition but two, and only one of them is an evasion."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-belief": "^0.1.0",
+    "@chbrain/khai-engine-superstition": "^0.1.0",
+    "@chbrain/khai-engine-faith": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
