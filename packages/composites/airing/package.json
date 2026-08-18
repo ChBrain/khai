@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-airing",
+  "version": "0.1.0",
+  "description": "khai composite content, the airing domain: what a working collective can hear about itself -- the stage its shared pattern has reached, the stance it is organised to value, and the climate that decides what a persona can risk saying -- a wiring of the group, org, and psychological-safety engines, staged as the stage, the stance, and the silence.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/airing"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "airing",
+    "tagline": "Airing as composite: what a working collective can hear about itself -- the stage its shared pattern has reached, from the first meeting to the scattering (group), the stance it is organised to value and pays to hold under pressure that wants the opposite (org), and the climate that decides what a persona can risk saying, held as a history of who spoke up and what followed (psychological-safety) -- across the stage, the stance, and the silence, and the drama is that a collective which reports more trouble is usually the healthier one, so the quiet room reads as the well-run room and is generally the opposite.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_airing.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_airing_stage.md",
+        "type": "process",
+        "parent": "process_airing.md"
+      },
+      {
+        "file": "process_airing_stance.md",
+        "type": "process",
+        "parent": "process_airing.md"
+      },
+      {
+        "file": "process_airing_silence.md",
+        "type": "process",
+        "parent": "process_airing.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter, over three atoms it declares as dependencies -- the group, org, and psychological-safety engines, the working collective a persona is inside read at three grains. The root (process_airing.md) reads not what the collective produces but what reaches it: the stage its shared pattern has arrived at (group), the stance it is organised to value and what that stance suppresses to get what it buys (org), and the interpersonal climate that decides whether a persona speaks (psychological-safety). This composite adds no fourth engine; it wires the seam the three make -- each grain deciding some part of whether what needs saying gets said -- and reads that the record a collective keeps of its own trouble is a measure of its health and is read as the opposite.",
+      "issue": "Three bridges, the grains at which a collective decides what it will hear. The Stage: the pattern between people forming over a context that repeats -- the forming that costs the revealing of nothing, the storming that begins the first time someone says what they actually think and the room flinches or does not, the norming in which the edges become understood and the room settles into a working shape, the performing that costs the forgetting of how hard the agreeing was, and the adjourning that ends it (group). The Stance: what the collective is organised to value, claimed as clan, adhocracy, market, or hierarchy and run as collaborate, create, compete, or control -- and the gap between the claim and the demand, since a hierarchy meeting an adhocracy demand still reaches for the form, and control runs on the record, so what was done is documented, what was documented is auditable, and what is auditable can be enforced (org). The Silence: the twist -- the climate held as a history of who spoke up and what followed, never stated and legible to everyone, running high, low, fragile where candour is priced above zero and the speaker calculates first, or performative where the declared norm of openness sits over an enforcement history that contradicts it (psychological-safety) -- where the seam is seen for what it is: the room that reports more trouble is not the one with more trouble, and a collective is most confident of its health exactly where nobody can afford to test it. A collective forms, takes a stance, and hears or does not; the composite is the whole of what reaches it.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so airing reads wherever its atoms are cast. The link, advisory: a persona may link under Projection the collective they are speaking inside, and the audit surfaces where a play reads a quiet room as a working one.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the group, org, and psychological-safety engines. Whether an airing rings true -- a stage that truly costs what it costs, a stance that truly suppresses what it buys, a silence that truly holds a history -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- group, org, and psychological-safety, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the collective from the three engines -- the developmental stage from group, the competing-values stance from org, the interpersonal climate from psychological-safety -- then read the bridge: the stage when the pattern between people is still being settled, the stance when what the collective is organised to value is deciding what gets raised, the silence when the cost of speaking is doing the work. Read the collective by what reaches it rather than by what it produces, never as the word airing alone -- and let the silence carry the keystone: the room that reports more trouble is usually the healthier one."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-group": "^0.1.0",
+    "@chbrain/khai-engine-org": "^0.1.0",
+    "@chbrain/khai-engine-psychological-safety": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
