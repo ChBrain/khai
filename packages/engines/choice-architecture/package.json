@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-choice-architecture",
+  "version": "0.1.0",
+  "description": "khai engine content, the choice-architecture domain: the arrangement of the options a piece offers -- what stands if nothing is done, what each path costs to take, where the options sit, and how many there are -- with no neutral setting available to the maker.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/choice-architecture"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "choice-architecture",
+    "tagline": "Choice architecture as piece: the arrangement of the options an object offers -- what stands if the user does nothing (preset), what each path costs to take (sludge), where the options sit and which is met first (ordering), and how many are offered at all (assortment) -- an arrangement the maker cannot decline to make, since every setting of it is a setting.",
+    "type": "piece",
+    "members": [
+      {
+        "file": "piece_choice_architecture.md",
+        "type": "piece",
+        "parent": null
+      },
+      {
+        "file": "piece_preset.md",
+        "type": "piece",
+        "parent": "piece_choice_architecture.md"
+      },
+      {
+        "file": "piece_sludge.md",
+        "type": "piece",
+        "parent": "piece_choice_architecture.md"
+      },
+      {
+        "file": "piece_ordering.md",
+        "type": "piece",
+        "parent": "piece_choice_architecture.md"
+      },
+      {
+        "file": "piece_assortment.md",
+        "type": "piece",
+        "parent": "piece_choice_architecture.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "piece",
+        "section": "Apparent",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Piece, on the Apparent chapter. The root (piece_choice_architecture.md) declares an object's choice architecture: the arrangement of the options it offers, which the maker cannot decline to make, because leaving a box unticked is a setting and putting the options in no particular order is an order. It reads the arrangement itself; it never re-owns the user's own tilt toward the standing option (the bias engine's default effect, read on a persona), an arrangement built to deceive (guile's, where the intent is the trick), a form that communicates its own use (usability's), or the reinforcement loop that conditions a return (captology's).",
+      "issue": "Four facets over an arrangement root. Preset: what stands if the user does nothing -- the strongest of the four by field evidence, and the one nobody can abstain from setting. Sludge: what each path costs to take, in steps, waits, and paperwork, raised to hold a user in or lowered to let them act, and set somewhere whether or not anyone chose it. Ordering: where the options sit, which is met first, and which is grouped with what. Assortment: how many options are offered at all -- carried with the honest caveat that the choice-overload result behind it is contested, its meta-analytic mean near zero. The tell is that the maker had to pick: usability asks whether the form communicates, guile asks whether it lies, and this asks what the arrangement made likely.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so choice architecture reads system-wide. The link: a piece that offers a user options links, under Apparent, the facet of its arrangement doing the work -- one of the four.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each option-offering piece links a real facet file under Apparent. Whether the arrangement rings true to the object -- and, separately, how strongly it moves anyone -- is semantic, taught and reviewed, never failed by the suite. The engine claims that the arrangement exists and had to be set; the size of its effect is a per-facet empirical question with very different answers, and the references carry them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each option-offering piece its facet under Apparent: what stands if nothing is done, what each path costs, where the options sit, how many there are. Keep it the arrangement and not the intent -- an arrangement that lies is guile's, an arrangement whose form fails to communicate is usability's -- and keep it the object's, not the user's, since the pull of the standing option is the bias engine's to read on the persona. Play it as the thing the maker could not abstain from: not what the object urged, but what it made easy."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
