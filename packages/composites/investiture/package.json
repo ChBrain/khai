@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-investiture",
+  "version": "0.1.0",
+  "description": "khai composite content, the investiture domain: how an object comes to carry an identity that is not in it -- taken into a single self, withheld from exchange and passed down a line, or set apart by an assembled collective -- a wiring of the extended-self, heirloom, and totem engines, staged as the held, the handed, and the hallowed.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/investiture"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "investiture",
+    "tagline": "Investiture as composite: how an object comes to carry an identity that is not in it -- taken into a single self so that losing it makes the self smaller (extended-self), withheld from exchange and passed down a line whose claim it makes visible (heirloom), or set apart by an assembled collective as the thing its we is lodged in (totem) -- across the held, the handed, and the hallowed, and the drama is that in every case the worth is not a property of the object, which is why no identical thing can replace it and why breaking it is felt as an injury to a person, a line, or a people.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_investiture.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_investiture_held.md",
+        "type": "process",
+        "parent": "process_investiture.md"
+      },
+      {
+        "file": "process_investiture_handed.md",
+        "type": "process",
+        "parent": "process_investiture.md"
+      },
+      {
+        "file": "process_investiture_hallowed.md",
+        "type": "process",
+        "parent": "process_investiture.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter, over three atoms it declares as dependencies -- the extended-self, heirloom, and totem engines, the object charged with an identity read as one thing at three widths. The root (process_investiture.md) reads how a thing comes to be worth more than it is: taken into one persona's own self so that its loss is a shrinkage of the person (extended-self), withheld from the market and passed along a line as the visible anchor of its claim (heirloom), or set apart by an assembled collective as the object its abstract we is lodged in (totem). This composite adds no fourth engine; it wires the seam the three share -- an object whose worth is not a property of the object -- and reads that this is exactly why nothing identical will do.",
+      "issue": "Three bridges, the widths at which a thing can be invested. The Held: an object taken into a single self through mastery, making, knowing, gift, or the sheer sediment of use, until having it is one way of being and its loss is grieved past the cost of replacement -- unless the persona first draws the self back out in a deliberate divestment that lets the thing go without tearing (extended-self). The Handed: an object formally withheld from the circuit of gifts and sales that moves everything else the line owns, held by one heir at a time but belonging to the line, brought out at successions and funerals to renew a claim that memory alone could not make hard to dispute -- and alienated the moment a price attaches, leaving the account without its anchor (heirloom). The Hallowed: the twist -- an object made sacred not by any property of its own but by the assembled group treating it as sacred, charged by the heat of the gathering and cooling without renewal, its prohibition making an attack on a piece of cloth an attack on the collective (totem) -- where the shape is seen for what it is: the disproportion between what the thing is and what it commands is the whole tell, and remove the investment and it is only a broken object. A persona holds, a line hands on, a people hallows; the composite is the whole of what an object is made to carry.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so investiture reads wherever its atoms are cast. The link, advisory: a persona may link under Projection the width at which they hold a charged object, and the audit surfaces where a play destroys, sells, or hands over a thing without reading whose identity was in it.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the extended-self, heirloom, and totem engines. Whether an investiture rings true -- a holding that truly enlarges, a handing that truly anchors, a hallowing that truly sets apart -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- extended-self, heirloom, and totem, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the charged object from the three engines -- the possession held as self from extended-self, the kept thing and its heir from heirloom, the sacred emblem and its adherent from totem -- then read the bridge: the held when one persona's identity is in it, the handed when a line's claim is, the hallowed when a collective's we is. Read the object through whose identity is in it, never as the word investiture alone -- and let the hallowed carry the keystone: what the object carries is not in the object."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-extended-self": "^0.1.0",
+    "@chbrain/khai-engine-heirloom": "^0.1.0",
+    "@chbrain/khai-engine-totem": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
