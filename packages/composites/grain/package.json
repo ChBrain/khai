@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-grain",
+  "version": "0.1.0",
+  "description": "khai composite content, the grain domain: the cultural settings a persona was formed along and cannot see -- how much room the norms leave, where the line around the self is drawn, and what makes a person worth something and how it is defended -- a wiring of the tightness-looseness, self-construal, and worth-logic engines, staged as the latitude, the bounds, and the worth.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/grain"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "grain",
+    "tagline": "Grain as composite: the cultural settings a persona was formed along and cannot see -- how strong the norms are and how much room they leave for stepping out (tightness-looseness), where the line around the self is drawn, from within or through its ties (self-construal), and what makes a person worth something and what a landed insult demands (worth-logic) -- across the latitude, the bounds, and the worth, and the drama is that a setting is invisible to whoever holds it, so a persona on different settings is read as a worse person rather than a differently made one.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_grain.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_grain_latitude.md",
+        "type": "process",
+        "parent": "process_grain.md"
+      },
+      {
+        "file": "process_grain_bounds.md",
+        "type": "process",
+        "parent": "process_grain.md"
+      },
+      {
+        "file": "process_grain_worth.md",
+        "type": "process",
+        "parent": "process_grain.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, on the Projection chapter, over three atoms it declares as dependencies -- the tightness-looseness, self-construal, and worth-logic engines, the settings a persona arrives already carrying from the culture that formed them. The root (process_grain.md) reads what is in place before any situation: the strength of the norm field and the latitude it grants (tightness-looseness), where the persona takes its own boundary to fall (self-construal), and the rule by which worth is assigned and defended (worth-logic). This composite adds no fourth engine; it wires the seam the three make -- three settings that co-vary, each trading one pole's good for the other's -- and reads that none of them is visible to the persona holding it.",
+      "issue": "Three bridges, the settings a persona is cut along. The Latitude: the strength of the norm field, a property of the regime rather than of anyone's yielding to it -- tight, where the rules are clear and strongly enforced and little deviance passes before sanction, or loose, where much passes and each act meets room to improvise -- and no regime gets both, the tighter buying order and coordination at the cost of variety, the looser buying openness at the cost of predictability. The Bounds: where the line around the self falls, as a separate unit defined from within by its own traits and consistent across situations, or as a connected part defined through its relationships, roles, and groups and realized by fitting and adjusting -- the default weighting of I against we brought to any dealing, and where, accordingly, the persona looks to source its worth. The Worth: the twist -- the cultural rule beneath the feeling, answering where worth comes from and what a landed insult demands: dignity, worth inherent and inalienable and insults deflected; honor, worth claimed and conferred and precarious, so a challenge cannot be let pass; or face, worth granted by position and held by propriety, so the order must not be breached to assert oneself -- where the shape is seen for what it is: each logic is a different answer to the same question, and the holder of one cannot see why the others answer it at all. A persona is set, bounded, and valued before it acts; the composite is the whole of what it brought and did not choose.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so grain reads wherever its atoms are cast. The link, advisory: a persona may link under Projection the settings it was formed along, and the audit surfaces where a play puts two personas from different worlds in a room and reads the friction as character.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency -- here, through the tightness-looseness, self-construal, and worth-logic engines. Whether a grain rings true -- a latitude that truly constrains, a boundary that truly weights, a worth-logic that truly sets what an insult costs -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- tightness-looseness, self-construal, and worth-logic, and through them their members. Declare the law in the Instructions Knowledge chapter, linking the root. Cast the persona's settings from the three engines -- the norm field's strength from tightness-looseness, the self-boundary from self-construal, the rule of worth from worth-logic -- then read the bridge: the latitude when the room a world leaves is doing the work, the bounds when the weighting of I against we is, the worth when an affront is being priced. Read the persona as carrying settings rather than holding opinions, never as the word grain alone -- and let the worth carry the keystone: a setting is invisible to whoever holds it, so a persona on different settings is read as a worse person rather than a differently made one."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-tightness-looseness": "^0.1.0",
+    "@chbrain/khai-engine-self-construal": "^0.1.0",
+    "@chbrain/khai-engine-worth-logic": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
