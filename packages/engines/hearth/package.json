@@ -1,0 +1,94 @@
+{
+  "name": "@chbrain/khai-engine-hearth",
+  "version": "0.1.0",
+  "description": "khai engine content, the hearth domain: the kept flame as an institution of a place -- a fire that is tended daily by a keeper, banked to survive the night, rekindled when lost, extinguished as loss or sanction, and perpetuated across centuries in sanctuary and temple, shown in the place's warmth and the keeper's life.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/hearth"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "hearth",
+    "tagline": "Hearth as process: the kept flame as an institution of a place -- a fire that is tended daily by a keeper, banked to survive the night, rekindled when lost, extinguished as loss or sanction, and perpetuated across centuries in sanctuary and temple, shown in the place's warmth and the keeper's life.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_hearth.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_stoking.md",
+        "type": "process",
+        "parent": "process_hearth.md"
+      },
+      {
+        "file": "process_banking.md",
+        "type": "process",
+        "parent": "process_hearth.md"
+      },
+      {
+        "file": "process_rekindling.md",
+        "type": "process",
+        "parent": "process_hearth.md"
+      },
+      {
+        "file": "process_going-cold.md",
+        "type": "process",
+        "parent": "process_hearth.md"
+      },
+      {
+        "file": "process_perpetual.md",
+        "type": "process",
+        "parent": "process_hearth.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Shown",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place, on the Shown chapter. The root (process_hearth.md) declares hearth as the kept flame -- a fire that is tended, the keeping a duty and an identity, the flame's state the household's state, shown in the place's warmth and continuity before anyone names it. It is the keeping itself, not the flame's mechanics (combustion's -- the candle, the burner, the flare), the place's burn regime and the fire that escapes the hearth (fire's), the rite performed around the flame (ritual's), or the flame made to stand for a keeper's own devotion or loss (the play's pitch, refused); the keeping reads as an institution the place is organized around.",
+      "issue": "Five modes over a kept flame root. Stoking is the daily keeping -- feeding, watching, the keeper's role (the vestal, the youngest child, the stoker), the flame as a clock of care; a fire is never \"on\", it is kept. Banking is the fire put to sleep -- coals buried in their own ash to survive the night with fuel and air withheld but heat held, the skill of banking, the morning's revival from the seed coal; the fire hidden but alive. Rekindling is the relight -- from one's own banked coal, from a carried ember, from a neighbour's hearth (with all the dependency and obligation borrowing fire means), from the new fire of a festival; the relight as renewal and as debt. Going cold is the hearth extinguished -- the cold hearth as the social event (departure, eviction, death, defeat, the extinguished line), deliberate quenching as sanction or grief, the cold hearth as public statement. Perpetual is the eternal flame -- the eternal flame as institution (Vesta's fire and its keepers, the Zoroastrian Atash Bahram fed five times daily, the sanctuary lamp, the memorial flame, the pilot light as its industrial descendant), and the crisis when a perpetual flame goes out, the chain of keepers broken.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so hearth reads system-wide and no place's kept flame is mere scenery. The link: a place carries, under Shown, the mode of the flame it keeps or kept, linking one of the five.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each place links a real mode file under Shown. Whether the mode is true to the place and its keeper, and whether the institution is read as kept and not as the keeper's personal feeling, is semantic, taught and reviewed, never failed by the suite. The place shows what is kept or was kept; it does not narrate it, and it never stands in for a keeper's own devotion or loss.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each place whose fire is kept or was kept its read under Shown: the mode its kept flame shows -- the stoking that feeds and watches it daily, the banking that puts it to sleep through the night in its own ash, the rekindling that revives it from coal or borrowed ember, the going cold that marks the household's or institution's end, or the perpetual that has burned for centuries and binds keeper to duty across time. Keep it the institution of the kept flame itself, not the flame's mechanics (hand that to combustion), the place's burn regime and the fire that escapes the hearth (to fire), or the rite performed around the flame (to ritual); the keeper's feeling belongs to the persona's own engines, and the flame as a keeper's mirror to the play's pitch. Read the obligation honestly: borrowing fire carries a debt written into the hearth; perpetual flames bind the relay of keepers across time; going cold is the end of the household or institution, not a temporary affair."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
