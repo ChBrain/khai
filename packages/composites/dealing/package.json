@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-dealing",
+  "version": "0.1.0",
+  "description": "khai composite content, the dealing domain: two parties who cannot get what they want without each other and can each impose costs -- the bargaining, the bet on the other's conduct, and the spiral -- with everything each side does to make itself safe being what puts the agreement out of reach.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/dealing"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "dealing",
+    "tagline": "Dealing as composite: two parties who cannot get what they want without each other and can each impose costs -- the bargaining they do (the table), the exposure they accept on conduct they cannot control (the bet), and the loop neither is steering (the spiral) -- wired over the negotiation, trust, and escalation engines, and closing on the discovery that everything each side does to make itself safe is what puts the agreement out of reach.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_dealing.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_dealing_table.md",
+        "type": "process",
+        "parent": "process_dealing.md"
+      },
+      {
+        "file": "process_dealing_bet.md",
+        "type": "process",
+        "parent": "process_dealing.md"
+      },
+      {
+        "file": "process_dealing_spiral.md",
+        "type": "process",
+        "parent": "process_dealing.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over three atoms it declares as dependencies. The root (process_dealing.md) reads the mixed-motive relation: two parties who cannot get what they want without each other and can each impose costs. The negotiation engine supplies the bargaining, the trust engine supplies the exposure accepted on conduct that cannot be controlled, and the escalation engine supplies the loop neither party is steering. This composite adds no fourth engine; it reads that these are not three relationships but three states of one, and that a pair is always in exactly one of them.",
+      "issue": "Three bridges, ordered by what each side has put at risk. The table: the bargaining itself, where positions are held or interests found and the zone of possible agreement is either widened or talked out of existence. The bet: the exposure one party accepts on the other's conduct, which is the cheapest instrument in the relation, since everything it supplies has to be bought with verification and enforcement when it is absent. The spiral, the twist: the loop where each response answers the last, every retaliation is locally justified, and the capacity to hurt the other -- acquired to strengthen a hand -- is what removes the agreement from reach.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the dealing read runs wherever its atoms are cast. The link, advisory: a persona may link under Projection the state the relation is in, and the audit surfaces where a play stages two parties who need each other and never says which of the three they are in.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's pair is genuinely at the table, genuinely exposed, or genuinely spiralling -- rather than simply disagreeing, which is not any of the three -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- negotiation, trust, escalation -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each pair for the state their relation is in and link it under Projection: the table where an agreement is being sought, the bet where exposure is being accepted or refused, the spiral where each move is answering the last. Keep both parties needing each other, since a party who can simply walk away is not dealing; keep every escalating move locally reasonable, since the composite's claim is that the process rather than the substance decides; and let each side be able to name the other, correctly, as the reason it failed."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-negotiation": "^0.1.1",
+    "@chbrain/khai-engine-trust": "^0.1.1",
+    "@chbrain/khai-engine-escalation": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
