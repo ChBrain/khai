@@ -1,0 +1,86 @@
+{
+  "name": "@chbrain/khai-composite-unbecoming",
+  "version": "0.1.0",
+  "description": "khai composite content, the unbecoming domain: what a room does to a persona whose role and whose read do not agree -- the two expectations both in place before anybody acts, the shortfall found before any conduct, and the penalty that arrives for meeting the role rather than for failing it.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/unbecoming"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "unbecoming",
+    "tagline": "Unbecoming as composite: what a room does to a persona whose role and whose read do not agree -- both expectations standing before anybody has acted (the read), the shortfall found in advance of any conduct so the persona is seen as having less of what the role wants (the shortfall), and the penalty that arrives for meeting the role's requirements rather than for failing them (the penalty) -- wired over the role and gender engines.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_unbecoming.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_unbecoming_read.md",
+        "type": "process",
+        "parent": "process_unbecoming.md"
+      },
+      {
+        "file": "process_unbecoming_shortfall.md",
+        "type": "process",
+        "parent": "process_unbecoming.md"
+      },
+      {
+        "file": "process_unbecoming_penalty.md",
+        "type": "process",
+        "parent": "process_unbecoming.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over two atoms it declares as dependencies. The root (process_unbecoming.md) reads a persona standing in a role while the room applies a read that does not agree with it. The role engine supplies the sanctioned expectations attached to a position -- what the occupant may do and be, and whether the persona matches, violates, exceeds, or receives unclear ones. The gender engine supplies the read the room applies before the persona speaks. This composite adds no third engine; it stages the incongruity that the role atom already names when it carries Eagly and Karau, and follows the penalty to the place nobody expects it: success.",
+      "issue": "Three bridges. The read: two sets of expectations already standing, neither of them the persona's doing, both applied before any conduct is available to judge. The shortfall: the descriptive form -- the persona seen as having less of what the role calls for, so the judgement lands on potential rather than on performance and there is nothing yet to point to. The penalty, the twist: the prescriptive form -- doing what the role requires violates what the read requires, so competence is granted and liking is withdrawn in the same motion, and the trigger is not failure but success.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the unbecoming read runs wherever its atoms are cast. The link, advisory: a persona may link under Projection the role they stand in and the read the room brings to it, and the audit surfaces where a play has a persona disliked for doing their job and never says what the disliking was made of.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's room is genuinely reading, genuinely finding a shortfall, or genuinely penalising is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- role and gender -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each persona whose position and whose read pull against each other, and link the state under Projection: the read where both expectations are standing, the shortfall where potential is being discounted, the penalty where competence is being granted and liking withdrawn. Keep the room reasonable and each judgement defensible on its own, since the composite is about a scissors and not about a villain; put the penalty on the success rather than on the failure; and do not let the persona name what is happening, because the whole difficulty is that there is no conduct that answers both demands."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-gender": "^0.1.7",
+    "@chbrain/khai-engine-role": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
