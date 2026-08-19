@@ -1,0 +1,86 @@
+{
+  "name": "@chbrain/khai-composite-meridian",
+  "version": "0.1.0",
+  "description": "khai composite content, the meridian domain: what a place gave up when it stopped taking its time from its own sky -- the ceiling it actually stands under, the beat it actually keeps, and the offset between them that everybody lives inside and nobody feels.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/meridian"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "meridian",
+    "tagline": "Meridian as composite: what a place gave up when it stopped taking its time from its own sky -- the ceiling it actually stands under, sun and season and starfield (the ceiling), the beat it actually keeps, calendar and schedule and tempo (the beat), and the offset between them, since a place's clock is set by a meridian it does not stand on and its own light has blinded out the ceiling it once steered by (the offset) -- wired over the celestial and social-time engines.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_meridian.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_meridian_ceiling.md",
+        "type": "process",
+        "parent": "process_meridian.md"
+      },
+      {
+        "file": "process_meridian_beat.md",
+        "type": "process",
+        "parent": "process_meridian.md"
+      },
+      {
+        "file": "process_meridian_offset.md",
+        "type": "process",
+        "parent": "process_meridian.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Shown",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place, over two atoms it declares as dependencies. The root (process_meridian.md) reads a place whose two clocks no longer agree. The celestial engine supplies the first: the sky's bodies as the place's own Shown, the sun governing day and season, the starfield as its fixed ceiling. The social-time engine supplies the second: the collective structuring of time the place keeps, its calendar, its schedule, its tempo, and the synchrony that binds. The join is the history of their severance -- local solar time abolished in favour of zone time, so a place's official noon is set by a meridian it does not stand on.",
+      "issue": "Three bridges. The ceiling: the sky the place is actually under, which does not negotiate -- the solar arc set by latitude and date, the seasons swinging between solstices, the starfield that was the oldest navigation. The beat: the time the place actually runs on, none of it read off the sky -- a calendar that is convention, a schedule imposed by clock-discipline, a tempo that quickens, and the synchrony that makes shared time feel like belonging rather than constraint. The offset, the twist: the two are no longer the same measurement, and the gap is invisible because everything agrees with everything except the sun -- and the place's own light has meanwhile put out the ceiling it once steered by.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the meridian read runs wherever its atoms are cast. The link, advisory: a place may link under Shown the sky it stands beneath and the time it keeps, and the audit surfaces where a play gives a place an hour and never says whether it is the sun's.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's place is genuinely under its ceiling, genuinely keeping a beat, or genuinely offset is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- celestial and social-time -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each place whose time is doing work in the play and link the state under Shown: the ceiling where the sky is, the beat where the calendar and the clock are, the offset where the two disagree. Give the place a latitude and a longitude and let the sky follow from them; keep the offset unremarked, since nobody in the place experiences it; and remember that the severance bought something real, so a play that stages it only as loss has taken half the composite."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-celestial": "^0.1.0",
+    "@chbrain/khai-engine-social-time": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
