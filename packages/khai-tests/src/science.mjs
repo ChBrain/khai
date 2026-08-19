@@ -263,24 +263,33 @@ function scholarKey(part, surname, homonyms) {
 }
 
 export function surnames(source, homonyms = {}) {
-  return (
-    source
-      .replace(/\bet al\.?/gi, "")
-      // Split on separators only; trimming handles surrounding whitespace. No
-      // whitespace quantifier wraps the alternation, so the match stays linear.
-      .split(/[,;&]|\s+and\s+/i)
-      .map((part) => stripQualifier(part))
-      .filter(Boolean)
-      .filter((part) => !NON_AUTHOR.has(part.toLowerCase()))
-      .map((part) => [part, surnameOf(part)])
-      // A scholar surname is a proper noun: it begins with an uppercase letter.
-      // This is the structural invariant that replaces per-row judgement — it
-      // drops "effect" (Boundary of the effect), "calculus" (The individual
-      // calculus), "2001" (Nobel 2001) and every future idiom of that shape
-      // without a list to maintain.
-      .filter(([, token]) => /^\p{Lu}/u.test(token))
-      .map(([part, token]) => scholarKey(part, token, homonyms))
-  );
+  // Distinct: one surname per scholar named, not per time they are named. A cell
+  // that pairs an author with a paper of theirs whose full author list repeats
+  // them -- "Myles Allen; Stott, Stone & Allen", "Tania Singer & Olga Klimecki;
+  // Klimecki, Leiberg, Lamm & Singer" -- names one Allen and one Singer, and
+  // without this emits the same scholar twice, so the index renders that engine's
+  // row twice under them. The contract above is one surname each; a Set is what
+  // makes the code say so.
+  return [
+    ...new Set(
+      source
+        .replace(/\bet al\.?/gi, "")
+        // Split on separators only; trimming handles surrounding whitespace. No
+        // whitespace quantifier wraps the alternation, so the match stays linear.
+        .split(/[,;&]|\s+and\s+/i)
+        .map((part) => stripQualifier(part))
+        .filter(Boolean)
+        .filter((part) => !NON_AUTHOR.has(part.toLowerCase()))
+        .map((part) => [part, surnameOf(part)])
+        // A scholar surname is a proper noun: it begins with an uppercase letter.
+        // This is the structural invariant that replaces per-row judgement — it
+        // drops "effect" (Boundary of the effect), "calculus" (The individual
+        // calculus), "2001" (Nobel 2001) and every future idiom of that shape
+        // without a list to maintain.
+        .filter(([, token]) => /^\p{Lu}/u.test(token))
+        .map(([part, token]) => scholarKey(part, token, homonyms)),
+    ),
+  ];
 }
 
 /** Distinct member types in an engine's tree (explicit members, or shorthand root). */

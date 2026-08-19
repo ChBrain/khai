@@ -112,6 +112,27 @@ describe("conformance: science index build-drift gate", () => {
     expect(surnames("Mayer, Davis & Schoorman")).toEqual(["Mayer", "Davis", "Schoorman"]);
     expect(surnames("Dan P. McAdams et al.")).toEqual(["McAdams"]);
   });
+
+  // One surname per scholar named, not per time they are named. A Source cell
+  // that pairs an author with a paper of theirs whose full author list repeats
+  // them is the ordinary way to cite a primary and a specific work together, and
+  // without a distinct pass it emits that scholar twice -- rendering the engine's
+  // row twice under them in the index.
+  it("surnames() names a repeated scholar once", () => {
+    expect(surnames("Myles Allen; Stott, Stone & Allen")).toEqual(["Allen", "Stott", "Stone"]);
+    expect(surnames("Jack W. Brehm; Sharon S. Brehm; Miron & Brehm")).toEqual(["Brehm", "Miron"]);
+  });
+
+  it("indexes an engine once under a scholar its Source cell repeats", () => {
+    addEngine("repeats", {
+      references: references([
+        ["Myles Allen; Stott, Stone & Allen", "Attribution (2004)", "The seam."],
+      ]),
+    });
+    const { records } = collectScience(dir);
+    const allen = records.filter((r) => r.surname === "Allen" && r.engine === "repeats");
+    expect(allen).toHaveLength(1);
+  });
 });
 
 // Dormant until the composite-scan source lands: the probe checks whether
