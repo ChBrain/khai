@@ -23,7 +23,7 @@ stamp:
 
 A patch of forest is felled, dried through a season, and burned so its nutrients fall as ash onto the ground to be planted.
 Swidden -- slash-and-burn, shifting cultivation, milpa, chitemene -- burns felled, sun-dried biomass in the open at 400-900 C; the agronomic point is the ash, a pulse of potassium, calcium, magnesium, and phosphorus and a pH rise that limes acid tropical soil, though the nitrogen is largely volatilised and lost. The patch is cut, dried through the dry season, and burned at its driest for the most complete consumption and the richest ash.
-It is fire used as a plough and a fertiliser at once: a burn whose product is the fertile ash it leaves for the crop.
+It is fire used as a plough and a fertiliser at once: a burn whose product is the fertile ash it leaves for the crop. The practices are their peoples' own -- the Maya milpa, the Bemba chitemene, and their kin across the tropics -- packaged here with credit, never claimed.
 
 ## Direction
 

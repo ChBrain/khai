@@ -23,7 +23,7 @@ stamp:
 
 A cloud of combustible dust hangs within its explosible concentration, finds an ignition, and deflagrates through itself.
 Dust explosion burns a suspended combustible dust -- grain, flour, sugar, coal, wood, metal, plastics, pharma -- as a cloud within its explosible range; the dust pentagon is fuel plus oxidiser plus ignition plus dispersion plus confinement, and the burn is a rapid deflagration rated by its Kst and Pmax into St classes.
-It is a solid made explosive by division: a material that would only smoulder in a heap, detonating once it is fine enough and airborne enough to burn all at once.
+It is a solid made explosive by division: a material that would only smoulder in a heap, exploding once it is fine enough and airborne enough to burn all at once.
 
 ## Direction
 

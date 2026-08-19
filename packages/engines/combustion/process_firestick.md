@@ -22,8 +22,8 @@ stamp:
 ## Initiated by
 
 Small cool fires are lit patch by patch, early in the dry season, keeping the fuel low so a hot fire has nothing to run on.
-Fire-stick farming -- cultural burning, patch or mosaic burning, cool or right-way fire, Indigenous fire stewardship -- keeps fine grass and litter low with a low-intensity backing or creeping fire, typically under 300-500 C, cool enough to spare canopies and fauna; frequent small burns prevent the fuel build-up that would feed a hot crown fire. It is lit early in the dry season in small patches, read from seasonal indicators -- flowering, wind, humidity -- rather than instruments.
-It is fire used as a tending hand: many small burns that keep the country from ever holding a big one.
+Fire-stick farming -- cultural burning, patch or mosaic burning, cool or right-way fire, Indigenous fire stewardship -- keeps fine grass and litter low with a low-intensity backing or creeping fire -- flames under a metre, brief residence, cool in intensity though not in flame temperature, sparing canopies and fauna; frequent small burns prevent the fuel build-up that would feed a hot crown fire. It is lit early in the dry season in small patches, read from seasonal indicators -- flowering, wind, humidity -- rather than instruments.
+It is fire used as a tending hand: many small burns that keep the country from ever holding a big one. The practice is Aboriginal Australian peoples' own, tens of millennia of cultural burning; the name is Rhys Jones's coinage -- packaged here with credit, never claimed.
 
 ## Direction
 

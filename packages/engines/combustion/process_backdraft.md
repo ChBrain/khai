@@ -41,4 +41,4 @@ Open it at the wrong height or time and the room explodes; recognise it and vent
 
 The fireball out the opening, disproportionate to the small fire that seemed to be dying.
 Backdraft is read by its pre-signs -- smoke pulsing and "breathing" in and out of gaps, blackened oily condensate on the windows, whistling and sucking at cracks, little or no visible flame, hot pressurised smoke under doors -- then, on air admission, a low whoomp, an inrush whistle, and the vented fireball. It is why a decayed but sealed compartment is read as backdraft-primed.
-Backdraft is dated from the inrush, the moment air reached the waiting gas and it detonated back at the door.
+Backdraft is dated from the inrush, the moment air reached the waiting gas and it deflagrated back at the door.

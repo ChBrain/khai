@@ -22,7 +22,7 @@ stamp:
 ## Initiated by
 
 A crew lights a fire ahead of the main front so the two burn toward each other and the ground between them is gone before the wildfire arrives.
-Backfire -- backburn, counter-fire, burning out -- is set from an anchor (a road, a stream, a dozer line) with drip torch, fusee, or aerial spheres; a backing fire burns cool at 200-500 C with long residence, while a counter-fire drawn into the main front's indraft flares to 800-1100 C. It fights fire with fire, deliberately enlarging the burn to deny the wildfire its fuel.
+Backfire -- backburn, counter-fire, burning out -- is set from an anchor (a road, a stream, a dozer line) with drip torch, fusee, or aerial spheres; a backing fire creeps at low fireline intensity -- flames under half a metre, tens of kilowatts per metre of line, long residence, its flame no cooler than any fire's -- while a counter-fire drawn into the main front's indraft leaps to a run of thousands of kilowatts per metre. It fights fire with fire, deliberately enlarging the burn to deny the wildfire its fuel.
 It is fire turned against fire: a burn made on purpose so the black widens to meet the front.
 
 ## Direction

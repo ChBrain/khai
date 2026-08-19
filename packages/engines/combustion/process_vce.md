@@ -23,12 +23,12 @@ stamp:
 
 A large flammable cloud ignites in congested plant and the flame accelerates until it builds a destructive pressure wave.
 Vapour cloud explosion -- VCE, unconfined VCE -- starts when a large flammable vapour cloud (LPG, ethylene, hydrocarbons) mixes with air to within its limits and ignites; unlike a flash fire, its destructive feature is flame acceleration generating blast overpressure.
-It is the same fuel as a flash fire turned lethal by geometry: a cloud that, given congestion, does not merely burn but detonates.
+It is the same fuel as a flash fire turned lethal by geometry: a cloud that, given congestion, does not merely burn but explodes.
 
 ## Direction
 
 Through the congestion, faster and faster, into overpressure and sometimes detonation.
-Vapour cloud explosion runs on turbulence: in congested or confined geometry -- pipe racks, process modules -- the flame accelerates as a deflagration, building overpressure, and in extreme cases undergoes deflagration-to-detonation transition; open uncongested clouds tend to give only a flash fire (Buncefield 2005, Flixborough 1974).
+Vapour cloud explosion runs on turbulence: in congested or confined geometry -- pipe racks, process modules (Flixborough 1974) -- the flame accelerates as a deflagration, building overpressure, and in extreme cases undergoes deflagration-to-detonation transition (Buncefield 2005, where dense roadside vegetation accelerated the flame to devastating overpressure despite an otherwise open, low-congestion site); truly open, unobstructed clouds tend to give only a flash fire.
 The direction is amplification by structure: the more the cloud must burn through, the harder it pushes.
 
 ## Lever
