@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-carrying",
+  "version": "0.1.0",
+  "description": "khai composite content, the carrying domain: what it costs a persona to hold an attribute that would discredit them -- known and discounted, moving from unknown to known, or held per encounter with no condition under which the holding ends.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/carrying"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "carrying",
+    "tagline": "Carrying as composite: what it costs a persona to hold an attribute that would discredit them -- the mark already known and discounting them in every encounter (the mark), the moment it moves from unknown to known by their choice or against it (the tell), and the mark held privately, decided again in every room, with no condition under which the holding ends (the keeping) -- wired over the stigma, secret, and shame engines.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_carrying.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_carrying_mark.md",
+        "type": "process",
+        "parent": "process_carrying.md"
+      },
+      {
+        "file": "process_carrying_tell.md",
+        "type": "process",
+        "parent": "process_carrying.md"
+      },
+      {
+        "file": "process_carrying_keeping.md",
+        "type": "process",
+        "parent": "process_carrying.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over three atoms it declares as dependencies. The root (process_carrying.md) reads what it costs to hold an attribute that would discredit its bearer. The stigma engine supplies the mark and the discounting it triggers, the secret engine supplies the machinery of holding information about oneself, and the shame engine supplies what the attribute does inside and the four directions it comes out. This composite adds no fourth engine; it stages the split the stigma atom already declares when it anchors Goffman -- discredited against discreditable -- and reads the two as different work rather than different amounts of the same trouble. It is the second composite to wire stigma, which the membership composite reads as a boundary the group keeps; here it is read from inside, as something a persona is carrying.",
+      "issue": "Three bridges, by who knows. The mark: the attribute already known, so the question is closed and the cost is borne in every encounter as discounting -- expensive, and settled, and it gives the bearer others who share it. The tell: the moment the attribute moves from unknown to known, chosen as disclosure or suffered as exposure, and what the shame compass does with it -- withdrawal, attack on the self, avoidance, or attack on whoever saw. The keeping, the twist: the attribute concealable and therefore concealed, decided again in every room, its work informational rather than social, private, continuous, and carrying no condition under which it is finished.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the carrying read runs wherever its atoms are cast. The link, advisory: a persona may link under Projection what they are carrying and who knows, and the audit surfaces where a play gives a persona a discrediting attribute and never says what holding it costs them.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's persona is genuinely marked, genuinely telling, or genuinely keeping is semantic, taught and reviewed, never failed by the suite. The comparison between the visible case and the concealable one carries a bound the references state.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- stigma, secret, shame -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each persona holding a discrediting attribute and link the state under Projection: the mark where it is known, the tell where it is changing hands, the keeping where it is held. Keep the attribute discrediting in the world of the play rather than in the author's, since a mark is made by a setting and not by a fact; give the keeping no scene, since its work happens in rooms where nothing is said; and never let a play resolve the keeping by having the persona simply tell, unless the play has also made the room safe to tell in."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-stigma": "^0.1.1",
+    "@chbrain/khai-engine-secret": "^0.1.1",
+    "@chbrain/khai-engine-shame": "^0.2.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
