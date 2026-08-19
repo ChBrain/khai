@@ -1,0 +1,86 @@
+{
+  "name": "@chbrain/khai-composite-tending",
+  "version": "0.1.0",
+  "description": "khai composite content, the tending domain: what happens in a persona who meets another's need -- the move toward relieving it, the move toward relieving their own state while appearing to turn toward, and the cost of doing it right over time.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/tending"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "tending",
+    "tagline": "Tending as composite: what happens in a persona who meets another's need -- the move toward relieving it (the turn), the move toward relieving their own state while appearing to turn toward (the flinch), and what sustained tending costs over time (the toll) -- wired over the compassion and caregiving engines, and closing on the discovery that the two failures are one, and it is not a shortage of caring but an excess of resonance.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_tending.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_tending_turn.md",
+        "type": "process",
+        "parent": "process_tending.md"
+      },
+      {
+        "file": "process_tending_flinch.md",
+        "type": "process",
+        "parent": "process_tending.md"
+      },
+      {
+        "file": "process_tending_toll.md",
+        "type": "process",
+        "parent": "process_tending.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over two atoms it declares as dependencies. The root (process_tending.md) reads what happens in a persona who meets another's need. The compassion engine supplies the other-focused state and the two responses that shadow it, and the caregiving engine supplies the behavioural system that acts on a felt need and what it costs to run. This composite adds no third engine; it reads that the two are one system seen at its feeling and its acting ends -- a join both atoms already declare, one citing the caregiving system as compassion's substrate and the other citing compassion's erosion as caregiving's characteristic injury -- and sorts what the persona does by where the relief is aimed.",
+      "issue": "Three bridges. The turn: the need met as the other's, with the move toward relieving it -- warm, sustained, and quieter than the alternatives. The flinch: the need landing as the persona's own distress, with the move aimed at relieving that instead, which departs when departing is easy, or places the other below in pity, or smothers them in a protection the carer needed more than they did. The toll, the twist: what sustained tending costs, where the second bridge turns out to be the same failure at a different timescale -- the persona who takes the suffering on rather than turning toward it leaves early if they can and burns out if they cannot, so what reads as the deepest caring is what ends the caring.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the tending read runs wherever its atoms are cast. The link, advisory: a persona may link under Projection where their relief is aimed, and the audit surfaces where a play shows a persona meeting somebody's need and never says what it did to them.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's persona is genuinely turning, genuinely flinching, or genuinely worn is semantic, taught and reviewed, never failed by the suite. The evidence behind the three is also not uniform, and the references state which parts are firm and which are a modest base carried honestly.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- compassion and caregiving -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each persona who meets a need for where the relief is aimed and link it under Projection: the turn where it is aimed at the other, the flinch where it is aimed at the persona's own state, the toll where the tending has been sustained and is costing. Keep the flinch sympathetic, since it is not hypocrisy and the persona cannot tell; keep the turn quieter than the flinch, since it is; and let the play's other personas mistake the loud one for the deep one, because they will."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-compassion": "^0.1.1",
+    "@chbrain/khai-engine-caregiving": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}

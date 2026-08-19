@@ -1,5 +1,5 @@
 ---
-updated: "2026-08-04"
+updated: "2026-08-19"
 ---
 
 # Fire: Reference
@@ -15,8 +15,9 @@ puts its fire regime in front of whoever enters: the char, the fuel, the fire sc
 green flush after. The domain does not model the fire-weather that primes the burn -- the
 heat, the wind, the low humidity -- which is the weather engine's; nor the drought that
 cures the fuel, which is hydrology's; nor the biological regrowth that follows, which is
-succession's; nor the fire from below, the eruption, which is geomorphology's. It models
-the combustion itself as a regime a place lives within, and reads it two ways: as the
+succession's; nor the fire from below, the eruption, which is geomorphology's; nor the
+named phenomenon a burn shows and its mechanism, which is the combustion engine's. It
+models the burn itself as a regime a place lives within, and reads it two ways: as the
 ruin that consumes the place, and as the renewal a fire-adapted place cannot do without.
 
 The spine is Pyne's argument that fire is not an accident that befalls a place but a
@@ -26,26 +27,30 @@ central paradox: that suppressing fire in a fire-adapted land does not remove it
 stores its fuel for a fiercer burn. Christensen made the ecology plain -- the systems
 that require fire, the seeds that need it, the succession it resets. And Davis read the
 politics of the burn, the built place that insists on standing where the fire regime
-guarantees it will burn. Rein carried the account below the flame, to smouldering
-combustion -- the slow, flameless, oxygen-starved burning of peat and organic soil that is
-the largest and most persistent fire on Earth, hidden, water-shedding, and able to
-overwinter and re-emerge. So the engine gives fire five modes of the burn -- ignition that
-starts it, creep that keeps it low and frequent, conflagration that runs it, smoulder that
-burns it on flameless below the surface, exclusion that fights and defers it -- and keeps a
-sixth, renewal, the same fire read as the making-new a fire-adapted place is built around.
+guarantees it will burn. Turetsky and colleagues read the fire below at the same regime
+altitude: the world's peatlands as places whose ground is itself the fuel, whose water
+table governs whether that fire can wake, and whose draining -- by hand, by drought, by a
+warming climate -- converts the wet, unburnable place into one that burns beneath itself
+for a season at the cost of its stored carbon. So the engine gives fire five modes of the
+burn -- ignition that starts it, creep that keeps it low and frequent, conflagration that
+runs it, smoulder that carries it hidden below the surface, exclusion that fights and
+defers it -- and keeps a sixth, renewal, the same fire read as the making-new a
+fire-adapted place is built around. The mechanism of any one of these burns -- the
+chemistry, the dynamics, the paradox of its fighting -- is the combustion engine's; fire
+reads the regime, combustion reads the type.
 
 ## Origin
 
 The history and ecology of fire, applied directly as engine constraints across process,
 on the place.
 
-| Source                    | Key Work                                                                               | Scope                                                                                                                                                                                 |
-| ------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Stephen J. Pyne**       | _Fire: A Brief History_ (2001); _Between Two Fires_ (2015)                             | Fire as a regime a place has, not an accident that befalls it; the paradox of exclusion storing fuel for a worse burn. The root and exclusion.                                        |
-| **Norman L. Christensen** | fire ecology; disturbance and succession                                               | The ecology of the fire-adapted system -- the seeds that need fire, the succession the burn resets, the land that must burn to persist. The renewal mode.                             |
-| **Mike Davis**            | _"The Case for Letting Malibu Burn"_ (1998), in _Ecology of Fear_                      | The politics of the burn -- the built place standing where the fire regime guarantees it burns, and the cost of denying it. The conflagration and exclusion modes.                    |
-| **Johan Goudsblom**       | _Fire and Civilization_ (1992)                                                         | Fire as the force human societies are built around controlling -- ignition and its mastery as a founding human relation to place. The ignition mode.                                  |
-| **Guillermo Rein**        | _"Smouldering Fires and Natural Fuels"_ (in Fire Phenomena and the Earth System, 2013) | Smouldering combustion -- the slow, flameless, oxygen-limited burning of peat and organic soil, Earth's largest and most persistent fires, hidden and re-emergent. The smoulder mode. |
+| Source                         | Key Work                                                                                | Scope                                                                                                                                                                                              |
+| ------------------------------ | --------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Stephen J. Pyne**            | _Fire: A Brief History_ (2001); _Between Two Fires_ (2015)                              | Fire as a regime a place has, not an accident that befalls it; the paradox of exclusion storing fuel for a worse burn. The root and exclusion.                                                     |
+| **Norman L. Christensen**      | fire ecology; disturbance and succession                                                | The ecology of the fire-adapted system -- the seeds that need fire, the succession the burn resets, the land that must burn to persist. The renewal mode.                                          |
+| **Mike Davis**                 | _"The Case for Letting Malibu Burn"_ (1998), in _Ecology of Fear_                       | The politics of the burn -- the built place standing where the fire regime guarantees it burns, and the cost of denying it. The conflagration and exclusion modes.                                 |
+| **Johan Goudsblom**            | _Fire and Civilization_ (1992)                                                          | Fire as the force human societies are built around controlling -- ignition and its mastery as a founding human relation to place. The ignition mode.                                               |
+| **Merritt R. Turetsky et al.** | _"Global vulnerability of peatlands to fire and carbon loss"_ (Nature Geoscience, 2015) | The fire below as a regime of the place -- the peatland whose ground is fuel, whose water table governs the burn, whose draining wakes it, and whose stored carbon pays for it. The smoulder mode. |
 
 ## Restrictions
 
@@ -68,6 +73,13 @@ What the engine refuses to model, and to whom it delegates.
   geomorphology's, the ground's own violence from within. Fire is the combustion of fuel on
   the surface. An eruption may ignite a wildfire, but the magma is geomorphology's and the
   burning forest is fire's.
+- **The named phenomenon and its mechanism (combustion)**: Which specific fire a place
+  shows, and how it burns -- the peat smoulder fed by the lance that would fight it, the
+  holdover crossing the winter, the crown fire, the flashover, the chemistry, the dynamics,
+  and the extinguishment paradox of each -- is the combustion engine's. Fire reads the
+  regime a place lives within; combustion reads the type it shows. Fire's smoulder says a
+  place's fire has gone below and persists; which subsurface fire it is, and why it cannot
+  be fought head-on, is combustion's.
 - **A persona's feeling, and the burn as authored symbol**: How the fire makes a persona
   feel -- the terror of the front, the awe of the burn -- is the persona's own engines';
   fire delivers the combustion, not the feeling. And the fire made to **stand for** a
@@ -93,10 +105,11 @@ Source to constraint, per file.
 - **[conflagration](process_conflagration.md)**: the fire run free -- the front, the crown
   fire, the firestorm consuming all it reaches. Anchored by Davis (the burn the built place
   denies).
-- **[smoulder](process_smoulder.md)**: the flameless glow -- the fire sunk into peat, duff,
-  and root, burning downward and unseen for weeks and months on retained heat, overwintering
-  and re-emerging, water-shedding and fed by the air that lancing lets in. Anchored by Rein
-  (smouldering fires and peat).
+- **[smoulder](process_smoulder.md)**: the place's fire gone below -- the hidden,
+  persistent burn regime of the drained peatland and organic ground, on a clock of seasons,
+  governed by the water table and spending the place's stored carbon; the mechanism of the
+  burn itself is combustion's. Anchored by Turetsky et al. (the vulnerability of drained
+  peatlands) and Pyne (fire as a regime a place has).
 - **[exclusion](process_exclusion.md)**: the fire fought and kept out, and the fuel debt
   that builds unburned into a worse fire. Anchored by Pyne (suppression storing fuel).
 - **[renewal](process_renewal.md)**: the burn read as the place made new -- the seed fire

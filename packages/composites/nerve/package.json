@@ -1,0 +1,86 @@
+{
+  "name": "@chbrain/khai-composite-nerve",
+  "version": "0.1.0",
+  "description": "khai composite content, the nerve domain: what a persona does with an alarm that is still ringing -- the alarm itself, the step taken into it anyway, and the flat calm that holds two different people who cannot be told apart from outside.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/nerve"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "nerve",
+    "tagline": "Nerve as composite: what a persona does with an alarm that is still ringing -- the alarm doing its job (the alarm), the step taken toward the thing anyway and against its pull (the step), and the flat calm that holds two people who look identical and are not (the flat) -- wired over the fear and courage engines, and closing on the discovery that the fear is not the obstacle to courage but the condition of it.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_nerve.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_nerve_alarm.md",
+        "type": "process",
+        "parent": "process_nerve.md"
+      },
+      {
+        "file": "process_nerve_step.md",
+        "type": "process",
+        "parent": "process_nerve.md"
+      },
+      {
+        "file": "process_nerve_flat.md",
+        "type": "process",
+        "parent": "process_nerve.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over two atoms it declares as dependencies. The root (process_nerve.md) reads what a persona does with an alarm that is still ringing. The fear engine supplies the alarm -- threat appraised, the body readied to escape -- and the courage engine supplies the move made toward the thing anyway, for a good worth the facing. This composite adds no third engine; it reads the relation the courage atom already names when it anchors Rachman, that fear and courage are separable rather than opposed, and follows it to where the separation shows: in what a persona does, and only there.",
+      "issue": "Three bridges. The alarm: the fear running properly, doing the work it exists to do, and pulling the persona away from the thing. The step: the move made toward it while the alarm is still sounding -- physical, moral, or the vital courage of facing what cannot be escaped -- which is the only place the two engines can be told apart, since nothing before the move distinguishes the persona who will make it. The flat, the twist: the persona who shows no alarm at all, which holds two entirely different people -- the one whose behaviour has come loose from a fear still privately running, and the one with no fear to come loose from -- and only the first of them is doing anything.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the nerve read runs wherever its atoms are cast. The link, advisory: a persona may link under Projection what they did with their alarm, and the audit surfaces where a play stages a danger and never says what it cost anyone to meet it.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's persona is genuinely alarmed, genuinely stepping, or genuinely flat is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- fear and courage -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each persona meeting a danger for what they did with the alarm and link it under Projection: the alarm where the fear is running, the step where the move was made into it, the flat where nothing shows. Keep the fear present during the step, since removing it removes the courage; do not let the alarm predict the step, since it cannot; and keep the flat ambiguous, since a play that tells the audience which of its two occupants it has has resolved the one thing that is genuinely unresolvable from outside."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-fear": "^0.1.1",
+    "@chbrain/khai-engine-courage": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
