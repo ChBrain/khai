@@ -1,0 +1,86 @@
+{
+  "name": "@chbrain/khai-composite-freehand",
+  "version": "0.1.0",
+  "description": "khai composite content, the freehand domain: what an aversive disposition can do, and the room that decides whether it can -- the cold self-advancing core in its three shapes, the deceit each shape actually runs, and the setting that converts the disposition into an advantage or exposes it.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/freehand"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "freehand",
+    "tagline": "Freehand as composite: what an aversive disposition can do, and the room that decides whether it can -- the cold self-advancing core in its three shapes (the make), the deceit each shape actually runs, which differs by shape rather than by degree (the play), and the setting that converts the disposition into an advantage or exposes it, so what reads as a superior person is a superior fit (the room) -- wired over the dark-triad and deception engines.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_freehand.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_freehand_make.md",
+        "type": "process",
+        "parent": "process_freehand.md"
+      },
+      {
+        "file": "process_freehand_play.md",
+        "type": "process",
+        "parent": "process_freehand.md"
+      },
+      {
+        "file": "process_freehand_room.md",
+        "type": "process",
+        "parent": "process_freehand.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over two atoms it declares as dependencies. The root (process_freehand.md) reads a persona carrying an aversive disposition, working a situation, and getting away with it or not. The dark-triad engine supplies the disposition -- cold self-advancement with the empathy that would slow it turned low, resolving into narcissism, machiavellianism, and psychopathy. The deception engine supplies what they actually do with it: a false belief constructed, delivered, and maintained in somebody who did not consent to hold it. The join is Jones and Paulhus's: the three shapes do not deceive more or less, they deceive differently, so the tactic identifies the trait.",
+      "issue": "Three bridges. The make: the shared core and the three shapes it resolves into, which are resting dispositions rather than plans and are carried into every room alike. The play: the deceit each shape runs -- the strategic and cautious, the impulsive and careless, the self-enhancing -- so the tactic is diagnostic of which trait is present, and the maintenance is where they part company. The room, the twist: the advantage is a property of the setting rather than of the persona, appearing where the situation is face-to-face, improvisational, and unrecorded, and inverting where it is structured, rule-bound, and written down -- so what reads as a superior person is a superior fit, and the meta-analytic average is that on the whole it does not pay.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the freehand read runs wherever its atoms are cast. The link, advisory: a persona may link under Projection what they are carrying and what the room lets them do with it, and the audit surfaces where a play hands somebody a run of successes and never says what the room was like.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's persona genuinely carries the make, genuinely runs the play, or genuinely fits the room is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- dark-triad and deception -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each persona working a room and link the state under Projection: the make where the disposition is, the play where a false belief is being built and kept up, the room where the setting is deciding the outcome. Set the room deliberately and let it do the work, since the same persona in a recorded, rule-bound setting is not formidable; make the tactic specific to the trait rather than generic cunning; and do not let the composite become an explanation of success in general, because on average this disposition costs its carrier."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-dark-triad": "^0.1.1",
+    "@chbrain/khai-engine-deception": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
