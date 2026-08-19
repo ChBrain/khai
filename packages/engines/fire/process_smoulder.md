@@ -5,14 +5,14 @@ license: CC-BY-NC-4.0
 stamp:
   owner: KAI HACKS AI
   version: v0.1.0
-  date: "2026-08-10"
+  date: "2026-08-19"
 ---
 
 # Process: Smoulder
 
 ## Taxonomy
 
-[Fire](process_fire.md), the mode where the fire burns without flame, slow and hidden.
+[Fire](process_fire.md), the mode where the place's fire goes below, hidden and persistent.
 
 ## Owner
 
@@ -21,25 +21,25 @@ stamp:
 
 ## Initiated by
 
-The fire sinks out of the air into the packed fuel and burns on without a flame to show for it.
-Smoulder starts wherever a place's fire goes into the ground or the dense organic mass and glows rather than flames -- the peat bog alight below the surface, the duff and root layer burning around the tree bases, the heart of the down log, the deep pile still hot weeks after the front passed.
-It is combustion the other way: not the flaming front that races and is gone but the flameless glow that creeps down and out through the soil, unseen, on the char and the retained heat alone.
+The place's fire leaves the surface for the ground beneath it, and the burn regime goes hidden.
+Smoulder starts wherever a place carries its fire below itself -- the peatland whose ground is itself the fuel, the boreal forest floor of organic soil, the moor, the drained wetland -- places whose regime is not the front that passes but the flameless burn that persists beneath a surface that looks spared.
+It is the regime read the other way: not the fire a place shows in a season of flame but the fire it holds underneath, out of sight, in the very ground it stands on.
 
 ## Direction
 
-Down and slow, into the organic soil, for weeks and months out of sight.
-Smoulder spreads by the heat held in the packed fuel drying and igniting the fuel next to it -- centimeters a day, multi-directional, downward and lateral, following the peat and the roots -- so the place burns from below while its surface looks spared, or long spared, or already out.
-It moves the place onto a different clock: where the flaming fire is measured in the hours of a front, the smoulder is measured in seasons -- persisting through the wet, overwintering under the snow, and re-emerging to flame when it finds dry surface fuel and air, the same fire the place thought it had lost.
+Below the place, and onto a clock of seasons.
+Smoulder moves the regime underground and slows it -- the burn measured not in the hours of a front but in the months the place's own ground can carry it, outlasting the weather that lit it and the winter that should have ended it -- so the surface reads spared, or long spared, or already out, while the place burns below itself.
+Which fire it is down there -- the peat smoulder, the duff creep, the holdover crossing the winter -- is combustion's to name; the regime truth is fire's: this place's burn has gone where no season and no front-line reaches it.
 
 ## Lever
 
-The heat retained in the packed fuel against the water that cannot reach it.
-The carrying force is that dense organic fuel holds its own heat -- low thermal loss, oxygen enough by slow diffusion, energy enough to dry and ignite ahead of the glowing front, so the burn sustains at a temperature and moisture that no flame could; the resistance is that it can barely be reached -- the front is deep, the dried peat sheds water, and probing or lancing the mass only lets in the air that feeds it, so the surest push toward extinction is the surest way to fan it.
-Let the organic soil dry and the smoulder runs for months on almost nothing; try to wet or open it and the water perches above and the air stirs it, the extinction and the aeration the same act.
+The drained and drying ground against the water table that held the place's fire asleep.
+The carrying force is the place's own stored ground -- the organic soil that is fuel, laid down over centuries and cured by drainage, drought, and the warming that dries it, the carbon bank the hidden burn spends; the resistance is the water regime that kept it inert -- the high water table under the intact bog, the wet that made the ground unburnable for as long as it stayed.
+Keep the place wet and its underground fire never wakes; drain it and its fire moves below, recovered only by rewetting the place -- never by fighting the burn.
 
 ## Echo
 
 The place burning below itself, out of sight, on a clock of seasons.
-Smoulder leaves the place consumed from underneath -- the soil carbon gone, the roots hollowed, the ground subsided into ashy craters, the flame nowhere and the burn everywhere beneath -- and hands forward the coal it keeps, the holdover that waits under the snow for the surface to dry and the fire to stand up again.
-It is the fire the place cannot see it has: not the conflagration that announces itself but the slow flameless burn Rein traced through the world's peat -- the largest, longest, most stubborn combustion on Earth, the fire that outlasts the season that lit it.
-Smoulder is dated from the sinking, the moment the fire left the air for the packed fuel and went on without a flame.
+Smoulder leaves the place consumed from underneath -- the stored ground spent, the carbon bank burned, the surface subsided over the fire it never saw -- and hands the regime forward across seasons, the hidden burn that outlasts the weather and returns the place to flame wherever it finds the surface dry.
+It is the fire the place cannot see it has: the regime of the world's drained peatlands and organic grounds, where the ground is the fuel, the water table is the regime, and the carbon is the cost.
+Smoulder is dated from the sinking, the moment the place's fire left the surface for the ground and went on unseen.

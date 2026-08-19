@@ -3,11 +3,12 @@
 // the markdown members into a ready-to-use instruction set.
 //
 // Fire is a depth-1 process engine on the place type: a root (the burn regime of a
-// place) over four modes (ignition, conflagration, exclusion, and the renewal twist).
-// The canon owns the tree shape, so this loader pulls the composition chains from
-// @chbrain/khai-arch rather than re-deriving them here. Fire is the fourth engine of
-// the land's-forces family; it wires on: place/Shown, the combustion itself, primed
-// by weather and hydrology and answered by succession's regrowth.
+// place) over six modes (ignition, creep, conflagration, smoulder, exclusion, and the
+// renewal twist). The canon owns the tree shape, so this loader pulls the composition
+// chains from @chbrain/khai-arch rather than re-deriving them here. Fire is the fourth
+// engine of the land's-forces family; it wires on: place/Shown, the burn regime itself
+// -- typed by combustion, primed by weather and hydrology, answered by succession's
+// regrowth.
 
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -55,7 +56,7 @@ export function compose({ leaf } = {}) {
  */
 export const law =
   "Fire ([the root burn](process_fire.md)): every Place carries a fire regime it is shaped by, sparked, run, " +
-  "fought, or renewed; each Place shows only the mode its Shown links -- ignition, conflagration, exclusion, or " +
-  "renewal -- the burn that ruins the place being the burn a fire-adapted place is made by.";
+  "fought, or renewed; each Place shows only the mode its Shown links -- ignition, creep, conflagration, " +
+  "smoulder, exclusion, or renewal -- the burn that ruins the place being the burn a fire-adapted place is made by.";
 
 export default { manifest, chains, raw, compose, law };
