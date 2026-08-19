@@ -33,7 +33,13 @@
   },
   "exemptRenames": true,
   "branchScope": {
-    "shared": [".changeset/**", "package.json", "package-lock.json", "docs/SCIENCE.md"],
+    "shared": [
+      ".changeset/**",
+      "package.json",
+      "package-lock.json",
+      "docs/SCIENCE.md",
+      "docs/ENGINE-GAPS.md"
+    ],
     "lanes": [
       {
         "pattern": "arch/*",

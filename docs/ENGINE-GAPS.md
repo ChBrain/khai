@@ -1,5 +1,5 @@
 ---
-updated: "2026-08-04"
+updated: "2026-08-19"
 ---
 
 # Engine & composite gaps — a chase list
@@ -1252,6 +1252,40 @@ counterfactual thinking (owned by `regret`); terror management (owned by
 biases (owned by the 238-member `bias` catalog); privacy regulation & Zimbardo
 time-perspective (owned by `space` / `time-perception`); occupational burnout
 (blocked by the `caregiving/burnout` member — a whitelist/form question).
+
+## Separate track -- the fire-adjacent cluster (combustion's declared edge)
+
+The combustion engine (62 members across five domains as of #1226) declares five
+refusals in its REFERENCES Restrictions, several of them explicitly "a future
+engine's." By management order they have a right to exist in khai as their own
+engines; this section is the pickup plan. Mechanics for whoever builds them: each
+engine is its own `engine/<name>` lane; per the source/tests rule each lands as two
+PRs -- the engine first, its tests second, dormant until the source merges (the
+`rumor`-engine pattern); new packages start at 0.1.0 with an **empty** changeset (the
+first-release rule); pre-check every proposed member stem with `khai-guard
+member-check` before writing. Suggested build order: hearth, then detonation, then
+celestial; incendiary and metabolism are the maintainer's call.
+
+| #   | Candidate      | Phenomenon                                                                                                                                                                                                                                                                                              | Warrant                                                                                                                                                                              | Nearest / boundary                                                                                                                                                                                                   | E/C                              | Status                       |
+| --- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- | ---------------------------- |
+| 1   | **hearth**     | the kept flame as institution -- fire that must not die: tending, banking (the fire put to sleep in its ash), rekindling (the carried ember; borrowing from a neighbour's hearth), going-cold (the social event -- eviction, death, defeat), the perpetual flame (Vesta, the fire temple, the memorial) | Fustel de Coulanges (_La Cite antique_, the sacred hearth); Goudsblom (fire-keeping as the first regime); Bachelard (_The Psychoanalysis of Fire_); Boyce (Zoroastrian fire temples) | `combustion` (candle/flare/burner own the mechanics); `fire` (the regime); `ritual` (rite structure); the flame-as-symbol stays the play's pitch. Wire: process on place/Shown, like fire                            | Engine (process)                 | proposed                     |
+| 2   | **detonation** | the blast proper, designed or inherited: initiation (the controlled shot -- quarry, demolition), sympathetic (the neighbour that goes because the first did), misfire (the shot that did not go, and must now be approached), uxo (the unexploded that waits decades in a field), breach                | Cooper (_Explosives Engineering_); the GICHD mine-action/UXO literature; the investigation record                                                                                    | `combustion` keeps every explosion that grows out of burning (vce, bleve, dust, pyrotechnics, oxidizer); detonation owns the blast as such. Doctrine/history altitude only -- never formulation or device detail     | Engine (process)                 | proposed                     |
+| 3   | **incendiary** | fire turned against someone: siege (Greek fire to the fire arrow), raid (the incendiary bombing -- the deed and its doctrine), scorched-earth (the army burning its own land in retreat), arson (the set fire and its investigation, motive typology)                                                   | Pyne (fire and war); NFPA 921 (origin-and-cause discipline); the siege-warfare histories                                                                                             | `combustion` firestorm keeps the outcome; this engine owns the deed, the doctrine, and the investigation -- lean hardest on the investigation/consequence reading                                                    | Engine (process)                 | proposed (maintainer's call) |
+| 4   | **celestial**  | the sky's bodies as a place's Shown: sun, eclipse, comet, meteor, aurora, starfield -- plasma and light, not oxidation                                                                                                                                                                                  | Krupp (_Echoes of the Ancient Skies_); Aveni (cultural astronomy); the eclipse-in-history record                                                                                     | `weather` (the sky's conditions); `superstition`/the pitch (the omen's meaning); not combustion at all -- a sibling place-force. Wire: process on place/Shown                                                        | Engine (process)                 | proposed                     |
+| 5   | **metabolism** | Lavoisier's respiration-as-slow-combustion -- the body's energy economy: burn rate, reserve, deficit, refeeding                                                                                                                                                                                         | Lavoisier; modern metabolic science                                                                                                                                                  | **Recommended NOT an engine**: `body` already owns hunger and fatigue, and the `margin` composite owns resource-before-no-return. Build as one member `process_metabolism.md` in `engine/body`, or a REFERENCES note | Member of `body` (not an engine) | proposed                     |
+
+Stem collision notes (checked against the inventory at proposal time, 2026-08-19; re-run
+`member-check` before building): `hearth`, `detonation`, `incendiary`, `celestial`,
+`metabolism` are unclaimed as engine names; watch generic member stems (`tending`,
+`banking`, `perpetual`, `initiation`, `breach`, `raid`, `sun`) for collisions and prefer
+the specific form or a `memberPolicy.homonyms` entry where the same word is a different
+science.
+
+Member-level leftovers inside combustion (not engines; recorded so they are not lost):
+the cigarette/upholstery smoulder -- historically the leading fire killer (Babrauskas);
+the natural-gas seep fire (Darvaza, Chimaera -- coal-seam's sibling); the
+graphite/reactor fire (Windscale, Chernobyl). A later composite once hearth and
+celestial exist: the vigil/night-watch reading.
 
 ## Provenance
 
