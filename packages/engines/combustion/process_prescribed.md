@@ -22,7 +22,7 @@ stamp:
 ## Initiated by
 
 A crew lights the surface fuel on purpose, but only inside a written set of limits, to burn off the load before a wildfire can.
-Prescribed burn -- controlled, broadcast, hazard-reduction, Rx fire -- ignites surface litter, grass, and understory only within a prescription of fuel moisture, humidity, wind, mixing height, and transport winds, via drip or terra torch in strips and rings, contained by firelines and wetlines; the flaming front runs 300-800 C, the smouldering duff cooler and longer. The firing sequence -- backing, then flanking, then heading -- throttles the intensity.
+Prescribed burn -- controlled, broadcast, hazard-reduction, Rx fire -- ignites surface litter, grass, and understory only within a prescription of fuel moisture, humidity, wind, mixing height, and transport winds, via drip or terra torch in strips and rings, contained by firelines and wetlines; the flaming front's gases run near 800-1100 C as in any vegetation fire, but the prescription holds the intensity down -- short flames, a walking pace, a soil surface that rarely passes 200-300 C -- with the smouldering duff cooler and longer. The firing sequence -- backing, then flanking, then heading -- throttles the intensity.
 It is fire administered like a dose: the same burn as a wildfire, held inside the numbers that keep it a tool.
 
 ## Direction

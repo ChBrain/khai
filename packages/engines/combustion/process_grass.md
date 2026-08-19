@@ -28,13 +28,13 @@ It is the fastest wildland fire: a thin, low, fast front that consumes its fuel 
 ## Direction
 
 With the wind, across the range, faster than a person can run.
-Grass fire spreads on wind above all -- rates that can exceed roughly 15-20 km/h on continuous cured grass in strong wind -- and it cures within hours of a humidity drop, so a field safe in the morning carries fire by afternoon. Its flame is shallow and its burnout quick.
-The direction is a sprint: low intensity, but a spread rate that turns a distant front into an overrun in minutes, and a wind shift that pivots a long flank into a new fast head almost instantly.
+Grass fire spreads on wind above all -- rates that can exceed roughly 15-20 km/h on continuous cured grass in strong wind -- and its cured stems trade moisture with the air on a clock of an hour, so a field too damp to burn in the morning carries fire by afternoon. Its flame is shallow and its burnout quick.
+The direction is a sprint: little fuel and seconds of residence, but a spread rate that turns a distant front into an overrun in minutes, and a wind shift that pivots a long flank into a new fast head almost instantly.
 
 ## Lever
 
-The speed of the fine-fuel front against the low intensity that hides its danger.
-The carrying force is fuel so fine it burns as fast as the wind can push it; the resistance is not intensity -- a grass fire is not hot for long -- but its rate and its volatility, so the trap is complacency: crews read low flames and quick burnout as safe and are caught by sheer speed and by the flank that becomes the head on a shift of wind.
+The speed of the fine-fuel front against the light, brief flame that hides its danger.
+The carrying force is fuel so fine it burns as fast as the wind can push it -- so fast that a wind-driven head, for all its thin fuel, ranks among the most intense fire fronts recorded; the resistance is not heat held in place -- a grass fire is not hot for long at any point it passes -- but its rate and its volatility, so the trap is complacency: crews read low flames and quick burnout as safe and are caught by sheer speed and by the flank that becomes the head on a shift of wind.
 Attack it and the low flame is beatable where you stand; misjudge its speed or its next direction and it is past you before the tool comes down.
 
 ## Echo

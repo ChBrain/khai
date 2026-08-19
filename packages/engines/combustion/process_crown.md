@@ -22,7 +22,7 @@ stamp:
 ## Initiated by
 
 A surface fire climbs the ladder fuels into the treetops, and the forest burns from its crown.
-Crown fire starts where flame and convective heat reach the canopy foliage and fine branchwood and ignite it -- first single trees torching (passive, the candling), then the whole canopy running with the surface fire beneath it (active), and rarely the crowns racing ahead of the surface fire entirely (independent). It burns at roughly 1100-1300 C with enormous fireline intensity.
+Crown fire starts where flame and convective heat reach the canopy foliage and fine branchwood and ignite it -- first single trees torching (passive, the candling), then the whole canopy running with the surface fire beneath it (active), and rarely the crowns racing ahead of the surface fire entirely (independent). It burns at roughly 800-1200 C, with momentary peaks above 1300 C, at enormous fireline intensity.
 It is the wildland fire at full power: not the surface front but the sheet of flame overtopping the forest, driven by wind and slope through a continuous, dense canopy.
 
 ## Direction

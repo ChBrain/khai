@@ -22,7 +22,7 @@ stamp:
 ## Initiated by
 
 A small bed of fuel is force-fed air until a concentrated spot glows hot enough to bring steel to working heat.
-Forge fire burns coal, coke, charcoal, or gas with a forced draft from bellows or blower concentrating air on a small bed, reaching a localised 1100-1600 C; steel is worked at an orange-yellow 900-1200 C and forge-welded at a near-white sparking heat of 1300-1450 C, with a reducing, fuel-rich fire preventing scale and decarburisation. The smith cokes green coal at the edges and pushes coke to the hot centre.
+Forge fire burns coal, coke, charcoal, or gas with a forced draft from bellows or blower concentrating air on a small bed, reaching a localised 1100-1600 C; steel is worked at an orange-yellow 900-1200 C and forge-welded at a near-white heat of about 1150-1300 C, at the very edge of sparking, with a reducing, fuel-rich fire preventing scale and decarburisation. The smith cokes green coal at the edges and pushes coke to the hot centre.
 It is fire concentrated to a point: a bed made intensely hot in one spot and kept just short of consuming the metal in it.
 
 ## Direction

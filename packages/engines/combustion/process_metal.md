@@ -22,7 +22,7 @@ stamp:
 ## Initiated by
 
 A combustible metal ignites and oxidises exothermically, stripping oxygen from the very agents sent to smother it.
-Metal fire -- Class D -- burns the metal itself as fuel: magnesium at roughly 1900-2200 C (spots near 3100 C), titanium and zirconium of the same order, sodium with a surface near 800 C but violently water-reactive; many react with water, CO2, and even nitrogen, taking oxygen back out of would-be extinguishants. Chips, turnings, and powders ignite readily; fine powders can transition to metal-dust explosions.
+Metal fire -- Class D -- burns the metal itself as fuel: magnesium flaming near 3100 C, capped by the vaporisation of its own oxide, titanium and zirconium of the same order, sodium with a surface near 800 C but violently water-reactive; many react with water, CO2, and even nitrogen, taking oxygen back out of would-be extinguishants. Chips, turnings, and powders ignite readily; fine powders can transition to metal-dust explosions.
 It is fire that eats its rescue: the more common agents you throw, the more fuel and oxygen you feed it.
 
 ## Direction
