@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-peopling",
+  "version": "0.1.0",
+  "description": "khai composite content, the peopling domain: a place read by the presence in it -- who is crossing because they must, who returns on a rhythm, and who is there for no reason at all -- with the informativeness of presence running inverse to how much the place compelled it.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/peopling"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "peopling",
+    "tagline": "Peopling as composite: a place read by the presence in it -- the crossing done because it must be (the errand), the return kept on a rhythm (the round), and the staying done for no reason at all (the loitering) -- wired over the legibility, social-time, and street-life engines, and closing on the discovery that the only presence which reports on a place is the presence the place did not compel.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_peopling.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_peopling_errand.md",
+        "type": "process",
+        "parent": "process_peopling.md"
+      },
+      {
+        "file": "process_peopling_round.md",
+        "type": "process",
+        "parent": "process_peopling.md"
+      },
+      {
+        "file": "process_peopling_loitering.md",
+        "type": "process",
+        "parent": "process_peopling.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Shown",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place, on the Shown chapter, over three atoms it declares as dependencies. The root (process_peopling.md) reads a place by the presence in it rather than by what it is made of. The legibility engine supplies the image a place can be held as and moved through, the social-time engine supplies the rhythm it runs on, and the street-life engine supplies the social occupation it hosts. This composite adds no fourth engine; it reads what the three share -- that none of them is in the buildings, and none can be built, only permitted -- and grades the presence they produce by how much of it the place had to compel.",
+      "issue": "Three bridges, ordered by how little the place had to earn. The errand: the crossing that would happen whatever the place were like, since somewhere has to be got to, so it reads as traffic and reports almost nothing. The round: the return kept on a rhythm, half-obliged and half-chosen, which is where strangers become familiars and where a place proves it can be inhabited. The loitering, the twist: the staying done by people with no reason to be there, which is the only presence a place cannot compel and therefore the only one that measures it -- and which is also the presence every efficiency removes, since it is indistinguishable from waste.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the peopling read runs wherever its atoms are cast. The link, advisory: a place may link under Shown the grade of presence it holds, and the audit surfaces where a play stages a public place and never says who is in it or why.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's place genuinely holds the presence the bridge names -- an errand that is only traffic, a round that truly recurs, a loitering that is truly optional -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- legibility, social-time, street-life -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each place for the presence it holds and link it under Shown: the errand where people are passing through on business, the round where they come back on a rhythm, the loitering where they stay for nothing. Keep it the place and not the person, since a persona's bond with a place is the dwelling composite's and a persona among others is midst's; keep it presence and not architecture, since the composite's claim is that the built form only permits; and read the loitering as the instrument rather than the ornament."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-legibility": "^0.1.0",
+    "@chbrain/khai-engine-social-time": "^0.1.0",
+    "@chbrain/khai-engine-street-life": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
