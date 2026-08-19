@@ -1,0 +1,86 @@
+{
+  "name": "@chbrain/khai-composite-swaying",
+  "version": "0.1.0",
+  "description": "khai composite content, the swaying domain: one persona trying to move another's position -- the case made, the pushback the making of it produces on its own, and the concession that turns out to be the strongest instrument available.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/swaying"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "swaying",
+    "tagline": "Swaying as composite: one persona trying to move another's position -- the case made (the case), the pushback that the making of it produces regardless of its content (the kick), and the concession of the other's freedom that turns out to be the strongest instrument in the set (the give) -- wired over the persuasion and reactance engines, and closing on the discovery that an attempt to persuade is itself information, and it argues the other way.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_swaying.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_swaying_case.md",
+        "type": "process",
+        "parent": "process_swaying.md"
+      },
+      {
+        "file": "process_swaying_kick.md",
+        "type": "process",
+        "parent": "process_swaying.md"
+      },
+      {
+        "file": "process_swaying_give.md",
+        "type": "process",
+        "parent": "process_swaying.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over two atoms it declares as dependencies. The root (process_swaying.md) reads one persona trying to move another's position. The persuasion engine supplies the attempt -- the appeal made, received, processed, and resolved -- and the reactance engine supplies the pushback a threatened freedom produces against the very force that pressed. This composite adds no third engine; it reads the relation the reactance atom already names when it anchors Dillard and Shen, that reactance is part of what a persuasive message does rather than a separate subject, and follows it to the consequence: the target is responding to two things at once, and the second is the attempt itself.",
+      "issue": "Three bridges. The case: the attempt as the persuader designs it, argued centrally or carried on cues, aimed at what the other believes, values, or does. The kick: the pushback the attempt generates on its own -- the position defended because it was pressed, the forbidden thing made more attractive by being forbidden, the source attacked instead of the argument -- which runs on the force of the message rather than its content and therefore rises with every improvement the persuader makes to the case. The give, the twist: the family of moves that work by subtraction rather than addition, of which the plainest is naming the other's freedom to refuse -- so the sentence that concedes the decision is the one that most reliably wins it.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the swaying read runs wherever its atoms are cast. The link, advisory: a persona may link under Projection what is happening to the position between them, and the audit surfaces where a play stages an attempt to move somebody and never says what the attempting did.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's attempt genuinely lands, genuinely kicks, or genuinely gives is semantic, taught and reviewed, never failed by the suite. The evidence behind the three is also uneven, and the references say where it is firm and where a bound belongs.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- persuasion and reactance -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each attempt for what is happening to the position and link it under Projection: the case where the argument is being made, the kick where the target is answering the pressure rather than the point, the give where the persuader has stopped adding. Keep the target responding to two things at once; let the persuader's effort be visible to the target, since it is; and never let a persona who has been pushed into agreeing stay agreed."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-persuasion": "^0.1.1",
+    "@chbrain/khai-engine-reactance": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
