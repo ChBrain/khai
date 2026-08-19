@@ -1,0 +1,86 @@
+{
+  "name": "@chbrain/khai-composite-writ",
+  "version": "0.1.0",
+  "description": "khai composite content, the writ domain: what a saying becomes once it is written down and sent on -- the act that changes the world by being said, the inscription that fixes it and carries it away from everybody who was there, and the room that acts on the record because checking it is not available.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/writ"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "writ",
+    "tagline": "Writ as composite: what a saying becomes once it is written down and sent on -- the declaration that changes the world by being said, given the standing to say it (the saying), the inscription that fixes the act into durable form and carries it away from everybody who witnessed it (the fixing), and the room that acts on the record because the act itself is no longer available to inspect (the reliance) -- wired over the speech-act and document engines.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_writ.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_writ_saying.md",
+        "type": "process",
+        "parent": "process_writ.md"
+      },
+      {
+        "file": "process_writ_fixing.md",
+        "type": "process",
+        "parent": "process_writ.md"
+      },
+      {
+        "file": "process_writ_reliance.md",
+        "type": "process",
+        "parent": "process_writ.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over two atoms it declares as dependencies. The root (process_writ.md) reads what happens between an act performed by saying it and a room later acting on the paper that act became. The speech-act engine supplies the act -- the illocutionary force that makes an utterance a deed, and above all the declaration, which changes the world by being uttered where the speaker has the standing. The document engine supplies the fixing and the travelling -- an inscription that says the same thing everywhere it goes and arrives in contexts its author never occupies. This composite adds no third engine; it reads what the second does to the first.",
+      "issue": "Three bridges. The saying: an act done by being said, valid only if its conditions held -- the right speaker, the right setting, the right form -- all of which are present and checkable at the moment and at no other. The fixing: the act inscribed and set travelling, gaining durability and reach by shedding everything that would let a later reader test it, since what moves is the record and not the occasion. The reliance, the twist: a room that must act on the paper because the act is no longer available to inspect, so what is enforced is the record rather than the fact -- and a record that was wrong when it was made is, from here on, indistinguishable from one that was right.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the writ read runs wherever its atoms are cast. The link, advisory: a persona may link under Projection what the record says about them and what they can do about it, and the audit surfaces where a play turns on a document and never says who made it or under what conditions.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's act is genuinely a declaration, genuinely fixed, or genuinely relied on is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- speech-act and document -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each record that is doing work in the play and link the state under Projection: the saying where an act is being performed, the fixing where it is being written down and sent on, the reliance where a room is acting on the paper. Show the moment of issue, since the whole difficulty is that it was checkable then and never again; make the error ordinary rather than malicious, because a forgery is a different and smaller story; and let the room enforcing it be reasonable, since a record is the correct thing to act on when nothing else is available."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-document": "^0.1.1",
+    "@chbrain/khai-engine-speech-act": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
