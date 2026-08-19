@@ -1,0 +1,86 @@
+{
+  "name": "@chbrain/khai-composite-accent",
+  "version": "0.1.0",
+  "description": "khai composite content, the accent domain: what it costs a persona to be understood in a room, and who the room charges for it -- the width at which they hold the tongue, the specialist code layered on top of it, and the discount the listener applies for their own effort.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/accent"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "accent",
+    "tagline": "Accent as composite: what it costs a persona to be understood in a room, and who the room charges for it -- the width at which each channel holds the tongue, from a language gripped as a foreign object up to one that needs no grip (the width), the specialist code layered on top of it, which binds insiders and gates outsiders at once (the code), and the discount a listener applies for their own effort, since the difficulty is felt in the hearer and charged to the speaker (the discount) -- wired over the language and register engines.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_accent.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_accent_width.md",
+        "type": "process",
+        "parent": "process_accent.md"
+      },
+      {
+        "file": "process_accent_code.md",
+        "type": "process",
+        "parent": "process_accent.md"
+      },
+      {
+        "file": "process_accent_discount.md",
+        "type": "process",
+        "parent": "process_accent.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over two atoms it declares as dependencies. The root (process_accent.md) reads a persona getting meaning across a gap in a room that will price the effort. The language engine supplies the first gate: five channels each run at one of four widths, from a tongue gripped as a foreign object up to one that needs no grip, and the widths do not move together, so a persona may follow perfectly and speak haltingly. The register engine supplies the second: a specialist code layered on the base tongue that binds insiders and gates outsiders at once. The join is Lev-Ari and Keysar's: a listener's own processing difficulty is misread as a property of the speaker, so effort spent getting through either gate is deducted from the speaker's credit.",
+      "issue": "Three bridges. The width: how tightly each channel grips the tongue, read per channel rather than per persona, since the widths move independently and a persona who reads a language easily may still assemble every sentence they say. The code: the register on top of it -- shorthand that lets insiders be fast, badge that shows belonging, closure that shuts the lay listener out, translation that carries the meaning across in the plain tongue -- a second gate that is independent of the first and can be missed by a native speaker as easily as by anyone. The discount, the twist: the room does not experience its own effort as effort, it experiences the speaker as less clear, less credible, and less able -- so the two gates compound and a persona working hardest to be understood is discounted most.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the accent read runs wherever its atoms are cast. The link, advisory: a persona may link under Projection the width they hold each channel at and the code the room is running, and the audit surfaces where a play has somebody taken less seriously and never says what they were speaking through.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's persona is genuinely at a width, genuinely outside a code, or genuinely being discounted is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- language and register -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each persona speaking in the play and link the state under Projection: the width where a channel is gripping the tongue, the code where a register is gating, the discount where the room is charging its own effort to the speaker. Set the widths per channel and let them disagree; make the discounting listener ordinary and well-meaning, since the misattribution is not contempt; and let what the persona is saying be right, because the composite has nothing to read where the content is weak."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-language": "^0.1.5",
+    "@chbrain/khai-engine-register": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
