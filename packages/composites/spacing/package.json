@@ -1,0 +1,86 @@
+{
+  "name": "@chbrain/khai-composite-spacing",
+  "version": "0.1.0",
+  "description": "khai composite content, the spacing domain: what a room's arrangement does to the distances the people in it can hold -- the fixture nobody chose and nobody mentions, the portable bubble that must be satisfied on some channel or another, and the verdict everybody reaches about the people instead of the furniture.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/spacing"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "spacing",
+    "tagline": "Spacing as composite: what a room's arrangement does to the distances the people in it can hold -- the fixture that was set by somebody absent and is never mentioned again (the fixture), the portable bubble that has to be satisfied on some channel or another, so a distance the room forbids is paid for in gaze, in topic, or in leaving (the reach), and the verdict everybody reaches about the people in the room rather than about the room (the verdict) -- wired over the space and proxemics engines.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_spacing.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_spacing_fixture.md",
+        "type": "process",
+        "parent": "process_spacing.md"
+      },
+      {
+        "file": "process_spacing_reach.md",
+        "type": "process",
+        "parent": "process_spacing.md"
+      },
+      {
+        "file": "process_spacing_verdict.md",
+        "type": "process",
+        "parent": "process_spacing.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over two atoms it declares as dependencies. The root (process_spacing.md) reads people in a room whose arrangement has already decided what distances are available to them. The space engine supplies the setting as a party to what happens in it -- what it affords, what can be claimed in it, and the mood it induces. The proxemics engine supplies the portable bubble each persona carries and the equilibrium by which closeness is held at a tolerable level across channels. The join is Osmond's and Sommer's: a room arranged sociofugally holds people apart and one arranged sociopetally draws them together, and rearranging the furniture changes how much talk happens without changing anybody in it.",
+      "issue": "Three bridges. The fixture: the arrangement as it stands -- chairs against a wall, a table too wide, a corridor with nowhere to stop -- set by somebody who is not present, unremarked because it is the background, and pressing its program on whoever enters. The reach: the bubble that travels on the body and the equilibrium that must balance, so a persona denied the distance they want does not simply accept the one they get, they pay for it elsewhere, in gaze withdrawn, in a topic kept shallow, or in leaving early. The verdict, the twist: the contact that did or did not happen is attributed to the people -- a cold group, a warm one, a quiet ward, a persona who does not mix -- because the furniture is the one thing in the room nobody is looking at.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the spacing read runs wherever its atoms are cast. The link, advisory: a persona may link under Projection the distance they keep and what the room allows them, and the audit surfaces where a play calls a gathering warm or cold and never says how it was arranged.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's room is genuinely fixing, genuinely pressing on a bubble, or genuinely producing a verdict is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- space and proxemics -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each gathering in the play and link the state under Projection: the fixture where the arrangement is, the reach where a bubble is being pressed, the verdict where the outcome is being explained. Fix the arrangement before anybody speaks and never let a character remark on it; let the compensation show on a channel other than distance, since that is where it goes; and let the verdict be about the people, because that is the whole of the point."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-proxemics": "^0.1.1",
+    "@chbrain/khai-engine-space": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
