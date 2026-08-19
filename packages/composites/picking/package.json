@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-picking",
+  "version": "0.1.0",
+  "description": "khai composite content, the picking domain: what a genuinely two-sided evaluation does when a choice is required of it -- the fence held at no cost, the call that makes both sides press at once, and the spread that leaves the persona holding a conviction they did not have going in.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/picking"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "picking",
+    "tagline": "Picking as composite: what a genuinely two-sided evaluation does when a choice is required of it -- both charges held at once and costing nothing (the fence), the choice that makes them press together and cannot be answered without a loss (the call), and the alternatives moving apart after the commitment until the persona holds a conviction more one-sided than any they arrived with (the spread) -- wired over the ambivalence, decision, and dissonance engines.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_picking.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_picking_fence.md",
+        "type": "process",
+        "parent": "process_picking.md"
+      },
+      {
+        "file": "process_picking_call.md",
+        "type": "process",
+        "parent": "process_picking.md"
+      },
+      {
+        "file": "process_picking_spread.md",
+        "type": "process",
+        "parent": "process_picking.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over three atoms it declares as dependencies. The root (process_picking.md) reads a persona who genuinely holds both sides of something and is then made to choose. The ambivalence engine supplies the starting state -- a strong positive and a strong negative co-active on separable dimensions, which is not a lukewarm midpoint and not indifference. The decision engine supplies the fork and the modes a persona runs at it. The dissonance engine supplies what happens after the commitment, when the forgone side has to be got rid of. The join is van Harreveld's: ambivalence on its own is not aversive, and becomes so only when a choice is imminent and unavoidable, because then whichever way it goes something real is lost.",
+      "issue": "Three bridges. The fence: both charges held, potential where the conflict is present and felt where it is being experienced, costing the persona nothing so long as nothing brings the two sides to mind at once. The call: a choice arrives, which is exactly the device that brings them together, and the discomfort that follows is not the ambivalence but the ambivalence plus an unavoidable fork -- so the persona defers, avoids, searches for a reason that settles it, or falls back on a rule, with the search now serving relief rather than accuracy. The spread, the twist: after the commitment the alternatives move apart, the chosen upgraded and the rejected downgraded, until the persona holds a position more one-sided than any they arrived with -- and reports it as what they always thought.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the picking read runs wherever its atoms are cast. The link, advisory: a persona may link under Projection where they stand on a divided question, and the audit surfaces where a play hands a persona a firm conviction and never says what choice produced it.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's persona is genuinely on the fence, genuinely under a call, or genuinely spreading is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- ambivalence, decision, and dissonance -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each divided persona and link the state under Projection: the fence where both sides are held, the call where a choice is pressing them together, the spread where a commitment is being defended. Give the persona two sides that are both real, since a persona who secretly knew all along is not ambivalent and has nothing here to run; make the choice unavoidable, since a fork that can be dodged forever produces no discomfort and no spread; and let the conviction that comes out be sincere, because the persona cannot see that the choice made it."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-ambivalence": "^0.1.1",
+    "@chbrain/khai-engine-decision": "^0.1.1",
+    "@chbrain/khai-engine-dissonance": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
