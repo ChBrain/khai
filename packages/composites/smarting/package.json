@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-smarting",
+  "version": "0.1.0",
+  "description": "khai composite content, the smarting domain: what a favourable self-view does when the room declines to confirm it -- the claim put out and exposed, the puncture where the contradiction lands, and the force returned to whoever is nearest rather than to whoever caused it.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/smarting"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "smarting",
+    "tagline": "Smarting as composite: what a favourable self-view does when the room declines to confirm it -- the regard held and put out where it can be contradicted (the claim), the contradiction landing in proportion to the gap rather than to the insult (the puncture), and the force mobilised and sent back to whoever is nearest and safest rather than to whoever caused it (the return) -- wired over the narcissism, self-esteem, and aggression engines.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_smarting.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_smarting_claim.md",
+        "type": "process",
+        "parent": "process_smarting.md"
+      },
+      {
+        "file": "process_smarting_puncture.md",
+        "type": "process",
+        "parent": "process_smarting.md"
+      },
+      {
+        "file": "process_smarting_return.md",
+        "type": "process",
+        "parent": "process_smarting.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over three atoms it declares as dependencies. The root (process_smarting.md) reads a persona whose favourable view of themselves has met a room that will not confirm it. The self-esteem engine supplies the resting regard and whether it is held securely or staked on a domain that must keep delivering; the narcissism engine supplies the inflated case and the self-regulation that defends it; the aggression engine supplies what the force becomes and where it goes. The join is Baumeister, Smart and Boden's, and Bushman and Baumeister's experiment names all three atoms in its own title: it is not self-hate that produces the violence but a favourable self-view the world declines to ratify.",
+      "issue": "Three bridges. The claim: a regard held and put out where the room can answer it -- secure, low, or contingent on a staked domain, and in the narcissistic case inflated and actively promoted, since a persona who claims nothing cannot be contradicted. The puncture: the contradiction arriving, and landing in proportion to the distance between what was claimed and what is granted rather than to the size of the remark, which is why the same slight passes through one persona and detonates in another. The return, the twist: the force mobilised and aimed -- hot at the source, cold and instrumental, relational through the bond, withheld, or displaced onto whoever is nearest and safest, so the one who pays is chosen by availability rather than by involvement.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the smarting read runs wherever its atoms are cast. The link, advisory: a persona may link under Projection what they claim about themselves and what the room grants them, and the audit surfaces where a play stages a sudden violence and never says what was contradicted.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's persona is genuinely claiming, genuinely punctured, or genuinely returning is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- narcissism, self-esteem, and aggression -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each persona whose self-regard is exposed and link the state under Projection: the claim where a regard is being put out, the puncture where it is being contradicted, the return where force is going somewhere. Set the gap and not the height, since a modest claim the room agrees with is safe and a large one it will not ratify is not; make the contradiction small, since the composite is at its truest where the trigger is trivial; and choose the target by who is available rather than by who is responsible."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-aggression": "^0.1.1",
+    "@chbrain/khai-engine-narcissism": "^0.1.1",
+    "@chbrain/khai-engine-self-esteem": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
