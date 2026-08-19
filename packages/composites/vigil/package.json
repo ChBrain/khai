@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-vigil",
+  "version": "0.1.0",
+  "description": "khai composite content, the vigil domain: what a persona does to a bond once a third party is in the room -- the threshold at which a rival counts, set by the working model rather than by the rival; the guard mounted over the bond; and the proof the guarding is looking for and cannot produce.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/vigil"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "vigil",
+    "tagline": "Vigil as composite: what a persona does to a bond once a third party is in the room -- the threshold at which a rival starts to count, set by how the base has answered before rather than by the rival (the threshold), the watch mounted over the bond in vigilance, confrontation, and mate-guarding (the guard), and the reassurance the guarding is searching for, which the searching is the one thing that cannot produce (the proof) -- wired over the jealousy, attachment, and trust engines.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_vigil.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_vigil_threshold.md",
+        "type": "process",
+        "parent": "process_vigil.md"
+      },
+      {
+        "file": "process_vigil_guard.md",
+        "type": "process",
+        "parent": "process_vigil.md"
+      },
+      {
+        "file": "process_vigil_proof.md",
+        "type": "process",
+        "parent": "process_vigil.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over three atoms it declares as dependencies. The root (process_vigil.md) reads a persona holding a bond that a third party has entered. The jealousy engine supplies the threat and what is done about it; the attachment engine supplies the working model that decides how much of a threat it takes; the trust engine supplies the bet the whole thing is trying to settle. The join is Sharpsteen and Kirkpatrick's -- jealousy read as an attachment phenomenon rather than a rivalry one, so what varies between personas facing the same scene is not the rival but the history of how their base has answered.",
+      "issue": "Three bridges. The threshold: the appraisal of how real and how close the rival's claim is, run through a strategy already set -- secure, anxious, avoidant, or disorganized -- so the same scene is genuinely different evidence to two personas and neither is inventing what they see. The guard: the persona once they have read a threat worth acting on, and what the guarding becomes -- vigilance, confrontation, mate-guarding. The proof, the twist: what the guarding is looking for is a settled bond, and a bond has to be trusted rather than verified, so every check performed removes the conditions under which the answer would have counted.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the vigil read runs wherever its atoms are cast. The link, advisory: a persona may link under Projection what they are guarding and what would settle it, and the audit surfaces where a play stages a jealousy and never says what the persona was trying to establish.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's persona is genuinely at a threshold, genuinely guarding, or genuinely seeking a proof is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- jealousy, attachment, and trust -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each persona whose bond has a third party in it and link the state under Projection: the threshold where a rival is being appraised, the guard where the watch is being mounted, the proof where reassurance is being sought. Set the threshold from the persona's history and not from the rival's conduct; let the persona's reading be defensible, since a jealousy the audience can dismiss as fantasy is a different and smaller thing; and make sure that whatever the persona asks for, getting it does not help."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-attachment": "^0.1.2",
+    "@chbrain/khai-engine-jealousy": "^0.1.1",
+    "@chbrain/khai-engine-trust": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
