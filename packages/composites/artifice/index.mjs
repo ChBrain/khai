@@ -6,8 +6,10 @@
 //
 // Artifice is the first composite to wire engines rather than composites, and
 // the first on the piece type: it reads a designed object whole, as the
-// settlement of five design forces (usability, agency, ergonomics, guile,
-// captology), and its three bridges are the shapes that settlement takes.
+// settlement of six design forces (usability, agency, ergonomics, guile,
+// captology, choice-architecture), and its three bridges are the shapes that
+// settlement takes. Five of the six can be absent from an object; the sixth
+// cannot, which is why the settlement is never empty and never optional.
 
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -50,14 +52,22 @@ export function compose({ leaf } = {}) {
 
 export default { manifest, chains, raw, compose };
 
-// The five atoms this composite wires over, re-exported so a consumer that
+// The six atoms this composite wires over, re-exported so a consumer that
 // installs the composite can compose from any design force without a second
-// import. The dependency graph is the citation graph: these five are declared
+// import. The dependency graph is the citation graph: these six are declared
 // in package.json, and every hard link in the members resolves through them.
 import usability from "@chbrain/khai-engine-usability";
 import agency from "@chbrain/khai-engine-agency";
 import ergonomics from "@chbrain/khai-engine-ergonomics";
 import guile from "@chbrain/khai-engine-guile";
 import captology from "@chbrain/khai-engine-captology";
+import choiceArchitecture from "@chbrain/khai-engine-choice-architecture";
 
-export const atoms = { usability, agency, ergonomics, guile, captology };
+export const atoms = {
+  usability,
+  agency,
+  ergonomics,
+  guile,
+  captology,
+  "choice-architecture": choiceArchitecture,
+};
