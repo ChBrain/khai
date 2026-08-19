@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-anomaly",
+  "version": "0.1.0",
+  "description": "khai composite content, the anomaly domain: what a persona does with a thing that will not sort -- the scheme of kinds already in place and sharpening its own boundaries, the instance that falls between them or into two at once, and the recoil that reads as news about the thing and is news about the scheme.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/anomaly"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "anomaly",
+    "tagline": "Anomaly as composite: what a persona does with a thing that will not sort -- the scheme of kinds already in place, which sharpens its own boundaries as it is used (the scheme), the instance that falls between two kinds or into both, so the sorting returns no answer and will not stop trying (the misfit), and the charged rejection that arrives instead of a verdict and presents itself as news about the thing (the recoil) -- wired over the categorization, uncanny, and disgust engines.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_anomaly.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_anomaly_scheme.md",
+        "type": "process",
+        "parent": "process_anomaly.md"
+      },
+      {
+        "file": "process_anomaly_misfit.md",
+        "type": "process",
+        "parent": "process_anomaly.md"
+      },
+      {
+        "file": "process_anomaly_recoil.md",
+        "type": "process",
+        "parent": "process_anomaly.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over three atoms it declares as dependencies. The root (process_anomaly.md) reads a persona meeting a thing their scheme of kinds will not take. The categorization engine supplies the scheme -- kinds formed and instances sorted by prototype, by exemplar, or by an intuitive theory of why the features go together. The uncanny engine supplies what an undecidable sort feels like from inside, most sharply where the animate and the inanimate will not separate. The disgust engine supplies the rejection that arrives instead of a verdict, and the contagion that makes it stick. The join is Mary Douglas's: pollution as a response to classificatory anomaly, dirt as matter out of place rather than matter of a particular kind.",
+      "issue": "Three bridges. The scheme: the kinds a persona already holds, with graded membership and a privileged middle level, and the property that makes the rest follow -- a classification in use sharpens itself, so differences across a boundary are read larger and differences within a kind smaller than they are. The misfit: the instance that falls between two kinds or into both, so the sorting returns no answer and does not stop running, which is where the animate/inanimate blur and the near-human that is not quite human live. The recoil, the twist: what arrives is not a suspended judgement but a charged rejection with a clinging taint, and it presents itself as information about the object.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the anomaly read runs wherever its atoms are cast. The link, advisory: a persona may link under Projection the kinds they sort by and what they cannot place, and the audit surfaces where a play stages a revulsion and never says what boundary it was defending.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's persona is genuinely sorting, genuinely meeting a misfit, or genuinely recoiling is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- categorization, uncanny, and disgust -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each persona whose kinds have met something that will not go into them, and link the state under Projection: the scheme where the sorting is ordinary, the misfit where it will not resolve, the recoil where a rejection has arrived in place of a judgement. Make the thing genuinely between kinds rather than merely unpleasant, since a plainly foul thing needs none of this; keep the persona unable to say what is wrong, because a persona who can name the boundary has already stopped defending it; and remember that the composite reads one route into revulsion and not the whole of it."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-categorization": "^0.1.1",
+    "@chbrain/khai-engine-disgust": "^0.1.1",
+    "@chbrain/khai-engine-uncanny": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
