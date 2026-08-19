@@ -1,0 +1,86 @@
+{
+  "name": "@chbrain/khai-composite-befalling",
+  "version": "0.1.0",
+  "description": "khai composite content, the befalling domain: how an observer accounts for what happened to somebody else, when the accounting has a job to do -- the cause assigned, the case the worldview cannot absorb, and the re-reading that lands the fault on the one it happened to.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/befalling"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "befalling",
+    "tagline": "Befalling as composite: how an observer accounts for what happened to somebody else, when the accounting has a job to do -- the cause assigned along its locus and its stability (the reading), the innocent suffering the worldview cannot absorb (the strain), and the re-reading that moves the cause inward until the one it happened to is holding it (the turn) -- wired over the attribution and belief-in-a-just-world engines.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_befalling.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_befalling_reading.md",
+        "type": "process",
+        "parent": "process_befalling.md"
+      },
+      {
+        "file": "process_befalling_strain.md",
+        "type": "process",
+        "parent": "process_befalling.md"
+      },
+      {
+        "file": "process_befalling_turn.md",
+        "type": "process",
+        "parent": "process_befalling.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over two atoms it declares as dependencies. The root (process_befalling.md) reads an observer accounting for a misfortune that happened to somebody else. The attribution engine supplies the machinery -- a cause placed by its locus and its stability, and the emotion and expectation that follow from where it lands -- and the belief-in-a-just-world engine supplies the load that machinery runs under, since a persona holding that the world is fair meets an undeserved suffering as a contradiction. This composite adds no third engine; it stages what the just-world atom already names when it says the belief defends itself against the innocent victim, and follows the defence to where it puts the cost. It is the second composite to wire attribution, which the squaring composite reads on a persona repairing their own account; here the account being protected is a worldview, and the conduct under review is somebody else's misfortune.",
+      "issue": "Three bridges. The reading: the cause assigned as any cause is, along locus and stability -- their character, their effort, the circumstances, or chance -- experienced from inside as an inference from what is known. The strain: the case the belief cannot take, which is not a great misfortune but an undeserved one, so the more plainly the sufferer did nothing the harder the contradiction presses. The turn, the twist: the reading moves inward under that pressure, from chance and circumstance toward effort and character, until the cause has come to rest in the person it happened to -- and it is not callousness that produces it, since an observer given the means to put the misfortune right will use them, and it is when they cannot that the sufferer starts to look like somebody it fits.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the befalling read runs wherever its atoms are cast. The link, advisory: a persona may link under Projection how they have accounted for somebody else's misfortune, and the audit surfaces where a play stages a suffering and never says what the watchers made of it.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's observer is genuinely reading, genuinely strained, or genuinely turning is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- attribution and belief-in-a-just-world -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each observer of a misfortune and link the state under Projection: the reading where a cause is being assigned, the strain where an undeserved suffering is pressing on a worldview, the turn where the cause is moving into the sufferer. Keep the sufferer innocent where the composite is to run, since a deserved misfortune is no strain at all; keep the observer sincere, since they are not lying and cannot see the pressure; and give them no way to help before the turn, because the helplessness is the mechanism and an observer who can act will act."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-attribution": "^0.1.1",
+    "@chbrain/khai-engine-belief-in-a-just-world": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
