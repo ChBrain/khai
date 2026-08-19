@@ -1,0 +1,86 @@
+{
+  "name": "@chbrain/khai-composite-margin",
+  "version": "0.1.0",
+  "description": "khai composite content, the margin domain: what a running process has left before it cannot come back -- spent by a baseline that slides with the yardstick that would measure it, or by a load that shows in nothing until it shows in everything.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/margin"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "margin",
+    "tagline": "Margin as composite: what a running process has left before it cannot come back -- spent one unremarked step at a time as the baseline slides (the slide), or gathered as a load that shows in nothing until it shows in everything (the load) -- wired over the drift and tipping-point engines, and closing on the discovery that the stretch of readings which say nothing is happening is where all of it happens.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_margin.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_margin_slide.md",
+        "type": "process",
+        "parent": "process_margin.md"
+      },
+      {
+        "file": "process_margin_load.md",
+        "type": "process",
+        "parent": "process_margin.md"
+      },
+      {
+        "file": "process_margin_calm.md",
+        "type": "process",
+        "parent": "process_margin.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "process",
+        "section": "Direction",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, on the Direction chapter, over the two atoms it declares as dependencies -- the only two engines in the canon that bend a running process's Direction, wired together for the first time. The root (process_margin.md) reads what a running process has left before it cannot come back. The drift engine supplies the baseline that slides one unremarked step at a time, and the tipping-point engine supplies the load absorbed until a trivial trigger decides everything. This composite adds no third engine; it reads what the two share, which is not their shape -- one is all slope and the other is all threshold -- but their blindness: in both, the instrument that would report the change is part of what is changing.",
+      "issue": "Three bridges. The slide: the baseline moving with the yardstick that would measure it, so the distance is invisible from inside and reads as normal. The load: accumulation absorbed with no visible response, the margin going while the level holds, until the last small thing is misread as the cause. The calm, the twist: the stretch where both are running and nothing is happening, read by everyone inside as evidence of health, when it is the mechanism -- so the tell is never in the level and always in the response, a process slow to come back from small knocks having already spent what it would need for a large one.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the margin read runs wherever its atoms are cast. The link, advisory: a running process may link under Direction the way its margin is going, and the audit surfaces where a play shows a process that ends somewhere nobody chose and never says how it got there.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's process is genuinely sliding, genuinely loading, or genuinely sitting in the calm -- rather than simply changing, which is what processes do -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- drift and tipping-point -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each running process for what its margin is doing and link it under Direction: the slide where the standard is moving with whatever would check it, the load where the state holds and the reserve does not, the calm where both are true and nothing shows. Keep it a running process and not a decision, since the whole claim is that nobody chose it; keep it the margin and not the state, since the state is exactly what stays reassuring; and never let a persona inside the process see it, because the composite's premise is that they cannot."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-drift": "^0.1.0",
+    "@chbrain/khai-engine-tipping-point": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
