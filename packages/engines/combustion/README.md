@@ -16,12 +16,16 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [slash](process_slash.md): process
 - [serotiny](process_serotiny.md): process
 - [duff](process_duff.md): process
+- [coal-seam](process_coal-seam.md): process
+- [wui](process_wui.md): process
 - [flashover](process_flashover.md): process
 - [backdraft](process_backdraft.md): process
 - [rollover](process_rollover.md): process
 - [layering](process_layering.md): process
 - [chimney](process_chimney.md): process
 - [pyrolysis](process_pyrolysis.md): process
+- [cladding](process_cladding.md): process
+- [tunnel](process_tunnel.md): process
 - [column](process_column.md): process
 - [whirl](process_whirl.md): process
 - [pyrocb](process_pyrocb.md): process
@@ -42,6 +46,8 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [hypergolic](process_hypergolic.md): process
 - [arc-flash](process_arc-flash.md): process
 - [polymer](process_polymer.md): process
+- [hydrogen](process_hydrogen.md): process
+- [runaway](process_runaway.md): process
 - [backfire](process_backfire.md): process
 - [prescribed](process_prescribed.md): process
 - [swidden](process_swidden.md): process
@@ -54,6 +60,7 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [flare](process_flare.md): process
 - [torch](process_torch.md): process
 - [burner](process_burner.md): process
+- [pyrotechnics](process_pyrotechnics.md): process
 - [barbecue](process_barbecue.md): process
 - [candle](process_candle.md): process
 - [cremation](process_cremation.md): process

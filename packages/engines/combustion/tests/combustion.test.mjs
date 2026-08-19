@@ -17,6 +17,8 @@ const WILDLAND = [
   "process_slash.md",
   "process_serotiny.md",
   "process_duff.md",
+  "process_coal-seam.md",
+  "process_wui.md",
 ];
 
 const DYNAMICS = [
@@ -26,6 +28,8 @@ const DYNAMICS = [
   "process_layering.md",
   "process_chimney.md",
   "process_pyrolysis.md",
+  "process_cladding.md",
+  "process_tunnel.md",
   "process_column.md",
   "process_whirl.md",
   "process_pyrocb.md",
@@ -49,6 +53,8 @@ const INDUSTRIAL = [
   "process_hypergolic.md",
   "process_arc-flash.md",
   "process_polymer.md",
+  "process_hydrogen.md",
+  "process_runaway.md",
 ];
 
 const MADE_FIRE = [
@@ -64,6 +70,7 @@ const MADE_FIRE = [
   "process_flare.md",
   "process_torch.md",
   "process_burner.md",
+  "process_pyrotechnics.md",
   "process_barbecue.md",
   "process_candle.md",
   "process_cremation.md",
