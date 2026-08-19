@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-upkeep",
+  "version": "0.1.0",
+  "description": "khai composite content, the upkeep domain: what a shared thing costs the people who keep it -- the pool anybody can draw from and nobody can be kept out of, the bet on the others that decides what each persona puts in, and the enforcement paid for privately by somebody who gets nothing back for it.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/upkeep"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "upkeep",
+    "tagline": "Upkeep as composite: what a shared thing costs the people who keep it -- a pool that anybody can draw from and nobody can easily be kept out of (the pool), a contribution set by what each persona expects the others to do rather than by what the rule says (the read), and an enforcement somebody pays for out of their own pocket with nothing coming back (the sword) -- wired over the commons, trust, and altruistic-punishment engines.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_upkeep.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_upkeep_pool.md",
+        "type": "process",
+        "parent": "process_upkeep.md"
+      },
+      {
+        "file": "process_upkeep_read.md",
+        "type": "process",
+        "parent": "process_upkeep.md"
+      },
+      {
+        "file": "process_upkeep_sword.md",
+        "type": "process",
+        "parent": "process_upkeep.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over three atoms it declares as dependencies. The root (process_upkeep.md) reads a persona standing in a shared thing that will last only if enough of them keep paying into it. The commons engine supplies the resource and the institutions its own users craft around it. The trust engine supplies the bet each persona is placing on the others. The altruistic-punishment engine supplies the enforcement, and the fact that somebody has to fund it personally. The join is Ostrom, Walker and Gardner's: put a common-pool resource in a laboratory and give the users a way to sanction each other, and they use it -- at their own expense, with no return, and the resource survives.",
+      "issue": "Three bridges. The pool: the resource that is subtractable and hard to exclude from, with the boundaries, monitoring, and graduated sanctions its users have crafted, none of which is self-executing. The read: what each persona actually contributes is set by what they expect the others to contribute, so most are conditional rather than unconditional cooperators and a single visible defection does not merely take a share, it revises everybody's estimate at once. The sword, the twist: the sanction is applied by somebody who pays for applying it and receives nothing, so the enforcement is itself a shared good nobody is obliged to supply -- and because the cost is private and the benefit is general, a commons that is working looks like one that needs no keeping.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the upkeep read runs wherever its atoms are cast. The link, advisory: a persona may link under Projection what they draw from, what they put in, and what they will pay to enforce, and the audit surfaces where a play has a shared thing collapse and never says who had been holding it up.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's persona is genuinely drawing, genuinely reading the others, or genuinely paying to enforce is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- commons, trust, and altruistic-punishment -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each persona standing in a shared thing and link the state under Projection: the pool where the resource and its rules are, the read where a contribution is being set by an expectation about the others, the sword where somebody is paying to make a defector answer. Make the defection visible, since the read runs on what personas can see rather than on what is true; name who is paying for the enforcement and what it costs them; and keep the cost invisible to everybody else, because that is the mechanism."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-altruistic-punishment": "^0.1.1",
+    "@chbrain/khai-engine-commons": "^0.1.1",
+    "@chbrain/khai-engine-trust": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
