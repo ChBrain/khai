@@ -1,0 +1,94 @@
+{
+  "name": "@chbrain/khai-engine-detonation",
+  "version": "0.1.0",
+  "description": "khai engine content, the detonation domain: the blast as its own force -- not fire, which carries its load as heat and flame, but the supersonic pressure wave that outruns combustion, the shock that writes itself into a place as craters and overpressure rings, exclusion doctrine, the force that every place either permits or forbids.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/detonation"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "detonation",
+    "tagline": "Detonation as process: the blast as its own force -- not fire, which carries its load as heat and flame, but the supersonic pressure wave that outruns combustion, the shock that writes itself into a place as craters and overpressure rings, exclusion doctrine, the force that every place either permits or forbids.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_detonation.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_shot.md",
+        "type": "process",
+        "parent": "process_detonation.md"
+      },
+      {
+        "file": "process_sympathetic.md",
+        "type": "process",
+        "parent": "process_detonation.md"
+      },
+      {
+        "file": "process_misfire.md",
+        "type": "process",
+        "parent": "process_detonation.md"
+      },
+      {
+        "file": "process_uxo.md",
+        "type": "process",
+        "parent": "process_detonation.md"
+      },
+      {
+        "file": "process_breach.md",
+        "type": "process",
+        "parent": "process_detonation.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Shown",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place, on the Shown chapter. The root (process_detonation.md) declares detonation as the blast proper -- the supersonic pressure wave, the shock that moves faster than sound, the overpressure and the crater it makes, the doctrine of standoff and exclusion that every detonation demands. It is the force itself, not the substance, the hardware, or the engineering (licensed practice outside the canon's altitude entirely, refused), the fire the blast starts (fire's and combustion's), or the decision to detonate (the play's own). Detonation reads the shock and the crater and the doctrine; the play decides whether it is used.",
+      "issue": "Five phenomena over a blast root, each reading detonation from a different altitude and moment. The shot is the controlled firing -- quarry and demolition blasting as a craft of sequence and delay, the countdown and the siren and the exclusion radius, the shot fired by plan, and the paradox that the whole craft is spent before the button, at the moment of the shot nothing can be adjusted. Sympathetic is the neighbour that fires because the first did -- magazine spacing and quantity-distance rules as the whole defence, the siting and spacing that keeps one loss from becoming two, the chain the placement either permits or forbids. Misfire is the shot that did not go -- the wait imposed before anyone may approach, the most dangerous item on the site being the one that did nothing, the discipline of the misfire procedure, the paradox that silence is the hazard not success. UXO is the unexploded that waits -- shells and bombs surfacing decades later in fields and construction sites (Flanders' iron harvest, WWII bombs and German city evacuations), mine action and clearance as a generational task, the war that keeps firing after it ended. And breach is the precision wall opened on purpose -- demolition of the condemned building, the controlled drop into its own footprint, mining and tunnelling shots, the paradox that the building's fall is designed as carefully as its standing was, precision as the whole craft.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so detonation reads system-wide and a place's blast burden is not mere scenery. The link: a place carries, under Shown, the phenomenon of its detonation or blast-risk, linking one of the five member files.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each place links a real phenomenon file under Shown. Whether the phenomenon is true to the place and its history -- the doctrine, the siting, the clearance burden, the engineering precision -- is semantic, taught and reviewed, never failed by the suite. The place shows what blasts or is kept from blasting; it does not narrate it, and it never stands in for a persona's own shattering.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each place whose detonation is an actor its read under Shown: the phenomenon its blast is or risks -- the shot that controls it, the sympathetic chain it may force, the misfire that waits, the UXO it carries, or the breach it shows. Keep it the detonation itself, never the making -- the substance, the hardware, and the engineering are refused outright -- and hand the fire the blast starts to fire and combustion, and the decision to detonate to the play. Read UXO honestly: the war is over but the ordnance remains, and the place is a site of clearance, not closure. Read the breach as the precision craft: the building's fall designed as carefully as its standing was, every structural element failing at the right moment so the whole falls as one unified event."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
