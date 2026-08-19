@@ -16,8 +16,8 @@ reads a place's **burn regime** -- its abstract modes, ignition to conflagration
 -- combustion reads the specific **type**, the named phenomenon and its behaviour. The two
 compose: fire gives the regime, combustion gives the fire.
 
-The catalog is organised by four domains -- the wildland, the compartment, the industrial
-plant, and the made fire -- built domain by domain and now complete. The wildland domain opens it: the
+The catalog is organised by five domains -- the wildland, the compartment, the industrial
+plant, the made fire, and the conveyance -- built domain by domain. The wildland domain opens it: the
 crown fire that runs the canopy, the grass fire that outruns a person, the chaparral fire
 whose volatile oils ignite ahead of the front, the peat fire that smoulders unseen for
 months, the duff fire that creeps at the very limit of combustion through mineral-laced
@@ -38,14 +38,20 @@ a pile from within, pyrophoric ignition on contact with air, the oxidizer-fed fi
 carries its own oxygen, hypergolic ignition on mixing, the arc flash of ionised-air plasma,
 the polymer fire whose smoke kills before its flame, the invisible hydrogen fire that is
 isolated before it is extinguished, and the runaway reaction whose exponential heat outruns
-any cooling. The made-fire domain closes the
-catalog with the fire humans light on purpose and hold to a task: the backfire and the
+any cooling. The made-fire domain adds the fire
+humans light on purpose and hold to a task: the backfire and the
 prescribed burn that fight or forestall a wildfire, swidden and fire-stick farming that
 work the land with fire, the charcoal clamp starved of air, the forge and the blast furnace
 and the kiln, the incinerator and the flare that destroy waste, the cutting torch and the
 premixed burner, the pyrotechnics whose tested hazard class fails in bulk, and the domestic
 fires -- the barbecue, the candle, and the cremation --
-each read by the moment its control slips. Each is fixed as a process -- how it starts and on
+each read by the moment its control slips. The conveyance domain closes the catalog:
+fire in the vessel under way, the burning compartment that cannot be left -- the ship fire
+fought sealed at sea on one shot of CO2 and boundary cooling, the aircraft fire that races
+the descent with the runway as its only extinguisher, the vehicle fire whose traction
+battery holds stranded energy and reignites days later, and the spacecraft fire that burns
+without buoyancy on the ventilation's wind, in a hull whose air is all the air there is.
+Each is fixed as a process -- how it starts and on
 what fuel, how it moves, the carrying force against the resistance, and the outcome and
 sensory read -- so that a phenomenon named is a phenomenon whose chemistry, dynamics, and
 paradox follow.
@@ -90,7 +96,11 @@ phenomena carry their own anchors: Stracher and Taylor read the world's coal fir
 fixed the home ignition zone that decides the interface fire; the Grenfell Tower Inquiry
 fixed the cladding fire; Ingason, Li, and Lönnermark the tunnel fire; the hydrogen-safety
 literature the invisible flame; the CSB's T2 investigation the runaway reaction; and the
-Oosting Commission's Enschede report the pyrotechnic mass explosion.
+Oosting Commission's Enschede report the pyrotechnic mass explosion. The conveyance domain
+rests on the investigation record and the certification tradition: SOLAS and EMSA's ro-ro
+fire studies for the ship, the TSB's Swissair 111 report and the FAA's evacuation
+certification for the aircraft, the battery-fire reviews for the vehicle, and the Apollo 204
+Review Board with NASA's Saffire experiments for the spacecraft.
 
 ## Origin
 
@@ -130,6 +140,10 @@ on the place.
 | **NFPA / DOE hydrogen safety**                       | NFPA 2, _Hydrogen Technologies Code_; the DOE/h2tools hydrogen-safety literature                                                                            | The invisible flame -- 4-75 percent flammability, near-nothing ignition energy, the burning jet as the safe state, isolate before extinguishing. The hydrogen phenomenon.                                                                                  |
 | **U.S. Chemical Safety Board**                       | _T2 Laboratories Inc. Runaway Reaction_ investigation report (2009); the DIERS relief-design tradition                                                      | The reaction that outruns its cooling -- exponential heat rate against linear removal, the point of no return, relief sized for two-phase flow. The runaway phenomenon.                                                                                    |
 | **Oosting Commission**                               | _Vuurwerkramp Enschede_ final report (2001); the UN transport-of-dangerous-goods classification tradition                                                   | The pyrotechnic mass explosion -- sympathetic ignition in bulk storage, and the hazard class that was a property of the packaging, not the composition. The pyrotechnics phenomenon.                                                                       |
+| **IMO / EMSA**                                       | SOLAS Chapter II-2; EMSA's ro-ro fire-safety studies                                                                                                        | The ship fire -- fixed CO2 flooding and boundary cooling, the crew as its own brigade, the sealed space the doctrine depends on. The ship phenomenon.                                                                                                      |
+| **TSB of Canada / FAA**                              | Swissair 111 investigation report (2003); 14 CFR 25.803 and the FAA fire-safety research tradition                                                          | The aircraft fire -- the hidden in-flight fire against the clock to land, the cargo that carried its own oxygen, the ninety-second evacuation certification. The aircraft phenomenon.                                                                      |
+| **Peiyi Sun et al.**                                 | _"A Review of Battery Fires in Electric Vehicles"_ (Fire Technology, 2020)                                                                                  | The vehicle fire -- the fuel-fed car fire and the traction battery's stranded energy, reignition, and quarantine doctrine. The vehicle phenomenon.                                                                                                         |
+| **Apollo 204 Review Board / NASA**                   | Apollo 204 Review Board report (1967); the Saffire spacecraft fire experiments                                                                              | The spacecraft fire -- combustion without buoyancy, the oxygen fraction as the lever, the ventilation as the fire's wind, the crew who cannot leave. The spacecraft phenomenon.                                                                            |
 | **Stephen J. Pyne**                                  | _Fire: A Brief History_ (2001); _World Fire_ (1995)                                                                                                         | The human history of fire as a tool -- anthropogenic, agricultural, and industrial burning, from the fire-stick to the furnace. The made-fire domain: backfire, prescribed, swidden, fire-stick, and the craft and industrial fires.                       |
 
 ## Restrictions
@@ -151,6 +165,24 @@ What the engine refuses to model, and to whom it delegates.
   life itself is succession's.
 - **The fire from below (geomorphology)**: The volcanic fire -- magma, the eruption -- is
   geomorphology's, the ground's violence from within; combustion is the burning of fuel.
+- **The detonation proper (a future engine's)**: High explosives and the physics of the
+  designed blast are their own science and, in khai, their own engine to come. Combustion
+  holds explosion only where it grows out of burning -- the VCE, the BLEVE, the dust cloud,
+  the pyrotechnic store -- never detonics for its own sake.
+- **The fire turned weapon (a future engine's)**: Incendiary war -- fire made to destroy
+  people and cities on purpose -- is its own domain and its own engine to come; the
+  firestorm member carries its extreme outcome, and this catalog reads phenomena, not
+  targeting.
+- **The kept flame (a future engine's)**: The hearth, the eternal flame, the temple fire,
+  the pilot kept alight -- fire as an institution of keeping -- is its own engine to come.
+  The candle, flare, and burner hold the mechanics; the keeping, tending, banking, and going
+  cold of a flame that must not die is another engine's law.
+- **The body's slow combustion (persona ground)**: Lavoisier's respiration-as-combustion --
+  metabolism as the body's slow fire -- is persona ground, the body engine's family, never a
+  place's fire.
+- **The celestial fire (not combustion)**: Stars, lightning, and aurora are plasma and
+  discharge, not oxidation; the volcanic fire from below is geomorphology's. Combustion ends
+  where burning does.
 - **The facet itself is not engine content**: The engine declares the phenomena exist; which one
   a given place shows lives on that place, linked under its Shown chapter. The engine refuses to
   fix a place's fire for it.
@@ -316,6 +348,19 @@ extreme dynamics, the industrial plant, and the made fire -- are built.)
 - **[cremation](process_cremation.md)**: the cremator that reduces a body to bone, overwhelmed by a
   high-fat body or a pacemaker that explodes. Anchored by cremation-practice engineering (the
   DEFRA process guidance).
+
+- **[ship](process_ship.md)**: the burning vessel at sea -- steel compartments, one shot of
+  fixed CO2, boundary cooling, and the seal paradox: opening a deck to fight re-arms the fire.
+  Anchored by SOLAS and EMSA's ro-ro fire studies.
+- **[aircraft](process_aircraft.md)**: fire against the clock to land -- hidden behind the
+  panels, the checklist the fire's ally, the runway the extinguisher, then the ninety-second
+  evacuation. Anchored by the TSB's Swissair 111 report and the FAA certification tradition.
+- **[vehicle](process_vehicle.md)**: the roadside fire with a second clock -- the cabin lost in
+  minutes, the traction pack's stranded energy reigniting days later: extinguished is not over.
+  Anchored by Sun et al. (battery fires in electric vehicles).
+- **[spacecraft](process_spacecraft.md)**: fire without buoyancy in the vessel that is the
+  world -- the ventilation the fire's wind and the first thing killed, the atmosphere itself
+  the stake. Anchored by the Apollo 204 Review Board and NASA's Saffire experiments.
 
 ---
 

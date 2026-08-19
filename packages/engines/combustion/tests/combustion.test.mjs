@@ -76,6 +76,13 @@ const MADE_FIRE = [
   "process_cremation.md",
 ];
 
+const CONVEYANCE = [
+  "process_ship.md",
+  "process_aircraft.md",
+  "process_vehicle.md",
+  "process_spacecraft.md",
+];
+
 describe("combustion: conforms to the canon", () => {
   it("the whole package validates (content + manifest + compose)", async () => {
     expect(flatten(await validateEnginePackage(pkgDir, { executeCompose: true }))).toEqual([]);
@@ -90,9 +97,9 @@ describe("combustion: manifest", () => {
     expect(manifest.members.find((m) => m.parent === null).file).toBe("process_combustion.md");
   });
 
-  it("carries all four domains -- wildland, compartment/dynamics, industrial, made fire -- every phenomenon hung off the root", () => {
+  it("carries all five domains -- wildland, compartment/dynamics, industrial, made fire, conveyance -- every phenomenon hung off the root", () => {
     const leaves = manifest.members.filter((m) => m.parent !== null).map((m) => m.file);
-    expect(leaves).toEqual([...WILDLAND, ...DYNAMICS, ...INDUSTRIAL, ...MADE_FIRE]);
+    expect(leaves).toEqual([...WILDLAND, ...DYNAMICS, ...INDUSTRIAL, ...MADE_FIRE, ...CONVEYANCE]);
     for (const m of manifest.members.filter((m) => m.parent !== null)) {
       expect(m.parent).toBe("process_combustion.md");
     }
