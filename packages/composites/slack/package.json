@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-slack",
+  "version": "0.1.0",
+  "description": "khai composite content, the slack domain: the room a persona has before a shortfall starts doing their thinking -- the attention it captures, the capacity it taxes, and the arrangement it removes, leaving live resistance as the only instrument and the persona scored on it as character.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/slack"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "slack",
+    "tagline": "Slack as composite: the room a persona has before a shortfall starts doing their thinking -- the attention a lack captures and the neglect that is the same act (the tunnel), the capacity it takes so that what gets decided is decided with less (the tax), and the arrangement it removes, leaving live resistance as the only instrument left (the grip) -- wired over the scarcity, decision, and self-control engines, and closing on the discovery that what reads as discipline is mostly room.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_slack.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_slack_tunnel.md",
+        "type": "process",
+        "parent": "process_slack.md"
+      },
+      {
+        "file": "process_slack_tax.md",
+        "type": "process",
+        "parent": "process_slack.md"
+      },
+      {
+        "file": "process_slack_grip.md",
+        "type": "process",
+        "parent": "process_slack.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over three atoms it declares as dependencies. The root (process_slack.md) reads the room a persona has before a shortfall starts doing their thinking. The scarcity engine supplies what a felt lack does to attention and capacity, the decision engine supplies what then gets decided, and the self-control engine supplies the live override that is what remains when there is no room to arrange things otherwise. This composite adds no fourth engine; it reads that the tax scarcity levies falls on precisely the two faculties needed to escape it, and that the persona is then scored on the result as though it were character.",
+      "issue": "Three bridges, ordered by what the shortfall takes. The tunnel: attention captured by the lack, which sharpens the persona on the pressing thing and blinds them to everything outside it -- one mechanism producing the competence and the neglect together. The tax: capacity taken, so what is decided is decided with less, sliding from deliberate toward heuristic, satisficing, and paralysed without the persona noticing they have changed how they think. The grip, the twist: the arrangement gone, so what a persona with room does by never meeting the temptation must now be done by resisting it live, every time -- and the resisting is visible where the arrangement never was, so the persona exerting the most control is credited with the least.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the slack read runs wherever its atoms are cast. The link, advisory: a persona may link under Projection what their shortfall is taking, and the audit surfaces where a play stages a persona under a lack and reads their conduct as disposition.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's persona is genuinely tunnelled, genuinely taxed, or genuinely gripping is semantic, taught and reviewed, never failed by the suite. The three faces also do not carry equal evidence, and the references say which parts hold and which the composite deliberately does not rest on.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- scarcity, decision, self-control -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each persona under a shortfall for what it is taking and link it under Projection: the tunnel where attention has been captured, the tax where the deciding has degraded, the grip where the arrangement is gone. Keep it a condition and not a disposition, since the same persona with room behaves differently; keep the tunnel's sharpness in view alongside its blindness, since they are one act; and let the observers in the play read character where the composite reads room, because that misreading is what the composite is for."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-scarcity": "^0.1.1",
+    "@chbrain/khai-engine-decision": "^0.1.1",
+    "@chbrain/khai-engine-self-control": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
