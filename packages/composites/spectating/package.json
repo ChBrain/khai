@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-spectating",
+  "version": "0.1.0",
+  "description": "khai composite content, the spectating domain: what a story does to the one receiving it -- what they are let to know and whose head they are let into, the side they take from it, and the carrying-in that removes their capacity to check either.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/spectating"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "spectating",
+    "tagline": "Spectating as composite: what a story does to the one receiving it -- the knowledge they are given and the head they are given it from (the access), the moral side they take and the enjoyment that rides on it (the siding), and the carrying-in that stills the counterarguing (the carry) -- wired over the dramatic-irony, allegiance, and transportation engines, and closing on the discovery that the state in which a story works best is the state in which its audience can least tell what it is doing to them.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_spectating.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_spectating_access.md",
+        "type": "process",
+        "parent": "process_spectating.md"
+      },
+      {
+        "file": "process_spectating_siding.md",
+        "type": "process",
+        "parent": "process_spectating.md"
+      },
+      {
+        "file": "process_spectating_carry.md",
+        "type": "process",
+        "parent": "process_spectating.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over three atoms it declares as dependencies, and reads the one persona a play does not cast: the one receiving it. The dramatic-irony engine supplies the gap of discrepant awareness, the allegiance engine supplies the moral bond to the figures in the story, and the transportation engine supplies the carrying-in. This composite adds no fourth engine; it stages the dependency the allegiance atom already declares when it anchors Smith, that allegiance rests on alignment -- so the verdict an audience is surest of is substantially a report on where they were positioned. It is the second composite to wire transportation, which the elsewhere composite reads as one of the ways a mind leaves the room; here it is read as what a made story does once the audience is inside it.",
+      "issue": "Three bridges, in the order the author sets them. The access: what the audience is told and whose knowledge they hold, running as a sustained gap where they know what a figure does not, so every line is read twice -- calibrated by whoever is distributing the knowledge, and never by the audience. The siding: the moral monitoring that sorts the figures into liked and disliked, the rooting that follows, and the enjoyment that rides on their fortunes matching it -- experienced as a judgement about conduct and substantially set by the access. The carry, the twist: the absorption into the story world that stills counterarguing, so the condition under which a story works best is the one in which its audience is least able to audit what the first two did.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the spectating read runs wherever its atoms are cast. The link, advisory: a persona receiving a story may link under Projection what it is doing to them, and the audit surfaces where a production hands an audience a verdict and never says what access produced it.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's audience is genuinely positioned, genuinely sided, or genuinely carried is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- dramatic-irony, allegiance, transportation -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read the receiving persona and link what is running under Projection: the access where knowledge is being distributed, the siding where a verdict is forming, the carry where they have gone in. Set the access first and deliberately, since it is the instrument and the other two follow it; let the audience experience their verdict as their own, because they will; and remember that a story is not read as an attempt on anybody, which is exactly why it reaches past the defences an argument raises."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-dramatic-irony": "^0.1.2",
+    "@chbrain/khai-engine-allegiance": "^0.1.1",
+    "@chbrain/khai-engine-transportation": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
