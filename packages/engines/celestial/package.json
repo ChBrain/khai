@@ -1,0 +1,99 @@
+{
+  "name": "@chbrain/khai-engine-celestial",
+  "version": "0.1.0",
+  "description": "khai engine content, the celestial domain: the sky's bodies as the place's own Shown -- the sun as governor of day and season, the eclipse as day broken, the comet as visitor on a lifetime's clock, the meteor as fire from above, the aurora as the sky alight with solar wind, the starfield as the place's fixed ceiling -- showing what the place stands beneath and the apparition that marks it.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/celestial"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "celestial",
+    "tagline": "Celestial as process: the sky's bodies as the place's own Shown -- the sun as governor of day and season, the eclipse as day broken, the comet as visitor on a lifetime's clock, the meteor as fire from above, the aurora as the sky alight with solar wind, the starfield as the place's fixed ceiling -- showing what the place stands beneath and the apparition that marks it.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_celestial.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_sun.md",
+        "type": "process",
+        "parent": "process_celestial.md"
+      },
+      {
+        "file": "process_eclipse.md",
+        "type": "process",
+        "parent": "process_celestial.md"
+      },
+      {
+        "file": "process_comet.md",
+        "type": "process",
+        "parent": "process_celestial.md"
+      },
+      {
+        "file": "process_meteor.md",
+        "type": "process",
+        "parent": "process_celestial.md"
+      },
+      {
+        "file": "process_aurora.md",
+        "type": "process",
+        "parent": "process_celestial.md"
+      },
+      {
+        "file": "process_starfield.md",
+        "type": "process",
+        "parent": "process_celestial.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Shown",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place, on the Shown chapter. The root (process_celestial.md) declares celestial as the sky's bodies shown before anyone names them -- the sun's arc traced by the place's latitude and season, the moon's shadow crossing at eclipse, the comet hanging on a return the place will not live to see, the meteor streaking for seconds, the aurora dancing above the poles, the stars fixed and cold. It is the apparition itself, not the weather that fills the sky (weather's), the climate that enables it (climate's), the stone the meteor becomes after it lands (geomorphology's), or the feeling and meaning read into it as omen or symbol (authored key, the play's pitch) -- celestial reads the showing, not the consequence or the feeling.",
+      "issue": "Six modes over a sky root, each a different sky-body. The Sun is the place's governor -- the day given over to the solar arc from latitude and date, the seasons' swing from solstice to solstice, the equinoxes as the place's hinges, the light that shapes the place's architecture and fields toward it. The Eclipse is the day broken -- totality, the sudden cold, the 360-degree sunset, animals falling silent, the alignment that moves through the place in minutes, terror before it is predicted and understanding after Thales that it can be known in advance. The Comet is the visitor on a lifetime's clock -- the apparition that hangs for weeks and returns on a schedule generations long, the path as mathematics and the show as witness to the place's own year. The Meteor is fire from above -- the streak of seconds, the shower on calendar nights (Perseids in August, Leonids in November, Geminids in December), the bolide that lights the place at day or night, the only sky-body that touches the place with force like Chelyabinsk 2013's airburst that shattered windows. The Aurora is the sky alight -- the solar wind meeting the magnetosphere at high latitudes, green and red and violet light dancing in curtains and arcs, the great storms that reach far beyond the poles like the Carrington Event 1859 in Havana. The Starfield is the place's fixed ceiling -- the stars and the Milky Way as the oldest navigation, the one unchanging Shown, now invisible from most cities and most of Europe and North America because the place's own light has blinded it out.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so celestial reads system-wide and no place's sky is mere scenery. The link: a place carries, under Shown, the mode of the sky-body it shows, linking one of the six.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each place links a real mode file under Shown. Whether the mode is true to the place and its latitude, season, and darkness is semantic, taught and reviewed, never failed by the suite. The place shows what its sky puts before whoever enters; it does not narrate it, and it never stands in for a persona's own fate or burning or wandering.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give each place whose sky is an actor its read under Shown: the mode its celestial display shows -- the sun that tracks its day and seasons, the eclipse that breaks the noon, the comet or meteor on the place's night, the aurora that dances above the poles, or the starfield that its darkness allows. Keep it the sky-body itself and the place's own showing of it, not the weather overhead (hand that to weather), the climate that enables it (to climate), the stone that fell (to geomorphology), or the meaning read into it as omen (to superstition and the play's pitch)."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.4",
+    "vitest": "^4.1.10"
+  }
+}
