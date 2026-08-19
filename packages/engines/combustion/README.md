@@ -1,6 +1,6 @@
 # Combustion
 
-Combustion as process: a catalog of the named phenomena of fire -- each a distinct way something burns, with its own fuel and chemistry, physical dynamics, sensory signature, and the paradox by which the obvious way to fight it fails or feeds it. Where the fire engine reads a place's burn regime, combustion reads the specific phenomenon, across the wildland, the compartment, the industrial plant, and the made fire.
+Combustion as process: a catalog of the named phenomena of fire -- each a distinct way something burns, with its own fuel and chemistry, physical dynamics, sensory signature, and the paradox by which the obvious way to fight it fails or feeds it. Where the fire engine reads a place's burn regime, combustion reads the specific phenomenon, across the wildland, the compartment, the industrial plant, the made fire, and the conveyance.
 
 This engine is defined by its [manifest](package.json), which the canon renders as the WIRES card. The manifest is the single source of truth; this README is generated, not edited by hand.
 
@@ -64,6 +64,10 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [barbecue](process_barbecue.md): process
 - [candle](process_candle.md): process
 - [cremation](process_cremation.md): process
+- [ship](process_ship.md): process
+- [aircraft](process_aircraft.md): process
+- [vehicle](process_vehicle.md): process
+- [spacecraft](process_spacecraft.md): process
 
 See [sources and attribution](REFERENCES.md).
 
