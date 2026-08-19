@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-regard",
+  "version": "0.1.0",
+  "description": "khai composite content, the regard domain: what the room does with its attention when a persona shows themselves -- the claim confirmed, the claim answered by something other than what was claimed, or the claim not answered at all.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/regard"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "regard",
+    "tagline": "Regard as composite: what the room does with its attention once a persona has shown themselves -- the acknowledgment granted (the nod), the acknowledgment granted to somebody the persona was not claiming to be (the spotlight), or no acknowledgment offered at all (the blank) -- wired over the recognition, embarrassment, and ostracism engines, and closing on the discovery that the treatment which leaves no mark is the one with no way back from it.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_regard.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_regard_nod.md",
+        "type": "process",
+        "parent": "process_regard.md"
+      },
+      {
+        "file": "process_regard_spotlight.md",
+        "type": "process",
+        "parent": "process_regard.md"
+      },
+      {
+        "file": "process_regard_blank.md",
+        "type": "process",
+        "parent": "process_regard.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over three atoms it declares as dependencies. The root (process_regard.md) reads what the room does with its attention once a persona has made a claim on it: not the claim, which is recognition's, but the answer. The recognition engine supplies the acknowledgment granted, the embarrassment engine the acknowledgment that lands on somebody other than the one being claimed, and the ostracism engine the acknowledgment never offered. This composite adds no fourth engine; it stages the three outcomes the recognition engine's own encounter phase already names -- confirmed, distorted, withheld -- as the three things that happen when they actually run on a persona, and closes on the discovery that the mildest-looking of the three is the only one with no repair in it.",
+      "issue": "Three bridges, ordered by how much attention the persona is given. The nod: the claim answered as made, and the persona's self-relation revised upward by an act only somebody else could perform. The spotlight: the claim answered, and what lands is the blunderer rather than the person claimed -- attention at full strength, aimed at the wrong self, which is why it stings more than the blank appears to. The blank: no answer at all, the persona looked through rather than looked at, where the pain fires before any appraisal that might discount it and nothing has happened that could be addressed. The tell across all three is that none of it can be self-issued: a persona cannot nod at themselves, cannot be embarrassed alone, and cannot end their own exclusion.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so regard reads wherever its atoms are cast. The link, advisory: a persona may link under Projection the answer the room gave them, and the audit surfaces where a play shows a claim made and never says what came back.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's room genuinely answers the way the bridge names -- a nod that truly confirms, a spotlight that truly misses, a blank that truly withholds -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- recognition, embarrassment, ostracism -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each persona for the answer they got and link it under Projection: the nod where the claim was met, the spotlight where the room saw them and saw the wrong thing, the blank where the room did not answer. Keep it the answer and not the claim, which is recognition's own phase; keep it the room's act and not the persona's performance, which is the presentation composite's; and stage the blank as the one that costs nothing to endure and offers nothing to repair."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-recognition": "^0.1.1",
+    "@chbrain/khai-engine-embarrassment": "^0.1.1",
+    "@chbrain/khai-engine-ostracism": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
