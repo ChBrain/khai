@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-glide",
+  "version": "0.1.0",
+  "description": "khai composite content, the glide domain: a persona learning while judging how the learning is going -- the monitor that can only infer, the trace that is being built by conditions the monitor cannot see, and the ease that governs what gets studied next, so the misreading is not a one-off but a policy.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/glide"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "glide",
+    "tagline": "Glide as composite: a persona learning while judging how the learning is going -- a meta-level that has no line to its own storage and must infer from cues (the monitor), a trace whose present accessibility is a different quantity from its future availability (the trace), and the smoothness that decides what gets studied next, so a misreading becomes a policy that removes exactly the material still needing work (the ease) -- wired over the metacognition, memory, and confusion engines.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_glide.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_glide_monitor.md",
+        "type": "process",
+        "parent": "process_glide.md"
+      },
+      {
+        "file": "process_glide_trace.md",
+        "type": "process",
+        "parent": "process_glide.md"
+      },
+      {
+        "file": "process_glide_ease.md",
+        "type": "process",
+        "parent": "process_glide.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over three atoms it declares as dependencies. The root (process_glide.md) reads a persona who is learning something and, at the same time, deciding how it is going. The metacognition engine supplies the loop -- a meta-level monitoring the object-level and steering it -- the memory engine supplies what is actually being built, and the confusion engine supplies the felt state of the conditions that build it best. The composite is not about the misjudgement, which the bias engine already catalogues as a standing tilt; it is about what the misjudgement then governs, since the reading decides where the next hour goes.",
+      "issue": "Three bridges. The monitor: the meta-level has no direct line to its own storage and infers from cues, of which smoothness is the loudest, so a judgment of learning is a construction and not a readout. The trace: what is being laid down runs on conditions the monitor cannot observe, and how easily something comes now is a different quantity from whether it will come later, so the two can move in opposite directions without any signal that they have. The ease, the twist: the reading governs the steering -- material that feels smooth is dropped and material that fights is returned to -- so the error does not average out over a long effort, it compounds, and it compounds fastest in the persona who is working hardest.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the glide read runs wherever its atoms are cast. The link, advisory: a persona may link under Projection what they take themselves to have learned and what they did about it, and the audit surfaces where a play has a persona fail at something they had every reason to think they knew.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's persona is genuinely monitoring, genuinely building a trace, or genuinely steering by ease is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- metacognition, memory, and confusion -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each persona who is learning under their own supervision and link the state under Projection: the monitor where a judgment of learning is being formed, the trace where the material is being laid down, the ease where the next hour is being allocated. Make the persona diligent rather than lazy, since the composite runs hardest on somebody working properly; give the failure a delay, because the whole point is that nothing goes wrong at the time; and let the persona have been given no way to find out, since a single closed-book question would have told them."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-confusion": "^0.1.1",
+    "@chbrain/khai-engine-memory": "^0.1.1",
+    "@chbrain/khai-engine-metacognition": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
