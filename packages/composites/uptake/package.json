@@ -1,0 +1,86 @@
+{
+  "name": "@chbrain/khai-composite-uptake",
+  "version": "0.1.0",
+  "description": "khai composite content, the uptake domain: how far a thing travels through a population and what stops it -- the curve it moves along, what having it says about whoever has it, and the turn where the signal inverts because too many of the wrong people arrived.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/uptake"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "uptake",
+    "tagline": "Uptake as composite: how far a thing travels through a population and what stops it -- the curve it moves along, from the outside through the chasm to the old ground (the curve), what having it says about whoever has it, since an adoption is a claim about the adopter and not only a use of the thing (the signal), and the turn where the signal inverts because the wrong people arrived, so the early holders leave or change the terms (the turn) -- wired over the adoption and social-identity engines.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_uptake.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_uptake_curve.md",
+        "type": "process",
+        "parent": "process_uptake.md"
+      },
+      {
+        "file": "process_uptake_signal.md",
+        "type": "process",
+        "parent": "process_uptake.md"
+      },
+      {
+        "file": "process_uptake_turn.md",
+        "type": "process",
+        "parent": "process_uptake.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over two atoms it declares as dependencies. The root (process_uptake.md) reads a thing moving through a population and the personas whose taking it up carries it. The adoption engine supplies the travel -- the five adopter positions and the four places an idea passes through. The social-identity engine supplies what the taking up means, since a persona draws part of the self from the groups they belong to and an adoption is a claim about which those are. The join is Berger and Heath's: in domains where a thing signals identity, people abandon it when the wrong others take it up, so diffusion is capped by who else has it rather than by the merits.",
+      "issue": "Three bridges. The curve: the sequence and its places -- the outside where only innovators are, the chasm that most things do not cross, the tipping point, the old ground -- with a persona's position relative to the thing rather than fixed, so the same persona is an innovator for one and a laggard for another. The signal: what having it says, which is why adoption is never only use -- the thing is worn, and its wearers are read. The turn, the twist: past some point the wearers change and the reading changes with them, so the early holders find themselves saying something they did not intend, and take the exit or keep the thing and move the terms.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the uptake read runs wherever its atoms are cast. The link, advisory: a persona may link under Projection where they stand relative to a thing and what holding it says about them, and the audit surfaces where a play has something fall out of favour and never says who had picked it up.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's thing is genuinely on the curve, genuinely signalling, or genuinely turning is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- adoption and social-identity -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each thing travelling in the play and link the state under Projection: the curve where it is in the sequence, the signal where holding it is saying something, the turn where the saying has changed. Make the thing identity-bearing rather than merely useful, since a thing nobody is read by does not run this at all; name who arrived to trigger the turn; and let the leavers give a reason about the thing itself, because nobody says out loud that the wrong people have it."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-adoption": "^0.1.2",
+    "@chbrain/khai-engine-social-identity": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
