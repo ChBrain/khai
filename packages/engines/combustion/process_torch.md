@@ -22,7 +22,7 @@ stamp:
 ## Initiated by
 
 A fuel gas is premixed with pure oxygen to make the hottest common flame, which preheats steel and then burns it away in an oxygen jet.
-Cutting torch -- oxy-acetylene, oxy-fuel -- premixes acetylene or propane with pure oxygen for a neutral flame near 3100-3500 C, the hottest common fuel-gas flame; cutting is not melting but burning, a pure-oxygen jet oxidising preheated steel exothermically and blowing the slag away. The operator sets a carburising, neutral, or oxidising flame with the two valves, and floods pure oxygen once the metal is bright red.
+Cutting torch -- oxy-acetylene, oxy-fuel -- premixes acetylene (a neutral flame near 3100-3200 C, the hottest common fuel-gas flame) or cooler-burning propane (near 2800 C) with pure oxygen; cutting is not melting but burning, a pure-oxygen jet oxidising preheated steel exothermically and blowing the slag away. The operator sets a carburising, neutral, or oxidising flame with the two valves, and floods pure oxygen once the metal is bright red.
 It is fire concentrated into a jet: a flame hot enough to light steel on fire in a stream of oxygen.
 
 ## Direction
@@ -34,7 +34,7 @@ The direction is a controlled jet with a lethal reverse: heat forward into the s
 ## Lever
 
 The premixed flame that cuts steel against the flashback that runs it back to the cylinders.
-The carrying force is a fuel-oxygen flame hot enough to burn steel; the resistance fails in flashback -- flame burning back into the torch and hoses toward the cylinders is the killer failure, guarded by flashback arrestors and the correct shut-down order -- while acetylene is unstable above about 1.5 bar and can self-decompose explosively, an oxidising flame silently burns the weld metal, and a carburising one embrittles it. The same flame that cuts can travel home and detonate the supply.
+The carrying force is a fuel-oxygen flame hot enough to burn steel; the resistance fails in flashback -- flame burning back into the torch and hoses toward the cylinders is the killer failure, guarded by flashback arrestors and the correct shut-down order -- while free acetylene is unstable above 15 psig (about 1 bar gauge) and can self-decompose explosively -- safe in the cylinder only dissolved in acetone in a porous mass, an oxidising flame silently burns the weld metal, and a carburising one embrittles it. The same flame that cuts can travel home and detonate the supply.
 Set it and shut it down in order and it cuts clean; let it burn back and the flame follows the hose to the bottle.
 
 ## Echo

@@ -22,7 +22,7 @@ stamp:
 ## Initiated by
 
 Heat breaks a solid fuel down into flammable gases before, or instead of, any flame.
-Pyrolysis starts wherever a solid fuel is heated to its decomposition temperature -- wood from roughly 200-300 C, many plastics lower -- releasing volatile combustible gases (carbon monoxide, hydrogen, hydrocarbons, aldehydes) and leaving char, before oxidation. The volatiles are the actual gas-phase fuel that burns; the visible flame is burning gas, not the solid.
+Pyrolysis starts wherever a solid fuel is heated to its decomposition temperature -- wood from roughly 200-300 C, most plastics at similar or somewhat higher temperatures -- releasing volatile combustible gases (carbon monoxide, hydrogen, hydrocarbons, aldehydes) and leaving char, before oxidation. The volatiles are the actual gas-phase fuel that burns; the visible flame is burning gas, not the solid.
 It is the engine beneath fire: the step that makes a solid into a gas the flame can consume.
 
 ## Direction

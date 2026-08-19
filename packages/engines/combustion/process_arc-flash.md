@@ -22,7 +22,7 @@ stamp:
 ## Initiated by
 
 A fault bridges an energised conductor and the air itself ionises into a plasma that carries the current at furnace heat.
-Arc flash is not a fuel fire but an electrical release: a short, ground fault, insulation breakdown, or bridging sustains an arc of ionised air conducting fault current at roughly 19,000-20,000 C, with a pressure blast and vaporised-metal shrapnel; the related equipment fire is resistive or insulation overheating igniting adjacent Class A and B materials -- the enclosure and cabling.
+Arc flash is not a fuel fire but an electrical release: a short, ground fault, insulation breakdown, or bridging sustains an arc of ionised air conducting fault current at up to roughly 19,000-20,000 C, with a pressure blast and vaporised-metal shrapnel; the related equipment fire is resistive or insulation overheating igniting adjacent Class A and B materials -- the enclosure and cabling.
 It is fire made of air and current: not something burning but the atmosphere itself turned to conducting plasma.
 
 ## Direction

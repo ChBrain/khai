@@ -28,7 +28,7 @@ It is the fire become self-organising: a stationary, self-sustaining system that
 ## Direction
 
 Inward and up, the in-draft feeding a fire that stays where it is until the fuel is gone.
-Firestorm draws hurricane-force inflow winds -- often over 50 km/h, reported higher -- toward its centre, which makes it largely stationary and self-sustaining until the fuel is consumed; the violent indraft and oxygen consumption are lethal well beyond the flames.
+Firestorm draws gale- to hurricane-force inflow winds -- Hamburg's were estimated at up to about 240 km/h -- toward its centre, which makes it largely stationary and self-sustaining until the fuel is consumed; the violent indraft and oxygen consumption are lethal well beyond the flames.
 The direction is a fixed inferno: not a front that passes but a system that holds, pulling the air of the whole district into itself.
 
 ## Lever
