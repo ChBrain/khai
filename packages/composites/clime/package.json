@@ -1,0 +1,86 @@
+{
+  "name": "@chbrain/khai-composite-clime",
+  "version": "0.1.0",
+  "description": "khai composite content, the clime domain: a place read as both what its air does today and what its air can do at all -- one draw against the odds it came from, and the run of days that is the only thing anyone ever actually has.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/clime"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "clime",
+    "tagline": "Clime as composite: a place read as both what its air does and what its air can do -- the load falling today on every face at once (the day), the standing regime the place was built for and nobody has ever met (the terms), and the run of days that is too long to dismiss and too short to conclude from (the run) -- wired over the weather and climate engines, and closing on the discovery that the only thing anyone can feel is a sample.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_clime.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_clime_day.md",
+        "type": "process",
+        "parent": "process_clime.md"
+      },
+      {
+        "file": "process_clime_terms.md",
+        "type": "process",
+        "parent": "process_clime.md"
+      },
+      {
+        "file": "process_clime_run.md",
+        "type": "process",
+        "parent": "process_clime.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Shown",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Place, on the Shown chapter, over the two atoms it declares as dependencies -- the last two engines on that chapter left unwired, read together for the first time. The root (process_clime.md) reads a place as both what its air does and what its air can do. The weather engine supplies the load falling now, channel by channel and band by band; the climate engine supplies the standing regime those loads fall within. This composite adds no third engine; it reads the relation between them, which is that one is a draw and the other is the odds, and that nobody has ever experienced odds.",
+      "issue": "Three bridges. The day: the load actually falling, on every face at once, undeniable and almost entirely uninformative about the regime it came from. The terms: the standing regime a place is built for and adapted to, which sets what the place can get rather than what it gets, and which no one in the place has ever met. The run, the twist: the stretch of days too long to dismiss and too short to conclude from -- the odd summer, the third failed harvest, the winter that did not come -- which is the only evidence anyone actually holds, is where a moving regime first shows, and can never be settled from inside, so a shift is argued about exactly while it is happening and is obvious only once the argument no longer matters.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the clime read runs wherever its atoms are cast. The link, advisory: a place may link under Shown the face it is showing, and the audit surfaces where a play stages weather with no regime behind it, or a regime that never falls on anybody as a day.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's place genuinely shows the face the bridge names -- a day that is only a day, a regime that truly governs, a run that truly cannot be settled -- is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- weather and climate -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each place for the face it is showing and link it under Shown: the day where a load is falling, the terms where the regime is doing the governing, the run where a sequence is being reasoned from. Keep the day and the terms apart, since the whole claim is that neither can be observed as the other; let personas reason from the run, since that is what people actually do; and let them be wrong about it without being foolish, since the run genuinely cannot decide the question they are asking of it."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-weather": "^0.1.0",
+    "@chbrain/khai-engine-climate": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
