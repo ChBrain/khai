@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-unmoored",
+  "version": "0.1.0",
+  "description": "khai composite content, the unmoored domain: attention that has come off the task -- roaming and generative, mobilised and finding nothing to take it, or locked on something that will not resolve -- one decoupling in three states, told apart by what is in reach and how it is held.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/unmoored"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "unmoored",
+    "tagline": "Unmoored as composite: attention that has come off the task -- roaming free and bringing things back (the roam), mobilised and finding nothing the situation will supply (the itch), or locked on a thing that will not resolve (the loop) -- wired over the mind-wandering, boredom, and rumination engines, and closing on the discovery that the three are one decoupling, told apart by what is in reach and by how it is held rather than by any quality of the mind doing it.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_unmoored.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_unmoored_roam.md",
+        "type": "process",
+        "parent": "process_unmoored.md"
+      },
+      {
+        "file": "process_unmoored_itch.md",
+        "type": "process",
+        "parent": "process_unmoored.md"
+      },
+      {
+        "file": "process_unmoored_loop.md",
+        "type": "process",
+        "parent": "process_unmoored.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over three atoms it declares as dependencies. The root (process_unmoored.md) reads attention that has come off the task. The mind-wandering engine supplies the decoupling itself, the boredom engine supplies attention mobilised with nothing to take it, and the rumination engine supplies attention locked on something unresolved. This composite adds no fourth engine; it reads that these are one decoupling in three states, a join both flanks already declare -- the boredom atom defining its subject attentionally against successful engagement, the rumination atom carrying the processing-mode axis that separates repetitive thought which gets somewhere from repetitive thought which does not. The composite wires mind-wandering a second time, and reads it the other way round from the creativity composite: there the incubating drift, here the same faculty with something painful in reach.",
+      "issue": "Three bridges, told apart by what is in reach and how it is held. The roam: attention decoupled and free, going nowhere in particular and returning with things, the state a persona may have entered on purpose or been left by. The itch: attention mobilised and finding no target the situation will supply -- not the absence of stimulation, since the paradigm case is the persona surrounded by options and unable to engage any of them, which is why the usual remedy of supplying more reproduces it. The loop, the twist: the same decoupling with an unresolved thing within reach, held in the abstract-evaluative mode that asks why this happened and what it says about the persona -- the mode that feels most like getting to the bottom of it and is the one that never does.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the unmoored read runs wherever its atoms are cast. The link, advisory: a persona may link under Projection the state their attention is in when it is not on the task, and the audit surfaces where a play shows a persona not attending and never says which of the three it is.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's persona is genuinely roaming, genuinely itching, or genuinely looping is semantic, taught and reviewed, never failed by the suite. The evidence behind the three is not uniform, and the references say which parts are firm.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- mind-wandering, boredom, rumination -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each persona whose attention is off the task and link the state under Projection: the roam where it is free, the itch where it is seeking, the loop where it is stuck. Keep the mechanism one thing across all three, since the composite's claim is that the difference is not in the mind; give the itch no shortage of available stimulation, since that is the case that shows what it is; and let the looping persona believe they are working on it, because they do."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-mind-wandering": "^0.1.1",
+    "@chbrain/khai-engine-boredom": "^0.1.1",
+    "@chbrain/khai-engine-rumination": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
