@@ -36,7 +36,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "js-yaml": "^5.2.2"
+    "js-yaml": "^5.3.0"
   },
   "devDependencies": {
     "@chbrain/khai-rules": "^0.1.12",
