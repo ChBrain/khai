@@ -1,0 +1,144 @@
+{
+  "name": "@chbrain/khai-engine-politics",
+  "version": "0.1.0",
+  "description": "khai engine content, the politics domain: how a persona gets an outcome out of a body that decides collectively, where the rule for deciding is itself in play -- across the three faces a contest can sit at, the seven levers that work on the situation rather than on anybody's mind, and the five footings that make a lever bite.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/politics"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "politics",
+    "tagline": "Politics as process: how a persona gets an outcome out of a body that decides collectively, where the rule for deciding is itself in play -- across the three faces a contest can sit at (the open contest, the agenda, the settled premise), the seven levers that work on the situation rather than on anybody's mind (agenda-setting, dimension-splitting, scope-shifting, coalition-building, logrolling, stalling, the rule contest), and the five footings that make a lever bite (the veto point, the broker seat, the bloc, the mandate, the outsider) -- with the twist that the most complete victory produces the least visible activity (Dahl; Bachrach & Baratz; Lukes; Schattschneider; Riker).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_politics.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "position_first_face.md",
+        "type": "position",
+        "parent": "process_politics.md"
+      },
+      {
+        "file": "position_second_face.md",
+        "type": "position",
+        "parent": "process_politics.md"
+      },
+      {
+        "file": "position_third_face.md",
+        "type": "position",
+        "parent": "process_politics.md"
+      },
+      {
+        "file": "process_agenda_setting.md",
+        "type": "process",
+        "parent": "process_politics.md"
+      },
+      {
+        "file": "process_dimension_splitting.md",
+        "type": "process",
+        "parent": "process_politics.md"
+      },
+      {
+        "file": "process_scope_shifting.md",
+        "type": "process",
+        "parent": "process_politics.md"
+      },
+      {
+        "file": "process_coalition_building.md",
+        "type": "process",
+        "parent": "process_politics.md"
+      },
+      {
+        "file": "process_logrolling.md",
+        "type": "process",
+        "parent": "process_politics.md"
+      },
+      {
+        "file": "process_stalling.md",
+        "type": "process",
+        "parent": "process_politics.md"
+      },
+      {
+        "file": "process_rule_contest.md",
+        "type": "process",
+        "parent": "process_politics.md"
+      },
+      {
+        "file": "position_veto_point.md",
+        "type": "position",
+        "parent": "process_politics.md"
+      },
+      {
+        "file": "position_broker_seat.md",
+        "type": "position",
+        "parent": "process_politics.md"
+      },
+      {
+        "file": "position_bloc_hold.md",
+        "type": "position",
+        "parent": "process_politics.md"
+      },
+      {
+        "file": "position_mandate_claim.md",
+        "type": "position",
+        "parent": "process_politics.md"
+      },
+      {
+        "file": "position_outsider_stand.md",
+        "type": "position",
+        "parent": "process_politics.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The root (process_politics.md) declares politics as what a persona does where the outcome is not theirs to decide and the rule for deciding is itself something that can be moved. It is not persuasion and not bargaining: the characteristic political move changes the situation so that the existing preferences produce a different result, without anybody's mind having been altered. Arrow's impossibility is the reason the domain exists -- there is no neutral way to add preferences up, so the rule is always a party to the outcome and always worth contesting.",
+      "issue": "Three altitudes, one core. The faces: where the contest actually sits -- the open contest, decided by who has the numbers on a question already on the table; the agenda, decided by what reaches the table at all; and the settled premise, where the question is not raised because nobody has been given a way to want it raised. The levers: seven moves that work on the situation rather than on anybody's mind -- agenda-setting, dimension-splitting, scope-shifting, coalition-building, logrolling, stalling, and the rule contest. The footings: five things a persona may hold that make a lever bite -- the veto point, the broker seat, the bloc, the mandate, and the outsider's stand, which is the absence of the other four and leaves only one lever available.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the politics read runs wherever a body decides anything. The link: each persona links, under Projection, the face they are contesting at, the levers available to them, and the footing they hold.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real face, lever, and footing. Whether a persona's move is genuinely heresthetic rather than rhetorical, and whether a body's quiet is a settled premise or simple agreement, is semantic -- taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then, for each persona who wants something a body must decide, link the face the contest sits at, the levers their footing permits, and the footing itself. Give the body a rule and let the rule be contestable, since a body whose procedure is fixed and neutral has no politics in it. Keep the levers situational: a persona who wins by changing minds has run swaying and not this. And read a quiet body carefully, because quiet is the signature of the third face and also of ordinary agreement, and the engine does not tell them apart."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
