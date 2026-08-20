@@ -1,0 +1,264 @@
+{
+  "name": "@chbrain/khai-engine-regime",
+  "version": "0.1.0",
+  "description": "khai engine content, the regime domain: the standing arrangement under which a persona's polity decides -- a catalogue of political systems routed through six axes (the count, the claim, the constraint, the holder, the architecture, and the substitute), each type read for what it gives, what it demands, and the one thing it structurally cannot do.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/regime"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "regime",
+    "tagline": "Regime as position: the standing arrangement under which a persona's polity decides, which they did not choose and cannot individually change -- a catalogue of political systems routed through six axes: the count (who rules, in Aristotle's true and deviant pairs), the claim (why them, in Weber's three grounds of legitimate domination), the constraint (whether the rulers can be removed, across the liberal-to-closed spectrum), the holder (who actually holds an autocracy), the architecture (how the offices are arranged), and the substitute (what rules where none of the named forms does) -- with the twist that a regime's power over what may be said is inversely related to its knowledge of what is true (Aristotle; Weber; Linz; Dahl; Levitsky & Way; Geddes; Lijphart; Kuran).",
+    "type": "position",
+    "members": [
+      {
+        "file": "position_regime.md",
+        "type": "position",
+        "parent": null
+      },
+      {
+        "file": "position_count_regime.md",
+        "type": "position",
+        "parent": "position_regime.md"
+      },
+      {
+        "file": "position_monarchy.md",
+        "type": "position",
+        "parent": "position_count_regime.md"
+      },
+      {
+        "file": "position_tyranny.md",
+        "type": "position",
+        "parent": "position_count_regime.md"
+      },
+      {
+        "file": "position_aristocracy.md",
+        "type": "position",
+        "parent": "position_count_regime.md"
+      },
+      {
+        "file": "position_oligarchy.md",
+        "type": "position",
+        "parent": "position_count_regime.md"
+      },
+      {
+        "file": "position_polity.md",
+        "type": "position",
+        "parent": "position_count_regime.md"
+      },
+      {
+        "file": "position_ochlocracy.md",
+        "type": "position",
+        "parent": "position_count_regime.md"
+      },
+      {
+        "file": "position_claim_regime.md",
+        "type": "position",
+        "parent": "position_regime.md"
+      },
+      {
+        "file": "position_traditional_rule.md",
+        "type": "position",
+        "parent": "position_claim_regime.md"
+      },
+      {
+        "file": "position_charismatic_rule.md",
+        "type": "position",
+        "parent": "position_claim_regime.md"
+      },
+      {
+        "file": "position_legal_rational_rule.md",
+        "type": "position",
+        "parent": "position_claim_regime.md"
+      },
+      {
+        "file": "position_constraint_regime.md",
+        "type": "position",
+        "parent": "position_regime.md"
+      },
+      {
+        "file": "position_liberal_democracy.md",
+        "type": "position",
+        "parent": "position_constraint_regime.md"
+      },
+      {
+        "file": "position_electoral_democracy.md",
+        "type": "position",
+        "parent": "position_constraint_regime.md"
+      },
+      {
+        "file": "position_competitive_authoritarian.md",
+        "type": "position",
+        "parent": "position_constraint_regime.md"
+      },
+      {
+        "file": "position_electoral_autocracy.md",
+        "type": "position",
+        "parent": "position_constraint_regime.md"
+      },
+      {
+        "file": "position_closed_autocracy.md",
+        "type": "position",
+        "parent": "position_constraint_regime.md"
+      },
+      {
+        "file": "position_totalitarian.md",
+        "type": "position",
+        "parent": "position_constraint_regime.md"
+      },
+      {
+        "file": "position_holder_regime.md",
+        "type": "position",
+        "parent": "position_regime.md"
+      },
+      {
+        "file": "position_personalist.md",
+        "type": "position",
+        "parent": "position_holder_regime.md"
+      },
+      {
+        "file": "position_military_junta.md",
+        "type": "position",
+        "parent": "position_holder_regime.md"
+      },
+      {
+        "file": "position_single_party.md",
+        "type": "position",
+        "parent": "position_holder_regime.md"
+      },
+      {
+        "file": "position_dynastic.md",
+        "type": "position",
+        "parent": "position_holder_regime.md"
+      },
+      {
+        "file": "position_architecture_regime.md",
+        "type": "position",
+        "parent": "position_regime.md"
+      },
+      {
+        "file": "position_parliamentary.md",
+        "type": "position",
+        "parent": "position_architecture_regime.md"
+      },
+      {
+        "file": "position_presidential.md",
+        "type": "position",
+        "parent": "position_architecture_regime.md"
+      },
+      {
+        "file": "position_semi_presidential.md",
+        "type": "position",
+        "parent": "position_architecture_regime.md"
+      },
+      {
+        "file": "position_unitary.md",
+        "type": "position",
+        "parent": "position_architecture_regime.md"
+      },
+      {
+        "file": "position_federal.md",
+        "type": "position",
+        "parent": "position_architecture_regime.md"
+      },
+      {
+        "file": "position_majoritarian.md",
+        "type": "position",
+        "parent": "position_architecture_regime.md"
+      },
+      {
+        "file": "position_consensus_regime.md",
+        "type": "position",
+        "parent": "position_architecture_regime.md"
+      },
+      {
+        "file": "position_substitute_regime.md",
+        "type": "position",
+        "parent": "position_regime.md"
+      },
+      {
+        "file": "position_theocracy.md",
+        "type": "position",
+        "parent": "position_substitute_regime.md"
+      },
+      {
+        "file": "position_technocracy.md",
+        "type": "position",
+        "parent": "position_substitute_regime.md"
+      },
+      {
+        "file": "position_plutocracy.md",
+        "type": "position",
+        "parent": "position_substitute_regime.md"
+      },
+      {
+        "file": "position_kleptocracy.md",
+        "type": "position",
+        "parent": "position_substitute_regime.md"
+      },
+      {
+        "file": "position_stratocracy.md",
+        "type": "position",
+        "parent": "position_substitute_regime.md"
+      },
+      {
+        "file": "position_anarchy.md",
+        "type": "position",
+        "parent": "position_substitute_regime.md"
+      },
+      {
+        "file": "position_interregnum.md",
+        "type": "position",
+        "parent": "position_substitute_regime.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (position_regime.md) declares the regime as a standing fact about a persona's situation rather than a property of the persona: the arrangement by which their polity decides, which they were born into or arrived under, which sets what political moves exist for them, and which they cannot individually change. It is the board; the politics engine is the play on it.",
+      "issue": "Six axes over one root, because no single question sorts regimes and the traditions ask different ones. The count: who rules -- one, few, or many -- each in a form that serves the ruled and a form that serves the rulers, which is Aristotle's spine and still the sharpest cut. The claim: why these rulers and not others -- inherited custom, personal grace, or impersonal rule, which is Weber's three grounds. The constraint: whether the rulers can be removed by anybody, running from liberal democracy through electoral democracy and the competitive and hegemonic authoritarianisms to the closed autocracy, with totalitarianism as a distinct kind rather than an extreme degree. The holder: who actually holds an autocracy -- a person, an army, a party, or a family -- which decides how it ends. The architecture: how the offices are arranged, parliamentary or presidential, unitary or federal, majoritarian or consensual, cross-cutting all the above. The substitute: what rules where none of the named forms does.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the regime read runs wherever a polity is in the play. The link: each persona links, under Projection, the regime they live under -- ordinarily one type from the constraint axis and whichever others the play needs, since the axes cross rather than compete.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real type. Whether a production's polity is genuinely an electoral democracy or a competitive authoritarianism is a judgement the real literature makes with difficulty and disagreement, and the suite does not attempt it.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give each polity in the play a type on the constraint axis, since that is the one that decides which political levers exist, and add the others where they matter -- the holder axis where a play turns on how an autocracy ends, the architecture axis where it turns on a procedural fight. Read the axes as crossing: a federal presidential electoral democracy is one polity described four ways, not four regimes. And take the Loses section of every type seriously, since the engine's value is that each arrangement has one thing it structurally cannot do, and that is usually where a play's pressure belongs."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
