@@ -1,0 +1,86 @@
+{
+  "name": "@chbrain/khai-composite-remainder",
+  "version": "0.1.0",
+  "description": "khai composite content, the remainder domain: what a persona's sense of the time they have left does to what they did with the time they had -- the horizon, the tally of roads not taken, and the closing that makes the tally bearable by making it unactionable.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/remainder"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "remainder",
+    "tagline": "Remainder as composite: what a persona's sense of the time they have left does to what they did with the time they had -- an open-ended future that tilts toward knowledge and expansion or a foreshortened one that tilts toward meaning and the present (the horizon), the measuring of a choice against the better outcome imaginable, in the forms of commission, inaction, and anticipation (the tally), and the closing that makes the tally bearable by making it unactionable, since a regret hurts in proportion to the opportunity still open to it (the closing) -- wired over the time-horizon and regret engines.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_remainder.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_remainder_horizon.md",
+        "type": "process",
+        "parent": "process_remainder.md"
+      },
+      {
+        "file": "process_remainder_tally.md",
+        "type": "process",
+        "parent": "process_remainder.md"
+      },
+      {
+        "file": "process_remainder_closing.md",
+        "type": "process",
+        "parent": "process_remainder.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over two atoms it declares as dependencies. The root (process_remainder.md) reads a persona whose account of their own life is being scored by how much of it they think is left. The time-horizon engine supplies the horizon -- expansive, an open-ended future that tilts toward knowledge, novelty, and expansion, or limited, a foreshortened one that tilts toward emotional meaning and the present, and set by the perception of time rather than by age. The regret engine supplies the tally -- a choice measured against the better outcome the persona can imagine, in its commission, inaction, and anticipation forms. The join is Wrosch, Bauer and Scheier's: regret costs a persona in proportion to the future goals still available to them, so the same regret is heavier where something could still be done about it.",
+      "issue": "Three bridges. The horizon: how much time the persona takes themselves to have, which reweights every goal they hold and is a perception rather than a fact, movable by an ending or a reprieve in the young and the old alike. The tally: the roads not taken, which concentrate where opportunity was greatest and which invert over time, since what is done is regretted sharply and briefly while what was not done is regretted mildly and for the rest of a life. The closing, the twist: as the horizon shortens the opportunity closes, and a regret with nothing to act on stops being a demand and becomes a fact -- so the peace of a foreshortened horizon is bought with the loss of the possibility that was doing the hurting.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the remainder read runs wherever its atoms are cast. The link, advisory: a persona may link under Projection the horizon they hold and what they measure against it, and the audit surfaces where a play gives a persona a reckoning and never says how much time they think they have.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's persona genuinely holds a horizon, genuinely keeps a tally, or is genuinely closing is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- time-horizon and regret -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each persona reckoning with their own life and link the state under Projection: the horizon where the time-left is set, the tally where the roads not taken are counted, the closing where the counting stops mattering. Set the horizon by perception and not by age, since an ending or a reprieve moves it in anybody; put the sharpest regret where the door is still open; and do not stage the closing as wisdom, because what changed is the door and not the persona."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-regret": "^0.1.1",
+    "@chbrain/khai-engine-time-horizon": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
