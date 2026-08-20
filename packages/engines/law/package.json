@@ -1,0 +1,189 @@
+{
+  "name": "@chbrain/khai-engine-law",
+  "version": "0.1.0",
+  "description": "khai engine content, the law domain: legality as the standing condition a persona's conduct is judged under -- what turns a rule into law (the making), the eight ways a rule system stops being law without anybody repealing anything (the failing), the three stances a persona takes toward legality (the standing), and the distance between the rule declared and the rule as it operates (the gap).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/law"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "law",
+    "tagline": "Law as position: legality as the standing condition a persona's conduct is judged under -- not a norm, which binds by being shared, and not a command, which binds by being issued, but a rule that binds because another rule says it does -- read on four axes: the making (Hart's primary rules of obligation and the secondary rules of recognition, change, and adjudication that turn a set of customs into a legal order), the failing (Fuller's eight distinct routes by which a rule system stops being law without anybody repealing anything), the standing (Ewick & Silbey's three stances an ordinary persona takes toward legality -- before it, with it, against it -- held simultaneously and without discomfort), and the gap (Pound's law in books against law in action, where almost all of a persona's actual experience of law happens) -- with the twist that no law can forbid without also pricing, and the conversion runs only one way (Hart; Fuller; Ewick & Silbey; Pound; Lipsky; Galanter; Merry; Gneezy & Rustichini).",
+    "type": "position",
+    "members": [
+      {
+        "file": "position_law.md",
+        "type": "position",
+        "parent": null
+      },
+      {
+        "file": "position_making_law.md",
+        "type": "position",
+        "parent": "position_law.md"
+      },
+      {
+        "file": "position_primary_rule.md",
+        "type": "position",
+        "parent": "position_making_law.md"
+      },
+      {
+        "file": "position_rule_of_recognition.md",
+        "type": "position",
+        "parent": "position_making_law.md"
+      },
+      {
+        "file": "position_rule_of_change.md",
+        "type": "position",
+        "parent": "position_making_law.md"
+      },
+      {
+        "file": "position_rule_of_adjudication.md",
+        "type": "position",
+        "parent": "position_making_law.md"
+      },
+      {
+        "file": "position_failing_law.md",
+        "type": "position",
+        "parent": "position_law.md"
+      },
+      {
+        "file": "position_no_rules.md",
+        "type": "position",
+        "parent": "position_failing_law.md"
+      },
+      {
+        "file": "position_unpublished_rule.md",
+        "type": "position",
+        "parent": "position_failing_law.md"
+      },
+      {
+        "file": "position_retroactive_rule.md",
+        "type": "position",
+        "parent": "position_failing_law.md"
+      },
+      {
+        "file": "position_unintelligible_rule.md",
+        "type": "position",
+        "parent": "position_failing_law.md"
+      },
+      {
+        "file": "position_contradictory_rule.md",
+        "type": "position",
+        "parent": "position_failing_law.md"
+      },
+      {
+        "file": "position_impossible_rule.md",
+        "type": "position",
+        "parent": "position_failing_law.md"
+      },
+      {
+        "file": "position_unstable_rule.md",
+        "type": "position",
+        "parent": "position_failing_law.md"
+      },
+      {
+        "file": "position_administered_otherwise.md",
+        "type": "position",
+        "parent": "position_failing_law.md"
+      },
+      {
+        "file": "position_standing_law.md",
+        "type": "position",
+        "parent": "position_law.md"
+      },
+      {
+        "file": "position_before_the_law.md",
+        "type": "position",
+        "parent": "position_standing_law.md"
+      },
+      {
+        "file": "position_with_the_law.md",
+        "type": "position",
+        "parent": "position_standing_law.md"
+      },
+      {
+        "file": "position_against_the_law.md",
+        "type": "position",
+        "parent": "position_standing_law.md"
+      },
+      {
+        "file": "position_gap_law.md",
+        "type": "position",
+        "parent": "position_law.md"
+      },
+      {
+        "file": "position_discretion.md",
+        "type": "position",
+        "parent": "position_gap_law.md"
+      },
+      {
+        "file": "position_selective_enforcement.md",
+        "type": "position",
+        "parent": "position_gap_law.md"
+      },
+      {
+        "file": "position_dead_letter.md",
+        "type": "position",
+        "parent": "position_gap_law.md"
+      },
+      {
+        "file": "position_repeat_player.md",
+        "type": "position",
+        "parent": "position_gap_law.md"
+      },
+      {
+        "file": "position_legal_pluralism.md",
+        "type": "position",
+        "parent": "position_gap_law.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (position_law.md) declares legality as a standing fact about a persona's situation: a rule system that claims to bind them, which they did not consent to and cannot individually revise. It is not a norm and not a command -- a norm binds because it is shared, a command because somebody with force issued it, a law because another rule says it does -- and that second rule is what makes a legal order different in kind from a strong custom or a standing threat. Regime is the arrangement that decides; law is what the deciding produces and how it reaches a persona.",
+      "issue": "Four axes over one root. The making: Hart's two kinds of rule, primary rules of obligation and the secondary rules -- recognition, change, adjudication -- that cure the uncertainty, the static, and the inefficiency of a regime of primary rules alone, with the rule of recognition resting on nothing but official practice. The failing: Fuller's eight routes to not-law, each a distinct way a persona of goodwill is left unable to comply -- no rules at all, unpublished, retroactive, unintelligible, contradictory, impossible, unstable, and administered otherwise than declared. The standing: Ewick and Silbey's three stances, before the law where it is majestic and remote, with the law where it is a game to be played by whoever can afford to, against the law where it is an arbitrary power to be evaded -- contradictory, simultaneously held, and not stages of sophistication. The gap: the distance between the rule as written and the rule as it operates, in its five standing forms -- discretion, selective enforcement, the dead letter, the repeat player, and legal pluralism -- which is where almost all of a persona's actual experience of law happens.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the legality read runs wherever a rule reaches a persona. The link: each persona links, under Projection, the standing they take toward law and whichever gap form is operating on them -- and the standing is expected to change within a play, since the three are positions available to everybody rather than types of person.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real member. Whether a production's rule is genuinely a dead letter or merely unenforced so far, and whether a persona is standing before the law or working it, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give each persona a standing, and expect it to move -- reverence in the abstract, fluency in their own dispute, evasion where something they will not give up is at stake, all in the same persona and the same week. Put the pressure on the gap rather than on the text, since amending the words moves the gap instead of closing it. And read the root's twist before pricing anything: a rule that names precisely what breaking it costs has published the terms on which it may be bought, and the conversion from wrong to price does not run backward."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
