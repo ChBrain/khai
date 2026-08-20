@@ -1,0 +1,164 @@
+{
+  "name": "@chbrain/khai-engine-illness",
+  "version": "0.1.0",
+  "description": "khai engine content, the illness domain: what a condition makes of a persona socially and biographically rather than physically -- the disruption of a taken-for-granted life, the diagnosis that gates everything, the bargain a society offers the sick and the terms attached, and the shapes of story the condition leaves available.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/illness"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "illness",
+    "tagline": "Illness as process: what a condition makes of a persona socially and biographically rather than physically -- not the body's demands and not the discrediting mark, but what happens once a bodily fact has to be told, believed, excused, and treated -- across four movements: the disruption, where the taken-for-granted breaks and a biography is rewritten in both directions (Bury); the ticket, where a diagnosis gates every entitlement and a condition without a name leaves its bearer indistinguishable from a malingerer; the role, the bargain of exemption and absolution against an obligation to want to get well and to cooperate with treatment (Parsons); and the telling, the three shapes of story a condition permits -- restitution, chaos, and quest (Frank) -- with the twist that the exemption is a loan against a recovery, so the personas who need it most permanently are the ones least able to hold it.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_illness.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_disruption.md",
+        "type": "process",
+        "parent": "process_illness.md"
+      },
+      {
+        "file": "process_broken_frame.md",
+        "type": "process",
+        "parent": "process_disruption.md"
+      },
+      {
+        "file": "process_broken_account.md",
+        "type": "process",
+        "parent": "process_disruption.md"
+      },
+      {
+        "file": "process_mobilising.md",
+        "type": "process",
+        "parent": "process_disruption.md"
+      },
+      {
+        "file": "process_rethinking.md",
+        "type": "process",
+        "parent": "process_disruption.md"
+      },
+      {
+        "file": "process_ticket.md",
+        "type": "process",
+        "parent": "process_illness.md"
+      },
+      {
+        "file": "process_naming.md",
+        "type": "process",
+        "parent": "process_ticket.md"
+      },
+      {
+        "file": "process_contested_illness.md",
+        "type": "process",
+        "parent": "process_ticket.md"
+      },
+      {
+        "file": "process_unseen.md",
+        "type": "process",
+        "parent": "process_ticket.md"
+      },
+      {
+        "file": "process_wrong_name.md",
+        "type": "process",
+        "parent": "process_ticket.md"
+      },
+      {
+        "file": "process_sick_role.md",
+        "type": "process",
+        "parent": "process_illness.md"
+      },
+      {
+        "file": "process_exemption.md",
+        "type": "process",
+        "parent": "process_sick_role.md"
+      },
+      {
+        "file": "process_absolution.md",
+        "type": "process",
+        "parent": "process_sick_role.md"
+      },
+      {
+        "file": "process_obligation.md",
+        "type": "process",
+        "parent": "process_sick_role.md"
+      },
+      {
+        "file": "process_cooperation.md",
+        "type": "process",
+        "parent": "process_sick_role.md"
+      },
+      {
+        "file": "process_telling.md",
+        "type": "process",
+        "parent": "process_illness.md"
+      },
+      {
+        "file": "process_restitution_story.md",
+        "type": "process",
+        "parent": "process_telling.md"
+      },
+      {
+        "file": "process_chaos_story.md",
+        "type": "process",
+        "parent": "process_telling.md"
+      },
+      {
+        "file": "process_quest_story.md",
+        "type": "process",
+        "parent": "process_telling.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (process_illness.md) declares illness as the point where a bodily fact becomes a social one: where the persona has to tell somebody, ask for something, be believed, be excused, or be treated, and what happens next depends on other people rather than on the condition. It is not the physical demand, which is the body engine's, and not the discrediting mark, which is stigma's.",
+      "issue": "Four movements over one root, runnable in any order and frequently at once. The disruption (Bury): the taken-for-granted floor gives way, the persona has no account of why this happened and generally builds a harsh one, resources are mobilised at a cost that lands on a household, and the biography is rewritten backward as well as forward. The ticket: a diagnosis is the currency, not the explanation -- the naming reorganises the past and issues a future, the contested condition leaves its bearer doing the work of proof instead of the work of recovery, the unseen condition is believed on paper and doubted in the room, and the wrong name admits the persona to the wrong category. The role (Parsons): exemption from ordinary obligations and absolution from blame, against an obligation to regard being ill as undesirable and to cooperate with those competent to treat it -- two gifts and two prices. The telling (Frank): restitution, the resolvable shape the room wants and the only one it finds comfortable; chaos, the account with no sequence and no agency that empties a room; and quest, the illness told as a journey that yielded something, available only to a persona with enough distance to be telling from somewhere.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the illness read runs wherever a condition is in the play. The link: each persona links, under Projection, where they stand in the movements -- ordinarily whether they hold a ticket, which terms of the role they are meeting or failing, and which story shape is available to them.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real member. Whether a production's condition is genuinely contested, and whether a persona's account is chaos or a restitution story coming apart, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then decide first whether the persona has a ticket, since almost everything else follows from it, and decide separately whether the condition will end, since the whole bargain assumes it will. Give the persona a story shape and let the room grade it. And read the twist before writing anybody's acceptance: the exemption was advanced against a recovery, so a persona at peace with a permanent condition is in breach of a term nobody told them about, and the room will stop reading them as ill and start reading them as difficult."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
