@@ -1,0 +1,164 @@
+{
+  "name": "@chbrain/khai-engine-risk",
+  "version": "0.1.0",
+  "description": "khai engine content, the risk domain: the size a hazard has for a persona, which is not its death rate -- read on the dread axis (how terrible the harm would be and how little can be done about it), the unknown axis (how far it lies outside what can be seen, felt, or settled), and the divergence axis (why the sizing parts company with the count, and what happens when somebody tries to close the distance).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/risk"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "risk",
+    "tagline": "Risk as position: the size a hazard has for a persona, which is not its death rate -- ask how many a thing kills and the answer is roughly right, ask how risky it is and the answer moves, because risk means how dreadful and how unfamiliar the harm is rather than how often it comes -- read on three axes: the dread (uncontrollable, catastrophic, involuntary, inequitable, irreversible, inherited by the unborn), the unknown (unobservable, delayed, novel, unsettled in the science, unwitting in the exposed), and the divergence (the affect heuristic linking risk and benefit backwards, the signal value of a small event, the amplification that carries it, the identity reading that sorts hazards by side, and the expert's count, which is a different quantity rather than a corrected one) -- with the twist that a hazard's size cannot be corrected by its own numbers, and on a contested hazard the personas best equipped to weigh evidence polarise hardest (Slovic; Fischhoff; Starr; Finucane; Kasperson; Kahan).",
+    "type": "position",
+    "members": [
+      {
+        "file": "position_risk.md",
+        "type": "position",
+        "parent": null
+      },
+      {
+        "file": "position_dread_risk.md",
+        "type": "position",
+        "parent": "position_risk.md"
+      },
+      {
+        "file": "position_uncontrollable.md",
+        "type": "position",
+        "parent": "position_dread_risk.md"
+      },
+      {
+        "file": "position_catastrophic.md",
+        "type": "position",
+        "parent": "position_dread_risk.md"
+      },
+      {
+        "file": "position_involuntary.md",
+        "type": "position",
+        "parent": "position_dread_risk.md"
+      },
+      {
+        "file": "position_inequitable.md",
+        "type": "position",
+        "parent": "position_dread_risk.md"
+      },
+      {
+        "file": "position_irreversible.md",
+        "type": "position",
+        "parent": "position_dread_risk.md"
+      },
+      {
+        "file": "position_inherited_hazard.md",
+        "type": "position",
+        "parent": "position_dread_risk.md"
+      },
+      {
+        "file": "position_unknown_risk.md",
+        "type": "position",
+        "parent": "position_risk.md"
+      },
+      {
+        "file": "position_unobservable.md",
+        "type": "position",
+        "parent": "position_unknown_risk.md"
+      },
+      {
+        "file": "position_delayed_harm.md",
+        "type": "position",
+        "parent": "position_unknown_risk.md"
+      },
+      {
+        "file": "position_novel_hazard.md",
+        "type": "position",
+        "parent": "position_unknown_risk.md"
+      },
+      {
+        "file": "position_unsettled_science.md",
+        "type": "position",
+        "parent": "position_unknown_risk.md"
+      },
+      {
+        "file": "position_unwitting.md",
+        "type": "position",
+        "parent": "position_unknown_risk.md"
+      },
+      {
+        "file": "position_divergence_risk.md",
+        "type": "position",
+        "parent": "position_risk.md"
+      },
+      {
+        "file": "position_affect_heuristic.md",
+        "type": "position",
+        "parent": "position_divergence_risk.md"
+      },
+      {
+        "file": "position_signal_value.md",
+        "type": "position",
+        "parent": "position_divergence_risk.md"
+      },
+      {
+        "file": "position_amplification.md",
+        "type": "position",
+        "parent": "position_divergence_risk.md"
+      },
+      {
+        "file": "position_identity_reading.md",
+        "type": "position",
+        "parent": "position_divergence_risk.md"
+      },
+      {
+        "file": "position_expert_count.md",
+        "type": "position",
+        "parent": "position_divergence_risk.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (position_risk.md) declares the size a hazard has for a persona as a judgment with content rather than as an error with a cause. Ask somebody how many people a thing kills each year and they answer roughly right; ask how risky it is and the answer moves somewhere else, because for a persona risk means how dreadful and how unfamiliar the harm is. They are not estimating badly, they are estimating something else, and everything in the engine depends on that being read correctly.",
+      "issue": "Three axes over one root. The dread, the larger of Slovic's two factors: six features that arrive together and move as one -- the hazard is uncontrollable, catastrophic rather than spread thin, involuntary, inequitable in who bears it against who gains, irreversible, and inherited by people not yet born. The unknown, the second factor: unobservable, delayed, novel, unsettled in the science, and unwitting in those exposed -- where dread asks what it would be like, the unknown asks whether the persona would ever find out. The divergence, what follows: the affect heuristic, which links risk and benefit inversely in the head though they run together in the world; signal value, where a small event stands for a large one and its meaning outweighs its damage; amplification, the ripple through reporting, agencies, and conversation that lands costs on people the hazard never touched; the identity reading, where a hazard recruited into a standing division is sized by which side the persona is on; and the count, the expert's own sizing, which is a different quantity rather than a corrected one.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the risk read runs wherever a hazard is in the play. The link: each persona links, under Projection, the features doing the sizing for them -- ordinarily one or two from the dread axis and one from the unknown, since the features load together and a play does not need all eleven to show the shape.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real member. Whether a production's hazard is genuinely uncontrollable or merely feels so, and whether a disagreement is genuinely an identity reading rather than an ordinary difference of view, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give each hazard in the play its features, and give the personas around it different ones, since the same hazard is a different size to the person at the controls and the person beside them. Stage the argument as a disagreement about what risk means rather than about how big it is, because that is what it usually is. And read the root's twist before writing anybody a scene of persuasion: handing a persona the fatality rate answers a question they were not asking, and on a hazard that has become a marker of allegiance the better-informed persona is the more polarised one."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
