@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-heeding",
+  "version": "0.1.0",
+  "description": "khai composite content, the heeding domain: what a persona gives a rule they did not agree with, and what buys it -- the hearing that returns a reading of where they stand, the deference that reading purchases, and the mandate on which fairness stops purchasing anything.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/heeding"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "heeding",
+    "tagline": "Heeding as composite: what a persona gives a rule they did not agree with, and what buys it -- the encounter with the machinery that applies the rule, read for whether they got voice, a neutral decider, ordinary respect, and evident good faith, and returning a settled sense of where they stand (the hearing); the compliance, acceptance, and cooperation that reading purchases, extended past the case and running on how they were treated rather than on what they were given (the deference); and the question held as a moral mandate, on which the persona judges the procedure by its answer instead of the answer by its procedure, so fairness stops buying anything and a scrupulous process reaching the wrong result is worse than a rigged one (the mandate) -- wired over the law, recognition, and moral-conviction engines.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_heeding.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_heeding_hearing.md",
+        "type": "process",
+        "parent": "process_heeding.md"
+      },
+      {
+        "file": "process_heeding_deference.md",
+        "type": "process",
+        "parent": "process_heeding.md"
+      },
+      {
+        "file": "process_heeding_mandate.md",
+        "type": "process",
+        "parent": "process_heeding.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over three atoms it declares as dependencies. The root (process_heeding.md) reads a persona who has been ruled against and is deciding what to do about it. The law engine supplies what is reaching them -- a rule that binds because another rule says so, met not as a text but at the gap, through the discretion of whoever is applying it. The recognition engine supplies the encounter -- a claim for acknowledgment answered by somebody with the standing to answer it, settling into a standing the persona then holds. The moral-conviction engine supplies the stamp: whether the question at issue is a preference or a mandate held as objective fact and owing nothing to any authority. The join is Tyler's: what a persona gives a legal authority runs on how the process treated them rather than on what it decided, because the treatment is the only evidence available about where they stand.",
+      "issue": "Three bridges. The hearing: the encounter read for four things and nothing else -- voice, a decider with no stake, ordinary respect, and evident good faith -- none of which is about the outcome, all of which are about the persona, and which together return a reading of standing. The deference: what that reading buys -- obedience unwatched, acceptance of an adverse decision, cooperation next time -- extended past the case, tracking the hearing far more than the ruling and far, far more than the severity of what was at stake. The mandate, the twist: where the persona holds the question as a moral mandate the mechanism reverses, and they judge the procedure by the answer rather than the answer by the procedure -- so fairness stops buying anything, and a scrupulous process that reaches the wrong result is worse than a rigged one, because it removes the last available explanation for the loss.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the heeding read runs wherever its atoms are cast. The link, advisory: a persona may link under Projection the hearing they were given and whether the question is a mandate for them, and the audit surfaces where a play has a persona comply or refuse and never says how they were treated.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's procedure is genuinely fair, and whether a persona genuinely holds the question as a mandate rather than as a strong preference, are semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- law, recognition, and moral-conviction -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each persona meeting an institution and link the state under Projection: the hearing where the encounter is scored, the deference where it is spent, the mandate where it cannot be. Stage the treatment rather than the ruling, since the ruling is not what moves them; keep the fairness real rather than performed if the refusal is to mean anything; and do not stage a mandate refusal as stubbornness, because the persona is refusing the instrument in the name of the certainty that made the instrument necessary, and that is a position rather than a fault."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-law": "^0.1.0",
+    "@chbrain/khai-engine-moral-conviction": "^0.1.1",
+    "@chbrain/khai-engine-recognition": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
