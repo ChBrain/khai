@@ -1,0 +1,149 @@
+{
+  "name": "@chbrain/khai-engine-meal",
+  "version": "0.1.0",
+  "description": "khai engine content, the meal domain: eating together as an instrument -- who is at the table and who is not, the co-ingestion that does the work, the form the eating is required to take, and the bond it leaves behind.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/meal"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "meal",
+    "tagline": "The meal as process: people eating the same food at the same time, and what co-ingestion does to the people doing it -- not the conversion of a stranger into a guest, which is hospitality's, and not the transfer that binds by naming no price, which is gift's -- across four movements: the table (who is admitted, who is excluded by the meal simply having happened, and the place laid for somebody not there), the sharing (one substance entering everybody, a distribution run in front of witnesses, and a continuous run of small granted requests), the order (a sequence that carries meaning by pattern, manners that protect the table and sort the room in one motion, and a declining that is heard as being about the eater), and the bond (a belonging felt as an accurate assessment, a return that is never fully settled, and a next one where the relation is actually kept) -- with the twist that a meal binds in proportion to how little it is about binding, so the mandated dinner fails at what the accidental one does without effort.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_meal.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_the_table.md",
+        "type": "process",
+        "parent": "process_meal.md"
+      },
+      {
+        "file": "process_the_admitted.md",
+        "type": "process",
+        "parent": "process_the_table.md"
+      },
+      {
+        "file": "process_the_excluded.md",
+        "type": "process",
+        "parent": "process_the_table.md"
+      },
+      {
+        "file": "process_the_place_set.md",
+        "type": "process",
+        "parent": "process_the_table.md"
+      },
+      {
+        "file": "process_the_sharing.md",
+        "type": "process",
+        "parent": "process_meal.md"
+      },
+      {
+        "file": "process_the_same_substance.md",
+        "type": "process",
+        "parent": "process_the_sharing.md"
+      },
+      {
+        "file": "process_the_dividing.md",
+        "type": "process",
+        "parent": "process_the_sharing.md"
+      },
+      {
+        "file": "process_the_passing.md",
+        "type": "process",
+        "parent": "process_the_sharing.md"
+      },
+      {
+        "file": "process_order_meal.md",
+        "type": "process",
+        "parent": "process_meal.md"
+      },
+      {
+        "file": "process_the_sequence.md",
+        "type": "process",
+        "parent": "process_order_meal.md"
+      },
+      {
+        "file": "process_the_manners.md",
+        "type": "process",
+        "parent": "process_order_meal.md"
+      },
+      {
+        "file": "process_the_declining.md",
+        "type": "process",
+        "parent": "process_order_meal.md"
+      },
+      {
+        "file": "process_bond_meal.md",
+        "type": "process",
+        "parent": "process_meal.md"
+      },
+      {
+        "file": "process_the_belonging.md",
+        "type": "process",
+        "parent": "process_bond_meal.md"
+      },
+      {
+        "file": "process_the_owed_return.md",
+        "type": "process",
+        "parent": "process_bond_meal.md"
+      },
+      {
+        "file": "process_the_next_one.md",
+        "type": "process",
+        "parent": "process_bond_meal.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (process_meal.md) declares eating together as an operation: people consuming the same food at the same time, producing a group that did not exist before the food went round. It is not hospitality's conversion of a stranger into a guest, not gift's transfer that binds by naming no price, and not ritual's rite performed to mark a passage. Read it on who ate, never on what was said.",
+      "issue": "Four movements over one root. The table: the guest list is the most precise account of a social order available anywhere, because it was produced by decisions none of which was about the order -- and the excluded are told something exact by an event they did not attend. The sharing: eating crosses the boundary of the body and becomes the body, so people eating one dish are briefly made of the same material; the dividing runs an allocation in front of witnesses; the passing accumulates goodwill through actions none of which were meant to. The order: a sequence that carries meaning by pattern rather than content, manners that protect the person beside you and sort the room in the same motion, and a declining that is heard as being about the eater. The bond: a belonging felt as an accurate assessment of the other person, a return that cannot be settled without insult, and a next one whose interval reports the relation more accurately than anybody inside it could.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the meal read runs wherever the play puts people at a table. The link: each persona links, under Projection, where they stand -- admitted or not, sharing or declining, and what the last table left outstanding.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real member. Whether a production's dinner bound anybody, and whether a refusal was heard as dietary or social, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the meal a stated subject that is not the bond -- a birthday, a deal, the fact that it was one o'clock -- because the engine runs on the bond being a by-product. Keep the pleasure real: nobody at the table is working it. And read the twist before staging any dinner meant to fix something: a meal convened to make people into a unit is the one that fails, because everybody at it is attending to the purpose instead of to the food."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
