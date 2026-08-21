@@ -1,0 +1,86 @@
+{
+  "name": "@chbrain/khai-composite-overriding",
+  "version": "0.1.0",
+  "description": "khai composite content, the overriding domain: what a practitioner does when the rule and their judgement disagree -- the instrument that wins on average by eliminating noise, the moment the case looks different, and the tally of departures that no individual case can show.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/overriding"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "overriding",
+    "tagline": "Overriding as composite: what a practitioner does when a standardised instrument and their own judgement disagree -- the rule, which wins on average not by insight but by consistency, weighting the same factors the same way every time, so that even simple models built from the practitioner's own stated criteria outperform the practitioner applying them by hand (the rule); the moment the case is seen whole and does not match what the instrument returned, acting on information that is frequently real and frequently unstateable, with reasons offered afterwards that are reconstructions rather than the process (the call); and the tally of departures, where practitioners given the instrument and the freedom to depart do worse than the instrument alone, not because the exceptions are all wrong but because the good ones are outnumbered (the reckoning) -- wired over the measure and expertise engines, and closing on the exception that is real and cannot be identified in advance.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_overriding.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_overriding_rule.md",
+        "type": "process",
+        "parent": "process_overriding.md"
+      },
+      {
+        "file": "process_overriding_call.md",
+        "type": "process",
+        "parent": "process_overriding.md"
+      },
+      {
+        "file": "process_overriding_reckoning.md",
+        "type": "process",
+        "parent": "process_overriding.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over two atoms it declares as dependencies. The root (process_overriding.md) reads a practitioner facing a standardised answer they disagree with. The measure engine supplies the instrument -- a common scale, able to travel to people who did not make it, answerable in a way a person's word is not, and blind by construction to the residue. The expertise engine supplies the judgement -- a competence that has moved out of deliberation into perception, so the case arrives already read. The join is Meehl's: mechanical prediction matches or beats clinical judgement across decades and scores of domains, and practitioners allowed to depart from the instrument do worse than the instrument alone.",
+      "issue": "Three bridges. The rule: the instrument's advantage is consistency rather than insight -- it weights the same factors the same way every time, is not moved by presentation, and does not remember the last case, which is why even simple models built from the practitioner's own stated criteria beat the practitioner applying them by hand. The call: the moment the practitioner sees the case whole and it does not match, acting on information that is real and frequently unstateable, with reasons assembled afterwards that are reconstructions rather than the process. The reckoning, the twist: the departures added up, where the good exceptions are outnumbered by the ordinary ones -- and where an instrument that errs once is abandoned while a colleague who errs is consulted again next week, so the rule is held to a standard no judgement is held to.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the overriding read runs wherever its atoms are cast. The link, advisory: a persona may link under Projection whether they hold discretion over an instrument and how often they use it, and the audit surfaces where a play gives a practitioner a departure and never says what their departures come to.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's override was a genuine broken leg, and whether a practitioner's domain is one their intuition could have been built in, are semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- measure and expertise -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each practitioner holding discretion and link the state under Projection: the rule where the instrument decides, the call where they depart, the reckoning where the departures are counted. Give the practitioner at least one override that is genuinely right, since the composite reads as a lecture without it. Keep the instrument unglamorous rather than sinister, and keep the practitioner competent rather than arrogant. And stage the reckoning as arriving from outside the case, because there is no vantage point inside a case from which the tally is visible."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-expertise": "^0.1.0",
+    "@chbrain/khai-engine-measure": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
