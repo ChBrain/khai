@@ -1,0 +1,86 @@
+{
+  "name": "@chbrain/khai-composite-raising",
+  "version": "0.1.0",
+  "description": "khai composite content, the raising domain: what happens to somebody who says a harm is coming and can be doubted -- the standing that sets the alarm quietest where the hazard is first visible, the substitution of an answerable question for an unanswerable one, and the scrutiny that scales with the implication.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/raising"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-credibility": "^0.1.0",
+    "@chbrain/khai-engine-warning": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  },
+  "khai": {
+    "engine": "raising",
+    "tagline": "Raising as composite: what happens to somebody who says a harm is coming and can be doubted. It is not a third mechanism but a wiring of two -- the warning engine supplies the harm signalled before it arrives, its threshold and its unrecordable success, and the credibility engine supplies the first-person account whose only evidence is the one making it. This composite adds no third engine; it reads the one thing the two make together, which is a claim that nothing can settle except the harm arriving. Three bridges: the Standing, where the same observation enters at a different threshold depending on who noticed it, so the earliest warnings enter at the highest one; the Substitution, where the claim offers no purchase and the speaker offers a great deal, so a careful inquiry goes where the material is and the hazard is left outside it; and the Proportion, the twist -- doubt goes where it costs least, so the more expensive a warning would be to act on, the more thoroughly the warner is examined instead.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_raising.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_raising_standing.md",
+        "type": "process",
+        "parent": "process_raising.md"
+      },
+      {
+        "file": "process_raising_substitution.md",
+        "type": "process",
+        "parent": "process_raising.md"
+      },
+      {
+        "file": "process_raising_proportion.md",
+        "type": "process",
+        "parent": "process_raising.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over two atoms. The anchor (process_raising.md) declares the arrangement: a persona says a harm is coming and is the only source, so nothing can settle the claim except the harm arriving. It wires the warning engine (the signal, its threshold, and the success that leaves no record) and the credibility engine (the report with no second source, and the discount applied before listening) and adds no third. Read it on where the scrutiny went, never on what it concluded.",
+      "issue": "Three bridges over one root. The Standing is where the two atoms touch: an organisation has as many thresholds as it has speakers, and since the people closest to the work usually hold the least standing, the earliest warnings enter at the highest setting. The Substitution follows from the claim having no purchase -- nothing to test, no second source, no event yet -- while the speaker offers a record, a manner, and a motive, so the inquiry goes where the material is and every step of it is defensible. The Proportion is the loop: a small warning is cheap to act on and the speaker is never examined, a large one has no cheap response and the person is the only surface, so the scrutiny scales with the implication rather than with anything about the speaker.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project Instructions Knowledge chapter, linking the anchor, so the raising read runs wherever the play has somebody report a harm that has not happened yet. The link: each persona links, under Projection, which bridge is running -- and the link is audited rather than failed, because a persona can be in either atom without being in this arrangement.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and a real member is linked. Whether a production examined the hazard or the person, and whether a receiver was being rigorous or looking for a reason to stand down, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then decide what acting on the warning would cost, and keep the figure off the page, because it sets how hard the persona gets examined and nobody in the room will name it. Keep the receiver conscientious: the composite does not need a cover-up and stops working if it gets one. And read the twist before writing any inquiry -- the more the warning would cost to act on, the more thorough and the more misdirected the process will be."
+    }
+  }
+}
