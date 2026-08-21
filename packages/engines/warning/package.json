@@ -1,0 +1,149 @@
+{
+  "name": "@chbrain/khai-engine-warning",
+  "version": "0.1.0",
+  "description": "khai engine content, the warning domain: a harm signalled before it arrives, to somebody who would have to act -- the threshold that decides which error to make, the confirmation-seeking that spends the lead time, the discounting that is correct, and the success that cannot be recorded.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/warning"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "warning",
+    "tagline": "Warning as process: a harm signalled before it arrives, to somebody who would have to act -- not the hazard and its assessment, which is risk's, and not the persona's response to a threat in the room, which is fear's -- across four movements: the issuing (a threshold that buys sensitivity with noise at a rate it does not choose, a confidence accurate on issue and binary on arrival, and a liability carried by one party and paid for by another), the receiving (milling that searches for a signal only produced once somebody stops searching, a normalcy read correct on almost every occasion and worthless on the ones that matter, and a personalising that decides the outcome in a second), the repetition (habituation that cannot tell the ninth false alarm from the tenth true one, muting that is defensible one at a time and indefensible in a list, and recalibration that is good reasoning arriving at a lethal answer), and the aftermath (an averted harm that is the engine's best outcome and weakest exhibit, a blame that corrects one error by amplifying the other, and a next warning heard at a volume set by events that had nothing to do with it) -- with the twist that a warning that works looks exactly like one that was wrong, so the only warnings that unambiguously earn credibility are the ones nobody acted on.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_warning.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_issuing_warning.md",
+        "type": "process",
+        "parent": "process_warning.md"
+      },
+      {
+        "file": "process_the_threshold_set.md",
+        "type": "process",
+        "parent": "process_issuing_warning.md"
+      },
+      {
+        "file": "process_the_confidence_stated.md",
+        "type": "process",
+        "parent": "process_issuing_warning.md"
+      },
+      {
+        "file": "process_the_liability.md",
+        "type": "process",
+        "parent": "process_issuing_warning.md"
+      },
+      {
+        "file": "process_receiving_warning.md",
+        "type": "process",
+        "parent": "process_warning.md"
+      },
+      {
+        "file": "process_the_milling.md",
+        "type": "process",
+        "parent": "process_receiving_warning.md"
+      },
+      {
+        "file": "process_the_normalcy_read.md",
+        "type": "process",
+        "parent": "process_receiving_warning.md"
+      },
+      {
+        "file": "process_the_personalising.md",
+        "type": "process",
+        "parent": "process_receiving_warning.md"
+      },
+      {
+        "file": "process_repetition_warning.md",
+        "type": "process",
+        "parent": "process_warning.md"
+      },
+      {
+        "file": "process_the_habituation.md",
+        "type": "process",
+        "parent": "process_repetition_warning.md"
+      },
+      {
+        "file": "process_the_muting.md",
+        "type": "process",
+        "parent": "process_repetition_warning.md"
+      },
+      {
+        "file": "process_the_recalibration.md",
+        "type": "process",
+        "parent": "process_repetition_warning.md"
+      },
+      {
+        "file": "process_aftermath_warning.md",
+        "type": "process",
+        "parent": "process_warning.md"
+      },
+      {
+        "file": "process_the_averted.md",
+        "type": "process",
+        "parent": "process_aftermath_warning.md"
+      },
+      {
+        "file": "process_the_blame.md",
+        "type": "process",
+        "parent": "process_aftermath_warning.md"
+      },
+      {
+        "file": "process_the_next_warning.md",
+        "type": "process",
+        "parent": "process_aftermath_warning.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (process_warning.md) declares the signal itself: a harm forecast rather than met, issued to somebody who would have to act on it. It is not risk's hazard and its estimation, not fear's response to a present threat, and not usability's design of the instrument. Read it on what happened next, which is the one thing a warning makes unreadable.",
+      "issue": "Four movements over one root. The issuing is a decision about which error to make: every threshold trades misses against false alarms at a fixed rate, so the care that makes a system safe is what makes it cry wolf; the stated confidence is accurate when sent and binary when received; and the two errors do not cost the warner the same, so over-warning is structural rather than nervous. The receiving is the movement systems are designed as though it did not exist: warned populations do not stampede, they mill, read the room for normality, and decide whether the alert is about them -- and personalising predicts action better than belief, understanding, or trust. The repetition prices the signal by its own history: habituation operates on frequency rather than meaning, muting is defensible one at a time and indefensible in a list, and recalibration is a correct update that guarantees the wrong action once. The aftermath settles credibility on evidence the warning destroyed.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the warning read runs wherever the play forecasts a harm to somebody who could act. The link: each persona links, under Projection, which side they are on and where -- and a play should give both, since the warner is a position in the engine rather than a bystander to it.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real member. Whether a production's alert was discounted correctly, and whether a harm was averted or was never coming, are judgements the team makes; the suite does not attempt them -- and the second is a judgement nobody can make, which is the engine's point.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then decide whether the harm was actually coming, and never resolve it on stage, because the engine runs on the fact that nobody can tell. Keep everybody reasoning well: the warner set the threshold responsibly, the receivers discount on good evidence, and the system degrades anyway. And read the twist before writing any vindication scene: a warning that works produces a disruption with no disaster, which is what a false alarm produces too."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
