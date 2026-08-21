@@ -1,0 +1,149 @@
+{
+  "name": "@chbrain/khai-engine-sleep",
+  "version": "0.1.0",
+  "description": "khai engine content, the sleep domain: the one need effort cannot serve -- the ceasing of vigilance and what it costs to afford, the deficit that accumulates behind a gauge that has stopped registering it, the attempt that is the documented mechanism of insomnia, and the social clock imposed on a body that keeps its own.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/sleep"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "sleep",
+    "tagline": "Sleep as process: what a persona must set down before the day's largest need will be met -- not the tiredness that pulls on attention until it is answered, which is the body engine's, but what answering it requires and what happens when it is not answered -- across four movements: the surrender (sleep as the deliberate suspension of vigilance, which requires a body willing to stop monitoring, so the persona with least reason to feel safe gets the worst sleep and is blamed for the deficits), the debt (a cumulative dose-dependent deficit running behind a subjective gauge that flattens after a few days, so the most impaired persona is the least able to report it and will sincerely insist they are fine), the effort (Espie's attention, intention, and effort -- each reasonable, together the documented mechanism of insomnia), and the schedule (a largely constitutional body clock against a non-negotiable social one, with night work as the case that never resolves) -- with the twist that sleep is the only thing a persona cannot obtain by trying to, and the only route in is to stop minding whether it comes, which cannot be done on purpose either.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_sleep.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_surrender_sleep.md",
+        "type": "process",
+        "parent": "process_sleep.md"
+      },
+      {
+        "file": "process_letting_go.md",
+        "type": "process",
+        "parent": "process_surrender_sleep.md"
+      },
+      {
+        "file": "process_safe_enough.md",
+        "type": "process",
+        "parent": "process_surrender_sleep.md"
+      },
+      {
+        "file": "process_kept_watch.md",
+        "type": "process",
+        "parent": "process_surrender_sleep.md"
+      },
+      {
+        "file": "process_debt_sleep.md",
+        "type": "process",
+        "parent": "process_sleep.md"
+      },
+      {
+        "file": "process_accumulation.md",
+        "type": "process",
+        "parent": "process_debt_sleep.md"
+      },
+      {
+        "file": "process_blunted_gauge.md",
+        "type": "process",
+        "parent": "process_debt_sleep.md"
+      },
+      {
+        "file": "process_microsleep.md",
+        "type": "process",
+        "parent": "process_debt_sleep.md"
+      },
+      {
+        "file": "process_effort_sleep.md",
+        "type": "process",
+        "parent": "process_sleep.md"
+      },
+      {
+        "file": "process_attention_turned.md",
+        "type": "process",
+        "parent": "process_effort_sleep.md"
+      },
+      {
+        "file": "process_intending_sleep.md",
+        "type": "process",
+        "parent": "process_effort_sleep.md"
+      },
+      {
+        "file": "process_trying.md",
+        "type": "process",
+        "parent": "process_effort_sleep.md"
+      },
+      {
+        "file": "process_schedule_sleep.md",
+        "type": "process",
+        "parent": "process_sleep.md"
+      },
+      {
+        "file": "process_body_clock.md",
+        "type": "process",
+        "parent": "process_schedule_sleep.md"
+      },
+      {
+        "file": "process_social_jetlag.md",
+        "type": "process",
+        "parent": "process_schedule_sleep.md"
+      },
+      {
+        "file": "process_night_work.md",
+        "type": "process",
+        "parent": "process_schedule_sleep.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (process_sleep.md) declares sleep as the setting down of the day's requirement to be present, watchful, and available -- and the setting down is the whole difficulty, because it cannot be performed. It is not the tiredness that pulls on attention until it is met, which is the body engine's; that is the demand. This engine is what the demand requires of a persona before it will be met, and what happens when it is not.",
+      "issue": "Four movements over one root, four ways the same thing goes wrong. The surrender: sleep only works if vigilance is genuinely off, so it requires a body willing to stop monitoring -- the light sleeper in the unsafe house is not failing at sleep, they are succeeding at survival, and the cost falls on whoever has least reason to feel safe. The debt: restriction produces cumulative dose-dependent decline while subjective sleepiness flattens after a few days, so the persona feels much as they did on the third night and is performing very much worse; the ledger is accurate and the display is broken, and the microsleep collects without a notice. The effort: noticing whether one is drifting requires the monitoring that prevents drifting, deciding to sleep converts a state into a target, and working at a target recruits effort, which is arousal -- so the persona is at their most awake precisely because they are at their most motivated. The schedule: chronotype is substantially heritable and the timetable is not, so the same hours are comfortable for one body and a permanent deficit for another, and the second is read as lazy on the strength of a constitutional difference.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the sleep read runs wherever a persona is short of it in the play. The link: each persona links, under Projection, what is happening to their sleep -- whether they can afford the surrender, what they are carrying, whether they have begun to try, and which clock they are keeping.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real member. Whether a production's persona is genuinely in the effort loop rather than merely tired, and whether their vigilance is warranted or anxious, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then decide first whether the persona can afford to stop watching, since that decides whether anything else in the engine gets a chance to run. Read the debt on what they do rather than on what they say, because the instrument they would use to check has decoupled. And read the twist before writing any scene of sleeplessness: the persona is competent, their reasoning is sound, and the striving is the illness -- so a play that releases them by having them decide to stop trying has staged the one move the engine says is unavailable."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
