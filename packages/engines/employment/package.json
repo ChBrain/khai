@@ -1,0 +1,154 @@
+{
+  "name": "@chbrain/khai-engine-employment",
+  "version": "0.1.0",
+  "description": "khai engine content, the employment domain: the effort bargain -- what an employer buys is a persona's time and capacity rather than a quantity of work, so the deal is struck with its central term left open, and everything else is an answer to it: extraction by direction, effort given as a gift, and effort produced by the persona's own absorption in doing the job well.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/employment"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "employment",
+    "tagline": "Employment as process: the effort bargain, read on the gap in the agreement rather than on the agreement -- what an employer buys is a persona's time and capacity for a period, not a quantity of work, which for most jobs cannot be specified in advance or verified afterwards, so the deal is struck with its central term left open and something has to close it -- across four movements: the indeterminacy (hours bought, effort unnamed, and the customary rate the floor defends from below), the control (Edwards' escalating forms -- simple, technical, bureaucratic, metric -- each an answer to the last one's failure and each a new terrain of contest), the gift (discretionary effort, the efficiency wage, and work-to-rule as the proof that an organisation running only on its enforceable terms does not run), and the consent (Burawoy's making out, the small real autonomies, and the conflict that runs sideways) -- with the twist that the cheapest and most durable answer to the gap is the persona's own interest in doing the job well, so the thing that makes the day bearable is the thing that ratifies its terms.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_employment.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_indeterminacy.md",
+        "type": "process",
+        "parent": "process_employment.md"
+      },
+      {
+        "file": "process_hours_bought.md",
+        "type": "process",
+        "parent": "process_indeterminacy.md"
+      },
+      {
+        "file": "process_effort_unnamed.md",
+        "type": "process",
+        "parent": "process_indeterminacy.md"
+      },
+      {
+        "file": "process_customary_rate.md",
+        "type": "process",
+        "parent": "process_indeterminacy.md"
+      },
+      {
+        "file": "process_control_work.md",
+        "type": "process",
+        "parent": "process_employment.md"
+      },
+      {
+        "file": "process_simple_control.md",
+        "type": "process",
+        "parent": "process_control_work.md"
+      },
+      {
+        "file": "process_technical_control.md",
+        "type": "process",
+        "parent": "process_control_work.md"
+      },
+      {
+        "file": "process_bureaucratic_control.md",
+        "type": "process",
+        "parent": "process_control_work.md"
+      },
+      {
+        "file": "process_metric_control.md",
+        "type": "process",
+        "parent": "process_control_work.md"
+      },
+      {
+        "file": "process_gift_work.md",
+        "type": "process",
+        "parent": "process_employment.md"
+      },
+      {
+        "file": "process_discretionary_effort.md",
+        "type": "process",
+        "parent": "process_gift_work.md"
+      },
+      {
+        "file": "process_efficiency_wage.md",
+        "type": "process",
+        "parent": "process_gift_work.md"
+      },
+      {
+        "file": "process_work_to_rule.md",
+        "type": "process",
+        "parent": "process_gift_work.md"
+      },
+      {
+        "file": "process_consent_work.md",
+        "type": "process",
+        "parent": "process_employment.md"
+      },
+      {
+        "file": "process_making_out.md",
+        "type": "process",
+        "parent": "process_consent_work.md"
+      },
+      {
+        "file": "process_choosing_within.md",
+        "type": "process",
+        "parent": "process_consent_work.md"
+      },
+      {
+        "file": "process_horizontal_conflict.md",
+        "type": "process",
+        "parent": "process_consent_work.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (process_employment.md) declares the effort bargain: what an employer buys is a persona's time and capacity for a period rather than a quantity of work, so the central term of the deal is left open and cannot be closed by the contract. It is not the culture of the organisation, which is org's, and not the feeling a role demands be displayed, which is emotional-labor's. It is the permanently unsettled question of how much work is in a day's work.",
+      "issue": "Four movements over one root, and no workplace runs on fewer than three. The indeterminacy: the hours are bought and the effort is unnamed, so an unspecified obligation is an unbounded one and there is no amount of work that constitutes having done enough -- filled first by the customary rate, the floor's own unwritten sense of a fair day, which protects by sanction and so constrains the fast worker through their colleagues rather than their employer. The control: Edwards' contested terrain, escalating through simple (the supervisor, adaptable and resented), technical (the line, impersonal and stoppable), bureaucratic (the rule and the career, a genuine improvement whose failure mode is compliance), and metric (measured continuously, evaluated without an evaluator, and reliably producing exactly what it scores). The gift: Akerlof's partial gift exchange, where discretionary effort is given rather than owed, the efficiency wage is the employer's side, and work-to-rule is the demonstration -- an organisation running only on its enforceable terms does not run. The consent: Burawoy's shop floor, where making out turns the job into a game with goals, feedback, and a score, the small autonomies of method make the day the persona's own, and the resulting conflict runs sideways against peers and equipment rather than upward.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the employment read runs wherever a persona works for somebody in the play. The link: each persona links, under Projection, the mix that fills the gap for them -- ordinarily which forms of control they are under and whether they are giving the gift or playing the game, since what varies between workplaces is the mix rather than the presence of any one.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real member. Whether a production's persona is genuinely absorbed in the game rather than performing compliance, and whether a withdrawal of goodwill is work-to-rule or ordinary disengagement, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then set the mix rather than a single mechanism, and set it differently for different personas in the same workplace. Read the persona on the gap and never on the contract, because the contract is exactly where the answer is not. Let the good parts be good: the rule that protects, the autonomy that is real, the game that is genuinely satisfying. And read the root's twist before writing anybody's willingness -- the absorption is not false consciousness and the persona is not a dupe, so a play that stages the worker as deceived has replaced the mechanism with a villain."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
