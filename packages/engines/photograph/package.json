@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-photograph",
+  "version": "0.1.0",
+  "description": "khai engine content, the photograph domain: an image that certifies a moment occurred and cannot say what it was -- the pictured persona who does not hold their own likeness, the taking that hands the remembering to a device, the showing that borrows the image's certainty, and the outliving that keeps the face and loses the name.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/photograph"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "photograph",
+    "tagline": "Photograph as piece: an image that certifies a moment occurred and cannot say what it was -- not the possession into which an identity has extended, which is extended-self's, and not the object withheld from exchange to carry a lineage, which is heirloom's. The object is the piece; the members are what happens around it. One position names who is in it: a pictured persona holding a likeness in somebody else's keeping, who cannot recall the image, govern its caption, or stop a version they would not have chosen from becoming the standard one. Three processes name what it does: the taking, which hands the remembering to a device, so the cost is in the delegating rather than in the camera; the showing, which borrows the image's certainty for a statement the image did not make, since a photograph carries no account of itself and its holder writes the caption; and the outliving, which keeps the face and loses the name, because the distance that makes a picture precious is the distance that removes the people who could identify it. The twist: a photograph is taken to keep a moment and is the reason the moment is not kept.",
+    "type": "piece",
+    "members": [
+      {
+        "file": "piece_photograph.md",
+        "type": "piece",
+        "parent": null
+      },
+      {
+        "file": "position_pictured.md",
+        "type": "position",
+        "parent": "piece_photograph.md"
+      },
+      {
+        "file": "process_the_taking.md",
+        "type": "process",
+        "parent": "piece_photograph.md"
+      },
+      {
+        "file": "process_the_showing.md",
+        "type": "process",
+        "parent": "piece_photograph.md"
+      },
+      {
+        "file": "process_the_outliving.md",
+        "type": "process",
+        "parent": "piece_photograph.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Piece. The anchor (piece_photograph.md) declares the photograph as what it is in the room: an image that exists only after the thing it shows has stopped, certifying that a moment occurred while carrying no account of what it was. It is not extended-self's possession-as-part-of-the-self, not heirloom's object withheld to carry a lineage, and not document's institutional record of a person. Read it on what is outside the frame, never on what is in it.",
+      "issue": "The photograph, read four ways beneath the object. One position names who is in it: a pictured persona whose likeness is in somebody else's keeping, who must manage a face continuously because any hundredth of a second may be the one that is kept, and who cannot recall the image, write its caption, or prevent an unchosen version becoming the record. Three processes name what it does. The taking is where the engine is seen for one thing: the camera takes over the job of registering the occasion and the mind lets it, so the damage is in the delegating rather than in the device. The showing puts a fragment with the edges removed in front of somebody who was not there, and whoever holds it supplies the meaning, which is why the same image serves a celebration and an accusation unaltered. The outliving is the arc's end: the picture gains value as it loses its account, and what survives is the certification without the name.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so an image reads as load-bearing wherever the play produces one. The link: a persona links, under Projection, whether they hold the picture or are in it, and which process is running -- and a play should give both, since the pictured is a position in the engine rather than a subject of it.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and a real member is linked. Whether a production's photograph replaced the memory it was taken to preserve, and whether a caption is a description or a claim, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then decide what is outside the frame before deciding what is in it, because the engine reads the edge. Keep the taker's motive ordinary: they wanted the picture, which is a good reason and the only one most people have. And read the twist before writing any scene with a camera in it -- the persona is arranging an image instead of attending, and what they will have afterwards is the image."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
