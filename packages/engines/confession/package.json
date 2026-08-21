@@ -1,0 +1,149 @@
+{
+  "name": "@chbrain/khai-engine-confession",
+  "version": "0.1.0",
+  "description": "khai engine content, the confession domain: telling under a relation of authority -- how the account is required, how it is produced rather than retrieved, who receives it and what receiving is, and the relief that is real and that hides the requirement.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/confession"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "confession",
+    "tagline": "Confession as process: an account of a self required rather than offered -- not the voluntary opening that deepens a relationship, which is self-disclosure's, and not the withheld fact and the work of keeping it, which is secret's, but telling under a relation of authority where the listener has standing the speaker does not -- across four movements: the demand (a standing obligation that never has to be enforced, a question that cannot be declined at no cost, and a silence that will be read whatever it means), the composing (an account assembled rather than retrieved, filled to the detail the listener requires and fitted to the categories they have, then replacing the material it was made from), the listener (an asymmetry that must be there for the arrangement to work and is its whole cost, an absolution only they can issue, and a record the persona does not hold a copy of), and the relief (an unburdening that is genuine, a transformation that is the operation's actual product, and a return, since nothing about it concludes) -- with the twist that confession makes a requirement feel like a release, so the more relieved the persona feels the less visible the requirement becomes.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_confession.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_demand_confession.md",
+        "type": "process",
+        "parent": "process_confession.md"
+      },
+      {
+        "file": "process_the_obligation.md",
+        "type": "process",
+        "parent": "process_demand_confession.md"
+      },
+      {
+        "file": "process_the_question.md",
+        "type": "process",
+        "parent": "process_demand_confession.md"
+      },
+      {
+        "file": "process_the_silence_read.md",
+        "type": "process",
+        "parent": "process_demand_confession.md"
+      },
+      {
+        "file": "process_composing_confession.md",
+        "type": "process",
+        "parent": "process_confession.md"
+      },
+      {
+        "file": "process_the_account_made.md",
+        "type": "process",
+        "parent": "process_composing_confession.md"
+      },
+      {
+        "file": "process_the_detail.md",
+        "type": "process",
+        "parent": "process_composing_confession.md"
+      },
+      {
+        "file": "process_the_category_fitted.md",
+        "type": "process",
+        "parent": "process_composing_confession.md"
+      },
+      {
+        "file": "process_listener_confession.md",
+        "type": "process",
+        "parent": "process_confession.md"
+      },
+      {
+        "file": "process_the_asymmetry.md",
+        "type": "process",
+        "parent": "process_listener_confession.md"
+      },
+      {
+        "file": "process_the_absolving.md",
+        "type": "process",
+        "parent": "process_listener_confession.md"
+      },
+      {
+        "file": "process_the_record.md",
+        "type": "process",
+        "parent": "process_listener_confession.md"
+      },
+      {
+        "file": "process_relief_confession.md",
+        "type": "process",
+        "parent": "process_confession.md"
+      },
+      {
+        "file": "process_the_unburdening.md",
+        "type": "process",
+        "parent": "process_relief_confession.md"
+      },
+      {
+        "file": "process_the_transformation.md",
+        "type": "process",
+        "parent": "process_relief_confession.md"
+      },
+      {
+        "file": "process_the_return.md",
+        "type": "process",
+        "parent": "process_relief_confession.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (process_confession.md) declares telling under a relation of authority: an account of a self required rather than offered, where the one who listens has standing the one who speaks does not. It is not self-disclosure's voluntary layer-by-layer opening, not secret's withheld fact, and not repair's account after a wrong. Read it on who required the telling, never on whether it felt good, because it nearly always feels good.",
+      "issue": "Four movements over one root. The demand: a standing obligation met in advance by personas who prepare, a question that works by being answerable rather than enforceable, and a silence that is data whatever the persona puts in it -- so there is no way to abstain. The composing: nobody has an account ready, so the telling assembles one, filled in to the detail the listener presses for and fitted to the categories they have available -- which is genuinely clarifying and also overwrites the material it was made from. The listener: the asymmetry is the arrangement's design rather than a failure of intimacy, since a confessor who confessed back would have ended the thing the speaker came for; the absolution is what the persona was waiting for and can only be issued; and the record is the confession's only permanent form. The relief: the unburdening is real and arrives whether or not anything was resolved, the transformation is the operation's actual product, and the return follows because nothing about it concludes.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the confession read runs wherever an account is required in the play. The link: each persona links, under Projection, which side they are on and where -- and a play should give both, since the listener is a position in the engine rather than a bystander to it.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real member. Whether a production's telling was required or offered, and whether a detail was recalled or supplied, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then make the listener kind, because the engine does not need a villain and stops working if it gets one. Make the relief real, since it is the mechanism rather than a consolation. And read the twist before writing any scene of telling: the persona is meeting a requirement and experiencing a liberation, and both are true at once -- so the moment to stage is not the confession but the persona afterwards, grateful, booking the next one."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
