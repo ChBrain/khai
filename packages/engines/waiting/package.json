@@ -1,0 +1,149 @@
+{
+  "name": "@chbrain/khai-engine-waiting",
+  "version": "0.1.0",
+  "description": "khai engine content, the waiting domain: time placed at somebody else's disposal, read as a relation rather than a feeling -- how the wait is set and whether it has an edge, what makes the interval feel as long as it does, who goes before whom, and what a long habit of waiting makes of the persona who does it.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/waiting"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "waiting",
+    "tagline": "Waiting as process: a persona's time placed at somebody else's disposal -- not the anticipatory hold on an outcome, which is suspense's, and not the felt passage of duration, which is time-perception's, but a relation, since the time given up by the one waiting is time saved by the one waited upon -- across four movements: the summons (an appointed hour, an open call, or standing by, which decides almost everything about what the wait will cost), the hold (empty time, an unexplained delay, and the unfair wait, which stretch the interval far more than its length does), the order (the queue norm that forms without an official, legitimate precedence that is invisible from the chairs, and intrusion, objected to only by those directly displaced), and the schooling (remaining available, nothing refused, and the learned patience the repetition produces) -- with the twist that the instrument is uncertainty rather than duration, since an unbounded wait consumes the time it did not use and cannot be appealed, because nothing has been refused.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_waiting.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_summons.md",
+        "type": "process",
+        "parent": "process_waiting.md"
+      },
+      {
+        "file": "process_appointed_hour.md",
+        "type": "process",
+        "parent": "process_summons.md"
+      },
+      {
+        "file": "process_open_call.md",
+        "type": "process",
+        "parent": "process_summons.md"
+      },
+      {
+        "file": "process_standing_by.md",
+        "type": "process",
+        "parent": "process_summons.md"
+      },
+      {
+        "file": "process_hold_waiting.md",
+        "type": "process",
+        "parent": "process_waiting.md"
+      },
+      {
+        "file": "process_empty_time.md",
+        "type": "process",
+        "parent": "process_hold_waiting.md"
+      },
+      {
+        "file": "process_unexplained_delay.md",
+        "type": "process",
+        "parent": "process_hold_waiting.md"
+      },
+      {
+        "file": "process_unfair_wait.md",
+        "type": "process",
+        "parent": "process_hold_waiting.md"
+      },
+      {
+        "file": "process_order_waiting.md",
+        "type": "process",
+        "parent": "process_waiting.md"
+      },
+      {
+        "file": "process_queue_norm.md",
+        "type": "process",
+        "parent": "process_order_waiting.md"
+      },
+      {
+        "file": "process_precedence.md",
+        "type": "process",
+        "parent": "process_order_waiting.md"
+      },
+      {
+        "file": "process_queue_intrusion.md",
+        "type": "process",
+        "parent": "process_order_waiting.md"
+      },
+      {
+        "file": "process_schooling.md",
+        "type": "process",
+        "parent": "process_waiting.md"
+      },
+      {
+        "file": "process_remaining_available.md",
+        "type": "process",
+        "parent": "process_schooling.md"
+      },
+      {
+        "file": "process_no_refusal.md",
+        "type": "process",
+        "parent": "process_schooling.md"
+      },
+      {
+        "file": "process_learned_patience.md",
+        "type": "process",
+        "parent": "process_schooling.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (process_waiting.md) declares waiting as a relation rather than a feeling: one party's schedule made to accommodate another's, with the time given up by the one waiting saved by the one waited upon. It is not the anticipatory apprehension of a possible bad outcome, which is suspense's, and not the sense of duration, which is time-perception's. Every arrangement to wait also ranks, and the ranking is enacted rather than argued, so there is nothing in it to disagree with.",
+      "issue": "Four movements over one root. The summons: how the wait is set and whether it has an announced edge -- an appointed hour returns the interval before it, an open call takes that interval too since availability cannot be part-held, and standing by is availability as a standing condition, which is the service being provided and the part nobody counts. The hold: what makes the interval feel as long as it does -- empty time stretches, an unexplained delay stretches further and makes the persona supply a worse reason than the real one, and the unfair wait stretches furthest and is the only condition producing anger rather than fatigue. The order: the queue norm, which forms without instruction and holds among strangers; precedence, which is usually correct and almost never explained, so a sound rule and an act of favouritism look identical from the chairs; and intrusion, objected to by the one or two people directly displaced and nobody further back, which is why the norm holds against the rude individual and is silent about the side door. The schooling: remaining available, nothing refused, and learned patience -- what a repeated habit of waiting makes of a persona, taught by an administrative process more thoroughly than any argument could.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the waiting read runs wherever a persona is made to wait in the play. The link: each persona links, under Projection, the terms of their wait -- above all which form of summons they are under, since that decides what the wait costs before any of it has passed.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real member. Whether a production's precedence was legitimate, and whether a persona's equanimity is learned patience or ordinary composure, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then set the summons first, since an appointed hour and an open call are different plays. Read the persona on who is available to whom rather than on how long it took. Put the anger on sequence rather than on duration, since being passed is felt far more keenly than being delayed. And read the twist before writing any official: nobody has to be unkind, every delay can be genuine, and the schooling still happens -- so a play that supplies a hostile clerk has replaced the mechanism with a scene."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
