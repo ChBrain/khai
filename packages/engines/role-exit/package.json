@@ -1,0 +1,149 @@
+{
+  "name": "@chbrain/khai-engine-role-exit",
+  "version": "0.1.0",
+  "description": "khai engine content, the role exit domain: leaving a role that supplied a large part of who somebody is -- the doubts that run for years, the other life carried alongside, the event that makes leaving sayable, and the ex-role that cannot be resigned.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/role-exit"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "role-exit",
+    "tagline": "Role exit as process: the leaving of a role that supplied a large part of who somebody is, and what the leaving leaves -- not the between-state itself, which is liminality's, and not the rite that carries somebody across, which is ritual's and the passage composite's -- across four movements: the doubts (a first doubt too small to raise and therefore never answered, a cueing that gathers evidence about a question that was not put, and a reinterpreting that makes the exit retrospectively inevitable), the alternatives (a shadow life that wins every comparison because it has never been entered, side bets never wagered on the role and forfeited with it, and a weighing that organises the reasons without producing them), the turning point (a last straw accurate about the timing and misleading about everything else, an announcing that is the last act performed from inside, and a vacuum that is a stage and is experienced as a verdict), and the ex-role (a residual that does not switch off, an introducing performed by the persona against their own interest, and a placing done kindly by people who cannot be asked to stop) -- with the twist that a role can be quit and being its ex cannot, because there is nobody to resign to and no procedure for it.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_role_exit.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_doubts_exit.md",
+        "type": "process",
+        "parent": "process_role_exit.md"
+      },
+      {
+        "file": "process_the_first_doubt.md",
+        "type": "process",
+        "parent": "process_doubts_exit.md"
+      },
+      {
+        "file": "process_the_cueing.md",
+        "type": "process",
+        "parent": "process_doubts_exit.md"
+      },
+      {
+        "file": "process_the_reinterpreting.md",
+        "type": "process",
+        "parent": "process_doubts_exit.md"
+      },
+      {
+        "file": "process_alternatives_exit.md",
+        "type": "process",
+        "parent": "process_role_exit.md"
+      },
+      {
+        "file": "process_the_shadow_life.md",
+        "type": "process",
+        "parent": "process_alternatives_exit.md"
+      },
+      {
+        "file": "process_the_side_bets.md",
+        "type": "process",
+        "parent": "process_alternatives_exit.md"
+      },
+      {
+        "file": "process_the_weighing.md",
+        "type": "process",
+        "parent": "process_alternatives_exit.md"
+      },
+      {
+        "file": "process_turning_point_exit.md",
+        "type": "process",
+        "parent": "process_role_exit.md"
+      },
+      {
+        "file": "process_the_last_straw.md",
+        "type": "process",
+        "parent": "process_turning_point_exit.md"
+      },
+      {
+        "file": "process_the_announcing.md",
+        "type": "process",
+        "parent": "process_turning_point_exit.md"
+      },
+      {
+        "file": "process_the_vacuum.md",
+        "type": "process",
+        "parent": "process_turning_point_exit.md"
+      },
+      {
+        "file": "process_ex_role.md",
+        "type": "process",
+        "parent": "process_role_exit.md"
+      },
+      {
+        "file": "process_the_residual.md",
+        "type": "process",
+        "parent": "process_ex_role.md"
+      },
+      {
+        "file": "process_the_introducing.md",
+        "type": "process",
+        "parent": "process_ex_role.md"
+      },
+      {
+        "file": "process_the_placing.md",
+        "type": "process",
+        "parent": "process_ex_role.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (process_role_exit.md) declares the leaving of a role that supplied a large part of an identity, run as a sequence: doubts, alternatives, a turning point, an ex-role. It is not liminality's between-state, not ritual's rite of passage, and not role's account of the role as held. Read it on what the persona is called afterwards, never on whether they are glad, because most of them are.",
+      "issue": "Four movements over one root. The doubts run for years below the level of a decision: a first doubt too small to raise is also too small to answer, so it is retained in full; cueing gathers reactions to something deniable; the reinterpreting makes the past read as a build-up until the case for staying is not outweighed but invisible. The alternatives hold most people indefinitely: a shadow life built from the parts of this one that hurt is always better because it has never been entered; side bets laid down for their own sake still function as a hold; the weighing compares a lived cost against an imagined benefit and produces confidence rather than an answer. The turning point licenses rather than causes: a trivial last straw supplies a sayable reason that becomes the record, and the announcing changes the persona's status the moment it is heard. The ex-role is what the operation produces: a residual that does not switch off, an introducing the persona performs against their own interest, and a placing done kindly and permanently by everybody else.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the exit read runs wherever the play retires, resigns, divorces, or discharges somebody. The link: each persona links, under Projection, which movement is running and what the last exit left -- and a persona already carrying an ex-role links the ex-role rather than the doubts.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real member. Whether a production's departure was licensed by its stated reason, and whether a persona is in the vacuum or has come out of it, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then decide how long the doubts ran before the scene opens, because the engine's whole shape depends on the answer and nobody in the play knows it. Keep the exit right: the persona is better off out, and the engine still runs. And read the twist before staging any homecoming: the persona does not go back to who they were, because the role they left is now one they hold permanently."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
