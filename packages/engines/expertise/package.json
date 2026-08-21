@@ -1,0 +1,139 @@
+{
+  "name": "@chbrain/khai-engine-expertise",
+  "version": "0.1.0",
+  "description": "khai engine content, the expertise domain: how a capacity moves out of deliberation and into the hands -- the five-stage climb from rule-following to perception, what actually builds skill and what only accumulates hours, and the tacit part that travels by proximity because it has left words.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/expertise"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "expertise",
+    "tagline": "Expertise as process: how a capacity moves out of deliberation and into the hands, so a persona stops working through the rules and starts seeing what the situation requires -- not the response grooved by repetition, which is habit's, and not the held theory of where ability comes from, which is mindset's -- across three movements: the stages (Dreyfus's climb from the novice applying context-free rules, through the advanced beginner noticing what nobody taught, the competent who must choose a plan and thereby owns the outcome, and the proficient who reads the case instantly and still reasons out the response, to the expert in whom situation and response arrive together), the making (deliberate practice at the edge with feedback close enough to correct on, against the plateau where automaticity ends improvement, and the low-validity environment where confidence grows and accuracy does not), and the tacit (apprenticeship, which transmits what cannot be stated, and the blind spot, which opens where a competence has gone under) -- with the twist that becoming an expert destroys the ability to teach it, since the mechanism producing the competence is the mechanism removing it from view.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_expertise.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_stages.md",
+        "type": "process",
+        "parent": "process_expertise.md"
+      },
+      {
+        "file": "process_novice.md",
+        "type": "process",
+        "parent": "process_stages.md"
+      },
+      {
+        "file": "process_advanced_beginner.md",
+        "type": "process",
+        "parent": "process_stages.md"
+      },
+      {
+        "file": "process_competent.md",
+        "type": "process",
+        "parent": "process_stages.md"
+      },
+      {
+        "file": "process_proficient.md",
+        "type": "process",
+        "parent": "process_stages.md"
+      },
+      {
+        "file": "process_expert_stage.md",
+        "type": "process",
+        "parent": "process_stages.md"
+      },
+      {
+        "file": "process_making_expertise.md",
+        "type": "process",
+        "parent": "process_expertise.md"
+      },
+      {
+        "file": "process_deliberate_practice.md",
+        "type": "process",
+        "parent": "process_making_expertise.md"
+      },
+      {
+        "file": "process_feedback_loop.md",
+        "type": "process",
+        "parent": "process_making_expertise.md"
+      },
+      {
+        "file": "process_plateau.md",
+        "type": "process",
+        "parent": "process_making_expertise.md"
+      },
+      {
+        "file": "process_low_validity.md",
+        "type": "process",
+        "parent": "process_making_expertise.md"
+      },
+      {
+        "file": "process_tacit.md",
+        "type": "process",
+        "parent": "process_expertise.md"
+      },
+      {
+        "file": "process_apprenticeship.md",
+        "type": "process",
+        "parent": "process_tacit.md"
+      },
+      {
+        "file": "process_expert_blind_spot.md",
+        "type": "process",
+        "parent": "process_tacit.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (process_expertise.md) declares expertise as a transformation rather than an accumulation: a performance moving from something assembled to something perceived, so the persona stops working through rules and starts seeing what the situation requires, faster than any account of it could arrive. It is not the habit installed by repetition, which is habit's and ingraining's, and not the theory of where ability comes from, which is mindset's.",
+      "issue": "Three movements over one root, one process seen at different distances. The stages: Dreyfus's five, where what changes is not speed but what the persona is looking at -- the novice applying context-free rules and protected by them from everything except the case they do not fit; the advanced beginner using situational aspects they can recognise and cannot state, so being asked to explain is a demotion; the competent, who must adopt a plan to make the volume tractable and thereby owns the outcome for the first time; the proficient, who reads the case instantly and still has to reason out the response; and the expert, in whom situation and response arrive together, with the reasons supplied afterwards as reconstructions. The making: deliberate practice at the edge of the current capacity, feedback close and specific enough to correct on, the plateau where automaticity ends the improvement so twenty years of experience becomes two repeated ten times, and the low-validity environment where the domain cannot teach and the sense of expertise is produced by fluency rather than by accuracy. The tacit: apprenticeship, which transmits what cannot be stated and scales terribly, and the blind spot, where an expert omits the steps that have become invisible to them and cannot correct it by trying harder.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the expertise read runs wherever skill is in the play. The link: each persona links, under Projection, the stage they are at -- and, where the play turns on whether they are any good, whether their domain is one that could have taught them.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real member. Whether a production's persona is genuinely proficient rather than competent, and whether their environment is high or low validity, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then place each persona on the stages, and remember two people doing the same job may not be doing the same job. Read expertise on what the persona can do and never on what they say they do, since those come apart by construction. Before making anybody an authority, ask whether their domain has the regularity and the feedback that would let experience teach. And read the twist before writing any scene of instruction: the expert omitting most of the steps is not withholding, and a play that stages them as guarding their knowledge has replaced the mechanism with a motive."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
