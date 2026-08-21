@@ -1,0 +1,149 @@
+{
+  "name": "@chbrain/khai-engine-tourism",
+  "version": "0.1.0",
+  "description": "khai engine content, the tourism domain: the arrangement between a place and the people who come to look at it -- the marking that makes a sight, the seeking that is never for the sight, the staging the place produces in answer, and the residue each side is left holding.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/tourism"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "tourism",
+    "tagline": "Tourism as process: the arrangement between a place and the people who come to look at it -- not the conversion of a stranger into a guest, which is hospitality's, and not living from one's own values rather than a false front, which is authenticity's -- across four movements: the marking (a marker that creates the significance it reports, a prior image the visit confirms rather than encounters, and an itinerary that protects the trip and rules out the best of it), the seeking (a real sought that cannot be handed over without ceasing to be it, a tourist disowned by every tourist, and an off path found by the people who close it), the staging (a staged back that is genuine and is not the back, a host performing their own life in the shape that keeps it alive, and an authenticity sold, which is the least dishonest step and the one that reads worst), and the residue (a souvenir that stores nothing and reminds well, an account home true in every detail and not the trip, and a place after organised around people who are elsewhere) -- with the twist that the demand for the unstaged is what builds the stage, since any back region a visitor can reach has been made reachable.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_tourism.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_marking_tourism.md",
+        "type": "process",
+        "parent": "process_tourism.md"
+      },
+      {
+        "file": "process_the_marker.md",
+        "type": "process",
+        "parent": "process_marking_tourism.md"
+      },
+      {
+        "file": "process_the_prior_image.md",
+        "type": "process",
+        "parent": "process_marking_tourism.md"
+      },
+      {
+        "file": "process_the_itinerary.md",
+        "type": "process",
+        "parent": "process_marking_tourism.md"
+      },
+      {
+        "file": "process_seeking_tourism.md",
+        "type": "process",
+        "parent": "process_tourism.md"
+      },
+      {
+        "file": "process_the_real_sought.md",
+        "type": "process",
+        "parent": "process_seeking_tourism.md"
+      },
+      {
+        "file": "process_the_tourist_disowned.md",
+        "type": "process",
+        "parent": "process_seeking_tourism.md"
+      },
+      {
+        "file": "process_the_off_path.md",
+        "type": "process",
+        "parent": "process_seeking_tourism.md"
+      },
+      {
+        "file": "process_staging_tourism.md",
+        "type": "process",
+        "parent": "process_tourism.md"
+      },
+      {
+        "file": "process_the_staged_back.md",
+        "type": "process",
+        "parent": "process_staging_tourism.md"
+      },
+      {
+        "file": "process_the_host_performing.md",
+        "type": "process",
+        "parent": "process_staging_tourism.md"
+      },
+      {
+        "file": "process_the_authenticity_sold.md",
+        "type": "process",
+        "parent": "process_staging_tourism.md"
+      },
+      {
+        "file": "process_residue_tourism.md",
+        "type": "process",
+        "parent": "process_tourism.md"
+      },
+      {
+        "file": "process_the_souvenir.md",
+        "type": "process",
+        "parent": "process_residue_tourism.md"
+      },
+      {
+        "file": "process_the_account_home.md",
+        "type": "process",
+        "parent": "process_residue_tourism.md"
+      },
+      {
+        "file": "process_the_place_after.md",
+        "type": "process",
+        "parent": "process_residue_tourism.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (process_tourism.md) declares the arrangement between a place and the people who come to look at it: somewhere visited on purpose and at scale, which knows they are coming. It is not hospitality's conversion of a stranger into a guest, not backstage's front and back regions, and not authenticity's alignment of a self with its expression. Read it on what the place had to become, never on what the visitor took away.",
+      "issue": "Four movements over one root. The marking happens before anybody sets out: nothing is intrinsically worth seeing, so a marker creates the significance it reports, a prior image pre-scripts the arrival, and an itinerary makes the visit accountable to a list assembled by strangers. The seeking is never for the marked thing -- the visitor wants the life of the place, which is why improving the attraction satisfies nobody, why every tourist disowns the word, and why the off path is found by the people who close it. The staging is the place answering: a back region opened for discovery is genuine and is not the back, a host performing their own work drifts toward the version that shows well, and the price is the disclosure rather than the corruption. The residue splits: the visitor keeps a fortnight compressed into five tellable episodes, and the place keeps a structure that outlasts every individual visitor.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the tourism read runs wherever the play sends somebody to look at somewhere they do not live. The link: each persona links, under Projection, which side they are on and where -- and a play should give both, since the host is a position in the engine rather than scenery in it.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real member. Whether a production's back room was opened or arranged, and whether a host's performance is theirs or the visitors', are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then decide where the current boundary sits between what visitors reach and what they do not, and keep it off the page, because both parties experience it as no boundary at all. Keep everybody sincere: the visitor genuinely wants the real thing and the host genuinely offers it. And read the twist before writing any scene of being let in -- what the persona reached had been made reachable, and nobody in the room can see that."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
