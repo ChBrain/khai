@@ -1,0 +1,86 @@
+{
+  "name": "@chbrain/khai-composite-forgoing",
+  "version": "0.1.0",
+  "description": "khai composite content, the forgoing domain: help that exists, is available, and is not asked for -- the request whose price is paid in identity, the category declined rather than the service, and the undercount the declining produces.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/forgoing"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-asking": "^0.1.0",
+    "@chbrain/khai-engine-stigma": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  },
+  "khai": {
+    "engine": "forgoing",
+    "tagline": "Forgoing as composite: what it costs to ask for help that only somebody marked would need. It is not a third mechanism but a wiring of two -- the stigma engine supplies the discrediting attribute and the discounting it draws, and the asking engine supplies the request for discretionary help, its reluctance, and the misestimate that runs one way. This composite adds no third engine; it reads the one thing the two make together, which is a request whose price is paid in identity rather than in imposition. Three bridges: the Price, where the request is itself the disclosure and the service is defined by who it is for, so a chance is being weighed against a permanence; the Avoidance, where the persona declines the classification rather than the help, which is why better provision does not reach the decision; and the Undercount, the twist -- everybody who declines stays out of the visible population, so the category is described by the cases that could not be concealed, and the forgoing is what keeps the mark worth avoiding.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_forgoing.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_forgoing_price.md",
+        "type": "process",
+        "parent": "process_forgoing.md"
+      },
+      {
+        "file": "process_forgoing_avoidance.md",
+        "type": "process",
+        "parent": "process_forgoing.md"
+      },
+      {
+        "file": "process_forgoing_undercount.md",
+        "type": "process",
+        "parent": "process_forgoing.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over two atoms. The anchor (process_forgoing.md) declares the arrangement: a persona needs something, help for it exists, and asking would say what they are. It wires the stigma engine (the mark and the discounting it draws) and the asking engine (the request, the reluctance, the misestimate) and adds no third. Read it on what the request would establish, never on what it would obtain.",
+      "issue": "Three bridges over one root. The Price is where the two atoms touch: what asking treats as a cost to the helper, stigma converts into a cost to the asker, because the service is defined by who it is for and joining the queue is the disclosure. The Avoidance is the persona declining the classification rather than the help -- which is why shorter waits and a friendlier front desk change the offer and leave the price untouched, and why the refusal is filed by everybody as a judgement about need. The Undercount is the loop: the unmade requests leave no record, the records that remain are the cases that could not be concealed, and the next persona prices their own request off exactly that.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the forgoing read runs wherever the play puts help within reach of somebody who would be marked by taking it. The link: each persona links, under Projection, which bridge is running -- and the link is audited rather than failed, because a persona may be in the atoms without being in this arrangement.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and a real member is linked. Whether a production's refusal was about the label or about the need, and whether a service's take-up problem is a provision problem or a price problem, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then make the help good and the staff decent, because the composite does not need a gatekeeper and stops working if it gets one. Give the persona a sound reason for declining and let them keep it. And read the twist before staging any scene of outreach: the campaign that says the category is not so bad is arguing against evidence its own audience produced by staying away."
+    }
+  }
+}
