@@ -1,0 +1,149 @@
+{
+  "name": "@chbrain/khai-engine-measure",
+  "version": "0.1.0",
+  "description": "khai engine content, the measure domain: the operation of turning a judgement into a number and everything that follows -- what goes on the scale and what is discarded, why a number is reached for rather than an opinion, what measuring does to the thing measured, and the map that ends up rebuilding the ground.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/measure"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "measure",
+    "tagline": "Measure as process: the operation of turning a judgement into a number, and everything that follows from having done so -- not the general equivalent that converts anything into anything, which is money's, and not the readable image of a place, which is legibility's -- across four movements: the cut (commensuration, which produces a relation between things that had none by suppressing everything that would have prevented it, leaving a residue that is not recorded as a caveat but as nothing), the warrant (why a number rather than a judgement: distrust, travel, and answerability), the turn (Goodhart's collapse, the reactivity of institutions rebuilding around an index they do not endorse, and the self-fulfilment of a measure that produces what it claimed to report), and the territory (Scott's simplification, the imposed grid, and the practical knowledge that has no column) -- with the twist that a number is trusted in proportion to how little the people producing it are trusted, so the arrival of metrics is a symptom of collapsed confidence rather than a gain in rigour, and cannot be undone by competence.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_measure.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_cut_measure.md",
+        "type": "process",
+        "parent": "process_measure.md"
+      },
+      {
+        "file": "process_common_scale.md",
+        "type": "process",
+        "parent": "process_cut_measure.md"
+      },
+      {
+        "file": "process_residue.md",
+        "type": "process",
+        "parent": "process_cut_measure.md"
+      },
+      {
+        "file": "process_false_precision.md",
+        "type": "process",
+        "parent": "process_cut_measure.md"
+      },
+      {
+        "file": "process_warrant_measure.md",
+        "type": "process",
+        "parent": "process_measure.md"
+      },
+      {
+        "file": "process_distrust_engine.md",
+        "type": "process",
+        "parent": "process_warrant_measure.md"
+      },
+      {
+        "file": "process_travel_measure.md",
+        "type": "process",
+        "parent": "process_warrant_measure.md"
+      },
+      {
+        "file": "process_answerability.md",
+        "type": "process",
+        "parent": "process_warrant_measure.md"
+      },
+      {
+        "file": "process_turn_measure.md",
+        "type": "process",
+        "parent": "process_measure.md"
+      },
+      {
+        "file": "process_goodhart.md",
+        "type": "process",
+        "parent": "process_turn_measure.md"
+      },
+      {
+        "file": "process_reactivity.md",
+        "type": "process",
+        "parent": "process_turn_measure.md"
+      },
+      {
+        "file": "process_self_fulfilling.md",
+        "type": "process",
+        "parent": "process_turn_measure.md"
+      },
+      {
+        "file": "process_territory_measure.md",
+        "type": "process",
+        "parent": "process_measure.md"
+      },
+      {
+        "file": "process_simplification.md",
+        "type": "process",
+        "parent": "process_territory_measure.md"
+      },
+      {
+        "file": "process_imposed_grid.md",
+        "type": "process",
+        "parent": "process_territory_measure.md"
+      },
+      {
+        "file": "process_metis_lost.md",
+        "type": "process",
+        "parent": "process_territory_measure.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (process_measure.md) declares the operation itself: a quality handled as a quantity, so unlike things can be compared, ranked, allocated between, or answered for. It is read on what fell off the scale rather than on the accuracy of what stayed. It is not money's general equivalent, not legibility's readable image of a place, and not employment's metric control, which is measurement as one form of the effort bargain.",
+      "issue": "Four movements over one root, running together once the first has happened. The cut: commensuration as an intellectual achievement and an act of destruction in one motion -- a common scale that stops looking like a decision, a residue that becomes operationally absent rather than acknowledged, and a precision the underlying thing does not have. The warrant: why quantify at all -- distrust, since quantification concentrates where personal judgement is suspect and is adopted by the weak more often than imposed by the strong; travel, since a number moves and a judgement does not, which is what makes coordination at scale possible; and answerability, which makes power justify itself and teaches it which justifications work. The turn: Goodhart's collapse, where usefulness and decay come from one mechanism; reactivity, where institutions rebuild around an index nobody inside them endorses; and self-fulfilment, where a measure that allocates resources can no longer be tested against a world in which it did not. The territory: Scott's simplification, which is the precondition of public health, non-arbitrary taxation, and reliable title; the imposed grid, which succeeds first and fails all at once; and the practical knowledge that cannot be entered into the record on its own behalf.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the measure read runs wherever a number governs something in the play. The link: each persona links, under Projection, their position in the operation -- what they are measured on, what they measure, and which movement is doing the work on them.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real member. Whether a production's metric has actually collapsed under Goodhart, and whether a lost competence was practical knowledge or merely habit, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then say what the number is for before saying what it costs, since the engine reads as a complaint about counting if the case for measurement is not staged first. Put the drama in the residue -- the thing nobody can argue for because it has no figure. And read the twist before writing anybody who introduces a metric: they are almost certainly acting defensively and in good faith, and a play that supplies a cynical administrator has replaced the mechanism with a motive."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
