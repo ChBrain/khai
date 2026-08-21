@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-reprisal",
+  "version": "0.1.0",
+  "description": "khai composite content, the reprisal domain: what a persona expects getting even to do, and what it does -- the score they hold and the settling they confidently forecast, the stroke that genuinely discharges something and adds their own conduct to the record, and the keeping, where the act meant to close the matter is what holds it open.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/reprisal"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "reprisal",
+    "tagline": "Reprisal as composite: what a persona expects getting even to do, and what it does -- the grievance held in the vengeful stance together with a confident, detailed forecast of how the settling will feel, imagined in full colour with the rest of the week left out of the frame (the score); the act taken, which genuinely discharges something and is not hollow, and which adds the persona's own conduct to a memory that previously held only somebody else's (the stroke); and the aftermath, where the persona who retaliated thinks about the transgressor more, and longer, and feels worse than the persona who did not, having confidently predicted the opposite (the keeping) -- wired over the forgiveness, bias, and rumination engines, and closing on the one exception the persona does not control: where the other answers and it is legible that they understood, the account can genuinely close.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_reprisal.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_reprisal_score.md",
+        "type": "process",
+        "parent": "process_reprisal.md"
+      },
+      {
+        "file": "process_reprisal_stroke.md",
+        "type": "process",
+        "parent": "process_reprisal.md"
+      },
+      {
+        "file": "process_reprisal_keeping.md",
+        "type": "process",
+        "parent": "process_reprisal.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over three atoms it declares as dependencies. The root (process_reprisal.md) reads a persona who has been wronged and is going to do something about it. The forgiveness engine supplies the stance -- vengeful rather than avoidant or benevolent, the motivation to see the transgressor answer. The bias engine supplies the forecast, through the impact bias: the settling imagined in full colour with nothing else in the frame, and its felt duration read off the loudness of that picture. The rumination engine supplies the loop the episode was already running in. The join is Carlsmith, Wilson and Gilbert's: personas who punish think about the transgressor more and feel worse than personas who do not, while confidently predicting the reverse.",
+      "issue": "Three bridges. The score: the debt named and the receipt imagined, where the wish is well founded -- something was taken and has not been answered for -- and the estimate is not, because the persona forecasts the intensity of a moment and buys with it a change in a state. The stroke: the act, which discharges something real and is not hollow, and which changes the composition of the memory, since before it the episode held somebody else's conduct and after it holds the persona's own. The keeping, the twist: weeks later the one who acted is still turning it over and the one who did not has stopped, because an unfinished episode recurs and the persona has added the element they can never settle, which is whether they should have. The exception belongs to the keeping and the persona does not control it: where the other answers and it is legible that they understood why, the account can genuinely close -- so what a persona wants from a reprisal is a reply, and an act designed to make somebody suffer is poorly designed to produce one.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the reprisal read runs wherever its atoms are cast. The link, advisory: a persona may link under Projection the score they hold and whether they have taken the stroke, and the audit surfaces where a play has a persona get even and never says what they are doing with it a week later.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production's persona is genuinely in the vengeful stance rather than the avoidant one, and whether an answer from the other was genuinely legible as understanding, are semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Install the composite; its atoms arrive as dependencies -- forgiveness, bias, and rumination -- and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Then read each persona holding a grievance and link the state under Projection: the score where the debt is named and priced, the stroke where it is acted on, the keeping where the account fails to close. Let the satisfaction at the stroke be real, since a play that stages it as instantly hollow has replaced the mechanism with a moral. Show the keeping by comparison rather than by feeling -- the one who acted still in it, the one who did not already elsewhere. And do not let the persona be foolish: they were right about the wrong and right about the moment, and wrong only about how long it would last."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-bias": "^0.1.1",
+    "@chbrain/khai-engine-forgiveness": "^0.1.2",
+    "@chbrain/khai-engine-rumination": "^0.1.1"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
