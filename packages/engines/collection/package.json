@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-collection",
+  "version": "0.1.0",
+  "description": "khai engine content, the collection domain: a series of objects withdrawn from use, held to a criterion only its keeper can state -- the collector, the hunting that is the actual activity, the completing that never completes, and the dispersal that takes nothing and ends everything.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/collection"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "collection",
+    "tagline": "Collection as piece: a series of objects withdrawn from the use they were made for and held to a criterion that exists only in its keeper -- not the possession experienced as part of the self, which is extended-self's, and not the object withheld from exchange to carry a lineage, which is heirloom's. The object is the piece; the members are what happens around it. One position names who holds it: a collector holding a jurisdiction and a want list, who cannot use the objects, cannot be finished, and cannot price it honestly. Three processes name what it does: the hunting, which is the activity the collection actually consists of and which charges the search's satisfaction to the object; the completing, where the criterion widens exactly when the end comes into view and the collector cannot tell an insight from a reprieve; and the dispersal, which leaves every object intact and destroys the only thing that made them a set. The twist: a collection is made of what is missing from it, so completing it would end it, and the item that would finish the series is the one most wanted and least wanted at once.",
+    "type": "piece",
+    "members": [
+      {
+        "file": "piece_collection.md",
+        "type": "piece",
+        "parent": null
+      },
+      {
+        "file": "position_collector.md",
+        "type": "position",
+        "parent": "piece_collection.md"
+      },
+      {
+        "file": "process_hunting.md",
+        "type": "process",
+        "parent": "piece_collection.md"
+      },
+      {
+        "file": "process_completing.md",
+        "type": "process",
+        "parent": "piece_collection.md"
+      },
+      {
+        "file": "process_dispersal.md",
+        "type": "process",
+        "parent": "piece_collection.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Piece. The anchor (piece_collection.md) declares the collection as what it is in the room: a series of objects withdrawn from the use they were made for, bounded by a criterion only its keeper can state, and read by visitors on the wrong axis -- they see quantity, the collector sees a sequence with holes in it. It is not extended-self's possession-as-part-of-the-self, not heirloom's object withheld to carry a lineage, and not the object-cycle composite's material life of wear and mending.",
+      "issue": "The collection, read four ways beneath the object. One position names who holds it: a collector whose real holding is the criterion rather than the objects, who keeps a more detailed inventory of absences than of possessions, and whose position forecloses using the things, finishing the series, or naming what it is worth. Three processes name what it does. The hunting is the activity the collection consists of -- months of searching punctuated by an afternoon of having -- so the satisfaction is delivered by the search and charged to the object. The completing is where the engine is seen for one thing: the criterion widens precisely as the end comes into view, every refinement is genuine and defensible, and the collector cannot tell an insight from a reprieve. The dispersal leaves every object intact and destroys the criterion, which existed nowhere but in the collector.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so a kept series reads as load-bearing wherever it sits rather than as clutter. The link: the persona who keeps it links the collector position and whichever process is running, under Projection.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and a real collection member is linked. Whether a production's criterion widened out of knowledge or out of self-protection, and whether an accumulation has a criterion at all, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then decide what is missing from the collection before deciding what is in it, because the gap is what the engine reads and the inventory is not. Keep the collector sane: this is an absorbing skilled pursuit and not a symptom, and staging it as compulsion collapses the engine into a diagnosis. And read the twist before writing any scene of acquisition: the object that would finish the series is the one the collector most wants and would least like to own."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
