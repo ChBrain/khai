@@ -1,0 +1,149 @@
+{
+  "name": "@chbrain/khai-engine-asking",
+  "version": "0.1.0",
+  "description": "khai engine content, the asking domain: a request for discretionary help put to somebody free to refuse -- the reluctance that does most of the work, the misestimate that runs one way, the act and its form, and what a request does to the person who receives it.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/asking"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "asking",
+    "tagline": "Asking as process: a request for discretionary help put to somebody free to refuse -- not the transfer that binds by naming no price, which is gift's, and not the obligation that transfer creates, which is debt's and the owing composite's -- across four movements: the reluctance (an imposition calculated with only one of the two figures it needs, a workaround that succeeds and is therefore never audited, and a hedging that protects both parties and misreports the size), the misestimate (a no expected as a forecast rather than a fear, asks never made that leave no trace and cannot be learned from, and a channel chosen for the asker and paid for by the request), the asking (a request that has to be refusable to be grantable, a reason that works as a shape up to a point, and a free refusal that is load-bearing and not equally available), and the granting (a helper visibly better off, a standing conferred that is transferred one way, and a next ask exactly as hard as the last) -- with the twist that asking feels like taking and lands like giving, and the asker cannot see it.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_asking.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_reluctance_asking.md",
+        "type": "process",
+        "parent": "process_asking.md"
+      },
+      {
+        "file": "process_the_imposition.md",
+        "type": "process",
+        "parent": "process_reluctance_asking.md"
+      },
+      {
+        "file": "process_the_workaround.md",
+        "type": "process",
+        "parent": "process_reluctance_asking.md"
+      },
+      {
+        "file": "process_the_hedging.md",
+        "type": "process",
+        "parent": "process_reluctance_asking.md"
+      },
+      {
+        "file": "process_misestimate_asking.md",
+        "type": "process",
+        "parent": "process_asking.md"
+      },
+      {
+        "file": "process_the_no_expected.md",
+        "type": "process",
+        "parent": "process_misestimate_asking.md"
+      },
+      {
+        "file": "process_the_ask_unmade.md",
+        "type": "process",
+        "parent": "process_misestimate_asking.md"
+      },
+      {
+        "file": "process_the_channel.md",
+        "type": "process",
+        "parent": "process_misestimate_asking.md"
+      },
+      {
+        "file": "process_act_asking.md",
+        "type": "process",
+        "parent": "process_asking.md"
+      },
+      {
+        "file": "process_the_request_put.md",
+        "type": "process",
+        "parent": "process_act_asking.md"
+      },
+      {
+        "file": "process_the_reason_given.md",
+        "type": "process",
+        "parent": "process_act_asking.md"
+      },
+      {
+        "file": "process_the_free_refusal.md",
+        "type": "process",
+        "parent": "process_act_asking.md"
+      },
+      {
+        "file": "process_granting_asking.md",
+        "type": "process",
+        "parent": "process_asking.md"
+      },
+      {
+        "file": "process_the_helping.md",
+        "type": "process",
+        "parent": "process_granting_asking.md"
+      },
+      {
+        "file": "process_the_standing_conferred.md",
+        "type": "process",
+        "parent": "process_granting_asking.md"
+      },
+      {
+        "file": "process_the_next_ask.md",
+        "type": "process",
+        "parent": "process_granting_asking.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (process_asking.md) declares the request for discretionary help: something a persona cannot get alone, put to somebody under no obligation to give it. It is not gift's transfer that binds by naming no price, not debt's obligation, and not persuasion's engineering of compliance. Read it on what was not asked for, never on what was, because the unmade requests are where the volume is.",
+      "issue": "Four movements over one root, and the first is much the largest. The reluctance is decent rather than neurotic and runs on bad numbers: the imposition is imagined at high resolution from one side of the table only, the workaround succeeds and so is never audited, and the hedge that makes a request askable also discounts it before anybody looks. The misestimate is the engine's evidential core and is self-sealing: the no is a forecast rather than a fear, the unmade ask closes without a result and cannot revise the forecast, and the channel picked for the asker's comfort is the one least likely to work. The asking is mostly form: a request has to be refusable to be grantable, a stated reason works as a shape and stops working once the favour is large, and the free refusal is a load-bearing fiction that is not equally available to everybody. The granting is the product: the helper is genuinely better off, the standing conferred is the real content of the request, and the next ask starts from the same number.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the asking read runs wherever the play has somebody needing something from somebody else. The link: each persona links, under Projection, what they need and have not asked for, what they expect the answer to be, and what they have granted -- and a play should give both sides, since the helper is a position in the engine rather than a bystander to it.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real member. Whether a production's request was hedged into uselessness, and whether a refusal was genuinely free, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then decide what each persona needs and is not asking for, and keep it off the page: the unmade ask is the engine's largest term and leaves no trace in the scene. Make the helper pleased and mean it. And read the twist before writing any favour: the asker is handing over something they think they are taking, and they will not believe otherwise afterwards."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
