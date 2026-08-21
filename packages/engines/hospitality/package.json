@@ -1,0 +1,149 @@
+{
+  "name": "@chbrain/khai-engine-hospitality",
+  "version": "0.1.0",
+  "description": "khai engine content, the hospitality domain: the conversion of a stranger into a guest and the terms it carries -- the taking in at the door, the obligations neither side negotiated, the unstated term the arrangement runs on, and the breaches every society treats as unusually grave.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/hospitality"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "hospitality",
+    "tagline": "Hospitality as process: the conversion of a stranger into a guest, and the terms the conversion carries -- not the transfer that binds by naming no price, which is gift's, and not the neutral ground where nobody is host or guest, which is third-place's -- across four movements: the taking in (a stranger is unplaceable and cannot be left so, and there are only two resolutions, guest or enemy, with the conversion performed by an offering rather than agreed in words), the terms (the host's duty to provide unstintingly and unpriced, the guest's duties which are almost all prohibitions protecting the fact that there is one authority here, and the precedence the guest must accept), the clock (the welcome, whose warmth is identical on the last good day and the first, the overstay that changes status without any visible signal, and the leaving that converts the visit into a lasting bond if the term was judged right), and the breach (harming a guest, acting as host, and turning somebody away) -- with the twist that hospitality honours the guest by demonstrating whose house it is, since only somebody who owns a place can extend it.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_hospitality.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_taking_in.md",
+        "type": "process",
+        "parent": "process_hospitality.md"
+      },
+      {
+        "file": "process_the_stranger.md",
+        "type": "process",
+        "parent": "process_taking_in.md"
+      },
+      {
+        "file": "process_the_crossing.md",
+        "type": "process",
+        "parent": "process_taking_in.md"
+      },
+      {
+        "file": "process_the_offering.md",
+        "type": "process",
+        "parent": "process_taking_in.md"
+      },
+      {
+        "file": "process_terms_hospitality.md",
+        "type": "process",
+        "parent": "process_hospitality.md"
+      },
+      {
+        "file": "process_host_duty.md",
+        "type": "process",
+        "parent": "process_terms_hospitality.md"
+      },
+      {
+        "file": "process_guest_duty.md",
+        "type": "process",
+        "parent": "process_terms_hospitality.md"
+      },
+      {
+        "file": "process_the_precedence.md",
+        "type": "process",
+        "parent": "process_terms_hospitality.md"
+      },
+      {
+        "file": "process_clock_hospitality.md",
+        "type": "process",
+        "parent": "process_hospitality.md"
+      },
+      {
+        "file": "process_the_welcome.md",
+        "type": "process",
+        "parent": "process_clock_hospitality.md"
+      },
+      {
+        "file": "process_the_overstay.md",
+        "type": "process",
+        "parent": "process_clock_hospitality.md"
+      },
+      {
+        "file": "process_the_leaving.md",
+        "type": "process",
+        "parent": "process_clock_hospitality.md"
+      },
+      {
+        "file": "process_breach_hospitality.md",
+        "type": "process",
+        "parent": "process_hospitality.md"
+      },
+      {
+        "file": "process_host_betrayal.md",
+        "type": "process",
+        "parent": "process_breach_hospitality.md"
+      },
+      {
+        "file": "process_guest_usurpation.md",
+        "type": "process",
+        "parent": "process_breach_hospitality.md"
+      },
+      {
+        "file": "process_the_turning_away.md",
+        "type": "process",
+        "parent": "process_breach_hospitality.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (process_hospitality.md) declares the anomaly a stranger presents -- a person in a space that is not theirs, owing nothing and owed nothing, belonging to no category the household keeps -- and the arrangement that exists because that condition cannot be left standing. It is not the gift that binds by naming no price, which is the gift engine's, and not the informal ground where nobody is host or guest, which is third-place's.",
+      "issue": "Four movements over one root. The taking in: the stranger is an opportunity and a hazard in one body and nobody can tell which, so the conversion is performed fast, at a door, by an offering that must be ingested or received bodily -- and it binds completely on no information, with the second resolution always standing behind the first. The terms: the host must provide unstintingly and without visible calculation, the guest's obligations are almost all prohibitions protecting a single fact, and the precedence honours the guest by exercising the authority the guest is being kept from. The clock: the welcome is sincere and bounded, and it is exactly as warm on the last good day as on the first, so the guest can calibrate nothing from the host's manner; the overstay changes status invisibly and gives neither party a direct way to speak; the leaving, taken in time, converts a visit into a bond that can be claimed by children. The breach: harming a guest, acting as host, or turning somebody away -- all held apart from ordinary wrongs, because nothing else enforces an arrangement that runs entirely on the guest's undefended trust.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the hospitality read runs wherever somebody is taken in or turned away in the play. The link: each persona links, under Projection, which side of the arrangement they are on and where in it -- and a play should give both sides, since the engine is unreadable from one.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real member. Whether a production's welcome has lapsed, and whether a guest's helpfulness was a usurpation, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then decide the term before the play opens, and never tell the guest -- the clock is the engine's centre and it is unwritten by construction. Keep the host generous and the guest grateful, because the arrangement is at its most interesting when nobody is behaving badly. And read the twist before writing any welcome: only somebody who owns a place can extend it, so the warmest reception is also the most complete demonstration of whose house it is, and neither party can say so."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
