@@ -1,0 +1,149 @@
+{
+  "name": "@chbrain/khai-engine-bidding",
+  "version": "0.1.0",
+  "description": "khai engine content, the bidding domain: one indivisible thing wanted by several parties who each price it themselves -- the contest that supplies appetite, the estimating whose spread nobody can see, a mechanism that selects the maximum, and a reckoning that arrives disguised as something else.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/bidding"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "bidding",
+    "tagline": "Bidding as process: one indivisible thing wanted by several parties who each have to price it themselves -- not the exchange of concessions toward terms, which is negotiation's, and not commitment growing on what has been sunk, which is escalation's -- across four movements: the contest (a prize that makes second place identical to not having tried, a field read as a reason to bid more and which is a reason to bid less, and a wanting that is other people's appetite felt as one's own), the estimating (a private number that is a range with the range removed, a scatter that is the answer and is held by the seller, and unshared information that everybody keeps and nobody benefits from), the winning (a top estimate that cannot tell keenness from error and does not need to, a pushing decided by whoever tires last, and a triumph that is the first news of the curse received as its opposite), and the reckoning (an overpay that is real, moderate, continuous and never itemised, a defence that protects the winner and destroys the data, and a next contest where the lesson turns out to have been about the market) -- with the twist that winning is the evidence that you were wrong.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_bidding.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_contest_bidding.md",
+        "type": "process",
+        "parent": "process_bidding.md"
+      },
+      {
+        "file": "process_the_one_thing.md",
+        "type": "process",
+        "parent": "process_contest_bidding.md"
+      },
+      {
+        "file": "process_the_field.md",
+        "type": "process",
+        "parent": "process_contest_bidding.md"
+      },
+      {
+        "file": "process_the_wanting_seen.md",
+        "type": "process",
+        "parent": "process_contest_bidding.md"
+      },
+      {
+        "file": "process_estimating_bidding.md",
+        "type": "process",
+        "parent": "process_bidding.md"
+      },
+      {
+        "file": "process_the_private_number.md",
+        "type": "process",
+        "parent": "process_estimating_bidding.md"
+      },
+      {
+        "file": "process_the_scatter.md",
+        "type": "process",
+        "parent": "process_estimating_bidding.md"
+      },
+      {
+        "file": "process_the_unshared.md",
+        "type": "process",
+        "parent": "process_estimating_bidding.md"
+      },
+      {
+        "file": "process_winning_bidding.md",
+        "type": "process",
+        "parent": "process_bidding.md"
+      },
+      {
+        "file": "process_the_top_estimate.md",
+        "type": "process",
+        "parent": "process_winning_bidding.md"
+      },
+      {
+        "file": "process_the_pushing.md",
+        "type": "process",
+        "parent": "process_winning_bidding.md"
+      },
+      {
+        "file": "process_the_triumph.md",
+        "type": "process",
+        "parent": "process_winning_bidding.md"
+      },
+      {
+        "file": "process_reckoning_bidding.md",
+        "type": "process",
+        "parent": "process_bidding.md"
+      },
+      {
+        "file": "process_the_overpay.md",
+        "type": "process",
+        "parent": "process_reckoning_bidding.md"
+      },
+      {
+        "file": "process_the_defence.md",
+        "type": "process",
+        "parent": "process_reckoning_bidding.md"
+      },
+      {
+        "file": "process_the_next_contest.md",
+        "type": "process",
+        "parent": "process_reckoning_bidding.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (process_bidding.md) declares the selection mechanism: one indivisible thing, several parties, each pricing it from their own fragment of the evidence. It is not negotiation's exchange of concessions toward terms, not escalation's commitment growing on what has been sunk, and not worth-logic's question of by whose standard a thing is valuable. Read it on the spread of the estimates, never on the size of the winning one.",
+      "issue": "Four movements over one root. The contest makes the rivals part of the object: an indivisible prize means second place is identical to not having tried, a larger field is read as a reason to bid more when the arithmetic makes it a reason to bid less, and other people's appetite arrives labelled as a judgement about the item. The estimating is done well by everybody and the spread is the only thing that matters -- and no party can observe it, because each sees one number, their own. The winning takes the maximum, which under a common value is a measurement of the largest error rather than of the greatest keenness, and the triumph arrives at the point of least information. The reckoning is chronic rather than acute: the overpayment shows up as everything being slightly harder, has a dozen available explanations, and is defended by a winner for whom the price has become their judgement.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the bidding read runs wherever the play has one thing and more than one party who wants it. The link: each persona links, under Projection, which movement is running and what their last win cost them.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real member. Whether a production's winner overpaid, and whether an item has a common value or a private one, are judgements the team makes -- and the second decides whether the engine applies at all.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then decide what the thing is actually worth and keep the figure off the page, because the engine runs on nobody in the contest being able to see it. Check that the value is common rather than private: if each party is pricing the thing for themselves, the mechanism works properly and there is no curse. And read the twist before writing any scene of winning -- the celebration is a response to the one fact that should have given the persona pause."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
