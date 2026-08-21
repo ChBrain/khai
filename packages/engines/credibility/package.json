@@ -1,0 +1,149 @@
+{
+  "name": "@chbrain/khai-engine-credibility",
+  "version": "0.1.0",
+  "description": "khai engine content, the credibility domain: the credit extended to a first-person account, and what a shortfall does to the persona giving it -- the report with no second source, the discount applied before listening, the wrong that has no name, and the damage that lands on the knower rather than the claim.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/credibility"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "credibility",
+    "tagline": "Credibility as process: the credit extended to a first-person account, and what a shortfall does to the persona giving it -- not the bet on another's reliability with a stake at risk, which is trust's, and not the holding of a proposition under pressure, which is belief's -- across four movements: the report (a first person who is the only witness, a corroboration the situation has already ruled out, and a manner that supplies whatever the hearer brought with them), the discount (a deficit undetectable case by case and unmistakable in aggregate, a sincere hearer who is the ordinary case and is not improved by being sincere, and a track record built out of the discount and used to justify it), the missing word (an unnamed pattern that is strongest as a whole and can only be produced in parts, a private fault that is the best available explanation and is not true, and a coining that fixes the future case and closes none of the old ones), and the aftermath (a self-doubt that is a virtue installed by the wrong instrument, a belated confirmation that cannot return the reporter, and an owing back felt by the one who owes and not paid to the one who is owed) -- with the twist that being disbelieved does not leave a persona holding an unheard truth, it leaves them holding less of one.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_credibility.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_report_credibility.md",
+        "type": "process",
+        "parent": "process_credibility.md"
+      },
+      {
+        "file": "process_the_first_person.md",
+        "type": "process",
+        "parent": "process_report_credibility.md"
+      },
+      {
+        "file": "process_the_corroboration.md",
+        "type": "process",
+        "parent": "process_report_credibility.md"
+      },
+      {
+        "file": "process_the_manner.md",
+        "type": "process",
+        "parent": "process_report_credibility.md"
+      },
+      {
+        "file": "process_discount_credibility.md",
+        "type": "process",
+        "parent": "process_credibility.md"
+      },
+      {
+        "file": "process_the_deficit.md",
+        "type": "process",
+        "parent": "process_discount_credibility.md"
+      },
+      {
+        "file": "process_the_sincere_hearer.md",
+        "type": "process",
+        "parent": "process_discount_credibility.md"
+      },
+      {
+        "file": "process_the_track_record.md",
+        "type": "process",
+        "parent": "process_discount_credibility.md"
+      },
+      {
+        "file": "process_missing_word_credibility.md",
+        "type": "process",
+        "parent": "process_credibility.md"
+      },
+      {
+        "file": "process_the_unnamed.md",
+        "type": "process",
+        "parent": "process_missing_word_credibility.md"
+      },
+      {
+        "file": "process_the_private_fault.md",
+        "type": "process",
+        "parent": "process_missing_word_credibility.md"
+      },
+      {
+        "file": "process_the_coining.md",
+        "type": "process",
+        "parent": "process_missing_word_credibility.md"
+      },
+      {
+        "file": "process_aftermath_credibility.md",
+        "type": "process",
+        "parent": "process_credibility.md"
+      },
+      {
+        "file": "process_the_self_doubt.md",
+        "type": "process",
+        "parent": "process_aftermath_credibility.md"
+      },
+      {
+        "file": "process_the_belated.md",
+        "type": "process",
+        "parent": "process_aftermath_credibility.md"
+      },
+      {
+        "file": "process_the_owing_back.md",
+        "type": "process",
+        "parent": "process_aftermath_credibility.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (process_credibility.md) declares the credit extended to an account that is its own only evidence: a pain, a conversation with nobody else in the room, what somebody meant by a look. It is not trust's bet with a stake at risk, not belief's hold on a proposition, and not heeding's fair procedure. Read it on what the hearer did before listening, never on what they concluded.",
+      "issue": "Four movements over one root. The report sets a difficulty that is nobody's fault: the only witness is the one it happened to, corroboration is asked for and the situation has already ruled it out, and with no second source the hearer falls back on manner -- where every register can be read either way. The discount is applied before the content is examined, by a hearer who would deny applying one and is telling the truth, and each unresolved report builds a record used to justify the next discount. The missing word is the harder case and precedes the hearer entirely: with no term to gather the incidents, the persona can only present the weakest version of a real pattern, and the vocabulary available for a difficulty nobody else seems to have is all about the person having it. The aftermath is what the three do together, and it works on the reporter rather than on the report.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the credibility read runs wherever the play has somebody report something only they can know. The link: each persona links, under Projection, which side they are on and where -- and a play should give both, since the hearer is a position in the engine rather than an obstacle in it.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real member. Whether a production's hearer discounted or weighed, and whether a persona's revision came from evidence or from reception, are judgements the team makes; the suite does not attempt them -- and the second is one the persona cannot make either, which is the engine's point.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then decide whether the report is true and keep it off the page, because the engine runs on nobody in the room being able to tell. Keep the hearers conscientious: the mechanism does not need a dismissive one and stops being interesting if it gets one. And read the twist before writing any scene of somebody not being believed -- what is being damaged is not the claim, it is the claimant's hold on it."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
