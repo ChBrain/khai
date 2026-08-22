@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-grave",
+  "version": "0.1.0",
+  "description": "khai engine content, the grave domain: the marked place of the dead, held on a term by the living -- the burying that fixes an address, the visiting that carries a bond as maintenance, and the lapsing that ends it without anybody deciding.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/grave"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "grave",
+    "tagline": "Grave as piece: the marked place of the dead, held on a term by the living and read by anybody who walks past -- not the internal bond a mourner carries forward, which is grief's, and not the rite that puts a body in the ground, which is ritual's. The object is the piece; the members are what happens around it. One position names who holds it: a next of kin with the burial right, the invoice, and the standing to decide the wording, who loses the privacy of their own mourning because everything they do at the plot is legible, and whose holding ends when a renewal notice reaches an address twenty years out of date. Three processes name what it does: the burying, which fixes an address in a fortnight and binds it for a century, taken by exhausted people on criteria that look arbitrary long before they stop binding; the visiting, which carries the bond in the only material it has left, since the tending is what makes the visit possible and the flowers die on a schedule; and the lapsing, an ending assembled out of individually innocent weeks that the object records only as a sum. The twist: a grave is the only part of a death anybody can still maintain, which is why it is the part the living are judged on.",
+    "type": "piece",
+    "members": [
+      {
+        "file": "piece_grave.md",
+        "type": "piece",
+        "parent": null
+      },
+      {
+        "file": "position_next_of_kin.md",
+        "type": "position",
+        "parent": "piece_grave.md"
+      },
+      {
+        "file": "process_the_burying.md",
+        "type": "process",
+        "parent": "piece_grave.md"
+      },
+      {
+        "file": "process_the_visiting.md",
+        "type": "process",
+        "parent": "piece_grave.md"
+      },
+      {
+        "file": "process_the_lapsing.md",
+        "type": "process",
+        "parent": "piece_grave.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Piece. The anchor (piece_grave.md) declares the grave as what it is in the world: ground the family does not own, at a distance from where the family lives, bought as a right for a term rather than as earth, and located in the worst week of somebody's life. It is not grief's internal bond, not ritual's rite, not heirloom's object withheld to carry a lineage, and not document's institutional record of a person. Read it on what the survivors do with it, never on what the dead person wanted.",
+      "issue": "One position and three processes over the object. The next of kin holds a right, an invoice, and a set of small absolute powers over how a shared loss is presented, and loses the privacy of their own mourning to whoever walks past. The burying fixes an address at the worst possible moment for choosing one, on criteria of cost and availability that bind for decades. The visiting is mostly work -- weeding, scrubbing, refilling, talking aloud -- and the tasks are what makes the visit possible, which is a real consolation delivered by a chore that cannot be completed. The lapsing is a verdict assembled out of individually innocent weeks, since the object records only the sum.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the grave read runs wherever the play keeps a plot. The link: each persona links, under Projection, where they stand to it -- whether they hold the right, how far they live from it, when they last went, and what they take when they go.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real member. Whether a production's plot has been let go or is being kept by somebody who cannot afford the travel, and whether an inscription was chosen by consensus or by whoever handled the arrangements, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then give the visit something to do: the secateurs, the water, the cloth, the neighbouring plot that has been let go. Keep the lapsing blameless -- nobody neglected it and nobody decided to stop. And read the twist before writing any scene at a graveside: the state of the plot is about to be taken as a statement about the family, and it is the only statement the object is able to make."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
