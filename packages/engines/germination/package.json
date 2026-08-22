@@ -1,0 +1,155 @@
+{
+  "name": "@chbrain/khai-engine-germination",
+  "version": "0.1.0",
+  "description": "khai engine content, the germination domain: a whole organism held in suspension and the conditions under which it stops being held -- a pack provisioned once, a hold that is the seed's principal activity, a cue that certifies something adjacent, and a commit with no way back.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/germination"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "germination",
+    "tagline": "Germination as process: a whole organism held in suspension, and the conditions under which it stops being held, read on what was required rather than on what grew -- not matter losing the order imposed on it, which is decay's, and not decay pointed somewhere, which is fermentation's -- across four movements: the pack (an embryo that waits without resting, a store spent on a distance nobody measured in advance, and a coat that protects the seed from everything including its own future), the hold (a refusal the seed is doing rather than having done to it, a clock unset that forces a forecast out of a thermometer, and a bank that buys the line a future by spending nearly all of its members), the cue (a cold passed that certifies a season by requiring one to have happened, smoke that is a precise signal for a brief opening, and light read as a depth gauge built out of a pigment), and the commit (an imbibition that looks the same on both sides of the point of no return, one shot at a distance the store was set before anybody measured, and an after that is the end of every option the seed had) -- with the twist that a seed spends nearly all of its life refusing to grow, and the one time it agrees there is no way back.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_germination.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_pack_germination.md",
+        "type": "process",
+        "parent": "process_germination.md"
+      },
+      {
+        "file": "process_the_embryo.md",
+        "type": "process",
+        "parent": "process_pack_germination.md"
+      },
+      {
+        "file": "process_the_store.md",
+        "type": "process",
+        "parent": "process_pack_germination.md"
+      },
+      {
+        "file": "process_the_coat.md",
+        "type": "process",
+        "parent": "process_pack_germination.md"
+      },
+      {
+        "file": "process_hold_germination.md",
+        "type": "process",
+        "parent": "process_germination.md"
+      },
+      {
+        "file": "process_the_refusal.md",
+        "type": "process",
+        "parent": "process_hold_germination.md"
+      },
+      {
+        "file": "process_the_clock_unset.md",
+        "type": "process",
+        "parent": "process_hold_germination.md"
+      },
+      {
+        "file": "process_the_bank.md",
+        "type": "process",
+        "parent": "process_hold_germination.md"
+      },
+      {
+        "file": "process_cue_germination.md",
+        "type": "process",
+        "parent": "process_germination.md"
+      },
+      {
+        "file": "process_the_cold_passed.md",
+        "type": "process",
+        "parent": "process_cue_germination.md"
+      },
+      {
+        "file": "process_the_smoke.md",
+        "type": "process",
+        "parent": "process_cue_germination.md"
+      },
+      {
+        "file": "process_the_light_read.md",
+        "type": "process",
+        "parent": "process_cue_germination.md"
+      },
+      {
+        "file": "process_commit_germination.md",
+        "type": "process",
+        "parent": "process_germination.md"
+      },
+      {
+        "file": "process_the_imbibition.md",
+        "type": "process",
+        "parent": "process_commit_germination.md"
+      },
+      {
+        "file": "process_the_one_shot.md",
+        "type": "process",
+        "parent": "process_commit_germination.md"
+      },
+      {
+        "file": "process_the_after.md",
+        "type": "process",
+        "parent": "process_commit_germination.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "piece",
+        "section": "Apparent",
+        "link": "expression",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Shown",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Piece on the Apparent chapter and at Place on the Shown chapter, following decay's and fermentation's precedent of one phenomenon on two types -- because a seed is an object and also a patch of ground that was disturbed in March. The root (process_germination.md) declares germination as a held life released by a cue: a viable organism, complete and dried, declining conditions it could otherwise use. It is not decay's matter losing its imposed order, not fermentation's directed spoilage, and not combustion's fire. Read it on what was required, never on what grew.",
+      "issue": "Four movements over one root. The pack is provisioned once, by a parent who cannot see the conditions: a whole plant already built, a finite store, and a coat that must be destroyed from outside for anything to happen. The hold keeps the seed alive by keeping it from living -- dormancy is maintained rather than passive, a viable seed declines adequate conditions, and a bank spreads one line's attempts across decades at the cost of nearly every individual in it. The cue reads a reliable stand-in for a fact the seed has no access to: a completed winter, smoke in the first rain, red light at a workable depth. The commit is irreversible and is made on the proxy.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the germination read runs wherever the play holds something in suspension. The link: a piece links, under Apparent, which movement the seed is in; a place links, under Shown, what it supplies -- the cold it accumulated, the fire it had, the soil that was turned.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each piece or place links a real member. Whether a production's cue was genuine or a false spring, and whether a bank was spent or merely thinned, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then keep the refusal active rather than sleepy: a dormant seed is doing something, and the engine stops working if it is staged as merely inert. Let the cue be specific and let it certify something other than itself. And read the twist before writing any scene after the rain -- the seed did exactly what it is built to do, the reading was correct, and there is no route back to the state that was keeping it alive."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
