@@ -1,0 +1,86 @@
+{
+  "name": "@chbrain/khai-composite-pilgrimage",
+  "version": "0.1.0",
+  "description": "khai composite content, the pilgrimage domain: what happens to a death when strangers start coming to the place of it -- the arrival that adds visitors and no hands, the custody that buys the object a future and prices it in decisions, and the claim that settles the meaning outside the family.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/pilgrimage"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-grave": "^0.1.0",
+    "@chbrain/khai-engine-tourism": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  },
+  "khai": {
+    "engine": "pilgrimage",
+    "tagline": "Pilgrimage as composite: what happens to a death when strangers start coming to the place of it. It is not a third mechanism but a wiring of two -- the tourism engine supplies the marking that makes somewhere worth going and the account that travels home, and the grave engine supplies the leased plot, the burial right, and a relationship that consists entirely of maintenance. This composite adds no third engine; it reads the one thing the two make together, which is a death looked after by people it did not happen to. Three bridges: the Arrival, where sincere visitors come in numbers and none of them can perform the chores the object issues, so the plot gains people and no hands; the Custody, where the upkeep outgrows the family and a trust takes it on, buying the grave a future it would never otherwise have had and pricing it in decisions, since whoever pays sets a standard written for strangers; and the Claim, the twist -- the better a death is looked after, the less of it belongs to the people it happened to.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_pilgrimage.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_pilgrimage_arrival.md",
+        "type": "process",
+        "parent": "process_pilgrimage.md"
+      },
+      {
+        "file": "process_pilgrimage_custody.md",
+        "type": "process",
+        "parent": "process_pilgrimage.md"
+      },
+      {
+        "file": "process_pilgrimage_claim.md",
+        "type": "process",
+        "parent": "process_pilgrimage.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over two atoms. The anchor (process_pilgrimage.md) declares the arrangement: people with no relation to the dead arrive at the ground the dead are kept in. It wires the tourism engine (the marker that makes a place worth going to, and the account carried home) and the grave engine (the leased plot, the burial right, and a bond conducted as maintenance) and adds no third. Read it on who decides, never on who comes.",
+      "issue": "Three bridges over one root. The Arrival is where the two atoms touch physically: the visitors are sincere, often the only people still saying the name aloud, and none of them will drive three hours to weed, so the plot gains attendance and no maintenance -- and the tributes they leave have to be cleared by whoever is clearing. The Custody follows from the upkeep outgrowing one relative: a trust takes it on, the term will never again be allowed to lapse, and the standard becomes presentable rather than decent, written for somebody arriving with no context. The Claim is the loop: the account that travels is the visitors', the family's version has no channel and nobody is suppressing it, and the phrase on the panel becomes the meaning.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project Instructions Knowledge chapter, linking the anchor, so the pilgrimage read runs wherever the play has a death that strangers visit. The link: each persona links, under Projection, which bridge is running -- and the link is audited rather than failed, because a persona can be in either atom without being in this arrangement.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and a real member is linked. Whether a production's trust is careful or careless, and whether a family sought the visitors or was overtaken by them, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then make the rescue real: the plot was heading for a green stone and a reused grave, and the visitors are the reason it is not. Keep everybody decent -- the composite needs no ghouls and no ungrateful relatives, and stops working the moment it gets either. And read the twist before writing any scene at the site: nothing is being taken, and by the end the family is one stakeholder among several."
+    }
+  }
+}
