@@ -1,0 +1,155 @@
+{
+  "name": "@chbrain/khai-engine-fermentation",
+  "version": "0.1.0",
+  "description": "khai engine content, the fermentation domain: decay pointed somewhere -- a substrate already contested, a setting that rigs the contest rather than defending the jar, a succession that runs itself, and a turn that is decided from outside the vessel.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/fermentation"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "fermentation",
+    "tagline": "Fermentation as process: directed spoilage, read on what was favoured rather than on what was prevented -- not matter losing the order imposed on it, which is decay's, and not degradation through use, which is wear's -- across four movements: the substrate (a sugar spent badly on purpose so the leavings are the food, a wild load that is the whole cast present from the beginning, and a wound that starts the process and the spoilage together), the setting (salt that is a price rather than a poison, shut air that withdraws an advantage and grants nothing, and hurdles that work together or not at all), the succession (a first bloom that is the wrong organism doing the necessary work, an acid the vessel makes to protect itself, and a handover arranged by the outgoing tenant), and the turn (a line drawn by a trained palate at a boundary the process does not contain, an arrest that chooses between a ferment that lasts and a ferment that is working, and a next jar that continues a population which is no longer the population) -- with the twist that a ferment is not defended from rot; it is rotted first by something you chose.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_fermentation.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_substrate_fermentation.md",
+        "type": "process",
+        "parent": "process_fermentation.md"
+      },
+      {
+        "file": "process_the_sugar.md",
+        "type": "process",
+        "parent": "process_substrate_fermentation.md"
+      },
+      {
+        "file": "process_the_wild_load.md",
+        "type": "process",
+        "parent": "process_substrate_fermentation.md"
+      },
+      {
+        "file": "process_the_wound.md",
+        "type": "process",
+        "parent": "process_substrate_fermentation.md"
+      },
+      {
+        "file": "process_setting_fermentation.md",
+        "type": "process",
+        "parent": "process_fermentation.md"
+      },
+      {
+        "file": "process_the_salt.md",
+        "type": "process",
+        "parent": "process_setting_fermentation.md"
+      },
+      {
+        "file": "process_the_shut_air.md",
+        "type": "process",
+        "parent": "process_setting_fermentation.md"
+      },
+      {
+        "file": "process_the_hurdles.md",
+        "type": "process",
+        "parent": "process_setting_fermentation.md"
+      },
+      {
+        "file": "process_succession_fermentation.md",
+        "type": "process",
+        "parent": "process_fermentation.md"
+      },
+      {
+        "file": "process_the_first_bloom.md",
+        "type": "process",
+        "parent": "process_succession_fermentation.md"
+      },
+      {
+        "file": "process_the_acid_made.md",
+        "type": "process",
+        "parent": "process_succession_fermentation.md"
+      },
+      {
+        "file": "process_the_handover.md",
+        "type": "process",
+        "parent": "process_succession_fermentation.md"
+      },
+      {
+        "file": "process_turn_fermentation.md",
+        "type": "process",
+        "parent": "process_fermentation.md"
+      },
+      {
+        "file": "process_the_line_drawn.md",
+        "type": "process",
+        "parent": "process_turn_fermentation.md"
+      },
+      {
+        "file": "process_the_arrest.md",
+        "type": "process",
+        "parent": "process_turn_fermentation.md"
+      },
+      {
+        "file": "process_the_next_jar.md",
+        "type": "process",
+        "parent": "process_turn_fermentation.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "piece",
+        "section": "Apparent",
+        "link": "expression",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Shown",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Piece on the Apparent chapter and at Place on the Shown chapter, following decay's precedent of one phenomenon on two types -- because a ferment is a vessel and also a room that was warm enough. The root (process_fermentation.md) declares fermentation as decay pointed somewhere: a substrate with sugars in it held under chosen conditions, where nothing is excluded and something is favoured. It is not decay's matter losing its imposed order, not wear's degradation through use, and not combustion's transformation by heat. Read it on what was favoured, never on what was prevented.",
+      "issue": "Four movements over one root. The substrate is a resource with several claimants and no default winner: the sugars are there, the organisms are already on the material, and the cut puts them in contact, so doing nothing selects the spoilage. The setting does not defend the jar, it rigs the contest inside it -- salt is a price rather than a poison, shut air withdraws an advantage, and the hurdles are lethal only in combination. The succession runs itself and cannot hold still, because each population is ended by its own waste and the acid that protects the vessel is manufactured by the vessel from the food. The turn is the only judgement in the process and it is made from outside.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the fermentation read runs wherever the play keeps something under a lid. The link: a piece links, under Apparent, which movement its vessel is in; a place links, under Shown, the conditions it supplies -- the temperature, the cellar, the airflow of the room.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each piece or place links a real member. Whether a production's jar has turned or arrived, and whether a household's line is the same line as its neighbour's, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then keep the failures geometric rather than moral: nothing is contaminated, no organism is a villain, and the piece of cabbage above the brine is the whole of what went wrong. And read the twist before writing any scene at the crock -- the sequence that made the food is the identical sequence that will take it away, and the only thing that ever stopped it was somebody with a spoon."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
