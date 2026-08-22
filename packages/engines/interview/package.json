@@ -1,0 +1,149 @@
+{
+  "name": "@chbrain/khai-engine-interview",
+  "version": "0.1.0",
+  "description": "khai engine content, the interview domain: a stranger judged in an hour arranged for the purpose -- a room that improvises its own instrument, a read taken from the material an hour supplies, a picture that could not have failed to form, and the reasons the practice is kept.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/interview"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "interview",
+    "tagline": "Interview as process: a stranger judged in a meeting arranged for the purpose, read on the certainty it produced rather than on the information it collected -- not the disagreement between an instrument and a practitioner, which overriding reads, and not the front the candidate is managing, which is presentation's -- across four movements: the room (a short hour that samples the wrong activity at the right convenience, two rehearsed performances read by each side as disclosures, and a free hand that is defended as skill and behaves as noise), the read (an early verdict that makes the rest of the hour a defence, a fit test that finds resemblance and reports merit, and a told story that converts the same history into different evidence), the sense made (a coherent stranger described with the confidence of a colleague, an absorbed answer proving the instrument has no reading for absence, and reasons after that document a judgement they did not produce), and the keeper (a missing half that stops experience accumulating into accuracy, a shared ceremony owed to the candidate and then used against the file, and a next panel that restores the free hand one reasonable exception at a time) -- with the twist that the interview contributes least to the decision and supplies all of the confidence in it.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_interview.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_room_interview.md",
+        "type": "process",
+        "parent": "process_interview.md"
+      },
+      {
+        "file": "process_the_short_hour.md",
+        "type": "process",
+        "parent": "process_room_interview.md"
+      },
+      {
+        "file": "process_the_two_performances.md",
+        "type": "process",
+        "parent": "process_room_interview.md"
+      },
+      {
+        "file": "process_the_free_hand.md",
+        "type": "process",
+        "parent": "process_room_interview.md"
+      },
+      {
+        "file": "process_read_interview.md",
+        "type": "process",
+        "parent": "process_interview.md"
+      },
+      {
+        "file": "process_the_early_verdict.md",
+        "type": "process",
+        "parent": "process_read_interview.md"
+      },
+      {
+        "file": "process_the_fit_test.md",
+        "type": "process",
+        "parent": "process_read_interview.md"
+      },
+      {
+        "file": "process_the_told_story.md",
+        "type": "process",
+        "parent": "process_read_interview.md"
+      },
+      {
+        "file": "process_sense_interview.md",
+        "type": "process",
+        "parent": "process_interview.md"
+      },
+      {
+        "file": "process_the_coherent_stranger.md",
+        "type": "process",
+        "parent": "process_sense_interview.md"
+      },
+      {
+        "file": "process_the_absorbed_answer.md",
+        "type": "process",
+        "parent": "process_sense_interview.md"
+      },
+      {
+        "file": "process_the_reasons_after.md",
+        "type": "process",
+        "parent": "process_sense_interview.md"
+      },
+      {
+        "file": "process_keeper_interview.md",
+        "type": "process",
+        "parent": "process_interview.md"
+      },
+      {
+        "file": "process_the_missing_half.md",
+        "type": "process",
+        "parent": "process_keeper_interview.md"
+      },
+      {
+        "file": "process_the_shared_ceremony.md",
+        "type": "process",
+        "parent": "process_keeper_interview.md"
+      },
+      {
+        "file": "process_the_next_panel.md",
+        "type": "process",
+        "parent": "process_keeper_interview.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (process_interview.md) declares selection by encounter: a stranger judged in a meeting arranged for the purpose, where a place will be given or withheld on an hour. It is not overriding's disagreement between a standardised instrument and a practitioner's judgement, not presentation's management of a front, and not bias's halo. Read it on the certainty the hour produced, never on the information it collected.",
+      "issue": "Four movements over one root. The room improvises the instrument and then trusts the readings: an hour samples talking about the work rather than the work, both sides give rehearsed accounts that the other treats as disclosure, and the free hand that makes any single interview better makes the set of them incommensurable. The read is a true account of the wrong hour's worth of evidence: the verdict is reached in minutes and the rest of the hour supplies it with support, fit is assessed as quality when its material is largely resemblance, and a record is scored at the fluency of its retelling. The sense made is why the room never feels wasted, since interviewers questioning candidates who answered at random still came away with a picture and still preferred it to the file. The keeper is why none of this gets corrected.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the interview read runs wherever the play selects somebody in a room. The link: each persona links, under Projection, where they stand to the encounter -- which side of the table, what they took from it, and what they have said since about why.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real member. Whether a production's panel was reading fit or reading capability, and whether a written justification records the decision or certifies it, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then keep the panel conscientious: the engine needs no prejudice and stops working the moment it gets a villain. Let the questions be reasonable and the candidate be treated well. And read the twist before writing any scene after an appointment -- somebody is about to say what they saw in the room, it will sound like judgement, and it is the part of the process that contributed least to the decision."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
