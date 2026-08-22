@@ -1,0 +1,149 @@
+{
+  "name": "@chbrain/khai-engine-advice",
+  "version": "0.1.0",
+  "description": "khai engine content, the advice domain: a second judgement placed next to a first -- the approach that sets what it will mean, the weighing that moves almost nothing, the return that tells the adviser otherwise, and the keeping, which is a second name on the decision.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/advice"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "advice",
+    "tagline": "Advice as process: a second judgement placed next to a first, read on what was kept rather than on what was said -- not the request for discretionary help, which is asking's, and not the attempt to move a mind that was not offered for moving, which is persuasion's -- across four movements: the approach (an invitation that buys candour with standing, a prepared answer that sets the advice to arrive after the decision, and the unbidden, which pays for its accuracy with its reception), the weighing (an own view kept at seven parts in ten and discounted for being outside the persona's head, a confident voice followed for a signal it cannot support, and an agreeing word taken whole because it costs nothing to take), the return (a report back that is the only feedback in the system and is not feedback, thanks that are true about the person and false about the advice, and an adviser who loses the outsideness that made them worth asking), and the keeping (a second name acquired by the asking rather than by the advice, a citation issued only after bad news, and a next adviser chosen on the conversation rather than on the outcome) -- with the twist that a persona takes almost none of the advice and keeps all of the adviser.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_advice.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_approach_advice.md",
+        "type": "process",
+        "parent": "process_advice.md"
+      },
+      {
+        "file": "process_the_invitation.md",
+        "type": "process",
+        "parent": "process_approach_advice.md"
+      },
+      {
+        "file": "process_the_prepared_answer.md",
+        "type": "process",
+        "parent": "process_approach_advice.md"
+      },
+      {
+        "file": "process_the_unbidden.md",
+        "type": "process",
+        "parent": "process_approach_advice.md"
+      },
+      {
+        "file": "process_weighing_advice.md",
+        "type": "process",
+        "parent": "process_advice.md"
+      },
+      {
+        "file": "process_the_own_view_kept.md",
+        "type": "process",
+        "parent": "process_weighing_advice.md"
+      },
+      {
+        "file": "process_the_confident_voice.md",
+        "type": "process",
+        "parent": "process_weighing_advice.md"
+      },
+      {
+        "file": "process_the_agreeing_word.md",
+        "type": "process",
+        "parent": "process_weighing_advice.md"
+      },
+      {
+        "file": "process_return_advice.md",
+        "type": "process",
+        "parent": "process_advice.md"
+      },
+      {
+        "file": "process_the_report_back.md",
+        "type": "process",
+        "parent": "process_return_advice.md"
+      },
+      {
+        "file": "process_the_unfollowed_thanks.md",
+        "type": "process",
+        "parent": "process_return_advice.md"
+      },
+      {
+        "file": "process_the_advisor_invested.md",
+        "type": "process",
+        "parent": "process_return_advice.md"
+      },
+      {
+        "file": "process_keeping_advice.md",
+        "type": "process",
+        "parent": "process_advice.md"
+      },
+      {
+        "file": "process_the_second_name.md",
+        "type": "process",
+        "parent": "process_keeping_advice.md"
+      },
+      {
+        "file": "process_the_citation.md",
+        "type": "process",
+        "parent": "process_keeping_advice.md"
+      },
+      {
+        "file": "process_the_next_advisor.md",
+        "type": "process",
+        "parent": "process_keeping_advice.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (process_advice.md) declares advice as a second judgement placed next to a first: somebody tells somebody else what they should do, invited or not. It is not asking's request for discretionary help, not persuasion's attempt on a mind that was not offered, and not expertise's question of whether the adviser knows anything. Read it on what was kept, never on what was said.",
+      "issue": "Four movements over one root. The approach settles what the advice will mean before anybody evaluates it: invited, it is a service and the asker has protected themselves by asking; uninvited, the same sentence claims a position from which the listener's handling of their own life can be assessed. The weighing moves less than it feels like and by less than it should -- about three parts in ten toward the adviser, at roughly the same rate whether the adviser is informed or not. The return leaves the adviser better informed about the friendship and worse about the advice, since the report back is the only feedback in the system and is shaped for its listener. The keeping is what the episode was producing all along.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the advice read runs wherever the play has one persona tell another what to do. The link: each persona links, under Projection, where they stand to it -- who they ask, who asks them, what they did with the last thing they were told, and whose name is on the decision.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real member. Whether a production's asker wanted a view or a signature, and whether an adviser was consulted or recruited, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then keep the advice sound and the adviser competent: the engine needs no fool and stops working the moment it gets one. Let the asker be sincere, because the mechanism does not require a manipulator. And read the twist before writing any scene after a consultation -- the persona is about to say it was really helpful, they will mean it, and almost none of it will be in what they do."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
