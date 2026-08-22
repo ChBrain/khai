@@ -1,0 +1,149 @@
+{
+  "name": "@chbrain/khai-engine-complaint",
+  "version": "0.1.0",
+  "description": "khai engine content, the complaint domain: a grievance taken through an institution's own procedure -- the filing that converts what happened into what can be alleged, the procedure that is fair in each of its parts, the cost carried on one side, and the outcome that closes the matter.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/complaint"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "complaint",
+    "tagline": "Complaint as process: a grievance about something that has already happened, taken through the procedure of the institution it is about, read on what the process cost rather than on what it concluded -- not the harm signalled before it arrives, which is warning's and the raising composite's, and not the choice between leaving and speaking up, which is loyalty's -- across four movements: the filing (an informal word that is good advice and functions as a filter, a form that asks for incidents from somebody complaining about a climate, and a named respondent that turns a claim about a place into a quarrel between two people), the procedure (a confidence seal that protects everybody and connects nobody, slow care that is the right speed for the process and the wrong speed for a life, and a single case heard on its own merits, which is the fairest treatment of the least useful unit), the cost (a second job of documentation that makes the complaint a resource question, a changed room made of consideration that feels like exile, and a known complainer described accurately and read as a warning), and the outcome (a partial upholding that is the honest finding and functions as a rejection, a settlement that is a good outcome for the complainer and the reason the next one has no history to consult, and a next complainer who declines on evidence produced by fairness) -- with the twist that a complaint changes the complainer more reliably than it changes anything they complained about.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_complaint.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_filing_complaint.md",
+        "type": "process",
+        "parent": "process_complaint.md"
+      },
+      {
+        "file": "process_the_informal_word.md",
+        "type": "process",
+        "parent": "process_filing_complaint.md"
+      },
+      {
+        "file": "process_the_form.md",
+        "type": "process",
+        "parent": "process_filing_complaint.md"
+      },
+      {
+        "file": "process_the_named_respondent.md",
+        "type": "process",
+        "parent": "process_filing_complaint.md"
+      },
+      {
+        "file": "process_procedure_complaint.md",
+        "type": "process",
+        "parent": "process_complaint.md"
+      },
+      {
+        "file": "process_the_confidence_seal.md",
+        "type": "process",
+        "parent": "process_procedure_complaint.md"
+      },
+      {
+        "file": "process_the_slow_care.md",
+        "type": "process",
+        "parent": "process_procedure_complaint.md"
+      },
+      {
+        "file": "process_the_single_case.md",
+        "type": "process",
+        "parent": "process_procedure_complaint.md"
+      },
+      {
+        "file": "process_cost_complaint.md",
+        "type": "process",
+        "parent": "process_complaint.md"
+      },
+      {
+        "file": "process_the_second_job.md",
+        "type": "process",
+        "parent": "process_cost_complaint.md"
+      },
+      {
+        "file": "process_the_changed_room.md",
+        "type": "process",
+        "parent": "process_cost_complaint.md"
+      },
+      {
+        "file": "process_the_known_complainer.md",
+        "type": "process",
+        "parent": "process_cost_complaint.md"
+      },
+      {
+        "file": "process_outcome_complaint.md",
+        "type": "process",
+        "parent": "process_complaint.md"
+      },
+      {
+        "file": "process_the_partial_upheld.md",
+        "type": "process",
+        "parent": "process_outcome_complaint.md"
+      },
+      {
+        "file": "process_the_settlement.md",
+        "type": "process",
+        "parent": "process_outcome_complaint.md"
+      },
+      {
+        "file": "process_the_next_complainer.md",
+        "type": "process",
+        "parent": "process_outcome_complaint.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (process_complaint.md) declares the arrangement: a wrong that has already happened, put into the official channel of the institution it is about, assessed by people who work there, under a procedure that institution wrote. It is not warning's harm signalled before it arrives, not the raising composite's scrutiny of the warner, and not loyalty's choice between going and speaking. Read it on what the process cost, never on what it concluded.",
+      "issue": "Four movements over one root. The filing converts what happened into what can be alleged: the informal route diverts most cases at the door for excellent reasons, the form has fields for incidents and none for accumulation, and a structural claim must be filed against a name. The procedure is fair in each of its parts and unequal in its distribution of practice, because confidentiality, thoroughness, and individual assessment are exactly what anybody would specify and the institution has run them hundreds of times against a complainer running them once. The cost is carried entirely on one side and recorded on neither. The outcome closes the matter and leaves the conduct where it was.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the complaint read runs wherever the play has somebody take a grievance through a channel. The link: each persona links, under Projection, where they stand to it -- whether they filed, were named, sat on the panel, or watched somebody else do it and decided not to.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real member. Whether a production's procedure was scrupulous or merely correct, and whether a settlement was a relief or a removal, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then keep everybody conscientious: the engine needs no cover-up, no villain, and no bad-faith investigator, and stops working the moment it gets one -- make each safeguard real and let each one protect somebody. And read the twist before writing any scene after a finding: the file is closed, the conduct is unchanged, and the only measurably different thing is where the complainer is standing."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
