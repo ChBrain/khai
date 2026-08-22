@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-uniform",
+  "version": "0.1.0",
+  "description": "khai engine content, the uniform domain: the garment that replaces a person with an office -- issued rather than owned, supplying an authority nobody granted the wearer personally, and enforcing a standard that does not come off with it.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/uniform"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "uniform",
+    "tagline": "Uniform as piece: the garment that replaces a person with an office, read on what it licensed and what it costs -- not the stripping of a self at the door of a closed institution, which is total-institution's, and not the front a persona manages for an audience, which is presentation's. The object is the piece; the members are what happens around it. One position names who is in it: a wearer holding an authority nobody granted them personally and a wardrobe they did not buy, who may order strangers in the narrow matters the office covers, who loses the option of being an individual in public, and who is protected by the same thing that publishes them. Three processes name what it does: the issuing, which dresses the persona in something that is not theirs and closes the ordinary channel through which people say something about themselves; the wearing, which supplies an authority and withdraws a person, since praise and abuse both land on the category; and the taking off, which removes the garment and none of the standard. The twist: a uniform lets its wearer do what they could not and stops them doing what they could.",
+    "type": "piece",
+    "members": [
+      {
+        "file": "piece_uniform.md",
+        "type": "piece",
+        "parent": null
+      },
+      {
+        "file": "position_the_wearer.md",
+        "type": "position",
+        "parent": "piece_uniform.md"
+      },
+      {
+        "file": "process_the_issuing.md",
+        "type": "process",
+        "parent": "piece_uniform.md"
+      },
+      {
+        "file": "process_the_wearing.md",
+        "type": "process",
+        "parent": "piece_uniform.md"
+      },
+      {
+        "file": "process_the_taking_off.md",
+        "type": "process",
+        "parent": "piece_uniform.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Piece. The anchor (piece_uniform.md) declares the uniform as what it is in the world: clothing that is issued rather than owned, worn for the hours an office is held, and read by strangers as a category before the person arrives. It is not total-institution's mortification at the door, not presentation's managed front, and not register's specialised speech. Read it on what it licensed and what it costs, never on what the wearer is like.",
+      "issue": "One position and three processes over the object. The wearer holds an authority nobody granted them personally, may order strangers in the narrow matters the office covers, and loses the option of being an individual in public. The issuing dresses them in something that is not theirs, so the one garment they wear most is the one they have no discretion over. The wearing supplies an authority and withdraws a person: the public gets a function rather than an acquaintance, which is what both sides want, and praise and abuse both land on the category. The taking off removes the garment and none of the standard, since the rules against wearing it in a bar are an admission that the office does not switch off when the clothing does.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the uniform read runs wherever the play puts somebody in issued clothing. The link: each persona links, under Projection, where they stand to it -- whether they wear one, whether they are addressed through one, what it licenses them to do, and where they have been recognised out of it.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real member. Whether a production's wearer is sheltering behind the office or is simply doing the job it exists for, and whether a standard applied off duty was proportionate, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then let the licence be real and useful before it is costly: the garment is what makes the hard part of the work possible, and a wearer who resented it throughout would be the wrong persona for this engine. And read the twist before writing any scene out of uniform -- the same object that let them act is still working, in the other direction, in a supermarket on a Sunday."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
