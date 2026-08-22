@@ -1,0 +1,149 @@
+{
+  "name": "@chbrain/khai-engine-lottery",
+  "version": "0.1.0",
+  "description": "khai engine content, the lottery domain: a good allocated deliberately at random -- the impasse that makes chance the least bad instrument, a drawing built to admit nothing, a verdict that hands two people the same emptiness, and the reasons everybody supplies afterwards.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/lottery"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "lottery",
+    "tagline": "Lottery as process: a good allocated deliberately at random, and what a decision with no reasons in it does to the people it lands on -- not the contest that awards to the highest estimate, which is bidding's, and not the reading of an outcome as deserved, which is belief-in-a-just-world's -- across four movements: the impasse (a short supply that turns a number into a series of denials, tied claims unequal in every way except the one that would decide, and an exposed decider relieved by the instrument that leaves the claimant with nobody to ask), the drawing (a visible chance trusted for its theatre, a no-reasons rule that is a virtue which cannot be applied selectively, and a single run that is binding and tells nobody anything), the verdict (a winner needing a story the lottery cannot supply, a loser spared a judgement and left with a hole, and no appeal, which protects the process and removes the hearing), and the filling (a desert read that attaches a character to a coin, an omen that is sound reasoning applied to a source with nothing in it, and a next draw entered or abandoned on a record with no content) -- with the twist that a lottery works by admitting no reasons, which is why everybody it touches invents one.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_lottery.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_impasse_lottery.md",
+        "type": "process",
+        "parent": "process_lottery.md"
+      },
+      {
+        "file": "process_the_short_supply.md",
+        "type": "process",
+        "parent": "process_impasse_lottery.md"
+      },
+      {
+        "file": "process_the_tied_claims.md",
+        "type": "process",
+        "parent": "process_impasse_lottery.md"
+      },
+      {
+        "file": "process_the_exposed_decider.md",
+        "type": "process",
+        "parent": "process_impasse_lottery.md"
+      },
+      {
+        "file": "process_drawing_lottery.md",
+        "type": "process",
+        "parent": "process_lottery.md"
+      },
+      {
+        "file": "process_the_visible_chance.md",
+        "type": "process",
+        "parent": "process_drawing_lottery.md"
+      },
+      {
+        "file": "process_the_no_reasons.md",
+        "type": "process",
+        "parent": "process_drawing_lottery.md"
+      },
+      {
+        "file": "process_the_single_run.md",
+        "type": "process",
+        "parent": "process_drawing_lottery.md"
+      },
+      {
+        "file": "process_verdict_lottery.md",
+        "type": "process",
+        "parent": "process_lottery.md"
+      },
+      {
+        "file": "process_the_winner_unearned.md",
+        "type": "process",
+        "parent": "process_verdict_lottery.md"
+      },
+      {
+        "file": "process_the_loser_unanswered.md",
+        "type": "process",
+        "parent": "process_verdict_lottery.md"
+      },
+      {
+        "file": "process_the_no_appeal.md",
+        "type": "process",
+        "parent": "process_verdict_lottery.md"
+      },
+      {
+        "file": "process_filling_lottery.md",
+        "type": "process",
+        "parent": "process_lottery.md"
+      },
+      {
+        "file": "process_the_desert_read.md",
+        "type": "process",
+        "parent": "process_filling_lottery.md"
+      },
+      {
+        "file": "process_the_omen.md",
+        "type": "process",
+        "parent": "process_filling_lottery.md"
+      },
+      {
+        "file": "process_the_next_draw.md",
+        "type": "process",
+        "parent": "process_filling_lottery.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (process_lottery.md) declares allocation by chance: a good given to some claimants and not others by a device built to consider nothing about any of them. It is not bidding's contest awarding to the highest estimate, not belief-in-a-just-world's reading of an outcome as deserved, and not superstition's link between an act and an unrelated result. Read it on what the mechanism excluded, never on what it produced.",
+      "issue": "Four movements over one root. The impasse is arrived at by trying hardest: a fixed count converts a resource problem into a series of refusals, the claims turn out incommensurable rather than equal so more information makes ranking harder, and the decider who would be answerable for any criterion is relieved by an instrument that leaves the claimant with nobody to ask. The drawing is designed to be empty, and the emptiness is the product: keeping every reason out is the only reliable way to keep the wrong ones out, so it holds out the merit with the corruption because it cannot tell them apart. The verdict treats everybody equally and lands unequally, since a good with no story is easy to keep and a refusal with no story is very hard to hold. The filling is what people do afterwards, and the design cannot reach it.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the lottery read runs wherever the play allocates something by chance. The link: each persona links, under Projection, which side of a draw they are on and what they have made of it since.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real member. Whether a production's claimant has filled the vacancy with desert or with an omen, and whether an impasse was genuine or a committee avoiding a decision it could have made, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then make the impasse real: show the criteria being tried and failing, because a lottery reached for lazily is a different and less interesting thing. Keep the draw honest and the process clean, since the engine needs no fraud and stops working if it gets one. And read the twist before writing any scene after a draw -- the persona is about to supply a reason, it will not feel like invention, and the mechanism spent all its effort making sure there was none."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
