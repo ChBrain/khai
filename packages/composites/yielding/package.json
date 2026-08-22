@@ -1,0 +1,86 @@
+{
+  "name": "@chbrain/khai-composite-yielding",
+  "version": "0.1.0",
+  "description": "khai composite content, the yielding domain: what a stranger gives an insignia, and how fast -- the glance that grants the office before establishing there is one, the reach that is widest where the warrant is narrowest, and the denial that is sincere and accurate and does not reach the mechanism.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/yielding"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-obedience": "^0.1.0",
+    "@chbrain/khai-engine-uniform": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  },
+  "khai": {
+    "engine": "yielding",
+    "tagline": "Yielding as composite: what a stranger gives an insignia, and how fast. It is not a third mechanism but a wiring of two -- the uniform engine supplies a category readable at a distance and a wearer holding an authority nobody granted them personally, and the obedience engine supplies compliance with the instruction of an authority. This composite adds no third engine; it reads the one thing the two make together, which is compliance collected by an insignia from people it has no claim on. Three bridges: the Glance, where an arbitrary request roughly doubles its success rate when the person making it is in uniform, and keeps working after the requester has walked away, so the office is granted before anybody establishes there is one; the Reach, where the compliance extends past what the office may lawfully require, and is granted widest exactly where the warrant is narrowest; and the Denial, the twist -- the insignia is obeyed by people who correctly believe it has no authority over them.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_yielding.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_yielding_glance.md",
+        "type": "process",
+        "parent": "process_yielding.md"
+      },
+      {
+        "file": "process_yielding_reach.md",
+        "type": "process",
+        "parent": "process_yielding.md"
+      },
+      {
+        "file": "process_yielding_denial.md",
+        "type": "process",
+        "parent": "process_yielding.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over two atoms. The anchor (process_yielding.md) declares the arrangement: somebody in a uniform asks a stranger to do something and the stranger does it. It wires the uniform engine (a category readable at a distance, and a wearer holding an authority nobody granted them personally) and the obedience engine (compliance with the instruction of an authority) and adds no third. Read it on what was asked, never on who asked.",
+      "issue": "Three bridges over one root. The Glance grants the office before establishing there is one: an arbitrary street request roughly doubles its success rate when the requester is in uniform, and it keeps working after the requester has walked away, so nobody was being watched. The Reach is granted widest where the warrant is narrowest, because the boundary a persona declines to litigate is exactly where the office's actual authority ends. The Denial is sincere and partly correct and does not reach the mechanism: the response ran before any belief about authority was consulted.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project Instructions Knowledge chapter, linking the anchor, so the yielding read runs wherever the play has an instruction given by a garment. The link: each persona links, under Projection, which bridge is running -- and the link is audited rather than failed, because a persona can be in either atom without being in this arrangement.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and a real member is linked. Whether a production's request was inside the office's warrant, and whether a complier was deferring or agreeing, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then keep the requester legitimate and the complier sensible: the composite needs no impostor and no dupe, and stops working the moment it gets either. Make the request ordinary and small. And read the twist before writing anything the persona says afterwards -- they will give an accurate account of a decision that was not made that way, and they will be right about the law while they do it."
+    }
+  }
+}
