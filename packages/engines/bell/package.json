@@ -1,0 +1,95 @@
+{
+  "name": "@chbrain/khai-engine-bell",
+  "version": "0.1.0",
+  "description": "khai engine content, the bell domain: the instrument that reaches everybody at once -- cast in an afternoon and issued for four hundred years, rung as a broadcast with no way to switch it off, and defining a community by where the sound happens to carry.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/bell"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "bell",
+    "tagline": "Bell as piece: the instrument that reaches everybody at once, read on what it constitutes rather than on how it sounds -- not the auditory field of a place with its keynote and its soundmarks, which is soundscape's, and not the record an institution keeps of a person, which is document's. The object is the piece; the members are what happens around it. One position names who holds it: a ringer with the rope and an authorisation somebody granted, who can compel every person within two miles to receive a message and none of them to do anything, who cannot ring privately or be wrong quietly, and who holds the smallest possible authority over the largest possible audience. Three processes name what it does: the casting, which fixes a voice in an afternoon and issues it for four hundred years; the ringing, a broadcast with no way to switch it off and no channel back; and the earshot, a real community with an arbitrary edge, drawn by a hill, a prevailing wind, and how much metal the parish could afford. The twist: nobody can decline a bell, which is why it is a service and why it is a claim.",
+    "type": "piece",
+    "members": [
+      {
+        "file": "piece_bell.md",
+        "type": "piece",
+        "parent": null
+      },
+      {
+        "file": "position_the_ringer.md",
+        "type": "position",
+        "parent": "piece_bell.md"
+      },
+      {
+        "file": "process_the_casting.md",
+        "type": "process",
+        "parent": "piece_bell.md"
+      },
+      {
+        "file": "process_the_ringing.md",
+        "type": "process",
+        "parent": "piece_bell.md"
+      },
+      {
+        "file": "process_the_earshot.md",
+        "type": "process",
+        "parent": "piece_bell.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "piece",
+        "section": "Apparent",
+        "link": "expression",
+        "level": "fail"
+      },
+      {
+        "on": "place",
+        "section": "Shown",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Piece on the Apparent chapter and at Place on the Shown chapter -- because a bell is an object with a name and a date, and also a settlement that shares a clock. The anchor (piece_bell.md) declares it as what it is in the world: the most expensive object a small community owns, the least used by any individual in it, and the only one that reaches every person in range at the same instant. It is not soundscape's auditory field, not document's institutional record, and not uniform's garment. Read it on what it constitutes, never on how it sounds.",
+      "issue": "One position and three processes over the object. The ringer holds a narrow permission and an enormous instrument, cannot ring privately, and cannot be wrong quietly. The casting fixes a voice in an afternoon and issues it for four centuries, since pitch is settled when the metal cools and a community lives with it. The ringing is a broadcast with no channel back: everybody in range interprets a code learned in childhood and never taught. The earshot is a real community with an arbitrary edge, drawn by topography, wind, and the height of a tower, coinciding with no administrative line.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the bell read runs wherever the play has something that reaches everybody at once. The link: a piece links, under Apparent, which movement the object is in; a place links, under Shown, whether it is inside the earshot, on the overlap, or out of range.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each piece or place links a real member. Whether a production's ringing was a service or an assertion, and whether a household on the overlap belongs to one parish or two, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then let the service be real before it is a claim: the alarm finds everybody, the hour is free, and the people who paid for it were buying exactly that. Keep the ringer ordinary -- neither pious nor tyrannical. And read the twist before writing anybody who objects to it: they cannot switch it off, they never could, and that is the same property everybody else values."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
