@@ -1,0 +1,64 @@
+{
+  "name": "@chbrain/khai-engine-non-place",
+  "version": "0.1.0",
+  "description": "khai engine content, the non-place domain: the space built for passing through -- entered by contract, occupied in common with unrelated strangers, and asking nothing of anybody once they are inside.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/non-place"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "non-place",
+    "tagline": "The space built for passing through, which verifies a persona at the boundary and has no further use for them -- the concourse, the service station, the interchange, the supermarket at eleven at night. It is not the informal gathering place with regulars and standing, which is third-place's, and not the threshold state between identities, which is liminality's. Three expressions: transit, the route that cannot be arrived at, since every good outcome involves leaving it; the contract, an entitlement owed by a system rather than by anybody's goodwill, exact in what it covers and offering no margin outside it; and solitude, proximity without contact, which rests a persona exhausted by being somebody and leaves nobody present for whom they are anybody. The twist: a non-place checks who you are in order to have no further use for it.",
+    "type": "place",
+    "anchor": "place_non_place.md",
+    "expressions": {
+      "transit": "place_transit.md",
+      "contract": "place_contract.md",
+      "solitude": "place_solitude.md"
+    },
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Link the scene's concourse, service station, interchange, or late supermarket to the anchor; link the specific facet (transit, contract, or solitude) to the expression under Projection.",
+      "issue": "What does this place stop requiring of a persona, and what does it therefore refuse to hold for them?",
+      "require": "A space entered by transaction rather than by membership, occupied simultaneously by strangers with no relation to each other, whose good outcome for everybody present is leaving it.",
+      "enforce": "Do not model the informal gathering place with regulars and standing; that is third-place's, and this engine is its opposite number. Do not model the threshold state between identities, which is liminality's, or the enclosing institution that runs a whole life under one authority, which is total-institution's. Keep the place indifferent rather than hostile: nobody designed it to alienate anybody, and every feature of it solves a real problem.",
+      "setup": "Name which facet is load-bearing for the scene -- the route that cannot be arrived at, the contract that covers exactly what it covers, or the crowd in which nobody is anybody -- and decide whether the persona is resting in it or stranded in it, because the engine supplies both from the same feature."
+    }
+  },
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
