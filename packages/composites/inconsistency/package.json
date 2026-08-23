@@ -1,0 +1,86 @@
+{
+  "name": "@chbrain/khai-composite-inconsistency",
+  "version": "0.1.0",
+  "description": "khai composite content, the inconsistency domain: an account that must be believed and cannot be delivered by the person giving it -- what the rendering strips out, the document that replaces the event, and the gap between two tellings read as a fact about the teller, a wiring of the interpreting and credibility engines.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/inconsistency"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-credibility": "^0.1.0",
+    "@chbrain/khai-engine-interpreting": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  },
+  "khai": {
+    "engine": "inconsistency",
+    "tagline": "An account told twice through a channel that alters it, and the difference charged to the teller.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_inconsistency.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_inconsistency_transit.md",
+        "type": "process",
+        "parent": "process_inconsistency.md"
+      },
+      {
+        "file": "process_inconsistency_record.md",
+        "type": "process",
+        "parent": "process_inconsistency.md"
+      },
+      {
+        "file": "process_inconsistency_verdict.md",
+        "type": "process",
+        "parent": "process_inconsistency.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (process_inconsistency.md) declares an account that must be believed and cannot be delivered by the person giving it: every word reaches the assessor through a third party, and the assessment is made on what arrives. It is not interpreting's mediated conversation on its own, not credibility's credit and deficit on their own, not the crosstalk composite's two personas grounding against their own frames, and not the raising composite's standing of somebody who says a harm is coming. Read it on the gap between two tellings, never on either telling.",
+      "issue": "Three bridges over one root, and no third engine. The transit removes the manner and delivers the content: what compression drops first -- hedges, self-corrections, repetitions, false starts, colouring -- is exactly what a hearer weighs when deciding whether somebody is being straight with them, so a frightened person and a composed liar arrive in the same even professional register. The record makes the rendering permanent and the original unavailable: the file becomes the account, the persona's own words are unrecorded and in a language nobody in the procedure reads, and the only other witness to the original was the interpreter, whose version is the document -- so the check and the thing checked are one object. The verdict is a fair test applied to a contaminated sample: contradiction really is evidence, the assessor really must decide, and nobody in the room can tell a discrepancy the channel made from one the persona made.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the inconsistency read runs wherever a play stages an account assessed through a third person. The link: each persona links, under Projection, which bridge they stand in -- what the rendering took, what the file now says, and what the difference was taken to mean. The two atoms are npm dependencies and every member hard-links their files by name.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared, each persona links a real member, and every atom link resolves to a file that exists in the declared dependency. Whether a production's discrepancy was made by the channel or by the persona is exactly what the composite says nobody can determine, so the suite does not attempt it and neither should a reviewer.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then make the assessor reasonable and the interpreter competent, because the composite needs no villain and collapses into a simpler and less true story the moment it gets one. Stage both tellings and let the audience hear what the room does not. And decide in advance whether the persona is telling the truth, then never resolve it on stage, since the whole composite is the fact that the room cannot."
+    }
+  }
+}
