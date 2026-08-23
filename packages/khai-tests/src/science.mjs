@@ -161,11 +161,28 @@ const stripQualifier = (s) =>
     .replace(/\s+/g, " ")
     .trim();
 
+// A closed, declared set of generational suffixes: tokens that trail a surname
+// without being one ("Everett L. Worthington Jr.", "Henry L. Roediger III").
+// Like PARTICLES this cannot be computed -- nothing in the shape of "III"
+// separates a generational numeral from a regnal one, and "Jr" is a word like
+// any other -- so the set is carried here as data. A suffix is only ever
+// stripped from the END of a part, where it cannot be a name; a part that is
+// nothing but a suffix keeps it, so the uppercase-initial rule still sees a
+// token and the row is not silently dropped.
+const SUFFIXES = new Set(["jr", "jnr", "sr", "snr", "ii", "iii", "iv"]);
+
 /**
- * The surname inside one author part, carrying any particle that belongs to it:
- *   "Julian Le Grand"     -> "Le Grand"
- *   "Van Jacobson"        -> "Jacobson"    (Van is his given name)
- *   "Marquis de Condorcet"-> "Condorcet"
+ * The surname inside one author part, carrying any particle that belongs to it
+ * and shedding any generational suffix that does not:
+ *   "Julian Le Grand"        -> "Le Grand"
+ *   "Van Jacobson"           -> "Jacobson"    (Van is his given name)
+ *   "Marquis de Condorcet"   -> "Condorcet"
+ *   "Henry L. Roediger III"  -> "Roediger"    (the suffix is not the surname)
+ *
+ * The suffix rule exists because taking the last token unconditionally files a
+ * scholar under their suffix: before it, the index carried a literal **Jr**
+ * heading holding Worthington, Pohlhaus, French, Zelditch and Swann at once,
+ * and none of those five appeared under their own name anywhere in the map.
  *
  * Two conditions gate the join, and the source itself carries both signals, so
  * neither is a per-row judgement:
@@ -186,8 +203,13 @@ const stripQualifier = (s) =>
  * the uppercase-initial invariant below reads it unchanged.
  */
 function surnameOf(part) {
-  const tokens = part.replace(/[.,]/g, "").split(/\s+/).filter(Boolean);
-  if (!tokens.length) return part;
+  const all = part.replace(/[.,]/g, "").split(/\s+/).filter(Boolean);
+  if (!all.length) return part;
+  // Shed trailing suffixes, but never the whole part: a lone "Jr" keeps itself
+  // rather than collapsing to nothing.
+  let end = all.length;
+  while (end > 1 && SUFFIXES.has(all[end - 1].toLowerCase())) end -= 1;
+  const tokens = all.slice(0, end);
   let head = tokens.length - 1;
   while (
     head > 1 &&
@@ -236,10 +258,15 @@ function surnameOf(part) {
  * where a maintainer has said the surname is shared.
  */
 export function scholarHomonyms(root) {
+  return scholarPolicy(root).homonyms ?? {};
+}
+
+/** The whole declared scholar policy for a root, or an empty policy if absent. */
+export function scholarPolicy(root) {
   const path = join(root, "khai-guard.config.json");
   if (!existsSync(path)) return {};
   try {
-    return JSON.parse(readFileSync(path, "utf8"))?.scholarPolicy?.homonyms ?? {};
+    return JSON.parse(readFileSync(path, "utf8"))?.scholarPolicy ?? {};
   } catch {
     return {};
   }
@@ -257,9 +284,30 @@ function scholarKey(part, surname, homonyms) {
   const forms = homonyms[surname];
   if (!Array.isArray(forms) || !forms.length) return surname;
   const tokens = part.replace(/[.,]/g, "").split(/\s+/).filter(Boolean);
-  const given = tokens.slice(0, tokens.length - surname.split(/\s+/).length).join(" ");
-  const form = forms.find((f) => given === f || given.startsWith(`${f} `));
-  return form ? `${surname} (${form})` : surname;
+  const sTokens = surname.split(/\s+/);
+  // Locate the surname rather than assuming it ends the part: a generational
+  // suffix ("Everett L. Worthington Jr.") sits after it, and slicing from the
+  // end would then read the surname itself as a given name and match nothing.
+  let at = tokens.length - sTokens.length;
+  for (let i = at; i >= 0; i -= 1) {
+    if (sTokens.every((t, j) => tokens[i + j] === t)) {
+      at = i;
+      break;
+    }
+  }
+  const given = tokens.slice(0, Math.max(at, 0));
+  // A declared form matches anywhere in the given names, not only at the front.
+  // The corpus writes the same person's given names several ways -- an initial
+  // ahead of the name they publish under ("J. Merrill Carlsmith", "W. Robertson
+  // Smith"), or a connective the split leaves behind ("with Christopher
+  // Vaughan") -- and a front-anchored match files every one of those on the bare
+  // surname, splitting the scholar it was declared to join. Matching a
+  // contiguous run keeps multi-token forms ("Julian Tudor") exact.
+  const fTokens = forms.map((f) => [f, f.split(/\s+/)]);
+  const form = fTokens.find(([, ft]) =>
+    given.some((_, i) => ft.every((t, j) => given[i + j] === t)),
+  );
+  return form ? `${surname} (${form[0]})` : surname;
 }
 
 export function surnames(source, homonyms = {}) {
@@ -366,6 +414,75 @@ export function collectScience(root) {
         records.push({ surname, ...r, engine: khai.engine, layer, root: khai.type || "?" });
   }
   return { records, byEngine };
+}
+
+/**
+ * Undeclared shared surnames: the homonym drift gate.
+ *
+ * The index keys on surname, so two scholars who share one collate into a single
+ * heading unless `scholarPolicy.homonyms` says the surname is shared. That merge
+ * is silent -- the index renders one **Smith** holding nine people and looks
+ * exactly like one prolific scholar -- so the corpus needs a wall that notices
+ * when a new citation lands on a surname already carrying somebody else.
+ *
+ * The evidence is the corpus's own given names. A surname is REPORTED when its
+ * rows carry two or more distinct given names that are each a full word, and
+ * the surname is not declared. Bare initials never count: "C. R. Snyder" and
+ * "Mark Snyder" are the same shape as one person written two ways, which is the
+ * case the declared policy exists to arbitrate and this function must not
+ * pre-judge. That is why this reports rather than decides -- "Steve"/"Steven"
+ * Gangestad and "Art"/"Arthur" Graesser are one person each, so a maintainer
+ * reads the report and declares only the surnames that are genuinely shared.
+ *
+ * The counterpart list `scholarPolicy.oneScholar` closes the other half: a
+ * surname declared there is one person the corpus writes several ways (an
+ * accent, a diminutive, a middle name used as a first), so the report stays
+ * silent for it without inventing a split. Every surname belongs in at most one
+ * of the two lists, and the gate says so.
+ *
+ * Returns one message per undeclared shared surname, empty when the corpus and
+ * the policy agree.
+ */
+export function scholarCollisions(root) {
+  const homonyms = scholarHomonyms(root);
+  const one = new Set(scholarPolicy(root).oneScholar ?? []);
+  const both = Object.keys(homonyms).filter((s) => one.has(s));
+  if (both.length)
+    return [
+      `surname(s) ${both.join(", ")} are declared in both scholarPolicy.homonyms ` +
+        `(different people) and scholarPolicy.oneScholar (one person); they cannot be both.`,
+    ];
+  const { records } = collectScience(root);
+  const given = new Map(); // surname -> Set of full given names seen
+  for (const r of records) {
+    // The key may already carry a declared form; the bare surname is what the
+    // corpus shares, so strip it back before comparing.
+    const surname = r.surname.replace(/\s+\(.*\)$/, "");
+    if (Object.hasOwn(homonyms, surname) || one.has(surname)) continue;
+    for (const person of r.source.replace(/\*\*/g, "").split(/[,;&]|\s+and\s+/i)) {
+      const tokens = stripQualifier(person).replace(/[.]/g, "").split(/\s+/).filter(Boolean);
+      const at = tokens.lastIndexOf(surname);
+      if (at <= 0) continue; // not this surname, or no given name ahead of it
+      // A particle is part of a name, never a given name: a cell that cites
+      // "van Dijk" bare must not read as a scholar called van.
+      const first = tokens
+        .slice(0, at)
+        .find((t) => t.length > 1 && !PARTICLES.has(t.toLowerCase()));
+      if (!first) continue; // initials or particles only: no evidence either way
+      if (!given.has(surname)) given.set(surname, new Set());
+      given.get(surname).add(first);
+    }
+  }
+  return [...given.entries()]
+    .filter(([, forms]) => forms.size > 1)
+    .sort(([a], [b]) => (a < b ? -1 : 1))
+    .map(
+      ([surname, forms]) =>
+        `surname "${surname}" carries ${forms.size} distinct given names ` +
+        `(${[...forms].sort().join(", ")}) and is not declared in scholarPolicy.homonyms; ` +
+        `the index merges them into one heading. Declare the forms that name ` +
+        `different people, or leave it if they are one person written several ways.`,
+    );
 }
 
 // --- rendering -----------------------------------------------------------
