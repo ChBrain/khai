@@ -1,0 +1,149 @@
+{
+  "name": "@chbrain/khai-engine-interpreting",
+  "version": "0.1.0",
+  "description": "khai engine content, the interpreting domain: a conversation conducted through a third person -- how the interpreter is summoned, what survives the rendering, the turn-by-turn management nobody counts as work, and the invisibility that protects the exchange by refusing to describe it.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/interpreting"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "interpreting",
+    "tagline": "A conversation conducted through a third person, and the work that keeps it running.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_interpreting.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_the_summoning.md",
+        "type": "process",
+        "parent": "process_interpreting.md"
+      },
+      {
+        "file": "process_the_booking.md",
+        "type": "process",
+        "parent": "process_the_summoning.md"
+      },
+      {
+        "file": "process_the_pressing.md",
+        "type": "process",
+        "parent": "process_the_summoning.md"
+      },
+      {
+        "file": "process_the_waiver.md",
+        "type": "process",
+        "parent": "process_the_summoning.md"
+      },
+      {
+        "file": "process_the_relaying.md",
+        "type": "process",
+        "parent": "process_interpreting.md"
+      },
+      {
+        "file": "process_the_compression.md",
+        "type": "process",
+        "parent": "process_the_relaying.md"
+      },
+      {
+        "file": "process_the_voicing.md",
+        "type": "process",
+        "parent": "process_the_relaying.md"
+      },
+      {
+        "file": "process_the_untranslatable.md",
+        "type": "process",
+        "parent": "process_the_relaying.md"
+      },
+      {
+        "file": "process_the_coordinating.md",
+        "type": "process",
+        "parent": "process_interpreting.md"
+      },
+      {
+        "file": "process_the_turn_holding.md",
+        "type": "process",
+        "parent": "process_the_coordinating.md"
+      },
+      {
+        "file": "process_the_side_talk.md",
+        "type": "process",
+        "parent": "process_the_coordinating.md"
+      },
+      {
+        "file": "process_the_pacing.md",
+        "type": "process",
+        "parent": "process_the_coordinating.md"
+      },
+      {
+        "file": "process_the_invisibility.md",
+        "type": "process",
+        "parent": "process_interpreting.md"
+      },
+      {
+        "file": "process_the_conduit_norm.md",
+        "type": "process",
+        "parent": "process_the_invisibility.md"
+      },
+      {
+        "file": "process_the_finding.md",
+        "type": "process",
+        "parent": "process_the_invisibility.md"
+      },
+      {
+        "file": "process_the_retention.md",
+        "type": "process",
+        "parent": "process_the_invisibility.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (process_interpreting.md) declares a conversation conducted through a third person: two parties who transact without a shared language, and the participant who carries every word between them. It is not grounding's work of establishing that two people understood each other, not repair's trouble and mending, not accommodation's converging on the other's way of speaking, and not register's specialized variety. Read it on what the third person is doing, never on what either party meant.",
+      "issue": "Four movements over one root. The summoning brings in the person the conversation needs and marks the party who needed them, which is why provision existing is not provision used: a booking arrives on the institution's schedule and budget, a pressing puts somebody with a stake inside the room, and a waiver protects a competent adult self at the cost of the conditional clause. The relaying produces an utterance nobody present can check, since compression drops the hedges a listener judges honesty by, first-person voicing manufactures the interpreter's absence sentence by sentence, and an untranslatable term forces a choice between the word and its work. The coordinating is roughly half of everything the interpreter says and is the one thing the role excludes: turns are held, side checks buy accuracy with exclusion, and the tempo of the encounter is set by the memory of the participant who is not in it. The invisibility is a good rule describing a job nobody has, so the errors converge on the only measurable participant and the whole conversation leaves with the person the room agreed was not there.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the interpreting read runs wherever a play stages an exchange through a third person. The link: each persona links, under Projection, which movement they stand in -- how they came to be in the arrangement, what crosses, what they are managing, and what they carry out.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real member. Whether a production's side exchange was a clarification or a steer, whether a waiver was dignity or denial, and whether a finding of inadequate interpretation reached the actual cause, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then make the interpreter competent and the parties reasonable, because the engine needs no incompetence and stops working the moment it gets some. Stage the coordinating in full view and let nobody in the scene notice it, since that is the twist working. And decide before writing what each party thinks happened, because both of them will be sure they spoke to the other."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
