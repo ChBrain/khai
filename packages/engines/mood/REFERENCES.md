@@ -15,11 +15,11 @@ across hours and days, the colour laid on every read before any single event.
 
 The affect circumplex, applied directly as code constraints.
 
-| Source                | Key Work                                         | Scope                                                                              |
-| --------------------- | ------------------------------------------------ | ---------------------------------------------------------------------------------- |
-| **James Russell**     | _"A circumplex model of affect"_ (1980)          | Affect as a circle on two axes, valence by arousal; the four quadrants as moods.   |
-| **Watson & Tellegen** | _"Toward a consensual structure of mood"_ (1985) | Mood as positive and negative affect, two roughly independent dimensions.          |
-| **Robert Thayer**     | _The Biopsychology of Mood and Arousal_ (1989)   | Arousal split into energetic and tense; the activated axis as two kinds of energy. |
+| Source                      | Key Work                                         | Scope                                                                              |
+| --------------------------- | ------------------------------------------------ | ---------------------------------------------------------------------------------- |
+| **James Russell**           | _"A circumplex model of affect"_ (1980)          | Affect as a circle on two axes, valence by arousal; the four quadrants as moods.   |
+| **David Watson & Tellegen** | _"Toward a consensual structure of mood"_ (1985) | Mood as positive and negative affect, two roughly independent dimensions.          |
+| **Robert Thayer**           | _The Biopsychology of Mood and Arousal_ (1989)   | Arousal split into energetic and tense; the activated axis as two kinds of energy. |
 
 ## Restrictions
 
