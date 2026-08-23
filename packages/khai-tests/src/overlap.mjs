@@ -90,7 +90,10 @@ export function loadWorkPolicy(root) {
 export function normaliseWork(work, aliases = {}) {
   let s = String(work)
     .replace(/<br>[\s\S]*$/, "")
-    .replace(/\([^)]*\)/g, " ")
+    // `[^()]*`, not `[^)]*`: excluding the opener keeps the match linear on a
+    // run of "(" (js/polynomial-redos). Any paren this leaves unmatched is
+    // swept to a space by the punctuation strip below.
+    .replace(/\([^()]*\)/g, " ")
     .split(";")[0]
     .toLowerCase()
     .replace(/[^a-z0-9 ]/g, " ")
