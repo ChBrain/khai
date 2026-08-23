@@ -93,11 +93,12 @@ describe("raising: atoms", () => {
     );
   });
 
-  // An engine can be in 0..n composites. This is the first to wire either atom;
-  // if a second ever wires one, the boundary to keep straight is that this
-  // composite owns neither -- only what they make when the claim is about a harm
-  // that has not happened.
-  it("is the only composite wiring warning or credibility so far", () => {
+  // An engine can be in 0..n composites, so the pin is on this composite's own
+  // wiring rather than on a count of everybody else's -- a count rots the moment
+  // a second composite reaches for either atom. The boundary that has to hold is
+  // that this composite owns neither: it reads only what they make when the
+  // claim is about a harm that has not happened.
+  it("wires both atoms, and claims ownership of neither", () => {
     const dir = join(pkgDir, "..");
     const wiring = (name) =>
       readdirSync(dir)
@@ -110,9 +111,12 @@ describe("raising: atoms", () => {
           }
         })
         .sort();
-    expect(wiring("@chbrain/khai-engine-warning")).toEqual(["raising"]);
-    expect(wiring("@chbrain/khai-engine-credibility")).toEqual(["raising"]);
-    expect(flat("REFERENCES.md")).toMatch(/Both atoms are wired here for the first time/i);
+    expect(wiring("@chbrain/khai-engine-warning")).toContain("raising");
+    expect(wiring("@chbrain/khai-engine-credibility")).toContain("raising");
+    expect(flat("REFERENCES.md")).toMatch(/An engine can be in 0\.\.n composites/i);
+    expect(flat("REFERENCES.md")).toMatch(
+      /This composite owns neither atom -- only what they make when the claim is about a harm that has not happened/i,
+    );
   });
 });
 
