@@ -20,14 +20,14 @@ way of going wrong.
 The psychology of love styles, passionate and companionate love, and the
 appetitive systems beneath wanting.
 
-| Source                  | Key Work                                                         | Scope                                                                                            |
-| :---------------------- | :--------------------------------------------------------------- | :----------------------------------------------------------------------------------------------- |
-| **John Alan Lee**       | _The Colours of Love_ (1973)                                     | The six love styles -- eros, ludus, storge, pragma, mania, agape -- as distinct ways of loving.  |
-| **Hendrick & Hendrick** | _"A theory and method of love"_, the Love Attitudes Scale (1986) | Operationalising Lee's six styles as measurable, semi-independent love attitudes.                |
-| **Hatfield & Rapson**   | _Love, Sex, and Intimacy_ (1993)                                 | Passionate love (intense, absorbing longing) versus companionate love (warm, settled affection). |
-| **Robert Sternberg**    | _"A triangular theory of love"_ (1986)                           | Love as intimacy, passion, and commitment, combining into distinct kinds of love.                |
-| **Helen Fisher**        | _Why We Love_ (2004)                                             | Three brain systems -- lust, attraction, attachment -- as distinct drives behind loving.         |
-| **Berridge & Robinson** | _"Parsing reward"_ (2003)                                        | Wanting (appetitive incentive) as dissociable from liking; the baseline pull beneath choice.     |
+| Source                        | Key Work                                                         | Scope                                                                                            |
+| :---------------------------- | :--------------------------------------------------------------- | :----------------------------------------------------------------------------------------------- |
+| **John Alan Lee**             | _The Colours of Love_ (1973)                                     | The six love styles -- eros, ludus, storge, pragma, mania, agape -- as distinct ways of loving.  |
+| **Hendrick & Hendrick**       | _"A theory and method of love"_, the Love Attitudes Scale (1986) | Operationalising Lee's six styles as measurable, semi-independent love attitudes.                |
+| **Hatfield & Rapson**         | _Love, Sex, and Intimacy_ (1993)                                 | Passionate love (intense, absorbing longing) versus companionate love (warm, settled affection). |
+| **Robert Sternberg**          | _"A triangular theory of love"_ (1986)                           | Love as intimacy, passion, and commitment, combining into distinct kinds of love.                |
+| **Helen Fisher**              | _Why We Love_ (2004)                                             | Three brain systems -- lust, attraction, attachment -- as distinct drives behind loving.         |
+| **Berridge & Terry Robinson** | _"Parsing reward"_ (2003)                                        | Wanting (appetitive incentive) as dissociable from liking; the baseline pull beneath choice.     |
 
 ## Restrictions
 
