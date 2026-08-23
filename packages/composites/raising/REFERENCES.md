@@ -22,7 +22,8 @@ gave it, and the people it happens to describe the absence of any engagement wit
 thing they cannot get anybody to believe afterwards. That is a claim about the two engines together,
 and it is why this composite exists.
 
-Both atoms are wired here for the first time. The pairing is structural rather than convenient: a
+An engine can be in 0..n composites. This composite owns neither atom -- only what they make when the
+claim is about a harm that has not happened. The pairing is structural rather than convenient: a
 warning is a first-person claim about an event that has not happened, so it carries both atoms'
 difficulties simultaneously. It cannot be corroborated, because there is nothing yet to corroborate;
 and it will therefore be evaluated on its speaker, because the speaker is the only thing in the room
