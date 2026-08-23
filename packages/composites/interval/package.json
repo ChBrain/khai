@@ -1,0 +1,86 @@
+{
+  "name": "@chbrain/khai-composite-interval",
+  "version": "0.1.0",
+  "description": "khai composite content, the interval domain: the daily stretch that belongs to no part of a persona's life -- a vacancy unowned because it was left over, a furnishing entirely brought and credited to the place it was brought to, and a defence that is true and holds a bad arrangement in place.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/interval"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-commute": "^0.1.0",
+    "@chbrain/khai-engine-non-place": "^0.1.0"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  },
+  "khai": {
+    "engine": "interval",
+    "tagline": "Interval as composite: the daily stretch that belongs to no part of a persona's life. It is not a third mechanism but a wiring of two -- the commute engine supplies a cost agreed once and incurred every morning, including an hour that is not paid, not chosen, and not rest, and the non-place engine supplies a space entered by contract that verifies a persona once and has no further use for them. This composite adds no third engine; it reads the one thing the two make together, which is a stretch of time nobody owns, in a room that holds nothing, recurring twice a day for years. Three bridges: the Vacancy, unowned because it was left over rather than granted, so what looks like freedom is a residue a timetable change can remove; the Furnishing, entirely brought by its occupant and credited to the place it was brought to, since every item of it is portable and none of it argues for the room; and the Defence, the twist -- the hour a persona never chose becomes the only one nobody can claim, and defending it is what keeps them making the journey.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_interval.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_interval_vacancy.md",
+        "type": "process",
+        "parent": "process_interval.md"
+      },
+      {
+        "file": "process_interval_furnishing.md",
+        "type": "process",
+        "parent": "process_interval.md"
+      },
+      {
+        "file": "process_interval_defence.md",
+        "type": "process",
+        "parent": "process_interval.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona, over two atoms. The anchor (process_interval.md) declares the arrangement: an hour a day spent somewhere that is not home, not work, and not chosen. It wires the commute engine (a cost agreed once and incurred every morning) and the non-place engine (a space that asks nothing once you are inside it) and adds no third. Read it on what the hour is for, never on what it costs.",
+      "issue": "Three bridges over one root. The Vacancy is unowned because it was left over: the employer does not own it because it is unpaid, the household does not because nobody is present, and the persona does not quite because it was never chosen -- and the room is arranged to match. The Furnishing is entirely brought, elaborately and often excellently, and every item of it is portable, so nothing in it argues for the room. The Defence is true: the persona really would lose the reading, the transition, the hour in which nobody wants anything -- and the only way to keep it is to keep making the journey.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project Instructions Knowledge chapter, linking the anchor, so the interval read runs wherever the play has somebody spend a daily hour in transit. The link: each persona links, under Projection, which bridge is running -- and the link is audited rather than failed, because a persona can be in either atom without being in this arrangement.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and a real member is linked. Whether a production's persona is furnishing the hour or enduring it, and whether a defence was sincere, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then make the furnishing genuinely good, because the composite needs no self-deception and stops working the moment the persona is staged as fooling themselves. Let somebody offer to remove the journey. And read the twist before writing the answer -- everything they say will be true, and it will be the last argument standing for a trade whose other side went quiet years ago."
+    }
+  }
+}
