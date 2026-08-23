@@ -1,5 +1,0 @@
----
-"@chbrain/khai-tests": patch
----
-
-Science keying owned by the kit, computed at the root. The build now strips generational suffixes (Jr., III) before reading a surname -- the live index carried a `Jr` key merging five different people -- and resolves declared homonym forms longest-first, so the declaration order in `scholarPolicy.homonyms` can no longer decide who somebody is. New `src/overlap.mjs` carries the cross-unit warrant instruments every science-based root shares, engine monorepo and collection house alike, off the same collector as the build: `science overlap` (the shared-work wall, with `workPolicy` canon/contrast/alias exits and, in an engine root, the composition itself as a computed exit -- a composite citing its member atom's science composes, it does not duplicate), `science check` (the loose pre-authoring advisory), `science surname` (the scan `check` could never answer: is this surname anywhere in the index, bare or resolved), and `science namesakes` (a declared surname may not appear unresolved).
