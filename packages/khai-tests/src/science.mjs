@@ -127,6 +127,16 @@ const NON_AUTHOR = new Set(["practitioner"]);
 // shape of "Le" separates the particle of "Le Grand" from any other short word,
 // so the set is carried here as data. Matched case-insensitively; whether a
 // given occurrence actually joins is decided by surnameOf, not by this list.
+// A closed, declared set of generational suffixes: tokens that follow the
+// surname and are never surnames anywhere ("Everett L. Worthington Jr.",
+// "Henry L. Roediger III"). Without this the last-token rule below keys the
+// scholar under the suffix — the live index carried a `Jr` key merging five
+// different people — and a scan for the real surname returns a false clear.
+// Computed here, at the root, so no house needs a detection wall for it: the
+// suffix is dropped before the surname is read, and the Source cell may keep
+// the person's full name as written.
+const SUFFIXES = new Set(["jr", "sr", "jnr", "snr", "ii", "iii", "iv", "v"]);
+
 const PARTICLES = new Set([
   "af",
   "al",
@@ -185,8 +195,23 @@ const stripQualifier = (s) =>
  * The joined surname still begins with the capital that opened the particle, so
  * the uppercase-initial invariant below reads it unchanged.
  */
-function surnameOf(part) {
+
+/**
+ * One author part as clean name tokens: punctuation stripped, and any trailing
+ * generational suffix dropped, so the last token is the surname again. Shared
+ * by surnameOf and scholarKey, which must agree on where the surname ends —
+ * "William B. Swann Jr." is tokens ["William", "B", "Swann"], surname Swann,
+ * given "William B". At least one token always survives the pop, so a
+ * degenerate part cannot vanish.
+ */
+function nameTokens(part) {
   const tokens = part.replace(/[.,]/g, "").split(/\s+/).filter(Boolean);
+  while (tokens.length > 1 && SUFFIXES.has(tokens[tokens.length - 1].toLowerCase())) tokens.pop();
+  return tokens;
+}
+
+function surnameOf(part) {
+  const tokens = nameTokens(part);
   if (!tokens.length) return part;
   let head = tokens.length - 1;
   while (
@@ -256,10 +281,17 @@ export function scholarHomonyms(root) {
 function scholarKey(part, surname, homonyms) {
   const forms = homonyms[surname];
   if (!Array.isArray(forms) || !forms.length) return surname;
-  const tokens = part.replace(/[.,]/g, "").split(/\s+/).filter(Boolean);
+  const tokens = nameTokens(part);
   const given = tokens.slice(0, tokens.length - surname.split(/\s+/).length).join(" ");
-  const form = forms.find((f) => given === f || given.startsWith(`${f} `));
-  return form ? `${surname} (${form})` : surname;
+  // The LONGEST matching form wins, not the first: with first-match, a form
+  // that is a space-prefix of another ("David" before "David L") silently
+  // absorbed the longer form's person, and the declaration order in the config
+  // decided who somebody is. Longest-match is order-independent, so the config
+  // can never be arranged into merging two people.
+  const form = forms
+    .filter((f) => given === f || given.startsWith(`${f} `))
+    .reduce((best, f) => (best === null || f.length > best.length ? f : best), null);
+  return form !== null ? `${surname} (${form})` : surname;
 }
 
 export function surnames(source, homonyms = {}) {

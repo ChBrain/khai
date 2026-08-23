@@ -39,5 +39,18 @@ export {
   surnames,
   SCIENCE_INDEX_PATH,
 } from "./src/science.mjs";
+export {
+  loadWorkPolicy,
+  normaliseWork,
+  isContrast,
+  collectUnits,
+  findOverlaps,
+  pairsOf,
+  scholarMatches,
+  workMatches,
+  checkCandidate,
+  scanSurname,
+  findUnresolvedNamesakes,
+} from "./src/overlap.mjs";
 export * as rules from "@chbrain/khai-rules";
 export { parseDoc, sectionBody } from "@chbrain/khai-rules";

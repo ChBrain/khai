@@ -22,6 +22,13 @@ import {
 import { packEngine } from "./pack.mjs";
 import { buildRegistry, verifyRegistry } from "./registry.mjs";
 import { buildScienceIndex, verifyScienceIndex, SCIENCE_INDEX_PATH } from "./science.mjs";
+import {
+  findOverlaps,
+  pairsOf,
+  checkCandidate,
+  scanSurname,
+  findUnresolvedNamesakes,
+} from "./overlap.mjs";
 import { checkManagement } from "./management.mjs";
 import { resolve, relative } from "node:path";
 import { existsSync, readdirSync, writeFileSync, mkdirSync } from "node:fs";
@@ -156,13 +163,82 @@ async function registryMode(args) {
   }
 }
 
-// `science [build|verify] [dir]`: build or drift-check the science -> engine index
+// `science [build|verify|overlap|check|surname|namesakes] [...] [dir]`:
+// build or drift-check the science index, and run the cross-unit keying
+// instruments (src/overlap.mjs) that answer off the same collector.
 async function scienceMode(args) {
   const sub = args[1];
-  const dirArg = args[2] && !args[2].startsWith("--") ? args[2] : ".";
+  // `check` and `surname` take a positional argument before the optional dir.
+  const positional = sub === "check" || sub === "surname" ? args[2] : undefined;
+  const dirIdx = positional === undefined ? 2 : 3;
+  const dirArg = args[dirIdx] && !args[dirIdx].startsWith("--") ? args[dirIdx] : ".";
   const root = resolve(dirArg);
 
-  if (sub === "build") {
+  if (sub === "overlap") {
+    let overlaps;
+    try {
+      overlaps = findOverlaps(root);
+    } catch (err) {
+      console.error(`✖ science overlap failed: ${err.message}`);
+      process.exit(1);
+    }
+    if (args.includes("--json")) {
+      console.log(JSON.stringify({ overlaps, pairs: pairsOf(overlaps) }, null, 2));
+    } else {
+      console.log(`science overlap: ${overlaps.length} work(s) shared across units`);
+      for (const p of pairsOf(overlaps)) {
+        console.log(`  [${p.stems.length}] ${p.pair}`);
+        for (const s of p.stems) console.log(`        ${s}`);
+      }
+    }
+    process.exit(overlaps.length ? 1 : 0);
+  } else if (sub === "check") {
+    if (!positional) {
+      console.error('khai-tests science check "<Scholar> :: <Key Work>" [dir]');
+      process.exit(2);
+    }
+    const hits = checkCandidate(root, positional);
+    if (!hits.length) console.log("clear: no unit cites this work.");
+    for (const h of hits)
+      console.log(
+        `${h.canon ? "canon   " : h.contrast ? "contrast" : "SPINE   "}  ${h.unit}  <- ${h.scholar}: ${h.work}` +
+          (h.match === "prefix" ? "\n            (loose match: read the cell and judge it)" : ""),
+      );
+    process.exit(0);
+  } else if (sub === "surname") {
+    if (!positional) {
+      console.error("khai-tests science surname <Surname> [dir]");
+      process.exit(2);
+    }
+    const keys = scanSurname(root, positional);
+    if (!keys.length) {
+      console.log(`clear: no index key is the surname "${positional}", bare or resolved.`);
+      process.exit(0);
+    }
+    console.log(
+      `taken: ${keys.length} index key(s) carry the surname "${positional}". ` +
+        `A hit is a cell to read, not a verdict: same person on another work is expected.`,
+    );
+    for (const k of keys) {
+      console.log(`  ${k.key}${k.resolved ? "" : "  (bare)"}`);
+      for (const r of k.rows) console.log(`      ${r.unit}  <- ${r.source}: ${r.work}`);
+    }
+    process.exit(0);
+  } else if (sub === "namesakes") {
+    let loose;
+    try {
+      loose = findUnresolvedNamesakes(root);
+    } catch (err) {
+      console.error(`✖ science namesakes failed: ${err.message}`);
+      process.exit(1);
+    }
+    console.log(`science namesakes: ${loose.length} declared surname occurrence(s) unresolved.`);
+    for (const r of loose)
+      console.log(
+        `  ${r.scholar}  <- ${r.unit}\n     declared: ${r.forms.join(", ")}\n     cited as: ${r.source}`,
+      );
+    process.exit(loose.length ? 1 : 0);
+  } else if (sub === "build") {
     try {
       buildScienceIndex(root);
       console.log(
@@ -187,7 +263,11 @@ async function scienceMode(args) {
     }
     console.log(`khai-tests science verify: ${SCIENCE_INDEX_PATH} at ${root} conforms.`);
   } else {
-    console.error("khai-tests science [build|verify] [dir]");
+    console.error(
+      "khai-tests science [build|verify|overlap|namesakes] [dir]\n" +
+        'khai-tests science check "<Scholar> :: <Key Work>" [dir]\n' +
+        "khai-tests science surname <Surname> [dir]",
+    );
     process.exit(2);
   }
 }
