@@ -33,6 +33,7 @@ export {
   buildScienceIndex,
   verifyScienceIndex,
   collectScience,
+  scholarCollisions,
   renderScienceIndex,
   collectCollectionScience,
   renderCollectionIndex,
