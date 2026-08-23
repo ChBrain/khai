@@ -69,6 +69,35 @@ npx khai-tests science build   # regenerate docs/SCIENCE.md
 npx khai-tests science verify  # fail if the committed index is stale
 ```
 
+### Science keying — the cross-unit warrant instruments
+
+Every khai surface that rests on research — engines and composites here,
+content units in a collection house — carries a per-unit warrant; these
+instruments ask the one question no per-unit gate can: _is this science already
+carried elsewhere in this root?_ They run off the same collector as the build
+(never off the rendered markdown), so the build and the checks cannot drift.
+The rule: the same scholar across different works is expected; the same
+(scholar, work) carrying the spine of two units is a finding. Configured exits
+live in the root's `khai-guard.config.json` — `workPolicy.canon` (a field's
+foundational text, legitimately shared), `workPolicy.contrastMarkers` (a work
+cited to hold a line, not carry one), `workPolicy.aliases` (same work, two
+spellings) — and in an engine root the composition itself is a computed exit: a
+composite citing its member atom's science composes, it does not duplicate.
+`scholarPolicy.homonyms` declares shared surnames (`"Hart": ["Julian Tudor",
+"Oliver"]`), the build keys them as `Hart (Oliver)`, and the namesake wall
+holds every declared surname resolved. The build strips generational suffixes
+(Jr., III) and resolves declared forms longest-first, both computed, so neither
+needs a per-house detection wall.
+
+```bash
+npx khai-tests science overlap                    # the shared-work report; exit 1 on findings
+npx khai-tests science check "Deci :: Effects of Externally Mediated Rewards"
+                                                  # pre-authoring: does this spine anchor a unit?
+npx khai-tests science surname Miller             # is this surname anywhere in the index,
+                                                  # bare or resolved? (the scan `check` cannot do)
+npx khai-tests science namesakes                  # declared surnames left unresolved; exit 1 if any
+```
+
 ## Library
 
 The CLI is a thin caller over the same functions the test suite uses:

@@ -202,14 +202,23 @@ const SUFFIXES = new Set(["jr", "jnr", "sr", "snr", "ii", "iii", "iv"]);
  * The joined surname still begins with the capital that opened the particle, so
  * the uppercase-initial invariant below reads it unchanged.
  */
+/**
+ * One author part as clean name tokens: punctuation stripped, and any trailing
+ * generational suffix shed (but never the whole part: a lone "Jr" keeps itself
+ * rather than collapsing to nothing), so the last token is the surname again.
+ * Shared by surnameOf and scholarKey, which must agree on where the surname
+ * ends — "William B. Swann Jr." is tokens ["William", "B", "Swann"], surname
+ * Swann, given "William B".
+ */
+function nameTokens(part) {
+  const tokens = part.replace(/[.,]/g, "").split(/\s+/).filter(Boolean);
+  while (tokens.length > 1 && SUFFIXES.has(tokens[tokens.length - 1].toLowerCase())) tokens.pop();
+  return tokens;
+}
+
 function surnameOf(part) {
-  const all = part.replace(/[.,]/g, "").split(/\s+/).filter(Boolean);
-  if (!all.length) return part;
-  // Shed trailing suffixes, but never the whole part: a lone "Jr" keeps itself
-  // rather than collapsing to nothing.
-  let end = all.length;
-  while (end > 1 && SUFFIXES.has(all[end - 1].toLowerCase())) end -= 1;
-  const tokens = all.slice(0, end);
+  const tokens = nameTokens(part);
+  if (!tokens.length) return part;
   let head = tokens.length - 1;
   while (
     head > 1 &&
@@ -303,10 +312,16 @@ function scholarKey(part, surname, homonyms) {
   // Vaughan") -- and a front-anchored match files every one of those on the bare
   // surname, splitting the scholar it was declared to join. Matching a
   // contiguous run keeps multi-token forms ("Julian Tudor") exact.
+  //
+  // Among the forms that match, the LONGEST wins, not the first declared: with
+  // first-match, a form that is a prefix run of another ("David" beside
+  // "David L") silently absorbed the longer form's person, and the array order
+  // in the config decided who somebody is. Longest-match is order-independent,
+  // so the declaration can never be arranged into merging two people.
   const fTokens = forms.map((f) => [f, f.split(/\s+/)]);
-  const form = fTokens.find(([, ft]) =>
-    given.some((_, i) => ft.every((t, j) => given[i + j] === t)),
-  );
+  const form = fTokens
+    .filter(([, ft]) => given.some((_, i) => ft.every((t, j) => given[i + j] === t)))
+    .reduce((best, m) => (best === null || m[1].length > best[1].length ? m : best), null);
   return form ? `${surname} (${form[0]})` : surname;
 }
 
