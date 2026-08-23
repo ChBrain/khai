@@ -1,0 +1,149 @@
+{
+  "name": "@chbrain/khai-engine-vouching",
+  "version": "0.1.0",
+  "description": "khai engine content, the vouching domain: standing lent to somebody else's claim -- a request drawing on a list fixed years earlier, a text that cannot be negative, a stake nobody names, and a reading that correctly discounts all of it.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/vouching"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "vouching",
+    "tagline": "Vouching as process: standing lent to somebody else's claim, read on who agreed to give it rather than on what it said -- not the request for discretionary help, which is asking's, and not the second judgement offered on a decision, which is advice's -- across four movements: the request (a short list that is a network property presented as a personal one, an unrefusable ask that converts a reservation into a letter, and a second choice read as a substitution whatever it was), the writing (a positive floor that protects the candidate by disabling the instrument, a code that restores the signal and carries somebody else's assumptions with it, and a length that is the only uncompellable part and is mostly noise), the stake (borrowed standing that values the candidate at the referee's rate, collateral that is real, uncollected, and never itemised, and a repayment owed to somebody who is not collecting), and the reading (a discounted text taken seriously by exactly one of the three parties, a weighed source that assesses the referee and scores the candidate, and an absent letter that is the only signal available and cannot be interpreted) -- with the twist that nothing in a reference is informative except the fact that somebody agreed to give one.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_vouching.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_request_vouching.md",
+        "type": "process",
+        "parent": "process_vouching.md"
+      },
+      {
+        "file": "process_the_short_list.md",
+        "type": "process",
+        "parent": "process_request_vouching.md"
+      },
+      {
+        "file": "process_the_unrefusable_ask.md",
+        "type": "process",
+        "parent": "process_request_vouching.md"
+      },
+      {
+        "file": "process_the_second_choice.md",
+        "type": "process",
+        "parent": "process_request_vouching.md"
+      },
+      {
+        "file": "process_writing_vouching.md",
+        "type": "process",
+        "parent": "process_vouching.md"
+      },
+      {
+        "file": "process_the_positive_floor.md",
+        "type": "process",
+        "parent": "process_writing_vouching.md"
+      },
+      {
+        "file": "process_the_code.md",
+        "type": "process",
+        "parent": "process_writing_vouching.md"
+      },
+      {
+        "file": "process_the_length.md",
+        "type": "process",
+        "parent": "process_writing_vouching.md"
+      },
+      {
+        "file": "process_stake_vouching.md",
+        "type": "process",
+        "parent": "process_vouching.md"
+      },
+      {
+        "file": "process_the_borrowed_standing.md",
+        "type": "process",
+        "parent": "process_stake_vouching.md"
+      },
+      {
+        "file": "process_the_collateral.md",
+        "type": "process",
+        "parent": "process_stake_vouching.md"
+      },
+      {
+        "file": "process_the_repayment.md",
+        "type": "process",
+        "parent": "process_stake_vouching.md"
+      },
+      {
+        "file": "process_reading_vouching.md",
+        "type": "process",
+        "parent": "process_vouching.md"
+      },
+      {
+        "file": "process_the_discounted_text.md",
+        "type": "process",
+        "parent": "process_reading_vouching.md"
+      },
+      {
+        "file": "process_the_weighed_source.md",
+        "type": "process",
+        "parent": "process_reading_vouching.md"
+      },
+      {
+        "file": "process_the_absent_letter.md",
+        "type": "process",
+        "parent": "process_reading_vouching.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (process_vouching.md) declares the arrangement: one persona puts their own standing behind another's, to a third party who will decide something. It is not asking's request for discretionary help, not advice's second judgement, and not interview's hour in a room. Read it on who agreed to give it, never on what it said.",
+      "issue": "Four movements over one root. The request draws on a list nobody assembled deliberately, since being vouchable requires proximity, time, and somebody's continued presence, none of which is distributed by merit. The writing produces warmth that cannot be graded: the floor is protective and load-bearing, and a channel with a floor and no ceiling compresses every candidate into one band. The stake is a loan of reputation that is occasionally called, which is why the letters are all warm and the phone calls are not. The reading correctly concludes that the documents say nothing, and rests the decision on who could be asked.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the vouching read runs wherever the play has somebody speak for somebody else. The link: each persona links, under Projection, where they stand to it -- who would write for them, who they have written for, what they left out, and whose name is missing from the list.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real member. Whether a production's referee was enthusiastic or merely unable to refuse, and whether an absence was innocent, are judgements the team makes; the suite does not attempt them.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then keep the referees sincere and the letters true, because the engine needs no saboteur and stops working the moment it gets one. Make the reader experienced and fair. And read the twist before writing any shortlisting scene -- everything in the folder is warm, the decision will turn on a name that is not there, and nobody in the room will say so."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
