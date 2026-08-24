@@ -1,7 +1,7 @@
 {
-  "name": "@chbrain/khai-plays-{{SOURCE}}",
+  "name": "@chbrain/{{BASE}}",
   "version": "0.0.0",
-  "description": "khai plays: the {{SOURCE_TITLE}} production house. Plays staged with khai; the source is credited where it is in the public domain.",
+  "description": "{{HOUSE_DESCRIPTION}}",
   "type": "module",
   "exports": {
     ".": "./package.json",
@@ -11,23 +11,23 @@
   "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ChBrain/khai-plays-{{SOURCE}}.git"
+    "url": "git+https://github.com/ChBrain/{{BASE}}.git"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",
     "access": "public"
   },
   "files": [
-    "plays/**",
+    "{{COLLECTION}}/**",
     "registry.json",
     "README.md",
     "LICENSE",
     "LICENSE-CODE"
   ],
   "khai": {
-    "engine": "plays-{{SOURCE}}",
+    "engine": "{{ENGINE}}",
     "card": {
-      "wire": "The {{SOURCE_TITLE}} production house: a collection of khai plays."
+      "wire": "{{HOUSE_WIRE}}"
     }
   },
   "scripts": {
