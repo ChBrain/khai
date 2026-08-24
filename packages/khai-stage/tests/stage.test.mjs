@@ -251,7 +251,9 @@ describe("khai-stage: the three kinds", () => {
   it("gives a canon house its own name, collection, and directory", async () => {
     const { dir, pkg, registry, result } = await stamp({ source: "cultures", kind: "canon" });
     expect(pkg.name).toBe("@chbrain/khai-cultures");
-    expect(pkg.khai.collection).toBe("cultures");
+    // The object form, matching the live house exactly. The string form would
+    // let the kit derive `culture_`, which is not what any real house uses.
+    expect(pkg.khai.collection).toEqual({ dir: "cultures", key: "cultures", anchor: "play_" });
     expect(pkg.files).toContain("cultures/**");
     expect(pkg.files).not.toContain("plays/**");
     expect(Object.keys(registry)).toContain("cultures");
@@ -267,17 +269,31 @@ describe("khai-stage: the three kinds", () => {
     const { dir, pkg, registry } = await stamp({
       source: "phoenix",
       kind: "work",
-      collection: "beasts",
+      collection: "bestiary",
     });
     expect(pkg.name).toBe("@chbrain/khai-phoenix");
-    expect(pkg.khai.collection).toBe("beasts");
-    expect(Object.keys(registry)).toContain("beasts");
-    expect(existsSync(join(dir, "beasts"))).toBe(true);
+    expect(pkg.khai.collection).toEqual({ dir: "bestiary", key: "bestiary", anchor: "play_" });
+    expect(Object.keys(registry)).toContain("bestiary");
+    expect(existsSync(join(dir, "bestiary"))).toBe(true);
   });
 
   it("defaults a non-stage collection to the source slug", async () => {
     const { pkg } = await stamp({ source: "misfits", kind: "canon" });
-    expect(pkg.khai.collection).toBe("misfits");
+    expect(pkg.khai.collection).toEqual({ dir: "misfits", key: "misfits", anchor: "play_" });
+  });
+
+  // The anchor is the one thing a collection name must not decide. Every live
+  // non-stage house -- cultures, misfits, phoenix -- anchors its items as plays,
+  // because each item IS a play: a theatre of that culture, a trap staged as a
+  // system, a beast speaking for its phenomenon. Deriving `culture_` from the
+  // collection name would stamp a house no operator could conform.
+  it("anchors a non-stage house's items as plays, overridable", async () => {
+    for (const source of ["cultures", "misfits"]) {
+      const { pkg } = await stamp({ source, kind: "canon" });
+      expect(pkg.khai.collection.anchor, source).toBe("play_");
+    }
+    const { pkg } = await stamp({ source: "odd", kind: "canon", anchor: "odd_" });
+    expect(pkg.khai.collection.anchor).toBe("odd_");
   });
 
   it("hands the operator the register command and the voice caveat", async () => {

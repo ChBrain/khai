@@ -10,14 +10,19 @@ Three kinds, the same three the bill carries:
 ```
 khai-stage buechner                                  # stage: khai-plays-buechner, indexes plays
 khai-stage cultures --kind canon                     # canon: khai-cultures, indexes cultures
-khai-stage phoenix  --kind work --collection beasts  # work:  khai-phoenix, indexes beasts
+khai-stage phoenix  --kind work --collection bestiary # work:  khai-phoenix, indexes bestiary
 ```
 
 `stage` is the default and is unchanged by the option: it indexes the default
 `plays` collection and so declares none, exactly as every house raised before
 `--kind` existed. A `work` or `canon` house is named `khai-<source>`, indexes a
 collection named for itself unless `--collection` says otherwise, and declares
-that collection in `khai.collection`.
+it in `khai.collection` as the object form `{ dir, key, anchor }`.
+
+The anchor is `play_`, not a prefix derived from the collection name. Every
+non-stage house khai has raised anchors its items as plays: a culture is a
+theatre of that culture, a misfit is a trap staged as a system, a beast speaks
+for its phenomenon. `--anchor` overrides it.
 
 What varies by kind is the house's **identity and structure**. The **voice does
 not**: the blueprint's management personas still speak of plays, because that

@@ -102,6 +102,7 @@ export async function stageHouse({
   targetDir,
   kind = "stage",
   collection,
+  anchor,
   manager,
   playwright,
   roadie,
@@ -125,6 +126,13 @@ export async function stageHouse({
   const col = kind === "stage" ? "plays" : slug(collection) || s;
   const base = kind === "stage" ? `khai-plays-${s}` : `khai-${s}`;
   const engineName = kind === "stage" ? `plays-${s}` : s;
+
+  // Every non-stage house khai has raised anchors its items as plays: a culture
+  // is a theatre of that culture, a misfit is a trap staged as a system, a beast
+  // speaks for its phenomenon. So the anchor does not follow the collection name
+  // (which would give `culture_`); it is `play_`, and the house declares the
+  // object form to say so rather than letting the kit derive it.
+  const anchorPrefix = anchor || "play_";
 
   // What the house says it is. The three differ in what they hold, so they
   // differ here; only a stage house credits an outside source, which is the
@@ -174,11 +182,6 @@ export async function stageHouse({
     "{{BASE}}": base,
     "{{COLLECTION}}": col,
     "{{ENGINE}}": engineName,
-    // A stage house declares no collection: `plays` is the default every
-    // no-config house already resolves to, and writing it would make the
-    // historical houses and the newly stamped ones disagree on paper while
-    // meaning the same thing.
-    "{{COLLECTION_DECL}}": kind === "stage" ? "" : `\n    "collection": ${JSON.stringify(col)},`,
     "{{HOUSE_DESCRIPTION}}": description,
     "{{HOUSE_WIRE}}": wire,
     "{{YEAR}}": String(new Date().getUTCFullYear()),
@@ -223,12 +226,30 @@ export async function stageHouse({
   writeFileSync(join(targetDir, "registry.json"), JSON.stringify(registry, null, 2) + "\n");
   written.push("registry.json");
 
+  // Two edits to the stamped manifest, written once. Both are no-ops for a
+  // default stage house with no repertoire, so package.json stays exactly what
+  // the blueprint stamped.
+  let manifestDirty = false;
+
+  // A stage house declares no collection: `plays` is the default every no-config
+  // house already resolves to, and writing it would make the historical houses
+  // and the newly stamped ones disagree on paper while meaning the same thing.
+  // A work or canon house declares the object form, because its anchor does not
+  // follow its collection name.
+  if (kind !== "stage") {
+    pkg.khai.collection = { dir: col, key: col, anchor: anchorPrefix };
+    manifestDirty = true;
+  }
+
   // The repertoire, if named: each package lands in dependencies at "*", the
   // range that pins to whatever resolves on the operator's first npm install.
-  // Omitted, package.json is exactly what the blueprint stamped, untouched.
   if (repertoirePackages.length) {
     pkg.dependencies = pkg.dependencies || {};
     for (const name of repertoirePackages) pkg.dependencies[name] = "*";
+    manifestDirty = true;
+  }
+
+  if (manifestDirty) {
     writeFileSync(join(targetDir, "package.json"), JSON.stringify(pkg, null, 2) + "\n");
   }
 

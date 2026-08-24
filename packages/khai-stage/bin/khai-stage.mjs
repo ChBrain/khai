@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // khai-stage <source> [targetDir] [manager] [playwright] [roadie]
-//            [--kind <stage|work|canon>] [--collection <name>]
+//            [--kind <stage|work|canon>] [--collection <name>] [--anchor <prefix_>]
 //            [--repertoire <pkg,pkg,...>]
 // Stamp a khai house. The impresario judges the source; this stamps.
 
@@ -12,6 +12,7 @@ const rawArgs = process.argv.slice(2);
 let repertoire;
 let kind;
 let collection;
+let anchor;
 const flags = {
   "--repertoire": (v) => (repertoire = v),
   "--kind": (v) => (kind = v),
@@ -39,7 +40,7 @@ if (kind !== undefined && !KINDS.includes(kind)) {
 const source = args[0];
 if (!source) {
   console.error(
-    `usage: khai-stage <source> [targetDir] [manager] [playwright] [roadie] [--kind <${KINDS.join("|")}>] [--collection <name>] [--repertoire <pkg,pkg,...>]   e.g. khai-stage buechner, khai-stage cultures --kind canon`,
+    `usage: khai-stage <source> [targetDir] [manager] [playwright] [roadie] [--kind <${KINDS.join("|")}>] [--collection <name>] [--anchor <prefix_>] [--repertoire <pkg,pkg,...>]   e.g. khai-stage buechner, khai-stage cultures --kind canon`,
   );
   process.exit(1);
 }
@@ -53,6 +54,7 @@ const result = await stageHouse({
   targetDir: args[1] || defaultDir,
   kind,
   collection,
+  anchor,
   manager: args[2],
   playwright: args[3],
   roadie: args[4],
