@@ -1562,18 +1562,18 @@ do where both have a term of their own.
 | `creativity`         | `creativity`         | `social-identity/position_creativity.md` | `social_creativity`            | Tajfel & Turner's own term for the identity strategy                           | 1     | proposed        |
 | `disgust`            | `disgust`            | `emotion/process_disgust.md`             | `appraisal_disgust`            | the appraisal family, as above                                                 | 0     | proposed        |
 | `embarrassment`      | `embarrassment`      | `shame/process_embarrassment.md`         | `shame_embarrassment`          | the shame family it sits in beside `humiliation`                               | 0     | proposed        |
-| `envy`               | `envy`               | `virtue/position_envy.md`                | `vice_envy`                    | virtue holds both registers and already chose `wrath` over `anger`             | 0     | building        |
+| `envy`               | `envy`               | `virtue/position_envy.md`                | `vice_envy`                    | virtue holds both registers and already chose `wrath` over `anger`             | 0     | shipped (#1355) |
 | `exploration`        | `exploration`        | `negotiation/process_exploration.md`     | `negotiation_exploration`      | one of negotiation's four phases                                               | 1     | proposed        |
 | `fear`               | `fear`               | `emotion/process_fear.md`                | `appraisal_fear`               | the appraisal family                                                           | 0     | proposed        |
 | `framing`            | `framing`            | `pitch-mode/position_framing.md`         | `pitch_framing`                | the pitch's own opening move                                                   | 0     | proposed        |
-| `gratitude`          | `gratitude`          | `virtue/position_gratitude.md`           | `virtue_gratitude`             | the virtue register                                                            | 0     | building        |
+| `gratitude`          | `gratitude`          | `virtue/position_gratitude.md`           | `virtue_gratitude`             | the virtue register                                                            | 0     | shipped (#1355) |
 | `joy`                | `joy`                | `emotion/process_joy.md`                 | `appraisal_joy`                | the appraisal family                                                           | 1     | proposed        |
 | `liminality`         | `liminality`         | `ritual/process_liminality.md`           | `transition`                   | van Gennep's own middle term, beside `separation` and `incorporation`          | 0     | proposed        |
 | `loyalty`            | `loyalty`            | `moral-judgment/position_loyalty.md`     | `loyalty_foundation`           | Haidt's foundations are named as foundations                                   | 1     | proposed        |
 | `narcissism`         | `narcissism`         | `dark-triad/position_narcissism.md`      | `triad_narcissism`             | the triad's own reading of the trait                                           | 1     | proposed        |
 | `obedience`          | `obedience`          | `conformity/process_obedience.md`        | `conformity_obedience`         | the pull conformity models, not Milgram's engine                               | 0     | proposed        |
 | `persuasion`         | `persuasion`         | `self-efficacy/position_persuasion.md`   | `verbal_persuasion`            | Bandura's own term for the efficacy source                                     | 1     | proposed        |
-| `pride`              | `pride`              | `virtue/position_pride.md`               | `vice_pride`                   | the vice register                                                              | 0     | building        |
+| `pride`              | `pride`              | `virtue/position_pride.md`               | `vice_pride`                   | the vice register                                                              | 0     | shipped (#1355) |
 | `reactance`          | `reactance`          | `bias/position_reactance.md`             | `reactance_bias`               | the `_bias` suffix                                                             | 0     | proposed        |
 | `recognition`        | `recognition`        | `morphology/plot_recognition.md`         | `folktale_recognition`         | its Owner is `[The Folktale]`; Propp's function, not Honneth's                 | 0     | shipped (#1352) |
 | `regime`             | `regime`             | `climate/process_regime.md`              | `climate_regime`               | the standing weather type, not the polity                                      | 1     | proposed        |
@@ -1651,20 +1651,24 @@ is why it went first. **Twenty remain at zero cost**:
 `shame/process_embarrassment`, `virtue/position_envy`,
 `virtue/position_gratitude`, `virtue/position_pride`.
 
-`virtue` is the second lane, in progress: three entries (`envy`, `gratitude`,
-`pride`) taking the moral register the engine already chose for itself when it
-named the sin `wrath` rather than `anger`. At the maintainer's call the whole
-set follows the register rather than only the three — all seven sins as
-`position_vice_*` and all seven answering virtues as `position_virtue_*` — so
-the names carry the classification the engine's REFERENCES already documents,
-and no future pole has to decide the question again. Only the three cleared a
-whitelist entry; the other eleven are symmetry, and cost nothing because nothing
-outside the engine links any of them. `power/position_reward` clears a fourth
-entry on its own and is next.
+`virtue` was the second lane and is done (#1355, ratchet closed alongside):
+three entries (`envy`, `gratitude`, `pride`) taking the moral register the
+engine had already chosen for itself when it named the sin `wrath` rather than
+`anger`. At the maintainer's call the whole set followed the register rather
+than only the three — all seven sins as `position_vice_*` and all seven
+answering virtues as `position_virtue_*` — so the names carry the
+classification the engine's REFERENCES already documents, and no future pole has
+to decide the question again. Only the three cleared a whitelist entry; the
+other eleven were symmetry, and cost nothing because nothing outside the engine
+links any of them. **Seventeen zero-cost renames remain**, and
+`power/position_reward` clears a fourth entry on its own — French & Raven's own
+term, and the file's title is already "Reward Power" — so it is next.
 
-**The count is 46, not 49** — `preparation`, `recognition` and `return` are
-gone from `memberPolicy.homonyms` as of #1353. Every heading and total above
-that says 49 is the count at the time of the sweep.
+**The count is 43, not 49** — `preparation`, `recognition` and `return` left
+`memberPolicy.homonyms` in #1353, and `envy`, `gratitude` and `pride` with the
+virtue rename.
+Every heading and total above that says 49 is the count at the time of the
+sweep.
 
 Nothing here costs more than three links, so the rest is ordinary work rather
 than a tail to be deferred: the heaviest rows are `stigma/position_bearer` (3),
