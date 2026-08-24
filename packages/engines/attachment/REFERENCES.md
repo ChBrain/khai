@@ -14,12 +14,12 @@ The spine is the attachment behavioural system: under alarm the persona is drive
 
 Developmental attachment theory, applied directly as process constraints.
 
-| Source                  | Key Work                                       | Scope                                                                                                       |
-| :---------------------- | :--------------------------------------------- | :---------------------------------------------------------------------------------------------------------- |
-| **John Bowlby**         | _Attachment and Loss_ (1969-1980)              | The attachment behavioural system: proximity-seeking to a secure base as a survival regulator under threat. |
-| **Mary Ainsworth**      | _Patterns of Attachment_ (1978)                | The Strange Situation and the secure, anxious, and avoidant patterns of organised strategy.                 |
-| **Main & Solomon**      | _"Disorganized/disoriented attachment"_ (1990) | The fourth, disorganised pattern: the collapse of strategy when the base is also the source of fear.        |
-| **Mikulincer & Shaver** | _Attachment in Adulthood_ (2007)               | Hyperactivating and deactivating secondary strategies: amplifying the bid, or shutting the need down.       |
+| Source                    | Key Work                                       | Scope                                                                                                       |
+| :------------------------ | :--------------------------------------------- | :---------------------------------------------------------------------------------------------------------- |
+| **John Bowlby**           | _Attachment and Loss_ (1969-1980)              | The attachment behavioural system: proximity-seeking to a secure base as a survival regulator under threat. |
+| **Mary Ainsworth**        | _Patterns of Attachment_ (1978)                | The Strange Situation and the secure, anxious, and avoidant patterns of organised strategy.                 |
+| **Main & Judith Solomon** | _"Disorganized/disoriented attachment"_ (1990) | The fourth, disorganised pattern: the collapse of strategy when the base is also the source of fear.        |
+| **Mikulincer & Shaver**   | _Attachment in Adulthood_ (2007)               | Hyperactivating and deactivating secondary strategies: amplifying the bid, or shutting the need down.       |
 
 ## Restrictions
 
