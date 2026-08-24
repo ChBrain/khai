@@ -1,5 +1,11 @@
 # @chbrain/khai-composite-praise
 
+## 0.1.2
+
+### Patch Changes
+
+- 2e9aad0: Resolve the bare Wilson citation to Timothy Wilson, so the science index keys the right person.
+
 ## 0.1.1
 
 ### Patch Changes

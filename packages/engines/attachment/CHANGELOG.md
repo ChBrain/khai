@@ -1,5 +1,11 @@
 # @chbrain/khai-engine-attachment
 
+## 0.1.3
+
+### Patch Changes
+
+- 2f1dfa5: Resolve the bare Solomon citation to Judith Solomon, so the science index keys the right person.
+
 ## 0.1.2
 
 ### Patch Changes

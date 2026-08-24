@@ -1,5 +1,11 @@
 # @chbrain/khai-engine-identity
 
+## 0.1.2
+
+### Patch Changes
+
+- 920c1b5: Resolve the bare Turner citation to John Turner, so the science index keys the right person.
+
 ## 0.1.1
 
 ### Patch Changes

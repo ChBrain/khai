@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-carrying",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the carrying domain: what it costs a persona to hold an attribute that would discredit them -- known and discounted, moving from unknown to known, or held per encounter with no condition under which the holding ends.",
   "type": "module",
   "main": "./index.mjs",
@@ -81,7 +81,7 @@
     "@chbrain/khai-engine-shame": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.5",
+    "@chbrain/khai-tests": "^0.2.7",
     "vitest": "^4.1.10"
   }
 }

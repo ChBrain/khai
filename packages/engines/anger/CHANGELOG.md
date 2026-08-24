@@ -1,5 +1,11 @@
 # @chbrain/khai-engine-anger
 
+## 0.1.2
+
+### Patch Changes
+
+- 5966012: Write the given name into the bare Miller citation so the coming scholarPolicy declaration can key the right person.
+
 ## 0.1.1
 
 ### Patch Changes

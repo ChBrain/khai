@@ -1,5 +1,11 @@
 # @chbrain/khai-engine-trust
 
+## 0.1.2
+
+### Patch Changes
+
+- 992a94b: Write the given name into the bare Davis citation so the coming scholarPolicy declaration can key the right person.
+
 ## 0.1.1
 
 ### Patch Changes
