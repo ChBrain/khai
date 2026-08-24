@@ -192,3 +192,15 @@ describe("khai-plays: the bill states what the kinds actually differ in", () => 
     expect(md).toContain(`${houses.length} houses: ${by.map(([k, n]) => `${n} ${k}`).join(", ")}.`);
   });
 });
+
+describe("khai-plays: the package describes itself as the house registry", () => {
+  it("does not claim every house is a khai-plays-<source> collection", () => {
+    // This string ships to npm as the package page. It carried the plays-only
+    // framing after the bill itself had stopped: three of the ten houses are
+    // named khai-<source>, and two of the three kinds hold no author's source.
+    const pkg = JSON.parse(readFileSync(join(here, "..", "package.json"), "utf8"));
+    expect(pkg.description).not.toMatch(/khai-plays-<source>/);
+    expect(pkg.description).toMatch(/house registry/i);
+    for (const kind of KINDS) expect(pkg.description).toMatch(new RegExp(kind));
+  });
+});
