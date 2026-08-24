@@ -981,8 +981,12 @@ function runMemberCheck() {
     for (const e of errors) console.error(`  ${e}`);
     console.error(
       "\n  Fix: one phenomenon, one owner. Thin the duplicate member to a pointer at\n" +
-        "  the owning engine, or (for a same-word-different-science case) whitelist the\n" +
-        "  stem under memberPolicy.homonyms in khai-guard.config.json.",
+        "  the owning engine, or give it a distinct stem — usually the field's own\n" +
+        "  compound term (verbal_persuasion, not persuasion; reward_power, not reward).\n" +
+        "  A memberPolicy.homonyms whitelist is the last resort, not the first offer:\n" +
+        "  for a word that genuinely carries two sciences and cannot be renamed on\n" +
+        "  either side without losing the field's own term. It is the maintainer's\n" +
+        "  call, never self-granted. See CLAUDE.md rule 7.",
     );
     process.exit(1);
   }
