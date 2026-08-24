@@ -1,5 +1,12 @@
 # @chbrain/khai-stage
 
+## 0.0.23
+
+### Patch Changes
+
+- c6633b8: Stamp a README into every house's management directory, saying what the layer is and where its boundary runs: the house's own company, extra by design, and never part of the collection.
+- 5749ffd: Stamp any of the three house kinds. `--kind <stage|work|canon>` sets the house's identity and structure: a `work` or `canon` house is named `khai-<source>`, indexes a collection named for itself (or `--collection <name>`), declares it in `khai.collection`, and gets that directory and registry key instead of `plays`. `stage` is the default and is unchanged.
+
 ## 0.0.22
 
 ### Patch Changes

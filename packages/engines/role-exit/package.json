@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-role-exit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the role exit domain: leaving a role that supplied a large part of who somebody is -- the doubts that run for years, the other life carried alongside, the event that makes leaving sayable, and the ex-role that cannot be resigned.",
   "type": "module",
   "main": "./index.mjs",
@@ -143,7 +143,7 @@
     "@chbrain/khai-arch": "^0.1.25"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.5",
+    "@chbrain/khai-tests": "^0.2.7",
     "vitest": "^4.1.10"
   }
 }

@@ -1,5 +1,11 @@
 # @chbrain/khai-engine-org
 
+## 0.1.2
+
+### Patch Changes
+
+- 4095778: Resolve the bare Quinn citations to Robert Quinn, so the science index keys the right person.
+
 ## 0.1.1
 
 ### Patch Changes
