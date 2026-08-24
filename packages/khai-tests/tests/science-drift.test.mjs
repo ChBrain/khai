@@ -1,7 +1,8 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { mkdirSync, writeFileSync, rmSync, readFileSync } from "node:fs";
-import { join } from "node:path";
+import { join, dirname } from "node:path";
 import { tmpdir } from "node:os";
+import { fileURLToPath } from "node:url";
 import { buildScienceIndex, verifyScienceIndex, collectScience, surnames } from "../index.mjs";
 
 // The science index build-drift gate: the committed docs/SCIENCE.md must equal
@@ -259,5 +260,110 @@ describe.skipIf(FILTER_DORMANT)("conformance: surnames() is a deterministic scho
     // an institution keeps its capitalised head; a particled name keeps its surname
     expect(surnames("The Joint Commission")).toEqual(["Commission"]);
     expect(surnames("John von Neumann")).toEqual(["Neumann"]);
+  });
+});
+
+// The atoms column: which engines a composite joins. The dependency graph is the
+// citation graph, so the pairing is read from package.json rather than kept in a
+// second list that could drift from it.
+const ATOMS_DORMANT = !readFileSync(
+  new URL("../src/science.mjs", import.meta.url),
+  "utf8",
+).includes("function atomsOf");
+
+describe.skipIf(ATOMS_DORMANT)("conformance: a composite names the atoms it wires", () => {
+  let dir;
+
+  const references = (rows) =>
+    [
+      "# X: Reference",
+      "",
+      "## Origin",
+      "",
+      "| Source | Key Work | Scope |",
+      "| :--- | :--- | :--- |",
+      ...rows.map(([s, w, sc]) => `| ${s} | ${w} | ${sc} |`),
+      "",
+    ].join("\n");
+
+  const addPackage = (kind, id, dependencies) => {
+    const pDir = join(dir, "packages", kind, id);
+    mkdirSync(pDir, { recursive: true });
+    writeFileSync(
+      join(pDir, "package.json"),
+      JSON.stringify({
+        name: `@chbrain/khai-${kind === "composites" ? "composite" : "engine"}-${id}`,
+        dependencies,
+        khai: { engine: id, type: "process", anchor: `process_${id}.md` },
+      }),
+    );
+    writeFileSync(
+      join(pDir, "REFERENCES.md"),
+      references([["**Erving Goffman**", "_A_ (1959)", "Front stage."]]),
+    );
+  };
+
+  beforeEach(() => {
+    dir = join(tmpdir(), `khai-atoms-${process.pid}-${Math.random().toString(36).slice(2)}`);
+    mkdirSync(join(dir, "docs"), { recursive: true });
+  });
+
+  afterEach(() => rmSync(dir, { recursive: true, force: true }));
+
+  it("reads a composite's atoms from its declared dependencies", () => {
+    addPackage("engines", "alpha", {});
+    addPackage("engines", "beta", {});
+    addPackage("composites", "duet", {
+      "@chbrain/khai-arch": "^0.1.0",
+      "@chbrain/khai-engine-beta": "^0.1.0",
+      "@chbrain/khai-engine-alpha": "^0.1.0",
+    });
+    const { byEngine } = collectScience(dir);
+    // Sorted by name, and khai-arch is not an atom.
+    expect(byEngine.find((e) => e.engine === "duet").atoms).toEqual([
+      { name: "alpha", layer: "atom" },
+      { name: "beta", layer: "atom" },
+    ]);
+  });
+
+  it("gives an atom engine no atoms, because it combines nothing", () => {
+    addPackage("engines", "alpha", { "@chbrain/khai-arch": "^0.1.0" });
+    expect(collectScience(dir).byEngine.find((e) => e.engine === "alpha").atoms).toEqual([]);
+  });
+
+  it("resolves a composite that wires composites", () => {
+    // love-hate is the corpus's one second-order composite: it wires the love
+    // and hate composites, not engines. Matching only khai-engine- would render
+    // it as combining nothing.
+    addPackage("composites", "love", {});
+    addPackage("composites", "hate", {});
+    addPackage("composites", "love-hate", {
+      "@chbrain/khai-composite-love": "^0.1.0",
+      "@chbrain/khai-composite-hate": "^0.1.0",
+    });
+    expect(collectScience(dir).byEngine.find((e) => e.engine === "love-hate").atoms).toEqual([
+      { name: "hate", layer: "composite" },
+      { name: "love", layer: "composite" },
+    ]);
+  });
+
+  it("renders the atoms column, italicising a composite atom", () => {
+    addPackage("engines", "alpha", {});
+    addPackage("composites", "duet", { "@chbrain/khai-engine-alpha": "^0.1.0" });
+    addPackage("composites", "pair", { "@chbrain/khai-composite-duet": "^0.1.0" });
+    const md = buildScienceIndex(dir);
+    expect(md).toContain("| Engine | Root | Composition | Atoms | Wires into | Sources |");
+    expect(md).toMatch(/\| _duet_ \|.*\| `alpha` \|/);
+    expect(md).toMatch(/\| _pair_ \|.*\| _`duet`_ \|/);
+  });
+});
+
+describe.skipIf(ATOMS_DORMANT)("conformance: the live corpus resolves every composite", () => {
+  it("leaves no composite claiming to combine nothing", () => {
+    const REPO = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
+    const { byEngine } = collectScience(REPO);
+    const composites = byEngine.filter((e) => e.layer === "composite");
+    expect(composites.length).toBeGreaterThan(0);
+    expect(composites.filter((e) => e.atoms.length === 0).map((e) => e.engine)).toEqual([]);
   });
 });

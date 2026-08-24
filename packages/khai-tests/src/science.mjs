@@ -355,6 +355,35 @@ export function surnames(source, homonyms = {}) {
   ];
 }
 
+/**
+ * What a composite wires, read from its own dependencies. The dependency graph
+ * is the citation graph: a composite declares every atom it links, so the
+ * pairing needs no second list to drift from.
+ *
+ * An atom can itself be a composite. `love-hate` wires the love and hate
+ * composites rather than engines, so matching only `khai-engine-` would render
+ * the one second-order composite in the corpus as combining nothing. Each entry
+ * carries its layer so the render can italicise a composite atom the way the
+ * index italicises a composite everywhere else.
+ *
+ * An atom engine depends on no engine and yields [], which is the honest answer:
+ * it combines nothing.
+ */
+function atomsOf(manifest) {
+  const PREFIXES = [
+    ["@chbrain/khai-engine-", "atom"],
+    ["@chbrain/khai-composite-", "composite"],
+  ];
+  return Object.keys(manifest.dependencies || {})
+    .flatMap((dep) => {
+      for (const [prefix, layer] of PREFIXES) {
+        if (dep.startsWith(prefix)) return [{ name: dep.slice(prefix.length), layer }];
+      }
+      return [];
+    })
+    .sort((a, b) => a.name.localeCompare(b.name));
+}
+
 /** Distinct member types in an engine's tree (explicit members, or shorthand root). */
 function compositionTypes(khai) {
   if (Array.isArray(khai.members)) {
@@ -397,7 +426,8 @@ export function collectScience(root) {
   const byEngine = [];
   const homonyms = scholarHomonyms(root);
   for (const { dir, layer } of engineDirs(root)) {
-    const khai = JSON.parse(readFileSync(join(dir, "package.json"), "utf8")).khai;
+    const manifest = JSON.parse(readFileSync(join(dir, "package.json"), "utf8"));
+    const khai = manifest.khai;
     if (!khai || !khai.engine) continue;
     // Infra engines that root on no cast/element type (e.g. spine, which lifts
     // the class:meta architecture itself) carry no external science warrant, so
@@ -421,6 +451,7 @@ export function collectScience(root) {
       layer,
       root: khai.type || "?",
       composition: compositionTypes(khai),
+      atoms: atomsOf(manifest),
       requires: [...new Set((khai.requires || []).map((r) => r.on))],
       sources: rows.map((r) => r.source),
     });
@@ -556,13 +587,19 @@ export function renderScienceIndex({ records, byEngine }) {
   L.push("");
   L.push("## By engine");
   L.push("");
-  L.push("| Engine | Root | Composition | Wires into | Sources |");
-  L.push("| --- | --- | --- | --- | --- |");
+  L.push("| Engine | Root | Composition | Atoms | Wires into | Sources |");
+  L.push("| --- | --- | --- | --- | --- | --- |");
   for (const e of [...byEngine].sort((a, b) => a.engine.localeCompare(b.engine))) {
     const comp = e.composition.map((t) => `\`${t}\``).join(" ");
     const req = e.requires.map((t) => `\`${t}\``).join(" ");
+    // Empty for an atom engine, which combines nothing. The column exists for
+    // the composites: which engines a composite joins is the one thing the
+    // index could not answer, and it is the first question asked of one.
+    const atoms = e.atoms
+      .map((a) => (a.layer === "composite" ? `_\`${a.name}\`_` : `\`${a.name}\``))
+      .join(" + ");
     L.push(
-      `| ${engineCell(e)} | \`${e.root}\` | ${comp} | ${req} | ${esc(e.sources.join("; "))} |`,
+      `| ${engineCell(e)} | \`${e.root}\` | ${comp} | ${atoms} | ${req} | ${esc(e.sources.join("; "))} |`,
     );
   }
 
