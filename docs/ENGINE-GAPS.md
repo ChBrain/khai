@@ -178,6 +178,46 @@ Freud, not Freud alone) in its Origin table:
   builders-on-top (A. Freud, Hartmann; Solms), bringing it into line with the
   lineage principle applied across the rest of the effort.
 
+## The animal lane — opened by `pet`, charted (not a tier, and no order)
+
+`pet` (#1331) is the first engine in the catalogue whose subject is an animal.
+Before it, animals appeared only as **material inside human-subject engines** —
+Hardin's herder adding one more beast in `commons`, animal-reminder revulsion in
+`disgust`, a carved animal in `totem`. None read the relation itself, which is
+distinctive because the other party has interests, cannot be reasoned with,
+cannot consent, and cannot reciprocate in the terms the arrangement runs on.
+
+`pet` also set a **shape precedent** the next animal engine inherits: it runs a
+living participant through the piece grammar (Place / Load Bearing / Apparent /
+Yearbook), and its REFERENCES states that the discomfort is the argument rather
+than an oversight — a pet is talked about as kin and kept as a ward, and the form
+states the second half. A second animal engine either adopts that reading or
+argues its way to a different one; that is the first question its PR answers.
+
+**This is deliberately charted here and not opened as a management order.** An
+order names a **tier** and sets an invariant across it — the clinical tier, the
+cross-type frontier. The animal lane is two engines. If a third and fourth
+candidate appear (the wild animal, the laboratory animal, the animal as food —
+none scoped, and `meal` may already own the last), the shape question becomes a
+standing decision and earns an order then. Two engines is a chart row.
+
+| #   | Candidate          | Phenomenon                                                                                        | Warrant                                                                                                        | Nearest / boundary                                                                                                                                                                                                                                           | E/C                        | Status          |
+| --- | ------------------ | ------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------- | --------------- |
+| A1  | **pet**            | an animal kept for company at total dependency, and the keeper who arranged that dependency       | Tuan (1984, _Dominance and Affection_); Serpell (1986); Berger (1980); Haraway (2003/2008) as counter-author   | `commons` (the beast as grazing resource); `extended-self`/`heirloom` (an object carrying identity); `caregiving`/`attachment` (the carer's interior); `grief`/`mortality` (the loss after)                                                                  | Engine (piece)             | shipped (#1331) |
+| A2  | **working-animal** | an animal kept for its **output**: cooperation trained rather than contracted, and no way to quit | Hribal (2003, _Animals Are Part of the Working Class_; 2010); Swart (2010); Nance (2013); Haraway, labour side | `pet` (kept for company, not output — the direct seam); `employment` (a human contract, with wage, exit and dismissal); `commons` (a resource in a grazing dilemma, not a worker); `agency` (a **designed** delegate that prescribes — an animal is neither) | Engine (piece or position) | candidate       |
+
+**Warrant confidence: medium-high, verify at build.** Hribal and Haraway are
+firm; Swart and Nance are named from the historiography of working horses and
+circus elephants and should be checked against the actual argument before they
+carry a row in an Origin table.
+
+**The open shape question for A2.** `pet` is a piece because the animal is kept;
+a working animal is _held to a role_, which is position grammar (Has / Orders /
+Loses / Drives). Whichever it takes, the engine must not restate `employment` —
+the seam is that the cooperation is trained rather than agreed, and that there is
+no quitting, no wage, and no dismissal, only disposal. That asymmetry, not the
+labour, is the phenomenon.
+
 ## Clinical tier — opened, and charted (Tier C)
 
 A new **clinical-disorder tier** was opened (2026-08-01), distinct from the
