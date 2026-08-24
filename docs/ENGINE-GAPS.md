@@ -1579,7 +1579,7 @@ do where both have a term of their own.
 | `regime`             | `regime`             | `climate/process_regime.md`              | `climate_regime`               | the standing weather type, not the polity                                      | 1     | proposed        |
 | `repair`             | `repair`             | `trust/process_repair.md`                | `trust_repair`                 | the literature's own term                                                      | 2     | proposed        |
 | `representativeness` | `representativeness` | `bias/position_representativeness.md`    | `representativeness_heuristic` | matches `availability_heuristic` next to it                                    | 0     | proposed        |
-| `reward`             | `reward`             | `power/position_reward.md`               | `reward_power`                 | French & Raven's own term — the file's title is already "Reward Power"         | 0     | building        |
+| `reward`             | `reward`             | `power/position_reward.md`               | `reward_power`                 | French & Raven's own term — the file's title is already "Reward Power"         | 0     | shipped (#1358) |
 | `sadness`            | `sadness`            | `emotion/process_sadness.md`             | `appraisal_sadness`            | the appraisal family                                                           | 0     | proposed        |
 | `standing`           | `standing`           | `recognition/process_standing.md`        | `recognition_standing`         | the post-recognition phase, not the composite                                  | 3     | proposed        |
 | `trust`              | `trust`              | `faith/position_trust.md`                | `faith_trust`                  | the faith triad's middle term, beside `surrender`                              | 1     | proposed        |
@@ -1660,9 +1660,10 @@ answering virtues as `position_virtue_*` — so the names carry the
 classification the engine's REFERENCES already documents, and no future pole has
 to decide the question again. Only the three cleared a whitelist entry; the
 other eleven were symmetry, and cost nothing because nothing outside the engine
-links any of them. **Seventeen zero-cost renames remain**, and
-`power/position_reward` clears a fourth entry on its own — French & Raven's own
-term, and the file's title is already "Reward Power" — so it went next.
+links any of them. `power/position_reward` was the third lane and is done
+(#1358, ratchet closed alongside): a fourth entry cleared on its own, taking
+French & Raven's own term, which the file's title had carried all along.
+**Sixteen zero-cost renames remain.**
 
 **A limit the `power` lane found, which `virtue` had hidden.** Every one of
 `power`'s six bases is titled "_X_ Power", so the whole-set symmetry that
@@ -1677,9 +1678,10 @@ travels alone. Whole-set symmetry is available for free only where a lane has no
 inbound links at all — as `virtue` and `morphology` did — and is a maintainer's
 call with a red window anywhere else.
 
-**The count is 43, not 49** — `preparation`, `recognition` and `return` left
-`memberPolicy.homonyms` in #1353, and `envy`, `gratitude` and `pride` with the
-virtue rename.
+**The count is 42, not 49** — `preparation`, `recognition` and `return` left
+`memberPolicy.homonyms` in #1353, `envy`, `gratitude` and `pride` with the
+virtue rename, and `reward` with the power rename. Seven cleared across three
+lanes.
 Every heading and total above that says 49 is the count at the time of the
 sweep.
 
