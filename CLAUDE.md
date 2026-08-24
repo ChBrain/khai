@@ -72,11 +72,16 @@ npx khai-guard advise --files <paths>
 7. **One phenomenon, one engine — and member files are API.** A new member
    whose stem another engine already claims (or that restates a whole engine's
    domain) fails `khai-guard member-check`; that rejection is correct — thin it
-   to a pointer at the owning engine, or (same word, different science) ask the
-   maintainer to whitelist it under `memberPolicy.homonyms`. And because
-   composites hard-link member files by name, **renaming or removing a member
-   is a breaking change**: at least `bump:minor` (the maintainer's label),
-   never a silent patch. Adding members stays patch-free.
+   to a pointer at the owning engine, or give it a **distinct stem**, which is
+   almost always the field's own compound term (`verbal_persuasion`, not
+   `persuasion`; `reward_power`, not `reward`). A `memberPolicy.homonyms`
+   whitelist is the **last resort, not the first offer**: it is for a word that
+   genuinely carries two sciences and cannot be renamed on either side without
+   losing the field's own term, and it is the maintainer's call, never
+   self-granted. And because composites hard-link member files by name,
+   **renaming or removing a member is a breaking change**: at least
+   `bump:minor` (the maintainer's label), never a silent patch. Adding members
+   stays patch-free.
 
 ## Lanes at a glance (the full table is in docs/BRANCHING.md)
 
