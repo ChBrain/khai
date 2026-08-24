@@ -1,6 +1,7 @@
 {
   "id": "kleist",
   "title": "Kleist",
+  "kind": "stage",
   "package": "@chbrain/khai-plays-kleist",
   "blurb": "Broken trust, somnambulists, and sudden violence where a single misread sign shatters the whole order.",
   "repo": "https://github.com/ChBrain/khai-plays-kleist"

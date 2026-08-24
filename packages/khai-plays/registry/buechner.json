@@ -1,6 +1,7 @@
 {
   "id": "buechner",
   "title": "Buechner",
+  "kind": "stage",
   "package": "@chbrain/khai-plays-buechner",
   "blurb": "Fevered, unfinished, a century ahead of their stage.",
   "repo": "https://github.com/ChBrain/khai-plays-buechner"

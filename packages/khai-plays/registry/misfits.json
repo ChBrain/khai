@@ -1,6 +1,7 @@
 {
   "id": "misfits",
   "title": "Misfits",
+  "kind": "canon",
   "package": "@chbrain/khai-misfits",
   "blurb": "Structural traps staged as systems: where local reason sums to collective ruin, no villain needed.",
   "repo": "https://github.com/ChBrain/khai-misfits"
