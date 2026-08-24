@@ -7,12 +7,12 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 ## Files
 
 - [folktale](play_folktale.md): play (anchor)
-- [preparation](plot_preparation.md): plot
+- [folktale preparation](plot_folktale_preparation.md): plot
 - [complication](plot_complication.md): plot
 - [donor](plot_donor.md): plot
 - [struggle](plot_struggle.md): plot
-- [return](plot_return.md): plot
-- [recognition](plot_recognition.md): plot
+- [folktale return](plot_folktale_return.md): plot
+- [folktale recognition](plot_folktale_recognition.md): plot
 
 See [sources and attribution](REFERENCES.md).
 
