@@ -1579,7 +1579,7 @@ do where both have a term of their own.
 | `regime`             | `regime`             | `climate/process_regime.md`              | `climate_regime`               | the standing weather type, not the polity                                      | 1     | proposed        |
 | `repair`             | `repair`             | `trust/process_repair.md`                | `trust_repair`                 | the literature's own term                                                      | 2     | proposed        |
 | `representativeness` | `representativeness` | `bias/position_representativeness.md`    | `representativeness_heuristic` | matches `availability_heuristic` next to it                                    | 0     | proposed        |
-| `reward`             | `reward`             | `power/position_reward.md`               | `reward_power`                 | French & Raven's own term — the file's title is already "Reward Power"         | 0     | proposed        |
+| `reward`             | `reward`             | `power/position_reward.md`               | `reward_power`                 | French & Raven's own term — the file's title is already "Reward Power"         | 0     | building        |
 | `sadness`            | `sadness`            | `emotion/process_sadness.md`             | `appraisal_sadness`            | the appraisal family                                                           | 0     | proposed        |
 | `standing`           | `standing`           | `recognition/process_standing.md`        | `recognition_standing`         | the post-recognition phase, not the composite                                  | 3     | proposed        |
 | `trust`              | `trust`              | `faith/position_trust.md`                | `faith_trust`                  | the faith triad's middle term, beside `surrender`                              | 1     | proposed        |
@@ -1662,7 +1662,20 @@ to decide the question again. Only the three cleared a whitelist entry; the
 other eleven were symmetry, and cost nothing because nothing outside the engine
 links any of them. **Seventeen zero-cost renames remain**, and
 `power/position_reward` clears a fourth entry on its own — French & Raven's own
-term, and the file's title is already "Reward Power" — so it is next.
+term, and the file's title is already "Reward Power" — so it went next.
+
+**A limit the `power` lane found, which `virtue` had hidden.** Every one of
+`power`'s six bases is titled "_X_ Power", so the whole-set symmetry that
+`virtue` took would apply here too — but it is **not** available at the same
+price. `composites/standing` links `position_legitimate.md` and
+`position_expert.md` by qualified path, and a rename breaks those links hard:
+with the manifest correctly moved, `standing`'s own suite still fails
+(1 failed, 8 passed) on the stale pointer alone. Because the engine lane and the
+composite lane cannot share a branch, taking all six would leave `main` red
+between the two PRs. `reward` is the only base nothing links, which is why it
+travels alone. Whole-set symmetry is available for free only where a lane has no
+inbound links at all — as `virtue` and `morphology` did — and is a maintainer's
+call with a red window anywhere else.
 
 **The count is 43, not 49** — `preparation`, `recognition` and `return` left
 `memberPolicy.homonyms` in #1353, and `envy`, `gratitude` and `pride` with the

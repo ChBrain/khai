@@ -35,7 +35,7 @@ What the engine refuses to model, and to whom it delegates.
 Source to constraint, per file.
 
 - **[power](position_power.md)** (the anchor): Power as position: the base from which a persona can move others. Anchored by French & Raven (1959) -- the five-base taxonomy; compliance grounds in the base, not the act of influence.
-- **[reward](position_reward.md)** (expression): The persona can provide what others want; compliance is purchased through the prospect of benefit. Anchored by French & Raven (1959) -- reward power; Raven (1993) -- personal vs. impersonal reward.
+- **[reward](position_reward_power.md)** (expression): The persona can provide what others want; compliance is purchased through the prospect of benefit. Anchored by French & Raven (1959) -- reward power; Raven (1993) -- personal vs. impersonal reward.
 - **[coercive](position_coercive.md)** (expression): The persona can impose costs; compliance is extracted through the threat of harm or penalty. Anchored by French & Raven (1959) -- coercive power; Yukl & Falbe (1991) -- side-effects of coercion.
 - **[legitimate](position_legitimate.md)** (expression): The persona holds authority by role or norm; compliance rests on the shared belief that the persona has the right to direct. Anchored by French & Raven (1959) -- legitimate power; the domain-specificity constraint.
 - **[referent](position_referent.md)** (expression): Others identify with or admire the persona; influence flows through the desire to align. Anchored by French & Raven (1959) -- referent power; Yukl & Falbe (1991) -- referent power linked to commitment, not mere compliance.

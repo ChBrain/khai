@@ -7,7 +7,7 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 ## Files
 
 - [power](position_power.md): position (anchor)
-- [reward](position_reward.md): position
+- [reward power](position_reward_power.md): position
 - [coercive](position_coercive.md): position
 - [legitimate](position_legitimate.md): position
 - [referent](position_referent.md): position
