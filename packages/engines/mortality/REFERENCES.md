@@ -18,12 +18,12 @@ the instant the fact turns real.
 Existential and terror-management work on death awareness, applied as code
 constraints.
 
-| Source                              | Key Work                                                         | Scope                                                                                                |
-| ----------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| **Ernest Becker**                   | _The Denial of Death_ (1973)                                     | Awareness of death as the spring of human action; culture and heroism as the denial that buries it.  |
-| **Greenberg, Pyszczynski, Solomon** | _Terror Management Theory_ (1986); _The Worm at the Core_ (2015) | Mortality salience drives worldview defence and self-esteem striving as buffers against death dread. |
-| **Irvin Yalom**                     | _Existential Psychotherapy_ (1980)                               | Death as the first of the four givens; the confrontation that can be fled or integrated.             |
-| **Martin Heidegger**                | _Being and Time_ (1927)                                          | Being-toward-death; authentic existence as life owned in the face of its own end.                    |
+| Source                                      | Key Work                                                         | Scope                                                                                                |
+| ------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| **Ernest Becker**                           | _The Denial of Death_ (1973)                                     | Awareness of death as the spring of human action; culture and heroism as the denial that buries it.  |
+| **Greenberg, Pyszczynski, Sheldon Solomon** | _Terror Management Theory_ (1986); _The Worm at the Core_ (2015) | Mortality salience drives worldview defence and self-esteem striving as buffers against death dread. |
+| **Irvin Yalom**                             | _Existential Psychotherapy_ (1980)                               | Death as the first of the four givens; the confrontation that can be fled or integrated.             |
+| **Martin Heidegger**                        | _Being and Time_ (1927)                                          | Being-toward-death; authentic existence as life owned in the face of its own end.                    |
 
 ## Restrictions
 

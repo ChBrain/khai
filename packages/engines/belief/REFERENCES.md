@@ -14,12 +14,12 @@ The spine is the psychology of belief under pressure. A belief is not a static f
 
 The psychology of belief, dissonance, and belief change, applied directly as process constraints. Bayesian updating is the rational baseline against which the other four settlements read as departures.
 
-| Source                  | Key Work                                                 | Scope                                                                                                                                     |
-| :---------------------- | :------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
-| **Leon Festinger**      | _A Theory of Cognitive Dissonance_ (1957)                | Dissonance and its reduction: holding belief and contradicting evidence together is aversive, and the persona moves to relieve it.        |
-| **Ziva Kunda**          | _"The case for motivated reasoning"_ (1990)              | Motivated reasoning: the wanted conclusion is fixed first and the reasoning is built back to reach it, working the slack in the evidence. |
-| **Lord, Ross & Lepper** | _"Biased assimilation and attitude polarization"_ (1979) | Belief perseverance and backfire: contradicting evidence can harden the belief it should have shaken.                                     |
-| **Thomas Kuhn**         | _The Structure of Scientific Revolutions_ (1962)         | Paradigm shift: long-strained frames do not bend gradually but flip wholesale once a rival account takes up the accumulated anomalies.    |
+| Source                      | Key Work                                                 | Scope                                                                                                                                     |
+| :-------------------------- | :------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| **Leon Festinger**          | _A Theory of Cognitive Dissonance_ (1957)                | Dissonance and its reduction: holding belief and contradicting evidence together is aversive, and the persona moves to relieve it.        |
+| **Ziva Kunda**              | _"The case for motivated reasoning"_ (1990)              | Motivated reasoning: the wanted conclusion is fixed first and the reasoning is built back to reach it, working the slack in the evidence. |
+| **Lord, Lee Ross & Lepper** | _"Biased assimilation and attitude polarization"_ (1979) | Belief perseverance and backfire: contradicting evidence can harden the belief it should have shaken.                                     |
+| **Thomas Kuhn**             | _The Structure of Scientific Revolutions_ (1962)         | Paradigm shift: long-strained frames do not bend gradually but flip wholesale once a rival account takes up the accumulated anomalies.    |
 
 ## Restrictions
 

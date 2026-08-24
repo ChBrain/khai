@@ -14,12 +14,12 @@ The engine is original khai framing built on the identity literature, not lifted
 
 The psychology of identity, applied directly as position constraints.
 
-| Source              | Key Work                                                     | Scope                                                                                                                  |
-| :------------------ | :----------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------- |
-| **Erik Erikson**    | _Identity: Youth and Crisis_ (1968)                          | Identity versus role confusion: the formation of a coherent, continuous self as a central developmental task.          |
-| **James Marcia**    | _"Development and validation of ego identity status"_ (1966) | The four identity statuses -- achieved, foreclosed, moratorium, diffuse -- as the cross of exploration and commitment. |
-| **Dan McAdams**     | _The Stories We Live By_ (1993)                              | Narrative identity: the self as an internalised, evolving story that integrates the persona across time.               |
-| **Tajfel & Turner** | _"The social identity theory of intergroup behavior"_ (1986) | The social, group-belonging component of identity -- the "we" -- noted here as the adjacent the engine delegates out.  |
+| Source                   | Key Work                                                     | Scope                                                                                                                  |
+| :----------------------- | :----------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------- |
+| **Erik Erikson**         | _Identity: Youth and Crisis_ (1968)                          | Identity versus role confusion: the formation of a coherent, continuous self as a central developmental task.          |
+| **James Marcia**         | _"Development and validation of ego identity status"_ (1966) | The four identity statuses -- achieved, foreclosed, moratorium, diffuse -- as the cross of exploration and commitment. |
+| **Dan McAdams**          | _The Stories We Live By_ (1993)                              | Narrative identity: the self as an internalised, evolving story that integrates the persona across time.               |
+| **Tajfel & John Turner** | _"The social identity theory of intergroup behavior"_ (1986) | The social, group-belonging component of identity -- the "we" -- noted here as the adjacent the engine delegates out.  |
 
 ## Restrictions
 
