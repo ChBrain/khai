@@ -3,7 +3,7 @@
 
 # khai science index
 
-The forward map: **science → engine**. Inverted from the Origin table every engine's `REFERENCES.md` carries, so navigation and the reverse warrant share one source and cannot drift. 373 engines, 1702 scholars. Of the engines, 99 are composites (_italicised_): their Origin tables carry the integrative warrant of the layer read, while each corner's primary science stays its atom's.
+The forward map: **science → engine**. Inverted from the Origin table every engine's `REFERENCES.md` carries, so navigation and the reverse warrant share one source and cannot drift. 373 engines, 1701 scholars. Of the engines, 99 are composites (_italicised_): their Origin tables carry the integrative warrant of the layer read, while each corner's primary science stays its atom's.
 
 ## By science
 
