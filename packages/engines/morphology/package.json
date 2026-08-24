@@ -33,7 +33,7 @@
         "parent": null
       },
       {
-        "file": "plot_preparation.md",
+        "file": "plot_folktale_preparation.md",
         "type": "plot",
         "parent": "play_folktale.md"
       },
@@ -53,12 +53,12 @@
         "parent": "play_folktale.md"
       },
       {
-        "file": "plot_return.md",
+        "file": "plot_folktale_return.md",
         "type": "plot",
         "parent": "play_folktale.md"
       },
       {
-        "file": "plot_recognition.md",
+        "file": "plot_folktale_recognition.md",
         "type": "plot",
         "parent": "play_folktale.md"
       }
