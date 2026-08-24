@@ -164,9 +164,11 @@ function resolveBranch() {
 // The changesets release branch (the bot's "Version Packages" PR): its whole job
 // is to CONSUME changesets and bump the version, so by construction it carries
 // no changeset and adds no play. It is the release mechanism, not a shipped
-// change, so the changeset-presence gate must not fire on it. The branch name is
-// the changesets convention `changeset-release/<baseBranch>`, the same lane the
-// branchScope config recognizes.
+// change, so neither the changeset-presence gate nor the branch-scope gate must
+// fire on it. The branch name is the changesets convention
+// `changeset-release/<baseBranch>`. Note it is deliberately NOT a branchScope
+// lane: a release touches every lane at once, so it is exempted rather than
+// classified.
 function isReleaseBranch(branch) {
   return typeof branch === "string" && branch.startsWith("changeset-release/");
 }
@@ -617,6 +619,21 @@ function runBranchCheck() {
       console.log("KHAI-Guard branch-check: detached HEAD and no --branch; skipping.");
       process.exit(0);
     }
+  }
+
+  // The changesets release branch is release automation, not a developer
+  // change: it bumps EVERY released package's package.json and CHANGELOG, which
+  // is inherently cross-lane and can never satisfy deny-by-default ownership --
+  // no allow-list fixes it, because those paths are owned by their own lanes.
+  // The same reason changeset-check skips it, so the rule lives here once and
+  // both callers get it: CI, and the pre-push hook, which otherwise refuses
+  // every push to the branch and leaves --no-verify as the only way through.
+  if (isReleaseBranch(branch)) {
+    console.log(
+      `KHAI-Guard branch-check: "${branch}" is the changesets release branch ` +
+        "(release automation, inherently cross-lane); skipping.",
+    );
+    process.exit(0);
   }
 
   const changed = changedPaths(config);
