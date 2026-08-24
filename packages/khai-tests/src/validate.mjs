@@ -1659,6 +1659,23 @@ export function playOrphanErrors(root) {
   return results;
 }
 
+/**
+ * The declared title policy for a root: `titlePolicy` in khai-guard.config.json.
+ * Absent, unreadable or malformed reads as no policy, so a root that declares
+ * nothing behaves exactly as it did before the key existed.
+ * @param {string} root
+ * @returns {{ homonyms?: Record<string, string[]> }}
+ */
+export function titlePolicy(root) {
+  const path = join(root, "khai-guard.config.json");
+  if (!existsSync(path)) return {};
+  try {
+    return JSON.parse(readFileSync(path, "utf8"))?.titlePolicy ?? {};
+  } catch {
+    return {};
+  }
+}
+
 export function validateProject({
   root,
   contentDir = root,
@@ -1721,9 +1738,20 @@ export function validateProject({
   // play title. The Playwright wiring guide is dev-steering named after the
   // phenomenon, not a cast element, so it is exempt (as it is from the loose and
   // orphan checks).
+  // A house may declare a title two kinds legitimately share, in
+  // `titlePolicy.homonyms`. This is the collection path only, and deliberately:
+  // an engine monorepo has never needed it (the wall went in green across every
+  // engine, composite and fixture), while a content house names its cast in the
+  // culture's own words, where one word is routinely the person and the episode
+  // both. The declaration is read here because this is where the root, and so
+  // the config, is in hand.
   const exemptTitles = new Set([PLAYWRIGHT_INSTRUCTIONS]);
+  const titleHomonyms = titlePolicy(root).homonyms ?? {};
   for (const [dir, elements] of elementsByDir) {
-    const collisions = titleCollisions(elements, { exempt: exemptTitles });
+    const collisions = titleCollisions(elements, {
+      exempt: exemptTitles,
+      homonyms: titleHomonyms,
+    });
     if (collisions.length) results.push({ file: dir, errors: collisions, warnings: [], audit: [] });
   }
 
