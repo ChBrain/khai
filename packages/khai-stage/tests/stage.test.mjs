@@ -90,7 +90,9 @@ describe("khai-stage: the stamped house", () => {
     // or consumers fall back to deprecated markdown parsing (regression guard).
     expect(pkg.files).toContain("registry.json");
     expect(pkg.exports["./registry.json"]).toBe("./registry.json");
-    expect(pkg.scripts.version).toBe("changeset version && khai-tests registry build");
+    expect(pkg.scripts.version).toBe(
+      "changeset version && khai-tests registry build && npm install --package-lock-only",
+    );
     expect(pkg.scripts.release).toBe("changeset publish");
     expect(pkg.private).toBeUndefined();
   });
@@ -119,6 +121,21 @@ describe("khai-stage: the stamped house", () => {
     const pkg = JSON.parse(readFileSync(join(dir, "package.json"), "utf8"));
     expect(pkg.license).toBe("SEE LICENSE IN LICENSE and LICENSE-CODE");
     expect(pkg.name).toBe("@chbrain/khai-plays-demo-source");
+  });
+
+  // Order, not just presence. In a house the version moves TWICE: `changeset
+  // version` bumps it, then `khai-tests registry build` overwrites it with the
+  // play count as 0.<count>.0. So the lockfile sync has to come after every
+  // writer of the version. Placed between them it would record a number
+  // `registry build` then replaces, and the lockfile would drift exactly as
+  // before while looking fixed -- which is how khai-misfits reached a 0.305.0
+  // lock against a 0.308.0 manifest.
+  it("syncs the lockfile last, after every writer of the version", () => {
+    const script = JSON.parse(readFileSync(join(dir, "package.json"), "utf8")).scripts.version;
+    const sync = script.indexOf("npm install --package-lock-only");
+    expect(sync).toBeGreaterThan(-1);
+    expect(sync).toBeGreaterThan(script.indexOf("changeset version"));
+    expect(sync).toBeGreaterThan(script.indexOf("khai-tests registry build"));
   });
 
   // The drift alarm is three parts and only works as three. Dependabot cannot
