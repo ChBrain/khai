@@ -2,9 +2,10 @@
 "@chbrain/khai-engine-virtue": minor
 ---
 
-Take the moral register on the three stems that collided with the emotion
-engines: `position_envy` → `position_vice_envy`, `position_pride` →
-`position_vice_pride`, `position_gratitude` → `position_virtue_gratitude`. The
-engine already chose that register when it named the sin `wrath` rather than
-`anger`. Member files are API and renaming one is breaking, hence minor; nothing
-outside the engine linked them.
+Name every pole by its register: the seven sins become `position_vice_*` and
+the seven answering virtues `position_virtue_*`. Three of the fourteen
+(`envy`, `pride`, `gratitude`) collided with the emotion engines that own those
+words and were the reason for the pass; the other eleven follow for symmetry, so
+the file names carry the classification the engine's own REFERENCES already
+documents. Member files are API and renaming one is breaking, hence minor;
+nothing outside the engine linked any of the fourteen.

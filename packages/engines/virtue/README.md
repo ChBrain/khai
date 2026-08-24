@@ -8,19 +8,19 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 
 - [virtue](process_virtue.md): process (anchor)
 - [vice pride](position_vice_pride.md): position
-- [humility](position_humility.md): position
-- [wrath](position_wrath.md): position
-- [patience](position_patience.md): position
-- [greed](position_greed.md): position
-- [generosity](position_generosity.md): position
-- [gluttony](position_gluttony.md): position
-- [temperance](position_temperance.md): position
+- [virtue humility](position_virtue_humility.md): position
+- [vice wrath](position_vice_wrath.md): position
+- [virtue patience](position_virtue_patience.md): position
+- [vice greed](position_vice_greed.md): position
+- [virtue generosity](position_virtue_generosity.md): position
+- [vice gluttony](position_vice_gluttony.md): position
+- [virtue temperance](position_virtue_temperance.md): position
 - [vice envy](position_vice_envy.md): position
 - [virtue gratitude](position_virtue_gratitude.md): position
-- [lust](position_lust.md): position
-- [chastity](position_chastity.md): position
-- [sloth](position_sloth.md): position
-- [diligence](position_diligence.md): position
+- [vice lust](position_vice_lust.md): position
+- [virtue chastity](position_virtue_chastity.md): position
+- [vice sloth](position_vice_sloth.md): position
+- [virtue diligence](position_virtue_diligence.md): position
 
 See [sources and attribution](REFERENCES.md).
 

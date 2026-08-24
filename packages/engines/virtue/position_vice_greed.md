@@ -27,7 +27,7 @@ and the chance closes if they do not move now.
 The hand closes around what is in it. The eyes do quiet arithmetic
 on what is on the table. The smile is the right size and arrives
 half a second late.
-The same chance [generosity](position_generosity.md) meets by opening
+The same chance [generosity](position_virtue_generosity.md) meets by opening
 the hand.
 
 ## Orders

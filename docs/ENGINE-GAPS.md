@@ -1653,8 +1653,14 @@ is why it went first. **Twenty remain at zero cost**:
 
 `virtue` is the second lane, in progress: three entries (`envy`, `gratitude`,
 `pride`) taking the moral register the engine already chose for itself when it
-named the sin `wrath` rather than `anger`. `power/position_reward` clears a
-fourth on its own and is next.
+named the sin `wrath` rather than `anger`. At the maintainer's call the whole
+set follows the register rather than only the three — all seven sins as
+`position_vice_*` and all seven answering virtues as `position_virtue_*` — so
+the names carry the classification the engine's REFERENCES already documents,
+and no future pole has to decide the question again. Only the three cleared a
+whitelist entry; the other eleven are symmetry, and cost nothing because nothing
+outside the engine links any of them. `power/position_reward` clears a fourth
+entry on its own and is next.
 
 **The count is 46, not 49** — `preparation`, `recognition` and `return` are
 gone from `memberPolicy.homonyms` as of #1353. Every heading and total above

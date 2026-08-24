@@ -60,13 +60,13 @@ The room reads the shape and acts on it before the persona has
 finished noticing they have moved at all.
 
 Which pole fired is read on one of seven axes, each running from the
-harder practice to the easier default: [humility](position_humility.md)
+harder practice to the easier default: [humility](position_virtue_humility.md)
 or [pride](position_vice_pride.md) when standing is touched,
-[patience](position_patience.md) or [wrath](position_wrath.md) when friction
-lands, [generosity](position_generosity.md) or [greed](position_greed.md)
-when there is more to take, [temperance](position_temperance.md) or
-[gluttony](position_gluttony.md) past the point of enough,
+[patience](position_virtue_patience.md) or [wrath](position_vice_wrath.md) when friction
+lands, [generosity](position_virtue_generosity.md) or [greed](position_vice_greed.md)
+when there is more to take, [temperance](position_virtue_temperance.md) or
+[gluttony](position_vice_gluttony.md) past the point of enough,
 [gratitude](position_virtue_gratitude.md) or [envy](position_vice_envy.md) at another's
-having, [chastity](position_chastity.md) or [lust](position_lust.md) when
-attention reaches past its standing, and [diligence](position_diligence.md)
-or [sloth](position_sloth.md) when a small thing is owed.
+having, [chastity](position_virtue_chastity.md) or [lust](position_vice_lust.md) when
+attention reaches past its standing, and [diligence](position_virtue_diligence.md)
+or [sloth](position_vice_sloth.md) when a small thing is owed.
