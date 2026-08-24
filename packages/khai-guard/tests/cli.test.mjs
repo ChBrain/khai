@@ -335,3 +335,59 @@ describe.skipIf(VALIDATE_DORMANT)("khai-guard branch: rejects an option-like com
     expect(r.stderr).toMatch(/refusing to create/);
   });
 });
+
+// The changesets release branch is release automation, not a developer change:
+// it bumps EVERY released package's package.json and CHANGELOG, which is
+// inherently cross-lane and can never satisfy deny-by-default ownership.
+// changeset-check has always skipped it; branch-check needs the same exemption
+// for the same reason. Until it has one the exemption lives only in the CI
+// workflow's bash, so the pre-push hook refuses every push to the branch and
+// leaves --no-verify as the only way through, against the house rule.
+// The probe must be unique to the branch-check exemption: changeset-check's own
+// message already says "is the changesets release branch", so matching that
+// would wake these tests before the source they exercise exists.
+const RELEASE_EXEMPT_DORMANT = !readFileSync(binPath, "utf8").includes(
+  "release automation, inherently cross-lane",
+);
+
+describe.skipIf(RELEASE_EXEMPT_DORMANT)("branch-check: the release branch is exempt", () => {
+  // A repo whose diff spans two lanes at once, which is what a release does.
+  function crossLaneRepo() {
+    const dir = initRepo();
+    write(dir, "khai-guard.config.json", JSON.stringify({}));
+    write(dir, "README.md", "seed\n");
+    commitAll(dir, "seed");
+    git(dir, ["branch", "base"]);
+    write(dir, "packages/engines/alpha/package.json", '{"name":"a"}\n');
+    write(dir, "packages/khai-plays/package.json", '{"name":"p"}\n');
+    commitAll(dir, "bump two lanes at once");
+    return dir;
+  }
+
+  // The other bin tests pass an explicit range; without one the guard finds no
+  // comparison base in a fresh repo and skips before reaching the lane gate,
+  // which would make the enforcement assertions pass for the wrong reason.
+  const RANGE = ["--base", "base", "--head", "main"];
+
+  it("skips the lane gate on changeset-release/*", () => {
+    const dir = crossLaneRepo();
+    const r = runGuard(dir, ["branch-check", "--branch", "changeset-release/main", ...RANGE]);
+    expect(r.status).toBe(0);
+    expect(r.stdout).toMatch(/changesets release branch/);
+  });
+
+  it("still refuses a branch that matches no lane", () => {
+    const dir = crossLaneRepo();
+    const r = runGuard(dir, ["branch-check", "--branch", "not-a-lane/thing", ...RANGE]);
+    expect(r.status).not.toBe(0);
+    expect(`${r.stdout}${r.stderr}`).toMatch(/matches no lane/);
+  });
+
+  it("still enforces the lane on an ordinary branch", () => {
+    // The exemption must be the release branch alone, not a hole in the gate:
+    // an engine branch touching khai-plays is still a violation.
+    const dir = crossLaneRepo();
+    const r = runGuard(dir, ["branch-check", "--branch", "engine/alpha/topic", ...RANGE]);
+    expect(r.status).not.toBe(0);
+  });
+});
