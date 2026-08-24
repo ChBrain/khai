@@ -2,6 +2,9 @@
   "source": ["plays/**"],
   "test": ["tests/**", ".github/workflows/**", ".husky/**"],
   "exemptRenames": true,
+  "driftPolicy": {
+    "scopes": ["@chbrain/"]
+  },
   "licensePolicy": {
     "packages": ["package.json"],
     "packageLicenses": ["SEE LICENSE IN LICENSE and LICENSE-CODE"]

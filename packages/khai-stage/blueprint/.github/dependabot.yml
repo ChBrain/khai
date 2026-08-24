@@ -19,3 +19,10 @@ updates:
           - "@vitest/*"
           - "husky"
           - "@changesets/*"
+    # Dependabot has no credential for GitHub Packages, so it cannot read
+    # @chbrain/* and its attempts are broken pull requests rather than updates.
+    # The signal is not lost: .github/workflows/khai-drift.yml asks the kit
+    # instead, and reports rather than opening a PR, because a khai bump is a
+    # migration and not a version edit.
+    ignore:
+      - dependency-name: "@chbrain/*"
