@@ -28,7 +28,7 @@
     "type": "position",
     "anchor": "position_power.md",
     "expressions": {
-      "reward": "position_reward.md",
+      "reward": "position_reward_power.md",
       "coercive": "position_coercive.md",
       "legitimate": "position_legitimate.md",
       "referent": "position_referent.md",
