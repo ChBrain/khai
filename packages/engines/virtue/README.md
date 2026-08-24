@@ -7,7 +7,7 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 ## Files
 
 - [virtue](process_virtue.md): process (anchor)
-- [pride](position_pride.md): position
+- [vice pride](position_vice_pride.md): position
 - [humility](position_humility.md): position
 - [wrath](position_wrath.md): position
 - [patience](position_patience.md): position
@@ -15,8 +15,8 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [generosity](position_generosity.md): position
 - [gluttony](position_gluttony.md): position
 - [temperance](position_temperance.md): position
-- [envy](position_envy.md): position
-- [gratitude](position_gratitude.md): position
+- [vice envy](position_vice_envy.md): position
+- [virtue gratitude](position_virtue_gratitude.md): position
 - [lust](position_lust.md): position
 - [chastity](position_chastity.md): position
 - [sloth](position_sloth.md): position

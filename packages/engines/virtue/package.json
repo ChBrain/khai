@@ -33,7 +33,7 @@
         "parent": null
       },
       {
-        "file": "position_pride.md",
+        "file": "position_vice_pride.md",
         "type": "position",
         "parent": "process_virtue.md"
       },
@@ -73,12 +73,12 @@
         "parent": "process_virtue.md"
       },
       {
-        "file": "position_envy.md",
+        "file": "position_vice_envy.md",
         "type": "position",
         "parent": "process_virtue.md"
       },
       {
-        "file": "position_gratitude.md",
+        "file": "position_virtue_gratitude.md",
         "type": "position",
         "parent": "process_virtue.md"
       },

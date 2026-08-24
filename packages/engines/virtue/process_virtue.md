@@ -61,12 +61,12 @@ finished noticing they have moved at all.
 
 Which pole fired is read on one of seven axes, each running from the
 harder practice to the easier default: [humility](position_humility.md)
-or [pride](position_pride.md) when standing is touched,
+or [pride](position_vice_pride.md) when standing is touched,
 [patience](position_patience.md) or [wrath](position_wrath.md) when friction
 lands, [generosity](position_generosity.md) or [greed](position_greed.md)
 when there is more to take, [temperance](position_temperance.md) or
 [gluttony](position_gluttony.md) past the point of enough,
-[gratitude](position_gratitude.md) or [envy](position_envy.md) at another's
+[gratitude](position_virtue_gratitude.md) or [envy](position_vice_envy.md) at another's
 having, [chastity](position_chastity.md) or [lust](position_lust.md) when
 attention reaches past its standing, and [diligence](position_diligence.md)
 or [sloth](position_sloth.md) when a small thing is owed.
