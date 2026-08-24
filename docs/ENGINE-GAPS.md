@@ -30,7 +30,10 @@ same word genuinely carries two sciences and neither side can be renamed without
 losing the field's own term. It is the last resort, not the first offer, and no
 **open** row below proposes one — the rows that used to offer the choice now
 name the stem to build under. (Tier 2's heading is left as it was written: those
-rows shipped, and the heading is a record of how they looked at proposal.)
+rows shipped, and the heading is a record of how they looked at proposal.) The
+49 entries already in `memberPolicy.homonyms` are chased for distinct names in
+"The homonym backlog" below — the ruling reads forward, but the backlog is what
+it implies about what is already there.
 
 **Every candidate table carries a Status column.** Nineteen of the later tables
 were written without one and went stale: 24 rows had shipped and still read as
@@ -1496,6 +1499,144 @@ chase list honest.
 `unmoored` (#1235), `uptake` (#1248), `utterance` (#1190),
 `wildland` (#1127)
 
+## The homonym backlog -- 49 whitelisted stems, chased for a distinct name
+
+The ruling that a distinct stem beats a whitelist reads forward, so the 49
+entries already in `memberPolicy.homonyms` were left alone when it landed. This
+chases them. Every entry is live -- `member-check` reports no dead exemptions --
+so each one is holding a real collision open.
+
+**The finding is that the whitelist has mostly been protecting a bare word the
+literature does not use bare.** Eighteen of the renames below are the field's
+own compound term, already sitting in the source the member cites: Bandura's
+_verbal persuasion_ and _mastery experience_, French & Raven's _reward power_
+(the file's title is already "Reward Power"), Tversky & Kahneman's
+_representativeness heuristic_, Tajfel's _social creativity_, Back's
+_narcissistic admiration_ and _narcissistic rivalry_, Gebauer's _communal
+narcissism_, _trust repair_, _self-forgiveness_, _emotional forgiveness_,
+Deci & Ryan's _extrinsic_, Hutt's _exploratory play_, Elliot's _approach goal_
+and _mastery goal_, Gollwitzer's _if-then planning_, Ainsworth's _caregiver
+sensitivity_, Frankl's _search for meaning_. The rename is a **precision gain**
+in those rows, not a compromise made to satisfy a gate.
+
+**All 58 proposed stems were checked against the full 2,515-member inventory:
+every one is free, and none restates an engine slug.** The Links column counts
+files outside the member's own engine that reference it by name -- the real cost
+of the rename, since a composite hard-links member files and the link updates
+land on the composite's own lane.
+
+Two rules produce every row.
+
+- **The root keeps the word.** Where one claimant's engine slug _is_ the stem
+  (28 of 49), that engine keeps it and the other yields. `anger` belongs to the
+  `anger` engine; `emotion`'s reading of it is something else and can say so.
+- **The yielding member takes the name its own Owner line already gives it.**
+  Every yielding member opens with a link to its parent and a clause naming what
+  it is -- `[Emotion](process_emotion.md), the appraisal this feeling is one
+reading of`. The family word is already written down in the file; the filename
+  just has not caught up.
+
+Where no engine owns the stem (21 of 49), the more generic side yields, or both
+do where both have a term of their own.
+
+### The 28 with a root owner
+
+| Stem                 | Root keeps           | Yields                                   | Rename to                      | Why that name                                                                  | Links |
+| -------------------- | -------------------- | ---------------------------------------- | ------------------------------ | ------------------------------------------------------------------------------ | ----- |
+| `admiration`         | `admiration`         | `narcissism/process_admiration.md`       | `narcissistic_admiration`      | Back et al.'s own term — the admiration route of the ARC model                 | 18    |
+| `anchoring`          | `anchoring`          | `bias/position_anchoring.md`             | `anchoring_bias`               | bias's own `_bias` suffix (`action_bias`, `authority_bias`)                    | 2     |
+| `anger`              | `anger`              | `emotion/process_anger.md`               | `appraisal_anger`              | its Owner line already says it: "the appraisal this feeling is one reading of" | 15    |
+| `contagion`          | `contagion`          | `superstition/position_contagion.md`     | `law_of_contagion`             | Frazer's own name for the sympathetic-magic law                                | 1     |
+| `creativity`         | `creativity`         | `social-identity/position_creativity.md` | `social_creativity`            | Tajfel & Turner's own term for the identity strategy                           | 2     |
+| `disgust`            | `disgust`            | `emotion/process_disgust.md`             | `appraisal_disgust`            | the appraisal family, as above                                                 | 13    |
+| `embarrassment`      | `embarrassment`      | `shame/process_embarrassment.md`         | `shame_embarrassment`          | the shame family it sits in beside `humiliation`                               | 12    |
+| `envy`               | `envy`               | `virtue/position_envy.md`                | `vice_envy`                    | virtue holds both registers and already chose `wrath` over `anger`             | 0     |
+| `exploration`        | `exploration`        | `negotiation/process_exploration.md`     | `negotiation_exploration`      | one of negotiation's four phases                                               | 7     |
+| `fear`               | `fear`               | `emotion/process_fear.md`                | `appraisal_fear`               | the appraisal family                                                           | 12    |
+| `framing`            | `framing`            | `pitch-mode/position_framing.md`         | `pitch_framing`                | the pitch's own opening move                                                   | 1     |
+| `gratitude`          | `gratitude`          | `virtue/position_gratitude.md`           | `virtue_gratitude`             | the virtue register                                                            | 1     |
+| `joy`                | `joy`                | `emotion/process_joy.md`                 | `appraisal_joy`                | the appraisal family                                                           | 15    |
+| `liminality`         | `liminality`         | `ritual/process_liminality.md`           | `transition`                   | van Gennep's own middle term, beside `separation` and `incorporation`          | 1     |
+| `loyalty`            | `loyalty`            | `moral-judgment/position_loyalty.md`     | `loyalty_foundation`           | Haidt's foundations are named as foundations                                   | 10    |
+| `narcissism`         | `narcissism`         | `dark-triad/position_narcissism.md`      | `triad_narcissism`             | the triad's own reading of the trait                                           | 16    |
+| `obedience`          | `obedience`          | `conformity/process_obedience.md`        | `conformity_obedience`         | the pull conformity models, not Milgram's engine                               | 12    |
+| `persuasion`         | `persuasion`         | `self-efficacy/position_persuasion.md`   | `verbal_persuasion`            | Bandura's own term for the efficacy source                                     | 1     |
+| `pride`              | `pride`              | `virtue/position_pride.md`               | `vice_pride`                   | the vice register                                                              | 0     |
+| `reactance`          | `reactance`          | `bias/position_reactance.md`             | `reactance_bias`               | the `_bias` suffix                                                             | 1     |
+| `recognition`        | `recognition`        | `morphology/plot_recognition.md`         | `folktale_recognition`         | its Owner is `[The Folktale]`; Propp's function, not Honneth's                 | 0     |
+| `regime`             | `regime`             | `climate/process_regime.md`              | `climate_regime`               | the standing weather type, not the polity                                      | 1     |
+| `repair`             | `repair`             | `trust/process_repair.md`                | `trust_repair`                 | the literature's own term                                                      | 12    |
+| `representativeness` | `representativeness` | `bias/position_representativeness.md`    | `representativeness_heuristic` | matches `availability_heuristic` next to it                                    | 1     |
+| `reward`             | `reward`             | `power/position_reward.md`               | `reward_power`                 | French & Raven's own term — the file's title is already "Reward Power"         | 0     |
+| `sadness`            | `sadness`            | `emotion/process_sadness.md`             | `appraisal_sadness`            | the appraisal family                                                           | 15    |
+| `standing`           | `standing`           | `recognition/process_standing.md`        | `recognition_standing`         | the post-recognition phase, not the composite                                  | 4     |
+| `trust`              | `trust`              | `faith/position_trust.md`                | `faith_trust`                  | the faith triad's middle term, beside `surrender`                              | 1     |
+
+### The 21 with no root owner
+
+| Stem              | Who keeps the bare stem                    | Yields                                         | Rename to                | Why that name                                                                                                                                               | Links |
+| ----------------- | ------------------------------------------ | ---------------------------------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| `approach`        | `reversal` keeps it                        | `goal/position_approach.md`                    | `approach_goal`          | Elliot's own term                                                                                                                                           | 2     |
+| `bearer`          | `document` keeps it                        | `stigma/position_bearer.md`                    | `stigmatized`            | Goffman's own word for the one who carries the mark                                                                                                         | 10    |
+| `communal`        | `narrative` keeps it                       | `narcissism/position_communal.md`              | `communal_narcissism`    | Gebauer et al.'s own term                                                                                                                                   | 3     |
+| `emotional`       | neither — both qualify                     | `forgiveness/process_emotional.md`             | `emotional_forgiveness`  | Worthington's own term                                                                                                                                      | 6     |
+| ↳                 |                                            | `memory/process_emotional.md`                  | `emotional_memory`       | the field's own term                                                                                                                                        | 11    |
+| `exploratory`     | `curiosity` keeps it                       | `play-mode/position_exploratory.md`            | `exploratory_play`       | Hutt's own term                                                                                                                                             | 6     |
+| `external`        | neither — both qualify                     | `locus-of-control/position_external.md`        | `external_locus`         | Rotter's own phrase                                                                                                                                         | 1     |
+| ↳                 |                                            | `motivation/process_external.md`               | `extrinsic`              | Deci & Ryan's own word for it                                                                                                                               | 1     |
+| `high`            | nobody — a bare `high` names no phenomenon | `psychological-safety/place_high.md`           | `high_safety`            | the title already reads "High Psychological Safety"                                                                                                         | 1     |
+| ↳                 |                                            | `status/position_high.md`                      | `high_status`            | the title already reads "High Status"                                                                                                                       | 8     |
+| ↳                 |                                            | `self-esteem/position_high.md`                 | `high_esteem`            | the one whose title is still bare                                                                                                                           | 8     |
+| `internalization` | `conformity` keeps it (Kelman's three)     | `socialization/process_internalization.md`     | `norm_internalization`   | what socialization actually internalises                                                                                                                    | 6     |
+| `low`             | nobody — as `high`                         | `psychological-safety/place_low.md`            | `low_safety`             | as above                                                                                                                                                    | 1     |
+| ↳                 |                                            | `status/position_low.md`                       | `low_status`             | as above                                                                                                                                                    | 9     |
+| ↳                 |                                            | `self-esteem/position_low.md`                  | `low_esteem`             | as above                                                                                                                                                    | 9     |
+| `mastery`         | neither — both qualify                     | `goal/position_mastery.md`                     | `mastery_goal`           | Dweck/Elliot's own term                                                                                                                                     | 4     |
+| ↳                 |                                            | `self-efficacy/position_mastery.md`            | `mastery_experience`     | Bandura's own term                                                                                                                                          | 4     |
+| `planning`        | `executive-function` keeps it              | `implementation-intention/process_planning.md` | `if_then_planning`       | Gollwitzer's own term                                                                                                                                       | 6     |
+| `preparation`     | `negotiation` keeps it                     | `morphology/plot_preparation.md`               | `folktale_preparation`   | the folktale family                                                                                                                                         | 0     |
+| `relief`          | `joy` keeps it                             | `addiction/process_relief.md`                  | `relief_craving`         | the negative-reinforcement term the addiction literature uses                                                                                               | 6     |
+| `resolution`      | `betrayal` keeps it                        | `negotiation/process_resolution.md`            | `negotiation_resolution` | the closing phase                                                                                                                                           | 7     |
+| `return`          | `monomyth` keeps it                        | `morphology/plot_return.md`                    | `folktale_return`        | the folktale family                                                                                                                                         | 3     |
+| `rivalry`         | `dramatic-situations` keeps it             | `narcissism/process_rivalry.md`                | `narcissistic_rivalry`   | Back et al.'s own term                                                                                                                                      | 2     |
+| `searching`       | `boredom` keeps it                         | `meaning/position_searching.md`                | `search_for_meaning`     | Frankl's, and Steger's scale's, own phrase                                                                                                                  | 1     |
+| `self`            | `archetypes` keeps it (Jung's Self)        | `forgiveness/process_self.md`                  | `self_forgiveness`       | the field's own term                                                                                                                                        | 0     |
+| ↳                 |                                            | `bias/position_self.md`                        | `self_bias`              | **maintainer's call** — bias's family roots are bare by design (`ease`, `coherence`, `belonging`, `stake`), so this one breaks a pattern to fix a collision | 0     |
+| `sensitivity`     | neither — both qualify                     | `caregiving/process_sensitivity.md`            | `caregiver_sensitivity`  | Ainsworth's own term                                                                                                                                        | 1     |
+| ↳                 |                                            | `disgust/position_sensitivity.md`              | `disgust_sensitivity`    | the field's own term                                                                                                                                        | 1     |
+| `shadow`          | `archetypes` keeps it (Jung's)             | `journey-roles/persona_shadow.md`              | `shadow_role`            | matches `journey_role` beside it                                                                                                                            | 3     |
+| `trickster`       | `archetypes` keeps it                      | `journey-roles/persona_trickster.md`           | `trickster_role`         | as above                                                                                                                                                    | 3     |
+
+### Mechanics, and why this is a backlog rather than a PR
+
+- **A rename is breaking.** `CLAUDE.md` rule 7: composites hard-link member
+  files by name, so renaming one is at least `bump:minor` -- the maintainer's
+  label, never a silent patch.
+- **One engine lane per rename.** `engine/<name>/<topic>` owns
+  `packages/engines/<name>/**` and nothing else, so a rename that 12 other files
+  point at cannot travel with the fixes to those pointers: the engine PR lands
+  first, each composite's link update follows on its own lane. Forty engines are
+  touched here in total. This is the honest reason the whitelist got used.
+- **The ratchet closes each one.** Once a rename lands, its whitelist entry is
+  dead and `member-check`'s `deadExemptions` warns on every run until a
+  governance PR deletes it. So each rename pairs with a one-line governance
+  follow-up, and the warning is the reminder.
+
+**Build order, by cost.** Seven have _zero_ inbound links and are a single PR
+each with no follow-on: `virtue/position_envy`, `virtue/position_pride`,
+`power/position_reward`, `morphology/plot_preparation`,
+`morphology/plot_recognition`, `bias/position_self`, `forgiveness/process_self`.
+Then `high` and `low` -- six files across three engines, and the two entries that
+buy the most, because a bare `high` names no phenomenon at all and the titles
+("High Psychological Safety", "High Status") already carry the distinct name.
+Leave the appraisal family (`emotion`'s five, 13-15 links each) and
+`narcissism/process_admiration` (18) until last: same rule, most pointers.
+
+**One row is the maintainer's, not the rule's.** `bias/position_self` →
+`self_bias` fixes the collision but breaks bias's own pattern, where family roots
+are deliberately bare (`ease`, `coherence`, `belonging`, `stake`). The
+alternative is to move `archetypes/persona_self` instead and leave bias alone.
+
 ## Provenance
 
 Method: ten parallel domain-expert gap analyses (emotion & affect; self,
@@ -1537,6 +1678,12 @@ Four findings, all repaired above:
 4. **Three factual errors:** a `design` type that does not exist and a missing
    `repertoire` in the cross-type map's Machinery bullet, and inventory counts
    three efforts out of date in the intro and here.
+
+**Homonym pass, 2026-08-24.** The 49 live entries in `memberPolicy.homonyms`
+were chased for distinct names; all 49 have one, and 18 of them are the field's
+own compound term rather than the bare word the whitelist was holding. Charted
+in "The homonym backlog", with the inbound-link cost per rename and the reason
+it is 40 engine lanes rather than one PR.
 
 The seven new candidates in "Fresh sweep (2026-08-24)" came out of the same pass,
 run the other way round: from the catalogue's own disclaimers outward, rather
