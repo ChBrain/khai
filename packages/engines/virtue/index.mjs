@@ -35,7 +35,7 @@ export const raw = Object.fromEntries(manifest.members.map((m) => [m.file, read(
  * The pole carries the firing dynamic upward, so composing a pole emits the
  * anchor with it.
  *
- * @param {{ leaf: string }} opts  leaf is a member file, e.g. "position_pride.md"
+ * @param {{ leaf: string }} opts  leaf is a member file, e.g. "position_vice_pride.md"
  * @returns {string} markdown ready to drop into an LLM context
  */
 export function compose({ leaf } = {}) {

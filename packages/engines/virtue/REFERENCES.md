@@ -35,10 +35,10 @@ What the engine refuses to model, and to whom it delegates.
 Source to constraint, per file. One process anchor (the firing) and fourteen pole positions (seven axes, two poles each).
 
 - **[virtue](process_virtue.md)** (the anchor): The firing itself -- pressure arrives, the persona moves toward one pole on at least one axis, the room reads the shape. Anchored by Aristotle (the active mean) and Baumeister (the depleted default).
-- **Pride / Humility** -- [pride](position_pride.md) claims standing the room did not offer; [humility](position_humility.md) asks for what is needed and touches the ground.
-- **Wrath / Patience** -- [wrath](position_wrath.md) discharges the friction fast; [patience](position_patience.md) holds the room together until the issue resolves.
-- **Greed / Generosity** -- [greed](position_greed.md) takes to protect the persona's own line; [generosity](position_generosity.md) gives to protect the others'.
-- **Gluttony / Temperance** -- [gluttony](position_gluttony.md) reaches for more of what soothes; [temperance](position_temperance.md) stops at enough.
-- **Envy / Gratitude** -- [envy](position_envy.md) reads others' having as the persona's own absence; [gratitude](position_gratitude.md) reads one's own portion as enough.
-- **Lust / Chastity** -- [lust](position_lust.md) reaches outside the persona's current standing; [chastity](position_chastity.md) holds the standing the persona is in.
-- **Sloth / Diligence** -- [sloth](position_sloth.md) refuses the small effort the room needs; [diligence](position_diligence.md) does the next required thing even unwatched.
+- **Pride / Humility** -- [pride](position_vice_pride.md) claims standing the room did not offer; [humility](position_virtue_humility.md) asks for what is needed and touches the ground.
+- **Wrath / Patience** -- [wrath](position_vice_wrath.md) discharges the friction fast; [patience](position_virtue_patience.md) holds the room together until the issue resolves.
+- **Greed / Generosity** -- [greed](position_vice_greed.md) takes to protect the persona's own line; [generosity](position_virtue_generosity.md) gives to protect the others'.
+- **Gluttony / Temperance** -- [gluttony](position_vice_gluttony.md) reaches for more of what soothes; [temperance](position_virtue_temperance.md) stops at enough.
+- **Envy / Gratitude** -- [envy](position_vice_envy.md) reads others' having as the persona's own absence; [gratitude](position_virtue_gratitude.md) reads one's own portion as enough.
+- **Lust / Chastity** -- [lust](position_vice_lust.md) reaches outside the persona's current standing; [chastity](position_virtue_chastity.md) holds the standing the persona is in.
+- **Sloth / Diligence** -- [sloth](position_vice_sloth.md) refuses the small effort the room needs; [diligence](position_virtue_diligence.md) does the next required thing even unwatched.

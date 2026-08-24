@@ -33,72 +33,72 @@
         "parent": null
       },
       {
-        "file": "position_pride.md",
+        "file": "position_vice_pride.md",
         "type": "position",
         "parent": "process_virtue.md"
       },
       {
-        "file": "position_humility.md",
+        "file": "position_virtue_humility.md",
         "type": "position",
         "parent": "process_virtue.md"
       },
       {
-        "file": "position_wrath.md",
+        "file": "position_vice_wrath.md",
         "type": "position",
         "parent": "process_virtue.md"
       },
       {
-        "file": "position_patience.md",
+        "file": "position_virtue_patience.md",
         "type": "position",
         "parent": "process_virtue.md"
       },
       {
-        "file": "position_greed.md",
+        "file": "position_vice_greed.md",
         "type": "position",
         "parent": "process_virtue.md"
       },
       {
-        "file": "position_generosity.md",
+        "file": "position_virtue_generosity.md",
         "type": "position",
         "parent": "process_virtue.md"
       },
       {
-        "file": "position_gluttony.md",
+        "file": "position_vice_gluttony.md",
         "type": "position",
         "parent": "process_virtue.md"
       },
       {
-        "file": "position_temperance.md",
+        "file": "position_virtue_temperance.md",
         "type": "position",
         "parent": "process_virtue.md"
       },
       {
-        "file": "position_envy.md",
+        "file": "position_vice_envy.md",
         "type": "position",
         "parent": "process_virtue.md"
       },
       {
-        "file": "position_gratitude.md",
+        "file": "position_virtue_gratitude.md",
         "type": "position",
         "parent": "process_virtue.md"
       },
       {
-        "file": "position_lust.md",
+        "file": "position_vice_lust.md",
         "type": "position",
         "parent": "process_virtue.md"
       },
       {
-        "file": "position_chastity.md",
+        "file": "position_virtue_chastity.md",
         "type": "position",
         "parent": "process_virtue.md"
       },
       {
-        "file": "position_sloth.md",
+        "file": "position_vice_sloth.md",
         "type": "position",
         "parent": "process_virtue.md"
       },
       {
-        "file": "position_diligence.md",
+        "file": "position_virtue_diligence.md",
         "type": "position",
         "parent": "process_virtue.md"
       }

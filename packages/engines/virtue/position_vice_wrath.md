@@ -27,7 +27,7 @@ third time; the same explanation has to be given again.
 The voice hardens at the consonants. The hand goes flat on the
 table. The breath shortens. The room reads the change before the
 words land.
-The same friction [patience](position_patience.md) meets by lengthening
+The same friction [patience](position_virtue_patience.md) meets by lengthening
 the breath.
 
 ## Orders
