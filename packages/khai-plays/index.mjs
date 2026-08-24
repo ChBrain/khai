@@ -1,11 +1,21 @@
-// khai-plays: the play registry. khai holds the bill, not the productions.
+// khai-plays: the house registry. khai holds the bill, not the productions.
 //
-// Each card names a house and its programme: the house is the khai-plays-<source>
-// repository, the programme is the package it publishes. khai is the source of
-// truth for which houses exist (the bill); the plays live in the houses. khai
-// knows the house by its card; the website knows it from khai and pulls the
-// programme to read that house's plays. Pure node, no canon dependency: a card
-// is metadata, not khai content.
+// One registry for every house that depends on khai, and a `kind` on the card
+// telling the three apart. They share an architecture and hold different things:
+//
+//   stage  a source staged as plays (Buechner, Dickens, L2)
+//   work   khai's own canon given a voice as a finished piece (Phoenix, which
+//          stages the combustion engine with each phenomenon speaking for itself)
+//   canon  reusable material a production draws on (Misfits, Cultures)
+//
+// The kind cannot be computed here. A card is all khai holds about a house --
+// the house is another repository, so its package.json (and the `khai.collection`
+// it declares) is out of reach at build time. The card carries the kind or the
+// bill cannot tell a Dickens staging from a catalogue of cultural positions.
+//
+// khai is the source of truth for which houses exist (the bill); the contents
+// live in the houses. Pure node, no canon dependency: a card is metadata, not
+// khai content.
 
 import { readdirSync, readFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -22,6 +32,20 @@ export const slug = (s) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
 
+/**
+ * The closed set of house kinds, in bill order. A card declares exactly one.
+ * Closed on purpose: a new kind is an architectural decision, so it lands here
+ * with a section in the rendered bill rather than appearing by typo.
+ */
+export const KINDS = ["stage", "work", "canon"];
+
+/** What each kind holds, for the card validator's message and the bill's prose. */
+export const KIND_BLURB = {
+  stage: "a source staged as plays",
+  work: "khai's own canon given a voice as a finished piece",
+  canon: "reusable material a production draws on",
+};
+
 const isSlug = (s) => typeof s === "string" && /^[a-z0-9]+(-[a-z0-9]+)*$/.test(s);
 const isPackage = (s) =>
   typeof s === "string" && /^(@[a-z0-9-~][a-z0-9-._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/.test(s);
@@ -29,8 +53,10 @@ const isPackage = (s) =>
 /**
  * Validate one registry card (a house). `id` pins it to its filename when loaded
  * from disk. Returns error strings; empty means valid. The card names the house
- * (its repo) and the programme (the package the website pulls for the plays);
- * both are required, because the repo is the house and the package is its bill.
+ * (its repo), what it publishes (the package the website pulls), and its `kind`.
+ * All three are required: the repo is the house, the package is what it holds,
+ * and the kind is what sort of house it is -- none of which khai can derive,
+ * because the house is another repository.
  */
 export function validateEntry(entry, { id } = {}) {
   if (!entry || typeof entry !== "object") return ["card is not an object"];
@@ -51,6 +77,10 @@ export function validateEntry(entry, { id } = {}) {
   }
   if (typeof entry.repo !== "string" || !/^https?:\/\//.test(entry.repo))
     e.push("repo is required and must be an http(s) URL (the house)");
+  if (!KINDS.includes(entry.kind))
+    e.push(
+      `kind is required and must be one of ${KINDS.join(", ")}, got ${JSON.stringify(entry.kind)}`,
+    );
   return e;
 }
 
@@ -90,41 +120,58 @@ export function renderReadme(houses) {
   const head = [
     "# khai-plays",
     "",
-    "The play registry: the bill. khai holds the index of the houses, not the",
-    "productions. Each card names a house and its programme: the house is the",
-    "`khai-plays-<source>` repository, and the programme is the package the website",
-    "pulls to read that house's plays. khai knows the house by its card; the website",
-    "knows it from khai and pulls the programme for the rest.",
+    "The house registry: the bill. khai holds the index of the houses, not what",
+    "they hold. One registry covers every house that depends on khai, and each",
+    "card declares its `kind` -- the three share an architecture and hold",
+    "different things:",
+    "",
+    ...KINDS.map((k) => `- **${k}** -- ${KIND_BLURB[k]}.`),
+    "",
+    "Each card names the house (its repository) and the package it publishes.",
+    "khai knows the house by its card; the website knows it from khai and pulls",
+    "the package for the rest.",
     "",
     "Generated from the registry, never hand-edited. Run",
-    '`npx @chbrain/khai-plays register <source> --blurb "..."` to add a card (its',
-    "shape is in `registry/README.md`); it rewrites this file.",
-    "",
-    "## Houses",
+    '`npx @chbrain/khai-plays register <source> --kind <kind> --blurb "..."` to add',
+    "a card (its shape is in `registry/README.md`); it rewrites this file.",
     "",
   ];
-  const body =
-    houses.length === 0
-      ? ["None registered yet."]
-      : houses.map((h) => `- **[${h.title}](${h.repo})** (programme \`${h.package}\`): ${h.blurb}`);
+
+  // A section per kind, in KINDS order, and only for kinds the bill actually
+  // holds -- an empty heading would read as a missing house rather than as a
+  // kind nobody has registered yet.
+  const body = [];
+  if (houses.length === 0) {
+    body.push("## Houses", "", "None registered yet.", "");
+  } else {
+    for (const kind of KINDS) {
+      const of = houses.filter((h) => h.kind === kind);
+      if (!of.length) continue;
+      const what = KIND_BLURB[kind];
+      body.push(
+        `## ${kind[0].toUpperCase()}${kind.slice(1)}`,
+        "",
+        `${what[0].toUpperCase()}${what.slice(1)}.`,
+        "",
+      );
+      for (const h of of) {
+        body.push(`- **[${h.title}](${h.repo})** (\`${h.package}\`): ${h.blurb}`);
+      }
+      body.push("");
+    }
+  }
+
   const tail = [
-    "",
     "## Reading the bill",
     "",
-    "`loadRegistry()` and `houses` return the validated cards, sorted by id. The",
-    "website renders them, links each house, and pulls its programme to read that",
-    "house's plays.",
+    "`loadRegistry()` and `houses` return the validated cards, sorted by id, each",
+    "carrying its `kind`. The website renders them, links each house, and pulls",
+    "its package to read what the house holds.",
     "",
   ];
   return [...head, ...body, ...tail].join("\n");
 }
 
-/** The registered houses, the bill the website reads. Resilient at import: a
- * malformed card must not crash module load (and with it the CLI that imports
- * this), which would leave no way to run the tool to fix the card. The strict
- * gate stays in loadRegistry(), which the CLI's render/register path calls and
- * surfaces as a blocking error -- so a bad card still blocks, it just no longer
- * throws on import. */
 export const houses = (() => {
   try {
     return loadRegistry();
@@ -133,4 +180,4 @@ export const houses = (() => {
   }
 })();
 
-export default { houses, loadRegistry, validateEntry, renderReadme, slug };
+export default { houses, loadRegistry, validateEntry, renderReadme, slug, KINDS, KIND_BLURB };

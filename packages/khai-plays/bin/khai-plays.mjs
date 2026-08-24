@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // khai-plays CLI: keep the bill and its README in lockstep.
 //
-//   khai-plays register <source> --blurb "..." [--title T] [--package P] [--repo URL]
+//   khai-plays register <source> --kind <stage|work|canon> --blurb "..."
+//                                 [--title T] [--package P] [--repo URL]
 //   khai-plays render
 //
 // `register` writes registry/<slug>.json (the card) and rewrites README.md from
@@ -12,7 +13,7 @@
 import { writeFileSync, mkdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
-import { slug, validateEntry, loadRegistry, renderReadme } from "../index.mjs";
+import { slug, validateEntry, loadRegistry, renderReadme, KINDS } from "../index.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(here, "..");
@@ -55,16 +56,25 @@ function writeReadme() {
 function register(args) {
   const source = args[0];
   if (!source || source.startsWith("--")) fail("register needs a <source>");
-  const flags = parseFlags(args.slice(1), ["blurb", "title", "package", "repo"]);
+  const flags = parseFlags(args.slice(1), ["blurb", "title", "package", "repo", "kind"]);
 
   const id = slug(source);
   if (!id) fail(`"${source}" has no slug`);
+  const kind = flags.kind;
+  if (!KINDS.includes(kind))
+    fail(`register needs --kind <${KINDS.join("|")}>, got ${JSON.stringify(kind ?? null)}`);
+
+  // Defaults follow the kind. Only a stage house is named khai-plays-<slug>;
+  // a work or a canon collection is khai-<slug>, which is why misfits, phoenix
+  // and cultures all had to override the old plays-only defaults by hand.
+  const base = kind === "stage" ? `khai-plays-${id}` : `khai-${id}`;
   const entry = {
     id,
     title: flags.title ?? source,
-    package: flags.package ?? `@chbrain/khai-plays-${id}`,
+    kind,
+    package: flags.package ?? `@chbrain/${base}`,
     blurb: flags.blurb ?? "",
-    repo: flags.repo ?? `https://github.com/ChBrain/khai-plays-${id}`,
+    repo: flags.repo ?? `https://github.com/ChBrain/${base}`,
   };
 
   const errors = validateEntry(entry, { id });
@@ -73,7 +83,7 @@ function register(args) {
   mkdirSync(REGISTRY, { recursive: true });
   writeFileSync(join(REGISTRY, `${id}.json`), `${JSON.stringify(entry, null, 2)}\n`);
   writeReadme();
-  console.log(`khai-plays: registered ${id} (${entry.package}); README rewritten.`);
+  console.log(`khai-plays: registered ${id} as ${kind} (${entry.package}); README rewritten.`);
 }
 
 function render() {
@@ -86,7 +96,8 @@ if (cmd === "register") register(rest);
 else if (cmd === "render") render();
 else {
   console.error(
-    'khai-plays: usage: register <source> --blurb "..." [--title --package --repo] | render',
+    `khai-plays: usage: register <source> --kind <${KINDS.join("|")}> --blurb "..." ` +
+      "[--title --package --repo] | render",
   );
   process.exit(cmd === undefined || cmd === "--help" || cmd === "-h" ? 0 : 1);
 }

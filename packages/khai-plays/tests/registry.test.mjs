@@ -3,7 +3,15 @@ import { mkdtempSync, writeFileSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { slug, validateEntry, loadRegistry, renderReadme, houses } from "../index.mjs";
+import {
+  slug,
+  validateEntry,
+  loadRegistry,
+  renderReadme,
+  houses,
+  KINDS,
+  KIND_BLURB,
+} from "../index.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const README = join(here, "..", "README.md");
@@ -11,6 +19,7 @@ const README = join(here, "..", "README.md");
 const good = {
   id: "buechner",
   title: "Buechner",
+  kind: "stage",
   package: "@chbrain/khai-plays-buechner",
   blurb: "The Buechner production house.",
   repo: "https://github.com/ChBrain/khai-plays-buechner",
@@ -54,6 +63,7 @@ describe("khai-plays: loading", () => {
     const card = (id) => ({
       id,
       title: id,
+      kind: "stage",
       package: `@chbrain/khai-plays-${id}`,
       blurb: id,
       repo: `https://github.com/ChBrain/khai-plays-${id}`,
@@ -78,10 +88,10 @@ describe("khai-plays: render", () => {
     expect(md).toContain("None registered yet.");
   });
 
-  it("links each house and shows its programme package", () => {
+  it("links each house and shows the package it publishes", () => {
     const md = renderReadme([good]);
     expect(md).toContain("[Buechner](https://github.com/ChBrain/khai-plays-buechner)");
-    expect(md).toContain("programme `@chbrain/khai-plays-buechner`");
+    expect(md).toContain("`@chbrain/khai-plays-buechner`");
   });
 
   it("is free of em/en-dashes and the clause dash (house voice)", () => {
@@ -94,5 +104,58 @@ describe("khai-plays: render", () => {
     const onDisk = readFileSync(README, "utf8");
     const expected = renderReadme(houses);
     expect(onDisk.trimEnd()).toBe(expected.trimEnd());
+  });
+});
+
+// One registry for every house that depends on khai, with a `kind` telling the
+// three apart. The kind cannot be computed: a card is all khai holds about a
+// house, whose package.json lives in another repository.
+describe("khai-plays: the three kinds", () => {
+  it("closes the set at stage, work, and canon", () => {
+    expect(KINDS).toEqual(["stage", "work", "canon"]);
+    for (const kind of KINDS) expect(typeof KIND_BLURB[kind]).toBe("string");
+  });
+
+  it("requires a kind, and refuses one outside the set", () => {
+    const { kind, ...noKind } = good;
+    expect(validateEntry(noKind, { id: "buechner" }).some((e) => e.includes("kind"))).toBe(true);
+    expect(
+      validateEntry({ ...good, kind: "playhouse" }, { id: "buechner" }).some((e) =>
+        e.includes("kind"),
+      ),
+    ).toBe(true);
+    for (const kind of KINDS) {
+      expect(validateEntry({ ...good, kind }, { id: "buechner" })).toEqual([]);
+    }
+  });
+
+  it("renders a section per kind, in bill order, and skips the empty ones", () => {
+    const card = (id, kind) => ({ ...good, id, title: id, kind });
+    const md = renderReadme([card("a", "canon"), card("b", "stage")]);
+    // Sections follow KINDS order, not the order the cards arrived in.
+    expect(md.indexOf("## Stage")).toBeGreaterThan(-1);
+    expect(md.indexOf("## Stage")).toBeLessThan(md.indexOf("## Canon"));
+    // Nothing is registered as a work here, so no empty heading is emitted --
+    // one would read as a missing house rather than an unused kind.
+    expect(md).not.toContain("## Work\n");
+  });
+
+  it("puts every live card under its own kind's section", () => {
+    const md = renderReadme(houses);
+    for (const h of houses) {
+      const section = `## ${h.kind[0].toUpperCase()}${h.kind.slice(1)}`;
+      const at = md.indexOf(section);
+      expect(at, `${h.id} declares ${h.kind}`).toBeGreaterThan(-1);
+      // The card's line sits after its own section heading.
+      expect(md.indexOf(`[${h.title}](${h.repo})`)).toBeGreaterThan(at);
+    }
+  });
+
+  it("stops claiming every house is a plays repository", () => {
+    // The old bill asserted the house was `khai-plays-<source>` and the package
+    // was its programme of plays; a third of the cards already broke both.
+    const md = renderReadme(houses);
+    expect(md).not.toContain("khai-plays-<source>` repository");
+    expect(md).not.toContain("read that house's plays");
   });
 });

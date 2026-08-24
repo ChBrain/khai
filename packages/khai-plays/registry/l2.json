@@ -1,6 +1,7 @@
 {
   "id": "l2",
   "title": "Life 2 Live",
+  "kind": "stage",
   "package": "@chbrain/khai-plays-l2",
   "blurb": "\"Life Is Very Exciting to Live It Very Embraced.\" Plays drawn from lived experience, each staged as a systemic production. Hard days held plainly, in a restrained first-person voice, the ordinary detail carrying the weight.",
   "repo": "https://github.com/ChBrain/L2"

@@ -1,6 +1,7 @@
 {
   "id": "grimm",
   "title": "Grimm",
+  "kind": "stage",
   "package": "@chbrain/khai-plays-grimm",
   "blurb": "Oaths, taboos, and transformations, run to their exact and merciless end.",
   "repo": "https://github.com/ChBrain/khai-plays-grimm"

@@ -1,6 +1,7 @@
 {
   "id": "hcandersen",
   "title": "H.C. Andersen",
+  "kind": "stage",
   "package": "@chbrain/khai-plays-hcandersen",
   "blurb": "Longing, cruelty, and grace, dressed as a children's tale.",
   "repo": "https://github.com/ChBrain/khai-plays-hcandersen"
