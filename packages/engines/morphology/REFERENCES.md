@@ -62,7 +62,7 @@ wedding.
   wondertale as a fixed sequence of functions, run in the same order however
   many are present. Anchored by Propp (the 31 functions and their invariant
   order).
-- **[preparation](plot_preparation.md)**: Absentation, interdiction,
+- **[preparation](plot_folktale_preparation.md)**: Absentation, interdiction,
   violation, reconnaissance, delivery, trickery, complicity -- functions
   I-VII. Anchored by Propp (the initial situation and the villain's
   approach).
@@ -75,10 +75,10 @@ wedding.
 - **[struggle](plot_struggle.md)**: Guidance, struggle, branding, victory,
   liquidation -- functions XV-XIX. Anchored by Propp (the direct contest and
   the liquidation of the initial lack).
-- **[return](plot_return.md)**: Return, pursuit, rescue, unrecognized
+- **[return](plot_folktale_return.md)**: Return, pursuit, rescue, unrecognized
   arrival -- functions XX-XXIII. Anchored by Propp (the reversed road and the
   arrival that does not yet resolve the tale).
-- **[recognition](plot_recognition.md)**: Unfounded claims, the difficult
+- **[recognition](plot_folktale_recognition.md)**: Unfounded claims, the difficult
   task, solution, recognition, exposure, transfiguration, punishment,
   wedding -- functions XXIV-XXXI. Anchored by Propp (the false hero's
   exposure and the tale's close).
