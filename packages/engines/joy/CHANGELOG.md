@@ -1,5 +1,11 @@
 # @chbrain/khai-engine-joy
 
+## 0.1.2
+
+### Patch Changes
+
+- 1fe3e7f: Resolve the bare Watson citation to David Watson, so the science index keys the right person.
+
 ## 0.1.1
 
 ### Patch Changes

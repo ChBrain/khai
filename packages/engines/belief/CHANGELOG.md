@@ -1,5 +1,11 @@
 # @chbrain/khai-engine-belief
 
+## 0.1.2
+
+### Patch Changes
+
+- a40014b: Resolve the bare Ross citation to Lee Ross, so the science index keys the right person.
+
 ## 0.1.1
 
 ### Patch Changes

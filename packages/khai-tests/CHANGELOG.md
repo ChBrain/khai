@@ -1,5 +1,14 @@
 # @chbrain/khai-tests
 
+## 0.2.7
+
+### Patch Changes
+
+- f682e87: Add an Atoms column to the science index's By engine table: which engines each composite wires, read from its own dependencies. Resolves a composite that wires composites, not only engines.
+- Updated dependencies [c6633b8]
+- Updated dependencies [5749ffd]
+  - @chbrain/khai-stage@0.0.23
+
 ## 0.2.6
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-praise",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "khai composite content, the praise domain: one warm regard for another's witnessed good, split by which kind of good it is -- a benefit, a virtue, or a skill -- into gratitude, elevation, and admiration, read whole across the atom engines it depends on.",
   "type": "module",
   "main": "./index.mjs",
@@ -81,7 +81,7 @@
     "@chbrain/khai-engine-gratitude": "^0.1.1"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.2",
+    "@chbrain/khai-tests": "^0.2.7",
     "vitest": "^4.1.10"
   }
 }

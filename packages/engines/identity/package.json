@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-identity",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "khai engine content, the identity domain: the self-story a persona holds about who they are, and how firmly -- and on what basis -- they defend it under challenge.",
   "type": "module",
   "main": "./index.mjs",
@@ -63,7 +63,7 @@
     "@chbrain/khai-arch": "^0.1.8"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.7",
     "vitest": "^4.1.10"
   }
 }

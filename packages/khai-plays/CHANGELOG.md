@@ -1,5 +1,14 @@
 # @chbrain/khai-plays
 
+## 0.0.18
+
+### Patch Changes
+
+- d86c62f: State what the house kinds actually differ in: every house holds plays, and the kinds differ in where the source comes from and what the plays are for. Adds a computed tally of the bill so a reader gets calibration without navigating.
+- 6fd3c09: Register the Cultures house on the bill as `canon`. It is khai's largest content house at 288 cultures and had no card, so it was invisible from the entry point.
+- 300535b: Describe the package as the house registry it now is. The npm description still claimed every house was a `khai-plays-<source>` collection, which is false for three of the ten and for two of the three kinds.
+- f402961: Type the house registry. One registry for every house that depends on khai, with a required `kind` on each card -- `stage` (a source staged as plays), `work` (khai's own canon given a voice), `canon` (reusable material a production draws on) -- and a section per kind in the generated bill. `register` gains `--kind` and defaults the repo and package from it.
+
 ## 0.0.17
 
 ### Patch Changes
