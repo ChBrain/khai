@@ -39,6 +39,7 @@ Khai's own canon given a voice as a finished piece.
 
 Reusable material a production draws on.
 
+- **[Cultures](https://github.com/ChBrain/khai-cultures)** (`@chbrain/khai-cultures`): Each culture a full khai play: a theatre of that culture, cast from its own history under a Hofstede-tuned pitch.
 - **[Misfits](https://github.com/ChBrain/khai-misfits)** (`@chbrain/khai-misfits`): Structural traps staged as systems: where local reason sums to collective ruin, no villain needed.
 
 ## Reading the bill
