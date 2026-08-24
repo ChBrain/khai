@@ -1,9 +1,25 @@
-// khai-stage: stamp a khai production house from the codified blueprint.
+// khai-stage: stamp a khai house from the codified blueprint.
 //
 // The invariant house is computed here, never improvised: every house gets the
-// same wiring, gates, and protection, with <source> the only hole filled. The
-// khai-impresario skill judges the source and calls this; this never judges. It
-// is the "computed" half of raising a house, peer to what the impresario guides.
+// same wiring, gates, and protection, with <source> and <kind> the only holes
+// filled. The khai-impresario skill judges the source and calls this; this never
+// judges. It is the "computed" half of raising a house, peer to what the
+// impresario guides.
+//
+// Three kinds, the same three the bill carries (khai-plays `registry/`):
+//
+//   stage  a source staged as plays. Named khai-plays-<source>, indexes the
+//          default `plays` collection, and so declares no collection at all.
+//   work   khai's own canon given a voice as a finished piece. khai-<source>.
+//   canon  reusable material a production draws on. khai-<source>.
+//
+// What varies by kind is the house's *identity and structure*: its package name,
+// repository, the collection directory it indexes, and the `khai.collection` it
+// declares. What does not vary is the voice -- the blueprint's management
+// personas still speak of plays, because that prose is judged rather than
+// computed, and judging is the impresario skill's half of the job. A work or
+// canon house stamped here is structurally correct and wants its management
+// prose read by the skill that raised it.
 
 import { readdirSync, readFileSync, mkdirSync, writeFileSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -12,6 +28,12 @@ import prettier from "prettier";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const BLUEPRINT = join(here, "blueprint");
+
+/**
+ * The kinds a house can be, matching the bill's closed set. `stage` is the
+ * default because it is what every house raised before this option was one.
+ */
+export const KINDS = ["stage", "work", "canon"];
 
 /** A source slug: lowercase ASCII, hyphen-joined. The one input a house turns on. */
 export const slug = (s) =>
@@ -33,8 +55,16 @@ const title = (s) =>
 // inert in this repo (no stray hook fires, no nested workflow runs); the stamp
 // restores them. A .tmpl suffix marks a file the toolchain must not pick up here
 // (a test that would otherwise run); the stamp drops it.
-function housePath(rel, { managerSlug, playwrightSlug, roadieSlug, directorSlug } = {}) {
+function housePath(
+  rel,
+  { managerSlug, playwrightSlug, roadieSlug, directorSlug, collection } = {},
+) {
   let p = rel.replace(/\.tmpl$/, "").replace(/\\/g, "/");
+  // The blueprint carries the collection dir as `plays/`; a work or canon house
+  // indexes its own, so the one directory is renamed on the way out.
+  if (collection && collection !== "plays" && p.startsWith("plays/")) {
+    p = `${collection}/${p.slice("plays/".length)}`;
+  }
   if (p === "npmrc" || p === "gitignore" || p === "nvmrc") return "." + p;
   if (p.startsWith("github/") || p.startsWith("husky/") || p.startsWith("changeset/"))
     return "." + p;
@@ -70,6 +100,8 @@ const walk = (dir, base = dir) =>
 export async function stageHouse({
   source,
   targetDir,
+  kind = "stage",
+  collection,
   manager,
   playwright,
   roadie,
@@ -80,6 +112,36 @@ export async function stageHouse({
   if (!s)
     throw new Error("khai-stage: a source is required, e.g. stageHouse({ source: 'buechner' })");
   if (!targetDir) throw new Error("khai-stage: a targetDir is required");
+  if (!KINDS.includes(kind))
+    throw new Error(
+      `khai-stage: kind must be one of ${KINDS.join(", ")}, got ${JSON.stringify(kind)}`,
+    );
+
+  // A stage house indexes the default `plays` collection, so it declares none --
+  // that is what makes the historical no-config houses resolve (see the kit's
+  // collection module). A work or canon house indexes a collection named for
+  // itself unless the caller names another: Phoenix is a `work` whose beasts do
+  // not share its slug.
+  const col = kind === "stage" ? "plays" : slug(collection) || s;
+  const base = kind === "stage" ? `khai-plays-${s}` : `khai-${s}`;
+  const engineName = kind === "stage" ? `plays-${s}` : s;
+
+  // What the house says it is. The three differ in what they hold, so they
+  // differ here; only a stage house credits an outside source, which is the
+  // licensing lane's distinction, not a stylistic one.
+  const T = title(source);
+  const description =
+    kind === "stage"
+      ? `khai plays: the ${T} production house. Plays staged with khai; the source is credited where it is in the public domain.`
+      : kind === "work"
+        ? `khai ${col}: ${T}, khai's own canon given a voice. Staged with khai.`
+        : `khai ${col}: the ${T} collection. Reusable material a production draws on, staged with khai.`;
+  const wire =
+    kind === "stage"
+      ? `The ${T} production house: a collection of khai plays.`
+      : kind === "work"
+        ? `${T}: khai's own canon given a voice, indexed as ${col}.`
+        : `The ${T} collection: reusable ${col} a production draws on.`;
 
   const m = manager ? slug(manager) : "manager";
   const mTitle = manager ? title(manager) : "Manager";
@@ -109,6 +171,16 @@ export async function stageHouse({
   const tokens = {
     "{{SOURCE_TITLE}}": title(source),
     "{{SOURCE}}": s,
+    "{{BASE}}": base,
+    "{{COLLECTION}}": col,
+    "{{ENGINE}}": engineName,
+    // A stage house declares no collection: `plays` is the default every
+    // no-config house already resolves to, and writing it would make the
+    // historical houses and the newly stamped ones disagree on paper while
+    // meaning the same thing.
+    "{{COLLECTION_DECL}}": kind === "stage" ? "" : `\n    "collection": ${JSON.stringify(col)},`,
+    "{{HOUSE_DESCRIPTION}}": description,
+    "{{HOUSE_WIRE}}": wire,
     "{{YEAR}}": String(new Date().getUTCFullYear()),
     "{{MANAGER_PERSONA}}": m,
     "{{MANAGER_TITLE}}": mTitle,
@@ -121,7 +193,13 @@ export async function stageHouse({
   };
   const fill = (text) => Object.entries(tokens).reduce((t, [k, v]) => t.split(k).join(v), text);
 
-  const slugs = { managerSlug: m, playwrightSlug: p, roadieSlug: r, directorSlug: d };
+  const slugs = {
+    managerSlug: m,
+    playwrightSlug: p,
+    roadieSlug: r,
+    directorSlug: d,
+    collection: col,
+  };
   const written = [];
   for (const rel of walk(BLUEPRINT)) {
     const out = join(targetDir, housePath(rel, slugs));
@@ -130,16 +208,17 @@ export async function stageHouse({
     written.push(housePath(rel, slugs).split("\\").join("/"));
   }
 
-  // Emit the playhouse registry so the house is green on raise (no manual
-  // `khai-tests registry build` step). An empty house lists no plays; name and
-  // version come from the house's own package.json, the same source the kit's
-  // registry builder reads, so the two never drift.
+  // Emit the house registry so the house is green on raise (no manual
+  // `khai-tests registry build` step). An empty house lists no items, keyed by
+  // the collection it indexes rather than always `plays`; name and version come
+  // from the house's own package.json, the same source the kit's registry
+  // builder reads, so the two never drift.
   const pkg = JSON.parse(readFileSync(join(targetDir, "package.json"), "utf8"));
   const registry = {
     $schema: "http://json-schema.org/draft-07/schema#",
     name: pkg.name,
     version: pkg.version,
-    plays: [],
+    [col]: [],
   };
   writeFileSync(join(targetDir, "registry.json"), JSON.stringify(registry, null, 2) + "\n");
   written.push("registry.json");
@@ -171,7 +250,9 @@ export async function stageHouse({
   }
 
   return {
-    repo: `khai-plays-${s}`,
+    repo: base,
+    kind,
+    collection: col,
     written: written.sort(),
     handoffs: [
       `npm ci  (needs GITHUB_TOKEN for the @chbrain registry), then push; the first CI runs green on the empty house`,
@@ -182,7 +263,12 @@ export async function stageHouse({
         : []),
       `branch protection: require PRs and the checks (test, khai-guard, branch-scope) on main, forbid force-push. Do NOT require the audit "consistency" status: its workflow is path-filtered to audit/**, so it never reports on a non-audit PR and would wedge every such PR ("Expected - waiting"). Apply in Settings > Branches or via gh api, once the first CI run has created the check names.`,
       `RELEASE_TOKEN secret: a PAT with Contents: write and Pull requests: write, so the release workflow can push the version branch + tags and open the Version PR. Without it the house publishes nothing.`,
-      `register the house in khai-plays under its Estate identity (README.md), so it appears on the bill`,
+      `register the house in khai-plays under its Estate identity (README.md), so it appears on the bill: npx @chbrain/khai-plays register ${s} --kind ${kind} --blurb "..."`,
+      ...(kind === "stage"
+        ? []
+        : [
+            `the blueprint's management prose speaks of plays; a ${kind} house holds ${col}, so the impresario reads that voice over before the first commit -- khai-stage computes the house, it does not judge it`,
+          ]),
     ],
   };
 }
