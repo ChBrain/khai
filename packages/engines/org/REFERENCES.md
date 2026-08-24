@@ -14,10 +14,10 @@ The spine is the Competing Values Framework: two axes -- flexibility versus stab
 
 Organisational psychology, applied directly as process constraints. The engine-level scaffold is Quinn & Cameron's Competing Values Framework.
 
-| Source                | Key Work                                                                | Scope                                                                                                           |
-| :-------------------- | :---------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------- |
-| **Quinn & Rohrbaugh** | _"A spatial model of effectiveness criteria"_ (1983)                    | The two axes (flexibility/stability, internal/external) and the quadrant model of organisational effectiveness. |
-| **Cameron & Quinn**   | _Diagnosing and Changing Organizational Culture_ (1999 / 2011, 3rd ed.) | The four culture types -- clan, adhocracy, market, hierarchy -- as the canonical Competing Values Framework.    |
+| Source                       | Key Work                                                                | Scope                                                                                                           |
+| :--------------------------- | :---------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------- |
+| **Robert Quinn & Rohrbaugh** | _"A spatial model of effectiveness criteria"_ (1983)                    | The two axes (flexibility/stability, internal/external) and the quadrant model of organisational effectiveness. |
+| **Cameron & Robert Quinn**   | _Diagnosing and Changing Organizational Culture_ (1999 / 2011, 3rd ed.) | The four culture types -- clan, adhocracy, market, hierarchy -- as the canonical Competing Values Framework.    |
 
 ## Restrictions
 
