@@ -374,26 +374,7 @@ export function looseFiles(files) {
 // dev-steering named after the phenomenon it documents, not a cast element, so
 // it collides with the root member by design; an engine feeds members only and
 // never sees it, a house discovers it by frontmatter and exempts it here).
-//
-// `homonyms` is the declared escape, the same shape as `memberPolicy.homonyms`
-// and `scholarPolicy.homonyms`: where nothing in the data distinguishes two
-// cases, the maintainer declares it and the build computes everything else. It
-// maps a display title to the kinds allowed to carry it, so a culture whose
-// persona and plot are both the same historical figure declares that pair once
-// rather than renaming a scholar, a saint or a country's own word for itself.
-//
-// The declaration names the bearers rather than muting the title, which is the
-// whole difference between it and `exempt`: exempting a file removes it from the
-// check entirely, so the next kind to take that title passes unnoticed, while a
-// declared pair still fails the moment a THIRD kind joins it. Declaring
-// ["persona", "plot"] permits exactly that pair and nothing wider.
-export function titleCollisions(elements, { exempt = new Set(), homonyms = {} } = {}) {
-  const declared = new Map(
-    Object.entries(homonyms).map(([title, kinds]) => [
-      title.trim().toLowerCase(),
-      new Set(Array.isArray(kinds) ? kinds : [kinds]),
-    ]),
-  );
+export function titleCollisions(elements, { exempt = new Set() } = {}) {
   const byTitle = new Map();
   for (const el of elements) {
     if (exempt.has(el.file) || exempt.has(el.file.split("/").pop())) continue;
@@ -404,14 +385,9 @@ export function titleCollisions(elements, { exempt = new Set(), homonyms = {} } 
     byTitle.get(key).push(el);
   }
   const errors = [];
-  for (const [key, group] of byTitle) {
+  for (const group of byTitle.values()) {
     const kinds = new Set(group.map((g) => g.kind));
     if (kinds.size < 2) continue;
-    // A declaration covers the collision only while every kind carrying the
-    // title is one it names; an undeclared kind joining is a new finding, not a
-    // grandfathered one.
-    const allowed = declared.get(key);
-    if (allowed && [...kinds].every((k) => allowed.has(k))) continue;
     const shown = group.map((g) => `${g.kind} (${g.file})`).join(", ");
     errors.push(
       `display-title collision: "${group[0].title.trim()}" is shared across kinds by ${shown}; ` +
