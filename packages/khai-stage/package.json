@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-stage",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "description": "Stamp a khai house from the codified blueprint: the computed half of raising a stage, work, or canon house, run by the khai-impresario skill.",
   "type": "module",
   "main": "./index.mjs",

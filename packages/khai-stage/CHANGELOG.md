@@ -1,5 +1,25 @@
 # @chbrain/khai-stage
 
+## 0.0.24
+
+### Patch Changes
+
+- 93aa178: Stamp the khai-drift alarm into every house. A house had no way to tell it was
+  behind the kit unless somebody wrote the workflow there by hand, so a stamped
+  house could sit many minor versions back in silence. The blueprint now carries
+  all three parts the alarm needs: dependabot ignores `@chbrain/*` (it has no
+  GitHub Packages credential and only produces broken pull requests),
+  `.github/workflows/khai-drift.yml` asks `khai-guard drift` weekly and reports
+  into one issue, and `khai-guard.config.json` declares the `driftPolicy` scopes
+  without which drift passes silently.
+- c6d9ab9: Stamp the lockfile sync into a house's version run, last in the chain. A house
+  released with its lockfile a version behind, because nothing rewrites it after
+  the version moves -- and in a house the version moves twice, since
+  `khai-tests registry build` sets it from the play count after `changeset version`
+  has already bumped it. The sync therefore runs after both, and a test pins that
+  order: placed between them it would record a number `registry build` replaces,
+  leaving the drift while looking fixed.
+
 ## 0.0.23
 
 ### Patch Changes
