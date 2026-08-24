@@ -69,16 +69,40 @@ productions themselves live in separate houses (below).
 - [`packages/engines`](packages/engines) — the engine domains, `adoption`
   through `wow`: the psychology, sociology, and economics that enrich a
   scene, each domain credited to its sources.
+- [`packages/composites`](packages/composites) — the composites: each wires
+  two or more engines and reads only what they make together, over a joining
+  its own sources argue.
 - [`packages/khai-plays`](packages/khai-plays) — the bill of houses: khai
   holds the registry, never the productions.
 
+**Finding your way in.** [docs/SCIENCE.md](docs/SCIENCE.md) is the generated
+index over all of it, inverted from every package's `REFERENCES.md`: navigate
+from a scholar to the engines resting on them, from an engine to its root type
+and sources, and from a composite to the atoms it wires. Computed on every
+build, so it cannot drift from the packages it describes.
+
 ## The houses
 
-A production house is its own repository, raised by `khai-stage` and
-conformed by `khai-tests`. Each house stages one source as plays — for
-example [khai-misfits](https://github.com/ChBrain/khai-misfits), the
-catalogue of structural traps: productions where locally rational behaviour
-sums to a globally bad outcome with no villain required.
+A house is its own repository, raised by `khai-stage` and conformed by
+`khai-tests`, and it depends on khai rather than living in it. khai holds
+only the card; what the house holds stays in the house.
+
+Houses come in three kinds, and the card declares which:
+
+- **stage** — a source staged as plays, like
+  [khai-plays-buechner](https://github.com/ChBrain/khai-plays-buechner).
+- **work** — khai's own canon given a voice as a finished piece, like
+  [khai-phoenix](https://github.com/ChBrain/khai-phoenix), a bestiary of fire
+  whose every beast is one named phenomenon of combustion speaking for itself.
+- **canon** — reusable material a production draws on:
+  [khai-cultures](https://github.com/ChBrain/khai-cultures), each culture a
+  theatre of that culture, and
+  [khai-misfits](https://github.com/ChBrain/khai-misfits), structural traps
+  where locally rational behaviour sums to a globally bad outcome with no
+  villain required.
+
+The full bill is generated from the registry:
+[packages/khai-plays](packages/khai-plays).
 
 ## Working here
 
