@@ -48,6 +48,8 @@ describe("khai-stage: the stamped house", () => {
       "khai-guard.config.json",
       ".github/workflows/ci.yml",
       ".github/workflows/release.yml",
+      ".github/workflows/khai-drift.yml",
+      ".github/dependabot.yml",
       ".github/CODEOWNERS",
       ".husky/pre-push",
       ".changeset/config.json",
@@ -117,6 +119,28 @@ describe("khai-stage: the stamped house", () => {
     const pkg = JSON.parse(readFileSync(join(dir, "package.json"), "utf8"));
     expect(pkg.license).toBe("SEE LICENSE IN LICENSE and LICENSE-CODE");
     expect(pkg.name).toBe("@chbrain/khai-plays-demo-source");
+  });
+
+  // The drift alarm is three parts and only works as three. Dependabot cannot
+  // read @chbrain/* from GitHub Packages, so it is told not to try; the weekly
+  // workflow asks `khai-guard drift` instead; and drift reads driftPolicy, so
+  // without the scopes it reports nothing and passes silently. A house missing
+  // any one of them cannot tell that it is behind the kit -- which is not
+  // hypothetical, since a house stamped before this sat many minor versions
+  // back with nothing to say so.
+  it("stamps the drift alarm whole: dependabot ignore, workflow, and policy", () => {
+    const dependabot = readFileSync(join(dir, ".github/dependabot.yml"), "utf8");
+    expect(dependabot).toContain('dependency-name: "@chbrain/*"');
+
+    const workflow = readFileSync(join(dir, ".github/workflows/khai-drift.yml"), "utf8");
+    expect(workflow).toContain("khai-guard drift --json");
+    // Reporting only: a bump is a migration, so it raises an issue and never a
+    // pull request.
+    expect(workflow).toContain("gh issue create");
+    expect(workflow).not.toContain("gh pr create");
+
+    const guard = JSON.parse(readFileSync(join(dir, "khai-guard.config.json"), "utf8"));
+    expect(guard.driftPolicy?.scopes).toContain("@chbrain/");
   });
 
   it("emits a valid playhouse registry.json, so the house is green on raise", () => {
