@@ -1,12 +1,15 @@
 // khai-plays: the house registry. khai holds the bill, not the productions.
 //
 // One registry for every house that depends on khai, and a `kind` on the card
-// telling the three apart. They share an architecture and hold different things:
+// telling the three apart. Every house holds plays -- an item is anchored
+// `play_<id>.md` and casts personas, pieces, places and a pitch, in all three
+// kinds -- so the kinds differ in where the source comes from and what the plays
+// are for, never in what the item is:
 //
-//   stage  a source staged as plays (Buechner, Dickens, L2)
-//   work   khai's own canon given a voice as a finished piece (Phoenix, which
-//          stages the combustion engine with each phenomenon speaking for itself)
-//   canon  reusable material a production draws on (Misfits, Cultures)
+//   stage  plays staged from another's source (Buechner, Dickens, L2)
+//   work   plays staged from khai's own canon (Phoenix, which stages the
+//          combustion engine with each phenomenon speaking for itself)
+//   canon  plays other productions draw on as material (Misfits, Cultures)
 //
 // The kind cannot be computed here. A card is all khai holds about a house --
 // the house is another repository, so its package.json (and the `khai.collection`
@@ -39,11 +42,19 @@ export const slug = (s) =>
  */
 export const KINDS = ["stage", "work", "canon"];
 
-/** What each kind holds, for the card validator's message and the bill's prose. */
+/**
+ * What each kind holds, for the card validator's message and the bill's prose.
+ *
+ * Every house holds plays -- a house item is anchored `play_<id>.md` and casts
+ * personas, pieces, places and a pitch, in all three kinds. That is the
+ * invariant, and it is why a house is a repository rather than a package. The
+ * kinds do not differ in what the item IS; they differ in where its source comes
+ * from and what the plays are for.
+ */
 export const KIND_BLURB = {
-  stage: "a source staged as plays",
-  work: "khai's own canon given a voice as a finished piece",
-  canon: "reusable material a production draws on",
+  stage: "plays staged from another's source",
+  work: "plays staged from khai's own canon",
+  canon: "plays other productions draw on as material",
 };
 
 const isSlug = (s) => typeof s === "string" && /^[a-z0-9]+(-[a-z0-9]+)*$/.test(s);
@@ -112,6 +123,19 @@ export function loadRegistry(dir = REGISTRY) {
 }
 
 /**
+ * One line of calibration: how many houses, and how they split by kind. Computed
+ * from the cards rather than typed, so it is right on every render -- a count in
+ * hand-kept prose is wrong the first time a house is registered.
+ */
+function tally(houses) {
+  const by = KINDS.map((k) => [k, houses.filter((h) => h.kind === k).length]).filter(
+    ([, n]) => n > 0,
+  );
+  const parts = by.map(([k, n]) => `${n} ${k}`).join(", ");
+  return `${houses.length} ${houses.length === 1 ? "house" : "houses"}: ${parts}.`;
+}
+
+/**
  * Render the registry as the generated README, the human view of the same bill.
  * Pure: cards in, markdown out. The website reads the data (loadRegistry); this
  * is for a person browsing the repo. Generated, never hand-edited.
@@ -131,6 +155,7 @@ export function renderReadme(houses) {
     "khai knows the house by its card; the website knows it from khai and pulls",
     "the package for the rest.",
     "",
+    ...(houses.length ? [tally(houses), ""] : []),
     "Generated from the registry, never hand-edited. Run",
     '`npx @chbrain/khai-plays register <source> --kind <kind> --blurb "..."` to add',
     "a card (its shape is in `registry/README.md`); it rewrites this file.",

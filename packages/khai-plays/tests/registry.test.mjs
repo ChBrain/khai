@@ -159,3 +159,36 @@ describe("khai-plays: the three kinds", () => {
     expect(md).not.toContain("read that house's plays");
   });
 });
+
+// Every house holds plays; the kinds differ in where the source comes from and
+// what the plays are for. The bill's prose has to say that, because saying
+// "reusable material" instead reads as though a canon house holds something
+// other than a play, which no house does.
+describe("khai-plays: the bill states what the kinds actually differ in", () => {
+  it("describes every kind as holding plays", () => {
+    for (const kind of KINDS) expect(KIND_BLURB[kind]).toMatch(/plays/);
+  });
+
+  it("counts the houses rather than leaving a reader to navigate for calibration", () => {
+    // Computed from the cards. A count in hand-kept prose is wrong the first
+    // time a house is registered, which is the failure this whole file avoids.
+    const card = (id, kind) => ({ ...good, id, title: id, kind });
+    const md = renderReadme([card("a", "stage"), card("b", "stage"), card("c", "canon")]);
+    expect(md).toContain("3 houses: 2 stage, 1 canon.");
+    // A kind nobody has registered is not named with a zero.
+    expect(md).not.toContain("0 work");
+  });
+
+  it("says one house in the singular, and counts nothing on an empty bill", () => {
+    expect(renderReadme([good])).toContain("1 house: 1 stage.");
+    expect(renderReadme([])).not.toMatch(/\d+ houses?:/);
+  });
+
+  it("keeps the live bill's tally true", () => {
+    const md = renderReadme(houses);
+    const by = KINDS.map((k) => [k, houses.filter((h) => h.kind === k).length]).filter(
+      ([, n]) => n > 0,
+    );
+    expect(md).toContain(`${houses.length} houses: ${by.map(([k, n]) => `${n} ${k}`).join(", ")}.`);
+  });
+});
