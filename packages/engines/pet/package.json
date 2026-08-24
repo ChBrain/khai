@@ -1,0 +1,89 @@
+{
+  "name": "@chbrain/khai-engine-pet",
+  "version": "0.1.0",
+  "description": "khai engine content, the pet domain: an animal kept for company at total dependency -- how it is chosen, the removals that make the keeping possible, the keeper who holds every route to everything it needs, and the ending they decide.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/pet"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "pet",
+    "tagline": "An animal kept for company at total dependency, and the keeper who arranged it.",
+    "type": "piece",
+    "members": [
+      {
+        "file": "piece_pet.md",
+        "type": "piece",
+        "parent": null
+      },
+      {
+        "file": "position_the_keeper.md",
+        "type": "position",
+        "parent": "piece_pet.md"
+      },
+      {
+        "file": "process_the_acquiring.md",
+        "type": "process",
+        "parent": "piece_pet.md"
+      },
+      {
+        "file": "process_the_arranging.md",
+        "type": "process",
+        "parent": "piece_pet.md"
+      },
+      {
+        "file": "process_the_ending.md",
+        "type": "process",
+        "parent": "piece_pet.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (piece_pet.md) declares an animal kept for company at total dependency: a creature described in the vocabulary of kinship and living in the conditions of a ward. It is not attachment's bond sought under threat, not the tending composite's account of what happens inside somebody meeting a need, not extended-self's or heirloom's possession carrying an identity, and not agency's designed thing prescribing conduct. Read it on the arrangement, never on the species.",
+      "issue": "One position and three processes under the object. The acquiring is a decision about a life taken entirely on one side, and rescue inverts the moral story without touching the structure: the animal is still chosen, still from a room of others who were not. The arranging protects the animal by removing its capacity to do without protection -- each removal is defensible and most are veterinary orthodoxy, and their sum is an organism that would die in weeks without somebody continuing to bother. The keeper holds every route to everything the animal needs, orders the whole of its day without ever issuing an order it could refuse, and cannot occupy a neutral position, since a keeper who stops deciding has neglected rather than freed. The ending is the only act with no version the animal survives, and no method exists for telling a merciful decision from a convenient one, including from inside the person making it.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the pet read runs wherever a play keeps an animal. The link: each persona links, under Projection, where they stand in the arrangement -- how the animal came, what was removed, what they decide.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real member. Whether a production's ending was mercy or convenience is what the engine says nobody can determine, including the keeper, so the suite does not attempt it and neither should a reviewer.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then make the keeper good, because the engine needs no cruelty and collapses into a simpler and less true story the moment it gets some. Let the affection be real and let it arrive out of the caring rather than before it, since that is the twist and it only reads if the order is visible. And decide what the animal wants without ever letting the play answer it."
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.2.5",
+    "vitest": "^4.1.10"
+  }
+}
