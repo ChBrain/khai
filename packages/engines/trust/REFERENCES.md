@@ -14,12 +14,12 @@ The spine is the trust-as-vulnerability tradition: to trust is the willingness t
 
 The organizational and social-psychological trust literature, applied directly as process constraints.
 
-| Source                               | Key Work                                                                | Scope                                                                                                      |
-| :----------------------------------- | :---------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------- |
-| **Mayer, Davis & Schoorman**         | _"An integrative model of organizational trust"_ (1995)                 | The read of the other across three faces: ability, benevolence, and integrity as the bases of trust.       |
-| **Rousseau, Sitkin, Burt & Camerer** | _"Not so different after all: a cross-discipline view of trust"_ (1998) | Trust as the willingness to accept vulnerability based on positive expectations of another's intentions.   |
-| **Morton Deutsch**                   | _"Trust and suspicion"_ (1958)                                          | The game-theoretic root: trust as a choice to expose oneself under uncertainty about another's response.   |
-| **Lewicki & Bunker**                 | _"Developing and maintaining trust in work relationships"_ (1996)       | The development and repair of trust over time: how a broken bet is re-extended, asymmetrically and slowly. |
+| Source                                | Key Work                                                                | Scope                                                                                                      |
+| :------------------------------------ | :---------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------- |
+| **Mayer, James H. Davis & Schoorman** | _"An integrative model of organizational trust"_ (1995)                 | The read of the other across three faces: ability, benevolence, and integrity as the bases of trust.       |
+| **Rousseau, Sitkin, Burt & Camerer**  | _"Not so different after all: a cross-discipline view of trust"_ (1998) | Trust as the willingness to accept vulnerability based on positive expectations of another's intentions.   |
+| **Morton Deutsch**                    | _"Trust and suspicion"_ (1958)                                          | The game-theoretic root: trust as a choice to expose oneself under uncertainty about another's response.   |
+| **Lewicki & Bunker**                  | _"Developing and maintaining trust in work relationships"_ (1996)       | The development and repair of trust over time: how a broken bet is re-extended, asymmetrically and slowly. |
 
 ## Restrictions
 
