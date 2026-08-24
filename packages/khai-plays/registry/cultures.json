@@ -1,0 +1,8 @@
+{
+  "id": "cultures",
+  "title": "Cultures",
+  "kind": "canon",
+  "package": "@chbrain/khai-cultures",
+  "blurb": "Each culture a full khai play: a theatre of that culture, cast from its own history under a Hofstede-tuned pitch.",
+  "repo": "https://github.com/ChBrain/khai-cultures"
+}
