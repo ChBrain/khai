@@ -21,7 +21,7 @@
         "parent": "process_negotiation.md"
       },
       {
-        "file": "process_exploration.md",
+        "file": "process_negotiation_exploration.md",
         "type": "process",
         "parent": "process_negotiation.md"
       },
@@ -31,7 +31,7 @@
         "parent": "process_negotiation.md"
       },
       {
-        "file": "process_resolution.md",
+        "file": "process_negotiation_resolution.md",
         "type": "process",
         "parent": "process_negotiation.md"
       }
