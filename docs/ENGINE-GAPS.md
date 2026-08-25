@@ -1557,17 +1557,17 @@ do where both have a term of their own.
 | -------------------- | -------------------- | ---------------------------------------- | ------------------------------ | ------------------------------------------------------------------------------ | ----- | --------------- |
 | `admiration`         | `admiration`         | `narcissism/process_admiration.md`       | `narcissistic_admiration`      | Back et al.'s own term — the admiration route of the ARC model                 | 1     | proposed        |
 | `anchoring`          | `anchoring`          | `bias/position_anchoring.md`             | `anchoring_bias`               | bias's own `_bias` suffix (`action_bias`, `authority_bias`)                    | 0     | shipped (#1360) |
-| `anger`              | `anger`              | `emotion/process_anger.md`               | `appraisal_anger`              | its Owner line already says it: "the appraisal this feeling is one reading of" | 1     | building        |
+| `anger`              | `anger`              | `emotion/process_anger.md`               | `appraisal_anger`              | its Owner line already says it: "the appraisal this feeling is one reading of" | 1     | shipped (#1364) |
 | `contagion`          | `contagion`          | `superstition/position_contagion.md`     | `law_of_contagion`             | Frazer's own name for the sympathetic-magic law                                | 1     | proposed        |
 | `creativity`         | `creativity`         | `social-identity/position_creativity.md` | `social_creativity`            | Tajfel & Turner's own term for the identity strategy                           | 1     | proposed        |
-| `disgust`            | `disgust`            | `emotion/process_disgust.md`             | `appraisal_disgust`            | the appraisal family, as above                                                 | 0     | building        |
+| `disgust`            | `disgust`            | `emotion/process_disgust.md`             | `appraisal_disgust`            | the appraisal family, as above                                                 | 0     | shipped (#1364) |
 | `embarrassment`      | `embarrassment`      | `shame/process_embarrassment.md`         | `shame_embarrassment`          | the shame family it sits in beside `humiliation`                               | 0     | proposed        |
 | `envy`               | `envy`               | `virtue/position_envy.md`                | `vice_envy`                    | virtue holds both registers and already chose `wrath` over `anger`             | 0     | shipped (#1355) |
 | `exploration`        | `exploration`        | `negotiation/process_exploration.md`     | `negotiation_exploration`      | one of negotiation's four phases                                               | 1     | proposed        |
-| `fear`               | `fear`               | `emotion/process_fear.md`                | `appraisal_fear`               | the appraisal family                                                           | 0     | building        |
+| `fear`               | `fear`               | `emotion/process_fear.md`                | `appraisal_fear`               | the appraisal family                                                           | 0     | shipped (#1364) |
 | `framing`            | `framing`            | `pitch-mode/position_framing.md`         | `pitch_framing`                | the pitch's own opening move                                                   | 0     | proposed        |
 | `gratitude`          | `gratitude`          | `virtue/position_gratitude.md`           | `virtue_gratitude`             | the virtue register                                                            | 0     | shipped (#1355) |
-| `joy`                | `joy`                | `emotion/process_joy.md`                 | `appraisal_joy`                | the appraisal family                                                           | 1     | building        |
+| `joy`                | `joy`                | `emotion/process_joy.md`                 | `appraisal_joy`                | the appraisal family                                                           | 1     | shipped (#1364) |
 | `liminality`         | `liminality`         | `ritual/process_liminality.md`           | `transition`                   | van Gennep's own middle term, beside `separation` and `incorporation`          | 0     | proposed        |
 | `loyalty`            | `loyalty`            | `moral-judgment/position_loyalty.md`     | `loyalty_foundation`           | Haidt's foundations are named as foundations                                   | 1     | proposed        |
 | `narcissism`         | `narcissism`         | `dark-triad/position_narcissism.md`      | `triad_narcissism`             | the triad's own reading of the trait                                           | 1     | proposed        |
@@ -1580,7 +1580,7 @@ do where both have a term of their own.
 | `repair`             | `repair`             | `trust/process_repair.md`                | `trust_repair`                 | the literature's own term                                                      | 2     | proposed        |
 | `representativeness` | `representativeness` | `bias/position_representativeness.md`    | `representativeness_heuristic` | matches `availability_heuristic` next to it                                    | 0     | shipped (#1360) |
 | `reward`             | `reward`             | `power/position_reward.md`               | `reward_power`                 | French & Raven's own term — the file's title is already "Reward Power"         | 0     | shipped (#1358) |
-| `sadness`            | `sadness`            | `emotion/process_sadness.md`             | `appraisal_sadness`            | the appraisal family                                                           | 0     | building        |
+| `sadness`            | `sadness`            | `emotion/process_sadness.md`             | `appraisal_sadness`            | the appraisal family                                                           | 0     | shipped (#1364) |
 | `standing`           | `standing`           | `recognition/process_standing.md`        | `recognition_standing`         | the post-recognition phase, not the composite                                  | 3     | proposed        |
 | `trust`              | `trust`              | `faith/position_trust.md`                | `faith_trust`                  | the faith triad's middle term, beside `surrender`                              | 1     | proposed        |
 
@@ -1670,8 +1670,8 @@ a heuristic, as `action_bias`, `authority_bias`, `availability_heuristic` and
 `fluency_heuristic` already do. The three were the catalogue's own exceptions,
 not a convention imposed on it; the bare stems that survive there (`ease`,
 `coherence`, `belonging`, `stake`, `self`) are family roots, which is a
-different thing and stays as it is. **Thirteen zero-cost renames remain.** `emotion` is the fifth lane, in
-progress, and the first taken **with** a link cost rather than around one: at
+different thing and stays as it is. `emotion` was the fifth lane and is done (#1364, ratchet closed alongside),
+the first taken **with** a link cost rather than around one: at
 the maintainer's call all five appraisal readings move together, not only the
 three that are free. `disgust`, `fear` and `sadness` are unlinked; `anger` and
 `joy` are each linked by the `comic` composite, and a stale link there is a hard
@@ -1696,10 +1696,13 @@ travels alone. Whole-set symmetry is available for free only where a lane has no
 inbound links at all — as `virtue` and `morphology` did — and is a maintainer's
 call with a red window anywhere else.
 
-**The count is 39, not 49** — `preparation`, `recognition` and `return` left
+**The count is 34, not 49** — `preparation`, `recognition` and `return` left
 `memberPolicy.homonyms` in #1353, `envy`, `gratitude` and `pride` with the
-virtue rename, `reward` with the power rename, and `anchoring`, `reactance` and
-`representativeness` with the bias rename. Ten cleared across four lanes.
+virtue rename, `reward` with the power rename, `anchoring`, `reactance` and
+`representativeness` with the bias rename, and `anger`, `disgust`, `fear`,
+`joy` and `sadness` with the emotion rename. **Fifteen cleared across five
+lanes; 43 renames remain — 10 with no inbound link, 33 with one, all of them
+now landable in a single PR on the `rename` lane.**
 Every heading and total above that says 49 is the count at the time of the
 sweep.
 
