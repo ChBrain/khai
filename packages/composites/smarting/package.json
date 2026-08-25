@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-smarting",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the smarting domain: what a favourable self-view does when the room declines to confirm it -- the claim put out and exposed, the puncture where the contradiction lands, and the force returned to whoever is nearest rather than to whoever caused it.",
   "type": "module",
   "main": "./index.mjs",
@@ -77,11 +77,11 @@
   "dependencies": {
     "@chbrain/khai-arch": "^0.1.25",
     "@chbrain/khai-engine-aggression": "^0.1.1",
-    "@chbrain/khai-engine-narcissism": "^0.1.1",
+    "@chbrain/khai-engine-narcissism": "^0.2.0",
     "@chbrain/khai-engine-self-esteem": "^0.1.1"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.5",
+    "@chbrain/khai-tests": "^0.2.9",
     "vitest": "^4.1.10"
   }
 }

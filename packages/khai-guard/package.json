@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-guard",
-  "version": "0.1.25",
+  "version": "0.2.0",
   "description": "KHAI-Guard: the house gate. Lane scope, source/test separation, changesets, licences, members and dependency drift, computed rather than judged.",
   "keywords": [
     "ci",

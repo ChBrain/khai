@@ -1,5 +1,15 @@
 # @chbrain/khai-composite-comic
 
+## 0.1.2
+
+### Patch Changes
+
+- b733892: Follow the emotion engine's appraisal rename: point `comic`'s two links at
+  `process_appraisal_anger.md` and `process_appraisal_joy.md`. Link text only — the
+  composite reads the same three atoms and wires the same way.
+- Updated dependencies [b733892]
+  - @chbrain/khai-engine-emotion@0.2.0
+
 ## 0.1.1
 
 ### Patch Changes
