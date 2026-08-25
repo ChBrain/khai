@@ -1556,7 +1556,7 @@ do where both have a term of their own.
 | Stem                 | Root keeps           | Yields                                   | Rename to                      | Why that name                                                                  | Links | Status          |
 | -------------------- | -------------------- | ---------------------------------------- | ------------------------------ | ------------------------------------------------------------------------------ | ----- | --------------- |
 | `admiration`         | `admiration`         | `narcissism/process_admiration.md`       | `narcissistic_admiration`      | Back et al.'s own term — the admiration route of the ARC model                 | 1     | proposed        |
-| `anchoring`          | `anchoring`          | `bias/position_anchoring.md`             | `anchoring_bias`               | bias's own `_bias` suffix (`action_bias`, `authority_bias`)                    | 0     | building        |
+| `anchoring`          | `anchoring`          | `bias/position_anchoring.md`             | `anchoring_bias`               | bias's own `_bias` suffix (`action_bias`, `authority_bias`)                    | 0     | shipped (#1360) |
 | `anger`              | `anger`              | `emotion/process_anger.md`               | `appraisal_anger`              | its Owner line already says it: "the appraisal this feeling is one reading of" | 1     | proposed        |
 | `contagion`          | `contagion`          | `superstition/position_contagion.md`     | `law_of_contagion`             | Frazer's own name for the sympathetic-magic law                                | 1     | proposed        |
 | `creativity`         | `creativity`         | `social-identity/position_creativity.md` | `social_creativity`            | Tajfel & Turner's own term for the identity strategy                           | 1     | proposed        |
@@ -1574,11 +1574,11 @@ do where both have a term of their own.
 | `obedience`          | `obedience`          | `conformity/process_obedience.md`        | `conformity_obedience`         | the pull conformity models, not Milgram's engine                               | 0     | proposed        |
 | `persuasion`         | `persuasion`         | `self-efficacy/position_persuasion.md`   | `verbal_persuasion`            | Bandura's own term for the efficacy source                                     | 1     | proposed        |
 | `pride`              | `pride`              | `virtue/position_pride.md`               | `vice_pride`                   | the vice register                                                              | 0     | shipped (#1355) |
-| `reactance`          | `reactance`          | `bias/position_reactance.md`             | `reactance_bias`               | the `_bias` suffix                                                             | 0     | building        |
+| `reactance`          | `reactance`          | `bias/position_reactance.md`             | `reactance_bias`               | the `_bias` suffix                                                             | 0     | shipped (#1360) |
 | `recognition`        | `recognition`        | `morphology/plot_recognition.md`         | `folktale_recognition`         | its Owner is `[The Folktale]`; Propp's function, not Honneth's                 | 0     | shipped (#1352) |
 | `regime`             | `regime`             | `climate/process_regime.md`              | `climate_regime`               | the standing weather type, not the polity                                      | 1     | proposed        |
 | `repair`             | `repair`             | `trust/process_repair.md`                | `trust_repair`                 | the literature's own term                                                      | 2     | proposed        |
-| `representativeness` | `representativeness` | `bias/position_representativeness.md`    | `representativeness_heuristic` | matches `availability_heuristic` next to it                                    | 0     | building        |
+| `representativeness` | `representativeness` | `bias/position_representativeness.md`    | `representativeness_heuristic` | matches `availability_heuristic` next to it                                    | 0     | shipped (#1360) |
 | `reward`             | `reward`             | `power/position_reward.md`               | `reward_power`                 | French & Raven's own term — the file's title is already "Reward Power"         | 0     | shipped (#1358) |
 | `sadness`            | `sadness`            | `emotion/process_sadness.md`             | `appraisal_sadness`            | the appraisal family                                                           | 0     | proposed        |
 | `standing`           | `standing`           | `recognition/process_standing.md`        | `recognition_standing`         | the post-recognition phase, not the composite                                  | 3     | proposed        |
@@ -1663,14 +1663,16 @@ other eleven were symmetry, and cost nothing because nothing outside the engine
 links any of them. `power/position_reward` was the third lane and is done
 (#1358, ratchet closed alongside): a fourth entry cleared on its own, taking
 French & Raven's own term, which the file's title had carried all along.
-**Sixteen zero-cost renames remain**, of which `bias` is the fourth lane, in
-progress: `anchoring`, `reactance` and `representativeness` take the suffix the
-engine's own 238-member catalogue already runs on — `_bias` for a bias,
-`_heuristic` for a heuristic, as `action_bias`, `authority_bias`,
-`availability_heuristic` and `fluency_heuristic` already do. The three were the
-catalogue's own exceptions, not a convention imposed on it; the bare stems that
-survive here (`ease`, `coherence`, `belonging`, `stake`, `self`) are family
-roots, which is a different thing and stays as it is.
+`bias` was the fourth lane and is done (#1360, ratchet closed alongside):
+`anchoring`, `reactance` and `representativeness` took the suffix the engine's
+own 238-member catalogue already runs on — `_bias` for a bias, `_heuristic` for
+a heuristic, as `action_bias`, `authority_bias`, `availability_heuristic` and
+`fluency_heuristic` already do. The three were the catalogue's own exceptions,
+not a convention imposed on it; the bare stems that survive there (`ease`,
+`coherence`, `belonging`, `stake`, `self`) are family roots, which is a
+different thing and stays as it is. **Thirteen zero-cost renames remain**, and
+`emotion`'s three (`disgust`, `fear`, `sadness`) clear three more in one lane —
+the same shape, and the best-value PR left.
 
 **A limit the `power` lane found, which `virtue` had hidden.** Every one of
 `power`'s six bases is titled "_X_ Power", so the whole-set symmetry that
@@ -1685,10 +1687,10 @@ travels alone. Whole-set symmetry is available for free only where a lane has no
 inbound links at all — as `virtue` and `morphology` did — and is a maintainer's
 call with a red window anywhere else.
 
-**The count is 42, not 49** — `preparation`, `recognition` and `return` left
+**The count is 39, not 49** — `preparation`, `recognition` and `return` left
 `memberPolicy.homonyms` in #1353, `envy`, `gratitude` and `pride` with the
-virtue rename, and `reward` with the power rename. Seven cleared across three
-lanes.
+virtue rename, `reward` with the power rename, and `anchoring`, `reactance` and
+`representativeness` with the bias rename. Ten cleared across four lanes.
 Every heading and total above that says 49 is the count at the time of the
 sweep.
 
