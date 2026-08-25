@@ -21,7 +21,7 @@ stamp:
 
 ## Has
 
-A violation at full pressure and no frame to keep it benign. The [surprise](@chbrain/khai-engine-surprise/process_surprise.md) engine's expectation-break has landed and registered as a genuine wrong -- a norm, a dignity, a person really transgressed -- but the [humor](@chbrain/khai-engine-humor/position_humor.md) engine's play stance has failed to hold it as play: the target is felt to be really harmed, the stakes really live, the fiction taken for fact. This is the violation firing with the benignness failed, the too-hard edge of the comic where the wrong arrives without the safety that would make it laughable, so the [emotion](@chbrain/khai-engine-emotion/process_anger.md) that answers is not mirth but the sting of an affront.
+A violation at full pressure and no frame to keep it benign. The [surprise](@chbrain/khai-engine-surprise/process_surprise.md) engine's expectation-break has landed and registered as a genuine wrong -- a norm, a dignity, a person really transgressed -- but the [humor](@chbrain/khai-engine-humor/position_humor.md) engine's play stance has failed to hold it as play: the target is felt to be really harmed, the stakes really live, the fiction taken for fact. This is the violation firing with the benignness failed, the too-hard edge of the comic where the wrong arrives without the safety that would make it laughable, so the [emotion](@chbrain/khai-engine-emotion/process_appraisal_anger.md) that answers is not mirth but the sting of an affront.
 
 ## Orders
 

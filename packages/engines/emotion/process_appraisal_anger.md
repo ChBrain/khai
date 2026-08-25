@@ -40,4 +40,4 @@ The press of the claim against the denial is the heat that is felt.
 
 The persona squares up and moves against the thing in its way.
 The body readies force and narrows to the target.
-If the offence proves too large to move, the heat can drop into [fear](process_fear.md), or fold inward into [sadness](process_sadness.md).
+If the offence proves too large to move, the heat can drop into [fear](process_appraisal_fear.md), or fold inward into [sadness](process_appraisal_sadness.md).

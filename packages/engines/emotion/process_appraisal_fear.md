@@ -40,4 +40,4 @@ The gap between the stake and any safety is the cold that is felt.
 
 The persona pulls back and guards, scanning for the exit and the cover.
 The body readies to flee or to still itself.
-If the threat is confirmed and cornering, the cold can harden into [anger](process_anger.md) at what traps it, or sink toward [sadness](process_sadness.md) at what is already lost.
+If the threat is confirmed and cornering, the cold can harden into [anger](process_appraisal_anger.md) at what traps it, or sink toward [sadness](process_appraisal_sadness.md) at what is already lost.
