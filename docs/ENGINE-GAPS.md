@@ -1555,7 +1555,7 @@ do where both have a term of their own.
 
 | Stem                 | Root keeps           | Yields                                   | Rename to                      | Why that name                                                                  | Links | Status          |
 | -------------------- | -------------------- | ---------------------------------------- | ------------------------------ | ------------------------------------------------------------------------------ | ----- | --------------- |
-| `admiration`         | `admiration`         | `narcissism/process_admiration.md`       | `narcissistic_admiration`      | Back et al.'s own term — the admiration route of the ARC model                 | 1     | building        |
+| `admiration`         | `admiration`         | `narcissism/process_admiration.md`       | `narcissistic_admiration`      | Back et al.'s own term — the admiration route of the ARC model                 | 1     | shipped (#1366) |
 | `anchoring`          | `anchoring`          | `bias/position_anchoring.md`             | `anchoring_bias`               | bias's own `_bias` suffix (`action_bias`, `authority_bias`)                    | 0     | shipped (#1360) |
 | `anger`              | `anger`              | `emotion/process_anger.md`               | `appraisal_anger`              | its Owner line already says it: "the appraisal this feeling is one reading of" | 1     | shipped (#1364) |
 | `contagion`          | `contagion`          | `superstition/position_contagion.md`     | `law_of_contagion`             | Frazer's own name for the sympathetic-magic law                                | 1     | proposed        |
@@ -1590,7 +1590,7 @@ do where both have a term of their own.
 | ----------------- | ----------------------------------------------------- | ---------------------------------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | --------------- |
 | `approach`        | `reversal` keeps it                                   | `goal/position_approach.md`                    | `approach_goal`          | Elliot's own term                                                                                                                                    | 2     | proposed        |
 | `bearer`          | `document` keeps it                                   | `stigma/position_bearer.md`                    | `stigmatized`            | Goffman's own word for the one who carries the mark                                                                                                  | 3     | proposed        |
-| `communal`        | `narrative` keeps it                                  | `narcissism/position_communal.md`              | `communal_narcissism`    | Gebauer et al.'s own term                                                                                                                            | 0     | building        |
+| `communal`        | `narrative` keeps it                                  | `narcissism/position_communal.md`              | `communal_narcissism`    | Gebauer et al.'s own term                                                                                                                            | 0     | shipped (#1366) |
 | `emotional`       | neither — both qualify                                | `forgiveness/process_emotional.md`             | `emotional_forgiveness`  | Worthington's own term                                                                                                                               | 1     | proposed        |
 | ↳                 |                                                       | `memory/process_emotional.md`                  | `emotional_memory`       | the field's own term                                                                                                                                 | 1     | proposed        |
 | `exploratory`     | `curiosity` keeps it                                  | `play-mode/position_exploratory.md`            | `exploratory_play`       | Hutt's own term                                                                                                                                      | 3     | proposed        |
@@ -1610,7 +1610,7 @@ do where both have a term of their own.
 | `relief`          | `joy` keeps it                                        | `addiction/process_relief.md`                  | `relief_craving`         | the negative-reinforcement term the addiction literature uses                                                                                        | 1     | proposed        |
 | `resolution`      | `betrayal` keeps it                                   | `negotiation/process_resolution.md`            | `negotiation_resolution` | the closing phase                                                                                                                                    | 1     | proposed        |
 | `return`          | `monomyth` keeps it                                   | `morphology/plot_return.md`                    | `folktale_return`        | the folktale family                                                                                                                                  | 0     | shipped (#1352) |
-| `rivalry`         | `dramatic-situations` keeps it                        | `narcissism/process_rivalry.md`                | `narcissistic_rivalry`   | Back et al.'s own term                                                                                                                               | 1     | building        |
+| `rivalry`         | `dramatic-situations` keeps it                        | `narcissism/process_rivalry.md`                | `narcissistic_rivalry`   | Back et al.'s own term                                                                                                                               | 1     | shipped (#1366) |
 | `searching`       | `boredom` keeps it                                    | `meaning/position_searching.md`                | `search_for_meaning`     | Frankl's, and Steger's scale's, own phrase                                                                                                           | 1     | proposed        |
 | `self`            | `bias` keeps it — its family roots are bare by design | `forgiveness/process_self.md`                  | `self_forgiveness`       | the field's own term                                                                                                                                 | 0     | proposed        |
 | ↳                 |                                                       | `archetypes/persona_self.md`                   | `self_archetype`         | **decided**: the persona moves, not the bias family root. "The Self archetype" is Jung's own phrase, and nothing outside `archetypes` links the file | 0     | proposed        |
@@ -1700,15 +1700,16 @@ call with a red window anywhere else.
 `memberPolicy.homonyms` in #1353, `envy`, `gratitude` and `pride` with the
 virtue rename, `reward` with the power rename, `anchoring`, `reactance` and
 `representativeness` with the bias rename, and `anger`, `disgust`, `fear`,
-`joy` and `sadness` with the emotion rename. **Fifteen cleared across five
-lanes; 43 renames remain — 10 with no inbound link, 33 with one, all of them
-now landable in a single PR on the `rename` lane.**
+`joy` and `sadness` with the emotion rename. **Eighteen cleared across six
+lanes; 40 renames remain — 9 with no inbound link, 31 with one, all of them
+landable in a single PR on the `rename` lane.**
 
 With the deadlock gone the order is value, not availability, and the measure is
-**entries cleared per lane**. `narcissism` leads it at three (`admiration`,
-`communal`, `rivalry`), all three taking the field's own compound terms — Back
-et al.'s admiration–rivalry concept and Gebauer's communal narcissism. Then
-`negotiation` and `journey-roles` at two each. Seven stems (`emotional`,
+**entries cleared per lane**. `narcissism` led it at three (`admiration`,
+`communal`, `rivalry`) and is done (#1366, ratchet closed alongside), all three
+taking the field's own compound terms — Back et al.'s admiration–rivalry concept
+and Gebauer's communal narcissism. **`negotiation` and `journey-roles` are next
+at two each**, and after them the lanes clear one entry apiece. Seven stems (`emotional`,
 `external`, `high`, `low`, `mastery`, `self`, `sensitivity`) need **two**
 engines to move before the entry dies, so they clear on the second lane rather
 than the first, whichever order those run in.

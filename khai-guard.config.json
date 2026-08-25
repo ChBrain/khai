@@ -261,10 +261,8 @@
   "memberPolicy": {
     "engines": ["packages/engines/*/package.json", "packages/composites/*/package.json"],
     "homonyms": [
-      "admiration",
       "approach",
       "bearer",
-      "communal",
       "contagion",
       "creativity",
       "embarrassment",
@@ -287,7 +285,6 @@
       "relief",
       "repair",
       "resolution",
-      "rivalry",
       "searching",
       "self",
       "sensitivity",
