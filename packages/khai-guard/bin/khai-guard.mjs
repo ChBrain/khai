@@ -60,6 +60,8 @@ import {
   checkLockfiles,
   checkMembers,
   deadExemptions,
+  touchedExemptions,
+  homonymGrowth,
   resolveConfig,
   parseNameStatus,
   parseChanges,
@@ -191,6 +193,28 @@ function loadConfig() {
       process.exit(2);
     }
     throw err;
+  }
+}
+
+// baseConfig: the config as the branch's merge-base has it, so a gate can tell
+// what THIS branch changed about the policy itself. Returns {} when no base
+// resolves or the file cannot be read there (first push, shallow clone, a
+// config that did not exist yet) -- an empty baseline makes every entry look
+// new, so callers treat {} as "skip" rather than "everything grew".
+function baseConfig(config) {
+  let base = flag("--base");
+  if (!base) {
+    const defaultRef = config.defaultRef ?? "origin/main";
+    try {
+      base = git(["merge-base", defaultRef, "HEAD"]).trim();
+    } catch {
+      return config;
+    }
+  }
+  try {
+    return JSON.parse(git(["show", `${base}:khai-guard.config.json`]));
+  } catch {
+    return config;
   }
 }
 
@@ -963,9 +987,30 @@ function runMemberCheck() {
   }
   const { ok, errors } = checkMembers(engines, config);
   const warnings = deadExemptions(engines, config);
+  // The ratchet's floor: the whitelist may shrink freely, but an entry that
+  // appears without a recorded grant is refused. Compared against the branch's
+  // merge-base config, so it fires on what THIS branch added and nothing else.
+  // Skipped when no base resolves (first push, shallow clone) rather than
+  // blocking on a comparison that cannot be made.
+  const growth = homonymGrowth(baseConfig(config), config);
+  // And the opportunistic half: a live entry in an engine this diff is already
+  // standing in. Advisory by construction -- a rename is breaking, so the gate
+  // offers it, never forces it.
+  const changed = changedPaths(config);
+  const opportunities = touchedExemptions(engines, changed ?? [], config);
   // The ratchet, LOUD but advisory (the bump-check precedent): a dead
   // exemption straddles two lanes, so it can only nag, never block. It nags
   // on every run until the governance-lane deletion lands.
+  if (opportunities?.length) {
+    console.error("");
+    console.error("  ══════════════════ KHAI-GUARD: WHILE YOU ARE HERE ══════════════════");
+    for (const o of opportunities) {
+      console.error(`  ${o}`);
+      console.error(`::warning::KHAI-Guard member-check: ${o}`);
+    }
+    console.error("  ═════════════════════════════════════════════════════════════════════");
+    console.error("");
+  }
   if (warnings?.length) {
     console.error("");
     console.error("  ════════════════════════ KHAI-GUARD RATCHET ════════════════════════");
@@ -975,6 +1020,15 @@ function runMemberCheck() {
     }
     console.error("  ═════════════════════════════════════════════════════════════════════");
     console.error("");
+  }
+  if (!growth.ok) {
+    console.error("::error::KHAI-Guard member-check: exemption-growth violations:");
+    for (const e of growth.errors) console.error(`  ${e}`);
+    console.error(
+      "\n  Fix: the list is a ratchet -- it comes down, it does not go up.\n" +
+        "  Rename the member instead, or have the maintainer record the grant.",
+    );
+    process.exit(1);
   }
   if (!ok) {
     console.error("::error::KHAI-Guard member-check: member-scope violations:");

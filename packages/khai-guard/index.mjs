@@ -1127,6 +1127,27 @@ export function checkLockfiles(paths = [], config = DEFAULT_CONFIG) {
   return { ok: offenders.length === 0, offenders };
 }
 
+// exemptionStems: `memberPolicy.homonyms` (and `grandfathered`) accept two
+// shapes. A flat array of stems is the original and stays valid. A map of
+// stem -> { proposed, granted } carries the resolution the chase list already
+// chose, so the gate can NAME the distinct stem at the moment an author is in
+// that engine rather than sending them to a document. Both normalize to the
+// same set here; the metadata is read separately by touchedExemptions.
+export function exemptionStems(policy, key) {
+  const raw = policy?.[key];
+  if (Array.isArray(raw)) return raw;
+  if (raw && typeof raw === "object") return Object.keys(raw);
+  return [];
+}
+
+// exemptionMeta: the per-stem record when the map shape is in use, else null.
+export function exemptionMeta(policy, key, stem) {
+  const raw = policy?.[key];
+  if (!raw || Array.isArray(raw) || typeof raw !== "object") return null;
+  const entry = raw[stem];
+  return entry && typeof entry === "object" ? entry : null;
+}
+
 // checkMembers: the member-scope gate. Atoms must not overlap: one phenomenon,
 // one engine, so a member file whose stem is already claimed by another engine
 // (or that restates a whole engine's domain) is a duplicate reading, not a
@@ -1144,7 +1165,10 @@ export function checkMembers(engines = [], config = DEFAULT_CONFIG) {
   const policy = config.memberPolicy;
   const errors = [];
   if (!policy) return { ok: true, errors };
-  const allow = new Set([...(policy.homonyms ?? []), ...(policy.grandfathered ?? [])]);
+  const allow = new Set([
+    ...exemptionStems(policy, "homonyms"),
+    ...exemptionStems(policy, "grandfathered"),
+  ]);
   // position_locus_of_control.md -> "locus_of_control"; the alternation is the
   // canon's type vocabulary, not a greedy prefix, so a stem's own underscores
   // survive.
@@ -1232,8 +1256,8 @@ export function deadExemptions(engines = [], config = DEFAULT_CONFIG) {
   };
   const warnings = [];
   for (const [label, entries] of [
-    ["homonyms", policy.homonyms ?? []],
-    ["grandfathered", policy.grandfathered ?? []],
+    ["homonyms", exemptionStems(policy, "homonyms")],
+    ["grandfathered", exemptionStems(policy, "grandfathered")],
   ]) {
     for (const stem of entries) {
       if (!liveCollision(stem)) {
@@ -1245,4 +1269,82 @@ export function deadExemptions(engines = [], config = DEFAULT_CONFIG) {
     }
   }
   return warnings;
+}
+
+// touchedExemptions: the ratchet's other direction. deadExemptions nags when an
+// exemption's collision is gone; this nags when an author is standing in the
+// engine that still holds one. A rename is breaking, so this can never block —
+// taking it turns a patch into a bump:minor and may pull composite relinks in,
+// which is the author's call and the maintainer's label. What the gate can do
+// is make sure the choice is offered at the only moment it is cheap: while the
+// files are already open.
+export function touchedExemptions(engines = [], changed = [], config = DEFAULT_CONFIG) {
+  const policy = config.memberPolicy;
+  if (!policy || !Array.isArray(changed) || changed.length === 0) return [];
+  // Which packages the diff is standing in. A rename is only opportune for an
+  // engine the change already touches; everything else is unrelated work.
+  const touched = new Set();
+  for (const p of changed) {
+    const m = /^packages\/(engines|composites)\/([^/]+)\//.exec(String(p));
+    if (m) touched.add(m[2]);
+  }
+  if (touched.size === 0) return [];
+  const stemOf = (file) =>
+    String(file)
+      .replace(/\.md$/, "")
+      .replace(
+        /^(architecture|engines|instructions|order|plan|play|plot|process|position|piece|place|persona|pitch)_/,
+        "",
+      );
+  const owners = new Map(); // stem -> [{ engine, file }]
+  for (const { engine, files } of engines) {
+    for (const file of files ?? []) {
+      const stem = stemOf(file);
+      if (!owners.has(stem)) owners.set(stem, []);
+      owners.get(stem).push({ engine, file });
+    }
+  }
+  const notes = [];
+  for (const key of ["homonyms", "grandfathered"]) {
+    for (const stem of exemptionStems(policy, key)) {
+      const here = (owners.get(stem) ?? []).filter((o) => touched.has(o.engine));
+      if (here.length === 0) continue;
+      const meta = exemptionMeta(policy, key, stem);
+      const where = here.map((o) => `${o.engine}/${o.file}`).join(", ");
+      const name = meta?.proposed
+        ? `rename it to "${meta.proposed}"`
+        : "give it a distinct stem (usually the field's own compound term)";
+      notes.push(
+        `this branch is already in ${where}, which holds the live ` +
+          `memberPolicy.${key} entry "${stem}" — while you are here, ${name}. ` +
+          `A rename is breaking (bump:minor, the maintainer's label) and moves to ` +
+          `the rename/<name>/<topic> lane if a composite links it.`,
+      );
+    }
+  }
+  return notes;
+}
+
+// homonymGrowth: the ratchet's floor. CLAUDE.md rule 7 says a whitelist entry is
+// the maintainer's call and never self-granted, and until now nothing computed
+// it — an agent could add one and every gate stayed green. The list may shrink
+// freely; an entry that appears without a `granted` note is refused, so adding
+// one is a deliberate, reviewable act rather than a quiet way past member-check.
+export function homonymGrowth(baseConfig = {}, headConfig = {}) {
+  const errors = [];
+  for (const key of ["homonyms", "grandfathered"]) {
+    const before = new Set(exemptionStems(baseConfig.memberPolicy ?? {}, key));
+    for (const stem of exemptionStems(headConfig.memberPolicy ?? {}, key)) {
+      if (before.has(stem)) continue;
+      const meta = exemptionMeta(headConfig.memberPolicy ?? {}, key, stem);
+      if (meta?.granted) continue;
+      errors.push(
+        `memberPolicy.${key} gained the entry "${stem}". The whitelist is the ` +
+          `last resort and the maintainer's call (CLAUDE.md rule 7), never ` +
+          `self-granted: give the member a distinct stem instead, or record the ` +
+          `grant as { "granted": "<why, and who decided>" } on the entry.`,
+      );
+    }
+  }
+  return { ok: errors.length === 0, errors };
 }
