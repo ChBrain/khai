@@ -818,8 +818,20 @@ export function bumpScope(changesets, config = DEFAULT_CONFIG) {
  * destination and reported as the destination's effective status (the dst is
  * "added" relative to the lane it lands in). Mirrors parseNameStatus's tolerance
  * of both the `-z` NUL stream and the legacy tab-delimited line form.
+ *
+ * A RENAME additionally carries `from`, its source path, because the two gates
+ * downstream ask different questions of the same record and only one of them is
+ * answered by the destination. Lane ownership asks WHERE the file now is: a
+ * rename into a lane is an arrival in that lane, and the destination settles it.
+ * The count-driven rule asks whether the item COUNT moved, and there a moved play
+ * is not a new play -- 290 cultures renamed are still 290. Discarding the source
+ * collapsed the second question into the first.
+ *
+ * `from` is set for a rename (R) and NOT for a copy (C), which is the whole
+ * distinction: a copy leaves the original in place, so the count really did move
+ * and the destination really is an add.
  * @param {string|string[]} input
- * @returns {{status: string, path: string}[]}
+ * @returns {{status: string, path: string, from?: string}[]}
  */
 export function parseChanges(input) {
   const tokens = Array.isArray(input)
@@ -830,10 +842,17 @@ export function parseChanges(input) {
     const status = tokens[i++];
     if (!status || !status.trim()) continue;
     if (/^[RC]/.test(status)) {
-      i++; // skip <src>
+      const src = tokens[i++];
       const dst = tokens[i++];
-      // A rename into a path is, for ownership, an addition of that path.
-      if (dst) out.push({ status: "A", path: dst });
+      // A rename into a path is, for ownership, an addition of that path -- and
+      // the source travels with it so a count-driven caller can tell a move from
+      // an arrival. A copy carries no source: its original survives.
+      if (dst)
+        out.push(
+          src && status[0] === "R"
+            ? { status: "A", path: dst, from: src }
+            : { status: "A", path: dst },
+        );
     } else {
       const path = tokens[i++];
       if (path) out.push({ status: status[0], path });
@@ -893,8 +912,17 @@ export function changesetCheck({
 } = {}) {
   const globs = config.changesetPolicy?.countDrivenAdd ?? [];
   const isCountDrivenAdd = globs.length > 0 ? picomatch(globs, { dot: true }) : () => false;
+  // A moved play is not a new play. A rename whose SOURCE already matched the
+  // same glob leaves the count exactly where it was, so it is not a count-driven
+  // add however much the file was edited on the way -- and edited it usually is,
+  // because a play's links change when its directory does. Keying on the source
+  // glob rather than on git's similarity score is what makes that hold: R100 and
+  // R072 are the same move, and only `exemptRenames` (a narrower, separate rule)
+  // ever cared about the difference. A rename in from OUTSIDE the glob is a real
+  // arrival and still counts.
   const countDrivenAdds = changed
     .filter((c) => c.status === "A" && isCountDrivenAdd(c.path))
+    .filter((c) => !(c.from && isCountDrivenAdd(c.from)))
     .map((c) => c.path);
   const addsCountDriven = countDrivenAdds.length > 0;
   const hasChangeset = changesets.length > 0;
