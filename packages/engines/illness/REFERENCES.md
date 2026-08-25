@@ -109,7 +109,7 @@ separately sourced; the twist is the sick role's own best-known failure.
 | **Kathy Charmaz**                   | _"Loss of Self: A Fundamental Form of Suffering in the Chronically Ill"_ (1983); _Good Days, Bad Days_ (1991) | The chronically ill self, the fluctuating condition, and the good day taken as the true state. The rethinking and unseen members.                                          |
 | **Phil Brown; Joseph Dumit**        | _"Popular Epidemiology"_ (1992); _"Illnesses You Have to Fight to Get"_ (Social Science & Medicine, 2006)     | Contested illness: sufferers doing the work of proof, and the reasonable moves that read from outside as wanting to be ill. The contested member.                          |
 | **Peter Conrad & Joseph Schneider** | _Deviance and Medicalization_ (1980)                                                                          | The moral rationing of absolution, and conditions read as self-inflicted receiving less of it. The absolution member.                                                      |
-| **Michael Oliver; Tom Shakespeare** | _The Politics of Disablement_ (1990); _Disability Rights and Wrongs_ (2006)                                   | The social model's standing objection to the whole frame: disability produced by arrangements rather than by bodies. The engine's bounds, not settled here.                |
+| **Michael Oliver; Tom Shakespeare** | _The Politics of Disablement_ (1990); _Disability Rights and Wrongs_ (2006)                                   | **Contrast.** The social model's standing objection to the whole frame: disability produced by arrangements rather than by bodies. The engine's bounds, not settled here.  |
 
 ## Restrictions
 
