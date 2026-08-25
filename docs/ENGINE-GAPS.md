@@ -1522,6 +1522,16 @@ in those rows, not a compromise made to satisfy a gate.
 **All 58 proposed stems were checked against the full 2,515-member inventory:
 every one is free, and none restates an engine slug.**
 
+**The names below are also in the gate.** `memberPolicy.homonyms` carries them
+as `stem -> { proposed }`, so `member-check` names the replacement when a change
+touches an engine that still holds an entry, instead of sending the author to
+this file at the one moment they are least likely to open it. Twenty of the 27
+live entries have a single name; the seven that need two engines to move carry a
+`note` recording both, and fall back to the generic offer. This document stays
+the reasoning; the config is the operative copy, and the two are expected to
+agree — if they drift, this one is the record of why, and the config is what
+fires.
+
 **Status** is the column this file's own audit says every candidate table needs,
 and it was missing here for one revision: `morphology` shipped (#1352) and its
 three rows still read as pending until this was added. The rule the audit set
@@ -1563,7 +1573,7 @@ do where both have a term of their own.
 | `disgust`            | `disgust`            | `emotion/process_disgust.md`             | `appraisal_disgust`            | the appraisal family, as above                                                 | 0     | shipped (#1364) |
 | `embarrassment`      | `embarrassment`      | `shame/process_embarrassment.md`         | `shame_embarrassment`          | the shame family it sits in beside `humiliation`                               | 0     | proposed        |
 | `envy`               | `envy`               | `virtue/position_envy.md`                | `vice_envy`                    | virtue holds both registers and already chose `wrath` over `anger`             | 0     | shipped (#1355) |
-| `exploration`        | `exploration`        | `negotiation/process_exploration.md`     | `negotiation_exploration`      | one of negotiation's four phases                                               | 1     | building        |
+| `exploration`        | `exploration`        | `negotiation/process_exploration.md`     | `negotiation_exploration`      | one of negotiation's four phases                                               | 1     | shipped (#1368) |
 | `fear`               | `fear`               | `emotion/process_fear.md`                | `appraisal_fear`               | the appraisal family                                                           | 0     | shipped (#1364) |
 | `framing`            | `framing`            | `pitch-mode/position_framing.md`         | `pitch_framing`                | the pitch's own opening move                                                   | 0     | proposed        |
 | `gratitude`          | `gratitude`          | `virtue/position_gratitude.md`           | `virtue_gratitude`             | the virtue register                                                            | 0     | shipped (#1355) |
@@ -1608,7 +1618,7 @@ do where both have a term of their own.
 | `planning`        | `executive-function` keeps it                         | `implementation-intention/process_planning.md` | `if_then_planning`       | Gollwitzer's own term                                                                                                                                | 2     | proposed        |
 | `preparation`     | `negotiation` keeps it                                | `morphology/plot_preparation.md`               | `folktale_preparation`   | the folktale family                                                                                                                                  | 0     | shipped (#1352) |
 | `relief`          | `joy` keeps it                                        | `addiction/process_relief.md`                  | `relief_craving`         | the negative-reinforcement term the addiction literature uses                                                                                        | 1     | proposed        |
-| `resolution`      | `betrayal` keeps it                                   | `negotiation/process_resolution.md`            | `negotiation_resolution` | the closing phase                                                                                                                                    | 1     | building        |
+| `resolution`      | `betrayal` keeps it                                   | `negotiation/process_resolution.md`            | `negotiation_resolution` | the closing phase                                                                                                                                    | 1     | shipped (#1368) |
 | `return`          | `monomyth` keeps it                                   | `morphology/plot_return.md`                    | `folktale_return`        | the folktale family                                                                                                                                  | 0     | shipped (#1352) |
 | `rivalry`         | `dramatic-situations` keeps it                        | `narcissism/process_rivalry.md`                | `narcissistic_rivalry`   | Back et al.'s own term                                                                                                                               | 1     | shipped (#1366) |
 | `searching`       | `boredom` keeps it                                    | `meaning/position_searching.md`                | `search_for_meaning`     | Frankl's, and Steger's scale's, own phrase                                                                                                           | 1     | proposed        |
@@ -1700,21 +1710,26 @@ call with a red window anywhere else.
 `memberPolicy.homonyms` in #1353, `envy`, `gratitude` and `pride` with the
 virtue rename, `reward` with the power rename, `anchoring`, `reactance` and
 `representativeness` with the bias rename, and `anger`, `disgust`, `fear`,
-`joy` and `sadness` with the emotion rename. **Eighteen cleared across six
-lanes; 40 renames remain — 9 with no inbound link, 31 with one, all of them
+`joy` and `sadness` with the emotion rename. **Twenty-two cleared across eight
+lanes; 36 renames remain — 7 with no inbound link, 29 with one, all of them
 landable in a single PR on the `rename` lane.**
 
 With the deadlock gone the order is value, not availability, and the measure is
 **entries cleared per lane**. `narcissism` led it at three (`admiration`,
 `communal`, `rivalry`) and is done (#1366, ratchet closed alongside), all three
 taking the field's own compound terms — Back et al.'s admiration–rivalry concept
-and Gebauer's communal narcissism. **`negotiation` is next at two** (`exploration`,
-`resolution` — its four phases keep `preparation` and `invention`, and only the
-two contested ones take the engine's own name). `journey-roles` also clears two,
-but its rows are the `shadow`/`trickster` pair left open above: whether
-`archetypes` moves for all three, as it did for `self`, or `journey-roles`
-yields for these two. That lane waits on the call. After them the lanes clear
-one entry apiece. Seven stems (`emotional`,
+and Gebauer's communal narcissism. `negotiation` (#1368) and `journey-roles` (#1369) took the last two of them.
+`negotiation` moved only its two contested phases — its four keep `preparation`,
+freed when `morphology` took the folktale word, and `invention`, never claimed —
+so the engine gave back two words rather than being made uniform.
+`journey-roles` settled the question left open above: **`journey-roles` yields,
+`archetypes` keeps the bare `shadow` and `trickster`**, where the Jungian Self
+also stayed when `self` went the other way. The two engines split on principle
+rather than uniformly — Jung's figures keep the words, Vogler's functions say
+they are roles.
+
+**From here every remaining lane clears one entry apiece**, so the ordering
+stops paying and the work is simply the list. Seven stems (`emotional`,
 `external`, `high`, `low`, `mastery`, `self`, `sensitivity`) need **two**
 engines to move before the entry dies, so they clear on the second lane rather
 than the first, whichever order those run in.

@@ -78,7 +78,13 @@ npx khai-guard advise --files <paths>
    whitelist is the **last resort, not the first offer**: it is for a word that
    genuinely carries two sciences and cannot be renamed on either side without
    losing the field's own term, and it is the maintainer's call, never
-   self-granted. And because composites hard-link member files by name,
+   self-granted — **and the gate now computes that.** The list is a ratchet: it
+   may shrink freely, and `member-check` refuses an entry that appears without a
+   recorded `granted` note. It also carries the distinct stem each remaining
+   entry should take, so a change that touches an engine still holding one is
+   told, at that moment, what to rename it to. Taking the offer is optional and
+   always yours to price — a rename is breaking — but it is the only moment the
+   cleanup is cheap. And because composites hard-link member files by name,
    **renaming or removing a member is a breaking change**: at least
    `bump:minor` (the maintainer's label), never a silent patch. Adding members
    stays patch-free. A rename that other packages link goes on the
