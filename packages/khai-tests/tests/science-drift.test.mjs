@@ -89,6 +89,70 @@ describe("conformance: science index build-drift gate", () => {
     expect(verifyScienceIndex(dir).length).toBe(1);
   });
 
+  // What the drift error SAYS. "Out of date" is a sufficient exit code and a
+  // useless report: a reader who cannot see what drifted cannot tell a stale
+  // index from a builder that changed under them.
+
+  // A rendered row is a whole table line, so these fixtures use a long scope --
+  // the reporting only has to be careful when the difference is far from the
+  // start of the line, and a short fixture would pass either implementation.
+  const LONG = `The engine's own account, stated at the length these rows run to in the real index, ${"padding ".repeat(20)}and then the part that differs: ORIGINAL.`;
+
+  const withLongScope = (word) => {
+    addEngine("delta", {
+      rows: [["**Mary Douglas**", "_D_ (1966)", LONG.replace("ORIGINAL", word)]],
+    });
+  };
+
+  it("names the line and column of the first difference", () => {
+    withLongScope("ORIGINAL");
+    buildScienceIndex(dir);
+    const p = join(dir, "docs", "SCIENCE.md");
+    writeFileSync(p, readFileSync(p, "utf8").replace("ORIGINAL", "CHANGED!"));
+
+    const [error] = verifyScienceIndex(dir);
+    expect(error).toMatch(/is out of date; run `khai-tests science build`/);
+    expect(error).toMatch(/first difference at line \d+, column \d+:/);
+    expect(error).toMatch(/committed: /);
+    expect(error).toMatch(/built: {5}/);
+  });
+
+  it("windows the excerpt on the difference, not on the head of the line", () => {
+    // The regression this exists for: excerpting from the start of the line
+    // printed the same padding twice, under "committed:" and under "built:",
+    // and reported a difference the reader could not see.
+    withLongScope("ORIGINAL");
+    buildScienceIndex(dir);
+    const p = join(dir, "docs", "SCIENCE.md");
+    writeFileSync(p, readFileSync(p, "utf8").replace("ORIGINAL", "CHANGED!"));
+
+    const [error] = verifyScienceIndex(dir);
+    const committed = /committed: (.*)/.exec(error)[1];
+    const built = /built: {5}(.*)/.exec(error)[1];
+
+    expect(committed).not.toEqual(built);
+    expect(committed).toContain("CHANGED!");
+    expect(built).toContain("ORIGINAL");
+    // Elision is marked, so nobody reads the excerpt as the whole line.
+    expect(committed.startsWith("…")).toBe(true);
+  });
+
+  it("says (end of file) for a side that has no such line", () => {
+    withLongScope("ORIGINAL");
+    const built = buildScienceIndex(dir);
+    const lines = built.split("\n");
+    writeFileSync(join(dir, "docs", "SCIENCE.md"), lines.slice(0, -2).join("\n"));
+
+    const [error] = verifyScienceIndex(dir);
+    expect(error).toContain("committed: (end of file)");
+  });
+
+  it("names the index rather than the drift when there is no index at all", () => {
+    const [error] = verifyScienceIndex(dir);
+    expect(error).toMatch(/is missing; run `khai-tests science build`/);
+    expect(error).not.toContain("first difference");
+  });
+
   it("collates one scholar across engines however authored", () => {
     const { records } = collectScience(dir);
     const kahneman = records.filter((r) => r.surname === "Kahneman");
@@ -216,11 +280,33 @@ describe.skipIf(COMPOSITE_DORMANT)("conformance: composites index like engines",
   });
 });
 
-// Note: the committed docs/SCIENCE.md is NOT gated per-PR against the live
-// engines. The index is a shared generated artifact; coupling every engine PR
-// to it would collide across concurrent PRs. It is refreshed out of band with
-// `khai-tests science build` (a periodic/post-batch reindex), and the synthetic
-// drift tests above still prove the builder itself is correct.
+// Note: the committed docs/SCIENCE.md IS gated per-PR against the live engines,
+// by science-index.test.mjs. This note said the opposite for as long as the
+// index existed, and the reasoning was sound: the index is a shared generated
+// artifact, coupling every engine PR to it collides across concurrent PRs, and
+// it would instead be refreshed out of band with `khai-tests science build` (a
+// periodic/post-batch reindex).
+//
+// The out-of-band reindex is the part that did not survive contact. Nothing ran
+// it -- no hook, no ci.yml job, no test -- so the `disability` engine shipped
+// and its rows were never built in, and the index sat a whole engine stale
+// (374 engines / 1703 scholars against a tree holding 375 / 1706) until an
+// unrelated PR happened to run the builder. An unenforced convention decayed,
+// which is what unenforced conventions do.
+//
+// The collision cost the note warned about is real and was measured before the
+// gate was kept, not argued about:
+//
+//   - two PRs each EDITING an Origin scope -> the indexes merge cleanly AND the
+//     merge equals a fresh build, so both stay green;
+//   - two PRs each ADDING a unit           -> 13 conflict hunks, because both
+//     rewrite the counts header and interleave rows.
+//
+// So the cost lands only on concurrent additions, and it is mechanical: take
+// either side, run `npx khai-tests science build`, commit. That is the trade
+// this house took -- a rare scripted conflict over an index that rots in
+// silence. The synthetic drift tests above still prove the builder itself is
+// correct, which is a different thing from proving the artifact is current.
 
 // Dormant until the deterministic scholar filter lands in src: the probe checks
 // whether a non-author idiom ("Boundary of the effect") still manufactures a

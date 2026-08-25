@@ -63,10 +63,11 @@ describe.skipIf(!HAS_TREE)("gate: this repo's science index is not stale", () =>
   });
 
   it("matches a fresh build of every Origin table", () => {
-    // verifyScienceIndex answers "out of date" and stops -- right for a CLI
-    // exit code, thin for somebody reading a failing suite. Naming the first
-    // differing line would need `renderForRoot` exported, which is source and
-    // belongs in its own PR; the fix is one command either way.
+    // verifyScienceIndex names the first differing line and column and prints
+    // both sides (#1388). This comment used to say that naming the line would
+    // require exporting `renderForRoot`; it did not -- widening the verifier
+    // itself was both smaller and better, because the CLI gained the same
+    // report for free.
     expect(verifyScienceIndex(repoRoot)).toEqual([]);
   });
 });
