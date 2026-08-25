@@ -1,5 +1,24 @@
 # @chbrain/khai-tests
 
+## 0.3.0
+
+### Minor Changes
+
+- 163c2bf: Give a citation a declared role. `roleOf` reads a Scope cell opening
+  `**Contrast.**` or `**Support.**` and returns `contrast`, `support` or `spine`;
+  the overlap wall now refuses only a work carrying a **spine** in more than one
+  unit, so a boundary citation and a corroborating one are legitimate second uses
+  rather than findings. Unmarked rows are spines and the legacy contrast
+  vocabulary still reads, so nothing migrates and no existing finding changes.
+
+### Patch Changes
+
+- f69f1ae: Fix `roleOf` against the parsed cell. The Origin reader strips emphasis, so a
+  `**Contrast.**` lead arrives as `Contrast.` and the asterisk-bearing prefixes
+  never matched — the declared roles shipped inert. The token is now matched on
+  the parsed form, must lead, and must be closed by a period or colon, so a cell
+  that merely opens with the word stays a spine.
+
 ## 0.2.9
 
 ### Patch Changes

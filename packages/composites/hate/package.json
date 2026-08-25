@@ -81,7 +81,7 @@
     "@chbrain/khai-engine-disgust": "^0.1.1"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.2",
+    "@chbrain/khai-tests": "^0.3.0",
     "vitest": "^4.1.10"
   }
 }
