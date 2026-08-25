@@ -4,6 +4,8 @@
 export {
   validateContentFile,
   validateEnginePackage,
+  validateProductionPackage,
+  PRODUCTION_CLASS,
   discoverEnginePackages,
   findEnginePackageFor,
   validateInstanceFile,

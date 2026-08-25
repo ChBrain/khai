@@ -14,6 +14,8 @@
 
 import {
   validateEnginePackage,
+  validateProductionPackage,
+  PRODUCTION_CLASS,
   findEnginePackageFor,
   validateProject,
   wiringRequirements,
@@ -57,7 +59,18 @@ async function engineMode(args) {
 
   let failed = false;
   for (const dir of pkgDirs) {
-    failed = printResults(await validateEnginePackage(dir), process.cwd()) || failed;
+    // Which validator a package gets is the manifest's call, not the caller's:
+    // a production (khai.class "house") is one play published on its own and has
+    // no WIRES card, no members tree and no compose(), so routing it through the
+    // engine validator would report four findings that are all the same finding,
+    // "this is not an engine". Computed from the class, so the same pre-commit
+    // hook serves an engine repo and a house that publishes its productions.
+    const khai = readJsonOr(join(dir, "package.json"))?.khai;
+    const results =
+      khai?.class === PRODUCTION_CLASS
+        ? validateProductionPackage(dir)
+        : await validateEnginePackage(dir);
+    failed = printResults(results, process.cwd()) || failed;
   }
   if (failed) {
     console.error("\nkhai-tests: conformance check failed.");

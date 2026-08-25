@@ -542,6 +542,139 @@ export function discoverEnginePackages(root) {
     .filter((p) => statSync(p).isDirectory() && existsSync(join(p, "package.json")));
 }
 
+/**
+ * The canon class a production package declares. It is not a new word: khai-arch
+ * already classes its types `house`, `element` and `meta`, and `house` is the
+ * class of the two types that make a play (play, plot). `manifest.class` has
+ * always drawn on that vocabulary -- the spine engine declares `meta` because
+ * its members are meta-class instances -- so a package whose members are a play
+ * declares `house`, and the canon needs no third word to name its third layer.
+ *
+ * The layer's NAME is "production", which is what the houses call it and what
+ * the order that opened it is called. A layer name has never been a class value
+ * (an engine's members are element-class and it declares nothing at all), so the
+ * two do not collide.
+ */
+export const PRODUCTION_CLASS = "house";
+
+/** Every `.md` in the dir, instance or not -- the publish invariant is about
+ * what ships, and a README that links out of the package breaks in the tarball
+ * exactly as a persona does. */
+function markdownFiles(pkgDir) {
+  return readdirSync(pkgDir).filter((f) => f.endsWith(".md"));
+}
+
+/**
+ * Validate a production package: ONE khai play, published on its own so another
+ * house can draw on it as material without taking the whole house with it.
+ *
+ * A production is the canon's third package layer and it is shaped like neither
+ * of the first two. An engine is a domain wired into a chapter (WIRES card,
+ * generated README, members tree, compose()); a composite is an engine over
+ * engines. A production composes nothing and wires nothing: it is content, one
+ * play and its cast, and what makes it a package is that a dependency is the
+ * only reference npm can check. So this validator keeps the engine validator's
+ * discriminator -- `manifest.class`, the canon's own vocabulary, computed not
+ * judged -- and almost none of its body.
+ *
+ * Two things are checked here and nowhere else, and then the content is handed
+ * to the ordinary consumer validator:
+ *
+ *  1. the manifest: the class, the id, the absence of `engine` (a production
+ *     imposes no wiring law on whoever installs it), and one anchoring play;
+ *  2. the publish invariant: no `../` in any shipped markdown. This is not
+ *     redundant with the broken-link check, and the difference is the whole
+ *     reason it exists -- a culture sitting beside its siblings in a working
+ *     tree resolves `../france/position_language_fr_fr.md` perfectly, so the
+ *     link check passes and the published tarball is still broken. The invariant
+ *     sees what the link check cannot: that the neighbour is not in the package;
+ *
+ * There is deliberately no third. A production carries NO reference warrant of
+ * khai's shape: LORE is the engine's instrument, justifying a domain modelled
+ * from a literature, and a production is a staging. Its sources are the house's
+ * business and the houses do not agree -- a culture's REFERENCES.md carries
+ * Hofstede data and historical sources, a misfit's REFERENCE.md carries an
+ * Origin table -- so a warrant shape imposed here would override a house
+ * contract khai cannot see. The house gates its warrant; khai gates the package.
+ *
+ * Reads and statically analyses only; never executes package code.
+ *
+ * @param {string} pkgDir
+ * @returns {FileResult[]}
+ */
+export function validateProductionPackage(pkgDir) {
+  const results = [];
+  const push = (file, errors) => results.push({ file, errors, warnings: [], audit: [] });
+  const { manifest, unreadable } = readManifest(pkgDir);
+  if (unreadable) {
+    push("package.json", ["cannot read or parse package.json"]);
+    return results;
+  }
+  if (!manifest) {
+    push("package.json", ["package.json has no `khai` manifest"]);
+    return results;
+  }
+
+  const errs = [];
+  if (manifest.class !== PRODUCTION_CLASS)
+    errs.push(
+      `a production declares khai.class "${PRODUCTION_CLASS}" (the canon class of a play), ` +
+        `got ${JSON.stringify(manifest.class)}`,
+    );
+  const id = manifest.production;
+  if (typeof id !== "string" || !id.trim())
+    errs.push("khai.production is required: the id of the production this package ships");
+  // An engine declares wiring law on its consumers. A production must not: a
+  // house that installs 290 cultures to cast one would otherwise inherit 290
+  // sets of requirements it never asked for.
+  if (manifest.engine !== undefined)
+    errs.push(
+      "a production declares no khai.engine: it is content, not an engine, and " +
+        "imposes no wiring requirement on the packages that draw on it",
+    );
+  if (errs.length) push("package.json", errs);
+
+  // The anchor: a production is one play. The default follows the collection
+  // anchor convention (`play_<id>.md`) so the manifest need not repeat itself.
+  const anchor = typeof manifest.anchor === "string" ? manifest.anchor : `play_${id}.md`;
+  const anchorPath = join(pkgDir, anchor);
+  if (!existsSync(anchorPath)) {
+    push(anchor, [`missing anchor: a production is one play, anchored ${anchor}`]);
+  } else {
+    const declared = parseDoc(readFileSync(anchorPath, "utf8")).data?.khai;
+    if (declared !== "play")
+      push(anchor, [`the anchor must be a khai play, got ${JSON.stringify(declared)}`]);
+  }
+  const plays = instanceFiles(pkgDir).filter(
+    (f) => parseDoc(readFileSync(join(pkgDir, f), "utf8")).data?.khai === "play",
+  );
+  if (plays.length > 1)
+    push("package.json", [
+      `a production is one play; this package ships ${plays.length} (${plays.join(", ")})`,
+    ]);
+
+  // The publish invariant.
+  for (const file of markdownFiles(pkgDir)) {
+    const escapes = new Set(
+      [...readFileSync(join(pkgDir, file), "utf8").matchAll(/\]\((\.\.\/[^()\s]+)\)/g)].map(
+        (m) => m[1],
+      ),
+    );
+    if (escapes.size)
+      push(file, [
+        `link escapes the package: ${[...escapes].join(", ")} -- a published production ` +
+          `carries no "../"; reference the neighbour by package specifier and declare it ` +
+          `as a dependency, so npm can check what the path only assumes`,
+      ]);
+  }
+
+  // The content: the ordinary consumer validator, rooted on the package so both
+  // notions of "installed" -- the wiring exemptions and the package-specifier
+  // resolver -- are taken from this package's own declared dependencies.
+  results.push(...validateProject({ root: pkgDir, contentDir: pkgDir }));
+  return results;
+}
+
 /** Walk up from a file to the nearest package.json carrying a `khai` manifest. */
 export function findEnginePackageFor(file) {
   let dir = dirname(file);
@@ -796,19 +929,41 @@ function packageDirResolver(fromDir) {
   };
 }
 
-/** Read the `khai` manifest from each installed engine under node_modules. */
+/** Every installed engine the content at `root` is bound by: the manifests of the
+ * packages under its node_modules AND of the engines its own package.json
+ * declares, resolved by walking up. */
 function installedEngineManifests(root) {
+  const found = new Map();
+  const take = (pkg) => {
+    if (pkg?.khai?.engine && !found.has(pkg.name))
+      found.set(pkg.name, { khai: pkg.khai, name: pkg.name });
+  };
+  // The flat scan: everything installed beside the root. This is the house case
+  // -- a repo installs its engines and every one of them binds its content.
   const scopeDir = join(root, "node_modules", "@chbrain");
-  if (!existsSync(scopeDir)) return [];
-  return (
-    readdirSync(scopeDir)
-      .map((name) => join(scopeDir, name, "package.json"))
-      .filter((p) => existsSync(p))
+  if (existsSync(scopeDir))
+    for (const name of readdirSync(scopeDir)) {
+      const pkgPath = join(scopeDir, name, "package.json");
       // An installed dependency with a malformed package.json is skipped, not fatal.
-      .map((p) => readJsonOr(p))
-      .filter((pkg) => pkg?.khai?.engine)
-      .map((pkg) => ({ khai: pkg.khai, name: pkg.name }))
-  );
+      if (existsSync(pkgPath)) take(readJsonOr(pkgPath));
+    }
+  // The declared walk: every engine the root's own package.json names, resolved
+  // by walking up through node_modules. A workspace hoists installs to the
+  // workspace root, so a package validated on its own directory has NO local
+  // node_modules and the flat scan above returns nothing -- its engines' wiring
+  // laws would then be invisible and every wiring link would read as broken.
+  // The two are unioned rather than swapped: the flat scan also carries engines
+  // arriving transitively (through a composite), which a declaration cannot see.
+  const resolve = packageDirResolver(root);
+  const own = readJsonOr(join(root, "package.json")) ?? {};
+  for (const name of [
+    ...Object.keys(own.dependencies ?? {}),
+    ...Object.keys(own.devDependencies ?? {}),
+  ]) {
+    const dir = resolve(name);
+    if (dir) take(readJsonOr(join(dir, "package.json")));
+  }
+  return [...found.values()];
 }
 
 /** Basenames shipped by more than one installed engine: the collisions a bare
