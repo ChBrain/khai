@@ -13,6 +13,14 @@ import * as guard from "../index.mjs";
 const srcPath = join(dirname(fileURLToPath(import.meta.url)), "..", "index.mjs");
 const DORMANT = !readFileSync(srcPath, "utf8").includes("must carry a `minor` changeset");
 
+// The second sentinel, for the rename rule below: a rename whose SOURCE already
+// matched the count-driven glob moved an item, it did not add one, so it must not
+// demand a `minor`. Dormant until that source lands (tests first, source second).
+// Probed by the fix itself rather than by a sentence, because a sentence in a
+// wrapped comment is not a contiguous string and a sentinel that never matches
+// leaves the whole suite quietly skipped -- green, and testing nothing.
+const MOVED = !readFileSync(srcPath, "utf8").includes("isCountDrivenAdd(c.from)");
+
 const { changesetCheck, parseChanges, resolveConfig } = guard;
 
 // A house's policy: adding a play file moves the play count, so such an addition
@@ -38,10 +46,14 @@ describe.skipIf(DORMANT)("parseChanges", () => {
   });
 
   it("reports a rename-into as an add of the destination", () => {
-    // R<score> <src> <dst> in the -z stream.
+    // R<score> <src> <dst> in the -z stream. toMatchObject, not toEqual: the
+    // claim under test is that the DESTINATION reads as an add, which is what
+    // lane ownership needs and is true either side of the rename fix. The record
+    // also carries `from` once that lands, and asserting exact shape here would
+    // make this test a second, accidental gate on a field it does not test.
     expect(
       parseChanges(["R090", "plays/old/play_a.md", "plays/new/play_a.md", ""].join(NUL)),
-    ).toEqual([{ status: "A", path: "plays/new/play_a.md" }]);
+    ).toMatchObject([{ status: "A", path: "plays/new/play_a.md" }]);
   });
 
   it("parses the legacy tab-delimited line form", () => {
@@ -128,5 +140,89 @@ describe.skipIf(DORMANT)("changesetCheck", () => {
     expect(() => resolveConfig({ changesetPolicy: { countDrivenAdd: "plays/**" } })).toThrow(
       /countDrivenAdd/,
     );
+  });
+});
+
+// --- a renamed play is not a new play --------------------------------------
+//
+// The count-driven rule asks one question: did the item COUNT move? A rename
+// answers no whenever its SOURCE already matched the same glob, however much the
+// file was also edited on the way -- and edited it usually is, because a play's
+// links change when its directory does. That is why the rule keys on the source
+// glob and not on git's similarity score: R100 and R072 are the same move.
+//
+// This is deliberately narrower than `exemptRenames`, which drops R100 outright
+// and would have to be widened to cover an edited rename. The source-glob test
+// needs no widening, because it never asked about similarity in the first place.
+describe.skipIf(DORMANT || MOVED)("a rename inside the count-driven glob", () => {
+  const renamed = (score, from, to) => parseChanges([score, from, to, ""].join(NUL));
+
+  it("carries the source path, so the count rule can see where the file came from", () => {
+    expect(renamed("R100", "plays/old/play_a.md", "plays/new/play_a.md")).toEqual([
+      { status: "A", path: "plays/new/play_a.md", from: "plays/old/play_a.md" },
+    ]);
+  });
+
+  it("passes a rename WITH edits on a patch changeset (the common case)", () => {
+    // R096: moved and edited. 290 plays before, 290 after.
+    const changed = renamed("R096", "plays/hamburg/play_h.md", "plays/de_hamburg/play_h.md");
+    const r = changesetCheck({ changed, changesets: patchCs, config: houseCfg });
+    expect(r.addsCountDriven).toBe(false);
+    expect(r.ok).toBe(true);
+  });
+
+  it("passes a pure rename on a patch changeset", () => {
+    const changed = renamed("R100", "plays/hamburg/play_h.md", "plays/de_hamburg/play_h.md");
+    const r = changesetCheck({ changed, changesets: patchCs, config: houseCfg });
+    expect(r.addsCountDriven).toBe(false);
+    expect(r.ok).toBe(true);
+  });
+
+  it("still demands a changeset for a rename that carries none", () => {
+    // Not a content add, so it falls to the every-other-change rule: something
+    // must ship, or the PR merges green and publishes nothing.
+    const changed = renamed("R100", "plays/hamburg/play_h.md", "plays/de_hamburg/play_h.md");
+    const r = changesetCheck({ changed, changesets: [], config: houseCfg });
+    expect(r.ok).toBe(false);
+    expect(r.violations[0]).toMatch(/no changeset found/);
+  });
+
+  it("keeps the finding for a genuinely new play, message unchanged", () => {
+    const changed = parseChanges(z(["A", "plays/099z/play_z.md"]));
+    const r = changesetCheck({ changed, changesets: patchCs, config: houseCfg });
+    expect(r.addsCountDriven).toBe(true);
+    expect(r.violations[0]).toMatch(/drifts to `0\.<count>\.1`/);
+  });
+
+  it("flags a rename INTO a play path from outside the glob: a play really arrived", () => {
+    const changed = renamed("R100", "drafts/foo.md", "plays/099z/play_z.md");
+    const r = changesetCheck({ changed, changesets: patchCs, config: houseCfg });
+    expect(r.addsCountDriven).toBe(true);
+    expect(r.ok).toBe(false);
+  });
+
+  it("flags a COPY inside the glob: the source survives, so the count DID move", () => {
+    // C is not R. A copy leaves the original in place, so a second play now
+    // exists -- the one case inside the glob that is a real add, and the reason
+    // the source path is kept for renames only.
+    const changed = parseChanges(
+      ["C100", "plays/hamburg/play_h.md", "plays/de_hamburg/play_h.md", ""].join(NUL),
+    );
+    expect(changed[0].from).toBeUndefined();
+    const r = changesetCheck({ changed, changesets: patchCs, config: houseCfg });
+    expect(r.addsCountDriven).toBe(true);
+  });
+
+  it("does not disturb the shipped-content rule: the destination is what changed", () => {
+    // A releasing changeset needs shipped content to justify it, and a rename
+    // touches the destination path -- so the move still counts as shipped work.
+    const changed = renamed("R096", "plays/hamburg/play_h.md", "plays/de_hamburg/play_h.md");
+    const r = changesetCheck({
+      changed,
+      changesets: patchCs,
+      shipped: ["plays/**"],
+      config: houseCfg,
+    });
+    expect(r.ok).toBe(true);
   });
 });
