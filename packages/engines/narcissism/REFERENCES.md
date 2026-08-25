@@ -39,12 +39,12 @@ Source to constraint, per file.
 - **[narcissism](position_narcissism.md)** (the root, position): The entitled self-importance and the standing work of defending an inflated self. Anchored by Morf & Rhodewalt (the self-regulatory model) and Krizan & Herlache (the spectrum).
 - **[grandiose](position_grandiose.md)** (position, type): The overt face -- assertive self-aggrandisement, dominance, display. Anchored by Back et al. (grandiose narcissism) and Krizan & Herlache.
 - **[vulnerable](position_vulnerable.md)** (position, type): The covert face -- hypersensitivity, shame, defended fragility. Anchored by Pincus & Lukowitsky and Krizan & Herlache.
-- **[communal](position_communal.md)** (position, type): Grandiosity pursued through warmth and morality. Anchored by Gebauer et al. (communal narcissism).
+- **[communal](position_communal_narcissism.md)** (position, type): Grandiosity pursued through warmth and morality. Anchored by Gebauer et al. (communal narcissism).
 - **[malignant](position_malignant.md)** (position, type): Grandiosity fused with antagonism, sadism, and paranoia. Anchored by Kernberg (malignant narcissism).
 - **[dominance](plan_dominance.md)** (plan, the grandiose aim): To be admired, superior, and unrivalled. Anchored by Back et al. (admiration/rivalry) and the grandiose phenotype.
 - **[safety](plan_safety.md)** (plan, the vulnerable aim): To avoid exposure and secure reassurance. Anchored by Pincus & Lukowitsky (the vulnerable, injury-prone self).
 - **[glory](plan_glory.md)** (plan, the communal aim): To be recognised as the best and most virtuous. Anchored by Gebauer et al.
 - **[conquest](plan_conquest.md)** (plan, the malignant aim): To subjugate and destroy what threatens the self. Anchored by Kernberg.
-- **[admiration](process_admiration.md)** (process, shared): Assertive self-promotion, courting the regard the inflated self runs on. Anchored by Back et al. (the admiration route) and Morf & Rhodewalt.
-- **[rivalry](process_rivalry.md)** (process, shared): Antagonistic self-defence, devaluing the threatening other. Anchored by Back et al. (the rivalry route).
+- **[admiration](process_narcissistic_admiration.md)** (process, shared): Assertive self-promotion, courting the regard the inflated self runs on. Anchored by Back et al. (the admiration route) and Morf & Rhodewalt.
+- **[rivalry](process_narcissistic_rivalry.md)** (process, shared): Antagonistic self-defence, devaluing the threatening other. Anchored by Back et al. (the rivalry route).
 - **[injury](process_injury.md)** (process, shared): The narcissistic wound and the rage or collapse it triggers. Anchored by Pincus & Lukowitsky and Morf & Rhodewalt (threat-reactivity).

@@ -11,12 +11,12 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [plan dominance](plan_dominance.md): plan
 - [vulnerable](position_vulnerable.md): position
 - [plan safety](plan_safety.md): plan
-- [communal](position_communal.md): position
+- [communal narcissism](position_communal_narcissism.md): position
 - [plan glory](plan_glory.md): plan
 - [malignant](position_malignant.md): position
 - [plan conquest](plan_conquest.md): plan
-- [admiration](process_admiration.md): process
-- [rivalry](process_rivalry.md): process
+- [narcissistic admiration](process_narcissistic_admiration.md): process
+- [narcissistic rivalry](process_narcissistic_rivalry.md): process
 - [injury](process_injury.md): process
 
 See [sources and attribution](REFERENCES.md).

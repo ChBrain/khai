@@ -53,14 +53,14 @@
         "parent": "position_vulnerable.md"
       },
       {
-        "file": "position_communal.md",
+        "file": "position_communal_narcissism.md",
         "type": "position",
         "parent": "position_narcissism.md"
       },
       {
         "file": "plan_glory.md",
         "type": "plan",
-        "parent": "position_communal.md"
+        "parent": "position_communal_narcissism.md"
       },
       {
         "file": "position_malignant.md",
@@ -73,12 +73,12 @@
         "parent": "position_malignant.md"
       },
       {
-        "file": "process_admiration.md",
+        "file": "process_narcissistic_admiration.md",
         "type": "process",
         "parent": "position_narcissism.md"
       },
       {
-        "file": "process_rivalry.md",
+        "file": "process_narcissistic_rivalry.md",
         "type": "process",
         "parent": "position_narcissism.md"
       },
