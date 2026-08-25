@@ -1522,6 +1522,16 @@ in those rows, not a compromise made to satisfy a gate.
 **All 58 proposed stems were checked against the full 2,515-member inventory:
 every one is free, and none restates an engine slug.**
 
+**The names below are also in the gate.** `memberPolicy.homonyms` carries them
+as `stem -> { proposed }`, so `member-check` names the replacement when a change
+touches an engine that still holds an entry, instead of sending the author to
+this file at the one moment they are least likely to open it. Twenty of the 27
+live entries have a single name; the seven that need two engines to move carry a
+`note` recording both, and fall back to the generic offer. This document stays
+the reasoning; the config is the operative copy, and the two are expected to
+agree — if they drift, this one is the record of why, and the config is what
+fires.
+
 **Status** is the column this file's own audit says every candidate table needs,
 and it was missing here for one revision: `morphology` shipped (#1352) and its
 three rows still read as pending until this was added. The rule the audit set

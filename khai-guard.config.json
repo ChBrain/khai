@@ -260,35 +260,109 @@
   },
   "memberPolicy": {
     "engines": ["packages/engines/*/package.json", "packages/composites/*/package.json"],
-    "homonyms": [
-      "approach",
-      "bearer",
-      "contagion",
-      "creativity",
-      "embarrassment",
-      "emotional",
-      "exploratory",
-      "external",
-      "framing",
-      "high",
-      "internalization",
-      "liminality",
-      "low",
-      "loyalty",
-      "mastery",
-      "narcissism",
-      "obedience",
-      "persuasion",
-      "planning",
-      "regime",
-      "relief",
-      "repair",
-      "searching",
-      "self",
-      "sensitivity",
-      "standing",
-      "trust"
-    ],
+    "homonyms": {
+      "approach": {
+        "proposed": "approach_goal",
+        "yields": "goal/position_approach.md"
+      },
+      "bearer": {
+        "proposed": "stigmatized",
+        "yields": "stigma/position_bearer.md"
+      },
+      "contagion": {
+        "proposed": "law_of_contagion",
+        "yields": "superstition/position_contagion.md"
+      },
+      "creativity": {
+        "proposed": "social_creativity",
+        "yields": "social-identity/position_creativity.md"
+      },
+      "embarrassment": {
+        "proposed": "shame_embarrassment",
+        "yields": "shame/process_embarrassment.md"
+      },
+      "emotional": {
+        "note": "needs both to move: forgiveness/process_emotional.md -> emotional_forgiveness; memory/process_emotional.md -> emotional_memory"
+      },
+      "exploratory": {
+        "proposed": "exploratory_play",
+        "yields": "play-mode/position_exploratory.md"
+      },
+      "external": {
+        "note": "needs both to move: locus-of-control/position_external.md -> external_locus; motivation/process_external.md -> extrinsic"
+      },
+      "framing": {
+        "proposed": "pitch_framing",
+        "yields": "pitch-mode/position_framing.md"
+      },
+      "high": {
+        "note": "needs both to move: psychological-safety/place_high.md -> high_safety; status/position_high.md -> high_status; self-esteem/position_high.md -> high_esteem"
+      },
+      "internalization": {
+        "proposed": "norm_internalization",
+        "yields": "socialization/process_internalization.md"
+      },
+      "liminality": {
+        "proposed": "transition",
+        "yields": "ritual/process_liminality.md"
+      },
+      "low": {
+        "note": "needs both to move: psychological-safety/place_low.md -> low_safety; status/position_low.md -> low_status; self-esteem/position_low.md -> low_esteem"
+      },
+      "loyalty": {
+        "proposed": "loyalty_foundation",
+        "yields": "moral-judgment/position_loyalty.md"
+      },
+      "mastery": {
+        "note": "needs both to move: goal/position_mastery.md -> mastery_goal; self-efficacy/position_mastery.md -> mastery_experience"
+      },
+      "narcissism": {
+        "proposed": "triad_narcissism",
+        "yields": "dark-triad/position_narcissism.md"
+      },
+      "obedience": {
+        "proposed": "conformity_obedience",
+        "yields": "conformity/process_obedience.md"
+      },
+      "persuasion": {
+        "proposed": "verbal_persuasion",
+        "yields": "self-efficacy/position_persuasion.md"
+      },
+      "planning": {
+        "proposed": "if_then_planning",
+        "yields": "implementation-intention/process_planning.md"
+      },
+      "regime": {
+        "proposed": "climate_regime",
+        "yields": "climate/process_regime.md"
+      },
+      "relief": {
+        "proposed": "relief_craving",
+        "yields": "addiction/process_relief.md"
+      },
+      "repair": {
+        "proposed": "trust_repair",
+        "yields": "trust/process_repair.md"
+      },
+      "searching": {
+        "proposed": "search_for_meaning",
+        "yields": "meaning/position_searching.md"
+      },
+      "self": {
+        "note": "needs both to move: forgiveness/process_self.md -> self_forgiveness; archetypes/persona_self.md -> self_archetype"
+      },
+      "sensitivity": {
+        "note": "needs both to move: caregiving/process_sensitivity.md -> caregiver_sensitivity; disgust/position_sensitivity.md -> disgust_sensitivity"
+      },
+      "standing": {
+        "proposed": "recognition_standing",
+        "yields": "recognition/process_standing.md"
+      },
+      "trust": {
+        "proposed": "faith_trust",
+        "yields": "faith/position_trust.md"
+      }
+    },
     "grandfathered": []
   },
   "workPolicy": {
