@@ -214,7 +214,7 @@ async function scienceMode(args) {
     if (!hits.length) console.log("clear: no unit cites this work.");
     for (const h of hits)
       console.log(
-        `${h.canon ? "canon   " : h.contrast ? "contrast" : "SPINE   "}  ${h.unit}  <- ${h.scholar}: ${h.work}` +
+        `${h.canon ? "canon   " : h.role === "spine" ? "SPINE   " : h.role.padEnd(8)}  ${h.unit}  <- ${h.scholar}: ${h.work}` +
           (h.match === "prefix" ? "\n            (loose match: read the cell and judge it)" : ""),
       );
     process.exit(0);
