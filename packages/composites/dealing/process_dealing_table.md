@@ -22,7 +22,7 @@ stamp:
 ## Initiated by
 
 Both parties have decided, at least for now, that terms are worth pursuing.
-The Table starts wherever [negotiation](@chbrain/khai-engine-negotiation/process_negotiation.md) is running -- the [preparation](@chbrain/khai-engine-negotiation/process_preparation.md) done before either sits down, the [exploration](@chbrain/khai-engine-negotiation/process_exploration.md) of what is actually wanted behind what is being asked for, the [invention](@chbrain/khai-engine-negotiation/process_invention.md) of terms neither arrived with, and the [resolution](@chbrain/khai-engine-negotiation/process_resolution.md) that closes or does not.
+The Table starts wherever [negotiation](@chbrain/khai-engine-negotiation/process_negotiation.md) is running -- the [preparation](@chbrain/khai-engine-negotiation/process_preparation.md) done before either sits down, the [exploration](@chbrain/khai-engine-negotiation/process_negotiation_exploration.md) of what is actually wanted behind what is being asked for, the [invention](@chbrain/khai-engine-negotiation/process_invention.md) of terms neither arrived with, and the [resolution](@chbrain/khai-engine-negotiation/process_negotiation_resolution.md) that closes or does not.
 It is the face of the composite where the most is still possible.
 
 ## Direction

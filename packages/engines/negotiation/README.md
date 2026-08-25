@@ -8,9 +8,9 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 
 - [negotiation](process_negotiation.md): process (anchor)
 - [preparation](process_preparation.md): process
-- [exploration](process_exploration.md): process
+- [negotiation exploration](process_negotiation_exploration.md): process
 - [invention](process_invention.md): process
-- [resolution](process_resolution.md): process
+- [negotiation resolution](process_negotiation_resolution.md): process
 
 See [sources and attribution](REFERENCES.md).
 
