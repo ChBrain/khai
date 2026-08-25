@@ -71,7 +71,7 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [false uniqueness](position_false_uniqueness.md): position
 - [illusion of transparency](position_illusion_of_transparency.md): position
 - [barnum effect](position_barnum_effect.md): position
-- [reactance](position_reactance.md): position
+- [reactance bias](position_reactance_bias.md): position
 - [impostor syndrome](position_impostor_syndrome.md): position
 - [spotlight effect](position_spotlight_effect.md): position
 - [coherence](position_coherence.md): position
@@ -139,7 +139,7 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [money illusion](position_money_illusion.md): position
 - [decoy effect](position_decoy_effect.md): position
 - [framing effect](position_framing_effect.md): position
-- [anchoring](position_anchoring.md): position
+- [anchoring bias](position_anchoring_bias.md): position
 - [ease fluency](position_ease_fluency.md): position
 - [truth bias](position_truth_bias.md): position
 - [aesthetic usability](position_aesthetic_usability.md): position
@@ -164,7 +164,7 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [hot hand fallacy](position_hot_hand_fallacy.md): position
 - [clustering illusion](position_clustering_illusion.md): position
 - [conjunction fallacy](position_conjunction_fallacy.md): position
-- [representativeness](position_representativeness.md): position
+- [representativeness heuristic](position_representativeness_heuristic.md): position
 - [gamblers fallacy](position_gamblers_fallacy.md): position
 - [ease substitution](position_ease_substitution.md): position
 - [misinterpreted effort](position_misinterpreted_effort.md): position
