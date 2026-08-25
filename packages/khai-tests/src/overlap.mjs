@@ -75,10 +75,12 @@ const DEFAULT_CONTRAST_MARKERS = [
 // engine that leans on one pushes the honest author toward a weaker citation to
 // get green -- which is worse for the corpus than the duplication the rule was
 // written to stop.
-const ROLE_PREFIXES = [
-  ["contrast", ["**contrast.**", "**contrast:**", "**contrast**"]],
-  ["support", ["**support.**", "**support:**", "**support**"]],
-];
+// Matched against the PARSED cell, which is why the pattern carries no
+// asterisks: the Origin reader strips emphasis, so `**Contrast.**` reaches this
+// function as `Contrast.`. The token must lead, and must be closed by a period
+// or a colon, so a cell that merely opens with the word -- "Support for the
+// model is broad" -- is prose and stays a spine.
+const ROLE_PREFIX = /^\**\s*(contrast|support)\s*\**\s*[.:]/i;
 
 /**
  * The role a citation declares: "contrast", "support", or "spine".
@@ -90,12 +92,8 @@ const ROLE_PREFIXES = [
  * something the checker infers on their behalf.
  */
 export function roleOf(row, policy = {}) {
-  const scope = String(row?.scope ?? "")
-    .trimStart()
-    .toLowerCase();
-  for (const [role, prefixes] of ROLE_PREFIXES) {
-    if (prefixes.some((p) => scope.startsWith(p))) return role;
-  }
+  const declared = ROLE_PREFIX.exec(String(row?.scope ?? "").trimStart());
+  if (declared) return declared[1].toLowerCase();
   if (isContrast(row, policy.contrastMarkers ?? DEFAULT_CONTRAST_MARKERS)) return "contrast";
   return "spine";
 }
