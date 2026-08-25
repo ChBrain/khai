@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-disability",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the disability domain: the standing a persona is put in by arrangements built for a different body -- the specification nobody wrote down, the encounter where the mismatch appears, the adjustment that must be asked for, and the access added afterwards.",
   "type": "module",
   "main": "./index.mjs",

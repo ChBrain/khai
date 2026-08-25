@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-illness",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the illness domain: what a condition makes of a persona socially and biographically rather than physically -- the disruption of a taken-for-granted life, the diagnosis that gates everything, the bargain a society offers the sick and the terms attached, and the shapes of story the condition leaves available.",
   "type": "module",
   "main": "./index.mjs",
@@ -158,7 +158,7 @@
     "@chbrain/khai-arch": "^0.1.25"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.5",
+    "@chbrain/khai-tests": "^0.3.0",
     "vitest": "^4.1.10"
   }
 }
