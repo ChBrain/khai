@@ -63,6 +63,43 @@ const DEFAULT_CONTRAST_MARKERS = [
   "(contrast)",
 ];
 
+// A citation's role, declared rather than sniffed. The house already opens a
+// Scope cell with a bolded lead token -- **The twist.**, **The load-bearing
+// concept.** -- so the convention exists and only needed reading. A cell opening
+// **Contrast.** or **Support.** declares its role; anything else is a spine,
+// which is what every existing row means and why this migrates nothing.
+//
+// Why a third role at all: the wall's question is whether two engines take their
+// MECHANISM from one work. A work cited to hold a line, and a work cited because
+// it corroborates, are neither of them the mechanism, and refusing the second
+// engine that leans on one pushes the honest author toward a weaker citation to
+// get green -- which is worse for the corpus than the duplication the rule was
+// written to stop.
+const ROLE_PREFIXES = [
+  ["contrast", ["**contrast.**", "**contrast:**", "**contrast**"]],
+  ["support", ["**support.**", "**support:**", "**support**"]],
+];
+
+/**
+ * The role a citation declares: "contrast", "support", or "spine".
+ *
+ * A declared prefix wins. Failing that the legacy contrast vocabulary still
+ * reads, so rows written before the prefixes keep the meaning they had. Both
+ * are deliberately generous about the reading and strict about the default:
+ * anything unmarked is a spine, so a role is something an author claims, never
+ * something the checker infers on their behalf.
+ */
+export function roleOf(row, policy = {}) {
+  const scope = String(row?.scope ?? "")
+    .trimStart()
+    .toLowerCase();
+  for (const [role, prefixes] of ROLE_PREFIXES) {
+    if (prefixes.some((p) => scope.startsWith(p))) return role;
+  }
+  if (isContrast(row, policy.contrastMarkers ?? DEFAULT_CONTRAST_MARKERS)) return "contrast";
+  return "spine";
+}
+
 /** The declared work policy for a root: workPolicy in khai-guard.config.json. */
 export function loadWorkPolicy(root) {
   let wp = {};
@@ -193,16 +230,22 @@ export function unitDeps(root) {
 }
 
 /**
- * Every (scholar, work) carrying a spine in more than one unit, canon and
- * contrast citations removed. A house's wall is `expect(findOverlaps(root))
- * .toEqual([])`; the kit computes, the house holds the line.
+ * Every (scholar, work) carrying a spine in more than one unit -- canon,
+ * contrast and support citations removed. A house's wall is
+ * `expect(findOverlaps(root)).toEqual([])`; the kit computes, the house holds
+ * the line.
+ *
+ * Spine-in-two is the failure the rule exists for: two engines taking one
+ * mechanism from one work. Everything else a work can be doing in a second
+ * engine -- marking a boundary, corroborating -- is a legitimate second use and
+ * always was; the wall could not previously say so, so it refused them all.
  */
 export function findOverlaps(root) {
   const policy = loadWorkPolicy(root);
   const { records, deps } = collectUnits(root);
   const byKey = new Map();
   for (const r of records) {
-    if (isContrast(r, policy.contrastMarkers)) continue;
+    if (roleOf(r, policy) !== "spine") continue;
     const stem = normaliseWork(r.keyWork, policy.aliases);
     if (policy.canon.includes(stem)) continue;
     const key = r.surname + " :: " + stem;
@@ -313,7 +356,10 @@ export function checkCandidate(root, spec) {
       scholar: r.surname,
       unit: r.unit,
       work: r.keyWork,
-      contrast: isContrast(r, policy.contrastMarkers),
+      role: roleOf(r, policy),
+      // Kept for callers written against the two-role shape; role is the one to
+      // read, since it also distinguishes a support citation from a spine.
+      contrast: roleOf(r, policy) === "contrast",
       canon: policy.canon.includes(rowStem),
       match,
     });

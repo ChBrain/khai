@@ -46,6 +46,7 @@ export {
   loadWorkPolicy,
   normaliseWork,
   isContrast,
+  roleOf,
   collectUnits,
   findOverlaps,
   pairsOf,
