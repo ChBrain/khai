@@ -65,8 +65,8 @@ persona can carry.
   [mentor](persona_mentor.md) (training and gifts), [herald](persona_herald.md)
   (the call to adventure), [threshold guardian](persona_threshold_guardian.md)
   (the test of the crossing), [shapeshifter](persona_shapeshifter.md) (loyalty
-  that will not hold still), [shadow](persona_shadow.md) (the antagonist
+  that will not hold still), [shadow](persona_shadow_role.md) (the antagonist
   force), [ally](persona_ally.md) (the carried load), and
-  [trickster](persona_trickster.md) (comic disruption). Anchored by Campbell
+  [trickster](persona_trickster_role.md) (comic disruption). Anchored by Campbell
   (the monomyth's recurring figures) as refined by Vogler (the working eight),
   on Jung's archetypal ground.

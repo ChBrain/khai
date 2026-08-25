@@ -58,7 +58,7 @@
         "parent": "persona_journey_role.md"
       },
       {
-        "file": "persona_shadow.md",
+        "file": "persona_shadow_role.md",
         "type": "persona",
         "parent": "persona_journey_role.md"
       },
@@ -68,7 +68,7 @@
         "parent": "persona_journey_role.md"
       },
       {
-        "file": "persona_trickster.md",
+        "file": "persona_trickster_role.md",
         "type": "persona",
         "parent": "persona_journey_role.md"
       }
