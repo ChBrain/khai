@@ -270,7 +270,9 @@ async function scienceMode(args) {
       process.exit(1);
     }
     if (errors.length) {
-      for (const err of errors) console.error(`✖ ${SCIENCE_INDEX_PATH}: ${err}`);
+      // The errors name the index themselves (and now run to several lines),
+      // so re-prefixing the path here printed it twice on one line.
+      for (const err of errors) console.error(`✖ ${err}`);
       console.error(`\nkhai-tests science verify failed.`);
       process.exit(1);
     }
