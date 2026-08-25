@@ -353,7 +353,7 @@
         "parent": "position_self_image.md"
       },
       {
-        "file": "position_reactance.md",
+        "file": "position_reactance_bias.md",
         "type": "position",
         "parent": "position_self_image.md"
       },
@@ -693,7 +693,7 @@
         "parent": "position_ease_anchoring.md"
       },
       {
-        "file": "position_anchoring.md",
+        "file": "position_anchoring_bias.md",
         "type": "position",
         "parent": "position_ease_anchoring.md"
       },
@@ -818,7 +818,7 @@
         "parent": "position_ease_likeness.md"
       },
       {
-        "file": "position_representativeness.md",
+        "file": "position_representativeness_heuristic.md",
         "type": "position",
         "parent": "position_ease_likeness.md"
       },
