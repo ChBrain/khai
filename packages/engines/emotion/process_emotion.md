@@ -40,6 +40,6 @@ The feeling is the friction of the two pressing together.
 ## Echo
 
 The persona is now leaning -- toward, against, or away -- and the body has taken a posture the mind will explain after.
-The push resolves into one of [joy](process_joy.md), [sadness](process_sadness.md), [anger](process_anger.md), [fear](process_fear.md), or [disgust](process_disgust.md).
+The push resolves into one of [joy](process_appraisal_joy.md), [sadness](process_appraisal_sadness.md), [anger](process_appraisal_anger.md), [fear](process_appraisal_fear.md), or [disgust](process_appraisal_disgust.md).
 Each is a different read of what the event did to the stake.
 When the read changes, the feeling returns here to be appraised again.

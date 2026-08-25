@@ -40,4 +40,4 @@ The press of the approach against the refusal is the recoil that is felt.
 
 The persona recoils and closes, marking the thing as not-to-be-taken-in.
 The body learns the contaminant and avoids it on sight after.
-Turned on a person, the recoil can curdle into [anger](process_anger.md) at their nearness, or settle into cold avoidance.
+Turned on a person, the recoil can curdle into [anger](process_appraisal_anger.md) at their nearness, or settle into cold avoidance.

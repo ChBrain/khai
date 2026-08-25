@@ -35,8 +35,8 @@ What the engine refuses to model, and to whom it delegates.
 Source to constraint, per file.
 
 - **[emotion](process_emotion.md)** (the root): The appraisal where an event meets a stake and becomes a felt push toward action. Anchored by Richard Lazarus (appraisal, the core relational theme) and Nico Frijda (the action tendency).
-- **[joy](process_joy.md)** (expression): An unmet want is met; the read is progress, and the tendency is to approach and stay in contact. Anchored by Lazarus (making reasonable progress toward a goal).
-- **[sadness](process_sadness.md)** (expression): An irrevocable loss; the read is gone-for-good, and the tendency is to withdraw, conserve, and signal for care. Anchored by Lazarus (having experienced an irrevocable loss).
-- **[anger](process_anger.md)** (expression): A demeaning offence against the persona or its own; the read is wrong-and-someone's-fault, and the tendency is to move against and remove the obstacle. Anchored by Lazarus (a demeaning offence against me and mine).
-- **[fear](process_fear.md)** (expression): An uncertain existential threat; the read is open-danger, and the tendency is to move away, cover, and keep the exit open. Anchored by Lazarus (facing an uncertain, existential threat).
-- **[disgust](process_disgust.md)** (expression): A contaminating object too close to the boundary of the self; the read is not-to-be-taken-in, and the tendency is to reject and expel. Anchored by Paul Ekman (disgust as a basic emotion of rejection).
+- **[joy](process_appraisal_joy.md)** (expression): An unmet want is met; the read is progress, and the tendency is to approach and stay in contact. Anchored by Lazarus (making reasonable progress toward a goal).
+- **[sadness](process_appraisal_sadness.md)** (expression): An irrevocable loss; the read is gone-for-good, and the tendency is to withdraw, conserve, and signal for care. Anchored by Lazarus (having experienced an irrevocable loss).
+- **[anger](process_appraisal_anger.md)** (expression): A demeaning offence against the persona or its own; the read is wrong-and-someone's-fault, and the tendency is to move against and remove the obstacle. Anchored by Lazarus (a demeaning offence against me and mine).
+- **[fear](process_appraisal_fear.md)** (expression): An uncertain existential threat; the read is open-danger, and the tendency is to move away, cover, and keep the exit open. Anchored by Lazarus (facing an uncertain, existential threat).
+- **[disgust](process_appraisal_disgust.md)** (expression): A contaminating object too close to the boundary of the self; the read is not-to-be-taken-in, and the tendency is to reject and expel. Anchored by Paul Ekman (disgust as a basic emotion of rejection).
