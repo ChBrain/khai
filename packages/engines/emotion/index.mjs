@@ -35,7 +35,7 @@ export const raw = Object.fromEntries(manifest.members.map((m) => [m.file, read(
  * deeper member carries the shallower ones upward, so composing a feeling emits
  * its root with it.
  *
- * @param {{ leaf: string }} opts  leaf is a member file, e.g. "process_anger.md"
+ * @param {{ leaf: string }} opts  leaf is a member file, e.g. "process_appraisal_anger.md"
  * @returns {string} markdown ready to drop into an LLM context
  */
 export function compose({ leaf } = {}) {

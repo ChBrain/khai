@@ -40,4 +40,4 @@ A good already secure and long forgotten gives no joy; the gain has to land agai
 
 The persona leans in and broadens, reaching for more and widening to what surrounds the gain.
 The body learns where the good was and returns to it sooner.
-If the gain proves false or is taken back, the lean collapses toward [sadness](process_sadness.md).
+If the gain proves false or is taken back, the lean collapses toward [sadness](process_appraisal_sadness.md).

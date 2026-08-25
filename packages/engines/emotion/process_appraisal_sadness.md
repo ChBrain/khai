@@ -40,4 +40,4 @@ The pull of the reach against the fact of the absence is the weight that is felt
 
 The persona slows and turns inward, and the slowing signals to others that care is needed.
 The body conserves while it reorganises around the gap.
-If the loss is read as someone's doing, the weight can turn outward into [anger](process_anger.md).
+If the loss is read as someone's doing, the weight can turn outward into [anger](process_appraisal_anger.md).

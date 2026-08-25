@@ -7,11 +7,11 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 ## Files
 
 - [emotion](process_emotion.md): process (anchor)
-- [joy](process_joy.md): process
-- [sadness](process_sadness.md): process
-- [anger](process_anger.md): process
-- [fear](process_fear.md): process
-- [disgust](process_disgust.md): process
+- [appraisal joy](process_appraisal_joy.md): process
+- [appraisal sadness](process_appraisal_sadness.md): process
+- [appraisal anger](process_appraisal_anger.md): process
+- [appraisal fear](process_appraisal_fear.md): process
+- [appraisal disgust](process_appraisal_disgust.md): process
 
 See [sources and attribution](REFERENCES.md).
 

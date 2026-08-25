@@ -33,27 +33,27 @@
         "parent": null
       },
       {
-        "file": "process_joy.md",
+        "file": "process_appraisal_joy.md",
         "type": "process",
         "parent": "process_emotion.md"
       },
       {
-        "file": "process_sadness.md",
+        "file": "process_appraisal_sadness.md",
         "type": "process",
         "parent": "process_emotion.md"
       },
       {
-        "file": "process_anger.md",
+        "file": "process_appraisal_anger.md",
         "type": "process",
         "parent": "process_emotion.md"
       },
       {
-        "file": "process_fear.md",
+        "file": "process_appraisal_fear.md",
         "type": "process",
         "parent": "process_emotion.md"
       },
       {
-        "file": "process_disgust.md",
+        "file": "process_appraisal_disgust.md",
         "type": "process",
         "parent": "process_emotion.md"
       }
