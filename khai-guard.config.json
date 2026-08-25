@@ -80,6 +80,12 @@
         "allow": ["packages/composites/{name}/**"]
       },
       {
+        "pattern": "rename/*/*",
+        "layer": "solution",
+        "unit": 1,
+        "allow": ["packages/engines/{name}/**", "packages/composites/*/**"]
+      },
+      {
         "pattern": "skills/*",
         "layer": "solution",
         "allow": ["packages/khai-skills/**", "docs/SKILLS.md"]

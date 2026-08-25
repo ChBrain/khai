@@ -35,10 +35,42 @@ cannot rewrite the rules. A wrong name fails fast, before any path is examined.
 | `arch/<change>`                                 | architecture | `packages/khai-arch/**`                                                                                                                                                                                                                |
 | `governance/<change>`                           | governance   | `packages/khai-guard/**`, `packages/khai-tests/**`, `packages/khai-rules/**`, `packages/khai-pack/**`, `packages/khai-language/**`, `.github/**`, `.husky/**`, `khai-guard.config.json`, `docs/BRANCHING.md`, `CLAUDE.md`, `GEMINI.md` |
 | `engine/<name>/<change>`                        | solution     | `packages/engines/<name>/**` (the `<name>` segment must equal the engine dir)                                                                                                                                                          |
+| `rename/<name>/<change>`                        | solution     | `packages/engines/<name>/**` **and** `packages/composites/*/**` — the one lane that may span two, and only for a member rename and the relinks it forces                                                                               |
 | `repo/<change>`                                 | infra        | only **unowned** + **shared** paths (root configs, `README.md`, ...); owns nothing                                                                                                                                                     |
 | `chore/<change>` `fix/<change>` `docs/<change>` | general      | only **unowned** + **shared** paths; owns nothing                                                                                                                                                                                      |
 
 `<change>` is a free kebab-case topic. The layer is derived from the prefix.
+
+### Why `rename/*` may span two lanes
+
+Member files are API. A composite hard-links an atom by qualified path
+(`@chbrain/khai-engine-emotion/process_anger.md`), so renaming a member breaks
+every composite that links it — and the conformance kit resolves those links,
+which makes the breakage a **test failure**, not a dangling pointer.
+
+On `engine/*/*` that is a deadlock, not an inconvenience. The rename's own CI is
+red until the composites are relinked, and the composite fix cannot be committed
+before the rename lands, because the pre-commit hook refuses a link to a file
+that does not exist yet. Neither half can go first.
+
+`rename/<name>/<change>` resolves it by carrying both. It is safe to widen this
+far, and no further, because of an invariant the tree actually holds: **a
+composite links an engine; an engine links nothing outside itself.** Measured
+across every cross-package link in the repo — 1,498 of them — every one
+originates in a composite. So an engine rename's blast radius is bounded to
+composites by construction, and the lane's reach matches the damage it has to
+repair.
+
+What it does **not** relax: a `rename/<name>` branch still may not touch another
+engine, and the ordinary `engine/*/*` lane still may not touch a composite. Use
+`rename/*` only for a member rename and the relinks it forces; a rename that
+nothing links belongs on `engine/*/*` as before.
+
+Internal ranges are why the composites must move with the engine rather than
+stay behind: `.changeset/config.json` sets `updateInternalDependencies: patch`,
+so a version run rewrites every internal dependency range and releases the set
+together. A published composite keeps resolving the old engine version and keeps
+working; inside the repo they travel as one.
 
 ### Ownership is deny-by-default
 
