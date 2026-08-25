@@ -12,9 +12,9 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 - [herald](persona_herald.md): persona
 - [threshold guardian](persona_threshold_guardian.md): persona
 - [shapeshifter](persona_shapeshifter.md): persona
-- [shadow](persona_shadow.md): persona
+- [shadow role](persona_shadow_role.md): persona
 - [ally](persona_ally.md): persona
-- [trickster](persona_trickster.md): persona
+- [trickster role](persona_trickster_role.md): persona
 
 See [sources and attribution](REFERENCES.md).
 
