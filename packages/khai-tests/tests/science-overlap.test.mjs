@@ -245,3 +245,77 @@ describe.skipIf(DORMANT)("overlap: a declared surname may not appear unresolved"
     expect(overlap.findUnresolvedNamesakes(dir)).toEqual([]);
   });
 });
+
+// --- roles: what a citation says it is doing -------------------------------
+
+describe.skipIf(DORMANT)("overlap: a citation declares its role", () => {
+  const role = (scope) =>
+    overlap.roleOf({ scope, keyWork: "" }, { contrastMarkers: ["held clear"] });
+
+  it("defaults to spine, because that is what every unmarked row already means", () => {
+    expect(role("The social model proper.")).toBe("spine");
+    expect(role("")).toBe("spine");
+    expect(overlap.roleOf({}, {})).toBe("spine");
+  });
+
+  it("reads a declared prefix, in the punctuation the house actually writes", () => {
+    expect(role("**Contrast.** The standing objection.")).toBe("contrast");
+    expect(role("**Contrast:** The standing objection.")).toBe("contrast");
+    expect(role("**Support.** The empirical replication.")).toBe("support");
+    expect(role("  **support.** lowercase and indented")).toBe("support");
+  });
+
+  it("only a LEAD prefix declares — a mid-cell mention is prose, not a claim", () => {
+    expect(role("A study of contrast. Also of support.")).toBe("spine");
+  });
+
+  it("wants the closing punctuation, because emphasis is gone by the time it reads", () => {
+    // The Origin reader strips emphasis, so "**Contrast** the objection" arrives
+    // as "Contrast the objection" -- indistinguishable from prose. Requiring the
+    // period or colon is what keeps "Support for the model is broad" a spine.
+    expect(role("**Contrast** the standing objection")).toBe("spine");
+    expect(role("Support for the model is broad.")).toBe("spine");
+  });
+
+  it("still reads the legacy vocabulary, so rows written before the prefixes keep their meaning", () => {
+    expect(role("The neighbour, held clear.")).toBe("contrast");
+  });
+});
+
+describe.skipIf(DORMANT)("overlap: only a spine collides", () => {
+  const work = ["Oliver", "The Politics of Disablement", "The social model proper."];
+  const asContrast = ["Oliver", "The Politics of Disablement", "**Contrast.** The engine's bound."];
+  const asSupport = [
+    "Oliver",
+    "The Politics of Disablement",
+    "**Support.** Corroborates the reading.",
+  ];
+
+  it("flags two spines, which is the duplication the rule exists for", () => {
+    engineRoot(dir, { disability: [work], illness: [work] });
+    expect(overlap.findOverlaps(dir).map((o) => o.units)).toEqual([["disability", "illness"]]);
+  });
+
+  it("clears a spine beside a contrast — a boundary citation is a second use, not a restaging", () => {
+    engineRoot(dir, { disability: [work], illness: [asContrast] });
+    expect(overlap.findOverlaps(dir)).toEqual([]);
+  });
+
+  it("clears a spine beside a support, the case the two-role shape could not express", () => {
+    engineRoot(dir, { disability: [work], illness: [asSupport] });
+    expect(overlap.findOverlaps(dir)).toEqual([]);
+  });
+
+  it("clears two non-spines, since neither took its mechanism from the work", () => {
+    engineRoot(dir, { disability: [asSupport], illness: [asContrast] });
+    expect(overlap.findOverlaps(dir)).toEqual([]);
+  });
+
+  it("reports the role on a candidate check, so the instrument answers before authoring", () => {
+    engineRoot(dir, { illness: [asContrast] });
+    const [hit] = overlap.checkCandidate(dir, "Oliver :: The Politics of Disablement");
+    expect(hit.role).toBe("contrast");
+    // The two-role field is kept for callers written against the old shape.
+    expect(hit.contrast).toBe(true);
+  });
+});
