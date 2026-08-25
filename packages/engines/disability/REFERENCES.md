@@ -17,6 +17,14 @@ biography it disrupts are `illness`'s. The fit of an object to a body is `ergono
 read as a mover in the moment is `space`'s. What none of them carries is the standing itself: assigned
 by measurement, held without application, and dissolvable by changing the room.
 
+Oliver's _The Politics of Disablement_ (1990) is the founding statement of the
+account this engine builds on, and it is deliberately not an Origin row here:
+`illness` cites it as its own declared bound, and the science-overlap wall is
+right that one work restaged by two engines is a warning rather than a
+coincidence. The warrant is taken from Oliver's own systematic restatement
+instead, which costs the engine nothing -- the model is the same and the
+argument is his.
+
 **The distinction is the whole engine.** Impairment is the bodily fact and travels with the persona
 everywhere. Disability is what a particular arrangement makes of it, and can be handed back by
 changing that arrangement. The engine keeps the two apart in its grammar, because where the mismatch
@@ -42,14 +50,14 @@ model requires. The twist follows from the accommodation literature rather than 
 texts: the social model diagnoses structurally, and the remedy it produced is administered
 individually.
 
-| Source                        | Key Work                                                                                              | Scope                                                                                                                                                                                                               |
-| :---------------------------- | :---------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **UPIAS**                     | _Fundamental Principles of Disability_ (1976)                                                         | The founding cut, made by disabled people rather than about them: impairment is the bodily fact, disability is the disadvantage imposed on top of it by social organisation. The anchor's Has chapter.              |
-| **Michael Oliver**            | _The Politics of Disablement_ (1990); _Understanding Disability_ (1996)                               | The social model proper -- disability as produced by arrangements, and the political claim that follows. The anchor and the standard. Oliver is cited in `illness` as that engine's declared bound.                 |
-| **Rosemarie Garland-Thomson** | _"Misfits: A Feminist Materialist Disability Concept"_ (Hypatia, 2011); _Extraordinary Bodies_ (1997) | **The load-bearing concept.** Misfit as relational and material, located in the encounter between flesh and world rather than in either -- which is what makes the phenomenon modellable at all. The misfit.        |
-| **Tom Shakespeare**           | _Disability Rights and Wrongs_ (2006)                                                                 | The standing objection, kept as a live counterweight rather than dropped: the strong social model overreaches, and impairment causes difficulty no arrangement removes. Built into the anchor rather than answered. |
-| **Henry Dreyfuss**            | _The Measure of Man_ (1960)                                                                           | The specification as an engineering artefact: percentile tables that did real work and cannot contain the range of actual bodies. The standard's Holds chapter. Dreyfuss is cited in `ergonomics` for the fit.      |
-| **Aimi Hamraie**              | _Building Access_ (2017)                                                                              | Who the built world was designed around, and the history of access as an addition to a finished design. Behind the retrofit and the standard's neutrality.                                                          |
+| Source                        | Key Work                                                                                              | Scope                                                                                                                                                                                                                                                                                                  |
+| :---------------------------- | :---------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **UPIAS**                     | _Fundamental Principles of Disability_ (1976)                                                         | The founding cut, made by disabled people rather than about them: impairment is the bodily fact, disability is the disadvantage imposed on top of it by social organisation. The anchor's Has chapter.                                                                                                 |
+| **Michael Oliver**            | _Understanding Disability: From Theory to Practice_ (1996)                                            | The social model proper -- disability as produced by arrangements, and the political claim that follows. The anchor and the standard. Oliver's earlier _The Politics of Disablement_ (1990) is `illness`'s declared bound and is left to it; this engine takes his own systematic restatement instead. |
+| **Rosemarie Garland-Thomson** | _"Misfits: A Feminist Materialist Disability Concept"_ (Hypatia, 2011); _Extraordinary Bodies_ (1997) | **The load-bearing concept.** Misfit as relational and material, located in the encounter between flesh and world rather than in either -- which is what makes the phenomenon modellable at all. The misfit.                                                                                           |
+| **Tom Shakespeare**           | _Disability Rights and Wrongs_ (2006)                                                                 | The standing objection, kept as a live counterweight rather than dropped: the strong social model overreaches, and impairment causes difficulty no arrangement removes. Built into the anchor rather than answered.                                                                                    |
+| **Henry Dreyfuss**            | _The Measure of Man_ (1960)                                                                           | The specification as an engineering artefact: percentile tables that did real work and cannot contain the range of actual bodies. The standard's Holds chapter. Dreyfuss is cited in `ergonomics` for the fit.                                                                                         |
+| **Aimi Hamraie**              | _Building Access_ (2017)                                                                              | Who the built world was designed around, and the history of access as an addition to a finished design. Behind the retrofit and the standard's neutrality.                                                                                                                                             |
 
 ## Restrictions
 
@@ -84,7 +92,7 @@ standing.
 
 - **[disability](position_disability.md)** (the anchor): the standing arrangements issue, carrying the
   twist -- nothing about the body changes when it becomes a disability, and every remedy is delivered
-  as a personal exception. Anchored by UPIAS (1976) and Oliver (1990).
+  as a personal exception. Anchored by UPIAS (1976) and Oliver (1996).
 - **[the standard](place_the_standard.md)** (the place): the world built to a specification nobody
   wrote down, offering everything to the body it was drawn for and withholding without an author.
   Anchored by Dreyfuss (1960) and Hamraie (2017).
