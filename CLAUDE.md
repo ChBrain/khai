@@ -81,7 +81,15 @@ npx khai-guard advise --files <paths>
    self-granted. And because composites hard-link member files by name,
    **renaming or removing a member is a breaking change**: at least
    `bump:minor` (the maintainer's label), never a silent patch. Adding members
-   stays patch-free.
+   stays patch-free. A rename that other packages link goes on the
+   **`rename/<name>/<topic>`** lane, which carries the engine _and_ the
+   composites that link it — the only lane that may span two, because an
+   engine's blast radius is bounded to composites by construction (a composite
+   links an engine; an engine links nothing outside itself). On `engine/*/*`
+   the relinks cannot travel with the rename, and neither half can be committed
+   without the other: the conformance kit resolves package links, so the
+   composite fix is refused before the rename lands and the rename's own CI is
+   red until it does.
 
 ## Lanes at a glance (the full table is in docs/BRANCHING.md)
 
@@ -91,6 +99,7 @@ npx khai-guard advise --files <paths>
 | `packages/khai-guard/**`, `.github/**`, `.husky/**`, `khai-guard.config.json`, this file | `governance/<topic>`       |
 | `packages/engines/<name>/**`                                                             | `engine/<name>/<topic>`    |
 | `packages/composites/<name>/**`                                                          | `composite/<name>/<topic>` |
+| renaming a member of `<name>`, **plus the composites that link it**                      | `rename/<name>/<topic>`    |
 | `packages/khai-skills/**`, `docs/SKILLS.md`                                              | `skills/<topic>`           |
 | `packages/khai-methods/**`, `docs/METHODS.md`                                            | `methods/<topic>`          |
 | an unowned top-level file only                                                           | `chore/<topic>`            |
