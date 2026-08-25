@@ -769,10 +769,70 @@ export function buildScienceIndex(root) {
   return text;
 }
 
+// A rendered index line is a whole table row and runs to several hundred
+// characters, so a pair of them has to be trimmed to be read at all.
+//
+// Trimmed around the difference, NOT from the start of the line -- which is the
+// version of this that was written first and was worse than nothing. Two rows
+// that differ in their Scope cell are identical for their first two hundred
+// characters, so a head-anchored excerpt printed the same text twice under
+// "committed:" and "built:" and left the reader to conclude the gate was
+// broken. The window is anchored on the first differing column and is the same
+// window for both lines, so the difference is on screen and the two excerpts
+// line up under each other.
+const DRIFT_WINDOW = 120;
+const DRIFT_LEAD = 30;
+
+/** The first column at which two strings differ (their common length if not). */
+function firstDivergence(a, b) {
+  const n = Math.min(a.length, b.length);
+  for (let i = 0; i < n; i++) if (a[i] !== b[i]) return i;
+  return n;
+}
+
+/** One line excerpted through a shared window, with elision marked at each end. */
+function excerpt(line, from) {
+  if (line === undefined) return "(end of file)";
+  const head = from > 0 ? "…" : "";
+  const tail = line.length > from + DRIFT_WINDOW ? "…" : "";
+  return `${head}${line.slice(from, from + DRIFT_WINDOW)}${tail}`;
+}
+
+/**
+ * The first line where the committed index and a fresh build disagree, as
+ * `{ line, column, committed, built }`, or null when they are identical.
+ *
+ * Line-level rather than whole-file on purpose: the index is one row per
+ * (unit, scholar) plus a counts header, so the differing LINE names the thing
+ * that drifted -- a changed Origin row, or the header when a whole unit
+ * appeared.
+ */
+function firstDrift(committed, built) {
+  const a = committed.split("\n");
+  const b = built.split("\n");
+  for (let i = 0; i < Math.max(a.length, b.length); i++) {
+    if (a[i] === b[i]) continue;
+    const col = firstDivergence(a[i] ?? "", b[i] ?? "");
+    const from = Math.max(0, col - DRIFT_LEAD);
+    return {
+      line: i + 1,
+      column: col + 1,
+      committed: excerpt(a[i], from),
+      built: excerpt(b[i], from),
+    };
+  }
+  return null;
+}
+
 /**
  * The drift gate: the committed index must equal what the build produces from
  * source. Returns an array of error strings (empty when in sync), mirroring the
  * shape the registry drift gate uses.
+ *
+ * The out-of-date error names the first differing line. "Out of date" alone is
+ * a sufficient exit code and a useless report: the fix command is the same
+ * either way, but a reader who cannot see WHAT drifted cannot tell a stale
+ * index apart from a builder that changed under them.
  */
 export function verifyScienceIndex(root) {
   const built = renderForRoot(root);
@@ -780,7 +840,15 @@ export function verifyScienceIndex(root) {
   if (!existsSync(path))
     return [`${SCIENCE_INDEX_PATH} is missing; run \`khai-tests science build\``];
   const committed = readFileSync(path, "utf8");
-  if (committed !== built)
-    return [`${SCIENCE_INDEX_PATH} is out of date; run \`khai-tests science build\``];
-  return [];
+  if (committed === built) return [];
+
+  const at = firstDrift(committed, built);
+  return [
+    [
+      `${SCIENCE_INDEX_PATH} is out of date; run \`khai-tests science build\``,
+      `  first difference at line ${at.line}, column ${at.column}:`,
+      `    committed: ${at.committed}`,
+      `    built:     ${at.built}`,
+    ].join("\n"),
+  ];
 }
