@@ -25,7 +25,7 @@ describe("narcissism: manifest", () => {
       "position_narcissism.md",
       "position_grandiose.md",
       "position_vulnerable.md",
-      "position_communal.md",
+      "position_communal_narcissism.md",
       "position_malignant.md",
     ]);
     expect(byType("plan")).toEqual([
@@ -35,8 +35,8 @@ describe("narcissism: manifest", () => {
       "plan_conquest.md",
     ]);
     expect(byType("process")).toEqual([
-      "process_admiration.md",
-      "process_rivalry.md",
+      "process_narcissistic_admiration.md",
+      "process_narcissistic_rivalry.md",
       "process_injury.md",
     ]);
   });
@@ -45,7 +45,7 @@ describe("narcissism: manifest", () => {
     const parentOf = (f) => manifest.members.find((m) => m.file === f).parent;
     expect(parentOf("plan_dominance.md")).toBe("position_grandiose.md");
     expect(parentOf("plan_safety.md")).toBe("position_vulnerable.md");
-    expect(parentOf("plan_glory.md")).toBe("position_communal.md");
+    expect(parentOf("plan_glory.md")).toBe("position_communal_narcissism.md");
     expect(parentOf("plan_conquest.md")).toBe("position_malignant.md");
   });
 

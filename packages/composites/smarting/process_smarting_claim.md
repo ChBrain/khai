@@ -22,7 +22,7 @@ stamp:
 ## Initiated by
 
 A persona holds a view of themselves, and acts as though it were settled.
-The Claim starts wherever [self-esteem](@chbrain/khai-engine-self-esteem/position_self_esteem.md) is resting -- [high](@chbrain/khai-engine-self-esteem/position_high.md) and met without defence, [low](@chbrain/khai-engine-self-esteem/position_low.md) and met with doubt, or [contingent](@chbrain/khai-engine-self-esteem/position_contingent.md) and holding only while a staked domain keeps delivering -- and, in the inflated case, wherever [narcissism](@chbrain/khai-engine-narcissism/position_narcissism.md) is running its [admiration](@chbrain/khai-engine-narcissism/process_admiration.md) route, the assertive self-promotion by which a [grandiose](@chbrain/khai-engine-narcissism/position_grandiose.md) regard goes out to be met.
+The Claim starts wherever [self-esteem](@chbrain/khai-engine-self-esteem/position_self_esteem.md) is resting -- [high](@chbrain/khai-engine-self-esteem/position_high.md) and met without defence, [low](@chbrain/khai-engine-self-esteem/position_low.md) and met with doubt, or [contingent](@chbrain/khai-engine-self-esteem/position_contingent.md) and holding only while a staked domain keeps delivering -- and, in the inflated case, wherever [narcissism](@chbrain/khai-engine-narcissism/position_narcissism.md) is running its [admiration](@chbrain/khai-engine-narcissism/process_narcissistic_admiration.md) route, the assertive self-promotion by which a [grandiose](@chbrain/khai-engine-narcissism/position_grandiose.md) regard goes out to be met.
 It is the face of the composite where nothing has gone wrong yet.
 
 ## Direction

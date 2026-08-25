@@ -41,4 +41,4 @@ The lever is the self's dependence on external confirmation: the height cannot b
 
 The self is fed on admiration won, and thins the moment the supply runs dry.
 It is the route that makes narcissism attractive before it makes it costly -- the charm that draws the room early -- and the reason the grandiose persona is so bound to their audience: the admiration that feeds the self is a supply that must keep coming.
-It is [rivalry](process_rivalry.md) and [injury](process_injury.md)'s counterpart -- the building where they are the defending and the wounding. Every type runs it in its own key; admiration owns the assertive self-promotion by which narcissism courts the regard the inflated self depends on.
+It is [rivalry](process_narcissistic_rivalry.md) and [injury](process_injury.md)'s counterpart -- the building where they are the defending and the wounding. Every type runs it in its own key; admiration owns the assertive self-promotion by which narcissism courts the regard the inflated self depends on.

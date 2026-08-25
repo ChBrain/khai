@@ -41,4 +41,4 @@ The lever is the fragility beneath the height: the same over-inflation that make
 
 The wound exposes the fragility the grandiosity was built to hide, and the reaction restores or ruins the self.
 It is where the two faces meet -- the grandiose flaring into rage, the vulnerable collapsing into shame -- and the reason narcissistic reactions to criticism are so out of scale: the offence is small, but the self it threatens was never safe.
-It is [admiration](process_admiration.md) and [rivalry](process_rivalry.md)'s counterpart -- the wounding where they are the building and the defending, and the driver that keeps both running. Every type runs it, the vulnerable most visibly; injury owns the narcissistic wound and the rage or collapse it triggers.
+It is [admiration](process_narcissistic_admiration.md) and [rivalry](process_narcissistic_rivalry.md)'s counterpart -- the wounding where they are the building and the defending, and the driver that keeps both running. Every type runs it, the vulnerable most visibly; injury owns the narcissistic wound and the rage or collapse it triggers.

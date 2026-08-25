@@ -22,7 +22,7 @@ stamp:
 ## Initiated by
 
 The room has answered, and the answer is lower than the claim.
-The Puncture starts wherever [narcissism](@chbrain/khai-engine-narcissism/process_injury.md) is taking the wound and turning to [rivalry](@chbrain/khai-engine-narcissism/process_rivalry.md), the antagonistic defence of a regard that has just been refused -- and wherever a [contingent](@chbrain/khai-engine-self-esteem/position_contingent.md) esteem finds that the staked domain has stopped delivering.
+The Puncture starts wherever [narcissism](@chbrain/khai-engine-narcissism/process_injury.md) is taking the wound and turning to [rivalry](@chbrain/khai-engine-narcissism/process_narcissistic_rivalry.md), the antagonistic defence of a regard that has just been refused -- and wherever a [contingent](@chbrain/khai-engine-self-esteem/position_contingent.md) esteem finds that the staked domain has stopped delivering.
 It is the face of the composite where the size of the response stops matching the size of the cause.
 
 ## Direction

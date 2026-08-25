@@ -102,7 +102,9 @@ describe("smarting: atoms", () => {
   // on a target who had nothing to do with it.
   it("keeps the members the keystone runs between", () => {
     const narc = atoms.narcissism.manifest.members.map((m) => m.file);
-    expect(narc).toEqual(expect.arrayContaining(["process_injury.md", "process_rivalry.md"]));
+    expect(narc).toEqual(
+      expect.arrayContaining(["process_injury.md", "process_narcissistic_rivalry.md"]),
+    );
     expect(atoms.aggression.manifest.members.map((m) => m.file)).toContain("process_displaced.md");
   });
 

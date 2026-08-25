@@ -41,4 +41,4 @@ The lever is the derogation of the challenger: the self stays supreme not by pro
 
 The self is kept high by keeping others low, and the goodwill the charm won is spent.
 It is the route that makes narcissism costly over time -- the antagonism that turns first admiration into conflict, the reason the narcissist who dazzled the room comes to be resented by it -- the supremacy defended at the price of the relationships that supplied it.
-It is [admiration](process_admiration.md) and [injury](process_injury.md)'s counterpart -- the defending where they are the building and the wounding. Every type runs it, the malignant most destructively; rivalry owns the antagonistic self-defence by which narcissism guards the inflated self against those who threaten it.
+It is [admiration](process_narcissistic_admiration.md) and [injury](process_injury.md)'s counterpart -- the defending where they are the building and the wounding. Every type runs it, the malignant most destructively; rivalry owns the antagonistic self-defence by which narcissism guards the inflated self against those who threaten it.
