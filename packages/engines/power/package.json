@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-power",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "khai engine content, the power domain: the base from which a persona can move others",
   "type": "module",
   "main": "./index.mjs",
@@ -65,7 +65,7 @@
     "@chbrain/khai-arch": "^0.1.20"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.2.0",
+    "@chbrain/khai-tests": "^0.2.9",
     "vitest": "^4.1.10"
   }
 }

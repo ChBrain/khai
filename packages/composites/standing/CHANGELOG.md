@@ -1,5 +1,12 @@
 # @chbrain/khai-composite-standing
 
+## 0.1.2
+
+### Patch Changes
+
+- Updated dependencies [8be70ec]
+  - @chbrain/khai-engine-power@0.2.0
+
 ## 0.1.1
 
 ### Patch Changes

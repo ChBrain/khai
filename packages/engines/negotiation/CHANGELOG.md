@@ -1,5 +1,15 @@
 # @chbrain/khai-engine-negotiation
 
+## 0.2.0
+
+### Minor Changes
+
+- 80ae42f: Take the engine's own name on the two phases that collided:
+  `process_exploration` → `process_negotiation_exploration`, `process_resolution`
+  → `process_negotiation_resolution`. Frees `exploration` for the composite and
+  `resolution` for `betrayal`. Member files are API and renaming one is breaking,
+  hence minor.
+
 ## 0.1.1
 
 ### Patch Changes
