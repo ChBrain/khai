@@ -1,0 +1,78 @@
+{
+  "name": "@chbrain/khai-engine-disability",
+  "version": "0.1.0",
+  "description": "khai engine content, the disability domain: the standing a persona is put in by arrangements built for a different body -- the specification nobody wrote down, the encounter where the mismatch appears, the adjustment that must be asked for, and the access added afterwards.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/disability"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "disability",
+    "tagline": "The standing a persona is put in by arrangements built for a different body.",
+    "type": "position",
+    "members": [
+      {
+        "file": "position_disability.md",
+        "type": "position",
+        "parent": null
+      },
+      {
+        "file": "place_the_standard.md",
+        "type": "place",
+        "parent": "position_disability.md"
+      },
+      {
+        "file": "process_the_misfit.md",
+        "type": "process",
+        "parent": "position_disability.md"
+      },
+      {
+        "file": "process_the_ask.md",
+        "type": "process",
+        "parent": "position_disability.md"
+      },
+      {
+        "file": "process_the_retrofit.md",
+        "type": "process",
+        "parent": "position_disability.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The anchor (position_disability.md) declares a standing assigned by arrangements rather than carried in the body: issued where a persona meets a world built to a specification they do not meet, held without application, and dissolvable by changing the room. It is not stigma's discrediting mark, not illness's sick role and diagnosis-as-currency, not ergonomics' fit of an object to a body, and not space's setting-as-mover. Read it on the arrangement, never as a fact about the persona.",
+      "issue": "One place and three processes under the standing. The standard is a world that presents as neutral and is a specification -- percentile tables that did real work, encoded in step heights and form fields, offering everything to the body they were drawn for and withholding from every other without ever issuing a decision anybody can appeal. The misfit is the encounter itself, relational and material, dissolvable from either end and in practice adjustable at only one. The ask is the remedy and its price: the adjustment usually exists, costs little, and happens only when the persona requests it from somebody who can refuse -- which turns a structural claim back into a permission held by a named individual. The retrofit admits the persona by a route that announces itself, and leaves the next building going up to the same drawing.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the anchor, so the reading runs wherever a play puts a body against a built world. The link: each persona links, under Projection, where they stand in the arrangement -- what the room withholds, what they must ask for, what the asking costs.",
+      "enforce": "Structure is checked; the read is judged. The kit verifies the law is declared and each persona links a real member. Whether a given arrangement is reasonable is a judgement the engine deliberately does not make -- it holds that the specification is a decision and that the disadvantage is issued, not that any particular threshold is wrong.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the anchor. Then build the room before the persona: decide what the place was drawn for and let the mismatch appear on arrival, so the standing is seen being issued rather than assumed. Keep the impairment real -- the engine's sources insist on it and the read collapses into slogan without it. And let the accommodation be granted, kindly, by somebody who means well, because the trap is in the form of the remedy and not in anybody's malice."
+    }
+  }
+}
