@@ -1550,9 +1550,9 @@ every one is free, and none restates an engine slug.**
 **The names below are also in the gate.** `memberPolicy.homonyms` carries them
 as `stem -> { proposed }`, so `member-check` names the replacement when a change
 touches an engine that still holds an entry, instead of sending the author to
-this file at the one moment they are least likely to open it. Twenty of the 27
-live entries have a single name; the seven that need two engines to move carry a
-`note` recording both, and fall back to the generic offer. This document stays
+this file at the one moment they are least likely to open it. Twenty of the 25
+live entries have a single name; the five that still need more than one engine
+to move carry a `note` recording each, and fall back to the generic offer. This document stays
 the reasoning; the config is the operative copy, and the two are expected to
 agree — if they drift, this one is the record of why, and the config is what
 fires.
@@ -1631,13 +1631,13 @@ do where both have a term of their own.
 | `exploratory`     | `curiosity` keeps it                                  | `play-mode/position_exploratory.md`            | `exploratory_play`       | Hutt's own term                                                                                                                                      | 3     | proposed        |
 | `external`        | neither — both qualify                                | `locus-of-control/position_external.md`        | `external_locus`         | Rotter's own phrase                                                                                                                                  | 1     | proposed        |
 | ↳                 |                                                       | `motivation/process_external.md`               | `extrinsic`              | Deci & Ryan's own word for it                                                                                                                        | 1     | proposed        |
-| `high`            | nobody — a bare `high` names no phenomenon            | `psychological-safety/place_high.md`           | `high_safety`            | the title already reads "High Psychological Safety"                                                                                                  | 1     | building        |
-| ↳                 |                                                       | `status/position_high.md`                      | `high_status`            | the title already reads "High Status"                                                                                                                | 2     | building        |
-| ↳                 |                                                       | `self-esteem/position_high.md`                 | `high_esteem`            | the one whose title is still bare                                                                                                                    | 1     | building        |
+| `high`            | nobody — a bare `high` names no phenomenon            | `psychological-safety/place_high.md`           | `high_safety`            | the title already reads "High Psychological Safety"                                                                                                  | 1     | shipped (#1392) |
+| ↳                 |                                                       | `status/position_high.md`                      | `high_status`            | the title already reads "High Status"                                                                                                                | 2     | shipped (#1394) |
+| ↳                 |                                                       | `self-esteem/position_high.md`                 | `high_esteem`            | the one whose title is still bare                                                                                                                    | 1     | shipped (#1393) |
 | `internalization` | `conformity` keeps it (Kelman's three)                | `socialization/process_internalization.md`     | `norm_internalization`   | what socialization actually internalises                                                                                                             | 1     | proposed        |
-| `low`             | nobody — as `high`                                    | `psychological-safety/place_low.md`            | `low_safety`             | as above                                                                                                                                             | 1     | building        |
-| ↳                 |                                                       | `status/position_low.md`                       | `low_status`             | as above                                                                                                                                             | 2     | building        |
-| ↳                 |                                                       | `self-esteem/position_low.md`                  | `low_esteem`             | as above                                                                                                                                             | 3     | building        |
+| `low`             | nobody — as `high`                                    | `psychological-safety/place_low.md`            | `low_safety`             | as above                                                                                                                                             | 1     | shipped (#1392) |
+| ↳                 |                                                       | `status/position_low.md`                       | `low_status`             | as above                                                                                                                                             | 2     | shipped (#1394) |
+| ↳                 |                                                       | `self-esteem/position_low.md`                  | `low_esteem`             | as above                                                                                                                                             | 3     | shipped (#1393) |
 | `mastery`         | neither — both qualify                                | `goal/position_mastery.md`                     | `mastery_goal`           | Dweck/Elliot's own term                                                                                                                              | 0     | proposed        |
 | ↳                 |                                                       | `self-efficacy/position_mastery.md`            | `mastery_experience`     | Bandura's own term                                                                                                                                   | 1     | proposed        |
 | `planning`        | `executive-function` keeps it                         | `implementation-intention/process_planning.md` | `if_then_planning`       | Gollwitzer's own term                                                                                                                                | 2     | proposed        |
@@ -1754,10 +1754,17 @@ rather than uniformly — Jung's figures keep the words, Vogler's functions say
 they are roles.
 
 **From here every remaining lane clears one entry apiece**, so the ordering
-stops paying and the work is simply the list. Seven stems (`emotional`,
-`external`, `high`, `low`, `mastery`, `self`, `sensitivity`) need **two**
-engines to move before the entry dies, so they clear on the second lane rather
-than the first, whichever order those run in.
+stops paying and the work is simply the list. Five stems (`emotional`,
+`external`, `mastery`, `self`, `sensitivity`) need **two** engines to move
+before the entry dies, so they clear on the second lane rather than the first,
+whichever order those run in.
+
+`high` and `low` were the exception this sentence originally miscounted: each
+was held by **three** engines, not two, so neither died until the third lane.
+They are gone now -- `psychological-safety` (#1392), `self-esteem` (#1393) and
+`status` (#1394), then the entries deleted here. That took the list from 27
+entries and 36 renames to **25 and 30**, and it is the only three-engine stem
+pair the list ever carried.
 Every heading and total above that says 49 is the count at the time of the
 sweep.
 
