@@ -25,7 +25,7 @@ ledgers close, separately or not at all.
 One of the ledgers reaches its own close, and the close does not travel.
 The wronged party's release is unilateral: the forgiveness engine's
 [decisional](@chbrain/khai-engine-forgiveness/process_decisional.md) or
-[emotional](@chbrain/khai-engine-forgiveness/process_emotional.md) close
+[emotional](@chbrain/khai-engine-forgiveness/process_emotional_forgiveness.md) close
 asks nothing of the offender and rebuilds nothing, so a grievance can be
 fully released while the dyad's
 [integration](@chbrain/khai-engine-repair/process_integration.md) never

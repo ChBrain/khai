@@ -8,9 +8,9 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 
 - [forgiveness](process_forgiveness.md): process (anchor)
 - [decisional](process_decisional.md): process
-- [emotional](process_emotional.md): process
+- [emotional forgiveness](process_emotional_forgiveness.md): process
 - [withheld](process_withheld.md): process
-- [self](process_self.md): process
+- [self forgiveness](process_self_forgiveness.md): process
 - [stance](position_stance.md): position
 - [stance avoidant](position_stance_avoidant.md): position
 - [stance vengeful](position_stance_vengeful.md): position
