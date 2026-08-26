@@ -1,5 +1,14 @@
 # @chbrain/khai-composite-moral-account
 
+## 0.1.2
+
+### Patch Changes
+
+- 5fcab19: Point at `forgiveness`'s renamed emotional reading. Link text only;
+  `moral-account` reads the same atoms and wires the same way.
+- Updated dependencies [5fcab19]
+  - @chbrain/khai-engine-forgiveness@0.2.0
+
 ## 0.1.1
 
 ### Patch Changes
