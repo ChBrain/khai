@@ -1034,9 +1034,31 @@ function runMemberCheck() {
     console.error("::error::KHAI-Guard member-check: member-scope violations:");
     for (const e of errors) console.error(`  ${e}`);
     console.error(
-      "\n  Fix: one phenomenon, one owner. Thin the duplicate member to a pointer at\n" +
-        "  the owning engine, or give it a distinct stem — usually the field's own\n" +
-        "  compound term (verbal_persuasion, not persuasion; reward_power, not reward).\n" +
+      "\n  Fix: one phenomenon, one owner. The collision names TWO engines. Ask which\n" +
+        "  of them has a claim on the word — not whether yours does. An engine holds\n" +
+        "  a stem by having arrived first, and arriving first is not a claim.\n" +
+        "\n" +
+        "    1. The word names one engine's actual phenomenon.\n" +
+        "       That engine keeps it; the other takes a distinct stem — usually the\n" +
+        "       field's own compound term (verbal_persuasion, not persuasion;\n" +
+        "       reward_power, not reward).\n" +
+        "\n" +
+        "    2. It names neither, or names no phenomenon at all.\n" +
+        "       Then it belongs to nobody and BOTH move. `high` and `low` went that\n" +
+        "       way across three engines each. Stopping once the gate goes quiet\n" +
+        "       leaves the word to whichever engine happened to move second, which\n" +
+        "       is merge order rather than a reason.\n" +
+        "\n" +
+        "    3. One is restating the other's whole domain.\n" +
+        "       Thin it to a pointer at the owning engine.\n" +
+        "\n" +
+        "  Worth knowing before you choose: clearing a collision retires its\n" +
+        "  exemption, and a retired stem is hard-blocked for good. Whoever keeps the\n" +
+        "  word keeps it against every future engine, so a word nobody can justify\n" +
+        "  holding is worth moving now rather than granting a monopoly by default.\n" +
+        "  docs/ENGINE-GAPS.md records the per-stem judgement in its Root-owner\n" +
+        '  column; "neither — both qualify" is case 2.\n' +
+        "\n" +
         "  A memberPolicy.homonyms whitelist is the last resort, not the first offer:\n" +
         "  for a word that genuinely carries two sciences and cannot be renamed on\n" +
         "  either side without losing the field's own term. It is the maintainer's\n" +
