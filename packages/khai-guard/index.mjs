@@ -1257,16 +1257,37 @@ export function checkMembers(engines = [], config = DEFAULT_CONFIG) {
 // lane while the removal that kills the collision lives in an engine lane, so
 // a hard fail would deadlock both PRs of every removal. A separate function,
 // not a checkMembers field, so the gate's verdict shape stays stable.
+const stemOfFile = (file) =>
+  String(file)
+    .replace(/\.md$/, "")
+    .replace(
+      /^(architecture|engines|instructions|order|plan|play|plot|process|position|piece|place|persona|pitch)_/,
+      "",
+    );
+
+/**
+ * Who still holds a bare stem, and whether any of them has a claim on it.
+ *
+ * `owner` on an exemption entry is the answer to "if this word ends up with one
+ * engine, which one, and why" — a slug for the engine that keeps it, or null
+ * for nobody, in which case every holder owes a rename. An engine whose own
+ * slug IS the stem needs no entry: it holds its own name by construction.
+ */
+export function exemptionClaim(stem, engines = [], meta = null) {
+  const holders = engines
+    .filter((e) => (e.files ?? []).some((f) => stemOfFile(f) === stem))
+    .map((e) => e.engine);
+  const bySlug = holders.filter((h) => h === stem.replace(/_/g, "-"));
+  const owner = bySlug.length ? bySlug[0] : (meta?.owner ?? undefined);
+  const clean =
+    holders.length === 0 || (holders.length === 1 && owner != null && holders[0] === owner);
+  return { holders, owner, clean };
+}
+
 export function deadExemptions(engines = [], config = DEFAULT_CONFIG) {
   const policy = config.memberPolicy;
   if (!policy) return [];
-  const stemOf = (file) =>
-    String(file)
-      .replace(/\.md$/, "")
-      .replace(
-        /^(architecture|engines|instructions|order|plan|play|plot|process|position|piece|place|persona|pitch)_/,
-        "",
-      );
+  const stemOf = stemOfFile;
   const claims = new Map(); // stem -> Set(engine)
   const slugs = new Set(engines.map((e) => e.engine));
   for (const { engine, files } of engines) {
@@ -1288,12 +1309,30 @@ export function deadExemptions(engines = [], config = DEFAULT_CONFIG) {
     ["grandfathered", exemptionStems(policy, "grandfathered")],
   ]) {
     for (const stem of entries) {
-      if (!liveCollision(stem)) {
+      if (liveCollision(stem)) continue;
+      const { holders, owner, clean } = exemptionClaim(
+        stem,
+        engines,
+        exemptionMeta(policy, label, stem),
+      );
+      if (clean) {
+        const keeps = holders.length ? ` — ${owner} keeps the word` : "";
         warnings.push(
-          `memberPolicy.${label} entry "${stem}" has no live collision — the ratchet: ` +
+          `memberPolicy.${label} entry "${stem}" has no live collision${keeps} — the ratchet: ` +
             `delete the entry (governance lane) so the gate hard-blocks any re-entry`,
         );
+        continue;
       }
+      // The collision is gone but a bare word is still held by an engine with
+      // no recorded claim on it. Retiring here would settle the word by which
+      // engine happened to move first, so say that rather than "delete it".
+      warnings.push(
+        `memberPolicy.${label} entry "${stem}" has no live collision, but ${holders.join(", ")} ` +
+          `still holds the bare word and the entry records no claim to it${
+            owner === null ? " (owner: null — nobody qualifies)" : ""
+          } — retiring it now would hand the word over by merge order. Move the ` +
+          `remaining member too, or record { "owner": "<engine>" } and why`,
+      );
     }
   }
   return warnings;
@@ -1371,6 +1410,60 @@ export function homonymGrowth(baseConfig = {}, headConfig = {}) {
           `last resort and the maintainer's call (CLAUDE.md rule 7), never ` +
           `self-granted: give the member a distinct stem instead, or record the ` +
           `grant as { "granted": "<why, and who decided>" } on the entry.`,
+      );
+    }
+  }
+  return { ok: errors.length === 0, errors };
+}
+
+// retiredExemptions: the ratchet's other end, and the half that was missing.
+//
+// homonymGrowth guards the way IN — an entry may not appear without a recorded
+// grant. Nothing guarded the way OUT, and the way out is where a decision was
+// being made without anyone making it. A stem collides while two engines hold
+// it; move either one and the collision is gone, so the entry can be retired
+// with the OTHER engine still holding the bare word. Which engine that is
+// depends only on which moved first. Merge order was choosing, permanently:
+// once the entry is gone the stem is hard-blocked, so the survivor keeps the
+// word against every future engine.
+//
+// So retiring an entry now has to answer the question. Either nothing holds the
+// stem any more, or the sole holder has a claim on it — its own slug (an engine
+// holds its own name by construction) or a recorded `owner`. Otherwise the
+// retirement is refused and the fix is named: move the remaining member, or
+// record who keeps it and why.
+//
+// Hard rather than advisory, unlike deadExemptions, and for the reason that
+// makes deadExemptions advisory: BOTH fixes live in the governance lane beside
+// the deletion itself, so there is no cross-lane deadlock to protect against.
+// Cost is never the argument for keeping a name; where it would have been, it
+// is now a gate.
+export function retiredExemptions(baseConfig = {}, headConfig = {}, engines = []) {
+  const errors = [];
+  for (const key of ["homonyms", "grandfathered"]) {
+    const basePolicy = baseConfig.memberPolicy ?? {};
+    const after = new Set(exemptionStems(headConfig.memberPolicy ?? {}, key));
+    for (const stem of exemptionStems(basePolicy, key)) {
+      if (after.has(stem)) continue;
+      const { holders, owner, clean } = exemptionClaim(
+        stem,
+        engines,
+        exemptionMeta(basePolicy, key, stem),
+      );
+      if (clean) continue;
+      const recorded =
+        owner === null
+          ? `the entry records owner: null — nobody qualifies for it`
+          : owner === undefined
+            ? `the entry records no owner, so this hands the word over by merge order`
+            : `the entry records owner "${owner}", which is not who is holding it`;
+      errors.push(
+        `memberPolicy.${key} retired the entry "${stem}", but ${holders.join(", ")} still ` +
+          `holds the bare word and ${recorded}. Retiring an exemption hard-blocks its ` +
+          `stem for good, so whoever keeps it keeps it against every future engine. ` +
+          `Move the remaining member first, or record { "owner": "<engine>" } with the ` +
+          `reason it has the claim — and the reason has to be about the model. That a ` +
+          `rename costs work is not one`,
       );
     }
   }
