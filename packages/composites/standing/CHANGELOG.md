@@ -1,5 +1,14 @@
 # @chbrain/khai-composite-standing
 
+## 0.1.3
+
+### Patch Changes
+
+- 8dcbc16: Point at `status`'s renamed positions. Link text only; `standing` reads the
+  same atoms and wires the same way.
+- Updated dependencies [8ed7a7a]
+  - @chbrain/khai-engine-status@0.2.0
+
 ## 0.1.2
 
 ### Patch Changes
