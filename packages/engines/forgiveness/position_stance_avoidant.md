@@ -52,7 +52,7 @@ On that cost: the persona either keeps paying it indefinitely, which
 [withholds](process_withheld.md) the debt without ever raising the
 temperature of it, or the avoidance thins as the reason for it does --
 opening toward [decisional](process_decisional.md) conduct or
-[emotional](process_emotional.md) warmth. Avoidant stance is not the same
+[emotional](process_emotional_forgiveness.md) warmth. Avoidant stance is not the same
 disposition as a [withheld](process_withheld.md) form: withheld is what
 the grievance itself is doing -- kept, live, still owed -- while avoidant
 is what the persona is doing about the offender's presence. A persona can

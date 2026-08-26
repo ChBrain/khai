@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-language",
-  "version": "0.1.23",
+  "version": "0.1.24",
   "description": "khai language validator — deterministic language checks with NLP routing fallback, optimized for plays and staging documents.",
   "type": "module",
   "main": "./index.mjs",
@@ -30,6 +30,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
     "franc-all": "^7.2.0",
     "js-yaml": "^5.3.0",
     "languagedetect": "^2.0.0"

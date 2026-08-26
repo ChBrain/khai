@@ -39,8 +39,8 @@ motivation rather than merely their absence.
 
 Set the posture before the form.
 The position runs underneath [decisional](process_decisional.md),
-[emotional](process_emotional.md), [withheld](process_withheld.md), and
-[self](process_self.md) alike: whichever form the release takes, or fails
+[emotional](process_emotional_forgiveness.md), [withheld](process_withheld.md), and
+[self](process_self_forgiveness.md) alike: whichever form the release takes, or fails
 to take, it is legible as a movement of this stance -- avoidance and
 revenge receding, benevolence returning, or neither. A form without a
 stance to move is not a reading of forgiveness at all.
@@ -61,6 +61,6 @@ scene earns, never assumed from the others. Where avoidance and vengefulness
 recede and benevolence has not yet arrived, the persona holds a stance still
 in motion; where benevolence is reached, the read is carried forward into
 whichever form -- [decisional](process_decisional.md) or
-[emotional](process_emotional.md) -- gives it conduct or feeling. Where none
+[emotional](process_emotional_forgiveness.md) -- gives it conduct or feeling. Where none
 of the three moves, the stance holds steady and the persona's read stays
 [withheld](process_withheld.md).

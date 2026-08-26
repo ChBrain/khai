@@ -1,5 +1,12 @@
 # @chbrain/khai-composite-self-relation
 
+## 0.1.2
+
+### Patch Changes
+
+- Updated dependencies [8ed7a7a]
+  - @chbrain/khai-engine-self-esteem@0.2.0
+
 ## 0.1.1
 
 ### Patch Changes
