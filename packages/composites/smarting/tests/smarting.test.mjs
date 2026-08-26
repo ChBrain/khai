@@ -118,8 +118,8 @@ describe("smarting: atoms", () => {
     expect(esteem.members).toBeUndefined();
     expect(esteem.anchor).toBe("position_self_esteem.md");
     expect(esteem.expressions).toEqual({
-      high: "position_high.md",
-      low: "position_low.md",
+      high: "position_high_esteem.md",
+      low: "position_low_esteem.md",
       contingent: "position_contingent.md",
     });
     expect(Array.isArray(atoms.narcissism.manifest.members)).toBe(true);

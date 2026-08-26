@@ -28,8 +28,8 @@
     "type": "position",
     "anchor": "position_self_esteem.md",
     "expressions": {
-      "high": "position_high.md",
-      "low": "position_low.md",
+      "high": "position_high_esteem.md",
+      "low": "position_low_esteem.md",
       "contingent": "position_contingent.md"
     },
     "requires": [
