@@ -1,5 +1,5 @@
 ---
-updated: "2026-08-24"
+updated: "2026-08-25"
 ---
 
 # Engine & composite gaps — a chase list
@@ -1436,7 +1436,7 @@ recorded under **Rejected** rather than proposed.
 
 ## Shipped off-chart -- what landed without a row (recorded so it is not re-flagged)
 
-**96 packages exist in the catalogue and are named nowhere else in this file.**
+**108 packages exist in the catalogue and are named nowhere else in this file.**
 `pet` (#1331) was the case that made the point, and it was charted afterwards
 (#1343); this is the rest of it. It matters for one mechanical reason: a gap
 analysis that diffs a field's constructs against _this file_ rather than against
@@ -1460,7 +1460,30 @@ The branch guard computes lanes from the diff and knows nothing about whether a
 planning artifact was updated, so this is on the author. Nothing else keeps the
 chase list honest.
 
-**Engines (43).**
+**And it cannot be gated, which was checked rather than assumed.** The obvious
+follow-up to the science-index gate (#1387) is the same move here: fail CI when
+a package in the tree is named nowhere in this file. It does not work, for two
+measured reasons.
+
+_This file is not a catalogue._ Of 376 packages, **215 carry no structured
+record here at all** -- neither an off-chart entry (`` `name` (#N) ``) nor a
+table row marked shipped. That is not decay; it is what the file is. It records
+what was _proposed_, and most of the tree landed without ever being a proposal.
+A coverage gate would demand roughly two hundred rows of bookkeeping for a
+planning artifact, which is a worse trade than the staleness it prevents.
+
+_And a prose-mention check is unreliable in both directions._ Searching for the
+name instead of a record reports `nerve` and `undertow` as present: both are
+chapter names of the `pitch` type (Tenor / Undertow / Nerve / Echo) and have
+nothing to do with the composites of those names. Same trap as counting inbound
+links by bare filename.
+
+So the rule above stays a rule for authors. What is computable, and what the 12
+entries added in this pass came from, is the narrow question: which packages
+appear **nowhere** in the file, in any form. That is worth re-running by hand
+after a batch of builds; it is not worth a wall.
+
+**Engines (46).**
 
 `advice` (#1286), `anchoring` (#906), `archetypes` (#774),
 `asking` (#1273), `bystander-effect` (#921), `collection` (#1274),
@@ -1476,9 +1499,9 @@ chase list honest.
 `role-exit` (#1272), `search-space` (#1093), `self-compassion` (#965),
 `self-disclosure` (#888), `spine` (#362), `tourism` (#1278),
 `uniform` (#1288), `vouching` (#1294), `waiting` (#1264),
-`warning` (#1276)
+`warning` (#1276), `bell` (#1296), `bidding` (#1281), `language` (#176)
 
-**Composites (53).**
+**Composites (62).**
 
 `airing` (#1208), `anomaly` (#1243), `appetite` (#1201), `assent` (#1200),
 `befalling` (#1238), `blaze` (#1177), `capability` (#1186),
@@ -1497,7 +1520,9 @@ chase list honest.
 `spectating` (#1237), `squaring` (#1199), `striving` (#1184),
 `subjection` (#1188), `swaying` (#1224), `unbecoming` (#1241),
 `unmoored` (#1235), `uptake` (#1248), `utterance` (#1190),
-`wildland` (#1127)
+`wildland` (#1127), `accent` (#1250), `deserving` (#1211), `nerve` (#1222),
+`owing` (#1196), `presentation` (#1185), `regard` (#1214),
+`remainder` (#1252), `undertow` (#1210), `writ` (#1246)
 
 ## The homonym backlog -- 49 whitelisted stems, chased for a distinct name
 
