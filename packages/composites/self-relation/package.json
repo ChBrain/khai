@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-self-relation",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "khai composite content, the self-relation domain: the ways a persona relates to its own self -- evaluating its worth, caring for it in suffering, and being true to it -- read as one stance over the self-esteem, self-compassion, and authenticity engines it depends on, across the modes, fault, and weave bridges.",
   "type": "module",
   "main": "./index.mjs",
@@ -76,12 +76,12 @@
   },
   "dependencies": {
     "@chbrain/khai-arch": "^0.1.23",
-    "@chbrain/khai-engine-self-esteem": "^0.1.0",
+    "@chbrain/khai-engine-self-esteem": "^0.2.0",
     "@chbrain/khai-engine-self-compassion": "^0.1.1",
     "@chbrain/khai-engine-authenticity": "^0.1.1"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.3.0",
+    "@chbrain/khai-tests": "^0.3.1",
     "vitest": "^4.1.10"
   }
 }
