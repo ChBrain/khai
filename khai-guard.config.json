@@ -282,6 +282,7 @@
         "yields": "shame/process_embarrassment.md"
       },
       "emotional": {
+        "owner": null,
         "note": "needs both to move: forgiveness/process_emotional.md -> emotional_forgiveness; memory/process_emotional.md -> emotional_memory"
       },
       "exploratory": {
@@ -289,6 +290,7 @@
         "yields": "play-mode/position_exploratory.md"
       },
       "external": {
+        "owner": null,
         "note": "needs both to move: locus-of-control/position_external.md -> external_locus; motivation/process_external.md -> extrinsic"
       },
       "framing": {
@@ -308,6 +310,7 @@
         "yields": "moral-judgment/position_loyalty.md"
       },
       "mastery": {
+        "owner": null,
         "note": "needs both to move: goal/position_mastery.md -> mastery_goal; self-efficacy/position_mastery.md -> mastery_experience"
       },
       "narcissism": {
@@ -346,6 +349,7 @@
         "note": "needs both to move: forgiveness/process_self.md -> self_forgiveness; archetypes/persona_self.md -> self_archetype"
       },
       "sensitivity": {
+        "owner": null,
         "note": "needs both to move: caregiving/process_sensitivity.md -> caregiver_sensitivity; disgust/position_sensitivity.md -> disgust_sensitivity"
       },
       "standing": {

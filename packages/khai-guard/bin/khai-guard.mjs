@@ -62,6 +62,7 @@ import {
   deadExemptions,
   touchedExemptions,
   homonymGrowth,
+  retiredExemptions,
   resolveConfig,
   parseNameStatus,
   parseChanges,
@@ -992,7 +993,12 @@ function runMemberCheck() {
   // merge-base config, so it fires on what THIS branch added and nothing else.
   // Skipped when no base resolves (first push, shallow clone) rather than
   // blocking on a comparison that cannot be made.
-  const growth = homonymGrowth(baseConfig(config), config);
+  const base = baseConfig(config);
+  const growth = homonymGrowth(base, config);
+  // And the way out: an entry may not retire while an engine with no claim is
+  // still holding the bare word. Hard, unlike the dead-exemption warning --
+  // both fixes live in this same governance lane, so nothing deadlocks.
+  const retired = retiredExemptions(base, config, engines);
   // And the opportunistic half: a live entry in an engine this diff is already
   // standing in. Advisory by construction -- a rename is breaking, so the gate
   // offers it, never forces it.
@@ -1027,6 +1033,16 @@ function runMemberCheck() {
     console.error(
       "\n  Fix: the list is a ratchet -- it comes down, it does not go up.\n" +
         "  Rename the member instead, or have the maintainer record the grant.",
+    );
+    process.exit(1);
+  }
+  if (!retired.ok) {
+    console.error("::error::KHAI-Guard member-check: exemption-retirement violations:");
+    for (const e of retired.errors) console.error(`  ${e}`);
+    console.error(
+      "\n  Fix: an exemption retires when the word is settled, not when the gate\n" +
+        "  goes quiet. Move the member that is still holding it, or record the\n" +
+        "  engine that keeps it and why it has the claim.",
     );
     process.exit(1);
   }
