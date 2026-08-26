@@ -23,7 +23,7 @@ stamp:
 
 A persona knows the thing, has the words for it, and is running the cost.
 The Silence starts wherever the [interpersonal climate](@chbrain/khai-engine-psychological-safety/place_psychological_safety.md) is doing its work -- the shared and never-stated belief about what follows from admitting an error, asking a question, disagreeing, or raising a concern, held as a history of who took the risk and what happened to them.
-It runs [high](@chbrain/khai-engine-psychological-safety/place_high.md), where the risk can be taken without calculating; [low](@chbrain/khai-engine-psychological-safety/place_low.md), where it cannot; [fragile](@chbrain/khai-engine-psychological-safety/place_fragile.md), where candour is available but priced above zero, so the speaker tests the temperature and what they cannot afford is what they leave unsaid; or [performative](@chbrain/khai-engine-psychological-safety/place_performative.md), where a declared norm of openness sits over an enforcement history that contradicts it, and the room holds both and does not say so.
+It runs [high](@chbrain/khai-engine-psychological-safety/place_high_safety.md), where the risk can be taken without calculating; [low](@chbrain/khai-engine-psychological-safety/place_low_safety.md), where it cannot; [fragile](@chbrain/khai-engine-psychological-safety/place_fragile.md), where candour is available but priced above zero, so the speaker tests the temperature and what they cannot afford is what they leave unsaid; or [performative](@chbrain/khai-engine-psychological-safety/place_performative.md), where a declared norm of openness sits over an enforcement history that contradicts it, and the room holds both and does not say so.
 
 ## Direction
 

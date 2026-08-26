@@ -11,9 +11,9 @@
     "type": "place",
     "anchor": "place_psychological_safety.md",
     "expressions": {
-      "high": "place_high.md",
+      "high": "place_high_safety.md",
       "fragile": "place_fragile.md",
-      "low": "place_low.md",
+      "low": "place_low_safety.md",
       "performative": "place_performative.md"
     },
     "requires": [
