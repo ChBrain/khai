@@ -478,9 +478,18 @@ scanner never opens produces no finding, and **no finding reads exactly like no
 error**.
 
 So the set is now **derived from the canon**: every chapter of a house- or
-element-class khai type, minus the structural ones, unioned with the legacy
-fifteen (which are kept verbatim, so a canon rename cannot silently narrow the
-gate). A new content type's chapters are scanned the day it lands.
+element-class khai type, minus the structural ones, unioned with the legacy list
+(kept verbatim, so a canon rename cannot silently narrow the gate). A new content
+type's chapters are scanned the day it lands. That comes to **32 chapters**: all
+36 house/element chapters bar four, and nothing else.
+
+The legacy list lost one entry on the way, and it is worth recording why.
+`tagline` was never a chapter: `khai.tagline` is a **package.json manifest
+field**, which khai-arch reads to render an engine README, and it reached a list
+of H2 names by mistake. No khai type declares it and no `## Tagline` exists in any
+house, so it matched nothing and cost nothing -- which is exactly why it survived
+however long it had been there. A name in a list that the data never produces is
+indistinguishable from one that works.
 
 The class filter is the whole policy. Meta-class types — `order`, `plan`,
 `instructions`, `architecture`, `engines`, `repertoire` — are the governance
@@ -488,10 +497,12 @@ voice and are written in English inside a house of any language, so scanning the
 would flag correct prose. House and element classes are the cast: they speak the
 production's language, and that is what there is to check.
 
-Six chapters are **structural** and stay out: `Taxonomy` and `Owner` are keys;
+Four chapters are **structural** and stay out, and all four belong to `play`:
 `Company` and `Triggers` are cast lists, where the words around a link are a
 gloss and not a sentence; `Estate` and `Name` are identity lines carrying URLs,
-ISO codes and proper nouns. That exclusion was measured rather than assumed —
+ISO codes and proper nouns. (`Taxonomy` and `Owner` are named in the exclusion set
+too, but no type declares them in its `chapters` -- the validator adds them
+structurally -- so those two entries are inert.) That exclusion was measured rather than assumed —
 including the four list-and-identity chapters produced exactly one finding across
 the house, a 25-word `Triggers` gloss reading as Bislama where Pijin was
 declared. Short link-glosses are where a detector is least reliable and least

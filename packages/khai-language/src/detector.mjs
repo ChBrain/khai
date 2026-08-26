@@ -257,9 +257,17 @@ function detectLanguages(text, resolvedLanguage) {
 // reliable and least useful.
 const STRUCTURAL_CHAPTERS = new Set(["taxonomy", "owner", "company", "triggers", "estate", "name"]);
 
-// The hand-kept core, retained verbatim. It is unioned with the canon-derived
-// set below rather than replaced by it, so a chapter that has always been
-// scanned keeps being scanned even if the canon renames or reclasses its type.
+// The hand-kept core, retained verbatim except for one deletion. It is unioned
+// with the canon-derived set below rather than replaced by it, so a chapter that
+// has always been scanned keeps being scanned even if the canon renames or
+// reclasses its type.
+//
+// The deletion is `tagline`, which was never a chapter: `khai.tagline` is a
+// package.json manifest field (khai-arch reads it to render an engine README),
+// and it reached this list as an H2 name by mistake. No khai type declares it and
+// no `## Tagline` exists in any house, so it matched nothing and cost nothing --
+// which is exactly why it survived. A name in a list that the data never
+// produces is indistinguishable from one that works.
 const LEGACY_PROSE_SECTIONS = [
   "projection",
   "action",
@@ -267,7 +275,6 @@ const LEGACY_PROSE_SECTIONS = [
   "arc",
   "stakes",
   "yearbook",
-  "tagline",
   "tell",
   "withheld",
   "shown",
