@@ -41,4 +41,4 @@ The press of the kept debt against the persona who keeps it is what is carried.
 
 The persona remains bound to the wrong and to the one who did it.
 Unforgiveness is a stance, not a failure -- it can protect, and it can name an injustice that release would paper over -- but it keeps the cost open: the rumination, the vigilance, the wrong staying present in every later read.
-When the reason to hold weakens, or the cost outgrows it, the read can turn toward [decisional](process_decisional.md) or [emotional](process_emotional.md) release.
+When the reason to hold weakens, or the cost outgrows it, the read can turn toward [decisional](process_decisional.md) or [emotional](process_emotional_forgiveness.md) release.

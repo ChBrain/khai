@@ -41,4 +41,4 @@ The press of the decision against the unturned feeling is what is carried.
 
 The persona now conducts themselves as one who has forgiven, whether or not they have.
 The grudge may persist underneath; the decision governs the act, not the affect, and the gap between them is the cost held open.
-Where the conduct holds long enough, it can seed [emotional](process_emotional.md) forgiveness; where the resentment overrides it, the read returns toward [withheld](process_withheld.md).
+Where the conduct holds long enough, it can seed [emotional](process_emotional_forgiveness.md) forgiveness; where the resentment overrides it, the read returns toward [withheld](process_withheld.md).
