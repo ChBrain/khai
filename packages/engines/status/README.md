@@ -7,8 +7,8 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 ## Files
 
 - [status](position_status.md): position (anchor)
-- [high](position_high.md): position
-- [low](position_low.md): position
+- [high status](position_high_status.md): position
+- [low status](position_low_status.md): position
 - [contested](position_contested.md): position
 - [token](position_token.md): position
 

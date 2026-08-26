@@ -28,8 +28,8 @@
     "type": "position",
     "anchor": "position_status.md",
     "expressions": {
-      "high": "position_high.md",
-      "low": "position_low.md",
+      "high": "position_high_status.md",
+      "low": "position_low_status.md",
       "contested": "position_contested.md",
       "token": "position_token.md"
     },

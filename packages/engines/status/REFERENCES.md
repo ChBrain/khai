@@ -35,7 +35,7 @@ What the engine refuses to model, and to whom it delegates.
 Source to constraint, per file.
 
 - **[status](position_status.md)** (the anchor): Status as position: the rank a persona holds in the scene's deference order. Anchored by Berger et al. (1972, 1977) -- diffuse and specific characteristics; expectation states; burden of proof scales with rank.
-- **[high](position_high.md)** (expression): The persona is deferred to; competence expectations are high and burden of proof is low. Anchored by Berger et al. (1977) -- high-rank expectations; initiative and evaluation as rank performances.
-- **[low](position_low.md)** (expression): The persona defers; competence expectations are low and burden of proof is high. Anchored by Berger et al. (1977) -- low-rank expectations; justification demanded before contributions are credited.
+- **[high](position_high_status.md)** (expression): The persona is deferred to; competence expectations are high and burden of proof is low. Anchored by Berger et al. (1977) -- high-rank expectations; initiative and evaluation as rank performances.
+- **[low](position_low_status.md)** (expression): The persona defers; competence expectations are low and burden of proof is high. Anchored by Berger et al. (1977) -- low-rank expectations; justification demanded before contributions are credited.
 - **[contested](position_contested.md)** (expression): Rank is disputed; burden of proof is active on both sides. Anchored by Ridgeway (1982) -- rank as interactional achievement; performance of the underlying characteristic rather than assertion of rank.
 - **[token](position_token.md)** (expression): The persona is visibly solo on a relevant characteristic; status effects are amplified. Anchored by Ridgeway (2011) -- the token effect; categorical visibility overdetermines how contributions are received.
