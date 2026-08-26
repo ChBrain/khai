@@ -295,9 +295,6 @@
         "proposed": "pitch_framing",
         "yields": "pitch-mode/position_framing.md"
       },
-      "high": {
-        "note": "needs both to move: psychological-safety/place_high.md -> high_safety; status/position_high.md -> high_status; self-esteem/position_high.md -> high_esteem"
-      },
       "internalization": {
         "proposed": "norm_internalization",
         "yields": "socialization/process_internalization.md"
@@ -305,9 +302,6 @@
       "liminality": {
         "proposed": "transition",
         "yields": "ritual/process_liminality.md"
-      },
-      "low": {
-        "note": "needs both to move: psychological-safety/place_low.md -> low_safety; status/position_low.md -> low_status; self-esteem/position_low.md -> low_esteem"
       },
       "loyalty": {
         "proposed": "loyalty_foundation",
