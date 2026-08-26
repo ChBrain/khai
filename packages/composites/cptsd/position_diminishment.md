@@ -21,7 +21,7 @@ stamp:
 
 ## Has
 
-The second disturbance of self-organization: a self-concept collapsed into diminishment. ICD-11 names it precisely -- persistent beliefs about oneself as diminished, defeated, or worthless, accompanied by deep and pervasive feelings of shame, guilt, or failure related to the trauma. Sustained trauma, especially when it began early and came at the hands of caregivers, is internalized: the persona takes the degradation done to it as the truth about itself. It settles into a [low](@chbrain/khai-engine-self-esteem/position_low.md) resting attitude toward the self -- not a passing bad mood but a standing verdict of worthlessness -- soaked in a [shame](@chbrain/khai-engine-shame/process_shame.md) that is no longer an episode but a trait, the self appraised again and again as exposed, defective, and to blame. The persona believes, at the root, that it is bad.
+The second disturbance of self-organization: a self-concept collapsed into diminishment. ICD-11 names it precisely -- persistent beliefs about oneself as diminished, defeated, or worthless, accompanied by deep and pervasive feelings of shame, guilt, or failure related to the trauma. Sustained trauma, especially when it began early and came at the hands of caregivers, is internalized: the persona takes the degradation done to it as the truth about itself. It settles into a [low](@chbrain/khai-engine-self-esteem/position_low_esteem.md) resting attitude toward the self -- not a passing bad mood but a standing verdict of worthlessness -- soaked in a [shame](@chbrain/khai-engine-shame/process_shame.md) that is no longer an episode but a trait, the self appraised again and again as exposed, defective, and to blame. The persona believes, at the root, that it is bad.
 
 ## Orders
 

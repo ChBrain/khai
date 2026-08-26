@@ -7,8 +7,8 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 ## Files
 
 - [self esteem](position_self_esteem.md): position (anchor)
-- [high](position_high.md): position
-- [low](position_low.md): position
+- [high esteem](position_high_esteem.md): position
+- [low esteem](position_low_esteem.md): position
 - [contingent](position_contingent.md): position
 
 See [sources and attribution](REFERENCES.md).

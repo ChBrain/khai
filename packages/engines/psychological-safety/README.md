@@ -7,9 +7,9 @@ This engine is defined by its [manifest](package.json), which the canon renders 
 ## Files
 
 - [psychological safety](place_psychological_safety.md): place (anchor)
-- [high](place_high.md): place
+- [high safety](place_high_safety.md): place
 - [fragile](place_fragile.md): place
-- [low](place_low.md): place
+- [low safety](place_low_safety.md): place
 - [performative](place_performative.md): place
 
 See [sources and attribution](REFERENCES.md).

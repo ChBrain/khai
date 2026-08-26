@@ -56,12 +56,12 @@ Source to constraint, per file.
   global attitude toward the self, carried into the moment rather than
   assembled from it. Anchored by Rosenberg (global self-esteem as a single
   attitude).
-- **[high](position_high.md)** (expression): a stable, positive overall
+- **[high](position_high_esteem.md)** (expression): a stable, positive overall
   regard, secure enough that no single verdict moves it -- the self met
   without defense. Anchored by Rosenberg (high self-esteem as stable
   positive regard) and Tafarodi & Swann (liking and competence both settled
   rather than propped on one alone).
-- **[low](position_low.md)** (expression): a negative or unstable overall
+- **[low](position_low_esteem.md)** (expression): a negative or unstable overall
   regard, the self met with doubt before the evidence is in. Anchored by
   Rosenberg (low self-esteem as a predominantly unfavorable attitude toward
   the self) and Tafarodi & Swann (a deficit in liking, competence, or both).
