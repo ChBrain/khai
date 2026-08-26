@@ -502,6 +502,51 @@ both content collections) and khai-misfits report **zero findings** — the same
 before. 612,572 words came under the gate with no debt to pay, which also says
 the corpus was already sound; what was missing was the check, not the quality.
 
+## Varieties the registry does not name (BCP-47 private use)
+
+ISO 639-3 coverage tracks standardisation politics, not speakers. Bavarian has
+`bar` for roughly 14 million; Saterland Frisian has `stq` for roughly two
+thousand; Hessisch, spoken by several million, has nothing at all. A house
+building one position per language variety runs out of codes long before it runs
+out of varieties -- and the first one it hit was the Bayerischer Untermain around
+Aschaffenburg, which speaks Rhine Franconian inside Bavaria.
+
+So a declaration may carry a **BCP-47 private-use subtag**:
+
+```yaml
+language: de-x-hes
+```
+
+`-x-` is what the standard provides for exactly this. It says "German, and
+specifically a variety the registry does not name" -- true, checkable, and
+inventing nothing into the ISO space. The alternative, minting `hes` as though it
+were real, would put a name khai does not own into a namespace khai does not own.
+
+**Strip for routing, preserve for identity.** `resolveLanguage` strips the
+private-use section and returns `german`, so the prose gates against German --
+which is all a trigram model can honestly do for a variety it has no model for.
+`resolveLanguageTag` returns `de-x-hes`, the tag as declared. The split matters
+because the two questions are different: _what do I gate this prose against_ is
+answered by the base language, and _which variety does this file claim_ is
+answered only by the tag, which normalization has thrown away by then. A
+per-variety check (a shibboleth table keyed by tag) needs the second, so the
+second stays reachable.
+
+**khai validates the syntax and never the vocabulary.** A private-use section must
+be `-x-` followed by one or more subtags of 1-8 letters or digits (RFC 5646
+2.2.7), so `de-x-` and `de-x-waytoolongsubtag` are findings and `de-x-hes` is
+not. What `hes` _means_ is the house's business: a registry of somebody else's
+variety names is not khai's to hold, and a house that wants `de-x-hes` and
+`de-x-hess` not to diverge silently should hold its own list.
+
+**A private-use tag in `khai.languages` is a finding, not an exemption.** The
+exempt list is compared against the RESOLVED language, so `de-x-hes` there
+normalizes to `german` and would exempt **every German file in the house**: the
+author asks to skip one variety and switches off a whole language, with nothing
+to say so. Exempting a variety is not expressible -- a variety is gated against
+its base, so skipping it means skipping the base -- and the gate now says that
+rather than quietly obeying.
+
 ## The crux: detection
 
 `languagedetect` (the local detector) has no Low German and reads Platt as a
