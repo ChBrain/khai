@@ -1754,17 +1754,44 @@ rather than uniformly — Jung's figures keep the words, Vogler's functions say
 they are roles.
 
 **From here every remaining lane clears one entry apiece**, so the ordering
-stops paying and the work is simply the list. Five stems (`emotional`,
-`external`, `mastery`, `self`, `sensitivity`) need **two** engines to move
-before the entry dies, so they clear on the second lane rather than the first,
-whichever order those run in.
+stops paying and the work is simply the list -- and the list is shorter than
+this section has ever said.
 
-`high` and `low` were the exception this sentence originally miscounted: each
-was held by **three** engines, not two, so neither died until the third lane.
-They are gone now -- `psychological-safety` (#1392), `self-esteem` (#1393) and
-`status` (#1394), then the entries deleted here. That took the list from 27
-entries and 36 renames to **25 and 30**, and it is the only three-engine stem
-pair the list ever carried.
+**An entry dies after ONE lane, not two.** Five stems (`emotional`, `external`,
+`mastery`, `self`, `sensitivity`) carry a `note` reading "needs both to move",
+and for four of them that is simply false as a statement about the gate. A stem
+collides while two engines hold it; move either one and the survivor is the sole
+owner, so the collision is gone and the exemption protects nothing.
+`member-check` says so out loud -- moving only `goal/position_mastery.md` and
+leaving `self-efficacy` alone is enough to make it report `mastery` dead. That
+was measured, not reasoned: the file was renamed, the gate run, the file put
+back.
+
+Only **`self`** genuinely needs two, and for a reason the note does not give:
+three engines hold it (`archetypes`, `bias`, `forgiveness`), and `bias` keeps
+the bare word by design. So `self` is the one entry on the list that survives
+its first lane.
+
+Counted from the tree rather than from the notes:
+
+| entries | holders | lanes to kill each |
+| ------: | ------: | -----------------: |
+|      24 |       2 |                  1 |
+|       1 |       3 |                  2 |
+
+**What the notes are actually recording is a naming intent, not a gate
+requirement**, and the two come apart. The Root-owner column is where the
+intent lives: "neither -- both qualify" means neither engine has a claim to the
+bare word, so both _should_ move even though only one _must_. Where the column
+names an owner, the second engine keeping the word is the intended end state.
+That distinction is the maintainer's to apply per stem, and it is now visible
+instead of buried in a note that overstated the cost.
+
+`high` and `low` were the mirror image: each was held by **three** engines, so
+neither died until the third lane. They are gone -- `psychological-safety`
+(#1392), `self-esteem` (#1393) and `status` (#1394), the entries deleted in
+#1396 -- taking the list from 27 entries and 36 renames to **25 and 30**, and
+they were the only three-engine stem pair the list ever carried.
 Every heading and total above that says 49 is the count at the time of the
 sweep.
 
