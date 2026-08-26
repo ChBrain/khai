@@ -3,6 +3,9 @@ import { join, dirname, resolve, basename, relative, isAbsolute } from "node:pat
 import * as yaml from "js-yaml";
 import LanguageDetect from "languagedetect";
 import { francAll } from "franc-all";
+// The canon, for the chapter set below. khai-arch depends only on js-yaml, so
+// there is no cycle: the language gate reads the architecture, never the reverse.
+import { types } from "@chbrain/khai-arch";
 
 // Split a content file's YAML frontmatter from its body, on js-yaml 5.x (named exports only) — the
 // merge-key quadratic-DoS in gray-matter's bundled js-yaml 3.x (GHSA-h67p-54hq-rp68)
@@ -242,7 +245,22 @@ function detectLanguages(text, resolvedLanguage) {
   return lngDetector.detect(text);
 }
 
-const DEFAULT_PROSE_SECTIONS = [
+// Chapters that carry no narrative prose, and so are never language-checked.
+// Taxonomy and Owner are keys; Company and Triggers are cast lists, where the
+// words around a link are a short gloss rather than a sentence; Estate and Name
+// are identity lines carrying URLs, ISO codes and proper nouns. This is the
+// judged half of the rule and it was measured, not assumed: including the four
+// list-and-identity chapters over the 290-culture Cultures house produced one
+// finding, and it was a 25-word Triggers gloss reading as Bislama where Pijin
+// was declared -- a within-margin Melanesian sibling that the word count, not
+// the language, made visible. Short link-glosses are where a detector is least
+// reliable and least useful.
+const STRUCTURAL_CHAPTERS = new Set(["taxonomy", "owner", "company", "triggers", "estate", "name"]);
+
+// The hand-kept core, retained verbatim. It is unioned with the canon-derived
+// set below rather than replaced by it, so a chapter that has always been
+// scanned keeps being scanned even if the canon renames or reclasses its type.
+const LEGACY_PROSE_SECTIONS = [
   "projection",
   "action",
   "shadow",
@@ -259,6 +277,34 @@ const DEFAULT_PROSE_SECTIONS = [
   "apparent",
   "load bearing",
 ];
+
+// The chapters the language gate reads: every chapter of a house- or
+// element-class khai type, minus the structural ones, plus the legacy core.
+// Derived from the canon rather than typed out, because a typed list is right on
+// the day it is written and silently wrong afterwards -- and this one was. It
+// carried fifteen names, which left `Has` and `Drives` unread on every position,
+// `Cue`, `Stage` and `Tension` unread on every plot, and every chapter of every
+// pitch and every process unread entirely: 612,572 words of the Cultures house,
+// 43% of its prose, outside a gate that reported clean. Nothing announced that,
+// because a section the scanner never looks at produces no finding, and no
+// finding reads exactly like no error.
+//
+// The class filter is the whole policy. Meta-class types (order, plan,
+// instructions, architecture, engines, repertoire) are the governance voice and
+// are written in English inside a house of any language, so scanning them would
+// flag correct prose. House and element classes are the cast: they speak the
+// production's language, and that is what there is to check.
+const DEFAULT_PROSE_SECTIONS = (() => {
+  const out = new Set(LEGACY_PROSE_SECTIONS.map((c) => c.toLowerCase()));
+  for (const type of Object.values(types ?? {})) {
+    if (type?.class !== "house" && type?.class !== "element") continue;
+    for (const chapter of type.chapters ?? []) {
+      const key = String(chapter).toLowerCase();
+      if (!STRUCTURAL_CHAPTERS.has(key)) out.add(key);
+    }
+  }
+  return [...out];
+})();
 
 const DEFAULT_NLP_LANGUAGES = [];
 

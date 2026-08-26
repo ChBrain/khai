@@ -448,6 +448,60 @@ So the **minimum viable Low German is a repo-only change.** What the engine work
 buys is _rigor_: actually verifying the prose is Platt instead of trusting the
 author.
 
+## What the gate reads (the chapter set)
+
+Detection is only half the gate. The other half is **which chapters it looks at**,
+and that half was a hand-typed list of fifteen section names — right on the day it
+was written and quietly wrong afterwards.
+
+Measured over the 290-culture Cultures house, the list left **612,572 words, 43%
+of the house's prose, outside the gate**:
+
+| kind      | scanned words | unread words | % unread |
+| --------- | ------------: | -----------: | -------: |
+| position  |       156,396 |      187,989 |      55% |
+| plot      |        77,721 |      140,838 |      64% |
+| process   |             0 |      101,408 |     100% |
+| pitch     |             0 |       86,328 |     100% |
+| plan      |        18,875 |       55,423 |      75% |
+| piece     |        84,513 |       23,838 |      22% |
+| place     |        78,943 |       16,748 |      18% |
+| persona   |       333,902 |            0 |       0% |
+| play      |        59,105 |            0 |       0% |
+| **total** |   **809,455** |  **612,572** |  **43%** |
+
+Every chapter of every **pitch** and every **process** was unread. On a position,
+`Has` and `Drives` were unread — `Has` being where a language variety states its
+own grammar, in that variety. On a plot, only `Action` was read; `Cue`, `Stage`
+and `Tension` were not. Nothing announced any of it, because a section the
+scanner never opens produces no finding, and **no finding reads exactly like no
+error**.
+
+So the set is now **derived from the canon**: every chapter of a house- or
+element-class khai type, minus the structural ones, unioned with the legacy
+fifteen (which are kept verbatim, so a canon rename cannot silently narrow the
+gate). A new content type's chapters are scanned the day it lands.
+
+The class filter is the whole policy. Meta-class types — `order`, `plan`,
+`instructions`, `architecture`, `engines`, `repertoire` — are the governance
+voice and are written in English inside a house of any language, so scanning them
+would flag correct prose. House and element classes are the cast: they speak the
+production's language, and that is what there is to check.
+
+Six chapters are **structural** and stay out: `Taxonomy` and `Owner` are keys;
+`Company` and `Triggers` are cast lists, where the words around a link are a
+gloss and not a sentence; `Estate` and `Name` are identity lines carrying URLs,
+ISO codes and proper nouns. That exclusion was measured rather than assumed —
+including the four list-and-identity chapters produced exactly one finding across
+the house, a 25-word `Triggers` gloss reading as Bislama where Pijin was
+declared. Short link-glosses are where a detector is least reliable and least
+useful, and the Melanesian pair is a documented within-margin cluster.
+
+**The widening costs nothing.** With the derived set, khai-cultures (290 cultures,
+both content collections) and khai-misfits report **zero findings** — the same as
+before. 612,572 words came under the gate with no debt to pay, which also says
+the corpus was already sound; what was missing was the check, not the quality.
+
 ## The crux: detection
 
 `languagedetect` (the local detector) has no Low German and reads Platt as a
