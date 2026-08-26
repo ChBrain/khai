@@ -331,10 +331,53 @@ const DENSE_SCRIPT_RE =
 /**
  * Normalizes a language code or name to the lowercase name expected by languagedetect.
  */
+// BCP-47 private use: the `x` singleton and every subtag after it (RFC 5646
+// section 2.2.7 -- each subtag 1-8 alphanumerics). `de-x-hes` is "German, and
+// specifically a variety no registry names", which is what a tongue like Hessisch
+// or Andaluz needs: ISO 639-3 coverage tracks standardisation politics, not
+// speakers, so Bavarian has `bar` for 14 million and Hessisch has nothing for
+// several million.
+const PRIVATE_USE_RE = /-x(-[a-z0-9]{1,8})+$/i;
+// A private-use section that is present but malformed -- an empty `de-x-`, or a
+// subtag over eight characters.
+const HAS_PRIVATE_USE_RE = /-x(-|$)/i;
+
+/** The declared tag with its private-use section removed: `de-x-hes` -> `de`. */
+const stripPrivateUse = (tag) => String(tag).replace(PRIVATE_USE_RE, "");
+
+/**
+ * Strip for ROUTING, preserve for IDENTITY.
+ *
+ * The detector sees `de` and gates the prose as German, which is all detection
+ * can honestly do for a variety franc has no model for. The full tag stays
+ * reachable through {@link resolveLanguageTag}, because it is the stable handle
+ * that says WHICH variety the file claims -- machine-readable, standards-legal,
+ * and inventing nothing into the ISO space.
+ *
+ * khai validates the tag's SYNTAX and never its vocabulary: what `hes` means is
+ * the house's business, and a registry of somebody else's variety names is not
+ * khai's to hold.
+ */
 function normalizeLanguage(lang) {
   if (!lang) return "english";
-  const normalized = lang.trim().toLowerCase();
+  const normalized = stripPrivateUse(lang.trim().toLowerCase());
   return ISO_MAP[normalized] || FRANC_MAP[normalized] || normalized;
+}
+
+/**
+ * Why a language tag is malformed, or null when it is fine. Only the private-use
+ * section is checked -- a tag without one is somebody else's problem (the
+ * `allowedLangs` check names an unregistered language).
+ */
+function privateUseTagError(tag) {
+  const t = String(tag ?? "").trim();
+  if (!HAS_PRIVATE_USE_RE.test(t)) return null;
+  if (PRIVATE_USE_RE.test(t)) return null;
+  return (
+    `Language tag '${t}' has a malformed private-use section. BCP-47 (RFC 5646) ` +
+    `takes '-x-' followed by one or more subtags of 1-8 letters or digits, ` +
+    `e.g. 'de-x-hes'.`
+  );
 }
 
 /**
@@ -391,25 +434,35 @@ function findPlayFile(fileDir, projectPath) {
  * 4. Fallback: english
  */
 export function resolveLanguage(filePath, projectPath) {
+  return normalizeLanguage(resolveLanguageTag(filePath, projectPath));
+}
+
+/**
+ * The language tag AS DECLARED, before normalization: `de-x-hes`, not `german`.
+ * Same file -> play -> house precedence as {@link resolveLanguage}, which is
+ * defined in terms of this.
+ *
+ * This is the identity half of the private-use design. `resolveLanguage` answers
+ * "which language do I gate this prose against", and for a variety the answer is
+ * always the base language, because that is all a trigram model can honestly do.
+ * It cannot answer "which variety does this file claim" -- normalization has
+ * thrown that away by then. A per-variety check (a shibboleth table keyed by
+ * tag) needs the tag, so the tag stays reachable.
+ */
+export function resolveLanguageTag(filePath, projectPath) {
   const fileData = readFrontmatter(filePath);
-  if (fileData.language) {
-    return normalizeLanguage(fileData.language);
-  }
+  if (fileData.language) return String(fileData.language).trim().toLowerCase();
 
   const playFile = findPlayFile(dirname(filePath), projectPath);
   if (playFile) {
     const playData = readFrontmatter(playFile);
-    if (playData.language) {
-      return normalizeLanguage(playData.language);
-    }
+    if (playData.language) return String(playData.language).trim().toLowerCase();
   }
 
   const houseReadme = join(projectPath, "README.md");
   if (existsSync(houseReadme)) {
     const houseData = readFrontmatter(houseReadme);
-    if (houseData.language) {
-      return normalizeLanguage(houseData.language);
-    }
+    if (houseData.language) return String(houseData.language).trim().toLowerCase();
   }
 
   return "english";
@@ -511,9 +564,25 @@ export function validateLanguageOfFile(filePath, projectPath, options = {}) {
   // ISO code (e.g. "fr") matches the normalized resolvedLanguage ("french") and
   // actually routes to the NLP/LLM fallback. A bare toLowerCase left "fr" unable
   // to match "french", silently running the local detector anyway.
-  const nlpLanguages = (options.nlpLanguages || DEFAULT_NLP_LANGUAGES)
-    .filter((s) => typeof s === "string" && s.trim())
-    .map((s) => normalizeLanguage(s));
+  const rawNlpLanguages = (options.nlpLanguages || DEFAULT_NLP_LANGUAGES).filter(
+    (s) => typeof s === "string" && s.trim(),
+  );
+  // A private-use tag in the exempt list is always a mistake, and a silent one.
+  // The list is compared against the RESOLVED language, so `de-x-hes` there
+  // normalizes to `german` and exempts EVERY German file in the house -- the
+  // author asked to skip one variety and switched off a whole language, with no
+  // finding to say so. Exempting a variety is not a thing that can be expressed:
+  // a variety is gated against its base, so skipping it means skipping the base.
+  const privateUseExemptions = rawNlpLanguages.filter((s) => HAS_PRIVATE_USE_RE.test(s.trim()));
+  if (privateUseExemptions.length) {
+    return [
+      `Exempt language list holds private-use tag(s) [${privateUseExemptions.join(", ")}]. ` +
+        `A private-use tag resolves to its base language, so exempting it would skip ` +
+        `every file in that base language, not just the variety. Exempt the base ` +
+        `deliberately, or leave the variety gated against it.`,
+    ];
+  }
+  const nlpLanguages = rawNlpLanguages.map((s) => normalizeLanguage(s));
   const minSpanWords = options.minSpanWords !== undefined ? options.minSpanWords : 15;
   // Scriptio-continua fallback: a paragraph also qualifies if it carries at least
   // this many spaceless-script characters, since franc is reliable well below 15
@@ -524,6 +593,14 @@ export function validateLanguageOfFile(filePath, projectPath, options = {}) {
   if (!existsSync(filePath)) {
     return [`File not found: ${filePath}`];
   }
+
+  // The declared tag is checked before the resolved language, so a malformed
+  // private-use section is named as such rather than surfacing as the base
+  // language being unregistered -- two different mistakes with two different
+  // fixes.
+  const declaredTag = resolveLanguageTag(filePath, projectPath);
+  const tagError = privateUseTagError(declaredTag);
+  if (tagError) return [tagError];
 
   const resolvedLanguage = resolveLanguage(filePath, projectPath);
 
