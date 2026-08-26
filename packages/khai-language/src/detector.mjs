@@ -3,6 +3,9 @@ import { join, dirname, resolve, basename, relative, isAbsolute } from "node:pat
 import * as yaml from "js-yaml";
 import LanguageDetect from "languagedetect";
 import { francAll } from "franc-all";
+// The canon, for the chapter set below. khai-arch depends only on js-yaml, so
+// there is no cycle: the language gate reads the architecture, never the reverse.
+import { types } from "@chbrain/khai-arch";
 
 // Split a content file's YAML frontmatter from its body, on js-yaml 5.x (named exports only) — the
 // merge-key quadratic-DoS in gray-matter's bundled js-yaml 3.x (GHSA-h67p-54hq-rp68)
@@ -242,14 +245,36 @@ function detectLanguages(text, resolvedLanguage) {
   return lngDetector.detect(text);
 }
 
-const DEFAULT_PROSE_SECTIONS = [
+// Chapters that carry no narrative prose, and so are never language-checked.
+// Taxonomy and Owner are keys; Company and Triggers are cast lists, where the
+// words around a link are a short gloss rather than a sentence; Estate and Name
+// are identity lines carrying URLs, ISO codes and proper nouns. This is the
+// judged half of the rule and it was measured, not assumed: including the four
+// list-and-identity chapters over the 290-culture Cultures house produced one
+// finding, and it was a 25-word Triggers gloss reading as Bislama where Pijin
+// was declared -- a within-margin Melanesian sibling that the word count, not
+// the language, made visible. Short link-glosses are where a detector is least
+// reliable and least useful.
+const STRUCTURAL_CHAPTERS = new Set(["taxonomy", "owner", "company", "triggers", "estate", "name"]);
+
+// The hand-kept core, retained verbatim except for one deletion. It is unioned
+// with the canon-derived set below rather than replaced by it, so a chapter that
+// has always been scanned keeps being scanned even if the canon renames or
+// reclasses its type.
+//
+// The deletion is `tagline`, which was never a chapter: `khai.tagline` is a
+// package.json manifest field (khai-arch reads it to render an engine README),
+// and it reached this list as an H2 name by mistake. No khai type declares it and
+// no `## Tagline` exists in any house, so it matched nothing and cost nothing --
+// which is exactly why it survived. A name in a list that the data never
+// produces is indistinguishable from one that works.
+const LEGACY_PROSE_SECTIONS = [
   "projection",
   "action",
   "shadow",
   "arc",
   "stakes",
   "yearbook",
-  "tagline",
   "tell",
   "withheld",
   "shown",
@@ -259,6 +284,34 @@ const DEFAULT_PROSE_SECTIONS = [
   "apparent",
   "load bearing",
 ];
+
+// The chapters the language gate reads: every chapter of a house- or
+// element-class khai type, minus the structural ones, plus the legacy core.
+// Derived from the canon rather than typed out, because a typed list is right on
+// the day it is written and silently wrong afterwards -- and this one was. It
+// carried fifteen names, which left `Has` and `Drives` unread on every position,
+// `Cue`, `Stage` and `Tension` unread on every plot, and every chapter of every
+// pitch and every process unread entirely: 612,572 words of the Cultures house,
+// 43% of its prose, outside a gate that reported clean. Nothing announced that,
+// because a section the scanner never looks at produces no finding, and no
+// finding reads exactly like no error.
+//
+// The class filter is the whole policy. Meta-class types (order, plan,
+// instructions, architecture, engines, repertoire) are the governance voice and
+// are written in English inside a house of any language, so scanning them would
+// flag correct prose. House and element classes are the cast: they speak the
+// production's language, and that is what there is to check.
+const DEFAULT_PROSE_SECTIONS = (() => {
+  const out = new Set(LEGACY_PROSE_SECTIONS.map((c) => c.toLowerCase()));
+  for (const type of Object.values(types ?? {})) {
+    if (type?.class !== "house" && type?.class !== "element") continue;
+    for (const chapter of type.chapters ?? []) {
+      const key = String(chapter).toLowerCase();
+      if (!STRUCTURAL_CHAPTERS.has(key)) out.add(key);
+    }
+  }
+  return [...out];
+})();
 
 const DEFAULT_NLP_LANGUAGES = [];
 
@@ -278,10 +331,53 @@ const DENSE_SCRIPT_RE =
 /**
  * Normalizes a language code or name to the lowercase name expected by languagedetect.
  */
+// BCP-47 private use: the `x` singleton and every subtag after it (RFC 5646
+// section 2.2.7 -- each subtag 1-8 alphanumerics). `de-x-hes` is "German, and
+// specifically a variety no registry names", which is what a tongue like Hessisch
+// or Andaluz needs: ISO 639-3 coverage tracks standardisation politics, not
+// speakers, so Bavarian has `bar` for 14 million and Hessisch has nothing for
+// several million.
+const PRIVATE_USE_RE = /-x(-[a-z0-9]{1,8})+$/i;
+// A private-use section that is present but malformed -- an empty `de-x-`, or a
+// subtag over eight characters.
+const HAS_PRIVATE_USE_RE = /-x(-|$)/i;
+
+/** The declared tag with its private-use section removed: `de-x-hes` -> `de`. */
+const stripPrivateUse = (tag) => String(tag).replace(PRIVATE_USE_RE, "");
+
+/**
+ * Strip for ROUTING, preserve for IDENTITY.
+ *
+ * The detector sees `de` and gates the prose as German, which is all detection
+ * can honestly do for a variety franc has no model for. The full tag stays
+ * reachable through {@link resolveLanguageTag}, because it is the stable handle
+ * that says WHICH variety the file claims -- machine-readable, standards-legal,
+ * and inventing nothing into the ISO space.
+ *
+ * khai validates the tag's SYNTAX and never its vocabulary: what `hes` means is
+ * the house's business, and a registry of somebody else's variety names is not
+ * khai's to hold.
+ */
 function normalizeLanguage(lang) {
   if (!lang) return "english";
-  const normalized = lang.trim().toLowerCase();
+  const normalized = stripPrivateUse(lang.trim().toLowerCase());
   return ISO_MAP[normalized] || FRANC_MAP[normalized] || normalized;
+}
+
+/**
+ * Why a language tag is malformed, or null when it is fine. Only the private-use
+ * section is checked -- a tag without one is somebody else's problem (the
+ * `allowedLangs` check names an unregistered language).
+ */
+function privateUseTagError(tag) {
+  const t = String(tag ?? "").trim();
+  if (!HAS_PRIVATE_USE_RE.test(t)) return null;
+  if (PRIVATE_USE_RE.test(t)) return null;
+  return (
+    `Language tag '${t}' has a malformed private-use section. BCP-47 (RFC 5646) ` +
+    `takes '-x-' followed by one or more subtags of 1-8 letters or digits, ` +
+    `e.g. 'de-x-hes'.`
+  );
 }
 
 /**
@@ -338,25 +434,35 @@ function findPlayFile(fileDir, projectPath) {
  * 4. Fallback: english
  */
 export function resolveLanguage(filePath, projectPath) {
+  return normalizeLanguage(resolveLanguageTag(filePath, projectPath));
+}
+
+/**
+ * The language tag AS DECLARED, before normalization: `de-x-hes`, not `german`.
+ * Same file -> play -> house precedence as {@link resolveLanguage}, which is
+ * defined in terms of this.
+ *
+ * This is the identity half of the private-use design. `resolveLanguage` answers
+ * "which language do I gate this prose against", and for a variety the answer is
+ * always the base language, because that is all a trigram model can honestly do.
+ * It cannot answer "which variety does this file claim" -- normalization has
+ * thrown that away by then. A per-variety check (a shibboleth table keyed by
+ * tag) needs the tag, so the tag stays reachable.
+ */
+export function resolveLanguageTag(filePath, projectPath) {
   const fileData = readFrontmatter(filePath);
-  if (fileData.language) {
-    return normalizeLanguage(fileData.language);
-  }
+  if (fileData.language) return String(fileData.language).trim().toLowerCase();
 
   const playFile = findPlayFile(dirname(filePath), projectPath);
   if (playFile) {
     const playData = readFrontmatter(playFile);
-    if (playData.language) {
-      return normalizeLanguage(playData.language);
-    }
+    if (playData.language) return String(playData.language).trim().toLowerCase();
   }
 
   const houseReadme = join(projectPath, "README.md");
   if (existsSync(houseReadme)) {
     const houseData = readFrontmatter(houseReadme);
-    if (houseData.language) {
-      return normalizeLanguage(houseData.language);
-    }
+    if (houseData.language) return String(houseData.language).trim().toLowerCase();
   }
 
   return "english";
@@ -458,9 +564,25 @@ export function validateLanguageOfFile(filePath, projectPath, options = {}) {
   // ISO code (e.g. "fr") matches the normalized resolvedLanguage ("french") and
   // actually routes to the NLP/LLM fallback. A bare toLowerCase left "fr" unable
   // to match "french", silently running the local detector anyway.
-  const nlpLanguages = (options.nlpLanguages || DEFAULT_NLP_LANGUAGES)
-    .filter((s) => typeof s === "string" && s.trim())
-    .map((s) => normalizeLanguage(s));
+  const rawNlpLanguages = (options.nlpLanguages || DEFAULT_NLP_LANGUAGES).filter(
+    (s) => typeof s === "string" && s.trim(),
+  );
+  // A private-use tag in the exempt list is always a mistake, and a silent one.
+  // The list is compared against the RESOLVED language, so `de-x-hes` there
+  // normalizes to `german` and exempts EVERY German file in the house -- the
+  // author asked to skip one variety and switched off a whole language, with no
+  // finding to say so. Exempting a variety is not a thing that can be expressed:
+  // a variety is gated against its base, so skipping it means skipping the base.
+  const privateUseExemptions = rawNlpLanguages.filter((s) => HAS_PRIVATE_USE_RE.test(s.trim()));
+  if (privateUseExemptions.length) {
+    return [
+      `Exempt language list holds private-use tag(s) [${privateUseExemptions.join(", ")}]. ` +
+        `A private-use tag resolves to its base language, so exempting it would skip ` +
+        `every file in that base language, not just the variety. Exempt the base ` +
+        `deliberately, or leave the variety gated against it.`,
+    ];
+  }
+  const nlpLanguages = rawNlpLanguages.map((s) => normalizeLanguage(s));
   const minSpanWords = options.minSpanWords !== undefined ? options.minSpanWords : 15;
   // Scriptio-continua fallback: a paragraph also qualifies if it carries at least
   // this many spaceless-script characters, since franc is reliable well below 15
@@ -471,6 +593,14 @@ export function validateLanguageOfFile(filePath, projectPath, options = {}) {
   if (!existsSync(filePath)) {
     return [`File not found: ${filePath}`];
   }
+
+  // The declared tag is checked before the resolved language, so a malformed
+  // private-use section is named as such rather than surfacing as the base
+  // language being unregistered -- two different mistakes with two different
+  // fixes.
+  const declaredTag = resolveLanguageTag(filePath, projectPath);
+  const tagError = privateUseTagError(declaredTag);
+  if (tagError) return [tagError];
 
   const resolvedLanguage = resolveLanguage(filePath, projectPath);
 

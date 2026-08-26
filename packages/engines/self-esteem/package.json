@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-self-esteem",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "khai engine content, the self-esteem domain: global self-esteem as position, the persona's resting overall attitude toward the self, positive or negative, that colours every verdict the self meets.",
   "type": "module",
   "main": "./index.mjs",
@@ -62,7 +62,7 @@
     "@chbrain/khai-arch": "^0.1.21"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.3.0",
+    "@chbrain/khai-tests": "^0.3.1",
     "vitest": "^4.1.10"
   }
 }

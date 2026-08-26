@@ -1,5 +1,16 @@
 # @chbrain/khai-tests
 
+## 0.3.1
+
+### Patch Changes
+
+- 32ec1cc: `science verify` names the line that drifted. The out-of-date error carried no
+  detail, so a stale index and a builder that changed under you looked identical.
+  It now reports the first differing line and column with an excerpt of both
+  sides, windowed on the difference rather than the start of the line.
+- Updated dependencies [06c1c91]
+  - @chbrain/khai-language@0.1.24
+
 ## 0.3.0
 
 ### Minor Changes

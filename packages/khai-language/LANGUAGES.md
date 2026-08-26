@@ -448,6 +448,116 @@ So the **minimum viable Low German is a repo-only change.** What the engine work
 buys is _rigor_: actually verifying the prose is Platt instead of trusting the
 author.
 
+## What the gate reads (the chapter set)
+
+Detection is only half the gate. The other half is **which chapters it looks at**,
+and that half was a hand-typed list of fifteen section names — right on the day it
+was written and quietly wrong afterwards.
+
+Measured over the 290-culture Cultures house, the list left **612,572 words, 43%
+of the house's prose, outside the gate**:
+
+| kind      | scanned words | unread words | % unread |
+| --------- | ------------: | -----------: | -------: |
+| position  |       156,396 |      187,989 |      55% |
+| plot      |        77,721 |      140,838 |      64% |
+| process   |             0 |      101,408 |     100% |
+| pitch     |             0 |       86,328 |     100% |
+| plan      |        18,875 |       55,423 |      75% |
+| piece     |        84,513 |       23,838 |      22% |
+| place     |        78,943 |       16,748 |      18% |
+| persona   |       333,902 |            0 |       0% |
+| play      |        59,105 |            0 |       0% |
+| **total** |   **809,455** |  **612,572** |  **43%** |
+
+Every chapter of every **pitch** and every **process** was unread. On a position,
+`Has` and `Drives` were unread — `Has` being where a language variety states its
+own grammar, in that variety. On a plot, only `Action` was read; `Cue`, `Stage`
+and `Tension` were not. Nothing announced any of it, because a section the
+scanner never opens produces no finding, and **no finding reads exactly like no
+error**.
+
+So the set is now **derived from the canon**: every chapter of a house- or
+element-class khai type, minus the structural ones, unioned with the legacy list
+(kept verbatim, so a canon rename cannot silently narrow the gate). A new content
+type's chapters are scanned the day it lands. That comes to **32 chapters**: all
+36 house/element chapters bar four, and nothing else.
+
+The legacy list lost one entry on the way, and it is worth recording why.
+`tagline` was never a chapter: `khai.tagline` is a **package.json manifest
+field**, which khai-arch reads to render an engine README, and it reached a list
+of H2 names by mistake. No khai type declares it and no `## Tagline` exists in any
+house, so it matched nothing and cost nothing -- which is exactly why it survived
+however long it had been there. A name in a list that the data never produces is
+indistinguishable from one that works.
+
+The class filter is the whole policy. Meta-class types — `order`, `plan`,
+`instructions`, `architecture`, `engines`, `repertoire` — are the governance
+voice and are written in English inside a house of any language, so scanning them
+would flag correct prose. House and element classes are the cast: they speak the
+production's language, and that is what there is to check.
+
+Four chapters are **structural** and stay out, and all four belong to `play`:
+`Company` and `Triggers` are cast lists, where the words around a link are a
+gloss and not a sentence; `Estate` and `Name` are identity lines carrying URLs,
+ISO codes and proper nouns. (`Taxonomy` and `Owner` are named in the exclusion set
+too, but no type declares them in its `chapters` -- the validator adds them
+structurally -- so those two entries are inert.) That exclusion was measured rather than assumed —
+including the four list-and-identity chapters produced exactly one finding across
+the house, a 25-word `Triggers` gloss reading as Bislama where Pijin was
+declared. Short link-glosses are where a detector is least reliable and least
+useful, and the Melanesian pair is a documented within-margin cluster.
+
+**The widening costs nothing.** With the derived set, khai-cultures (290 cultures,
+both content collections) and khai-misfits report **zero findings** — the same as
+before. 612,572 words came under the gate with no debt to pay, which also says
+the corpus was already sound; what was missing was the check, not the quality.
+
+## Varieties the registry does not name (BCP-47 private use)
+
+ISO 639-3 coverage tracks standardisation politics, not speakers. Bavarian has
+`bar` for roughly 14 million; Saterland Frisian has `stq` for roughly two
+thousand; Hessisch, spoken by several million, has nothing at all. A house
+building one position per language variety runs out of codes long before it runs
+out of varieties -- and the first one it hit was the Bayerischer Untermain around
+Aschaffenburg, which speaks Rhine Franconian inside Bavaria.
+
+So a declaration may carry a **BCP-47 private-use subtag**:
+
+```yaml
+language: de-x-hes
+```
+
+`-x-` is what the standard provides for exactly this. It says "German, and
+specifically a variety the registry does not name" -- true, checkable, and
+inventing nothing into the ISO space. The alternative, minting `hes` as though it
+were real, would put a name khai does not own into a namespace khai does not own.
+
+**Strip for routing, preserve for identity.** `resolveLanguage` strips the
+private-use section and returns `german`, so the prose gates against German --
+which is all a trigram model can honestly do for a variety it has no model for.
+`resolveLanguageTag` returns `de-x-hes`, the tag as declared. The split matters
+because the two questions are different: _what do I gate this prose against_ is
+answered by the base language, and _which variety does this file claim_ is
+answered only by the tag, which normalization has thrown away by then. A
+per-variety check (a shibboleth table keyed by tag) needs the second, so the
+second stays reachable.
+
+**khai validates the syntax and never the vocabulary.** A private-use section must
+be `-x-` followed by one or more subtags of 1-8 letters or digits (RFC 5646
+2.2.7), so `de-x-` and `de-x-waytoolongsubtag` are findings and `de-x-hes` is
+not. What `hes` _means_ is the house's business: a registry of somebody else's
+variety names is not khai's to hold, and a house that wants `de-x-hes` and
+`de-x-hess` not to diverge silently should hold its own list.
+
+**A private-use tag in `khai.languages` is a finding, not an exemption.** The
+exempt list is compared against the RESOLVED language, so `de-x-hes` there
+normalizes to `german` and would exempt **every German file in the house**: the
+author asks to skip one variety and switches off a whole language, with nothing
+to say so. Exempting a variety is not expressible -- a variety is gated against
+its base, so skipping it means skipping the base -- and the gate now says that
+rather than quietly obeying.
+
 ## The crux: detection
 
 `languagedetect` (the local detector) has no Low German and reads Platt as a

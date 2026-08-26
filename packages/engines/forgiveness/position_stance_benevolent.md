@@ -51,7 +51,7 @@ pure warmth or pure distance would be on its own.
 
 On that difficulty: the persona carries benevolence into whichever form
 gives it expression -- [decisional](process_decisional.md) conduct that
-treats the offender as a person, or [emotional](process_emotional.md)
+treats the offender as a person, or [emotional](process_emotional_forgiveness.md)
 warmth that has already replaced the resentment. What benevolence never
 drives, on its own, is reconciliation: the rebuilt relationship, the
 restored access, the resumed trust are the repair engine's, bilateral and
