@@ -25,12 +25,12 @@ disagree.
 Rank at one altitude and its absence at another, held together and held
 for a while. The
 [superior](@chbrain/khai-engine-hierarchy/position_superior.md) whose
-room runs on a [low](@chbrain/khai-engine-status/position_low.md) read of
+room runs on a [low](@chbrain/khai-engine-status/position_low_status.md) read of
 them; the [expert](@chbrain/khai-engine-power/position_expert.md) with no
 title whose word nonetheless ends the argument; the
 [rising](@chbrain/khai-engine-capital/position_rising.md) persona whose
 money is counted and whose belonging is not; the persona the room grants
-[high](@chbrain/khai-engine-status/position_high.md) status while every
+[high](@chbrain/khai-engine-status/position_high_status.md) status while every
 formal measure ranks them nowhere. Magee and Galinsky's line holds the
 state together: power and status are distinct dimensions, so their
 combinations are real positions, not errors, and the misaligned ones are

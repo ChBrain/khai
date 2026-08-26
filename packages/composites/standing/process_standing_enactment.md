@@ -34,7 +34,7 @@ layer. A run of unanswered
 [ascending](@chbrain/khai-engine-status-move/position_ascending.md) moves
 is how a persona's entry rank rises between scenes; habitual
 [descending](@chbrain/khai-engine-status-move/position_descending.md)
-becomes a [low](@chbrain/khai-engine-status/position_low.md) rank nobody
+becomes a [low](@chbrain/khai-engine-status/position_low_status.md) rank nobody
 remembers assigning.
 
 ## Direction
@@ -42,7 +42,7 @@ remembers assigning.
 From move to rank and back, a loop with a grain. Moves sediment into
 rank, and rank then reprices the moves: the same unqualified assertion
 reads as initiative from a
-[high](@chbrain/khai-engine-status/position_high.md)-status persona and
+[high](@chbrain/khai-engine-status/position_high_status.md)-status persona and
 as insolence from a low one, which is the burden-of-proof asymmetry the
 status engine carries, now read as the loop's downhill grain. Enactment
 therefore compounds: rank makes the rank-confirming move cheaper, and
