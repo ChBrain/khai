@@ -35,7 +35,7 @@ What the engine refuses to model, and to whom it delegates.
 Source to constraint, per file.
 
 - **[psychological-safety](place_psychological_safety.md)** (the anchor): The interpersonal climate as a place: what it shows, holds, offers, and withholds. Anchored by Edmondson (1999, 2018) -- the psychological safety construct; the group-level climate as the unit.
-- **[high](place_high.md)** (expression): Dissent, error, and questions are unremarkable; the full range of candid contribution is available. Anchored by Edmondson (2018) -- the high-safety zone; Frazier et al. (2017) -- performance outcomes of high safety.
+- **[high](place_high_safety.md)** (expression): Dissent, error, and questions are unremarkable; the full range of candid contribution is available. Anchored by Edmondson (2018) -- the high-safety zone; Frazier et al. (2017) -- performance outcomes of high safety.
 - **[fragile](place_fragile.md)** (expression): Openness is present under ordinary conditions but easily disrupted. Anchored by Edmondson (2018) -- the anxiety zone; the boundary between what can be said and what cannot.
-- **[low](place_low.md)** (expression): Self-censorship dominates; interpersonal risk-taking is perceived as costly. Anchored by Edmondson (1999) -- learning silence in low-safety teams; Frazier et al. (2017) -- antecedents of low safety.
+- **[low](place_low_safety.md)** (expression): Self-censorship dominates; interpersonal risk-taking is perceived as costly. Anchored by Edmondson (1999) -- learning silence in low-safety teams; Frazier et al. (2017) -- antecedents of low safety.
 - **[performative](place_performative.md)** (expression): Safety is officially claimed and structurally punished; the norm and the enforcement are in contradiction. Anchored by Edmondson (2018) -- the apathy zone and the gap between declared and real climate; Nembhard & Edmondson (2006) -- leader behavior that creates the gap.
