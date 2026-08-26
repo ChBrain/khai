@@ -1,5 +1,22 @@
 # @chbrain/khai-guard
 
+## 0.3.0
+
+### Minor Changes
+
+- 8e75e5e: An exemption may no longer retire while an engine with no claim still holds its
+  bare stem. `retiredExemptions` is the ratchet's missing end — `homonymGrowth`
+  guarded the way in, nothing guarded the way out, and the way out was settling
+  words by merge order. Entries gain an optional `owner`: the engine that keeps
+  the word, or `null` for nobody.
+
+### Patch Changes
+
+- 0c02f08: Make the member-scope block ask which engine is wrong rather than assume it is
+  the newcomer's. Three cases, the note that arriving first is not a claim, and
+  the consequence nobody could see: a cleared collision retires its exemption and
+  hard-blocks the stem for good.
+
 ## 0.2.1
 
 ### Patch Changes

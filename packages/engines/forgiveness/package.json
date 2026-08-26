@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-forgiveness",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "khai engine content, the forgiveness domain: the harmed party's unilateral release of a grievance, cast through the stance every form moves through and the persona's own forgivingness, distinct from the bilateral rebuilding of the relationship",
   "type": "module",
   "main": "./index.mjs",
