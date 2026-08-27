@@ -83,12 +83,19 @@ jobs:
       - name: changesets release
         uses: changesets/action@v2
         with:
-          version: npm run version
-          publish: npm run release
+          # changesets/action v2 renamed these inputs; under the old names the
+          # action fails outright rather than falling back, so a bump that did
+          # not rename them takes the whole release with it.
+          version-script: npm run version
+          publish-script: npm run release
+          # v2's second break: it has a `github-token` input that defaults to the
+          # built-in token, and it refuses to run when a GITHUB_TOKEN env var is
+          # set to something else. The PAT therefore goes in the input now. It
+          # cannot simply be dropped in favour of the default -- see the token
+          # note at the top: GITHUB_TOKEN suppresses workflow runs on the commits
+          # it makes, so the Version PR would never get CI and could never merge.
+          github-token: ${{ secrets.RELEASE_TOKEN }}
         env:
-          # PAT for the action's git pushes and for opening the Version PR so
-          # CI runs on it. Needs Contents: write + Pull requests: write.
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-          # npm publish to GitHub Packages uses the built-in token's packages
-          # scope — least privilege, and independent of the git-push auth above.
+          # Only the registry token stays in env; this one is read by npm during
+          # `changeset publish`, not by the action.
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
