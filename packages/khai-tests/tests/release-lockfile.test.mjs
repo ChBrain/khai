@@ -7,8 +7,9 @@
 // changesets action rebuilds the release branch from scratch whenever main
 // moves, so hand-fixing one release does nothing for the next.
 //
-// The fix is in the version command the action runs (`version: npm run version`
-// in .github/workflows/release.yml), which is this repo's root `version` script.
+// The fix is in the version command the action runs (`version-script: npm run
+// version` in .github/workflows/release.yml), which is this repo's root
+// `version` script.
 // These tests pin that, and pin the invariant it exists to keep.
 
 import { describe, it, expect } from "vitest";
@@ -28,11 +29,20 @@ describe("release: the version script syncs the lockfile", () => {
     expect(script).toMatch(/npm install --package-lock-only/);
   });
 
-  it("is the command the release workflow actually invokes", () => {
+  it("is the command the release workflow actually invokes, under the input name v2 wants", () => {
     // If the workflow stopped calling `npm run version`, the script above would
     // still look right and would never run.
+    //
+    // The INPUT NAME is pinned too, and deliberately: changesets/action v2
+    // renamed `version` to `version-script` and fails outright under the old
+    // name rather than falling back. Four consecutive khai releases died that
+    // way with `npm test` green in each, because this assertion was written
+    // against v1 and matched the very spelling that was broken. A test that
+    // pins a contract has to be re-pinned when the contract moves; leaving it
+    // on the old name made it certify the failure.
     const wf = readFileSync(join(REPO, ".github/workflows/release.yml"), "utf8");
-    expect(wf).toMatch(/version:\s*npm run version/);
+    expect(wf).toMatch(/version-script:\s*npm run version/);
+    expect(wf).toMatch(/publish-script:\s*npm run release/);
   });
 });
 

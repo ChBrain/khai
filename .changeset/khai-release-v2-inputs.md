@@ -30,3 +30,12 @@ This is the same pair that took the khai-cultures release down earlier, fixed
 there in ChBrain/khai-cultures#361 and #362 -- the second only after the first
 made it reachable. The workflow step is now byte-identical to the form proven
 working there.
+
+**And the test that should have caught this certified it instead.**
+`release-lockfile.test.mjs` pins the workflow's invocation of `npm run version`
+precisely so it cannot silently stop being called. It was written against v1 and
+matched `version:`, the very spelling that fails -- so through four dead releases
+it stayed green, asserting the broken form was present. It is re-pinned to
+`version-script:` and now also pins `publish-script:`, and its comment records
+why the input NAME is part of the contract rather than an implementation detail:
+under the wrong name the action does not degrade, it refuses to run.
