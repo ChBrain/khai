@@ -12,6 +12,17 @@ const srcDir = join(dirname(fileURLToPath(import.meta.url)), "..", "src");
 const DORMANT = !existsSync(join(srcDir, "overlap.mjs"));
 const overlap = DORMANT ? {} : await import("../src/overlap.mjs");
 
+// A second sentinel, for the support-marker block below: `roleOf` knew the
+// `support` role but reached it only through the leading `**Support.**` prefix,
+// so a house could declare its contrast vocabulary and not its support one.
+// Dormant until the wall reads `supportingMarkers` (tests first, source second),
+// probed by the fix itself rather than by a sentence -- a sentence in a wrapped
+// comment is not a contiguous string, and a sentinel that never matches leaves
+// the block quietly skipped.
+const SYMMETRIC =
+  !DORMANT &&
+  readFileSync(join(srcDir, "overlap.mjs"), "utf8").includes("policy.supportingMarkers ??");
+
 // --- keying: the science build's surname computation ----------------------
 
 describe("science keying: surnames()", () => {
@@ -317,5 +328,82 @@ describe.skipIf(DORMANT)("overlap: only a spine collides", () => {
     expect(hit.role).toBe("contrast");
     // The two-role field is kept for callers written against the old shape.
     expect(hit.contrast).toBe(true);
+  });
+});
+
+// --- the support vocabulary, symmetric with contrast ------------------------
+//
+// The prefix declares a role at the HEAD of a cell, which is right for a cell
+// being written now and wrong for the hundreds already written where the phrase
+// sits mid-sentence. The marker form is how those cells declare, and the point of
+// the change is that both forms reach the SAME wall: a house that filled this gap
+// with its own list had one instrument reading it and the wall not, which is
+// worse than either answer alone.
+
+describe.skipIf(!SYMMETRIC)("overlap: a house declares its support vocabulary", () => {
+  const withPolicy = (scope, policy) => overlap.roleOf({ scope, keyWork: "" }, policy);
+
+  it("reads a declared supporting marker anywhere in the cell, not only leading", () => {
+    const policy = { supportingMarkers: ["cited as background", "(background)"] };
+    expect(withPolicy("cited as background", policy)).toBe("support");
+    expect(withPolicy("The leverage that sets the stage (background)", policy)).toBe("support");
+  });
+
+  it("falls back to a default vocabulary, as contrast does", () => {
+    expect(withPolicy("Cited as background for the reading.", {})).toBe("support");
+    expect(withPolicy("background, not the spine", {})).toBe("support");
+  });
+
+  it("keeps prose a spine: a marker is a phrase, not a word", () => {
+    // The failure that would make the vocabulary useless is a cell mentioning
+    // the idea in passing being read as a claim about it.
+    expect(withPolicy("Support for the model is broad.", {})).toBe("spine");
+    expect(withPolicy("The background to the whole literature.", {})).toBe("spine");
+  });
+
+  it("declaring a list REPLACES the default rather than extending it", () => {
+    // Same contract as contrastMarkers, so a house that narrows its vocabulary
+    // gets the narrowing it asked for.
+    const policy = { supportingMarkers: ["(background)"] };
+    // The dropped phrase no longer declares anything...
+    expect(withPolicy("cited as background", policy)).toBe("spine");
+    // ...and the kept one still does.
+    expect(withPolicy("held (background)", policy)).toBe("support");
+  });
+
+  it("loadWorkPolicy returns the vocabulary, so one policy read serves both roles", () => {
+    writeFileSync(
+      join(dir, "khai-guard.config.json"),
+      JSON.stringify({ workPolicy: { supportingMarkers: ["Cited As Background"] } }),
+    );
+    const policy = overlap.loadWorkPolicy(dir);
+    expect(policy.supportingMarkers).toEqual(["cited as background"]);
+    expect(Array.isArray(policy.contrastMarkers)).toBe(true);
+  });
+});
+
+describe.skipIf(!SYMMETRIC)("overlap: a marker-declared support clears the wall", () => {
+  // The one that matters. A marker used to exempt a house's own instrument and
+  // not this wall; both now answer the same.
+  const work = ["Minsky", "Stabilizing an Unstable Economy", "The instability hypothesis."];
+  const asSupport = [
+    "Minsky",
+    "Stabilizing an Unstable Economy",
+    "Cited as background for the leverage that sets the stage.",
+  ];
+
+  it("flags two spines", () => {
+    engineRoot(dir, { calm: [work], deflation: [work] });
+    expect(overlap.findOverlaps(dir).map((o) => o.units)).toEqual([["calm", "deflation"]]);
+  });
+
+  it("clears a spine beside a marker-declared background", () => {
+    engineRoot(dir, { calm: [work], deflation: [asSupport] });
+    expect(overlap.findOverlaps(dir)).toEqual([]);
+  });
+
+  it("clears from either side, since one side saying it is not a spine answers the rule", () => {
+    engineRoot(dir, { calm: [asSupport], deflation: [work] });
+    expect(overlap.findOverlaps(dir)).toEqual([]);
   });
 });
