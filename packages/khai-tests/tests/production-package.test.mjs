@@ -196,6 +196,52 @@ const personaLinking = (target) =>
     `unhurried, in the dialect he keeps with [the tongue](${target}) and without apology.`,
   );
 
+// The Playwright wiring guide. Every package that publishes khai typed content
+// ships one, and a production publishes a play -- so the fixture carries one for
+// the same reason a real culture package will. Dev-steering, in English, inside
+// a production of any language: it says how the package is DRAWN ON, never what
+// it holds.
+const GUIDE = `---
+khai: instructions
+title: "Bavaria"
+license: CC-BY-NC-4.0
+stamp:
+  owner: KAI HACKS AI
+  version: v0.1.0
+  date: "2026-08-26"
+---
+
+# Instructions: Bavaria
+
+How a Playwright draws on this culture. Authoring guidance, not runtime content.
+
+## Human
+
+- The human decides which Bavarians the scene needs, and whether the play is set
+  inside the culture or looking at it from outside.
+
+## Agent
+
+- Cast the personas and positions by package specifier, never by relative path:
+  this culture is a package, and a link that resolves only because the file sits
+  next door will break in the tarball.
+
+## Collaboration
+
+- Which grip a persona has on a tongue is the language engine's; this package
+  says which tongue is in the room, never how well it is held.
+
+## Knowledge
+
+- The Free State reads itself as a state that joined an empire late and kept its
+  own crown in the telling.
+
+## System
+
+- Do not edit the culture's files to fit a scene. Author it in the play, or open
+  a change against this package.
+`;
+
 const manifest = (khai, deps) => ({
   name: "@chbrain/khai-cultures-bavaria",
   version: "0.1.0",
@@ -222,6 +268,7 @@ function production({
     "position_culture.md": POSITION,
     "plot_kingdom.md": PLOT,
     "persona_sepp.md": PERSONA,
+    "playwright_instructions.md": GUIDE,
     ...files,
   };
   for (const [name, text] of Object.entries(all))
