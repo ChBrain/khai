@@ -17,6 +17,12 @@ export {
   titleLeakAudit,
 } from "./src/validate.mjs";
 export {
+  collectInstructions,
+  renderInstructions,
+  publishesContent,
+  PLAYWRIGHT_INSTRUCTIONS,
+} from "./src/instructions.mjs";
+export {
   buildRegistry,
   verifyRegistry,
   resolveCollection,
