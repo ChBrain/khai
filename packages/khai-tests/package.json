@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-tests",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "khai conformance kit — validates content packages against the architecture canon. Shared by the workspace and downstream repos.",
   "type": "module",
   "main": "./index.mjs",
@@ -40,6 +40,6 @@
     "@chbrain/khai-stage": "^0.0.24"
   },
   "devDependencies": {
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.11"
   }
 }

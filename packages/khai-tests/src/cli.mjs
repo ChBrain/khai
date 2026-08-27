@@ -32,6 +32,7 @@ import {
   findUnresolvedNamesakes,
 } from "./overlap.mjs";
 import { checkManagement } from "./management.mjs";
+import { collectInstructions, renderInstructions } from "./instructions.mjs";
 import { resolve, relative } from "node:path";
 import { existsSync, readdirSync, writeFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
@@ -308,7 +309,40 @@ function managementMode(args) {
   );
 }
 
-if (argv[0] === "pack") await packMode(argv);
+// `instructions [--root .]` collects the Playwright guide of every khai content
+// package the root DECLARES, deepest dependency first. The closure is the point:
+// a repository gets the packages it installs, never a global list.
+//
+// Two layers, because five chapters times a large closure is a context bomb: the
+// default carries each package's one-line law, and the chapters come only for the
+// packages asked for (`--package <name>`, repeatable) or for all of them
+// (`--full`). `--law` executes each entry point to read its exported `law`, so
+// running dependency code stays the caller's choice.
+async function instructionsMode(args) {
+  const flagOf = (name) => {
+    const i = args.indexOf(name);
+    return i !== -1 && args[i + 1] && !args[i + 1].startsWith("--") ? args[i + 1] : null;
+  };
+  const only = args.reduce((acc, a, i) => {
+    if (a === "--package" && args[i + 1] && !args[i + 1].startsWith("--")) acc.push(args[i + 1]);
+    return acc;
+  }, []);
+  const root = resolve(flagOf("--root") ?? ".");
+  if (!existsSync(root)) {
+    console.error(`khai-tests instructions: path not found: ${root}`);
+    process.exit(2);
+  }
+  const records = await collectInstructions(root, {
+    full: args.includes("--full"),
+    only: only.length ? only : null,
+    withLaw: args.includes("--law") || args.includes("--full"),
+  });
+  if (args.includes("--json")) console.log(JSON.stringify(records, null, 2));
+  else console.log(renderInstructions(records));
+}
+
+if (argv[0] === "instructions") await instructionsMode(argv);
+else if (argv[0] === "pack") await packMode(argv);
 else if (argv[0] === "registry") await registryMode(argv);
 else if (argv[0] === "science") await scienceMode(argv);
 else if (argv[0] === "management") managementMode(argv);

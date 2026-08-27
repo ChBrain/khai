@@ -53,6 +53,29 @@ If the mode is A, deliver `play_[name].md` and stop here.
 
 ## Mode B, the full play
 
+**First, read what the packages say about themselves.** Every khai package that
+publishes typed content ships a `playwright_instructions.md` saying how a
+Playwright wires it. Collect the ones this repository actually installs:
+
+```
+npx khai-tests instructions --law
+```
+
+That lists every installed content package, dependencies first, with its one-line
+law. It is the repository's own tree, not a global list: a cultures house gets
+the language engine and its tongues, another house gets its own packages. Treat
+what it returns as the wiring law for the packages actually installed here.
+
+Then, for the packages you are actually casting from, take their chapters:
+
+```
+npx khai-tests instructions --package @chbrain/khai-engine-language
+```
+
+Ask for chapters package by package rather than `--full`. Five chapters times a
+large dependency tree is most of a context window spent on packages the play
+never touches, which is why the law line is the default and the chapters are not.
+
 The hierarchy. The play sets the boundary; the plots cast forces inside it; the
 elements are what the plots cast:
 
