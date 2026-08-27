@@ -577,7 +577,7 @@ function markdownFiles(pkgDir) {
  * discriminator -- `manifest.class`, the canon's own vocabulary, computed not
  * judged -- and almost none of its body.
  *
- * Two things are checked here and nowhere else, and then the content is handed
+ * Three things are checked here and nowhere else, and then the content is handed
  * to the ordinary consumer validator:
  *
  *  1. the manifest: the class, the id, the absence of `engine` (a production
@@ -588,6 +588,8 @@ function markdownFiles(pkgDir) {
  *     tree resolves `../france/position_language_fr_fr.md` perfectly, so the
  *     link check passes and the published tarball is still broken. The invariant
  *     sees what the link check cannot: that the neighbour is not in the package;
+ *  3. the Playwright guide, on the rule every engine already obeys: a package
+ *     that PUBLISHES khai typed content ships one. A production always does.
  *
  * There is deliberately no third. A production carries NO reference warrant of
  * khai's shape: LORE is the engine's instrument, justifying a domain modelled
@@ -666,6 +668,32 @@ export function validateProductionPackage(pkgDir) {
           `carries no "../"; reference the neighbour by package specifier and declare it ` +
           `as a dependency, so npm can check what the path only assumes`,
       ]);
+  }
+
+  // The Playwright guide, on the same rule every engine and composite is held
+  // to: a package that PUBLISHES khai typed content ships one. A production
+  // always does -- it is a play -- so this is unconditional here.
+  //
+  // It was left out of the first draft of this contract alongside the WIRES card
+  // and the generated README, and that was wrong in a way the other two are not.
+  // The card and the README are engine ceremonies a production genuinely has no
+  // use for. The guide is the opposite: a production is precisely the thing a
+  // Playwright casts FROM, so it is where wiring guidance is most wanted and
+  // where its absence is least visible. The rule is not "engines and composites";
+  // it is "whatever publishes khai types", and a layer cannot opt out of it.
+  const guidePath = join(pkgDir, PLAYWRIGHT_INSTRUCTIONS);
+  if (!existsSync(guidePath)) {
+    push(PLAYWRIGHT_INSTRUCTIONS, [
+      "missing; every package that publishes khai content ships a Playwright " +
+        "wiring guide, saying how a production is drawn on rather than what it holds",
+    ]);
+  } else {
+    const errors = validateContentFile(readFileSync(guidePath, "utf8"), {
+      type: "instructions",
+      baseDir: pkgDir,
+      resolvePackageDir: packageDirResolver(pkgDir),
+    });
+    if (errors.length) push(PLAYWRIGHT_INSTRUCTIONS, errors);
   }
 
   // The content: the ordinary consumer validator, rooted on the package so both
@@ -1831,7 +1859,17 @@ export function validateProject({
   // declared dependencies.
   const resolvePackageDir = packageDirResolver(root);
   const results = [];
-  const files = new Set(findInstanceFiles(contentDir));
+  // The Playwright guide is dev-steering, not cast content, and is validated by
+  // the package validator instead. Walking it here treats it as part of the
+  // production: it inherits the play's declared language, so an English
+  // authoring guide inside a German culture is told to carry a `declared`, and
+  // it is an `instructions` instance, so every engine wiring law aimed at a
+  // project's Instructions chapter fires on it. Neither is a real fault; both
+  // are the check reading the wrong kind of file. The collision and orphan rules
+  // already exempt it for exactly this reason -- this closes the other two.
+  const files = new Set(
+    findInstanceFiles(contentDir).filter((f) => basename(f) !== PLAYWRIGHT_INSTRUCTIONS),
+  );
 
   const ordersDir = join(root, "management", "orders");
   if (existsSync(ordersDir)) {
