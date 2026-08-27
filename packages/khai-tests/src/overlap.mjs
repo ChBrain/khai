@@ -11,13 +11,17 @@
 //
 // The rule is computed, not judged: the same scholar across different works is
 // expected and is most of any index; the same (scholar, work) carrying the
-// spine of two units is a finding. Two configured exits keep the rule honest,
-// both declared in `workPolicy` in the root's khai-guard.config.json:
+// spine of two units is a finding. Three configured exits keep the rule honest,
+// all declared in `workPolicy` in the root's khai-guard.config.json:
 //
-//   canon           -- a field's foundational work, which many units in one
-//                      family may legitimately share.
-//   contrastMarkers -- the vocabulary that marks a work cited to hold a line
-//                      rather than to carry one ("cited to distinguish").
+//   canon             -- a field's foundational work, which many units in one
+//                        family may legitimately share.
+//   contrastMarkers   -- the vocabulary that marks a work cited to hold a line
+//                        rather than to carry one ("cited to distinguish").
+//   supportingMarkers -- the vocabulary that marks a work as a unit's
+//                        background rather than its spine ("cited as
+//                        background"). The rule is about a work carrying TWO
+//                        spines, so one side declaring it is not one answers it.
 //
 // Source of truth is the collector the science build itself runs on
 // (collectScience / collectCollectionScience), NOT the rendered docs/SCIENCE.md
@@ -63,6 +67,21 @@ const DEFAULT_CONTRAST_MARKERS = [
   "(contrast)",
 ];
 
+// The default support vocabulary, the same shape as the contrast list above and
+// for the same reason: houses were already writing this in prose before there
+// was a term for it. A root extends or replaces the list in
+// workPolicy.supportingMarkers.
+//
+// Why the marker form exists at all when `**Support.**` already declares the
+// role: the prefix must LEAD the cell, which is right for a cell an author is
+// writing now and wrong for the hundreds already written, where the phrase sits
+// mid-sentence. Both forms mean one thing and both reach the same wall.
+const DEFAULT_SUPPORTING_MARKERS = [
+  "cited as background",
+  "background, not the spine",
+  "(background)",
+];
+
 // A citation's role, declared rather than sniffed. The house already opens a
 // Scope cell with a bolded lead token -- **The twist.**, **The load-bearing
 // concept.** -- so the convention exists and only needed reading. A cell opening
@@ -85,8 +104,10 @@ const ROLE_PREFIX = /^\**\s*(contrast|support)\s*\**\s*[.:]/i;
 /**
  * The role a citation declares: "contrast", "support", or "spine".
  *
- * A declared prefix wins. Failing that the legacy contrast vocabulary still
- * reads, so rows written before the prefixes keep the meaning they had. Both
+ * A declared prefix wins. Failing that the marker vocabularies read -- contrast
+ * first, then support -- so rows written before the prefixes keep the meaning
+ * they had, and a house that writes its roles as phrases rather than prefixes is
+ * held by the same wall as one that writes them as prefixes. Both
  * are deliberately generous about the reading and strict about the default:
  * anything unmarked is a spine, so a role is something an author claims, never
  * something the checker infers on their behalf.
@@ -95,6 +116,12 @@ export function roleOf(row, policy = {}) {
   const declared = ROLE_PREFIX.exec(String(row?.scope ?? "").trimStart());
   if (declared) return declared[1].toLowerCase();
   if (isContrast(row, policy.contrastMarkers ?? DEFAULT_CONTRAST_MARKERS)) return "contrast";
+  // Symmetric with contrast, and the asymmetry it closes was the whole defect: a
+  // house could declare its contrast vocabulary and had no way to declare its
+  // support vocabulary, so a house that needed one built a parallel list its own
+  // instrument read and this wall did not. Two checks reading the same policy and
+  // disagreeing is worse than either answer.
+  if (isContrast(row, policy.supportingMarkers ?? DEFAULT_SUPPORTING_MARKERS)) return "support";
   return "spine";
 }
 
@@ -112,6 +139,9 @@ export function loadWorkPolicy(root) {
   const aliases = wp.aliases || {};
   return {
     contrastMarkers: (wp.contrastMarkers || DEFAULT_CONTRAST_MARKERS).map((m) => m.toLowerCase()),
+    supportingMarkers: (wp.supportingMarkers || DEFAULT_SUPPORTING_MARKERS).map((m) =>
+      m.toLowerCase(),
+    ),
     canon: (wp.canon || []).map((w) => normaliseWork(w)),
     aliases,
   };
