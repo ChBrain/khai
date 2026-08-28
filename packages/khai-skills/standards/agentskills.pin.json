@@ -3,7 +3,7 @@
   "homepage": "https://agentskills.io",
   "spec": {
     "url": "https://raw.githubusercontent.com/agentskills/agentskills/main/docs/specification.mdx",
-    "sha256": "494b0d84537c4d39714bf91e016d31d0731df0380015321cb12040625b22d3f9"
+    "sha256": "b9079c0c10b7930e8c6a20ff2bc10cda2a3343c55185120e3f1116a1a529b220"
   },
   "validator": {
     "package": "skills-ref",
@@ -11,6 +11,6 @@
     "version": "0.1.1",
     "note": "Official reference validator (Python, Apache-2.0). Pinned as the version anchor only; khai mirrors its ruleset in pure Node and does NOT run it. The npm package named 'skills-ref' is an unrelated third-party package, do not use it."
   },
-  "pinned": "2026-06-03",
-  "notes": "Upstream publishes no semver tags or releases; the spec is a rolling main. We pin the validator's published version (clean semver) and the spec file's content hash. The on-touch drift check compares these against the real source. Re-pinning is a deliberate human act after reconciling the mirrored rules in lib/guard.mjs."
+  "pinned": "2026-08-28",
+  "notes": "Upstream publishes no semver tags or releases; the spec is a rolling main. We pin the validator's published version (clean semver) and the spec file's content hash. The on-touch drift check compares these against the real source. Re-pinning is a deliberate human act after reconciling the mirrored rules in lib/guard.mjs. Re-pinned 2026-08-28 from 494b0d84537c, after reconciling every rule the current spec states against lib/guard.mjs and finding the mirror faithful, and after confirming skills-ref is still 0.1.1 -- the pin already named that version, and a change to the RULES would ship as a validator release. So the hash moved on prose, not on contract. The reconciliation was rule-by-rule against the current text and not a diff, because this pin stores a hash and not the text: when it fires it can say that something moved and never what, which is why the advisory sat unread. Carrying the extracted rule table beside the hash would let a future drift answer 'prose only' by itself."
 }
