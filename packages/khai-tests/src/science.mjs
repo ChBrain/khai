@@ -20,6 +20,7 @@
 import { readFileSync, writeFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { join, basename } from "node:path";
 import { safePackageJson, resolveCollection, collectionKind } from "./collection.mjs";
+import { findGuardConfig } from "./guard-config.mjs";
 
 /** Where the generated index lives, relative to the repo root. */
 export const SCIENCE_INDEX_PATH = "docs/SCIENCE.md";
@@ -272,8 +273,11 @@ export function scholarHomonyms(root) {
 
 /** The whole declared scholar policy for a root, or an empty policy if absent. */
 export function scholarPolicy(root) {
-  const path = join(root, "khai-guard.config.json");
-  if (!existsSync(path)) return {};
+  // Resolved by walk-up (see guard-config.mjs): a migrated house's content
+  // root sits below the config, and homonym declarations that silently vanish
+  // there fail the namesake wall with the wrong diagnosis.
+  const path = findGuardConfig(root);
+  if (!path) return {};
   try {
     return JSON.parse(readFileSync(path, "utf8"))?.scholarPolicy ?? {};
   } catch {
