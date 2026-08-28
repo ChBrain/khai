@@ -95,6 +95,26 @@ jobs:
           # note at the top: GITHUB_TOKEN suppresses workflow runs on the commits
           # it makes, so the Version PR would never get CI and could never merge.
           github-token: ${{ secrets.RELEASE_TOKEN }}
+          # v2's third difference, and the one that is repo-specific. By default
+          # it writes the release branch through the GitHub API rather than git,
+          # and that API's tree format has no mode for an executable file:
+          #
+          #   Unexpected executable file at packages/khai-plays/bin/khai-plays.mjs,
+          #   GitHub API only supports non-executable files and directories.
+          #
+          # This repo ships CLI entry points, so executables are not incidental:
+          # seven files are 755 in git, and `npm ci` chmods every workspace `bin`
+          # target besides, which is how khai-plays gets flagged while sitting at
+          # 644 in the index. Neither dropping the bit nor gitignoring a shipped
+          # binary is available. Pushing with git is, and git has always carried
+          # the mode. The checkout above persists RELEASE_TOKEN as the git
+          # credential, so this needs no further auth.
+          #
+          # This is also why the identical step works in khai-cultures and
+          # khai-misfits: both track zero executable files, so the API path never
+          # meets one. Copying a workflow that works elsewhere is not proof it
+          # works here.
+          push-with-git-cli: true
         env:
           # Only the registry token stays in env; this one is read by npm during
           # `changeset publish`, not by the action.
