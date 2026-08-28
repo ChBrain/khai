@@ -901,13 +901,20 @@ export function parseChanges(input) {
  * on the registry. A first release must therefore declare no bump; the version
  * already in the manifest IS the intended initial version, and `changeset
  * publish` ships any package whose version is not yet on the registry.
- * @param {{changed?: {status:string,path:string}[], changesets?: {file:string,entries:unknown[]}[], shipped?: string[], packages?: {name:string,shipped?:string[],released?:boolean}[], config?: typeof DEFAULT_CONFIG}} args
+ * `workspaceNames` is EVERY package name in the workspace, private ones
+ * included, and is a second list rather than a field on `packages` for a reason
+ * the rules below make plain: `packages` exists to judge publishing, so it drops
+ * private manifests. Existence is not a question about publishing. A private
+ * package is in the workspace, `changeset version` resolves it, and judging
+ * names against the publishable list alone would reject a legitimate changeset.
+ * @param {{changed?: {status:string,path:string}[], changesets?: {file:string,entries:unknown[]}[], shipped?: string[], packages?: {name:string,shipped?:string[],released?:boolean}[], workspaceNames?: string[], config?: typeof DEFAULT_CONFIG}} args
  */
 export function changesetCheck({
   changed = [],
   changesets = [],
   shipped = [],
   packages = [],
+  workspaceNames = [],
   config = DEFAULT_CONFIG,
 } = {}) {
   const globs = config.changesetPolicy?.countDrivenAdd ?? [];
@@ -980,6 +987,48 @@ export function changesetCheck({
         `this PR changes no shipped package content (nothing under the package \`files\`) but ` +
           `carries a releasing changeset; that release would republish identical content and drift ` +
           `the version. Use an empty changeset instead: \`npx changeset add --empty\`.`,
+      );
+    }
+  }
+
+  // Does the package a changeset names EXIST? `changeset version` answers this by
+  // throwing -- "Found changeset <file> for package <name> which is not in the
+  // workspace" -- on the first offender, in the release job, after the whole
+  // suite has gone green. Nine changesets in the misfits house declared
+  // `khai-misfits` against a package named `@chbrain/khai-misfits` and took its
+  // release down for two days that way, and this check had opened every one of
+  // those files: the per-package rules below parse each entry into
+  // `{ package, level }` and then read `level` alone, because the level is what
+  // the count-driven rule is about. A name outside the workspace was skipped as
+  // none of the guard's business, on the reasoning that the guard does not own
+  // the manifest and must not guess at it.
+  //
+  // That reasoning is right about the rules it was written for -- first-release,
+  // ships-nothing -- which need to know things about a package and must stay
+  // silent about one they cannot see. It is wrong about existence, and the skip
+  // that protected them silenced the only place that could say the name is not a
+  // package at all. Given the workspace enumerated, this is not a guess.
+  //
+  // Every offender is reported, not the first: changesets throws and stops, so a
+  // house repairing them one release at a time learns of the next only by failing
+  // again. And an EDITED changeset is checked, unlike the release-intent rules
+  // above, since the pull request that REPAIRS a wrong name edits rather than
+  // adds -- exempting it would leave a half-done repair to merge green.
+  if (workspaceNames.length > 0) {
+    const inWorkspace = new Set(workspaceNames);
+    const strays = [];
+    for (const { file, entries } of changesets) {
+      for (const e of Array.isArray(entries) ? entries : []) {
+        if (e && e.package && !inWorkspace.has(e.package)) strays.push(`${file}: "${e.package}"`);
+      }
+    }
+    if (strays.length > 0) {
+      violations.push(
+        `${strays.length === 1 ? "a changeset names" : "changesets name"} a package that is not a ` +
+          `package in this workspace (${strays.join(", ")}). \`changeset version\` throws on this in ` +
+          `the release job, after the suite is green, so the only symptom is a Version Packages PR ` +
+          `that stops moving. The workspace has: ${workspaceNames.join(", ")}. A scope is part of the ` +
+          `name -- write it exactly as \`package.json\` does.`,
       );
     }
   }

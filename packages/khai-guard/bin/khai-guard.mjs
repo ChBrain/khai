@@ -334,21 +334,19 @@ function shippedGlobsFor(pkg, dir = "") {
 // a pre-push hook. A package.json added in THIS diff is likewise new, so the
 // caller ORs that in — a package can be added and named by a changeset in the
 // same PR, before any CHANGELOG exists to read.
-function readPackages(changed = []) {
-  const root = resolve(process.cwd());
-  const readManifest = (p) => {
-    try {
-      return JSON.parse(readFileSync(p, "utf8"));
-    } catch {
-      return null;
-    }
-  };
-  const rootPkg = readManifest(join(root, "package.json"));
-  if (!rootPkg) return [];
-
-  // Every directory the workspace globs resolve to. Only the trailing-`*` form
-  // npm workspaces actually use is expanded; anything else is a literal path.
-  const dirs = [];
+// Every directory the workspace globs resolve to, the root ("") first. Only the
+// trailing-`*` form npm workspaces actually use is expanded; anything else is a
+// literal path. Shared by both readers below so there is ONE notion of what "the
+// workspace" contains -- two walks that could disagree is how a name reads as
+// absent in one check and present in another.
+function workspaceDirs(root) {
+  let rootPkg;
+  try {
+    rootPkg = JSON.parse(readFileSync(join(root, "package.json"), "utf8"));
+  } catch {
+    return [];
+  }
+  const dirs = [""];
   const patterns = Array.isArray(rootPkg.workspaces)
     ? rootPkg.workspaces
     : Array.isArray(rootPkg.workspaces?.packages)
@@ -372,8 +370,48 @@ function readPackages(changed = []) {
       dirs.push(p);
     }
   }
-  // The root itself is a package when it is publishable (a single-package house).
-  if (!rootPkg.private && rootPkg.name) dirs.unshift("");
+  return dirs;
+}
+
+// Every package name in the workspace, private ones INCLUDED, which is what
+// separates this from `readPackages`. That one drops a private manifest because
+// every rule it feeds is about publishing; existence is not about publishing, and
+// a private package is still a package `changeset version` resolves. Reading names
+// off the same walk keeps one notion of "the workspace" between them.
+//
+// Returns [] when the root manifest will not parse -- no list means the caller
+// could not read the workspace, not that every name in it is wrong, and the rule
+// downstream stays silent on an empty list for exactly that reason.
+function readWorkspaceNames() {
+  const root = resolve(process.cwd());
+  const names = [];
+  for (const dir of workspaceDirs(root)) {
+    const manifestPath = join(root, dir ? `${dir}/package.json` : "package.json");
+    try {
+      const pkg = JSON.parse(readFileSync(manifestPath, "utf8"));
+      if (pkg && typeof pkg.name === "string" && pkg.name) names.push(pkg.name);
+    } catch {
+      // A manifest that will not parse contributes no name. It is not evidence
+      // that some other package's name is wrong.
+    }
+  }
+  return names;
+}
+
+function readPackages(changed = []) {
+  const root = resolve(process.cwd());
+  const readManifest = (p) => {
+    try {
+      return JSON.parse(readFileSync(p, "utf8"));
+    } catch {
+      return null;
+    }
+  };
+  if (!readManifest(join(root, "package.json"))) return [];
+  // The root is included here and filtered below by the same `private` rule as
+  // any other manifest, which is how a single-package house gets its one package
+  // and a workspace container gets dropped.
+  const dirs = workspaceDirs(root);
 
   const isNew = new Set(
     changed.filter((c) => c.status === "A").map((c) => c.path.replace(/^\.?\//, "")),
@@ -454,6 +492,7 @@ function runChangesetCheck() {
       .map((c) => ({ ...c, added: prChangesets.get(c.file) === "A" })),
     shipped: readShippedGlobs(),
     packages: readPackages(changed),
+    workspaceNames: readWorkspaceNames(),
     config,
   });
   if (ok) {
