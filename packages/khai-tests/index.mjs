@@ -22,6 +22,7 @@ export {
   publishesContent,
   PLAYWRIGHT_INSTRUCTIONS,
 } from "./src/instructions.mjs";
+export { packedFiles, checkPacking, renderPacking, workspacePackages } from "./src/packing.mjs";
 export {
   buildRegistry,
   verifyRegistry,
