@@ -193,12 +193,24 @@ describe.skipIf(DORMANT)("checkPacking: the promise held against the delivery", 
 });
 
 describe.skipIf(DORMANT)("the khai workspace itself", () => {
-  it("ships everything every one of its manifests names", () => {
-    // The corpus check, and the reason the batched ask matters: 388 packages in
-    // one invocation, about eight seconds.
-    const root = join(here, "..", "..", "..");
-    const packed = packedFiles(root);
-    expect(packed.size).toBeGreaterThan(300);
-    expect(checkPacking(root, packed)).toEqual([]);
-  });
+  // An explicit timeout, because vitest's default is 5s and packing 388 packages
+  // takes about eight. Without it this test fails on the clock, and a clock
+  // failure reads exactly like a finding: the first run of it here reported red
+  // on a workspace that did have a real defect, and the timeout was assumed to
+  // be the defect rather than read. A slow test that fails for two reasons can
+  // only ever be believed about one of them.
+  const CORPUS_TIMEOUT = 120_000;
+
+  it(
+    "ships everything every one of its manifests names",
+    () => {
+      // The corpus check, and the reason the batched ask matters: 388 packages
+      // in one invocation.
+      const root = join(here, "..", "..", "..");
+      const packed = packedFiles(root);
+      expect(packed.size).toBeGreaterThan(300);
+      expect(checkPacking(root, packed)).toEqual([]);
+    },
+    CORPUS_TIMEOUT,
+  );
 });
