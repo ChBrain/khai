@@ -43,6 +43,11 @@ describe("release: the version script syncs the lockfile", () => {
     const wf = readFileSync(join(REPO, ".github/workflows/release.yml"), "utf8");
     expect(wf).toMatch(/version-script:\s*npm run version/);
     expect(wf).toMatch(/publish-script:\s*npm run release/);
+    // Pinned for the same reason: v2 writes the release branch through the
+    // GitHub API unless told otherwise, and that API cannot represent an
+    // executable file. This repo ships CLI entry points, so the git path is not
+    // a preference.
+    expect(wf).toMatch(/push-with-git-cli:\s*true/);
   });
 });
 
