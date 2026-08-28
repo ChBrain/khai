@@ -20,10 +20,7 @@
   },
   "files": [
     "index.mjs",
-    "README.md",
-    "REFERENCES.md",
-    "place_*.md",
-    "piece_*.md"
+    "*.md"
   ],
   "khai": {
     "engine": "search-space",
