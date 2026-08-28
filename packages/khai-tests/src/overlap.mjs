@@ -49,6 +49,7 @@
 import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { collectScience, collectCollectionScience, scholarHomonyms } from "./science.mjs";
+import { findGuardConfig } from "./guard-config.mjs";
 import { safePackageJson, resolveCollection, collectionKind } from "./collection.mjs";
 
 // The default contrast vocabulary: the convention houses already write in
@@ -128,8 +129,12 @@ export function roleOf(row, policy = {}) {
 /** The declared work policy for a root: workPolicy in khai-guard.config.json. */
 export function loadWorkPolicy(root) {
   let wp = {};
-  const path = join(root, "khai-guard.config.json");
-  if (existsSync(path)) {
+  // Resolved by walk-up, not read from the root alone: a migrated house's
+  // content root sits below the repository root that holds the config, and a
+  // policy that silently defaults there is the "vocabulary declared where
+  // nothing reads it" failure this file already documents.
+  const path = findGuardConfig(root);
+  if (path) {
     try {
       wp = JSON.parse(readFileSync(path, "utf8"))?.workPolicy ?? {};
     } catch {
