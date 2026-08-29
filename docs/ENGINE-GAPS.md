@@ -304,15 +304,61 @@ neurodiversity-affirming atoms first (see Parked, below).
 
 ### Tier C2 — composites buildable now (all atoms already exist)
 
-| #   | Candidate                | Phenomenon                                                                    | Atoms (all exist)                                                              | Warrant / note                                                                                                                    | Status          |
-| --- | ------------------------ | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- | --------------- |
-| 43  | **panic-disorder**       | recurrent panic attacks + fear of the next + behavioural restriction          | `fear`(panic) + `anxiety` + `coping`                                           | Klein; Clark (catastrophic misinterpretation). `fear/process_panic.md`'s Echo names it                                            | proposed        |
-| 44  | **agoraphobia**          | fear/avoidance of situations where escape or help is hard to get              | `fear` + `anxiety` + `coping`                                                  | Goodwin & Guze; DSM-5 (decoupled from panic). **Merge-vs-split with #43 is a maintainer call**                                    | proposed        |
-| 45  | **hoarding**             | difficulty discarding + saving urges + clutter/distress                       | `extended-self` + `scarcity` + `decision` + `coping`                           | Frost & Hartl; Frost & Steketee (_Stuff_); Mataix-Cols. **E-vs-C maintainer call**; do NOT route through `ocd` (DSM-5 split them) | proposed        |
-| 46  | **borderline**           | unstable relationships, affect, self, and impulse control                     | `attachment` + `regulation` + `identity` + `self-control` + `self-esteem`      | Linehan (biosocial/DBT); Kernberg (identity diffusion); Gunderson; Zanarini                                                       | shipped (#1432) |
-| 47  | **avoidant-personality** | social inhibition, felt inadequacy, rejection hypersensitivity (Cluster C)    | `attachment`(fearful) + `self-esteem`(low) + `shame`(withdrawal) + `anxiety`   | Millon; Alden & Taylor; Rettew                                                                                                    | proposed        |
-| 48  | **antisocial**           | disregard for others' rights, deceit, no remorse, recklessness (Cluster B)    | `dark-triad`(psychopathy) + `aggression` + `deception` + `moral-disengagement` | Cleckley; Hare (PCL-R); DSM-5. `dark-triad` delegates the acts by name                                                            | proposed        |
-| 49  | **adhd** (ADHD)          | executive dysfunction + hot impulsivity + attentional variability + DMN drift | `executive-function` + `self-control` + `attention` + `mind-wandering`         | Barkley (EF/self-regulation); Sonuga-Barke (dual-pathway); Nigg (hot/cool); Castellanos & Proal                                   | shipped (#1428) |
+| #   | Candidate                | Phenomenon                                                                    | Atoms (all exist)                                                                      | Warrant / note                                                                                                                                                                                                                                                                                                                                                         | Status          |
+| --- | ------------------------ | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| 43  | **panic-disorder**       | recurrent panic attacks + fear of the next + behavioural restriction          | `fear`(panic) + `anxiety` + `coping`                                                   | Klein; Clark (catastrophic misinterpretation). `fear/process_panic.md`'s Echo names it                                                                                                                                                                                                                                                                                 | proposed        |
+| 44  | **agoraphobia**          | fear/avoidance of situations where escape or help is hard to get              | `fear` + `anxiety` + `coping` + `space`                                                | Goodwin & Guze; DSM-5 and ICD-11 (both decoupled it from panic). **Decided 2026-08-29: SPLIT.** Its feared object is the situation's constraint on exit, not the body's own signals -- so it reads over `space`, which #43 does not                                                                                                                                    | proposed        |
+| 45  | **hoarding**             | difficulty discarding + saving urges + clutter/distress                       | `extended-self` + `scarcity` + `decision` + `coping` + `categorization` + `collection` | Frost & Hartl; Frost & Steketee (_Stuff_); Mataix-Cols. **Decided 2026-08-29: COMPOSITE**, over six atoms -- the first four plus `categorization` (the sorting deficit that makes it hoarding rather than untidiness) and `collection` (the acquisition specifier, and the ordinary counterpart to declare a boundary against). Needs no `ocd`, so it is buildable now | proposed        |
+| 46  | **borderline**           | unstable relationships, affect, self, and impulse control                     | `attachment` + `regulation` + `identity` + `self-control` + `self-esteem`              | Linehan (biosocial/DBT); Kernberg (identity diffusion); Gunderson; Zanarini                                                                                                                                                                                                                                                                                            | shipped (#1432) |
+| 47  | **avoidant-personality** | social inhibition, felt inadequacy, rejection hypersensitivity (Cluster C)    | `attachment`(fearful) + `self-esteem`(low) + `shame`(withdrawal) + `anxiety`           | Millon; Alden & Taylor; Rettew                                                                                                                                                                                                                                                                                                                                         | proposed        |
+| 48  | **antisocial**           | disregard for others' rights, deceit, no remorse, recklessness (Cluster B)    | `dark-triad`(psychopathy) + `aggression` + `deception` + `moral-disengagement`         | Cleckley; Hare (PCL-R); DSM-5. `dark-triad` delegates the acts by name                                                                                                                                                                                                                                                                                                 | proposed        |
+| 49  | **adhd** (ADHD)          | executive dysfunction + hot impulsivity + attentional variability + DMN drift | `executive-function` + `self-control` + `attention` + `mind-wandering`                 | Barkley (EF/self-regulation); Sonuga-Barke (dual-pathway); Nigg (hot/cool); Castellanos & Proal                                                                                                                                                                                                                                                                        | shipped (#1428) |
+
+#### The two calls Tier C2 was holding, settled (2026-08-29)
+
+Both rows carried "maintainer call" since the clinical sweep. Both are decided,
+and the reasoning is here rather than in the row so it is not re-argued from the
+row's four words.
+
+**#44 agoraphobia splits from #43 panic-disorder.** Three lines agree. The
+nosology already did it: DSM-5 (2013) decoupled them into two independently
+codable diagnoses -- if a persona meets both, both are diagnosed -- and ICD-11
+(2018) followed; DSM-IV's "panic disorder with/without agoraphobia" plus a
+residual "agoraphobia without history of panic" is precisely the structure they
+abandoned. The reason was a selection artifact: agoraphobia without panic looks
+rare in clinical samples and is not rare in community ones (Wittchen; Kessler et
+al., NCS-R), because panic is what drives treatment-seeking. And the feared
+objects differ, which is what khai actually models -- panic disorder is
+interoceptive (Clark's catastrophic misinterpretation of a bodily sensation),
+while agoraphobia is about a situation's constraint on exit, which is why DSM-5
+requires two of five situation clusters. The counter-position, stated fairly, is
+the panic-agoraphobic spectrum view: much agoraphobic avoidance is driven by
+fear of panic-like incapacitation even absent full attacks, and clinic overlap
+is high. That argues they are often comorbid, not that they are one phenomenon,
+which is what "diagnose both" already handles. The tell that this file had not
+worked it through: rows 43 and 44 carried identical atoms. They should not --
+agoraphobia is place-shaped and reads over `space`, which panic does not.
+
+**#45 hoarding is a composite, not an engine.** The DSM evidence is easy to read
+backwards here. Hoarding was split out of OCD on strong grounds (Mataix-Cols et
+al., 2010): saving is often ego-syntonic rather than an ego-dystonic obsession,
+the course is chronic and progressive with age rather than waxing and waning, it
+responds poorly to standard OCD protocols, and only a minority of cases have
+OCD. But that is evidence that hoarding is not OCD. It is not evidence that
+hoarding is atomic, and those are different questions. Frost & Hartl's model --
+this row's own warrant -- is explicitly multi-component, and every component is
+already an engine: the information-processing deficit is `categorization`, the
+attachment to possessions is `extended-self` (Belk), the discarding paralysis is
+`decision`, saving against future need is `scarcity`, and the avoidance of
+discarding distress is `coping`. Excessive acquisition, carried by the large
+majority of cases as a specifier, is `collection`, which also gives the
+composite an ordinary counterpart to declare a boundary against rather than a
+vague one. Every mechanism belongs to an atom and only the syndrome is new,
+which is what a composite is in this house. The row's four atoms missed the two
+that matter most: `categorization` is what makes it hoarding rather than
+untidiness, and `collection` is the acquisition side. As a composite it needs no
+`ocd` at all, so the standing warning not to route it through one stops being a
+constraint and it is buildable now.
 
 ### Tier C3 — composites blocked on a Tier-C1 engine landing first (the ptsd→cptsd shape)
 
