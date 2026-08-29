@@ -1,0 +1,87 @@
+{
+  "name": "@chbrain/khai-composite-hoarding",
+  "version": "0.1.0",
+  "description": "khai composite content, the hoarding domain: a pile of decisions not made rather than of things kept -- an object that will not file so disposal has no rule (categorization, decision), an attachment carrying identity and insurance at once (extended-self, scarcity), an escape from deciding that IS keeping and is therefore reinforced (coping), and the same failure at the door rather than the bin (collection) -- across its information-processing, emotional-attachment, behavioral-avoidance, and excessive-acquisition movements (Frost & Hartl; Frost & Steketee; Mataix-Cols).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/hoarding"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-categorization": "^0.1.1",
+    "@chbrain/khai-engine-collection": "^0.1.0",
+    "@chbrain/khai-engine-coping": "^0.1.1",
+    "@chbrain/khai-engine-decision": "^0.1.1",
+    "@chbrain/khai-engine-extended-self": "^0.1.1",
+    "@chbrain/khai-engine-scarcity": "^0.1.1"
+  },
+  "khai": {
+    "engine": "hoarding",
+    "tagline": "Hoarding as composite: a pile of decisions not made rather than of things kept -- an object that will not file so disposal has no rule (categorization, decision), an attachment carrying identity and insurance at once (extended-self, scarcity), an escape from deciding that IS keeping and is therefore reinforced (coping), and the same failure at the door rather than the bin (collection) -- across its information-processing, emotional-attachment, behavioral-avoidance, and excessive-acquisition movements (Frost & Hartl; Frost & Steketee; Mataix-Cols).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_hoarding.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "position_information_processing.md",
+        "type": "position",
+        "parent": "process_hoarding.md"
+      },
+      {
+        "file": "position_emotional_attachment.md",
+        "type": "position",
+        "parent": "process_hoarding.md"
+      },
+      {
+        "file": "position_behavioral_avoidance.md",
+        "type": "position",
+        "parent": "process_hoarding.md"
+      },
+      {
+        "file": "position_excessive_acquisition.md",
+        "type": "position",
+        "parent": "process_hoarding.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over six atoms it declares as dependencies. The root (process_hoarding.md) reads hoarding as Frost & Hartl's multi-component model rather than a form of OCD: an information processing deficit (categorization, decision), an emotional attachment to possessions (extended-self), erroneous beliefs about future need (scarcity), and the avoidance of the distress of discarding (coping). The excessive acquisition specifier is modeled via collection. The composite adds only the read of the compound; it routes into the four movements. It is authored persona-architecture for a play, never a diagnosis of a real person.",
+      "issue": "Four movements. Information processing: the deficit in categorization that makes every item unique and un-fileable, and the resulting decision paralysis about what to keep. Emotional attachment: the extension of self into objects so that discarding feels like losing a piece of identity or a memory. Behavioral avoidance: the use of saving to avoid the distress of deciding and discarding, a coping mechanism that worsens the clutter. Acquisition: the active gathering of objects, distinguished from untidiness, providing temporary relief or pleasure that reinforces the cycle.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the read runs wherever its atoms are cast. The link, advisory: a persona running information processing deficits, emotional attachment to objects, behavioral avoidance of discarding, or excessive acquisition may link the movement under Projection, and the audit surfaces the ones left unnamed.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. The boundary with collection: collection is ordered, bounded, and ego-syntonic, whereas hoarding is disorganized, unbounded, and often ego-dystonic or functionally impairing. The boundary with OCD: hoarding is modeled as a distinct syndrome, not routed through an OCD engine, reflecting its DSM-5 decoupling. It is character architecture for authoring, never a clinical assessment of a real person.",
+      "setup": "Install the composite; its six atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Stage the multi-component nature of the syndrome -- it is not just clutter, but the interaction of decision paralysis, identity invested in objects, and avoidance of distress. Keep the boundaries clear: the acquisition drive is the collection engine's, the categorization deficit is the categorization engine's, the decision paralysis is the decision engine's, the emotional bond is the extended-self engine's, the perceived future need is the scarcity engine's, and the avoidance is the coping engine's. Do not route through OCD. It is authored character, not diagnosis."
+    }
+  }
+}
