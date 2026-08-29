@@ -1,6 +1,6 @@
 # Hoarding
 
-Hoarding as a composite: a multi-component syndrome of difficulty discarding and saving urges (Frost & Hartl). It reads over six atoms: categorization (information processing deficit), extended-self (emotional attachment to possessions), decision (discarding paralysis), scarcity (saving against future need), coping (avoidance of discarding distress), and collection (excessive acquisition specifier).
+Hoarding as composite: a pile of decisions not made rather than of things kept -- an object that will not file so disposal has no rule (categorization, decision), an attachment carrying identity and insurance at once (extended-self, scarcity), an escape from deciding that IS keeping and is therefore reinforced (coping), and the same failure at the door rather than the bin (collection) -- across its information-processing, emotional-attachment, behavioral-avoidance, and excessive-acquisition movements (Frost & Hartl; Frost & Steketee; Mataix-Cols).
 
 This engine is defined by its [manifest](package.json), which the canon renders as the WIRES card. The manifest is the single source of truth; this README is generated, not edited by hand.
 

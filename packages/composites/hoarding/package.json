@@ -1,7 +1,7 @@
 {
   "name": "@chbrain/khai-composite-hoarding",
   "version": "0.1.0",
-  "description": "khai composite content, the hoarding domain: difficulty discarding possessions due to a perceived need to save them, regardless of actual value, driven by information processing deficits, emotional attachment, and avoidance behaviors, frequently accompanied by excessive acquisition (Frost & Hartl).",
+  "description": "khai composite content, the hoarding domain: a pile of decisions not made rather than of things kept -- an object that will not file so disposal has no rule (categorization, decision), an attachment carrying identity and insurance at once (extended-self, scarcity), an escape from deciding that IS keeping and is therefore reinforced (coping), and the same failure at the door rather than the bin (collection) -- across its information-processing, emotional-attachment, behavioral-avoidance, and excessive-acquisition movements (Frost & Hartl; Frost & Steketee; Mataix-Cols).",
   "type": "module",
   "main": "./index.mjs",
   "exports": {
@@ -33,7 +33,7 @@
   },
   "khai": {
     "engine": "hoarding",
-    "tagline": "Hoarding as a composite: a multi-component syndrome of difficulty discarding and saving urges (Frost & Hartl). It reads over six atoms: categorization (information processing deficit), extended-self (emotional attachment to possessions), decision (discarding paralysis), scarcity (saving against future need), coping (avoidance of discarding distress), and collection (excessive acquisition specifier).",
+    "tagline": "Hoarding as composite: a pile of decisions not made rather than of things kept -- an object that will not file so disposal has no rule (categorization, decision), an attachment carrying identity and insurance at once (extended-self, scarcity), an escape from deciding that IS keeping and is therefore reinforced (coping), and the same failure at the door rather than the bin (collection) -- across its information-processing, emotional-attachment, behavioral-avoidance, and excessive-acquisition movements (Frost & Hartl; Frost & Steketee; Mataix-Cols).",
     "type": "process",
     "members": [
       {
