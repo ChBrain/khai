@@ -1,0 +1,85 @@
+{
+  "name": "@chbrain/khai-composite-adhd",
+  "version": "0.1.0",
+  "description": "khai composite content, the adhd domain: attention-deficit/hyperactivity disorder as the compound of a failing pause (executive-function), a delay the persona cannot sit in (self-control), a default-mode drift that intrudes on the task (mind-wandering, attention), and an attention that will not release once caught (attention) -- across its behavioral-inhibition, delay-aversion, default-intrusion, and hyperfocus movements (Barkley; Sonuga-Barke; Nigg; Castellanos & Proal).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/adhd"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-attention": "^0.1.1",
+    "@chbrain/khai-engine-executive-function": "^0.1.1",
+    "@chbrain/khai-engine-mind-wandering": "^0.1.1",
+    "@chbrain/khai-engine-self-control": "^0.1.1"
+  },
+  "khai": {
+    "engine": "adhd",
+    "tagline": "ADHD as composite: not a shortage of attention but a failure of attention to be governed by intention -- a pause that does not arrive (executive-function), a delay that cannot be sat in (self-control), a default-mode drift that intrudes on the task (mind-wandering), and an attention that will not release once caught (attention) -- across its behavioral-inhibition, delay-aversion, default-intrusion, and hyperfocus movements (Barkley; Sonuga-Barke; Nigg; Castellanos & Proal).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_adhd.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "position_behavioral_inhibition.md",
+        "type": "position",
+        "parent": "process_adhd.md"
+      },
+      {
+        "file": "position_delay_aversion.md",
+        "type": "position",
+        "parent": "process_adhd.md"
+      },
+      {
+        "file": "position_default_intrusion.md",
+        "type": "position",
+        "parent": "process_adhd.md"
+      },
+      {
+        "file": "position_hyperfocus.md",
+        "type": "position",
+        "parent": "process_adhd.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over four atoms it declares as dependencies. The root (process_adhd.md) reads ADHD as Barkley reframed it: not a shortage of attention but a failure of attention to be governed by intention. The persona attends -- sometimes with a completeness the room finds remarkable -- and cannot direct it. Four movements carry the compound, and they are deliberately not one mechanism seen four ways: an executive route where the pause that the executive functions require does not arrive (executive-function), a motivational route where delay is aversive to occupy so escaping it is reinforced (self-control), a default-mode drift that intrudes mid-task and makes the record spiky rather than low (mind-wandering, attention), and an attention that will not release once caught (attention). The composite adds only the read of the compound; it routes into the four movements. It is authored persona-architecture for a play, never a diagnosis of a real person.",
+      "issue": "Four movements. Behavioral inhibition: the response beats the deliberation, because the pause is not an executive function but the interval they all need, so the persona plans well and acts before the plan is consulted -- a disorder of performance rather than knowledge. Delay aversion: waiting is unpleasant in itself, so ending it is negatively reinforced rather than merely tempting, a road dissociable from the executive one (Sonuga-Barke's dual pathway; Nigg's hot and cool). Default intrusion: inward thought that should be suppressed arrives periodically and unnoticed at both ends, so performance is inconsistent rather than uniformly worse -- intra-individual variability, the field's most robust signature. Hyperfocus: attention once caught will not release, the same ungovernance inverted, and the movement whose evidence is thinnest.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the ungoverned-attention read runs wherever its atoms are cast. The link, advisory: a persona running behavioral inhibition, delay aversion, default intrusion, or hyperfocus may link the movement under Projection, and the audit surfaces the ones left unnamed.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production earns the read -- a standing ungovernance across settings and time rather than an ordinary distraction, a single failed restraint, or a dull afternoon's wandering -- is semantic, taught and reviewed, never failed by the suite. Hold the evidence honestly too: Barkley's and Sonuga-Barke's models are extensively evidenced and extensively criticised, no single executive deficit is present in all cases, and hyperfocus is widely reported but is not a criterion and is not established as specific. And it is character architecture for authoring, never a clinical assessment of a real person.",
+      "setup": "Install the composite; its four atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Stage the interval that is the lever -- a reward far enough from its effort that only an intention could bridge it -- and cast one or both routes: the executive one where the pause fails (executive-function), the motivational one where the delay is aversive (self-control), with the default-mode drift that fragments the attempt (mind-wandering, attention) and the capture that will not release (attention). Read the persona across the compound, never in a single symptom, and keep the failure spiky rather than uniform: the good hour is part of the architecture. Let the twist land -- having been seen to concentrate, the persona cannot claim concentration is what they lack, and the room's inference from that sighting is made in good faith and is wrong. Keep it the standing case: the general control layer is the executive-function engine's, the override of a present temptation the self-control engine's, the spotlight the attention engine's, and the ordinary departure from a task the mind-wandering engine's. It is authored character, not diagnosis."
+    }
+  }
+}
