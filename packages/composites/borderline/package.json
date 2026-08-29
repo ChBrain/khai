@@ -1,0 +1,86 @@
+{
+  "name": "@chbrain/khai-composite-borderline",
+  "version": "0.1.0",
+  "description": "khai composite content, the borderline domain: borderline personality organisation as the compound of an emotional vulnerability that will not settle (regulation), an interpersonal hypersensitivity that reads availability moment to moment (attachment), a self that reorganises around whoever is present (identity, self-esteem), and a behavioural dyscontrol that regulates affect by other means (self-control) -- across its emotional-vulnerability, interpersonal-hypersensitivity, identity-diffusion, and dyscontrol movements (Linehan; Gunderson; Kernberg; Zanarini).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/composites/borderline"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-engine-attachment": "^0.1.2",
+    "@chbrain/khai-engine-identity": "^0.1.1",
+    "@chbrain/khai-engine-regulation": "^0.1.1",
+    "@chbrain/khai-engine-self-control": "^0.1.1",
+    "@chbrain/khai-engine-self-esteem": "^0.2.0"
+  },
+  "khai": {
+    "engine": "borderline",
+    "tagline": "Borderline personality organisation as composite: an emotional vulnerability that will not settle (regulation), an interpersonal hypersensitivity that reads availability moment to moment (attachment), a self that reorganises around whoever is present (identity, self-esteem), and a behavioural dyscontrol that regulates affect by other means (self-control) -- across its emotional-vulnerability, interpersonal-hypersensitivity, identity-diffusion, and dyscontrol movements (Linehan; Gunderson; Kernberg; Zanarini).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_borderline.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "position_emotional_vulnerability.md",
+        "type": "position",
+        "parent": "process_borderline.md"
+      },
+      {
+        "file": "position_interpersonal_hypersensitivity.md",
+        "type": "position",
+        "parent": "process_borderline.md"
+      },
+      {
+        "file": "position_identity_diffusion.md",
+        "type": "position",
+        "parent": "process_borderline.md"
+      },
+      {
+        "file": "position_dyscontrol.md",
+        "type": "position",
+        "parent": "process_borderline.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process, over five atoms it declares as dependencies. The root (process_borderline.md) reads borderline organisation as Linehan's biosocial transaction rather than as a defect: a biological emotional vulnerability -- high sensitivity, high reactivity, slow return to baseline -- meeting an invalidating environment that punishes, trivialises, or answers erratically when the persona reports its own experience. Neither alone produces it. Four movements carry the compound, and they are the domains the criteria cluster into rather than a symptom list: an affect with no modulating middle (regulation), a continuous reading of another's availability (attachment), a self that does not consolidate and splits rather than integrates (identity, self-esteem), and behaviours that interrupt a state which cannot be regulated (self-control). The composite adds only the read of the compound; it routes into the four movements. It is authored persona-architecture for a play, never a diagnosis of a real person.",
+      "issue": "Four movements. Emotional vulnerability: Linehan's three-part specification -- sensitivity, reactivity, slow return -- with the modulating middle as the specific absence, so the persona is rarely met at rest and is discounted when the thing is major. Interpersonal hypersensitivity: Gunderson's organising phenotype, availability measured moment to moment on an instrument calibrated too fine, acted on with the insecure strategies -- close and demand proof, leave first, or under enough threat both at once. Identity diffusion: Kernberg's structural failure of integration, so the good and bad versions of a person never assemble and the persona switches between them; splitting is that structure operating, not a tactic, and it applies to the self as much as to others. Dyscontrol: the impulsivity and self-harm as the affect problem solved by other means -- a state that cannot be brought down can be interrupted, and the interruption works, which is why its cost does not stop it.",
+      "require": "Two altitudes hold the composite. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the read runs wherever its atoms are cast. The link, advisory: a persona running emotional vulnerability, interpersonal hypersensitivity, identity diffusion, or dyscontrol may link the movement under Projection, and the audit surfaces the ones left unnamed.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared, the composite's own members conform, and every hard link into the atoms resolves through a declared dependency. Whether a production earns the read -- both halves of the transaction staged, an instability triggered and reorganised by the relationship in front of the persona rather than an intense relationship or a bad week -- is semantic, taught and reviewed, never failed by the suite. Two limits belong to the author rather than the gate. The boundary with cptsd: where the disturbance is a stable, pervasive negative self-concept and a withdrawal from relationships after prolonged inescapable trauma, that composite reads it, and the two are genuinely contested rather than cleanly separate. And the course: Zanarini's longitudinal work has symptomatic remission as the norm over ten to sixteen years, outstripping functional recovery, so a persona written as permanently fixed contradicts the best data the field has. It is character architecture for authoring, never a clinical assessment of a real person.",
+      "setup": "Install the composite; its five atoms arrive as dependencies and their laws with them. Declare the law in the Instructions Knowledge chapter, linking the root. Stage BOTH halves of the transaction -- the reactive system and the environment that answered its reports with dismissal or unpredictability -- and keep the invalidation ordinary rather than cruel, because that is how it arrives and because a persona disbelieved when calm has learned something true about what works. Cast one or more of the four movements, and name who in the play is currently load-bearing for the persona's sense of itself. Let the twist land as a trap: the effort to prevent an ending produces the ending, each departure is real, and insight does not dissolve it. Write the dyscontrol as instrumental -- it ends a state, it is not addressed to whoever finds it -- and do not reproduce the clinical reattribution of these behaviours as manipulation, which is the reading the composite exists to show the mechanism of. Keep the boundaries: the general emotion-regulation repertoire is the regulation engine's, the strategies for closeness the attachment engine's, the identity positions the identity engine's, the resting self-attitude the self-esteem engine's, the override of an impulse the self-control engine's, and prolonged inescapable trauma the cptsd composite's. It is authored character, not diagnosis."
+    }
+  }
+}
