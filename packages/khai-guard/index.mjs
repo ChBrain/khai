@@ -1327,7 +1327,12 @@ export function exemptionClaim(stem, engines = [], meta = null) {
     .filter((e) => (e.files ?? []).some((f) => stemOfFile(f) === stem))
     .map((e) => e.engine);
   const bySlug = holders.filter((h) => h === stem.replace(/_/g, "-"));
-  const owner = bySlug.length ? bySlug[0] : (meta?.owner ?? undefined);
+  // `?? undefined` would fold a recorded null into an absent one, and those are
+  // the two answers this whole field exists to tell apart: null is "nobody
+  // qualifies, so every holder still owes a rename", absent is "nobody has
+  // decided yet". Collapsing them tells an author who recorded null to go and
+  // record an owner they already recorded.
+  const owner = bySlug.length ? bySlug[0] : meta && "owner" in meta ? meta.owner : undefined;
   const clean =
     holders.length === 0 || (holders.length === 1 && owner != null && holders[0] === owner);
   return { holders, owner, clean };
