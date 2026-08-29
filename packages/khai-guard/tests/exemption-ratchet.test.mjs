@@ -184,3 +184,130 @@ describe.skipIf(DORMANT)("homonymGrowth", () => {
     expect(guard.homonymGrowth(base, base).ok).toBe(true);
   });
 });
+
+// Dormant until the source PR adding the ratchet's other end lands (#1403).
+const RETIRE_DORMANT = typeof guard.retiredExemptions !== "function";
+
+const held = (stem, engines) => guard.exemptionClaim(stem, engines, null);
+
+describe.skipIf(RETIRE_DORMANT)("exemptionClaim: who has a claim on a bare stem", () => {
+  it("nothing holds it — the word is settled", () => {
+    expect(held("searching", catalogue).clean).toBe(true);
+    expect(held("searching", catalogue).holders).toEqual([]);
+  });
+
+  it("two holders — the collision is still live, so nothing is settled", () => {
+    const r = held("trust", catalogue);
+    expect(r.holders).toEqual(["faith", "trust"]);
+    expect(r.clean).toBe(false);
+  });
+
+  it("the sole holder IS the stem's own slug — a claim by construction", () => {
+    // An engine holds its own name without anyone deciding anything, which is
+    // why most entries will never need an owner recorded.
+    const r = held("trust", [engine("trust", ["process_trust.md"])]);
+    expect(r.owner).toBe("trust");
+    expect(r.clean).toBe(true);
+  });
+
+  it("slug matching reads underscores as the hyphens a slug uses", () => {
+    const r = held("locus_of_control", [
+      engine("locus-of-control", ["position_locus_of_control.md"]),
+    ]);
+    expect(r.owner).toBe("locus-of-control");
+    expect(r.clean).toBe(true);
+  });
+
+  it("a recorded owner that matches the holder settles it", () => {
+    const one = [engine("boredom", ["position_searching.md"])];
+    expect(guard.exemptionClaim("searching", one, { owner: "boredom" }).clean).toBe(true);
+  });
+
+  it("a recorded owner that is NOT the holder settles nothing", () => {
+    const one = [engine("boredom", ["position_searching.md"])];
+    expect(guard.exemptionClaim("searching", one, { owner: "meaning" }).clean).toBe(false);
+  });
+
+  it("owner: null means nobody qualifies, so a holder is still owed a rename", () => {
+    const one = [engine("boredom", ["position_searching.md"])];
+    expect(guard.exemptionClaim("searching", one, { owner: null }).clean).toBe(false);
+  });
+
+  it("no record at all is undecided, not settled", () => {
+    const one = [engine("boredom", ["position_searching.md"])];
+    const r = guard.exemptionClaim("searching", one, null);
+    expect(r.owner).toBeUndefined();
+    expect(r.clean).toBe(false);
+  });
+});
+
+describe.skipIf(RETIRE_DORMANT)("retiredExemptions: an entry may not retire by attrition", () => {
+  const withEntry = (entry) => ({
+    memberPolicy: { homonyms: { searching: entry } },
+  });
+  const gone = { memberPolicy: { homonyms: {} } };
+  const boredomHolds = [engine("boredom", ["position_searching.md"]), engine("meaning", [])];
+
+  it("an entry that stays is not a retirement", () => {
+    const cfg = withEntry({ owner: null });
+    expect(guard.retiredExemptions(cfg, cfg, boredomHolds).ok).toBe(true);
+  });
+
+  it("retiring once nothing holds the stem is clean", () => {
+    expect(guard.retiredExemptions(withEntry({}), gone, catalogue).ok).toBe(true);
+  });
+
+  it("retiring to the stem's own engine is clean without any record", () => {
+    const cfg = { memberPolicy: { homonyms: { trust: {} } } };
+    const only = [engine("trust", ["process_trust.md"])];
+    expect(guard.retiredExemptions(cfg, { memberPolicy: { homonyms: {} } }, only).ok).toBe(true);
+  });
+
+  it("retiring to a recorded owner is clean", () => {
+    const cfg = withEntry({ owner: "boredom" });
+    expect(guard.retiredExemptions(cfg, gone, boredomHolds).ok).toBe(true);
+  });
+
+  it("retiring with an undecided holder is refused, and says why", () => {
+    const r = guard.retiredExemptions(withEntry({}), gone, boredomHolds);
+    expect(r.ok).toBe(false);
+    expect(r.errors).toHaveLength(1);
+    expect(r.errors[0]).toContain("boredom still holds the bare word");
+    expect(r.errors[0]).toContain("merge order");
+  });
+
+  it("owner: null is refused while a holder remains — both were meant to move", () => {
+    const r = guard.retiredExemptions(withEntry({ owner: null }), gone, boredomHolds);
+    expect(r.ok).toBe(false);
+    expect(r.errors[0]).toContain("nobody qualifies");
+  });
+
+  it("an owner who is not the holder is refused", () => {
+    const r = guard.retiredExemptions(withEntry({ owner: "meaning" }), gone, boredomHolds);
+    expect(r.ok).toBe(false);
+    expect(r.errors[0]).toContain('records owner "meaning"');
+  });
+
+  // The sentence is the ruling, not decoration: keeping a name may be right,
+  // but never because moving it costs work. Asserted so a reword has to be
+  // deliberate rather than incidental.
+  it("states that cost is not a reason", () => {
+    const r = guard.retiredExemptions(withEntry({ owner: null }), gone, boredomHolds);
+    expect(r.errors[0]).toContain("has to be about the model");
+    expect(r.errors[0]).toContain("costs work is not one");
+  });
+
+  it("guards grandfathered on the same terms", () => {
+    const before = { memberPolicy: { grandfathered: { searching: { owner: null } } } };
+    const after = { memberPolicy: { grandfathered: {} } };
+    const r = guard.retiredExemptions(before, after, boredomHolds);
+    expect(r.ok).toBe(false);
+    expect(r.errors[0]).toContain("memberPolicy.grandfathered");
+  });
+
+  // baseConfig() returns {} when no base resolves (first push, shallow clone).
+  // An empty baseline must read as "nothing retired", never as "everything did".
+  it("an unresolvable base retires nothing", () => {
+    expect(guard.retiredExemptions({}, gone, boredomHolds).ok).toBe(true);
+  });
+});
