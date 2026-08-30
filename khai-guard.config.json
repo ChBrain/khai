@@ -2,13 +2,16 @@
   "source": [
     "packages/khai-arch/architecture/**",
     "packages/khai-guard/index.mjs",
-    "packages/khai-guard/bin/**"
+    "packages/khai-guard/bin/**",
+    "packages/*/*/index.mjs",
+    "packages/*/*/bin/**"
   ],
   "test": [
     "packages/khai-arch/tests/**",
     "packages/khai-guard/tests/**",
     ".github/workflows/**",
-    ".husky/**"
+    ".husky/**",
+    "packages/*/*/tests/**"
   ],
   "bumpScope": {
     "freeLevel": "patch",
@@ -64,7 +67,8 @@
           "docs/BOUNDARY.md",
           "CLAUDE.md",
           "GEMINI.md",
-          ".github/copilot-instructions.md"
+          ".github/copilot-instructions.md",
+          "scripts/**"
         ]
       },
       {

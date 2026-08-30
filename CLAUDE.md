@@ -97,6 +97,23 @@ npx khai-guard advise --files <paths>
    composite fix is refused before the rename lands and the rename's own CI is
    red until it does.
 
+## House voice, and it is checked
+
+Two things the content gates enforce that no document used to state, so both a
+model and a reviewer could pass them by:
+
+- **No en-dashes or em-dashes in content.** Use `,` `;` `:` `()`, or `--`.
+  `checkEncoding` raises it and `conformance.test.mjs` runs that over every real
+  package, so it is a suite failure rather than a style note.
+- **A member file must wire into the graph.** An engine links its own members;
+  a composite links the atoms it declares. A file that links nothing is prose
+  sitting in a package that claims to read over engines, and the reviewer is the
+  only thing that catches it.
+
+Where a rule here is enforced, it says by what. Where it is not, it is the
+reviewer's, and that difference is the point: a rule that reads as computed and
+is not stops the model AND the reviewer from looking.
+
 ## Lanes at a glance (the full table is in docs/BRANCHING.md)
 
 | You changed…                                                                             | Lane                       |
