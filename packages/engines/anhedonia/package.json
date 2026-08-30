@@ -1,0 +1,93 @@
+{
+  "name": "@chbrain/khai-engine-anhedonia",
+  "version": "0.1.0",
+  "description": "khai engine content, the anhedonia domain: blunted capacity for pleasure or interest, across consummatory, anticipatory and social forms, dissociating wanting from liking.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/anhedonia"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "anhedonia",
+    "tagline": "The blunted capacity for pleasure, interest, or effort.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_anhedonia.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_wanting.md",
+        "type": "process",
+        "parent": "process_anhedonia.md"
+      },
+      {
+        "file": "position_anticipatory.md",
+        "type": "position",
+        "parent": "process_wanting.md"
+      },
+      {
+        "file": "position_apathy.md",
+        "type": "position",
+        "parent": "process_wanting.md"
+      },
+      {
+        "file": "process_liking.md",
+        "type": "process",
+        "parent": "process_anhedonia.md"
+      },
+      {
+        "file": "position_consummatory.md",
+        "type": "position",
+        "parent": "process_liking.md"
+      },
+      {
+        "file": "position_blunting.md",
+        "type": "position",
+        "parent": "process_liking.md"
+      },
+      {
+        "file": "position_social_anhedonia.md",
+        "type": "position",
+        "parent": "process_anhedonia.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Persona. The root (process_anhedonia.md) declares a capacity failure in the ability to experience or anticipate reward, separated from the appraisal of the reward itself. It is not depression, though it can occur within it; it is not the absence of motivation (which belongs to `motivation`), nor the discounting of delayed rewards (which belongs to `reward`).",
+      "issue": "The engine carries the dissociation between wanting and liking. A persona may lack the drive to pursue (wanting) while still enjoying the outcome if handed to them, or they may pursue normally (wanting) but experience a blunted consummatory response on arrival (liking). The failure can be specific to social interaction, or broadly present as apathy.",
+      "require": "Two altitudes hold the engine. The law: declared in Instructions Knowledge. The link: a persona links their specific deficit in the Projection section.",
+      "enforce": "The read is strictly a capacity failure. If the persona is simply choosing not to act because they judge the reward as worthless, that is `reward` or `appraisal`, not anhedonia.",
+      "setup": "Declare the anhedonia in the Instructions Knowledge chapter. Assign the deficit carefully: is it anticipatory, consummatory, or social? And leverage the twist: because the persona may still go through the motions (wanting without liking), or because the capacity failure looks like laziness (apathy), other characters read it as a mood or a character flaw, not as a broken capacity."
+    }
+  }
+}
