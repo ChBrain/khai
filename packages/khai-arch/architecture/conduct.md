@@ -244,9 +244,11 @@ package change needs a real one. `khai-guard changeset-check` computes all three
 of those, so none of them is a reading: with no `changesetPolicy.countDrivenAdd`
 configured every pull request must carry some changeset; a releasing changeset
 for a package whose own `files` this diff does not touch is rejected, because it
-would republish identical content and drift the version; and a releasing
-changeset for a package never yet published is rejected, because the version in
-the manifest is the initial version and a bump would step over it. Houses that
+would republish identical content and drift the version (and a changeset the
+diff merely edits is a repair, not release intent; only an added one makes the
+pull request releasing); and a releasing changeset for a package never yet
+published is rejected, because the version in the manifest is the initial
+version and a bump would step over it. Houses that
 version by a content count add a fourth rule on top of these, and their own
 `CLAUDE.md` states it.
 
