@@ -86,8 +86,24 @@ function parseOriginTable(origin) {
  * callers skip an engine with no `khai.type` before parsing its Origin, exactly
  * as they exclude it from the science map.
  */
-export function originRowErrors(origin) {
+export function originRowErrors(origin, nonAuthorSources = []) {
   const errors = [];
+  // A Source that yields no surname at all. The uppercase-initial rule in
+  // `surnames` drops non-author idioms deliberately and silently -- "Boundary of
+  // the effect", "Nobel 2001" -- which is right for a cell that names no person
+  // on purpose and catastrophic for one that meant to. It cannot tell them
+  // apart, so a mistyped Source is not flagged, it VANISHES: a composite whose
+  // Origin held "Cognitive-behavioral model" and "Clinical presentation" lost
+  // both rows out of the science index, taking Frost, Hartl and Steketee with
+  // them, and kept only the row headed "Nosology" -- filed among real people as
+  // though it were a surname. One record where there should have been five, and
+  // every gate green.
+  //
+  // So the silence is closed rather than the idiom banned: a Source that names
+  // nobody must be DECLARED in scholarPolicy.nonAuthorSources. Six rows in the
+  // tree are legitimately of that kind (meteor records, a safety standard, a
+  // craft tradition), and they are cheap to list; anything else is a mistake.
+  const declared = new Set(nonAuthorSources.map((s) => String(s).toLowerCase()));
   for (const raw of origin.split("\n")) {
     const line = raw.trim();
     if (!line.startsWith("|")) continue; // not a table row
@@ -99,10 +115,20 @@ export function originRowErrors(origin) {
     const first = cells[0];
     if (/^:?-+:?$/.test(first)) continue; // separator row
     if (/^source$/i.test(first)) continue; // header row
-    if (cells.length !== 3)
+    if (cells.length !== 3) {
       errors.push(
         `Origin row has ${cells.length} column(s), not 3 ` +
           `(| Source | Key Work | Scope |); the index silently drops it, losing the citation: ${line}`,
+      );
+      continue;
+    }
+    const source = stripMd(first);
+    if (surnames(source).length === 0 && !declared.has(source.toLowerCase()))
+      errors.push(
+        `Origin row Source "${source}" names no scholar, so the index drops the row ` +
+          `and the citation with it. The Source column holds the person, not a category ` +
+          `("Cognitive-behavioral model", "Nosology"); the work goes in Key Work. If the ` +
+          `row genuinely cites no person, declare it in scholarPolicy.nonAuthorSources`,
       );
   }
   return errors;
@@ -429,6 +455,7 @@ export function collectScience(root) {
   const records = []; // one per (engine, scholar)
   const byEngine = [];
   const homonyms = scholarHomonyms(root);
+  const nonAuthors = scholarPolicy(root).nonAuthorSources ?? [];
   for (const { dir, layer } of engineDirs(root)) {
     const manifest = JSON.parse(readFileSync(join(dir, "package.json"), "utf8"));
     const khai = manifest.khai;
@@ -440,7 +467,7 @@ export function collectScience(root) {
     const refPath = join(dir, "REFERENCES.md");
     if (!existsSync(refPath)) continue;
     const origin = sliceChapter(readFileSync(refPath, "utf8"), "Origin");
-    const malformed = originRowErrors(origin);
+    const malformed = originRowErrors(origin, nonAuthors);
     if (malformed.length)
       throw new Error(
         `collectScience: engine "${khai.engine}" REFERENCES.md: ${malformed.join("; ")}`,
@@ -495,6 +522,7 @@ export function collectScience(root) {
  */
 export function scholarCollisions(root) {
   const homonyms = scholarHomonyms(root);
+  const nonAuthors = scholarPolicy(root).nonAuthorSources ?? [];
   const one = new Set(scholarPolicy(root).oneScholar ?? []);
   const both = Object.keys(homonyms).filter((s) => one.has(s));
   if (both.length)
@@ -671,11 +699,12 @@ export function collectCollectionScience(
   const records = []; // one per (unit, scholar)
   const byUnit = [];
   const homonyms = scholarHomonyms(root);
+  const nonAuthors = scholarPolicy(root).nonAuthorSources ?? [];
   for (const { id, dir } of unitDirs(root, collection)) {
     const refPath = unitWarrant(dir);
     if (!refPath) continue; // a dir with no warrant is not a science-bearing unit
     const origin = sliceChapter(readFileSync(refPath, "utf8"), "Origin");
-    const malformed = originRowErrors(origin);
+    const malformed = originRowErrors(origin, nonAuthors);
     if (malformed.length)
       throw new Error(
         `collectCollectionScience: ${collection.dir}/${id} ${basename(refPath)}: ${malformed.join("; ")}`,
