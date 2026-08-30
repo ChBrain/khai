@@ -256,7 +256,15 @@
       "Wood": ["Alex", "Wendy"],
       "Young": ["Larry", "Scott"]
     },
-    "oneScholar": ["Durkheim", "Gangestad", "Graesser", "Rachal", "Shiota"]
+    "oneScholar": ["Durkheim", "Gangestad", "Graesser", "Rachal", "Shiota"],
+    "nonAuthorSources": [
+      "Leonid meteor storm records (1833)",
+      "Chelyabinsk meteor (2013)",
+      "NFPA / DOE hydrogen safety",
+      "Historical record",
+      "Kintsugi / wabi-sabi",
+      "the six design engines"
+    ]
   },
   "memberPolicy": {
     "engines": ["packages/engines/*/package.json", "packages/composites/*/package.json"],
