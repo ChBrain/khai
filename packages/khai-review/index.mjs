@@ -25,7 +25,7 @@
 // Knowledge is HACK. KAI HACKS AI.)
 
 import { readFileSync, existsSync, readdirSync } from "node:fs";
-import { dirname, join, resolve, relative } from "node:path";
+import { dirname, join, resolve, relative, sep } from "node:path";
 
 /**
  * @typedef {{ id: string, instruction: string }} Rubric
@@ -623,16 +623,36 @@ function packageDirs(repoRoot) {
   return dirs;
 }
 
+// One link target, matched as a single bounded run and split afterwards rather
+// than by a pattern that has to backtrack over it. A pattern like
+// `[^)\s]+\.md` is polynomial, because the class it repeats also contains the
+// literal that follows it.
+const LINK_TARGET = /\]\(([^()\s]{1,256})\)/g;
+// `@scope/name`, and a BARE member filename. Both are allowlists, and the second
+// is the one that matters: a member file always sits in its package root, so a
+// name is letters, digits, `_`, `-` and one `.md`. `..` and `/` cannot appear,
+// which is what keeps a link in a reviewed markdown file from reading a path
+// outside the package it names.
+const PACKAGE_NAME = /^@[a-z0-9][a-z0-9-]*\/[a-z0-9][a-z0-9.-]*$/i;
+const MEMBER_FILE = /^[a-z0-9][a-z0-9_-]*\.md$/i;
+
 /**
- * The package-qualified markdown links in a passage, in order.
+ * The package-qualified markdown links in a passage, in order. A target that is
+ * not a package name plus a bare member file is not an atom link and is skipped.
  * @param {string} prose
  * @returns {{ pkg: string, file: string }[]}
  */
 export function linkedAtoms(prose) {
   if (typeof prose !== "string") return [];
   const out = [];
-  for (const m of prose.matchAll(/\]\((@[^)\s/]+\/[^)\s/]+)\/([^)\s]+\.md)\)/g))
-    out.push({ pkg: m[1], file: m[2] });
+  for (const m of prose.matchAll(LINK_TARGET)) {
+    const target = m[1];
+    const cut = target.lastIndexOf("/");
+    if (cut <= 0) continue;
+    const pkg = target.slice(0, cut);
+    const file = target.slice(cut + 1);
+    if (PACKAGE_NAME.test(pkg) && MEMBER_FILE.test(file)) out.push({ pkg, file });
+  }
   return out;
 }
 
@@ -656,8 +676,14 @@ export function resolveLinkedSource(prose, repoRoot = process.cwd()) {
     seen.add(key);
     const dir = dirs.get(pkg);
     if (!dir) continue;
+    // Belt and braces over the MEMBER_FILE allowlist: resolve, then require the
+    // result to still be inside the package directory. The allowlist is what
+    // makes this unreachable; the check is what makes it not depend on the
+    // allowlist staying right.
+    const abs = resolve(dir, file);
+    if (abs !== join(dir, file) || !abs.startsWith(resolve(dir) + sep)) continue;
     try {
-      const text = readFileSync(join(dir, file), "utf8");
+      const text = readFileSync(abs, "utf8");
       parts.push(`--- ${key} ---\n${text.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, "").trim()}`);
     } catch {
       // A link to a file that is not there is the link checker's finding, not this one.
