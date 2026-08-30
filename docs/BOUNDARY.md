@@ -88,6 +88,53 @@ mechanism reading a locally declared value. If a new thing does not fit that
 shape, it is either a wall (no local value to read) or it does not belong in the
 mechanism at all.
 
+## A worked demotion: composite restatement
+
+The question: does a composite's chapter say anything the atoms it links do not?
+A composite exists to read the compound, so a chapter that re-describes an atom
+it already links is a second, unversioned copy of that atom, and it drifts when
+the atom moves. Real problem, and it looks computable. It is not, and the record
+of trying is worth more than the ruling.
+
+**Two candidate walls, both measured, both wrong.**
+
+1. **Word overlap between the chapter and the atom it links.** Catches
+   copy-paste; misses paraphrase. That is fatal rather than partial, because
+   paraphrase is the common case and copy-paste the rare one: a model restating
+   an atom rewords it without being asked, so the wall would pass the failure it
+   exists to catch while making the chapter look inspected.
+2. **Link density (words per link).** Worse, and it took a measurement to see
+   it. Across the clinical composites the chapter scoring worst (adhd's
+   Direction, 200 words to 3 links) is the most compound-specific one in the
+   set: two dual-process theories and a default-mode finding, none of them
+   restating anything. A chapter doing hard compound work cites theory, and
+   theory is not an atom and does not link. Low density means "this chapter is
+   arguing" at least as often as "this chapter is restating".
+
+No measure of wording separates those two, which is the definition of question 2
+in the classification rule. It landed as the `compound-specificity` rubric, the
+lane's first anchored one: the retrieved source is the bodies of the atoms the
+passage itself links, so the judgement is made against the text and not against
+the model's memory of it.
+
+**What would move it down.** Not a better wording metric; the failure is about
+meaning, not resolution. It descends only if the compound claims themselves
+become declared (a composite stating, in its source, what it owns that no atom
+owns alone), at which point the check is "is each chapter within the declared
+boundary" and that is closer to mechanical. Until something is declared, there is
+nothing for a wall to read.
+
+**And a door this opened.** Three walls were proposed here first (Echo must link
+an atom; Lever must not; Direction must), each stated as a house rule and each
+invented: generalised from five composite files, four of them written by the
+same author. The canon carries no such rule -- `process.md` defines Echo as
+"what changed, and what the next process inherits", saying nothing about links
+-- and a measurement across all 101 process-rooted composites found Echo linking
+nothing in 66 of them. A rule two thirds of the content violates is a proposal,
+not a convention. **Read the canon before attributing a rule to the house, and
+test a proxy against the case it would flag worst, not the case it was derived
+from.** Both proxies above looked correct on the file they came from.
+
 ## Where this corrects the order's first draft
 
 The order named this boundary before the work settled it. Four things landed
