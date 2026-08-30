@@ -21,11 +21,11 @@ Learned helplessness. The cognitive-behavioral lock-in where the persona learns 
 
 ## Initiated by
 
-Repeated exposure to uncontrollable stressors, failures, or the sustained crushing weight of [despair](../../engines/sadness/process_despair.md) that cannot be mitigated by action.
+Repeated exposure to uncontrollable stressors, failures, or the sustained crushing weight of [despair](@chbrain/khai-engine-sadness/process_despair.md) that cannot be mitigated by action.
 
 ## Direction
 
-Forward into a void. The persona anticipates that future outcomes are entirely independent of their voluntary responses. The [anticipatory anhedonia](../../engines/anhedonia/position_anticipatory.md) drive is extinguished because the engine calculating effort-to-reward ratio concludes that effort always equals zero return.
+Forward into a void. The persona anticipates that future outcomes are entirely independent of their voluntary responses. The [anticipatory anhedonia](@chbrain/khai-engine-anhedonia/position_anticipatory.md) drive is extinguished because the engine calculating effort-to-reward ratio concludes that effort always equals zero return.
 
 ## Lever
 

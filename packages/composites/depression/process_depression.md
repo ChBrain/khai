@@ -25,7 +25,7 @@ An initial trigger (a loss, a failure, chronic stress, or sometimes no identifia
 
 ## Direction
 
-Inward and circular. The failures feed each other: the [sadness](../../engines/sadness/process_despair.md) deepens the [rumination](../../engines/rumination/process_brooding.md), which focuses attention entirely on the [fatigue](../../engines/body/process_fatigue.md) and [worthlessness](position_worthlessness.md), which neutralizes any attempt to act, which reinforces the [anhedonia](../../engines/anhedonia/process_anhedonia.md).
+Inward and circular. The failures feed each other: the [sadness](@chbrain/khai-engine-sadness/process_despair.md) deepens the [rumination](@chbrain/khai-engine-rumination/process_brooding.md), which focuses attention entirely on the [fatigue](@chbrain/khai-engine-body/process_fatigue.md) and [worthlessness](position_worthlessness.md), which neutralizes any attempt to act, which reinforces the [anhedonia](@chbrain/khai-engine-anhedonia/process_anhedonia.md).
 
 ## Lever
 
