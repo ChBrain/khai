@@ -1,7 +1,7 @@
 {
   "name": "@chbrain/khai-engine-anhedonia",
   "version": "0.1.0",
-  "description": "khai engine content, the anhedonia domain: blunted capacity for pleasure or interest, across consummatory, anticipatory and social forms, dissociating wanting from liking.",
+  "description": "khai engine content, the anhedonia domain: the blunted capacity to be moved by what would ordinarily move the persona -- a failure of the machinery that converts an outcome into a feeling, not a judgement that the outcome is not worth having -- across its anticipatory, consummatory, and social forms (Ribot; Berridge; Treadway & Zald; Rizvi; RDoC).",
   "type": "module",
   "main": "./index.mjs",
   "exports": {
@@ -24,7 +24,7 @@
   ],
   "khai": {
     "engine": "anhedonia",
-    "tagline": "The blunted capacity for pleasure, interest, or effort.",
+    "tagline": "Anhedonia as process: the blunted capacity to be moved by what would ordinarily move the persona -- a failure of the machinery that converts an outcome into a feeling, not a judgement that the outcome is not worth having -- across its anticipatory, consummatory, and social forms (Ribot; Berridge; Treadway & Zald; Rizvi; RDoC).",
     "type": "process",
     "members": [
       {
@@ -33,34 +33,14 @@
         "parent": null
       },
       {
-        "file": "process_wanting.md",
-        "type": "process",
-        "parent": "process_anhedonia.md"
-      },
-      {
         "file": "position_anticipatory.md",
         "type": "position",
-        "parent": "process_wanting.md"
-      },
-      {
-        "file": "position_apathy.md",
-        "type": "position",
-        "parent": "process_wanting.md"
-      },
-      {
-        "file": "process_liking.md",
-        "type": "process",
         "parent": "process_anhedonia.md"
       },
       {
         "file": "position_consummatory.md",
         "type": "position",
-        "parent": "process_liking.md"
-      },
-      {
-        "file": "position_blunting.md",
-        "type": "position",
-        "parent": "process_liking.md"
+        "parent": "process_anhedonia.md"
       },
       {
         "file": "position_social_anhedonia.md",
@@ -83,11 +63,11 @@
       }
     ],
     "card": {
-      "wire": "Attaches at Persona. The root (process_anhedonia.md) declares a capacity failure in the ability to experience or anticipate reward, separated from the appraisal of the reward itself. It is not depression, though it can occur within it; it is not the absence of motivation (which belongs to `motivation`), nor the discounting of delayed rewards (which belongs to `reward`).",
-      "issue": "The engine carries the dissociation between wanting and liking. A persona may lack the drive to pursue (wanting) while still enjoying the outcome if handed to them, or they may pursue normally (wanting) but experience a blunted consummatory response on arrival (liking). The failure can be specific to social interaction, or broadly present as apathy.",
-      "require": "Two altitudes hold the engine. The law: declared in Instructions Knowledge. The link: a persona links their specific deficit in the Projection section.",
-      "enforce": "The read is strictly a capacity failure. If the persona is simply choosing not to act because they judge the reward as worthless, that is `reward` or `appraisal`, not anhedonia.",
-      "setup": "Declare the anhedonia in the Instructions Knowledge chapter. Assign the deficit carefully: is it anticipatory, consummatory, or social? And leverage the twist: because the persona may still go through the motions (wanting without liking), or because the capacity failure looks like laziness (apathy), other characters read it as a mood or a character flaw, not as a broken capacity."
+      "wire": "Attaches at Process. The root (process_anhedonia.md) reads anhedonia as a capacity failure rather than a valuation: the machinery that converts an outcome into a feeling stops returning a value, while everything upstream -- the perception, the knowledge, the memory that this was once pleasurable -- stays intact. The persona knows the meal is good, can taste it, will tell you it is good, and there is nothing on the other side. Three forms carry it, and they are separable rather than degrees of one severity: anticipatory, the pull toward a known good that is never generated; consummatory, presence at the thing with no resonance returned; and social, where the missing reward is other people and so the remedy for the other two goes with it.",
+      "issue": "Three forms. Anticipatory: the persona reports the thing as desirable and cannot fund the effort of setting out, which is Treadway & Zald's effort-based finding rather than a small valuation -- so stated preference and behaviour diverge with no concealment between them, which is the shape of a lie and is not one. Consummatory: they arrive, are wholly present, perceive accurately, and receive nothing; the experience is flat rather than negative, so it produces none of the signs a bad experience would. Social: company is performed competently and returns no warmth, so withdrawal is arithmetic rather than avoidance -- and because company is what ordinarily interrupts the other two forms, this one removes the route back.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the capacity read runs wherever the engine is cast. The link, advisory: a persona holding a form may link it under Projection, and the audit surfaces the ones left unnamed.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and the engine's own members conform. Whether a production earns the read -- a capacity that has gone rather than a preference that has changed, with the behaviour still performed -- is semantic, taught and reviewed, never failed by the suite. Hold the honest limit too: the boundary between a capacity failure and a changed valuation is phenomenologically fragile from outside, which is the engine's subject rather than a defect in it, and the engine takes no position on cause. It is character architecture for authoring, never a clinical assessment of a real person.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Stage the performance intact and the return absent -- that gap is the whole engine, and a persona written as visibly withdrawn has skipped it. Cast one or more forms and be deliberate about which, since they are separable: a persona may enjoy what they cannot make themselves go to, or go willingly to what gives them nothing. Let the twist land as a trap rather than a misunderstanding: the only evidence is the persona's testimony, the testimony reads as ingratitude, and so they stop offering it and the last external trace is gone. Keep the boundaries: the discount over time and the effort-to-payoff calibration are the reward engine's, the appraisal of an event as good is joy's, the pull of a novel object is interest's, and the general mobilisation to act is motivation's -- this engine owns only the case where all of those run correctly and produce nothing. It is authored character, not diagnosis."
     }
   }
 }
