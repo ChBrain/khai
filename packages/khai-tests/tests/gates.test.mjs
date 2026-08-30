@@ -61,11 +61,13 @@ const touch = (path) =>
   `node -e "require('fs').writeFileSync(process.argv[1], 'ran')" ${JSON.stringify(path)}`;
 
 /** A real git repository, because the visibility check reads git and a fake one
- * would pin the fake. Content lives under packages/, which is the content root
- * every khai house shares. */
-function repo({ untracked = false } = {}) {
+ * would pin the fake. Content lives under packages/ by default, which is the
+ * content root this workspace and every house shaped like it uses; `content`
+ * moves it, which is the shape a house that has not taken the workspace layout
+ * has. */
+function repo({ untracked = false, content = "packages" } = {}) {
   tmp = mkdtempSync(join(tmpdir(), "khai-gates-"));
-  const pkg = join(tmp, "packages", "house");
+  const pkg = join(tmp, content, "house");
   mkdirSync(pkg, { recursive: true });
   writeFileSync(join(pkg, "index.mjs"), "export const x = 1;\n");
   const git = (...args) => execFileSync("git", ["-C", tmp, ...args], { stdio: "ignore" });
@@ -219,6 +221,39 @@ describe.skipIf(DORMANT)("runGates: what the gates cannot see", () => {
     // And it STOPS: a wall run against a tree the runner has said it cannot see
     // produces an answer that means nothing, and it means nothing expensively.
     expect(existsSync(sentinel)).toBe(false);
+  });
+
+  it("looks where the house keeps its content, not where this repo keeps its", () => {
+    // The khai-misfits house keeps its productions in `misfits/` and will until
+    // its workspace migration lands, so it is the first real consumer of this
+    // runner and the first tree where a packages/-only check sees nothing at
+    // all. A check that cannot be pointed at a house's own content root is a
+    // check that goes green on that house forever, which is the failure the
+    // runner exists against, arriving through the runner itself.
+    const root = repo({ content: "misfits", untracked: true });
+    const sentinel = join(root, "a-wall-ran");
+    const run = runGates(root, {
+      gates: [{ name: "suite", command: touch(sentinel) }],
+      contentRoots: ["misfits/"],
+    });
+    expect(run.ok).toBe(false);
+    expect(run.results.find((r) => r.name === "visibility").ok).toBe(false);
+    expect(existsSync(sentinel)).toBe(false);
+  });
+
+  it("looks ONLY where it was told, so the default means packages/ and nothing else", () => {
+    // The other half of the option, and the half that gives it a meaning: the
+    // same tree, unchanged, with the default roots. The untracked misfit is
+    // invisible, the run is clean, and that is correct rather than lenient --
+    // a check that quietly widened to the whole tree would refuse every
+    // scratch file in a working directory and be turned off within a week.
+    // Which is what makes the declaration load-bearing: the house says where
+    // its content is, and until it does the runner is honest about looking
+    // somewhere else.
+    const root = repo({ content: "misfits", untracked: true });
+    const run = runGates(root, { gates: [{ name: "suite", command: PASS }] });
+    expect(run.results.find((r) => r.name === "visibility").ok).toBe(true);
+    expect(run.ok).toBe(true);
   });
 
   it("passes visibility on a clean tree and goes on to the walls", () => {

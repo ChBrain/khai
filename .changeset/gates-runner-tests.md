@@ -20,6 +20,9 @@ caller's option: a caller that forgets it loses exactly the sentence that was
 missing.
 
 Also pinned: a failing wall names its fix and the runner never executes it,
-untracked paths under the content root are refused and stop the pass, an
-unreadable record is named rather than dropped, and one verdict covers the whole
-run. Tests only; they do not ship, and they skip until the source lands.
+untracked paths under the content root are refused and stop the pass, the
+content root is a declared `contentRoots` and not a hardcoded `packages/`
+(khai-misfits keeps its productions in `misfits/` and is the first consumer this
+would go blind on), an unreadable record is named rather than dropped, and one
+verdict covers the whole run. Tests only; they do not ship, and they skip until
+the source lands.
