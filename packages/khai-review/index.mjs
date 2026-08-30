@@ -25,7 +25,7 @@
 // Knowledge is HACK. KAI HACKS AI.)
 
 import { readFileSync, existsSync, readdirSync } from "node:fs";
-import { dirname, join, resolve, relative } from "node:path";
+import { dirname, join, resolve, relative, sep } from "node:path";
 
 /**
  * @typedef {{ id: string, instruction: string }} Rubric
@@ -54,6 +54,43 @@ export const rubrics = {
   "voice-conformance": {
     id: "voice-conformance",
     instruction: "Conform to the resolved voice brief.",
+  },
+  // Does a composite's chapter say anything its own linked atoms do not? A
+  // composite exists to read the compound; a chapter that re-describes an atom
+  // it already links is a second, unversioned copy of that atom, and it drifts
+  // when the atom moves.
+  //
+  // This CANNOT be a wall, and two deterministic proxies were tried and
+  // measured before it landed here. Word overlap against the atom catches
+  // copy-paste and misses paraphrase, which is the common case rather than the
+  // rare one: a model restating an atom rewords it without being asked. Link
+  // density is worse -- across the clinical composites the chapter scoring
+  // WORST (200 words, 3 links) turned out to be the most compound-specific in
+  // the set, because a chapter doing hard compound work cites theory, and
+  // theory is not an atom and does not link. Low density means "this chapter is
+  // arguing" at least as often as it means "this chapter is restating", and no
+  // measure of wording can separate those. Only a reader can, so it lives here.
+  //
+  // Anchored: this asserts a fact about two texts, so it may not run on the
+  // model's memory of what an atom says. The retrieved source is the bodies of
+  // the atom files the passage itself links (`resolveLinkedSource`), and
+  // without them the harness refuses to confirm.
+  "compound-specificity": {
+    id: "compound-specificity",
+    anchored: true,
+    instruction:
+      "You are a careful editor with a HIGH BAR for raising a flag. The RETRIEVED SOURCE is the " +
+      "atom chapters that the PASSAGE itself links; the PASSAGE is a chapter of a composite, whose " +
+      "job is to read the COMPOUND those atoms make together. FLAG the passage only if its " +
+      "substantive claims are already made by the source -- that is, it re-describes an atom it " +
+      "links instead of saying what the combination does. Reply PASS when the passage says " +
+      "anything the source does not: how the atoms interact, feed, or defend each other; a " +
+      "named theory, finding, or scholar the source does not carry; a property that appears only " +
+      "in combination; or a pivot an author stages across them. Prose that merely names an atom " +
+      "in passing on its way to a compound claim is PASS, not a restatement. Length is not " +
+      "evidence either way: a long passage that argues is PASS, a short one that echoes is a " +
+      "FLAG. A tie goes to PASS. When you do FLAG, give a rewrite that states the compound " +
+      "claim and leaves the atom to its own file, keeping the house voice ( , ; : () , never a dash).",
   },
 };
 
@@ -553,6 +590,109 @@ export async function reviewHouse(managementDir, prose, judge, opts = {}) {
 }
 
 /**
+ * Every workspace package name -> its directory, read once per root. A composite
+ * links its atoms by PACKAGE name (`@chbrain/khai-engine-sadness/process_despair.md`)
+ * rather than by path, because a repo-relative link resolves in the workspace and
+ * breaks in the published tarball. So retrieving one means resolving a package
+ * name, not walking a directory.
+ */
+const packageDirCache = new Map();
+function packageDirs(repoRoot) {
+  const absRoot = resolve(repoRoot);
+  if (packageDirCache.has(absRoot)) return packageDirCache.get(absRoot);
+  const dirs = new Map();
+  for (const kind of ["engines", "composites"]) {
+    const base = join(absRoot, "packages", kind);
+    let entries = [];
+    try {
+      entries = readdirSync(base, { withFileTypes: true });
+    } catch {
+      continue;
+    }
+    for (const e of entries) {
+      if (!e.isDirectory()) continue;
+      try {
+        const pkg = JSON.parse(readFileSync(join(base, e.name, "package.json"), "utf8"));
+        if (pkg?.name) dirs.set(pkg.name, join(base, e.name));
+      } catch {
+        // A manifest that will not parse contributes no name.
+      }
+    }
+  }
+  packageDirCache.set(absRoot, dirs);
+  return dirs;
+}
+
+// One link target, matched as a single bounded run and split afterwards rather
+// than by a pattern that has to backtrack over it. A pattern like
+// `[^)\s]+\.md` is polynomial, because the class it repeats also contains the
+// literal that follows it.
+const LINK_TARGET = /\]\(([^()\s]{1,256})\)/g;
+// `@scope/name`, and a BARE member filename. Both are allowlists, and the second
+// is the one that matters: a member file always sits in its package root, so a
+// name is letters, digits, `_`, `-` and one `.md`. `..` and `/` cannot appear,
+// which is what keeps a link in a reviewed markdown file from reading a path
+// outside the package it names.
+const PACKAGE_NAME = /^@[a-z0-9][a-z0-9-]*\/[a-z0-9][a-z0-9.-]*$/i;
+const MEMBER_FILE = /^[a-z0-9][a-z0-9_-]*\.md$/i;
+
+/**
+ * The package-qualified markdown links in a passage, in order. A target that is
+ * not a package name plus a bare member file is not an atom link and is skipped.
+ * @param {string} prose
+ * @returns {{ pkg: string, file: string }[]}
+ */
+export function linkedAtoms(prose) {
+  if (typeof prose !== "string") return [];
+  const out = [];
+  for (const m of prose.matchAll(LINK_TARGET)) {
+    const target = m[1];
+    const cut = target.lastIndexOf("/");
+    if (cut <= 0) continue;
+    const pkg = target.slice(0, cut);
+    const file = target.slice(cut + 1);
+    if (PACKAGE_NAME.test(pkg) && MEMBER_FILE.test(file)) out.push({ pkg, file });
+  }
+  return out;
+}
+
+/**
+ * The retrieved source for `compound-specificity`: the bodies of the atom files
+ * the passage itself links, each labelled with where it came from. Returns null
+ * when the passage links no atom -- there is then nothing retrieved to judge
+ * against, and the caller skips the rubric rather than running it unanchored.
+ *
+ * @param {string} prose
+ * @param {string} [repoRoot]
+ * @returns {string|null}
+ */
+export function resolveLinkedSource(prose, repoRoot = process.cwd()) {
+  const dirs = packageDirs(repoRoot);
+  const parts = [];
+  const seen = new Set();
+  for (const { pkg, file } of linkedAtoms(prose)) {
+    const key = `${pkg}/${file}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    const dir = dirs.get(pkg);
+    if (!dir) continue;
+    // Belt and braces over the MEMBER_FILE allowlist: resolve, then require the
+    // result to still be inside the package directory. The allowlist is what
+    // makes this unreachable; the check is what makes it not depend on the
+    // allowlist staying right.
+    const abs = resolve(dir, file);
+    if (abs !== join(dir, file) || !abs.startsWith(resolve(dir) + sep)) continue;
+    try {
+      const text = readFileSync(abs, "utf8");
+      parts.push(`--- ${key} ---\n${text.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, "").trim()}`);
+    } catch {
+      // A link to a file that is not there is the link checker's finding, not this one.
+    }
+  }
+  return parts.length ? parts.join("\n\n") : null;
+}
+
+/**
  * Review H2 section bodies in a markdown file.
  * @param {string} filename relative filename (e.g., position_female.md)
  * @param {string} text content of the markdown file
@@ -587,8 +727,22 @@ export async function reviewMarkdown(
         }
         activeRubric = buildVoiceRubric(voice);
       }
-      const f = robust
-        ? await reviewRobust(body, activeRubric, judge, robust)
+      // An anchored rubric asserts a fact about a retrieved source, so it must be
+      // handed one. For compound-specificity the source is the atoms the passage
+      // itself links; a passage that links none has nothing to be judged against,
+      // so it is skipped rather than run on the model's memory of the atom.
+      let source = null;
+      if (activeRubric.anchored) {
+        source = resolveLinkedSource(body, repoRoot);
+        if (!source) continue;
+      }
+      // And it never takes the single-shot path: `review()` has no source
+      // parameter, so an anchored rubric run through it would self-certify. Force
+      // the wrapper that enforces the anchor, one sample where the house declared
+      // no thresholds of its own.
+      const opts = activeRubric.anchored ? { n: 1, k: 1, ...(robust ?? {}), source } : robust;
+      const f = opts
+        ? await reviewRobust(body, activeRubric, judge, opts)
         : await review(body, activeRubric, judge);
       if (f.verdict === "flag") {
         flags.push({ where: `${filename}#${title}`, current: body, ...f });
