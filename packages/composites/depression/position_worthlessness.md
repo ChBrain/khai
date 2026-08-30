@@ -21,15 +21,15 @@ Worthlessness. The cognitive triad's self-judgment lock-in where the inability t
 
 ## Has
 
-An inescapable conviction of inherent defectiveness. The persona does not just have [low self-esteem](../../engines/self-esteem/position_low_esteem.md); they view themselves as a burden, irredeemable, and fundamentally broken.
+An inescapable conviction of inherent defectiveness. The persona does not just have [low self-esteem](@chbrain/khai-engine-self-esteem/position_low_esteem.md); they view themselves as a burden, irredeemable, and fundamentally broken.
 
 ## Orders
 
-The cognitive distortion of past and present. [Rumination](../../engines/rumination/process_brooding.md) operates exclusively to mine the persona's history for evidence of failure, guilt, and inadequacy, filtering out any contradictory evidence of success or value.
+The cognitive distortion of past and present. [Rumination](@chbrain/khai-engine-rumination/process_brooding.md) operates exclusively to mine the persona's history for evidence of failure, guilt, and inadequacy, filtering out any contradictory evidence of success or value.
 
 ## Loses
 
-The distinction between a temporary state of [sorrow](../../engines/sadness/process_sorrow.md) and a permanent identity. The state of being depressed is internalized as a character flaw rather than an illness.
+The distinction between a temporary state of [sorrow](@chbrain/khai-engine-sadness/process_sorrow.md) and a permanent identity. The state of being depressed is internalized as a character flaw rather than an illness.
 
 ## Drives
 

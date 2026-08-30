@@ -21,11 +21,11 @@ Melancholia. The biological and evolutionary lock-in where severe psychomotor re
 
 ## Has
 
-A complete freezing of the biological system. The [consummatory anhedonia](../../engines/anhedonia/position_consummatory.md) is absolute; even events that usually break through the mood fail to register.
+A complete freezing of the biological system. The [consummatory anhedonia](@chbrain/khai-engine-anhedonia/position_consummatory.md) is absolute; even events that usually break through the mood fail to register.
 
 ## Orders
 
-The shutdown of baseline somatic regulation. The [fatigue](../../engines/body/process_fatigue.md) is paralyzing, often accompanied by severe disruptions in [hunger](../../engines/body/process_hunger.md) (such as profound weight loss) and sleep architecture (such as early morning awakening, where the body powers up but the mind refuses to engage).
+The shutdown of baseline somatic regulation. The [fatigue](@chbrain/khai-engine-body/process_fatigue.md) is paralyzing, often accompanied by severe disruptions in [hunger](@chbrain/khai-engine-body/process_hunger.md) (such as profound weight loss) and sleep architecture (such as early morning awakening, where the body powers up but the mind refuses to engage).
 
 ## Loses
 
