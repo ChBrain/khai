@@ -12,6 +12,13 @@ short, executable contract every agent (Claude, Copilot, any model) follows._
 > mechanics live there; coding rules live here. The two are separate layers,
 > and the order matters: management voice first, coding second.
 
+> **Case law next.** [conduct.md](packages/khai-arch/architecture/conduct.md)
+> ships with `@chbrain/khai-arch` (a house reads it at
+> `node_modules/@chbrain/khai-arch/architecture/conduct.md`) and is the shared
+> case law for working in any khai house: how a model reads a rule, measures a
+> claim, trusts a check. This file stays the short, executable contract; it
+> does not restate that reasoning.
+
 ## The one rule that removes the guesswork
 
 **Do not choose a branch by hand.** Make your edits in the working tree first,
@@ -110,9 +117,9 @@ model and a reviewer could pass them by:
   sitting in a package that claims to read over engines, and the reviewer is the
   only thing that catches it.
 
-Where a rule here is enforced, it says by what. Where it is not, it is the
-reviewer's, and that difference is the point: a rule that reads as computed and
-is not stops the model AND the reviewer from looking.
+Where a rule here is enforced, it says by what; where it is not, it is the
+reviewer's (conduct.md law 5 says why that difference is the whole value of the
+sentence).
 
 ## Lanes at a glance (the full table is in docs/BRANCHING.md)
 
@@ -155,9 +162,8 @@ plain-MIT package declaration is a finding, not a style choice.
 
 ## Why this file is imperative
 
-Different models have different judgement. A generic "consider the branch
-scope" prose note is read differently by a strong and a weak model — the weak
-one improvises (e.g. picks `docs/` for an engine file and claims the gate
-passed). So the lane is **computed, not judged**: run `khai-guard branch`, obey
-the hook, let the required CI check be the wall. Follow the commands above
-literally and the scope takes care of itself.
+The lane is **computed, not judged**: run `khai-guard branch`, obey the hook,
+let the required CI check be the wall. Follow the commands above literally and
+the scope takes care of itself. The reasoning (why a generic prose note fails
+a weak model and a computed gate does not) is conduct.md law 5's closing
+paragraph and law 8; this file states the rule, not the argument for it.
