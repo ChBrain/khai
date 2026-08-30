@@ -33,6 +33,7 @@ import {
 } from "./overlap.mjs";
 import { checkManagement } from "./management.mjs";
 import { collectInstructions, renderInstructions } from "./instructions.mjs";
+import { loadGates, runGates, renderGates, gateLine } from "./gates.mjs";
 import { resolve, relative } from "node:path";
 import { existsSync, readdirSync, writeFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
@@ -341,7 +342,43 @@ async function instructionsMode(args) {
   else console.log(renderInstructions(records));
 }
 
+// `gates [dir] [--content-root <path>] [--quiet]` runs every wall the house
+// declares in the `gates` key of its khai-guard.config.json, in one pass with one
+// exit code and a block built to be pasted into a pull request. The manifest is
+// the house's, so the kit ships no list of walls and no house hand-maintains a
+// runner: two implementations of one rule is two things to get wrong.
+//
+// `--content-root` is where this house keeps its content, repeatable, and it is
+// what the visibility check reads: the default is this workspace's `packages/`,
+// and a house that keeps its productions elsewhere (khai-misfits keeps them in
+// `misfits/`) must say so or the check goes green on it forever.
+function gatesMode(args) {
+  const dirArg = args[1] && !args[1].startsWith("--") ? args[1] : ".";
+  const root = resolve(dirArg);
+  if (!existsSync(root)) {
+    console.error(`khai-tests gates: path not found: ${root}`);
+    process.exit(2);
+  }
+  const contentRoots = args.reduce((acc, a, i) => {
+    if (a === "--content-root" && args[i + 1] && !args[i + 1].startsWith("--"))
+      acc.push(args[i + 1]);
+    return acc;
+  }, []);
+  // Progress, not a second summary: a pass runs for minutes and a reader with no
+  // line until the end cannot tell a slow wall from a hung one. The line is the
+  // module's own, so the ticker and the block can never say different things.
+  const quiet = args.includes("--quiet");
+  const run = runGates(root, {
+    gates: loadGates(root),
+    ...(contentRoots.length ? { contentRoots } : {}),
+    onRecord: quiet ? undefined : (r) => console.log(gateLine(r)),
+  });
+  console.log(`\n${renderGates(run.results)}`);
+  process.exit(run.ok ? 0 : 1);
+}
+
 if (argv[0] === "instructions") await instructionsMode(argv);
+else if (argv[0] === "gates") gatesMode(argv);
 else if (argv[0] === "pack") await packMode(argv);
 else if (argv[0] === "registry") await registryMode(argv);
 else if (argv[0] === "science") await scienceMode(argv);

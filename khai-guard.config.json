@@ -13,6 +13,41 @@
     ".husky/**",
     "packages/*/*/tests/**"
   ],
+  "gates": [
+    {
+      "name": "workspace",
+      "command": "node -e \"process.exit(require('node:fs').existsSync('node_modules/@chbrain') ? 0 : 1)\"",
+      "fix": "npm install -- without it the science and conformance passes scan nothing"
+    },
+    {
+      "name": "format",
+      "command": "npx prettier --check .",
+      "fix": "npx prettier --write ."
+    },
+    {
+      "name": "science index",
+      "command": "npx khai-tests science verify",
+      "fix": "npx khai-tests science build"
+    },
+    {
+      "name": "member scope",
+      "command": "npx khai-guard member-check",
+      "count": "\\d+ engine\\(s\\), \\d+ member\\(s\\)"
+    },
+    {
+      "name": "license",
+      "command": "npx khai-guard license-check"
+    },
+    {
+      "name": "lockfile",
+      "command": "npx khai-guard lockfile-check"
+    },
+    {
+      "name": "suite",
+      "command": "npx vitest run",
+      "count": "Tests\\s+([^\\n(]+)"
+    }
+  ],
   "bumpScope": {
     "freeLevel": "patch",
     "labels": {
