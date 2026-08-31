@@ -17,11 +17,24 @@ describe("profiles", () => {
       expect(venues).toHaveProperty("email");
     });
 
-    it("declares interactive venues with a source", () => {
-      expect(venues.perplexity_space.kind).toBe("interactive");
-      expect(venues.perplexity_space.source).toBe("upload");
-      expect(venues.claude_project.kind).toBe("interactive");
-      expect(venues.claude_project.source).toBe("repo");
+    it("declares every interactive venue as upload-oriented", () => {
+      // Every host khai-tour targets is uploaded to, so the Roadie always
+      // bundles. claude_project used to declare `source: "repo"`, which was
+      // wrong and which nothing caught, because the field reaches one CLI
+      // display line and no branch.
+      for (const slug of ["perplexity_space", "claude_project", "gemini_gem"]) {
+        expect(venues[slug].kind, slug).toBe("interactive");
+        expect(venues[slug].source, slug).toBe("upload");
+      }
+    });
+
+    it("marks repo-attachable hosts without changing what the Roadie builds", () => {
+      // A host the human can additionally point at a repository. It is a
+      // separate field precisely so it cannot be mistaken for a reason to skip
+      // the bundle.
+      expect(venues.perplexity_space.repoAttachable).toBe(true);
+      expect(venues.gemini_gem.repoAttachable).toBe(true);
+      expect(venues.claude_project.repoAttachable).toBeUndefined();
     });
 
     it("treats the Gemini Gem as interactive with a hard 10-file limit", () => {
