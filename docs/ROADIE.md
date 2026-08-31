@@ -310,13 +310,17 @@ First cell to prove end-to-end: **Prose × Gemini Gem.**
   new skills to define alongside `khai-playwright` / `khai-roadie`. _TBD._
 - **Deploy/sync mechanism.** How the Roadie version-stamps a deployed engine and
   re-materializes it into `khai-plays-*` when the npm package updates. _TBD._
-- **Two tracks, not one (to integrate into the body).** `CLAUDE.md` / `GEMINI.md`
-  are **development steering** -- the agent contract for working on the repo and
-  houses -- a separate track from the runtime play instructions (§3-6). Both
-  follow `Standard + Adaption`: the **dev-steering** track is a shared dev
-  contract with per-tool adaptions (`CLAUDE.md`, `GEMINI.md`, `AGENTS.md`),
-  deployed by the Roadie's **Stage** job; the **play-instructions** track is the
-  Prose Standard with per-Venue adaptions, deployed by the **Tour** job.
+- **Two tracks, not one (to integrate into the body).** `AGENTS.md` and the
+  per-tool files beside it are **development steering** -- the agent contract for
+  working on the repo and houses -- a separate track from the runtime play
+  instructions (§3-6). Both follow `Standard + Adaption`: the **dev-steering**
+  track is `AGENTS.md` as the shared, vendor-agnostic contract with per-tool
+  adaptions (`CLAUDE.md`, `GEMINI.md`, `PERPLEXITY.md`,
+  `.github/copilot-instructions.md`), deployed by the Roadie's **Stage** job; the
+  **play-instructions** track is the Prose Standard with per-Venue adaptions,
+  deployed by the **Tour** job. This note named the pattern before it was built
+  and put `AGENTS.md` among the adaptions; it is the Standard, not one of them,
+  and the whole point is that no adaption points at another.
 - **House rules layer.** Universal runtime-output rules (no em-dash / en-dash /
   dash in prose) sit above both tracks; the Roadie injects them into deployed
   `System`, never duplicated per model. (Distinct from the authored-file `--`

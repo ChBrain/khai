@@ -172,7 +172,7 @@ khai-native components only. Everything else is a dependency.
 ## What this document is not
 
 It is not a branching guide (see `docs/BRANCHING.md`).
-It is not agent instructions (see `CLAUDE.md`).
+It is not agent instructions (see `AGENTS.md`).
 It is not a description of what the packages contain (see `khai-arch`).
 
 It is the map of the system that ships khai — a peer concern to the content
