@@ -1183,6 +1183,30 @@ export function checkDrift(
   return { ok: behind.length === 0 && unreachable.length === 0, rows, behind, unreachable };
 }
 
+/**
+ * The lines of a failed `npm ci` that name what is out of sync, lifted from its
+ * stderr. npm reports the mismatch as a header sentence plus one `Missing:` or
+ * `Invalid:` line per offender, and buries both in boilerplate; those lines are
+ * the whole diagnosis and the rest is noise.
+ *
+ * The bin runs npm; this decides what the output means, so the reading is
+ * testable without a subprocess.
+ *
+ * @param {string} stderr  the failed command's stderr
+ * @returns {string[]} the diagnostic lines, npm's `npm error ` prefix stripped
+ */
+export function lockfileMismatch(stderr = "") {
+  if (typeof stderr !== "string") return [];
+  const lines = [];
+  for (const raw of stderr.split(/\r?\n/)) {
+    const line = raw.replace(/^npm (error|ERR!)\s*/, "").trim();
+    if (!line) continue;
+    if (/^(Missing|Invalid):/.test(line) || /can only install packages when/.test(line))
+      lines.push(line);
+  }
+  return lines;
+}
+
 export function checkLockfiles(paths = [], config = DEFAULT_CONFIG) {
   const policy = config.lockfilePolicy;
   if (!policy) return { ok: true, offenders: [] };

@@ -56,9 +56,17 @@ export const VISIBILITY = "visibility";
 /** What the runner did not look at, whoever calls it. Unconditional rather than
  * a caller's option: a caller that forgets it loses exactly the sentence that
  * was missing from the log that reported 10/10. */
+// Worded to stay true whichever walls a house declares. It used to say a
+// lockfile or manifest mismatch was invisible here, and for a house whose
+// lockfile wall now asks `npm ci --dry-run` that is no longer so -- but a house
+// that declares no such wall is still exposed, so the sentence names the gap
+// conditionally rather than promising either way. What no declared wall can see
+// is what only a real install decides, and that part is unconditional.
 const STANDING_SKIP =
-  "the pass used the installed node_modules and not a fresh `npm ci`, " +
-  "so a lockfile or manifest mismatch is invisible to it";
+  "the pass used the installed node_modules and not a fresh `npm ci`, so whatever " +
+  "only a real install decides (integrity, install scripts, platform-specific " +
+  "packages) is invisible to it, as is a lockfile that does not match the " +
+  "manifests unless a declared wall checks for one";
 
 /** How many lines of a failing wall's output reach the block, and how wide. A
  * whole suite log is not a paste block; the first few lines are the reader's
