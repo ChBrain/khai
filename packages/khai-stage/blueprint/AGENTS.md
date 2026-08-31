@@ -7,13 +7,35 @@ khai-stage. The plays are written separately, in khai-playwright mode.
 every agent that works on this repository, named here or not. If you were given
 no other file, this is your file: read it and follow it.
 
-A vendor file exists for exactly one reason, and it is mechanical rather than a
-matter of taste: **some tools auto-load a fixed filename.** `CLAUDE.md`,
-`GEMINI.md` and `.github/copilot-instructions.md` are here because those tools
-load them without being asked. Each points at this file and carries nothing but
-its own tool's quirks, and none points at another: a contract living in one
-vendor's file makes that vendor its owner, and these rules belong to the house.
-An agent whose tool loads no such file needs no file added for it. Point it here.
+A vendor file carries one tool's quirks and closes by sending you here. None
+points at another: a contract living in one vendor's file makes that vendor its
+owner, and these rules belong to the house. And none outranks this one, which is
+why each says so in its own text: where a vendor file and this one appear to
+disagree, this one wins and the vendor file is wrong.
+
+**A vendor file earns its place by being the one home for that tool's quirks**,
+not by being auto-loaded. One file per provider or tool you actually work with,
+so a quirk has exactly one place to land and never ends up in another tool's
+file. That justification holds whether or not anything discovers the file on its
+own, which is why an empty one is worth keeping: it is the address a future
+quirk already has.
+
+**Discovery is a separate question, and do not assume it.** `CLAUDE.md`, `GEMINI.md`
+and `.github/copilot-instructions.md` are loaded by their tools as a documented
+behaviour. Everything else, `PERPLEXITY.md` included, is a supplementary
+convention that is reached because `README.md` links it or because a human
+opened it. That is why the README carries the pointer: it is the one path that
+does not depend on any tool's discovery rules.
+
+**A vendor file is added on documented behaviour, never on a model's account of
+itself.** Asked directly, one model described a root-scanning heuristic that
+would find a file named after it, then retracted it: no such convention is
+documented. The retraction cost nothing because it arrived early. A self-report
+is a hypothesis, and this house does not encode hypotheses as mechanism.
+
+You may see other vendors' files while working here. They hold one other tool's
+quirks each: a rule in one of them, a branch-naming habit say, is about that
+tool and not about this house.
 
 **Two axes, and the same vendor sits on both.** An agent pointed at this
 repository _works the house_: it branches, writes, runs the guard, opens a pull
