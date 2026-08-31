@@ -25,7 +25,7 @@ stem) on its own lane and PR. Update **Status** as items land.
 **A distinct stem beats a homonym whitelist** (maintainer's ruling, 2026-08-24).
 When a candidate's obvious stem is already claimed, the resolution is a
 _different name_ — not an entry in `memberPolicy.homonyms`. The whitelist stays
-what `CLAUDE.md` rule 7 makes it: the maintainer's call, for the case where the
+what `AGENTS.md` rule 7 makes it: the maintainer's call, for the case where the
 same word genuinely carries two sciences and neither side can be renamed without
 losing the field's own term. It is the last resort, not the first offer, and no
 **open** row below proposes one — the rows that used to offer the choice now
@@ -1702,7 +1702,7 @@ do where both have a term of their own.
 
 ### Mechanics, and why this is a backlog rather than a PR
 
-- **A rename is breaking.** `CLAUDE.md` rule 7: composites hard-link member
+- **A rename is breaking.** `AGENTS.md` rule 7: composites hard-link member
   files by name, so renaming one is at least `bump:minor` -- the maintainer's
   label, never a silent patch.
 - **One engine lane per rename.** `engine/<name>/<topic>` owns

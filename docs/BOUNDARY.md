@@ -1,7 +1,7 @@
 <!-- The boundary ruling (order 4 of "Computed, Harnessed, Instructed"). What is -->
 <!-- global and what is local, decided by where a thing can live without -->
 <!-- drifting, not by taste. Governed under the governance lane, like BRANCHING.md -->
-<!-- and CLAUDE.md, because a boundary ruling is policy: this doc obeys the rule it -->
+<!-- and AGENTS.md, because a boundary ruling is policy: this doc obeys the rule it -->
 <!-- states. -->
 
 # The Boundary: Global and Local
