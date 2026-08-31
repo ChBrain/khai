@@ -1,6 +1,6 @@
 $schema: "http://json-schema.org/draft-07/schema#"
 title: "khai spec frontmatter"
-description: "Frontmatter schema for the typed spec files in this directory. A companion file (one that opens with no frontmatter fence, e.g. model.md, reference.md, conduct.md) is exempt; tests/helpers/classify.ts is what decides, so this line carries no count to go stale."
+description: "Frontmatter schema for the typed spec files in this directory. A companion file (one that opens with no frontmatter fence, e.g. model.md, reference.md) is exempt; tests/helpers/classify.ts is what decides, so this line carries no count to go stale."
 type: object
 required:
   - id
