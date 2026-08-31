@@ -137,6 +137,9 @@ was not asked about has no verdict; and the instruction collector in
 as an error rather than reporting "no law exported", which is the same sentence
 as the truth.
 
+All of that is a judgement about one tree. When the check ships to houses its
+author has not read, the same discipline has to reach each of them, which is law 11.
+
 ## 4. Local green is not CI green, and a runner declares what it does not run
 
 The cultures house's local runner reported 10 of 10 while CI failed all ten jobs
@@ -285,6 +288,39 @@ repeats last round's mistakes has not improved, however few of them there are.
 and whether your own claim was true before defending it.** Almost every case
 above is one where a model was confident and one command would have settled it.
 
+## 11. A kit wall is measured against every house it will judge, before it ships
+
+`@chbrain/khai-tests` is one kit run by every khai house, so a check added to it
+is a claim about corpora its author has not read. khai-tests 0.4.0 shipped
+`originRowErrors`: an Origin row whose Source cell names no scholar used to
+vanish from the science index, taking its citation with it, so the wall made such
+a row declare itself in `scholarPolicy.nonAuthorSources`. Measured against khai,
+whose tree holds six such rows and lists them as strings, it was right. Measured
+against khai-misfits _after_ release it raised **499 errors across 352 distinct
+Source values in 268 misfits**, and none of them were defects: 120 were
+`Practitioner`, the kit's own anticipated case, and the tail was that house's
+standing idiom, a Source that deliberately names no person ("Boundary of the
+effect", "The measurement dispute"). Declaring 352 strings is exactly the "closed
+list of the `NON_AUTHOR` kind ... a list to maintain" that house's own ruling
+forbids, so adoption stopped until 0.4.1 let an entry be a pattern and one
+declared rule took the house from 499 to 58. That measurement costs an afternoon
+and it was available before 0.4.0 was cut.
+
+The other direction is the near miss, and it is what doing this looks like when
+it works. The kit's gates runner defaults its content root to `packages/`, and
+khai-misfits keeps its productions in `misfits/`: an empty `packages/` means the
+visibility check reports clean on a tree it cannot see, and a packages-only
+runner would have gone green on that house forever. It was answered at design
+time with `--content-root`, because the house was measured before the runner
+shipped rather than after.
+
+**A wall that is green on a house it cannot see, or red on a house's deliberate
+idiom, is not yet a wall: it is a guess about somebody else's corpus.** Running
+it over every real house belongs to building the check, not to adopting it. This
+is law 2 pointed at other people's trees, and it is law 3's other half: green on
+nothing is one failure and red on everything is the other, and neither is visible
+from the house the check was written in.
+
 ---
 
 ## Credits
@@ -294,7 +330,9 @@ the khai monorepo, whose twelve cases are the source of laws 1 to 6 in part, all
 of section 7, both of section 8, and section 10. The second is the khai-cultures
 house's "Working with a second LLM", its reading of three rounds between Claude
 Code and the Gemini CLI, which is the source of the rest of laws 1 to 6 and all
-of section 9. Every number in this file was measured by the house it is
+of section 9. Section 11 came later, from the khai monorepo's khai-tests 0.4.x
+release cycle, also August 2026, and its numbers were measured over the
+khai-misfits corpus. Every number in this file was measured by the house it is
 attributed to.
 
 Content under CC-BY-NC-SA-4.0 (see `LICENSE`); the code this file describes is
