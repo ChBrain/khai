@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-depression",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the depression domain: the synergistic trap of a major depressive episode where anhedonia strips away restorative rewards, fatigue and psychomotor shutdown (melancholia) remove the energy to act, learned helplessness provides the cognitive evidence that action is futile, and worthlessness turns the resulting passivity into a permanent moral judgment, rendering the state inescapable.",
   "type": "module",
   "main": "./index.mjs",
@@ -23,7 +23,7 @@
     "*.md"
   ],
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-arch": "^0.1.26",
     "@chbrain/khai-engine-anhedonia": "^0.1.0",
     "@chbrain/khai-engine-body": "^0.1.1",
     "@chbrain/khai-engine-rumination": "^0.1.1",

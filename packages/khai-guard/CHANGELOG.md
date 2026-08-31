@@ -1,5 +1,13 @@
 # @chbrain/khai-guard
 
+## 0.3.1
+
+### Patch Changes
+
+- 51e7bcd: `exemptionClaim` no longer folds a recorded `owner: null` into an absent one.
+  The refusal was right either way; the guidance was not — an author who had
+  recorded that nobody qualifies was told to record an owner.
+
 ## 0.3.0
 
 ### Minor Changes
