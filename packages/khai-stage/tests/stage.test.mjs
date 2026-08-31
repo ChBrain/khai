@@ -36,6 +36,29 @@ describe("khai-stage: source becomes a slug", () => {
 });
 
 describe("khai-stage: the stamped house", () => {
+  // The agent surface has a shape, and until now only its file names were
+  // asserted. A vendor file that pointed at another vendor file would put one
+  // tool in charge of a contract belonging to the house, which is the exact
+  // defect this layout was introduced to remove -- and it had already happened
+  // once, a `claude/*` branch rule sitting in the Copilot file. Presence is not
+  // the property worth holding; the direction of the pointers is.
+  it("points every vendor file at AGENTS.md and none at another vendor", () => {
+    const vendors = ["CLAUDE.md", "GEMINI.md", "PERPLEXITY.md", ".github/copilot-instructions.md"];
+    for (const f of vendors) {
+      const text = readFileSync(join(dir, f), "utf8");
+      expect(text, `${f} does not point at AGENTS.md`).toMatch(/\]\((\.\.\/)?AGENTS\.md\)/);
+      for (const other of vendors.filter((v) => v !== f && v.endsWith(".md"))) {
+        const base = other.split("/").pop();
+        expect(text, `${f} points at ${base}, another vendor's file`).not.toMatch(
+          new RegExp(`\\]\\((\\.\\./)?${base.replace(".", "\\.")}\\)`),
+        );
+      }
+    }
+    // README is the one route in that does not depend on a tool finding a file
+    // by name, so it carries the pointer too.
+    expect(readFileSync(join(dir, "README.md"), "utf8")).toMatch(/\]\(AGENTS\.md\)/);
+  });
+
   it("lays the invariant files, dotfiles restored", () => {
     for (const f of [
       "package.json",
@@ -54,7 +77,9 @@ describe("khai-stage: the stamped house", () => {
       ".husky/pre-push",
       ".changeset/config.json",
       "SECURITY.md",
+      "AGENTS.md",
       "CLAUDE.md",
+      "PERPLEXITY.md",
       "README.md",
       "GEMINI.md",
       "management/position_choregos.md",

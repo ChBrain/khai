@@ -4,9 +4,10 @@ Every repo using khai is a house of khai. A house keeps three layers of
 instruction and they are not interchangeable. Its **voice layer** (its own
 `management/` directory) is the house's own by design: who speaks, through which
 Persona, how the company collaborates. This document says nothing about it and
-must not be read as touching it. Its **CLAUDE.md** stays what it is, the short
-executable contract a model obeys literally: the lanes, the gates, the house's
-own quirks. **This document is the shared case law those contracts point at.** It
+must not be read as touching it. Its **AGENTS.md** stays what it is, the short
+executable contract a model obeys literally: the lanes and the gates, vendor
+agnostic, with each tool's own quirks in that tool's file beside it.
+**This document is the shared case law those contracts point at.** It
 ships with `@chbrain/khai-stage`, so it reaches every house by dependency, read
 at `node_modules/@chbrain/khai-stage/conduct.md`, and there is one copy of it.
 
@@ -194,8 +195,9 @@ the pull request description.** A decision that lives in a PR body gets re-argue
 by the next person. A ruling goes in the document that owns it; a lesson goes
 next to the code it is about.
 
-This document is that one source for conduct. A house's `CLAUDE.md` holds its
-lanes, its gates and its own quirks, and points here for the rest.
+This document is that one source for conduct. A house's `AGENTS.md` holds its
+lanes and its gates and points here for the rest; a tool's own quirks sit in that
+tool's file, which points at `AGENTS.md` and never at another tool's.
 
 ---
 
@@ -255,7 +257,7 @@ pull request releasing); and a releasing changeset for a package never yet
 published is rejected, because the version in the manifest is the initial
 version and a bump would step over it. Houses that
 version by a content count add a fourth rule on top of these, and their own
-`CLAUDE.md` states it.
+`AGENTS.md` states it.
 
 ## 9. The collaboration protocol
 

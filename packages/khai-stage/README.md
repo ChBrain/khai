@@ -48,7 +48,8 @@ generator never reaches the network.
 
 The house `package.json` (the four pillars), `.npmrc`, the dual license, the
 guard config (a `play/*` lane for productions, `governance/*` for the gates), CI
-and the pre-push hook, CODEOWNERS, SECURITY, `CLAUDE.md`, the `README.md` that
+and the pre-push hook, CODEOWNERS, SECURITY, `AGENTS.md` (the vendor-agnostic
+coding contract) with the per-tool files that point at it, the `README.md` that
 serves as the house's Estate identity, and a conformance test that is green on an
 empty house and validates plays as they land. No play is written; the house is
 handed back empty. The plays come later, in `khai-playwright` mode.
