@@ -6,8 +6,18 @@
 // A Venue has a `kind`:
 //   - `interactive`: an LLM deployment (a custom assistant configured with the
 //     composed instructions + knowledge). Its instructions are composed by
-//     `composeVenue(slug)`; `source` says how it takes its files — `repo`
-//     (synced from a connected repository) or `upload` (uploaded by hand).
+//     `composeVenue(slug)`; `source` says what the Roadie must PRODUCE — today
+//     every interactive host is upload-oriented, so the Roadie bundles and the
+//     human uploads.
+//
+//     `repoAttachable` is a separate fact and deliberately not the same field:
+//     some hosts can additionally be pointed at a repository, under their own
+//     limits, but that is the human's option in the host's UI and it does not
+//     change what khai-tour builds. `claude_project` carried `source: "repo"`
+//     and that was simply wrong: it made the bundle look optional for a host
+//     that is uploaded to like the others. Nothing branched on the field -- it
+//     reaches exactly one CLI display string -- so the error was invisible to
+//     every gate and survived until a human read it.
 //   - `publication`: a rendered artifact (PDF, HTML, ...). Its `constraints`,
 //     `defaultFormat` and `packaging` drive the renderer.
 // Interactive venue slugs carry the kind of host (`perplexity_space`,
@@ -17,16 +27,22 @@ export const venues = {
   // --- Interactive venues (LLM deployments) ---
   claude_project: {
     name: "Claude Project",
-    description: "Anthropic Claude Project (instructions + connected knowledge)",
-    kind: "interactive",
-    source: "repo",
-  },
-
-  perplexity_space: {
-    name: "Perplexity Space",
-    description: "Perplexity Space (instructions + uploaded knowledge)",
+    description: "Anthropic Claude Project (instructions + uploaded knowledge)",
     kind: "interactive",
     source: "upload",
+  },
+
+  // The host renamed Spaces to Projects. The display name follows, because a
+  // reader is looking at that word in Perplexity's own UI. The SLUG does not:
+  // it is the key of the adaption fragment in @chbrain/khai-engine-spine, so
+  // renaming it carries a package outside this one and belongs on a `rename/`
+  // lane, which is the maintainer's call rather than a drive-by.
+  perplexity_space: {
+    name: "Perplexity Project",
+    description: "Perplexity Project, formerly Space (instructions + uploaded knowledge)",
+    kind: "interactive",
+    source: "upload",
+    repoAttachable: true,
   },
 
   gemini_gem: {
@@ -34,6 +50,7 @@ export const venues = {
     description: "Google Gemini Gem (instructions + up to 10 uploaded knowledge files)",
     kind: "interactive",
     source: "upload",
+    repoAttachable: true,
     // A Gem accepts at most 10 knowledge files (hard limit). Consolidate the
     // collections to fit — one file per category (all personas, all positions,
     // ...); aggregateCollections already merges each collection into one file.
