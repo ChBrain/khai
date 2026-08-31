@@ -1207,6 +1207,29 @@ export function lockfileMismatch(stderr = "") {
   return lines;
 }
 
+/**
+ * What a history-reading check could not see. Every scope check here reads a DIFF
+ * RANGE, which is committed history, so anything sitting in the working tree is
+ * outside it. That is fine while the range is non-empty. It is not fine when the
+ * range resolves to zero paths, because the check then prints a confident pass
+ * over a tree it never looked at: staging 53 stray files and running the guard
+ * returns "0 changed path(s) all in lane", and committing the identical files
+ * returns a refusal.
+ *
+ * Returns null when there is genuinely nothing unseen, so a clean tree still
+ * reports a plain pass.
+ *
+ * @param {{ staged?: number, unstaged?: number, untracked?: number }} counts
+ * @returns {string|null} a human phrase naming what is outside the range
+ */
+export function unseenByRange({ staged = 0, unstaged = 0, untracked = 0 } = {}) {
+  const parts = [];
+  if (staged) parts.push(`${staged} staged`);
+  if (unstaged) parts.push(`${unstaged} unstaged`);
+  if (untracked) parts.push(`${untracked} untracked`);
+  return parts.length ? `${parts.join(", ")} path(s)` : null;
+}
+
 export function checkLockfiles(paths = [], config = DEFAULT_CONFIG) {
   const policy = config.lockfilePolicy;
   if (!policy) return { ok: true, offenders: [] };
