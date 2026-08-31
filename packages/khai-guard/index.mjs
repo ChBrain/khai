@@ -1470,7 +1470,7 @@ export function touchedExemptions(engines = [], changed = [], config = DEFAULT_C
   return notes;
 }
 
-// homonymGrowth: the ratchet's floor. CLAUDE.md rule 7 says a whitelist entry is
+// homonymGrowth: the ratchet's floor. AGENTS.md rule 7 says a whitelist entry is
 // the maintainer's call and never self-granted, and until now nothing computed
 // it — an agent could add one and every gate stayed green. The list may shrink
 // freely; an entry that appears without a `granted` note is refused, so adding
@@ -1485,7 +1485,7 @@ export function homonymGrowth(baseConfig = {}, headConfig = {}) {
       if (meta?.granted) continue;
       errors.push(
         `memberPolicy.${key} gained the entry "${stem}". The whitelist is the ` +
-          `last resort and the maintainer's call (CLAUDE.md rule 7), never ` +
+          `last resort and the maintainer's call (AGENTS.md rule 7), never ` +
           `self-granted: give the member a distinct stem instead, or record the ` +
           `grant as { "granted": "<why, and who decided>" } on the entry.`,
       );
