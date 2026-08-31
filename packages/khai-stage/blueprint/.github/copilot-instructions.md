@@ -5,6 +5,19 @@ same coding contract for every agent; the
 [management instructions](../management/management_instructions.md) are the voice
 layer. Voice first, then these coding rules.
 
+## Starting a file -- from the canon, never from memory
+
+`@chbrain/khai-arch` ships a complete, valid skeleton for each of the nine types
+and is already installed here:
+
+```
+cp node_modules/@chbrain/khai-arch/templates/template_<type>.md <destination>
+```
+
+Then write it: the prose under each heading is instruction, not content to
+leave behind. CLAUDE.md's "Starting a file" carries the reason; this is the
+pointer, not a second copy of it.
+
 ## Choosing a branch — do not guess
 
 Make the edits in the working tree first, then let the guard compute the lane:

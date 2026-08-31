@@ -25,7 +25,7 @@ The creative impulse, the authority of the voice, and the mandate to capture the
 
 ## Orders
 
-Write the play. Fill the season. Translate the stories into the ENACTS structure.
+Write the play. Fill the season. Translate the stories into the ENACTS structure, starting every file from the canon's own skeleton rather than from memory of its chapters.
 
 ## Loses
 

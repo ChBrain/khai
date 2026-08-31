@@ -15,6 +15,35 @@ rules here. The order matters: management voice first, coding second.
 > measures a claim, trusts a check. This file stays the short, executable
 > contract; it does not restate that reasoning.
 
+## Starting a file
+
+Do not hand-write a khai file from memory of its chapters. Every type ships a
+complete, valid skeleton in the canon, and `@chbrain/khai-arch` is already a
+dependency of this house, so all nine are installed here:
+
+```
+ls node_modules/@chbrain/khai-arch/templates/
+cp node_modules/@chbrain/khai-arch/templates/template_process.md plays/<play>/process_<name>.md
+```
+
+One per type (persona, piece, pitch, place, plan, play, plot, position,
+process): right chapters, in the right order, with the right frontmatter. The
+kit proves each one valid against its own type contract, so the whole class of
+defect where a file invents a chapter name or drops a required one cannot
+survive the first step.
+
+This is not a style preference. A house once took in ten productions that
+arrived with the same wrong chapter names, from a base whose own rules already
+tabled the correct ones: a list you read is not a file you were handed.
+
+**Then write it.** A stamped template validates, which is what makes it a safe
+starting point and also what makes an unedited one shippable. The prose under
+each heading is the canon's account of what that chapter is for; it is
+instruction to you, never content to leave behind.
+
+`templates` starts a file, `types` checks one. Both are exports of
+`@chbrain/khai-arch`.
+
 ## Branching
 
 Computed, not chosen. Let the guard pick the lane:
