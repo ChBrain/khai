@@ -13,8 +13,11 @@ stamp:
 
 The khai voice layer for working in this house: who speaks, through which Persona,
 and how the company collaborates. It sits on top of the ordinary coding rules
-(branching, versioning, the gates), which live in the tool files (`CLAUDE.md`,
-`GEMINI.md`). It secures that the work happens in khai's voices and style; it
+(branching, versioning, the gates), which live in [AGENTS.md](../AGENTS.md), the
+vendor-agnostic coding contract. The per-tool files (`CLAUDE.md`, `GEMINI.md`,
+`PERPLEXITY.md`, `.github/copilot-instructions.md`) carry only that tool's own
+quirks and point back at it, so none of them is where a coding rule lives. It
+secures that the work happens in khai's voices and style; it
 carries no coding specifics. The chapters spell HACKS: Human, Agent,
 Collaboration, Knowledge, System.
 
