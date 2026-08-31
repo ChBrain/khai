@@ -23,6 +23,7 @@ export {
   PLAYWRIGHT_INSTRUCTIONS,
 } from "./src/instructions.mjs";
 export { packedFiles, checkPacking, renderPacking, workspacePackages } from "./src/packing.mjs";
+export { loadGates, runGates, renderGates, gateLine, VISIBILITY } from "./src/gates.mjs";
 export {
   buildRegistry,
   verifyRegistry,
