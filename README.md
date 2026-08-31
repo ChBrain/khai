@@ -106,7 +106,7 @@ The full bill is generated from the registry:
 
 ## Working here
 
-[CLAUDE.md](CLAUDE.md) is the short, executable coding contract every agent
+[AGENTS.md](AGENTS.md) is the short, executable coding contract every agent
 follows; [docs/BRANCHING.md](docs/BRANCHING.md) holds the depth. The one rule
 that removes the guesswork: do not choose a branch by hand — edit first, then
 let the guard compute the lane (`npx khai-guard branch <topic>`).

@@ -131,7 +131,11 @@ describe.skipIf(DORMANT)("checkBranchScope", () => {
   });
 
   it("allows an unowned top-level file on a general lane", () => {
-    const r = checkBranchScope("chore/tidy", ["README.md"], cfg);
+    // A path no lane claims, rather than a real file: README.md used to stand
+    // here and then gained an owner (it carries the pointer into AGENTS.md), so
+    // this broke on a config change that was correct. The rule under test is
+    // "unowned rides a general lane", not "this particular file is unowned".
+    const r = checkBranchScope("chore/tidy", ["NOTES-scratch.md"], cfg);
     expect(r.ok).toBe(true);
   });
 

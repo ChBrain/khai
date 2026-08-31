@@ -1,14 +1,13 @@
 # GEMINI.md — khai monorepo
 
-**Voice first.** Operate under the khai **voice layer**,
-[management_instructions.md](packages/khai-plays/management/management_instructions.md):
-who speaks, through
-which Persona, and how the company collaborates.
+Gemini-specific notes for this repository.
 
-_Then_ follow the **coding contract** in [CLAUDE.md](CLAUDE.md) and its depth in
-[docs/BRANCHING.md](docs/BRANCHING.md): branching by the guard, the lanes, the
-hard rules, changesets, and the gates. They apply to every model, this one
-included; this file adds nothing Gemini-specific.
+None are recorded yet, and the file is here anyway: it is the one address a
+Gemini quirk has, so one can never land in another tool's file. An empty vendor
+file is an address, not an oversight.
 
-Voice and mechanics in the voice layer, coding rules in the contract; the two
-are separate, and the order matters: management voice first, coding second.
+---
+
+**Now read [AGENTS.md](AGENTS.md).** It is this repository's coding contract, it
+is vendor agnostic, and it applies to you in full: voice first, then the lanes,
+the hard rules, changesets and the gates.
