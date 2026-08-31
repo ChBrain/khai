@@ -1193,7 +1193,7 @@ function runMemberCheck() {
         "  A memberPolicy.homonyms whitelist is the last resort, not the first offer:\n" +
         "  for a word that genuinely carries two sciences and cannot be renamed on\n" +
         "  either side without losing the field's own term. It is the maintainer's\n" +
-        "  call, never self-granted. See CLAUDE.md rule 7.",
+        "  call, never self-granted. See AGENTS.md rule 7.",
     );
     process.exit(1);
   }
