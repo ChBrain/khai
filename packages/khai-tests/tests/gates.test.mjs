@@ -39,10 +39,10 @@ const here = dirname(fileURLToPath(import.meta.url));
 const SRC = join(here, "..", "src", "gates.mjs");
 const DORMANT = !existsSync(SRC);
 
-let loadGates, runGates, renderGates;
+let loadGates, runGates, renderGates, gateLine;
 beforeAll(async () => {
   if (DORMANT) return;
-  ({ loadGates, runGates, renderGates } = await import(SRC));
+  ({ loadGates, runGates, renderGates, gateLine } = await import(SRC));
 });
 
 let tmp;
@@ -59,6 +59,11 @@ const FAIL = 'node -e "process.exit(1)"';
  * a command was NOT run: an absent sentinel is the assertion. */
 const touch = (path) =>
   `node -e "require('fs').writeFileSync(process.argv[1], 'ran')" ${JSON.stringify(path)}`;
+
+/** A passing command whose stdout is a countable line, for pinning `count`: the
+ * runner's job is to relay the tool's own words, never to paraphrase or
+ * re-count them. */
+const COUNT_LINE = "node -e \"console.log('7 widgets, 3 gadgets')\"";
 
 /** A real git repository, because the visibility check reads git and a fake one
  * would pin the fake. Content lives under packages/ by default, which is the
@@ -316,5 +321,118 @@ describe.skipIf(DORMANT)("renderGates: the paste block", () => {
     const records = [{ name: "one", ok: true, detail: "counted" }];
     expect(renderGates(records)).toBe(renderGates(records));
     expect(records).toEqual([{ name: "one", ok: true, detail: "counted" }]);
+  });
+});
+
+describe.skipIf(DORMANT)("runGates: the count a wall prints", () => {
+  it("extracts the tool's own words, verbatim", () => {
+    // The point of `count` is that the reader copies the tool's own line
+    // rather than trusting a paraphrase. The fixture prints text no assertion
+    // here invents, and the detail must be that text exactly, not a re-count
+    // and not "7 widgets and 3 gadgets".
+    const root = repo();
+    const run = runGates(root, {
+      gates: [{ name: "inventory", command: COUNT_LINE, count: "\\d+ widgets, \\d+ gadgets" }],
+    });
+    expect(run.ok).toBe(true);
+    const wall = run.results.find((r) => r.name === "inventory");
+    expect(wall.detail).toBe("7 widgets, 3 gadgets");
+  });
+
+  it('says "count not found" rather than leaving a passing wall blank', () => {
+    // A declared count that matches nothing on a wall that PASSED is the exact
+    // case measure()'s own comment names: a blank detail here reads like a
+    // wall that never counted anything, and a count that silently stops being
+    // printed is how a blind gate hides. It must be said out loud, not left
+    // empty.
+    const root = repo();
+    const run = runGates(root, {
+      gates: [{ name: "inventory", command: PASS, count: "\\d+ zzz never printed" }],
+    });
+    expect(run.ok).toBe(true);
+    const wall = run.results.find((r) => r.name === "inventory");
+    expect(wall.detail).toBe("count not found in the output");
+  });
+});
+
+describe.skipIf(DORMANT)("runGates: onRecord is a ticker, not a second engine", () => {
+  it("fires once per record, in order, with the SAME objects that land in results", () => {
+    // Including the visibility record: onRecord is a view onto push(), not a
+    // second notion of what counts as a record. A ticker that only saw the
+    // declared walls would print a different count than the block underneath
+    // it.
+    const root = repo();
+    const seen = [];
+    const run = runGates(root, {
+      gates: [
+        { name: "one", command: PASS },
+        { name: "two", command: FAIL },
+      ],
+      onRecord: (r) => seen.push(r),
+    });
+    expect(seen.map((r) => r.name)).toEqual(["visibility", "one", "two"]);
+    expect(seen).toEqual(run.results);
+    // Not merely equal in shape: the SAME object. A ticker fed a copy could
+    // drift from the paste block silently; the runner hands one record to
+    // both.
+    seen.forEach((r, i) => expect(r).toBe(run.results[i]));
+  });
+
+  it("does not change the outcome: same ok, same results, with or without a callback", () => {
+    // A progress ticker earns its keep only if watching does not change what
+    // is being watched. Same gates, same tree, once with onRecord and once
+    // without.
+    const root = repo();
+    const gates = [
+      { name: "one", command: PASS },
+      { name: "two", command: FAIL, fix: "npx khai-tests science build" },
+    ];
+    const withCb = runGates(root, { gates, onRecord: () => {} });
+    const withoutCb = runGates(root, { gates });
+    expect(withCb.ok).toBe(withoutCb.ok);
+    expect(withCb.results).toEqual(withoutCb.results);
+  });
+});
+
+describe.skipIf(DORMANT)("gateLine: the one formatter for ticker and paste block", () => {
+  it("renderGates prints, for every record, exactly gateLine(record) as its line", () => {
+    // The invariant that matters: a live ticker calling gateLine directly and
+    // the paste block calling renderGates must never show two different
+    // sentences for the same record. renderGates does not re-format a record
+    // of its own; it composes its line by calling gateLine, so that line and
+    // gateLine(record) are the same string, not merely similar ones.
+    const records = [
+      { name: "one", ok: true, detail: "12 checked" },
+      { name: "two", ok: false, detail: "", error: "spawn ENOENT" },
+      { name: "three", ok: false, detail: "3 failing", fix: "npx thing --fix" },
+    ];
+    const lines = renderGates(records).split("\n");
+    for (const r of records) {
+      expect(lines).toContain(gateLine(r));
+    }
+  });
+
+  it("is pure and total: ok and not-ok, with and without detail, fix, or error", () => {
+    // No disk access and nothing it can throw on: gateLine reads only the
+    // fields on the record handed to it. Called twice on the same record it
+    // returns the same string, which is what lets a caller print progress
+    // without re-deriving anything.
+    const cases = [
+      { name: "a", ok: true, detail: "" },
+      { name: "a", ok: true, detail: "5 counted" },
+      { name: "a", ok: false, detail: "" },
+      { name: "a", ok: false, detail: "", error: "boom" },
+      { name: "a", ok: false, detail: "", fix: "run this" },
+    ];
+    for (const c of cases) {
+      const line = gateLine(c);
+      expect(typeof line).toBe("string");
+      expect(gateLine(c)).toBe(line);
+    }
+    // The literal shape, pinned rather than left to "some string or other": a
+    // leading verdict word, the name, and the detail only when there is one.
+    expect(gateLine({ name: "suite", ok: true, detail: "" })).toBe("ok    suite");
+    expect(gateLine({ name: "suite", ok: false, detail: "" })).toBe("FAIL  suite");
+    expect(gateLine({ name: "suite", ok: true, detail: "3 passed" })).toBe("ok    suite  3 passed");
   });
 });
