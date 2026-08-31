@@ -123,7 +123,7 @@ What remains:
 ## Build-out path
 
 Ordered instructions for the session that picks this up. Each step is one PR.
-Follow CLAUDE.md: run `npx khai-guard branch <topic>` to derive the branch —
+Follow AGENTS.md: run `npx khai-guard branch <topic>` to derive the branch —
 never type a branch name by hand. Every PR needs a changeset (empty if no
 package change ships). Never `--no-verify`. Never merge.
 
@@ -150,7 +150,7 @@ alongside the existing engine `khai.card` chapter path.
 Files to change: `packages/khai-review/index.mjs` (or the relevant source file
 — read the package first to find the entry point and input-extraction code).
 
-Source and tests are separate PRs (CLAUDE.md rule 3). This PR changes source
+Source and tests are separate PRs (AGENTS.md rule 3). This PR changes source
 only. Tests follow in a subsequent PR once source lands.
 
 > Changeset: patch bump on `@chbrain/khai-review`.
