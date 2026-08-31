@@ -12,9 +12,9 @@ short, executable contract every agent (Claude, Copilot, any model) follows._
 > mechanics live there; coding rules live here. The two are separate layers,
 > and the order matters: management voice first, coding second.
 
-> **Case law next.** [conduct.md](packages/khai-arch/architecture/conduct.md)
-> ships with `@chbrain/khai-arch` (a house reads it at
-> `node_modules/@chbrain/khai-arch/architecture/conduct.md`) and is the shared
+> **Case law next.** [conduct.md](packages/khai-stage/conduct.md)
+> ships with `@chbrain/khai-stage` (a house reads it at
+> `node_modules/@chbrain/khai-stage/conduct.md`) and is the shared
 > case law for working in any khai house: how a model reads a rule, measures a
 > claim, trusts a check. This file stays the short, executable contract; it
 > does not restate that reasoning.
