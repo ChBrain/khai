@@ -31,7 +31,7 @@ project, not a character anybody stages.
 
 [`management_instructions.md`](management_instructions.md) is the voice layer:
 who speaks, through which Persona, and how the company collaborates, in the HACKS
-chapters. [CLAUDE.md](../../../CLAUDE.md) names it first for exactly that reason
+chapters. [AGENTS.md](../../../AGENTS.md) names it first for exactly that reason
 -- voice before mechanics, and the coding contract second.
 
 This README says **why the layer exists and where its boundary is**. That file
