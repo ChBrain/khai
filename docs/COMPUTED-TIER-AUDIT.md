@@ -148,7 +148,7 @@ made concrete.**
   the build-drift gate reconciles the committed registry against source.
 - **stays-maintainer**: the general "the bump matches the change class" beyond the
   count. `bump-check` is deliberately advisory (it prints the banner, never blocks),
-  and CLAUDE.md hard rule 4 reserves minor and major to the maintainer's label and
+  and AGENTS.md hard rule 4 reserves minor and major to the maintainer's label and
   forbids self-escalation. So the residual here must _not_ be auto-gated; walling it
   would collide with the label policy. The computable part is already a wall; the
   rest is correctly a human decision.
