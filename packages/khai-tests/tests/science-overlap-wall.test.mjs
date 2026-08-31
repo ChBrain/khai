@@ -3,7 +3,7 @@
 // and this file is where the house holds the line, the same split the kit's own
 // doc comment describes -- "the kit computes, the house holds the line."
 //
-// The rule (see CLAUDE.md "One phenomenon, one engine"): the same scholar
+// The rule (see AGENTS.md "One phenomenon, one engine"): the same scholar
 // across different units is expected and is most of the index; the same
 // (scholar, work) carrying the spine of two units is a finding. Two exits keep
 // that honest, both declared in workPolicy in khai-guard.config.json:
@@ -20,7 +20,7 @@
 // triangulation duplicate three whole Bowen family-therapy works between them
 // (Family Evaluation, Family Therapy in Clinical Practice, Families and Family
 // Therapy) -- that is spine-sharing, not canon, and is left for the maintainer
-// to resolve per CLAUDE.md's own worked example. The rest of BASELINE is the
+// to resolve per AGENTS.md's own worked example. The rest of BASELINE is the
 // same shape at smaller scale: a narrow paper one unit owns and a sibling unit
 // leans on ("owned by X engine; used here"), which reads as reuse rather than
 // a field's root shared by genuinely different mechanisms, so it was left off
@@ -77,7 +77,7 @@ describe("science overlap wall: the live corpus against the declared canon", () 
       unbaselined,
       unbaselined.length
         ? `New shared work(s) outside BASELINE: ${unbaselined.join(", ")}. ` +
-            'Read CLAUDE.md\'s "One phenomenon, one engine" rule, then run ' +
+            'Read AGENTS.md\'s "One phenomenon, one engine" rule, then run ' +
             "`node packages/khai-tests/src/cli.mjs science overlap .` before " +
             "authoring. Either mark the shared row contrast, extend the " +
             "incumbent's own warrant rather than restage it, or ask the " +
@@ -108,7 +108,7 @@ describe("science overlap wall: the live corpus against the declared canon", () 
 // unit) pairs are currently bare, spread across ~25 different engine and
 // composite lanes, each of which owns its own REFERENCE(S).md Source cell and
 // so can only be fixed inside that lane's own PR (adding the given name --
-// e.g. "Tajfel & Turner" -> "Tajfel & John Turner" -- per CLAUDE.md's "cells
+// e.g. "Tajfel & Turner" -> "Tajfel & John Turner" -- per khai-misfits/CLAUDE.md's "cells
 // go first" rule), never from this governance branch. Ratcheted for the same
 // reason as the overlap wall above: a hard zero here would fail loudly for
 // pre-existing debt this PR cannot honestly resolve, while a silent skip
