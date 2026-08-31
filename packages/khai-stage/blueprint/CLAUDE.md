@@ -9,6 +9,12 @@ khai-stage. The plays are written separately, in khai-playwright mode.
 file is the **coding contract** for the house. Voice and mechanics there; coding
 rules here. The order matters: management voice first, coding second.
 
+> **Case law next.** [conduct.md](node_modules/@chbrain/khai-stage/conduct.md)
+> ships with `@chbrain/khai-stage`, the package that raised this house, and is
+> the shared case law for working in any khai house: how a model reads a rule,
+> measures a claim, trusts a check. This file stays the short, executable
+> contract; it does not restate that reasoning.
+
 ## Branching
 
 Computed, not chosen. Let the guard pick the lane:

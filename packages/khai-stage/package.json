@@ -23,6 +23,7 @@
   },
   "files": [
     "index.mjs",
+    "conduct.md",
     "bin/**",
     "blueprint/**"
   ],
