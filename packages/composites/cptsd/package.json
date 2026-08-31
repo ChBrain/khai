@@ -75,7 +75,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.23",
+    "@chbrain/khai-arch": "^0.1.26",
     "@chbrain/khai-engine-attachment": "^0.1.2",
     "@chbrain/khai-engine-ptsd": "^0.1.1",
     "@chbrain/khai-engine-regulation": "^0.1.1",
@@ -83,7 +83,7 @@
     "@chbrain/khai-engine-shame": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.3.1",
+    "@chbrain/khai-tests": "^0.4.0",
     "vitest": "^4.1.11"
   }
 }

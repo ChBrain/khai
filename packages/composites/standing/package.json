@@ -75,7 +75,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.22",
+    "@chbrain/khai-arch": "^0.1.26",
     "@chbrain/khai-engine-capital": "^0.1.2",
     "@chbrain/khai-engine-hierarchy": "^0.2.0",
     "@chbrain/khai-engine-power": "^0.2.0",
@@ -83,7 +83,7 @@
     "@chbrain/khai-engine-status-move": "^0.1.1"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.3.1",
+    "@chbrain/khai-tests": "^0.4.0",
     "vitest": "^4.1.11"
   }
 }

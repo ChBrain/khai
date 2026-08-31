@@ -70,12 +70,12 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.23",
+    "@chbrain/khai-arch": "^0.1.26",
     "@chbrain/khai-engine-coping": "^0.1.1",
     "@chbrain/khai-engine-stress": "^0.1.4"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.3.0",
+    "@chbrain/khai-tests": "^0.4.0",
     "vitest": "^4.1.11"
   }
 }

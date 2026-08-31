@@ -75,13 +75,13 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.25",
+    "@chbrain/khai-arch": "^0.1.26",
     "@chbrain/khai-engine-legibility": "^0.1.0",
     "@chbrain/khai-engine-social-time": "^0.1.0",
     "@chbrain/khai-engine-street-life": "^0.1.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.3.0",
+    "@chbrain/khai-tests": "^0.4.0",
     "vitest": "^4.1.11"
   }
 }

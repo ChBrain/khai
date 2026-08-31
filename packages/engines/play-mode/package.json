@@ -39,7 +39,7 @@
     }
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.3.0",
+    "@chbrain/khai-tests": "^0.4.0",
     "vitest": "^4.1.11"
   },
   "scripts": {
