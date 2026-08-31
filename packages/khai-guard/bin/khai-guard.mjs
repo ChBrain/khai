@@ -58,6 +58,7 @@ import {
   checkLicenses,
   checkDrift,
   checkLockfiles,
+  lockfileMismatch,
   checkMembers,
   deadExemptions,
   touchedExemptions,
@@ -964,29 +965,104 @@ function runLicenseCheck() {
 // pass on the exact violation this gate polices), then scans the tracked tree
 // (not a diff) like license-check and exits 1 on any nested lockfile. No
 // policy configured = nothing to check (exit 0).
+// Does the root lockfile still match the manifests? This is what CI's `npm ci`
+// asks at install, and until it was asked here nobody asked it before CI did.
+//
+// khai-cultures PR #496 added a workspace package and its dependencies without
+// regenerating package-lock.json. Locally every wall was green, because the pass
+// used the node_modules already on the machine. CI installs with `npm ci`, which
+// refuses a lockfile that does not match the manifests, so ALL TEN JOBS FAILED
+// in under twenty seconds, none of them on its own content, and no log contained
+// the word "lockfile". Total, fast, and mute about its cause.
+//
+// It landed in THIS command rather than beside it because the wall a house
+// declares is already called "lockfile", and it only hunted stray nested ones. A
+// reader saw `ok lockfile` in the paste block and concluded the lockfile was
+// fine. A wall whose name promises more than its check delivers is worse than an
+// absent one, and fixing the name here costs every house nothing: the gate they
+// already declare gets the check it already appeared to have.
+//
+// ONE DIRECTION, AND ONLY ONE. `npm ci` rejects a manifest dependency the lock
+// does not carry; it ACCEPTS an extra entry in the lock that no manifest names.
+// Both directions were run before this shipped, and the second passes. That is
+// the direction a real PR produces anyway (add a package, forget to reinstall),
+// but the limit is stated because a wall believed to cover both would be the
+// same false assurance this one is replacing.
+function checkLockfileSync() {
+  if (!existsSync("package-lock.json"))
+    return {
+      skipped:
+        "no package-lock.json at the repo root, so there are no manifests to compare it against",
+    };
+  try {
+    // --no-audit --no-fund keep the registry out of the path: verified to pass
+    // with --offline, so a flaky network cannot turn this wall red, and a wall
+    // that goes red for reasons of its own is a wall people learn to ignore.
+    execFileSync("npm", ["ci", "--dry-run", "--no-audit", "--no-fund"], {
+      encoding: "utf8",
+      stdio: ["ignore", "ignore", "pipe"],
+    });
+    return { ok: true };
+  } catch (err) {
+    return { ok: false, lines: lockfileMismatch(err.stderr ?? "") };
+  }
+}
+
 function runLockfileCheck() {
   chdirRepoToplevel("lockfile-check");
   const config = loadConfig();
-  if (!config.lockfilePolicy) {
-    console.log("KHAI-Guard lockfile-check: no lockfilePolicy configured; nothing to check.");
-    return;
+  const failed = [];
+
+  // 1. Stray nested lockfiles. Policy-driven, and unchanged.
+  let scanned = null;
+  if (config.lockfilePolicy) {
+    const tracked = listTrackedFiles("lockfile-check");
+    scanned = tracked.length;
+    const { ok, offenders } = checkLockfiles(tracked, config);
+    if (!ok) {
+      failed.push("stray lockfiles");
+      console.error("::error::KHAI-Guard lockfile-check: lockfile-scope violations:");
+      for (const o of offenders) console.error(`  ${o}`);
+      console.error("");
+      console.error(
+        "  This is an npm-workspaces monorepo: the root package-lock.json is the only\n" +
+          "  authoritative lock. A nested lockfile is a fossil that desyncs Dependabot and\n" +
+          "  CI. Remove it (workspaces install from the root lock); .gitignore keeps it out.",
+      );
+    }
   }
-  const tracked = listTrackedFiles("lockfile-check");
-  const { ok, offenders } = checkLockfiles(tracked, config);
-  if (!ok) {
-    console.error("::error::KHAI-Guard lockfile-check: lockfile-scope violations:");
-    for (const o of offenders) console.error(`  ${o}`);
-    console.error("");
+
+  // 2. Manifest <-> lock sync. Deliberately NOT behind lockfilePolicy: a house
+  // with a root lockfile has this exposure whether or not it has configured
+  // anything, so the check arrives with the version rather than with an edit
+  // every house would have to make for itself.
+  const sync = checkLockfileSync();
+  if (sync.skipped) {
+    // Skipped and said so. A non-npm house must not read silence as a pass.
+    console.log(`KHAI-Guard lockfile-check: sync check skipped -- ${sync.skipped}.`);
+  } else if (!sync.ok) {
+    failed.push("manifest/lock sync");
     console.error(
-      "  This is an npm-workspaces monorepo: the root package-lock.json is the only\n" +
-        "  authoritative lock. A nested lockfile is a fossil that desyncs Dependabot and\n" +
-        "  CI. Remove it (workspaces install from the root lock); .gitignore keeps it out.",
+      "::error::KHAI-Guard lockfile-check: package-lock.json does not match the manifests,",
     );
-    process.exit(1);
+    console.error("  so CI's `npm ci` fails at install and every gate after it fails with it.");
+    for (const line of sync.lines) console.error(`  ${line}`);
+    if (!sync.lines.length)
+      console.error("  (npm named no offender; run `npm ci --dry-run` to see its own report)");
+    console.error("");
+    console.error("  fix: npm install, and commit the lockfile.");
   }
-  console.log(
-    `KHAI-Guard lockfile-check OK: no stray lockfiles (${tracked.length} tracked path(s) scanned).`,
-  );
+
+  if (failed.length) process.exit(1);
+  const scope = scanned === null ? "no lockfilePolicy" : `${scanned} tracked path(s) scanned`;
+  // The summary says what actually ran. Claiming the lockfile matches after
+  // skipping the check that decides it is the same wall-that-oversells-itself
+  // this change exists to remove, and it would land one line below the skip
+  // notice that just said otherwise.
+  const verdict = sync.skipped
+    ? "sync not checked, see above"
+    : "package-lock.json matches the manifests";
+  console.log(`KHAI-Guard lockfile-check OK: no stray lockfiles (${scope}); ${verdict}.`);
 }
 
 // Subcommand: `khai-guard member-check` enforces the member-scope rule. Atoms
