@@ -116,12 +116,22 @@ export function originRowErrors(origin, nonAuthorSources = []) {
   // the effect", "The measurement dispute", "Whether any settlement reaches
   // it"), and that house's own ruling forbids answering a class of that kind
   // with "a closed list of the NON_AUTHOR kind ... a list to maintain".
-  // Measured over its corpus the list would be 350 distinct strings across 266
+  // Measured over its corpus the list would be 352 distinct strings across 268
   // misfits. One house's intentional class is a rule, not a list, so the rule is
   // what it declares -- the same shape `workPolicy.contrastMarkers` already
   // has, a declared vocabulary authored by the person who knows the class. The
   // wall is unchanged by it: a pattern exempts what it names and nothing else,
-  // so an undeclared "Nosology" still fails.
+  // so an undeclared "Cognitive-behavioral model" still fails.
+  //
+  // "Nosology" is NOT the thing this wall catches, and the case above is where
+  // the two halves part. It yields an uppercase token, so `surnames` keys it, the
+  // row is never dropped, and `originRowErrors` returns nothing for it with
+  // nothing declared: it is the row that SURVIVED, mis-filed among real people as
+  // though it were a surname, and no declaration is involved either way. Only the
+  // two that vanished are this wall's prey. Recorded in
+  // tests/non-author-sources.test.mjs, which asserts both directions, because a
+  // comment claiming a gate is stricter than it is sends the next reader to a
+  // test that contradicts it.
   for (const raw of origin.split("\n")) {
     const line = raw.trim();
     if (!line.startsWith("|")) continue; // not a table row
