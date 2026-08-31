@@ -58,6 +58,7 @@ import {
   checkLicenses,
   checkDrift,
   checkLockfiles,
+  unseenByRange,
   lockfileMismatch,
   checkMembers,
   deadExemptions,
@@ -547,9 +548,10 @@ function runGate() {
     process.exit(1);
   }
 
-  console.log(
-    `KHAI-Guard OK: ${source.length} source / ${test.length} test path(s) changed, no mix.`,
-  );
+  if (!reportEmptyRange("source-test-split", source.length + test.length))
+    console.log(
+      `KHAI-Guard OK: ${source.length} source / ${test.length} test path(s) changed, no mix.`,
+    );
   process.exit(0);
 }
 
@@ -712,10 +714,11 @@ function runBranchCheck() {
 
   if (ok) {
     const where = klass ? `${klass.lane} lane (${klass.layer})` : "lane";
-    console.log(
-      `KHAI-Guard branch-check OK: "${branch}" is in ${where}; ` +
-        `${changed.length} changed path(s) all in lane.`,
-    );
+    if (!reportEmptyRange("branch-check", changed.length))
+      console.log(
+        `KHAI-Guard branch-check OK: "${branch}" is in ${where}; ` +
+          `${changed.length} changed path(s) all in lane.`,
+      );
     process.exit(0);
   }
 
@@ -1006,6 +1009,44 @@ function checkLockfileSync() {
   } catch (err) {
     return { ok: false, lines: lockfileMismatch(err.stderr ?? "") };
   }
+}
+
+// The working tree, counted by state. `git status --porcelain` marks staged
+// changes in the first column and unstaged in the second, and "??" for untracked;
+// a path can be both, so it is counted once per column it appears in.
+function worktreeCounts() {
+  let out;
+  try {
+    out = git(["status", "--porcelain"]);
+  } catch {
+    return null; // not a repo, or git unavailable: say nothing rather than guess
+  }
+  let staged = 0,
+    unstaged = 0,
+    untracked = 0;
+  for (const line of out.split("\n")) {
+    if (!line.trim()) continue;
+    if (line.startsWith("??")) untracked++;
+    else {
+      if (line[0] && line[0] !== " ") staged++;
+      if (line[1] && line[1] !== " ") unstaged++;
+    }
+  }
+  return { staged, unstaged, untracked };
+}
+
+// A pass over an empty range is not a pass over the tree, and must not read like
+// one. Prints the honest line and returns true when it did.
+function reportEmptyRange(label, changedCount) {
+  if (changedCount !== 0) return false;
+  const unseen = unseenByRange(worktreeCounts() ?? {});
+  if (!unseen) return false;
+  console.log(
+    `KHAI-Guard ${label}: NOTHING CHECKED. The diff range holds 0 paths, but the ` +
+      `working tree has ${unseen} this check cannot see -- it reads committed ` +
+      `history, not the tree. Commit, then run it again.`,
+  );
+  return true;
 }
 
 function runLockfileCheck() {
