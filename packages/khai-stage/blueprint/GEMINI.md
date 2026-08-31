@@ -13,3 +13,7 @@ file adds nothing Gemini-specific.
 
 Voice and mechanics in the voice layer, coding rules in the contract; the order
 matters: management voice first, coding second.
+
+> **Case law.** [conduct.md](node_modules/@chbrain/khai-stage/conduct.md) is the
+> shared case law for working in any khai house; CLAUDE.md points at it, and it
+> applies to this model the same as any other.

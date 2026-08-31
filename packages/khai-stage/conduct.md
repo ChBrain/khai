@@ -7,8 +7,8 @@ Persona, how the company collaborates. This document says nothing about it and
 must not be read as touching it. Its **CLAUDE.md** stays what it is, the short
 executable contract a model obeys literally: the lanes, the gates, the house's
 own quirks. **This document is the shared case law those contracts point at.** It
-ships with `@chbrain/khai-arch`, so it reaches every house by dependency and
-there is one copy of it.
+ships with `@chbrain/khai-stage`, so it reaches every house by dependency, read
+at `node_modules/@chbrain/khai-stage/conduct.md`, and there is one copy of it.
 
 **What it covers is coding conduct**: how a model reads a rule, reports a
 number, trusts a check, chooses a gate, and works beside another model. **What it
@@ -24,8 +24,10 @@ house's reading of three rounds of work with a second model, August 2026. Where
 both houses reached the same law independently, that law leads, with both cases
 under it. Numbers stay attached to the house that measured them.
 
-It carries no frontmatter because it is not a khai type. Like `model.md` it is a
-companion to the typed specs in this directory, not one of them.
+It carries no frontmatter because it is not a khai type. It sits beside the
+blueprint that khai-stage stamps, not inside it: it is read from the installed
+package, one copy per world, never stamped into a house as a second copy: a
+stamped copy would diverge, which is the failure its own law 6 names.
 
 ---
 
