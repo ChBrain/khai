@@ -88,6 +88,11 @@ function parseOriginTable(origin) {
  */
 export function originRowErrors(origin, nonAuthorSources = []) {
   const errors = [];
+  // Compile every declared entry up front, before a single row is read. An
+  // invalid pattern is a fault in the config whatever the table happens to
+  // hold, so it is raised on the build that introduced it rather than on the
+  // first row that eventually needed it.
+  for (const entry of nonAuthorSources) compileNonAuthorEntry(entry);
   // A Source that yields no surname at all. The uppercase-initial rule in
   // `surnames` drops non-author idioms deliberately and silently -- "Boundary of
   // the effect", "Nobel 2001" -- which is right for a cell that names no person
@@ -103,7 +108,30 @@ export function originRowErrors(origin, nonAuthorSources = []) {
   // nobody must be DECLARED in scholarPolicy.nonAuthorSources. Six rows in the
   // tree are legitimately of that kind (meteor records, a safety standard, a
   // craft tradition), and they are cheap to list; anything else is a mistake.
-  const declared = new Set(nonAuthorSources.map((s) => String(s).toLowerCase()));
+  //
+  // An entry may be a string or a PATTERN, and the grammar is in
+  // `compileNonAuthorEntry` below. The reason is a house this kit serves whose
+  // non-author rows are not six exceptions but a CONVENTION: khai-misfits
+  // writes a Source that deliberately names no person as a phrase ("Boundary of
+  // the effect", "The measurement dispute", "Whether any settlement reaches
+  // it"), and that house's own ruling forbids answering a class of that kind
+  // with "a closed list of the NON_AUTHOR kind ... a list to maintain".
+  // Measured over its corpus the list would be 352 distinct strings across 268
+  // misfits. One house's intentional class is a rule, not a list, so the rule is
+  // what it declares -- the same shape `workPolicy.contrastMarkers` already
+  // has, a declared vocabulary authored by the person who knows the class. The
+  // wall is unchanged by it: a pattern exempts what it names and nothing else,
+  // so an undeclared "Cognitive-behavioral model" still fails.
+  //
+  // "Nosology" is NOT the thing this wall catches, and the case above is where
+  // the two halves part. It yields an uppercase token, so `surnames` keys it, the
+  // row is never dropped, and `originRowErrors` returns nothing for it with
+  // nothing declared: it is the row that SURVIVED, mis-filed among real people as
+  // though it were a surname, and no declaration is involved either way. Only the
+  // two that vanished are this wall's prey. Recorded in
+  // tests/non-author-sources.test.mjs, which asserts both directions, because a
+  // comment claiming a gate is stricter than it is sends the next reader to a
+  // test that contradicts it.
   for (const raw of origin.split("\n")) {
     const line = raw.trim();
     if (!line.startsWith("|")) continue; // not a table row
@@ -123,7 +151,7 @@ export function originRowErrors(origin, nonAuthorSources = []) {
       continue;
     }
     const source = stripMd(first);
-    if (surnames(source).length === 0 && !declared.has(source.toLowerCase()))
+    if (surnames(source).length === 0 && !matchesNonAuthor(source, nonAuthorSources))
       errors.push(
         `Origin row Source "${source}" names no scholar, so the index drops the row ` +
           `and the citation with it. The Source column holds the person, not a category ` +
@@ -132,6 +160,71 @@ export function originRowErrors(origin, nonAuthorSources = []) {
       );
   }
   return errors;
+}
+
+/**
+ * An entry is a PATTERN iff it opens and closes with "/" and holds at least one
+ * character between them. Everything else is a plain string entry. The body is
+ * the only thing that separates the two, and it has to: "/" and "//" carry no
+ * body, and reading either as a pattern gives the empty regex, which matches
+ * every Source there is and would silently disarm the wall for a whole house.
+ * The leading-AND-trailing rule is likewise what keeps a slash inside an entry
+ * ("NFPA / DOE hydrogen safety") a literal, since read as a regex it would match
+ * unanchored and exempt any Source that merely contained it.
+ */
+const isNonAuthorPattern = (entry) =>
+  entry.length > 2 && entry.startsWith("/") && entry.endsWith("/");
+
+/**
+ * One declared entry as a predicate over a Source cell.
+ *
+ * A string entry keeps today's semantics: an exact, case-insensitive match on
+ * the qualifier-stripped Source, so one declared "Practitioner" covers every row
+ * that writes it with a field ("Practitioner (medicine)"), and an entry that
+ * carries its own qualifier still matches the cell it was written for. Stripping
+ * both sides can only widen an equality that already held, so no declaration
+ * that worked stops working.
+ *
+ * A pattern entry compiles with the `i` flag and tests the same normalised
+ * Source. Case-insensitivity is deliberate and worth knowing: `/^The /` reaches
+ * a cell written "the measurement dispute", so a house cannot make the capital
+ * load-bearing through this grammar.
+ *
+ * An invalid pattern THROWS, naming the entry. It is never skipped: a pattern
+ * that cannot compile declares nothing, and a vocabulary declared where nothing
+ * reads it is indistinguishable from a vocabulary nobody has used yet. That
+ * failure has already been paid for here once, in a policy loader that dropped
+ * a key it was handed and returned a clean, meaningless count.
+ */
+function compileNonAuthorEntry(entry) {
+  const raw = String(entry);
+  if (!isNonAuthorPattern(raw)) {
+    const wanted = stripQualifier(raw).toLowerCase();
+    return (source) => stripQualifier(source).toLowerCase() === wanted;
+  }
+  let re;
+  try {
+    re = new RegExp(raw.slice(1, -1), "i");
+  } catch (err) {
+    throw new Error(
+      `scholarPolicy.nonAuthorSources: entry ${JSON.stringify(raw)} is written as a pattern ` +
+        `(a leading and a trailing "/") but is not a valid regular expression: ${err.message}. ` +
+        `A pattern that cannot compile declares nothing, so it is raised here rather than ` +
+        `skipped, which would leave the wall armed against rows the house believed it had declared`,
+    );
+  }
+  return (source) => re.test(stripQualifier(source));
+}
+
+/**
+ * Is this Source cell covered by the declared non-author vocabulary? Pure, and
+ * the single reading of `scholarPolicy.nonAuthorSources` that both the wall and
+ * any caller share. Every entry is compiled before any is tested, so an invalid
+ * pattern is raised even when an earlier entry would have matched.
+ */
+export function matchesNonAuthor(source, entries = []) {
+  const tests = entries.map(compileNonAuthorEntry);
+  return tests.some((test) => test(source));
 }
 
 // --- normalization -------------------------------------------------------
