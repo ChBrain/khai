@@ -26,7 +26,7 @@ under it. Numbers stay attached to the house that measured them.
 
 It carries no frontmatter because it is not a khai type. It sits beside the
 blueprint that khai-stage stamps, not inside it: it is read from the installed
-package, one copy per world, never stamped into a house as a second copy, a
+package, one copy per world, never stamped into a house as a second copy: a
 stamped copy would diverge, which is the failure its own law 6 names.
 
 ---
