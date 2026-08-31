@@ -302,8 +302,9 @@ Source values in 268 misfits**, and none of them were defects: 120 were
 standing idiom, a Source that deliberately names no person ("Boundary of the
 effect", "The measurement dispute"). Declaring 352 strings is exactly the "closed
 list of the `NON_AUTHOR` kind ... a list to maintain" that house's own ruling
-forbids, so adoption stopped until 0.4.1 let an entry be a pattern and one
-declared rule took the house from 499 to 58. That measurement costs an afternoon
+forbids, so adoption stopped until 0.4.1 let an entry be a pattern: one declared
+rule, with `Practitioner` and two named cells beside it, took the house from 499
+to 58. That measurement costs an afternoon
 and it was available before 0.4.0 was cut.
 
 The other direction is the near miss, and it is what doing this looks like when
