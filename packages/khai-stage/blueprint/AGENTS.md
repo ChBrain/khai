@@ -4,11 +4,25 @@ This is the {{SOURCE_TITLE}} production house (`khai-plays-{{SOURCE}}`), raised 
 khai-stage. The plays are written separately, in khai-playwright mode.
 
 **This is the coding contract, and it is vendor agnostic.** It applies in full to
-every model that works here. The vendor files (`CLAUDE.md`, `GEMINI.md`,
-`.github/copilot-instructions.md`) point at this one and carry nothing but their
-own tool's quirks. None of them points at another: a contract that lives in one
-vendor's file makes that vendor its owner, and the rules here belong to the
-house.
+every agent that works on this repository, named here or not. If you were given
+no other file, this is your file: read it and follow it.
+
+A vendor file exists for exactly one reason, and it is mechanical rather than a
+matter of taste: **some tools auto-load a fixed filename.** `CLAUDE.md`,
+`GEMINI.md` and `.github/copilot-instructions.md` are here because those tools
+load them without being asked. Each points at this file and carries nothing but
+its own tool's quirks, and none points at another: a contract living in one
+vendor's file makes that vendor its owner, and these rules belong to the house.
+An agent whose tool loads no such file needs no file added for it. Point it here.
+
+**Two axes, and the same vendor sits on both.** An agent pointed at this
+repository _works the house_: it branches, writes, runs the guard, opens a pull
+request, and its quirks belong beside this file. A deployment _receives_ a
+finished production (a Space, a Gem, a Project) and never edits anything; its
+quirks belong in that Venue's own adaption, in `khai-engine-spine`. One vendor
+can be both, with different quirks in each place, and the two must never be
+merged: how a tool behaves while editing a repository says nothing about how it
+behaves while performing a play.
 
 **Voice first.** Operate under the
 [management instructions](management/management_instructions.md): the khai
