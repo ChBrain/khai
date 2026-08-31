@@ -20,6 +20,21 @@
       "fix": "npm install -- without it the science and conformance passes scan nothing"
     },
     {
+      "name": "source/test split",
+      "command": "npx khai-guard",
+      "fix": "split into separate PRs -- tests first, source second"
+    },
+    {
+      "name": "branch scope",
+      "command": "npx khai-guard branch-check",
+      "fix": "npx khai-guard advise --files <paths> -- then rename or split the branch"
+    },
+    {
+      "name": "changeset",
+      "command": "npx khai-guard changeset-check",
+      "fix": "npx changeset add (or `npx changeset add --empty` when no package content ships)"
+    },
+    {
       "name": "format",
       "command": "npx prettier --check .",
       "fix": "npx prettier --write ."

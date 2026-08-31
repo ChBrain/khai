@@ -473,6 +473,7 @@ function runChangesetCheck() {
     console.log("KHAI-Guard changeset-check: no comparison base found; skipping (local).");
     process.exit(0);
   }
+  endOnEmptyRange("changeset-check", changed.length);
   // Evaluate only the changesets THIS PR introduces or edits, not every file on
   // disk. `main` legitimately accumulates unconsumed releasing changesets between
   // a release-carrying merge and the "Version Packages" PR that consumes them;
@@ -708,17 +709,17 @@ function runBranchCheck() {
     console.log("KHAI-Guard branch-check: no comparison base found; skipping (local).");
     process.exit(0);
   }
+  endOnEmptyRange("branch-check", changed.length);
 
   const klass = classifyBranch(branch, config);
   const { ok, violations } = checkBranchScope(branch, changed, config);
 
   if (ok) {
     const where = klass ? `${klass.lane} lane (${klass.layer})` : "lane";
-    if (!reportEmptyRange("branch-check", changed.length))
-      console.log(
-        `KHAI-Guard branch-check OK: "${branch}" is in ${where}; ` +
-          `${changed.length} changed path(s) all in lane.`,
-      );
+    console.log(
+      `KHAI-Guard branch-check OK: "${branch}" is in ${where}; ` +
+        `${changed.length} changed path(s) all in lane.`,
+    );
     process.exit(0);
   }
 
@@ -1047,6 +1048,23 @@ function reportEmptyRange(label, changedCount) {
       `history, not the tree. Commit, then run it again.`,
   );
   return true;
+}
+
+// Both scope checks judge a CHANGE: which lane it belongs to, whether it carries
+// a changeset. With no change there is nothing to judge, and what they said
+// instead was false -- on a clean `main`, branch-check failed with `"main"
+// matches no lane` (main is the destination, you cannot be in the wrong lane on
+// it) and changeset-check failed with "no changeset found" for a PR that does not
+// exist. Both exited 1 for an author who had done nothing.
+//
+// So an empty range ends the check here, before a branch name or a changeset is
+// judged, reporting either the dirty-tree case or a plain nothing-to-do. This
+// cannot weaken CI: there the range is a real PR and is never empty.
+function endOnEmptyRange(label, changedCount) {
+  if (changedCount !== 0) return false;
+  if (!reportEmptyRange(label, changedCount))
+    console.log(`KHAI-Guard ${label}: nothing to check -- no committed change against the base.`);
+  process.exit(0);
 }
 
 function runLockfileCheck() {
