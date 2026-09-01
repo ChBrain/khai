@@ -26,9 +26,18 @@ done
 # the PR exists. Advisory -- never blocks the push (CI stamps the label).
 npx khai-guard bump-check
 
-# KHAI-Guard lockfile-scope: reject a lockfile committed inside a package. This
-# is an npm-workspaces monorepo; the root package-lock.json is the only
-# authoritative lock, so a stray nested lock desyncs Dependabot and CI. ENFORCED.
+# KHAI-Guard lockfile-check: three questions about the root lockfile, all
+# ENFORCED. (1) No lockfile committed inside a package: this is an npm-workspaces
+# monorepo, the root package-lock.json is the only authoritative lock, and a stray
+# nested one desyncs Dependabot and CI. (2) It still matches the manifests, which
+# is what CI's `npm ci` asks at install. (3) It still carries every platform's
+# binaries, which `npm ci` does NOT ask -- a lockfile rebuilt from scratch records
+# only the machine that rebuilt it, installs perfectly there, and removes the
+# host's own binaries everywhere else.
+#
+# The name says lockfile and it means all three. This comment described only the
+# first for two releases after the others landed, so a reader debugging a
+# lockfile-check failure went looking for a nested lockfile that was never there.
 npx khai-guard lockfile-check
 
 # KHAI-Guard member-scope: one phenomenon, one engine. A member stem another
