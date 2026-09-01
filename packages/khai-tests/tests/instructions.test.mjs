@@ -9,6 +9,19 @@
 
 import { describe, it, expect, beforeAll, afterEach } from "vitest";
 import { mkdtempSync, mkdirSync, writeFileSync, rmSync, existsSync, symlinkSync } from "node:fs";
+
+// A directory symlink is not the same object on every OS. On Windows a "dir"
+// symlink needs SeCreateSymbolicLinkPrivilege -- an elevated shell or Developer
+// Mode -- and Node throws EPERM without it, while a "junction" needs no privilege
+// at all and behaves the same for reading a tree. On POSIX there is no junction
+// and "dir" is correct.
+//
+// The type WAS passed here, which is what made this hard to read: a Windows house
+// reported it as a missing argument, looked, found one, and reported it as a
+// missing junction. It is neither missing nor wrong on the platform it was
+// written on. It is a value that only works on one OS, and this file builds a
+// node_modules tree in a temp dir, so every test in it died on Windows.
+const LINK_TYPE = process.platform === "win32" ? "junction" : "dir";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { tmpdir } from "node:os";
@@ -99,7 +112,7 @@ function workspace(spec) {
       join(dir, "index.mjs"),
       pkg.law ? `export const law = ${JSON.stringify(pkg.law)};\n` : "export const x = 1;\n",
     );
-    if (name !== ".") symlinkSync(dir, join(modules, name.replace(/\//g, "-")), "dir");
+    if (name !== ".") symlinkSync(dir, join(modules, name.replace(/\//g, "-")), LINK_TYPE);
   }
   // Scoped names need the scope directory; redo the links properly.
   rmSync(modules, { recursive: true, force: true });
@@ -109,7 +122,7 @@ function workspace(spec) {
     const dir = join(tmp, "pkgs", name.replace(/\//g, "-"));
     const target = join(modules, name);
     mkdirSync(dirname(target), { recursive: true });
-    symlinkSync(dir, target, "dir");
+    symlinkSync(dir, target, LINK_TYPE);
   }
   return join(tmp, "root");
 }
