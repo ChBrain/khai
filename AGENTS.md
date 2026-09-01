@@ -6,6 +6,28 @@ short, executable contract, and it is vendor agnostic: it applies in full to
 every agent that works on this repository, named below or not. If you were given
 no other file, this is your file._
 
+> **First, ask the machine what it is.** Before your first shell command:
+>
+> ```
+> npx khai-guard environment
+> ```
+>
+> It prints the platform, what npm reports, how npm must be spawned here, the
+> path separator, the line ending, whether this process can create a directory
+> symlink, and the shell signals it can see. One command, and nothing after it
+> has to guess.
+>
+> This exists because guessing is expensive and everybody does it. Agents working
+> here have reached for `grep` on Windows and PowerShell cmdlets on Linux,
+> discovering the shell by failing at it over several turns, in tasks that had
+> nothing to do with shells. The kit did the same to itself: five defects shipped
+> from asking `process.platform` instead of asking npm, which had the answer in an
+> environment variable the whole time.
+>
+> The shell row is marked an INFERENCE because a process cannot see which shell
+> started it. Read the signals, and where you can, prefer `node -e` -- it runs the
+> same everywhere and is already a dependency here.
+
 > **The vendor files carry quirks, never contract.** `CLAUDE.md`, `GEMINI.md`,
 > `PERPLEXITY.md` and `.github/copilot-instructions.md` each hold one tool's own
 > quirks and close by sending you here. None points at another: a contract living

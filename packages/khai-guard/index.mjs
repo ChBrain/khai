@@ -1231,31 +1231,109 @@ export function unseenByRange({ staged = 0, unstaged = 0, untracked = 0 } = {}) 
 }
 
 /**
- * How to spawn npm, by platform: the binary AND whether it needs a shell.
+ * How to spawn npm, asked in the order that costs least to be wrong about.
  *
- * Naming `npm.cmd` was necessary and not sufficient, which is the correction this
- * supersedes. Since the CVE-2024-27980 hardening (Node 18.20.2, 20.12.2, 21.7.3)
- * `spawn`, `spawnSync`, `execFile` and `execFileSync` REFUSE to run a `.bat` or
- * `.cmd` without `shell: true`, and throw EINVAL before the process starts. So on
- * Windows the previous release traded ENOENT for EINVAL and the wall still could
- * not run.
+ * FIRST, what npm already told us. Under `npm run` and under `npx` -- which is
+ * every path this repo uses, including the pre-push hook -- npm sets
+ * `npm_execpath` to its own CLI, a plain `.js` file, and `npm_node_execpath` to
+ * the node that should run it. Spawning `node <npm-cli.js>` is identical on every
+ * operating system: no `.cmd` shim, no shell, no platform branch, nothing to be
+ * wrong about.
  *
- * The argument made against `shell: true` last time was that it pushes arguments
- * through a command interpreter and makes quoting a problem. That is true and it
- * is beside the point: without it the call does not execute at all on Windows.
- * The arguments here are fixed shapes -- subcommands, flags, and package names
- * drawn from the workspace -- with no spaces and no shell metacharacters, so
- * there is nothing for an interpreter to mangle. A real objection to the wrong
- * question still loses to a call that cannot be made.
+ * That is the whole correction here. Two releases went into guessing what `npm`
+ * resolves to -- a bare name, then `npm.cmd`, then `npm.cmd` with a shell --
+ * while npm was holding the answer in an environment variable the entire time.
+ * A contributor was blocked for a day by a question the environment had already
+ * answered and nobody asked.
  *
- * A parameter rather than a bare constant so both platforms stay testable from
- * either one.
+ * SECOND, and only when npm did not run us, the platform guess. It is still
+ * right as far as anyone knows, and it is labelled `platform-guess` in the
+ * returned `via` so a caller and the `environment` report can say which answer
+ * they got. A fallback that cannot be told apart from a fact is how the first
+ * version of this survived.
  *
- * @param {string} [platform] defaults to the host's
- * @returns {{ bin: "npm"|"npm.cmd", shell: boolean }}
+ * @param {string[]} args        the npm arguments, without "npm"
+ * @param {object} [env]         defaults to process.env
+ * @param {string} [platform]    defaults to the host's
+ * @returns {{ file: string, args: string[], shell: boolean, via: "npm_execpath"|"platform-guess" }}
  */
-export function npmCommand(platform = process.platform) {
-  return platform === "win32" ? { bin: "npm.cmd", shell: true } : { bin: "npm", shell: false };
+export function npmSpawn(args = [], env = process.env, platform = process.platform) {
+  const cli = env?.npm_execpath;
+  if (typeof cli === "string" && cli.endsWith(".js"))
+    return {
+      file: env.npm_node_execpath || process.execPath,
+      args: [cli, ...args],
+      shell: false,
+      via: "npm_execpath",
+    };
+  return platform === "win32"
+    ? { file: "npm.cmd", args: [...args], shell: true, via: "platform-guess" }
+    : { file: "npm", args: [...args], shell: false, via: "platform-guess" };
+}
+
+/**
+ * The environment report, rendered from facts the caller gathered.
+ *
+ * Pure so the wording is testable without a machine to be on, and so the two
+ * uncertain rows can be phrased as signals rather than verdicts. A Node process
+ * cannot reliably know which shell invoked it: ComSpec is always set on Windows,
+ * PSModulePath survives into child processes, and git-bash sets SHELL on Windows
+ * too. Printing "shell: PowerShell" confidently when it is git-bash would be a
+ * fresh instance of the disease this report exists to cure, so the shell row
+ * prints what was observed and the dialect row prints an implication marked as
+ * one.
+ *
+ * @param {object} facts
+ * @returns {string[]} lines, ready to print
+ */
+export function renderEnvironment(facts = {}) {
+  const {
+    platform = "?",
+    arch = "?",
+    userAgent = null,
+    npmVia = "platform-guess",
+    npmFile = "?",
+    nodeVersion = "?",
+    shellSignals = [],
+    pathSep = "?",
+    eol = "?",
+    dirSymlink = "untested",
+  } = facts;
+  const win = platform === "win32";
+  // Node 24 deprecates passing args alongside `shell: true` (DEP0190), which is
+  // exactly what the platform guess has to do on Windows. The tier-1 answer --
+  // node running npm's own .js CLI -- needs no shell at all, so it is not merely
+  // tidier: it is the only spawn here with a future. Surfaced by a Windows run on
+  // Node 24.13.1 that passed while printing the warning; this machine's Node 22
+  // does not emit it, so nobody here would have seen it.
+  const deprecated = npmVia !== "npm_execpath" && win;
+  return [
+    `platform          ${platform} ${arch}`,
+    `node              ${nodeVersion}`,
+    `npm reports       ${userAgent ?? "(not running under npm; run this through `npx` or `npm run`)"}`,
+    `npm spawns as     ${npmFile}${npmVia === "npm_execpath" ? "  (npm told us)" : "  (GUESSED from platform)"}`,
+    `path separator    ${JSON.stringify(pathSep)}`,
+    `line ending       ${JSON.stringify(eol)}`,
+    `directory symlink ${dirSymlink}`,
+    `shell signals     ${shellSignals.length ? shellSignals.join(", ") : "(none)"}`,
+    "",
+    ...(deprecated
+      ? [
+          "NOTE: npm is being spawned through a shell because npm did not start this",
+          "process. Node 24 deprecates that (DEP0190). Run this through `npx` or",
+          "`npm run` and npm will say how to reach it, which needs no shell.",
+          "",
+        ]
+      : []),
+    `SHELL DIALECT: probably ${win ? "PowerShell or cmd" : "a POSIX shell"}. This row is an`,
+    `INFERENCE, not a fact -- a process cannot see which shell started it. Check the`,
+    `signals above before assuming, and prefer a command that works in both.`,
+    "",
+    win
+      ? "On this platform `grep`, `sed`, `rm` and `ls` may not exist. Prefer node -e,"
+      : "On this platform PowerShell cmdlets do not exist. Prefer POSIX tools or node -e,",
+    "which runs the same everywhere and is already a dependency of this repo.",
+  ];
 }
 
 export function checkLockfiles(paths = [], config = DEFAULT_CONFIG) {

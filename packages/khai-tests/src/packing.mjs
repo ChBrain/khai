@@ -93,27 +93,43 @@ export function workspacePackages(root) {
  * @returns {Map<string, Set<string>>}
  */
 /**
- * How to spawn npm, by platform: the binary and whether it needs a shell. On
- * Windows npm is a `.cmd` shim, and since Node's CVE-2024-27980 hardening
- * execFileSync REFUSES to run a `.cmd` without `shell: true`, throwing EINVAL
- * before the process starts. Naming the binary is necessary and not sufficient.
+ * How to spawn npm, asked in the order that costs least to be wrong about: what
+ * npm already told us first, a platform guess only if it did not tell us.
+ *
+ * Under `npm run` and `npx`, npm sets `npm_execpath` to its own CLI -- a plain
+ * `.js` file -- and `npm_node_execpath` to the node that should run it. Spawning
+ * `node <npm-cli.js>` is identical on every OS: no `.cmd` shim, no shell, no
+ * platform branch. Two releases went into guessing what `npm` resolves to while
+ * npm held the answer in an environment variable.
  *
  * A second definition rather than an import: @chbrain/khai-guard exports the same
  * function with the full reasoning, and khai-tests does not depend on it.
  *
- * @param {string} [platform] defaults to the host's
- * @returns {{ bin: "npm"|"npm.cmd", shell: boolean }}
+ * @param {string[]} args
+ * @param {object} [env]
+ * @param {string} [platform]
+ * @returns {{ file: string, args: string[], shell: boolean, via: string }}
  */
-export function npmCommand(platform = process.platform) {
-  return platform === "win32" ? { bin: "npm.cmd", shell: true } : { bin: "npm", shell: false };
+export function npmSpawn(args = [], env = process.env, platform = process.platform) {
+  const cli = env?.npm_execpath;
+  if (typeof cli === "string" && cli.endsWith(".js"))
+    return {
+      file: env.npm_node_execpath || process.execPath,
+      args: [cli, ...args],
+      shell: false,
+      via: "npm_execpath",
+    };
+  return platform === "win32"
+    ? { file: "npm.cmd", args: [...args], shell: true, via: "platform-guess" }
+    : { file: "npm", args: [...args], shell: false, via: "platform-guess" };
 }
 
 export function packedFiles(root, { names = null } = {}) {
   const args = ["pack", "--dry-run", "--json"];
   if (names && names.length > 0) for (const n of names) args.push("-w", n);
   else args.push("--workspaces");
-  const npm = npmCommand();
-  const raw = execFileSync(npm.bin, args, {
+  const npm = npmSpawn(args);
+  const raw = execFileSync(npm.file, npm.args, {
     shell: npm.shell,
     cwd: root,
     encoding: "utf8",
