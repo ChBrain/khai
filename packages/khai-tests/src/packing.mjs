@@ -93,27 +93,28 @@ export function workspacePackages(root) {
  * @returns {Map<string, Set<string>>}
  */
 /**
- * The npm binary to spawn, by platform: on Windows npm is a `.cmd` shim and
- * `execFileSync("npm", ...)` throws ENOENT.
+ * How to spawn npm, by platform: the binary and whether it needs a shell. On
+ * Windows npm is a `.cmd` shim, and since Node's CVE-2024-27980 hardening
+ * execFileSync REFUSES to run a `.cmd` without `shell: true`, throwing EINVAL
+ * before the process starts. Naming the binary is necessary and not sufficient.
  *
- * Deliberately a second definition rather than an import. @chbrain/khai-guard
- * exports the same function with the full reasoning, and khai-tests does not
- * depend on khai-guard; a cross-package dependency for a one-line platform
- * branch costs more than the copy does. The two cannot drift in meaning, and a
- * wall refuses any third caller that spawns a bare "npm".
+ * A second definition rather than an import: @chbrain/khai-guard exports the same
+ * function with the full reasoning, and khai-tests does not depend on it.
  *
  * @param {string} [platform] defaults to the host's
- * @returns {"npm"|"npm.cmd"}
+ * @returns {{ bin: "npm"|"npm.cmd", shell: boolean }}
  */
-export function npmBin(platform = process.platform) {
-  return platform === "win32" ? "npm.cmd" : "npm";
+export function npmCommand(platform = process.platform) {
+  return platform === "win32" ? { bin: "npm.cmd", shell: true } : { bin: "npm", shell: false };
 }
 
 export function packedFiles(root, { names = null } = {}) {
   const args = ["pack", "--dry-run", "--json"];
   if (names && names.length > 0) for (const n of names) args.push("-w", n);
   else args.push("--workspaces");
-  const raw = execFileSync(npmBin(), args, {
+  const npm = npmCommand();
+  const raw = execFileSync(npm.bin, args, {
+    shell: npm.shell,
     cwd: root,
     encoding: "utf8",
     maxBuffer: 256 * 1024 * 1024,
