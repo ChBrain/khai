@@ -15,6 +15,30 @@ import { basename, join } from "path";
 const NEVER_ON_TOUR = new Set(["playwright_instructions.md"]);
 
 /**
+ * Rewrite a relative path to POSIX separators.
+ *
+ * Node's glob builds its results with path.join, so on Windows it yields
+ * `engine\position_x.md` where Linux yields `engine/position_x.md`. Those
+ * strings are sorted, and the sort decides the order sections are concatenated
+ * in — and `/` (0x2F) and `\` (0x5C) sit on opposite sides of the uppercase
+ * letters, so `engine/a.md` sorts before `engineA.md` on Linux and after it on
+ * Windows. Same repository, same profile, different bundle.
+ *
+ * Only Windows gets the rewrite, and only Windows may have it: on POSIX a
+ * backslash is a legal character in a filename, so rewriting it there would
+ * corrupt a real name into a path. `platform` is a parameter rather than a read
+ * of process.platform inside the body, so the Windows branch is reachable from
+ * a test on any host.
+ *
+ * @param {string} file - Relative path as the platform produced it
+ * @param {string} [platform] - process.platform value to normalise for
+ * @returns {string} The same path with POSIX separators
+ */
+export function toPosixPath(file, platform = process.platform) {
+  return platform === "win32" ? file.replaceAll("\\", "/") : file;
+}
+
+/**
  * Strip YAML frontmatter from markdown content
  * @param {string} content - Raw markdown content
  * @returns {string} Content without frontmatter
@@ -33,7 +57,7 @@ export function stripFrontmatter(content) {
  * Find files matching a collection pattern
  * @param {string} baseDir - Directory to search in
  * @param {string|string[]} patterns - Glob pattern(s) to match
- * @returns {Promise<string[]>} Sorted file paths
+ * @returns {Promise<string[]>} Sorted file paths, POSIX-separated
  */
 export async function findFiles(baseDir, patterns) {
   const patternArray = Array.isArray(patterns) ? patterns : [patterns];
@@ -43,8 +67,12 @@ export async function findFiles(baseDir, patterns) {
     // Node's built-in glob (node:fs/promises) keeps khai-tour zero-dependency.
     // It yields paths relative to cwd, matching the join(baseDir, file) below.
     for await (const file of glob(pattern, { cwd: baseDir })) {
-      if (NEVER_ON_TOUR.has(basename(file))) continue;
-      allFiles.add(file);
+      // Normalise before the Set and before the sort, so dedup and ordering
+      // both see one spelling of a path. join() below re-accepts "/" on
+      // Windows, so nothing downstream needs the native form back.
+      const relative = toPosixPath(file);
+      if (NEVER_ON_TOUR.has(basename(relative))) continue;
+      allFiles.add(relative);
     }
   }
 
