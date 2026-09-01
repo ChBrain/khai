@@ -16,7 +16,7 @@ import { describe, it, expect, afterEach } from "vitest";
 import { execFileSync, spawnSync } from "node:child_process";
 import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join, dirname } from "node:path";
+import { join, dirname, delimiter } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const binPath = fileURLToPath(new URL("../bin/khai-guard.mjs", import.meta.url));
@@ -64,22 +64,58 @@ function house({ policy, deps = {}, held = {} } = {}) {
 // Stands in for `npm view <name> version`. A name mapped to null is a package
 // the registry will not serve, which the bin must report as unreachable rather
 // than drop.
+//
+// TWO stubs, because the bin has two ways of finding npm and a test that knows
+// only one is a test that stops working when the other is chosen.
+//
+//   - a `#!/bin/sh` file named `npm`, earliest on PATH. This is how the bin
+//     found npm when the stub was written, and it is POSIX-only twice over: a
+//     `sh` script Windows cannot execute, under a name Windows resolves as
+//     `npm.cmd`.
+//   - a `.js` file that `npm_execpath` points at. This is how npm itself says
+//     to reach npm, it is what the bin prefers when npm started it, and node
+//     runs it identically everywhere.
+//
+// Setting both means the stub intercepts whichever mechanism the bin reaches
+// for, on either platform, before or after the source changes underneath it.
+// The alternative is what happened: the stub silently stopped intercepting, the
+// real registry was reached, every package came back "unreachable", and four
+// tests failed for a reason that had nothing to do with drift.
 function stubRegistry(dir, versions) {
   const binDir = join(dir, ".stub-bin");
   mkdirSync(binDir, { recursive: true });
+
   const arms = Object.entries(versions)
     .map(([name, version]) => `  ${name}) ${version === null ? "exit 1" : `echo ${version}`} ;;`)
     .join("\n");
   writeFileSync(join(binDir, "npm"), `#!/bin/sh\ncase "$2" in\n${arms}\n  *) exit 1 ;;\nesac\n`, {
     mode: 0o755,
   });
-  return binDir;
+
+  // `npm view <name> version` reaches this as argv ["view", <name>, "version"].
+  const cliPath = join(binDir, "npm-cli.js");
+  writeFileSync(
+    cliPath,
+    `const versions = ${JSON.stringify(versions)};\n` +
+      `const name = process.argv[3];\n` +
+      `const v = Object.prototype.hasOwnProperty.call(versions, name) ? versions[name] : undefined;\n` +
+      `if (v == null) process.exit(1);\n` +
+      `process.stdout.write(String(v) + "\\n");\n`,
+  );
+  return { binDir, cliPath };
 }
 
 // spawnSync, not execFileSync: findings print to stderr while the process still
 // exits 0 without --enforce, and stdout must be captured either way.
-function drift(cwd, args = [], stubDir = null) {
-  const env = stubDir ? { ...process.env, PATH: `${stubDir}:${process.env.PATH}` } : process.env;
+function drift(cwd, args = [], stub = null) {
+  const env = stub
+    ? {
+        ...process.env,
+        PATH: `${stub.binDir}${delimiter}${process.env.PATH}`,
+        npm_execpath: stub.cliPath,
+        npm_node_execpath: process.execPath,
+      }
+    : process.env;
   const r = spawnSync(process.execPath, [binPath, "drift", ...args], {
     cwd,
     encoding: "utf8",
