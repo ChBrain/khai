@@ -1231,28 +1231,31 @@ export function unseenByRange({ staged = 0, unstaged = 0, untracked = 0 } = {}) 
 }
 
 /**
- * The npm binary to spawn, by platform. On Windows npm is a `.cmd` shim rather
- * than an executable, so `execFileSync("npm", ...)` throws ENOENT there.
+ * How to spawn npm, by platform: the binary AND whether it needs a shell.
  *
- * The asymmetry is why this survived: `git` IS a real .exe on Windows, so every
- * check here that shells out to git has always worked and every one that shells
- * out to npm has always failed, which reads as a broken machine rather than a
- * broken assumption. It was reported from a Windows house whose entire
- * `npm run gates` run died in one suite, and reported as an environment quirk.
+ * Naming `npm.cmd` was necessary and not sufficient, which is the correction this
+ * supersedes. Since the CVE-2024-27980 hardening (Node 18.20.2, 20.12.2, 21.7.3)
+ * `spawn`, `spawnSync`, `execFile` and `execFileSync` REFUSE to run a `.bat` or
+ * `.cmd` without `shell: true`, and throw EINVAL before the process starts. So on
+ * Windows the previous release traded ENOENT for EINVAL and the wall still could
+ * not run.
  *
- * Deliberately NOT `shell: true`: that would push every argument through a
- * command interpreter and make quoting a problem this code does not otherwise
- * have. Naming the right binary is the whole fix.
+ * The argument made against `shell: true` last time was that it pushes arguments
+ * through a command interpreter and makes quoting a problem. That is true and it
+ * is beside the point: without it the call does not execute at all on Windows.
+ * The arguments here are fixed shapes -- subcommands, flags, and package names
+ * drawn from the workspace -- with no spaces and no shell metacharacters, so
+ * there is nothing for an interpreter to mangle. A real objection to the wrong
+ * question still loses to a call that cannot be made.
  *
- * A parameter rather than a bare constant so both platforms are testable from
- * either one. A platform branch that can only be exercised on the platform it
- * is wrong about is how this class of bug lasts.
+ * A parameter rather than a bare constant so both platforms stay testable from
+ * either one.
  *
  * @param {string} [platform] defaults to the host's
- * @returns {"npm"|"npm.cmd"}
+ * @returns {{ bin: "npm"|"npm.cmd", shell: boolean }}
  */
-export function npmBin(platform = process.platform) {
-  return platform === "win32" ? "npm.cmd" : "npm";
+export function npmCommand(platform = process.platform) {
+  return platform === "win32" ? { bin: "npm.cmd", shell: true } : { bin: "npm", shell: false };
 }
 
 export function checkLockfiles(paths = [], config = DEFAULT_CONFIG) {

@@ -59,7 +59,7 @@ import {
   checkDrift,
   checkLockfiles,
   unseenByRange,
-  npmBin,
+  npmCommand,
   lockfileMismatch,
   checkMembers,
   deadExemptions,
@@ -1003,7 +1003,9 @@ function checkLockfileSync() {
     // --no-audit --no-fund keep the registry out of the path: verified to pass
     // with --offline, so a flaky network cannot turn this wall red, and a wall
     // that goes red for reasons of its own is a wall people learn to ignore.
-    execFileSync(npmBin(), ["ci", "--dry-run", "--no-audit", "--no-fund"], {
+    const npm = npmCommand();
+    execFileSync(npm.bin, ["ci", "--dry-run", "--no-audit", "--no-fund"], {
+      shell: npm.shell,
       encoding: "utf8",
       stdio: ["ignore", "ignore", "pipe"],
     });
@@ -1330,7 +1332,9 @@ function runDrift() {
   const latest = {};
   for (const name of names) {
     try {
-      latest[name] = execFileSync(npmBin(), ["view", name, "version"], {
+      const npm = npmCommand();
+      latest[name] = execFileSync(npm.bin, ["view", name, "version"], {
+        shell: npm.shell,
         encoding: "utf8",
         stdio: ["ignore", "pipe", "ignore"],
       }).trim();
