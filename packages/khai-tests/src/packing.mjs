@@ -92,11 +92,28 @@ export function workspacePackages(root) {
  * @param {{ names?: string[] }} [opts]
  * @returns {Map<string, Set<string>>}
  */
+/**
+ * The npm binary to spawn, by platform: on Windows npm is a `.cmd` shim and
+ * `execFileSync("npm", ...)` throws ENOENT.
+ *
+ * Deliberately a second definition rather than an import. @chbrain/khai-guard
+ * exports the same function with the full reasoning, and khai-tests does not
+ * depend on khai-guard; a cross-package dependency for a one-line platform
+ * branch costs more than the copy does. The two cannot drift in meaning, and a
+ * wall refuses any third caller that spawns a bare "npm".
+ *
+ * @param {string} [platform] defaults to the host's
+ * @returns {"npm"|"npm.cmd"}
+ */
+export function npmBin(platform = process.platform) {
+  return platform === "win32" ? "npm.cmd" : "npm";
+}
+
 export function packedFiles(root, { names = null } = {}) {
   const args = ["pack", "--dry-run", "--json"];
   if (names && names.length > 0) for (const n of names) args.push("-w", n);
   else args.push("--workspaces");
-  const raw = execFileSync("npm", args, {
+  const raw = execFileSync(npmBin(), args, {
     cwd: root,
     encoding: "utf8",
     maxBuffer: 256 * 1024 * 1024,

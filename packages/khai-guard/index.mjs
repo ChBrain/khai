@@ -1230,6 +1230,31 @@ export function unseenByRange({ staged = 0, unstaged = 0, untracked = 0 } = {}) 
   return parts.length ? `${parts.join(", ")} path(s)` : null;
 }
 
+/**
+ * The npm binary to spawn, by platform. On Windows npm is a `.cmd` shim rather
+ * than an executable, so `execFileSync("npm", ...)` throws ENOENT there.
+ *
+ * The asymmetry is why this survived: `git` IS a real .exe on Windows, so every
+ * check here that shells out to git has always worked and every one that shells
+ * out to npm has always failed, which reads as a broken machine rather than a
+ * broken assumption. It was reported from a Windows house whose entire
+ * `npm run gates` run died in one suite, and reported as an environment quirk.
+ *
+ * Deliberately NOT `shell: true`: that would push every argument through a
+ * command interpreter and make quoting a problem this code does not otherwise
+ * have. Naming the right binary is the whole fix.
+ *
+ * A parameter rather than a bare constant so both platforms are testable from
+ * either one. A platform branch that can only be exercised on the platform it
+ * is wrong about is how this class of bug lasts.
+ *
+ * @param {string} [platform] defaults to the host's
+ * @returns {"npm"|"npm.cmd"}
+ */
+export function npmBin(platform = process.platform) {
+  return platform === "win32" ? "npm.cmd" : "npm";
+}
+
 export function checkLockfiles(paths = [], config = DEFAULT_CONFIG) {
   const policy = config.lockfilePolicy;
   if (!policy) return { ok: true, offenders: [] };
