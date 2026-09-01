@@ -71,9 +71,16 @@ export const types = Object.fromEntries(
 /**
  * Authoring templates: one fillable skeleton per type, keyed by type id. Each
  * is a valid content instance (the kit proves this in khai-tests) whose section
- * bodies carry one-line guidance; `create` swaps the guidance and `[brackets]`
- * for real content. Read at runtime from the canon's own templates/ dir, so the
- * skeleton can never drift from the type contract it is built against.
+ * bodies carry one-line guidance; the author replaces that guidance and the
+ * `[brackets]` with real content. Read at runtime from the canon's own
+ * templates/ dir, so the skeleton can never drift from the type contract it is
+ * built against.
+ *
+ * This paragraph used to say `create` does the replacing. There is no `create`
+ * in this package and there never has been, so the one doc that described the
+ * authoring path sent a reader looking for a function that does not exist, which
+ * is worse than saying nothing. Stamping is a copy; if it ever earns a helper,
+ * this is where it will be named.
  *
  * @type {Record<string, KhaiTemplate>}
  */
