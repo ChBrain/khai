@@ -20,6 +20,17 @@
 
 import { describe, it, expect, afterEach } from "vitest";
 import { mkdtempSync, writeFileSync, mkdirSync, rmSync, readFileSync, symlinkSync } from "node:fs";
+
+// See instructions.test.mjs for the full reasoning: on Windows a "dir" symlink
+// needs SeCreateSymbolicLinkPrivilege and Node throws EPERM without it, while a
+// "junction" needs none and reads the same. On POSIX there is no junction.
+//
+// #1479 fixed the other file and missed this one, and the miss is worth naming
+// because the sweep that found the other two EXCLUDED this line by content: the
+// filter was `grep -v node_modules`, meant to skip the directory, and this call
+// links INTO node_modules so it says the word. The only site that needed fixing
+// was the only one the filter could not see.
+const LINK_TYPE = process.platform === "win32" ? "junction" : "dir";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { tmpdir } from "node:os";
@@ -410,7 +421,7 @@ describe.skipIf(DORMANT)("production package: hard links across a workspace syml
     // The package sits at <tmp>/pkg, so <tmp> is the workspace root the resolver
     // reaches by walking up exactly once.
     mkdirSync(join(tmp, "node_modules", "@chbrain"), { recursive: true });
-    symlinkSync(tongues, join(tmp, "node_modules", "@chbrain", "khai-cultures-tongues"), "dir");
+    symlinkSync(tongues, join(tmp, "node_modules", "@chbrain", "khai-cultures-tongues"), LINK_TYPE);
     return dir;
   }
 
