@@ -1255,6 +1255,65 @@ export function npmBin(platform = process.platform) {
   return platform === "win32" ? "npm.cmd" : "npm";
 }
 
+/**
+ * Why a spawned npm did not answer, or null when it answered and simply refused.
+ *
+ * `npm ci --dry-run` refusing and npm never running are different facts, and the
+ * lockfile check collapsed them: it caught every throw and read it as a lockfile
+ * mismatch. On Windows, where npm is a `.cmd` shim, an ENOENT therefore surfaced
+ * as "package-lock.json does not match the manifests ... (npm named no
+ * offender)". A wall that says the wrong thing confidently is worse than one that
+ * admits it could not run: the reader fixes the wrong thing. In the case that
+ * produced this, they deleted the lockfile and rebuilt it, which broke it for
+ * real.
+ *
+ * @param {any} err  the error execFileSync threw
+ * @returns {string|null} a reason the check could not run, or null
+ */
+export function npmUnavailable(err) {
+  if (!err) return null;
+  if (err.code === "ENOENT") return "npm could not be run at all (ENOENT)";
+  if (err.status == null && !String(err.stderr ?? "").trim())
+    return `npm did not run to completion and reported nothing${err.code ? ` (${err.code})` : ""}`;
+  return null;
+}
+
+/**
+ * Which platforms a lockfile still carries binaries for.
+ *
+ * `rm package-lock.json && npm install` rebuilds from scratch and records only
+ * the optional platform packages that resolve on the machine doing it. The result
+ * installs perfectly there and strips every other platform: run on Windows, this
+ * repo's lockfile went from 47 os-constrained packages across ten platforms to 3
+ * across one, and `npm ci` on Linux then reported "remove
+ * lightningcss-linux-x64-gnu" and exited 0.
+ *
+ * That is precisely why the sync check cannot see it. npm is asked whether it can
+ * install, and it can. "In sync with the manifests" and "carries every platform's
+ * binaries" are different questions, and only the first was being asked.
+ *
+ * The limit, stated rather than hidden: a repository whose only platform
+ * constrained dependency genuinely targets one OS looks the same as a narrowed
+ * one. No house here is in that position -- a bundler alone brings dozens -- so
+ * no escape hatch is built for a case nobody has.
+ *
+ * @param {object} lock  a parsed package-lock.json
+ * @returns {{ constrained: number, os: string[], cpu: string[] }}
+ */
+export function platformCoverage(lock) {
+  const os = new Set();
+  const cpu = new Set();
+  let constrained = 0;
+  for (const pkg of Object.values(lock?.packages ?? {})) {
+    if (Array.isArray(pkg?.os) && pkg.os.length) {
+      constrained++;
+      for (const o of pkg.os) os.add(o);
+    }
+    if (Array.isArray(pkg?.cpu)) for (const c of pkg.cpu) cpu.add(c);
+  }
+  return { constrained, os: [...os].sort(), cpu: [...cpu].sort() };
+}
+
 export function checkLockfiles(paths = [], config = DEFAULT_CONFIG) {
   const policy = config.lockfilePolicy;
   if (!policy) return { ok: true, offenders: [] };

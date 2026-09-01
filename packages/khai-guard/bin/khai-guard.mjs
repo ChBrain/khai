@@ -60,6 +60,8 @@ import {
   checkLockfiles,
   unseenByRange,
   npmBin,
+  npmUnavailable,
+  platformCoverage,
   lockfileMismatch,
   checkMembers,
   deadExemptions,
@@ -1009,8 +1011,30 @@ function checkLockfileSync() {
     });
     return { ok: true };
   } catch (err) {
+    // npm refusing and npm never running are different facts. Collapsing them
+    // reported an ENOENT as a lockfile mismatch, which sent a house to delete the
+    // lockfile and rebuild it -- breaking it for real, on a wall that in fact had
+    // nothing to say.
+    const unavailable = npmUnavailable(err);
+    if (unavailable) return { skipped: `${unavailable}, so the manifests were not compared` };
     return { ok: false, lines: lockfileMismatch(err.stderr ?? "") };
   }
+}
+
+// Does the lockfile still carry every platform, or only the one that last wrote
+// it? The sync check cannot answer this: npm is asked whether it can install, and
+// a narrowed lockfile installs fine while removing the host's own binaries.
+function checkLockfileBreadth() {
+  if (!existsSync("package-lock.json")) return { skipped: true };
+  let lock;
+  try {
+    lock = JSON.parse(readFileSync("package-lock.json", "utf8"));
+  } catch (err) {
+    return { ok: false, reason: `package-lock.json will not parse -- ${err.message}` };
+  }
+  const { constrained, os } = platformCoverage(lock);
+  if (constrained === 0 || os.length > 1) return { ok: true, constrained, os };
+  return { ok: false, narrowed: true, constrained, os };
 }
 
 // The working tree, counted by state. `git status --porcelain` marks staged
@@ -1096,6 +1120,31 @@ function runLockfileCheck() {
   // with a root lockfile has this exposure whether or not it has configured
   // anything, so the check arrives with the version rather than with an edit
   // every house would have to make for itself.
+  // 3. Platform breadth, asked BEFORE sync because a narrowed lockfile passes
+  // the sync check: it is in sync with the manifests and wrong anyway.
+  const breadth = checkLockfileBreadth();
+  if (breadth.narrowed) {
+    failed.push("platform breadth");
+    console.error(
+      "::error::KHAI-Guard lockfile-check: package-lock.json carries binaries for " +
+        `only one platform (${breadth.os[0]}), across ${breadth.constrained} package(s).`,
+    );
+    console.error(
+      "  That is what `rm package-lock.json && npm install` produces: it records only\n" +
+        "  the optional packages that resolve on the machine running it, so every other\n" +
+        "  platform is dropped. It installs perfectly there, and `npm ci` elsewhere\n" +
+        "  removes that machine's own binaries and still exits 0.",
+    );
+    console.error("");
+    console.error(
+      "  fix: git checkout <base> -- package-lock.json, then npm install, which adds\n" +
+        "       only what your change needs. Never regenerate the lockfile from scratch.",
+    );
+  } else if (breadth.ok === false) {
+    failed.push("lockfile parse");
+    console.error(`::error::KHAI-Guard lockfile-check: ${breadth.reason}`);
+  }
+
   const sync = checkLockfileSync();
   if (sync.skipped) {
     // Skipped and said so. A non-npm house must not read silence as a pass.
