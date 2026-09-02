@@ -1,0 +1,8 @@
+{
+  "id": "writing",
+  "title": "Writing Archive",
+  "kind": "chain",
+  "package": "@chbrain/khai-writing",
+  "blurb": "The chain's writing archive: the writing the plays produced, rendered as venue-neutral results, and the ledger of where each result has been published.",
+  "repo": "https://github.com/ChBrain/khai-writing"
+}

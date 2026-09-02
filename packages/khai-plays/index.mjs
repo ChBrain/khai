@@ -40,7 +40,7 @@ export const slug = (s) =>
  * Closed on purpose: a new kind is an architectural decision, so it lands here
  * with a section in the rendered bill rather than appearing by typo.
  */
-export const KINDS = ["stage", "work", "canon"];
+export const KINDS = ["stage", "work", "canon", "chain"];
 
 /**
  * What each kind holds, for the card validator's message and the bill's prose.
@@ -50,11 +50,19 @@ export const KINDS = ["stage", "work", "canon"];
  * invariant, and it is why a house is a repository rather than a package. The
  * kinds do not differ in what the item IS; they differ in where its source comes
  * from and what the plays are for.
+ *
+ * `chain` is the one exception, and it holds no plays: the writing archive and
+ * the website are chain infrastructure, one repository each for every house.
+ * They sit on the bill because the jobs that read the bill as the list of what
+ * khai runs (the adoption record, the release-token check) must see them too,
+ * and a consumer that pulls a house's package skips a card whose package it has
+ * not installed, which is how the website already reads the bill.
  */
 export const KIND_BLURB = {
   stage: "plays staged from another's source",
   work: "plays staged from khai's own canon",
   canon: "plays other productions draw on as material",
+  chain: "infrastructure every house shares, on the bill by exception",
 };
 
 const isSlug = (s) => typeof s === "string" && /^[a-z0-9]+(-[a-z0-9]+)*$/.test(s);
