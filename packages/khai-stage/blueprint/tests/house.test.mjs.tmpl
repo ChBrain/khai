@@ -2,7 +2,8 @@ import { describe, it, expect } from "vitest";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { readFileSync, readdirSync, existsSync } from "node:fs";
-import { validateProject } from "@chbrain/khai-tests";
+import * as kt from "@chbrain/khai-tests";
+import { validateProject, verifyRegistry, checkManagement } from "@chbrain/khai-tests";
 import { referenceCard } from "@chbrain/khai-arch";
 import { validateProjectLanguages } from "@chbrain/khai-language";
 
@@ -80,5 +81,34 @@ describe("{{SOURCE_TITLE}} house: plays conform to the canon", () => {
 
     walk(playsDir);
     expect(errors).toEqual([]);
+  });
+});
+
+// The built file and the shared management core are held to a fresh build and
+// to the live blueprint. Both checks ship in the kit; a house that never ran
+// them drifted on two core files before anybody noticed, because a gate that
+// exists and is not run is a gate that does not exist.
+describe("{{SOURCE_TITLE}} house: built files and the shared core hold", () => {
+  it("registry.json equals a fresh build (rebuild with `khai-tests registry build`)", () => {
+    const r = verifyRegistry(root);
+    expect(r.errors).toEqual([]);
+  });
+
+  it("the shared management core matches the installed blueprint", () => {
+    expect(checkManagement(root)).toEqual([]);
+  });
+});
+
+// Kit checks adopted dormant: each wakes when the installed kit exports it, so
+// the house takes a new wall by bumping the kit and never by a second pull
+// request. Probe the export, never a version.
+const houseChecks = typeof kt.resolveHouse === "function" ? kt.resolveHouse(root) : null;
+describe.skipIf(!houseChecks)("{{SOURCE_TITLE}} house: kit house checks", () => {
+  it("no relative link leaves its play", () => {
+    expect(kt.isolationErrors(houseChecks)).toEqual([]);
+  });
+
+  it("every content filename is ASCII", () => {
+    expect(kt.filenameErrors(houseChecks)).toEqual([]);
   });
 });

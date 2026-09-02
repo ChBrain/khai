@@ -64,6 +64,7 @@ describe("khai-stage: the stamped house", () => {
       "package.json",
       ".npmrc",
       ".gitignore",
+      ".gitattributes",
       ".nvmrc",
       ".prettierignore",
       "LICENSE",
@@ -371,5 +372,62 @@ describe("khai-stage: the three kinds", () => {
     expect(handoffs).toMatch(/management prose speaks of plays/);
     const stage = await stamp({ source: "buechner" });
     expect(stage.result.handoffs.join("\n")).not.toMatch(/management prose speaks of plays/);
+  });
+});
+
+// The blueprint is stamped into every house, so a fault in it is a fault in
+// every house raised after it. Three were found downstream and repaired there,
+// each in more than one house, while the stamp kept shipping the original:
+// the hook that was never installed, the release action a major behind, and
+// the contract that disagreed with the guard about a count-driven add.
+describe("khai-stage: the stamped house carries the repairs its houses made", () => {
+  const pkg = () => JSON.parse(readFileSync(join(dir, "package.json"), "utf8"));
+
+  it("installs its own hook: `prepare` runs husky, so `npm ci` wires .husky", () => {
+    expect(pkg().scripts.prepare).toBe("husky");
+  });
+
+  it("declares its walls and runs them from one script", () => {
+    const config = JSON.parse(readFileSync(join(dir, "khai-guard.config.json"), "utf8"));
+    const names = config.gates.map((g) => g.name);
+    expect(names).toEqual(["prettier", "suite", "khai-guard", "branch-check", "changeset-check"]);
+    expect(pkg().scripts.gates).toMatch(/^khai-tests gates \. --content-root plays\/$/);
+    expect(readFileSync(join(dir, ".husky/pre-push"), "utf8")).toMatch(/npm run gates/);
+  });
+
+  it("makes a count-driven add owe a minor, and CI checks it", () => {
+    const config = JSON.parse(readFileSync(join(dir, "khai-guard.config.json"), "utf8"));
+    expect(config.changesetPolicy.countDrivenAdd).toEqual(["plays/*/play_*.md"]);
+    const ci = readFileSync(join(dir, ".github/workflows/ci.yml"), "utf8");
+    expect(ci).toMatch(/khai-guard changeset-check/);
+    const agents = readFileSync(join(dir, "AGENTS.md"), "utf8");
+    expect(agents).toMatch(/\*\*Adding a play\*\* -> a `minor` changeset/);
+    expect(agents).not.toMatch(/Adding a play\*\* -> no changeset/);
+  });
+
+  it("releases through changesets/action v2 with the v2 input names", () => {
+    const rel = readFileSync(join(dir, ".github/workflows/release.yml"), "utf8");
+    expect(rel).toMatch(/changesets\/action@v2/);
+    expect(rel).toMatch(/version-script: npm run version/);
+    expect(rel).toMatch(/publish-script: npm run release/);
+    expect(rel).toMatch(/github-token:/);
+    const step = rel.slice(rel.indexOf("changesets release"));
+    expect(step).not.toMatch(/^\s+GITHUB_TOKEN:/m);
+  });
+
+  it("can reach the case law it points at: khai-stage is a devDependency", () => {
+    expect(pkg().devDependencies["@chbrain/khai-stage"]).toBeDefined();
+    expect(readFileSync(join(dir, "AGENTS.md"), "utf8")).toMatch(
+      /node_modules\/@chbrain\/khai-stage\/conduct\.md/,
+    );
+  });
+
+  it("rides .changeset/** with the change it records, and homes it to governance alone", () => {
+    const config = JSON.parse(readFileSync(join(dir, "khai-guard.config.json"), "utf8"));
+    expect(config.branchScope.shared).not.toContain(".changeset/**");
+    expect(config.branchScope.riders).toContainEqual({
+      pattern: ".changeset/**",
+      fallback: "governance",
+    });
   });
 });

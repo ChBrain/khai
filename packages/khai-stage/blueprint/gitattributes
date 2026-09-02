@@ -1,0 +1,7 @@
+# Normalise line endings on commit and check out LF everywhere. Eight
+# branches once arrived with CRLF findings that prettier preserved under
+# endOfLine "auto"; both halves are fixed, here and in .prettierrc.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.pdf binary
