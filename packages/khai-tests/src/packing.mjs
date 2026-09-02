@@ -325,8 +325,8 @@ export function checkRegistryPacking(root, packed) {
       // the collection's prefix -- the same rule registry.mjs's own build uses
       // (`files.find(f => f.startsWith(collection.anchor) ...)`), and not
       // necessarily `<anchor><id>.md`: a de-duplicated registry id (a house
-      // prefixing a province by its country, `es_andalusia`) commonly names a
-      // directory the anchor file inside it does not repeat (`play_andalusia.md`).
+      // prefixing a province by its country, `xx_region`) commonly names a
+      // directory the anchor file inside it does not repeat (`play_region.md`).
       // Read from disk, so a registry id with nothing on disk to check is
       // skipped here rather than misreported -- that gap belongs to whichever
       // wall proves the registry against the source tree, not this one.
