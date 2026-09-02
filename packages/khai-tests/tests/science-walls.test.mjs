@@ -17,7 +17,7 @@ const DORMANT = !existsSync(join(srcDir, "science-walls.mjs"));
 const walls = DORMANT ? {} : await import("../src/science-walls.mjs");
 const overlap = DORMANT ? {} : await import("../src/overlap.mjs");
 
-// A collection house: units under misfits/<id>/ with a REFERENCE.md warrant
+// A collection house: units under <collection>/<id>/ with a REFERENCE.md warrant
 // and a play_<id>.md anchor carrying the title. Mirrors the fixture in
 // science-overlap.test.mjs (kept local since that file's helper is not
 // exported), extended with an optional `frontmatter` block per unit and an

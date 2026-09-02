@@ -310,7 +310,7 @@ export function undeclaredNamesakes(index, policy = {}) {
 /**
  * The complement of `undeclaredNamesakes`: undeclared surnames whose cells
  * mix a NAMED one with a BARE one. A namesake hiding behind a bare cell (no
- * given name written at all -- "Diamond & Dybvig") is invisible to the probe
+ * given name written at all -- "Surname & Coauthor") is invisible to the probe
  * above, which needs two named cells to report anything; this is where such
  * a namesake would be hiding. It is a reading list and not a finding count:
  * almost every surname it returns is a single scholar an author happened to

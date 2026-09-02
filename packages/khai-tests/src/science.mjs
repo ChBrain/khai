@@ -754,7 +754,7 @@ export function renderScienceIndex({ records, byEngine }) {
 //
 // An engine monorepo indexes packages (packages/engines/*, each a package.json +
 // REFERENCES.md). A *collection* house — a production house like khai-misfits —
-// indexes content subdirs instead: `misfits/<id>/`, each a folder of markdown
+// indexes content subdirs instead: `<collection>/<id>/`, each a folder of markdown
 // with a `REFERENCE.md` warrant and no per-item package.json. Such a house
 // declares its shape in `khai.collection` (the same knob the registry build
 // reads), so the science index is computed from the very same Origin tables the
