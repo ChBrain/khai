@@ -117,16 +117,46 @@ runs `khai-tests registry build`, which sets the version from the play count:
 `package.json` and `registry.json`. The build is the single writer of the
 version; never hand-edit it.
 
-- **Adding a play** -> no changeset. The play PR runs `khai-tests registry build`,
-  which moves the minor to the new play count and resets the patch to 0
-  (`0.<count>.0`); `changeset publish` ships it. A per-play changeset would
-  re-bump the patch on top of the minor the build already moved, the
-  `0.<count>.1` drift to avoid.
-- **A non-play change** (governance, formatting, a fix to existing content) ->
-  a `patch` changeset; it ships at the same play count.
+The Version Packages pull request is the deploy gate every release passes
+through, so every pull request carries a changeset, and `khai-guard
+changeset-check` computes which kind rather than trusting the reader:
+
+- **Adding a play** -> a `minor` changeset, and it must be `minor`. The count
+  moves the minor and the build resets the patch to 0, so a `patch` or an empty
+  changeset survives the reconcile (count equals minor) and drifts the version to
+  `0.<count>.1`; the gate rejects it. The play PR carries the changeset, so the
+  CHANGELOG names the play.
+- **A fix to existing content** (something the package `files` ship) -> a
+  `patch` changeset; it ships at the same play count.
+- **A change that ships nothing** (governance, tooling, docs, tests) -> an
+  **empty** changeset (`npx changeset add --empty`); it records the PR and merges
+  green without republishing identical content.
 
 A non-zero major resets the minor while the count keeps climbing, so a house
 stays `0.x`; the numbering guard rejects a major bump.
+
+### The built files travel with the change
+
+`registry.json` and the version in `package.json` are **built, never merged**,
+and so is any index your house generates from its content. They are valid only
+against the `main` they will merge into: the moment another play lands first,
+the count moves and they are stale. Git cannot resolve a computed count, so when
+it reports a conflict in one of these files, **both sides are outputs**: choosing
+between them, or splicing them, produces a file no build would emit. Discard both
+and rebuild:
+
+1. reset the branch to `main`;
+2. take **only** the content across, the play directory and its changeset;
+3. run `khai-tests registry build` (and every other builder the house runs)
+   against the final tree;
+4. revert `CHANGELOG.md`, whose top heading belongs to the release and not to
+   the branch;
+5. run `npm run format`, then verify with **both** `npm test` and
+   `npm run format:check` before pushing.
+
+The count is read from the directories on disk, so build with only the play you
+are shipping present. This holds for any branch that regenerates a built file,
+governance included: the lane does not decide it, touching a built file does.
 
 ## Protection
 

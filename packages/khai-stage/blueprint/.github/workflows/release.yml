@@ -56,10 +56,20 @@ jobs:
         run: npm test
 
       - name: changesets release
-        uses: changesets/action@v1
+        uses: changesets/action@v2
         with:
-          version: npm run version
-          publish: npm run release
+          # v2 renamed both script inputs. Under the old names the action fails
+          # outright rather than falling back, so the rename is not optional.
+          version-script: npm run version
+          publish-script: npm run release
+          # v2 also has a `github-token` input defaulting to the built-in token,
+          # and refuses to run when a GITHUB_TOKEN env var disagrees with it,
+          # which is exactly what passing the PAT through env used to do. The PAT
+          # goes in the input; it cannot be dropped for the default, because of
+          # the anti-recursion note above: GITHUB_TOKEN suppresses workflow runs
+          # on the commits it makes, so the Version PR would never get CI.
+          github-token: ${{ secrets.RELEASE_TOKEN }}
         env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+          # Only the registry token stays in env: npm reads it during
+          # `changeset publish`, the action never does.
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
