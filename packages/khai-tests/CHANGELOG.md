@@ -1,5 +1,12 @@
 # @chbrain/khai-tests
 
+## 0.4.4
+
+### Patch Changes
+
+- Updated dependencies [df605dc]
+  - @chbrain/khai-stage@0.0.28
+
 ## 0.4.3
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-plays",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "The khai house registry: the bill of every house that depends on khai, read by the website. Each card declares its kind -- stage, work, canon, or chain for the infrastructure every house shares -- and khai holds the cards, never the productions.",
   "type": "module",
   "main": "./index.mjs",
