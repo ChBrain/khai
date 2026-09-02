@@ -1,4 +1,13 @@
 #!/usr/bin/env sh
+# Git exports GIT_DIR into every hook it runs, and under some hooks
+# GIT_WORK_TREE and GIT_INDEX_FILE beside it. This hook runs the suite, and a
+# suite that builds a scratch repository in a temp directory to prove a gate
+# on would, with those inherited, `init` and `commit` against THIS repository
+# instead. One house's pre-push wrote two scratch commits onto the branch
+# being pushed and flipped the checkout to bare before anybody saw why. A
+# hook that runs the suite drops them first.
+unset GIT_DIR GIT_WORK_TREE GIT_INDEX_FILE
+
 # The last gate before a push, and the one CI cannot repeat in time to help.
 #
 # It used to run the guard alone, which checks the lane and the source/test
