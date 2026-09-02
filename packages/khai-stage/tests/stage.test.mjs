@@ -73,6 +73,7 @@ describe("khai-stage: the stamped house", () => {
       ".github/workflows/ci.yml",
       ".github/workflows/release.yml",
       ".github/workflows/khai-drift.yml",
+      ".github/workflows/release-token.yml",
       ".github/dependabot.yml",
       ".github/CODEOWNERS",
       ".husky/pre-push",
