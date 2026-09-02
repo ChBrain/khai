@@ -52,5 +52,8 @@ five walls every house starts with, a `minor` owed on every count-driven add), C
 and the pre-push hook that runs every declared wall after a lockfile check, CODEOWNERS, SECURITY, `AGENTS.md` (the vendor-agnostic
 coding contract) with the per-tool files that point at it, the `README.md` that
 serves as the house's Estate identity, and a conformance test that is green on an
-empty house and validates plays as they land. No play is written; the house is
-handed back empty. The plays come later, in `khai-playwright` mode.
+empty house and validates plays as they land. It also stamps a monthly
+`release-token.yml` that reads the house's own `RELEASE_TOKEN` and opens an
+issue before the release workflow can fail on it silently. No play is written;
+the house is handed back empty. The plays come later, in `khai-playwright`
+mode.
