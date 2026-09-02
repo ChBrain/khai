@@ -42,6 +42,7 @@ import { describe, it, expect } from "vitest";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { findOverlaps, findUnresolvedNamesakes } from "../index.mjs";
+import { collectUnits } from "../src/overlap.mjs";
 
 const REPO = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
 
@@ -69,9 +70,32 @@ const BASELINE = [
   "Vaughan (Diane) :: the challenger launch decision",
 ].sort();
 
+// The corpus the two walls below are read against. Both of them pass when they
+// find nothing, so both of them pass when they are handed nothing -- a wall that
+// is green on an empty corpus is not a wall. Neither BASELINE nor
+// NAMESAKE_BASELINE can stand in for this check: a governance sweep may
+// legitimately empty either one, so a count of findings proves nothing about
+// whether the corpus was read. The unit count does.
+const CORPUS = collectUnits(REPO);
+
+describe("science overlap wall: the corpus is there to be walled", () => {
+  it("reads the live corpus, so an empty result means no finding and not no data", () => {
+    expect(CORPUS.units.length).toBeGreaterThan(300);
+    expect(CORPUS.records.length).toBeGreaterThan(1000);
+  });
+});
+
+// Scanned once per file, not once per test. Both tests below read the same
+// corpus, and each `it()` gets its own 5s clock from vitest's default -- a
+// budget sized for a unit test, not for reading 381 engines. Scanning at module
+// level costs the same wall clock but is charged to the file's import instead of
+// to a test, so a slow host can no longer turn a corpus read into a red wall.
+// `unedited-scaffold.test.mjs` already collects its corpus this way.
+const OVERLAP_KEYS = findOverlaps(REPO).map((o) => o.key);
+
 describe("science overlap wall: the live corpus against the declared canon", () => {
   it("reports no overlap outside BASELINE", () => {
-    const keys = findOverlaps(REPO).map((o) => o.key);
+    const keys = OVERLAP_KEYS;
     const unbaselined = keys.filter((k) => !BASELINE.includes(k));
     expect(
       unbaselined,
@@ -88,7 +112,7 @@ describe("science overlap wall: the live corpus against the declared canon", () 
   });
 
   it("warns on stale BASELINE entries (pruned by a governance sweep, never a wall)", () => {
-    const keys = new Set(findOverlaps(REPO).map((o) => o.key));
+    const keys = new Set(OVERLAP_KEYS);
     const stale = BASELINE.filter((k) => !keys.has(k));
     // A warning, not a failure: the fix that removes an overlap rides an
     // engine lane, and this file is governance -- failing here would demand a
@@ -144,9 +168,12 @@ const NAMESAKE_BASELINE = [
   "Wilson :: praise",
 ].sort();
 
+// Once per file, for the same reason as OVERLAP_KEYS above.
+const NAMESAKE_KEYS = findUnresolvedNamesakes(REPO).map((r) => `${r.scholar} :: ${r.unit}`);
+
 describe("science overlap wall: declared homonyms resolve in the live corpus", () => {
   it("reports no unresolved namesake outside NAMESAKE_BASELINE", () => {
-    const keys = findUnresolvedNamesakes(REPO).map((r) => `${r.scholar} :: ${r.unit}`);
+    const keys = NAMESAKE_KEYS;
     const unbaselined = keys.filter((k) => !NAMESAKE_BASELINE.includes(k));
     expect(
       unbaselined,
@@ -159,7 +186,7 @@ describe("science overlap wall: declared homonyms resolve in the live corpus", (
   });
 
   it("warns on stale NAMESAKE_BASELINE entries (pruned by a governance sweep, never a wall)", () => {
-    const keys = new Set(findUnresolvedNamesakes(REPO).map((r) => `${r.scholar} :: ${r.unit}`));
+    const keys = new Set(NAMESAKE_KEYS);
     const stale = NAMESAKE_BASELINE.filter((k) => !keys.has(k));
     // Same shape as the overlap wall above: a Source-cell fix that resolves a
     // namesake rides the engine's own lane and cannot prune this file.
