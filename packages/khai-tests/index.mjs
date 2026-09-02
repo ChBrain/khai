@@ -75,6 +75,16 @@ export {
   findUnresolvedNamesakes,
 } from "./src/overlap.mjs";
 export {
+  resolveHouse,
+  unitsOf,
+  touchedUnits,
+  defaultRelink,
+  isolationErrors,
+  loadIsolationPolicy,
+  filenameErrors,
+  ratchet,
+} from "./src/house.mjs";
+export {
   findShadowedForms,
   findSuffixKeys,
   axesOf,

@@ -54,6 +54,14 @@ import { loadGates, runGates, renderGates, gateLine } from "./gates.mjs";
 import { verifyGatesAgainstCi, renderCiCheck } from "./ci.mjs";
 import { verifyRelease, renderRelease } from "./release.mjs";
 import { packedFilesAny, checkRegistryPacking, renderRegistryPacking } from "./packing.mjs";
+
+import {
+  resolveHouse,
+  touchedUnits,
+  isolationErrors,
+  loadIsolationPolicy,
+  filenameErrors,
+} from "./house.mjs";
 import { resolve, relative } from "node:path";
 import { existsSync, readdirSync, writeFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
@@ -424,6 +432,88 @@ function managementMode(args) {
   );
 }
 
+// `house check [dir] [--base <sha> --head <sha>] [--name <package>]`:
+// isolation and filenames over a house resolved by resolveHouse, in either
+// layout.
+//
+// Isolation runs only when the house declares `isolationPolicy` in its
+// khai-guard.config.json (loadIsolationPolicy) -- a house with a real cross-unit
+// idiom (one unit's position cited by name from another) is red on every such
+// link until it writes down what `allow` means, and a wall red on content a
+// house wrote on purpose is not yet a wall. Filenames carry no such idiom (an
+// accented filename is never deliberate) and always run.
+//
+// `--base`/`--head` scope both walls to what the diff range AUTHORED
+// (touchedUnits), so a pull request pays for the unit it wrote in and not for
+// the rest of the house; omit them to check the whole house. `--name` picks
+// one declaring package when a workspace holds more than one (resolveHouse's
+// `{ name }`).
+async function houseMode(args) {
+  if (args[1] !== "check") {
+    console.error("khai-tests house check [dir] [--base <sha> --head <sha>] [--name <package>]");
+    process.exit(2);
+  }
+  const dirArg = args[2] && !args[2].startsWith("--") ? args[2] : ".";
+  const root = resolve(dirArg);
+  const baseIdx = args.indexOf("--base");
+  const headIdx = args.indexOf("--head");
+  const nameIdx = args.indexOf("--name");
+  const base = baseIdx !== -1 ? args[baseIdx + 1] : null;
+  const head = headIdx !== -1 ? args[headIdx + 1] : null;
+  const name = nameIdx !== -1 ? args[nameIdx + 1] : undefined;
+
+  let house;
+  try {
+    house = resolveHouse(root, { name });
+  } catch (err) {
+    console.error(`✖ ${err.message}`);
+    process.exit(1);
+  }
+  console.log(
+    `khai-tests house: ${house.name ?? "(unnamed)"} at ${relative(process.cwd(), house.packageDir) || "."}\n` +
+      `  collection: ${house.collection.key} (${relative(process.cwd(), house.contentDir) || house.collection.dir})\n` +
+      `  productions: ${house.productions.length}`,
+  );
+
+  let scope = null;
+  if (base && head) {
+    const authored = touchedUnits(house, { base, head })
+      .filter((u) => u.authored)
+      .map((u) => u.id);
+    scope = new Set(authored);
+    console.log(`  authored by ${base}..${head}: ${authored.length} unit(s)`);
+  }
+  const inScope = (findings, unitOf) =>
+    scope ? findings.filter((f) => scope.has(unitOf(f))) : findings;
+
+  let failed = false;
+
+  const policy = loadIsolationPolicy(root);
+  if (!policy.declared) {
+    console.log("  isolation: not declared (isolationPolicy absent), skipped");
+  } else {
+    const isolation = inScope(isolationErrors(house, { allow: policy.allow }), (f) => f.unit);
+    if (isolation.length) {
+      failed = true;
+      console.error(`✖ isolation: ${isolation.length} link(s) escape their unit`);
+      for (const f of isolation) console.error(`    ${f.message}`);
+    } else {
+      console.log(`  isolation: clean (allow: ${policy.allow.length})`);
+    }
+  }
+
+  const filenames = inScope(filenameErrors(house), (f) => f.unit);
+  if (filenames.length) {
+    failed = true;
+    console.error(`✖ filenames: ${filenames.length} non-ASCII path component(s)`);
+    for (const f of filenames) console.error(`    ${f.file}`);
+  } else {
+    console.log(`  filenames: clean`);
+  }
+
+  if (failed) process.exit(1);
+}
+
 // `instructions [--root .]` collects the Playwright guide of every khai content
 // package the root DECLARES, deepest dependency first. The closure is the point:
 // a repository gets the packages it installs, never a global list.
@@ -558,6 +648,7 @@ async function packingMode(args) {
 }
 
 if (argv[0] === "instructions") await instructionsMode(argv);
+else if (argv[0] === "house") await houseMode(argv);
 else if (argv[0] === "gates") gatesMode(argv);
 else if (argv[0] === "pack") await packMode(argv);
 else if (argv[0] === "packing") await packingMode(argv);
