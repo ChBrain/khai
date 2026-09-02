@@ -194,6 +194,28 @@ or that the range never touched, owes nothing. The library exposes the pieces
 separately for a house's own gate to hold to a baseline (`ratchet`) rather than
 demand the whole house at zero on day one.
 
+Two things `unitsOf` and `touchedUnits` are each careful not to get wrong, both
+found by a house that swapped its own hand-rolled resolver for this one:
+
+- A migration's `git mv` moves a unit's anchor file into its own production
+  package but can leave the directory it came from on disk, empty (git tracks
+  no empty directories, but the filesystem does). `unitsOf` no longer counts a
+  content-dir directory as a unit unless it holds the collection's own anchor
+  file (`<anchor>*.md`), so that leftover is not a unit at all and does not
+  collide with the production the real unit moved to. Two places that BOTH
+  carry an anchor still throw (that is a genuine duplicate, not debris), and a
+  caller that wants to flag the leftover directories themselves calls
+  `emptyUnitDirs(house)`, which `unitsOf` does not.
+- `touchedUnits` classifies a unit AUTHORED the moment any one of its files
+  earns that verdict, so a wall reading only one kind of file inside a unit (a
+  plot-zero gate reading only `plot_*.md`, say) must not stop at the unit-level
+  flag: a relinked plot sitting beside an unrelated authored persona reads
+  `authored: true` at the unit level though the plot itself was never touched.
+  Each entry in `files` now carries its own `authored`, and `authoredFiles(house,
+  { base, head })` returns the `Map<unit id, string[]>` of exactly the files
+  that earned it, for a caller that wants to charge the file rather than the
+  unit it happens to share a directory with.
+
 ### Science keying walls: checks on the index's OWN key computation
 
 The instruments above ask whether a piece of science is shared. These ask a
@@ -271,7 +293,8 @@ The CLI is a thin caller over the same functions the test suite uses:
   registry.json held against the tarball; pair with `packedFilesAny(root)`,
   which packs a flat house the same way `packedFiles` packs a workspace one.
 - `rules`, `parseDoc`, `sectionBody` — the underlying atoms.
-- `resolveHouse(root)`, `unitsOf(house)`, `touchedUnits(house, { base, head })`,
+- `resolveHouse(root)`, `unitsOf(house)`, `emptyUnitDirs(house)`,
+  `touchedUnits(house, { base, head })`, `authoredFiles(house, { base, head })`,
   `isolationErrors(house, { allow })`, `loadIsolationPolicy(root)`,
   `filenameErrors(house)`, `ratchet({ name, findings, baseline })`: the house
   content walls behind `house check` (see above), for a house's own gate to
