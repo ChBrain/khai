@@ -1,0 +1,135 @@
+name: release-token
+
+# Every khai house releases through a RELEASE_TOKEN secret, a personal access
+# token the changesets action uses to push the version branch and open the
+# Version PR (see .github/workflows/release.yml). When it expires or loses a
+# repository, the release workflow fails at its last step and nobody sees it
+# until a release is missing. This is the alarm read ahead of that failure: it
+# authenticates with khai's own RELEASE_TOKEN, reads when it expires, and reads
+# what the GitHub API reports the token may do on this repository and on every
+# house on the bill (packages/khai-plays/registry/*.json). What this proves:
+# the token authenticates, when it expires, and what the API reports it may do
+# on each repository. It never runs a release and never fixes anything; the
+# true test of a release is the release, this is only the instrument that says
+# a token will not be able to run one.
+#
+# This reads only khai's own RELEASE_TOKEN and touches no house's secret. A
+# house holding its own RELEASE_TOKEN needs its own copy of this check, which
+# is the per-house workflow the blueprint stamps
+# (packages/khai-stage/blueprint/.github/workflows/release-token.yml),
+# reading that house's own token against that house's own repository, nothing
+# more. Neither workflow can see the other's secret; each speaks for one
+# token only.
+#
+# The workflow must not fail when the token is bad -- a red run here would be
+# exactly the kind of failure this exists to give advance notice of, not
+# repeat. The script's own exit code is swallowed (continue-on-error) and the
+# issue is the signal instead: opened or updated when the token cannot be read
+# or is close to expiring or cannot reach a repository it needs, closed when
+# the report reads clean.
+#
+# Scheduled the first of the month, well ahead of any expiry a reasonable PAT
+# lifetime would produce, so a warning has weeks to be acted on before a
+# release is actually blocked.
+
+on:
+  schedule:
+    - cron: "0 8 1 * *"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  release-token:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          registry-url: "https://npm.pkg.github.com"
+          scope: "@chbrain"
+          cache: npm
+
+      - name: install
+        run: npm ci
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: read the token
+        id: check
+        continue-on-error: true
+        env:
+          RELEASE_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        run: node scripts/release-token.mjs --json > release-token.json
+
+      - name: render the report
+        id: render
+        run: |
+          node --input-type=module <<'EOF' > report.md
+          import { readFileSync, existsSync, appendFileSync } from "node:fs";
+          const mark = (b) => (b === null ? "unknown" : b ? "yes" : "no");
+          let signal = true;
+          let body;
+          if (existsSync("release-token.json")) {
+            const r = JSON.parse(readFileSync("release-token.json", "utf8"));
+            const warn = r.daysLeft !== null && r.daysLeft < 30;
+            const bad = r.rows.some((row) => row.reach === "unreachable" || row.push === false);
+            signal = warn || bad;
+            const lines = [`Authenticated as \`${r.login}\`.`];
+            lines.push(
+              r.expiresAt
+                ? `Expires ${r.expiresAt} (${r.daysLeft} days left)${warn ? " -- **warning: under 30 days left**" : ""}.`
+                : "Token does not expire.",
+            );
+            lines.push("", "| repo | reach | pull | push |", "| --- | --- | --- | --- |");
+            for (const row of r.rows) {
+              lines.push(`| ${row.owner}/${row.repo} | ${row.reach} | ${mark(row.pull)} | ${mark(row.push)} |`);
+            }
+            body = lines.join("\n");
+          } else {
+            body = "RELEASE_TOKEN could not be read: it is unset, or authentication failed.";
+          }
+          appendFileSync(process.env.GITHUB_OUTPUT, `signal=${signal}\n`);
+          console.log(body);
+          EOF
+          cat report.md
+
+      - name: open or update the release-token issue
+        if: steps.render.outputs.signal == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TITLE="release token"
+          BODY="$(cat report.md)
+
+          What this proves: the token authenticates, when it expires, and what
+          the GitHub API reports it may do on each repository. It never runs a
+          release; the true test of a release is the release.
+
+          Raised by \`.github/workflows/release-token.yml\` via
+          \`scripts/release-token.mjs\`; it updates this issue rather than
+          opening another."
+
+          NUM="$(gh issue list --state open --search "$TITLE in:title" --json number,title \
+                 --jq ".[] | select(.title == \"$TITLE\") | .number" | head -1)"
+
+          if [ -n "$NUM" ]; then
+            gh issue comment "$NUM" --body "$BODY"
+          else
+            gh issue create --title "$TITLE" --body "$BODY"
+          fi
+
+      - name: close the release-token issue when it reads clean
+        if: steps.render.outputs.signal == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TITLE="release token"
+          NUM="$(gh issue list --state open --search "$TITLE in:title" --json number,title \
+                 --jq ".[] | select(.title == \"$TITLE\") | .number" | head -1)"
+          if [ -n "$NUM" ]; then
+            gh issue close "$NUM" --comment "The release token reads clean again."
+          fi
