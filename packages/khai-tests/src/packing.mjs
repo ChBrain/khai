@@ -28,6 +28,7 @@
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join, dirname } from "node:path";
+import { resolveCollection } from "./collection.mjs";
 
 /** The guide's filename, the same constant the validator enforces. */
 const PLAYWRIGHT_INSTRUCTIONS = "playwright_instructions.md";
@@ -145,6 +146,43 @@ export function packedFiles(root, { names = null } = {}) {
 }
 
 /**
+ * The paths `npm pack` would put in every workspace package's tarball, working
+ * whether or not the house has taken the workspace shape yet.
+ *
+ * `packedFiles` asks npm with `-w` or `--workspaces`, and npm refuses both
+ * against a repo with no `workspaces` field: a flat house (root package.json IS
+ * the content package, the shape khai-misfits held before its move) has none.
+ * So a workspaces-less root is packed one directory at a time, through the same
+ * plain `npm pack --dry-run --json` a flat house's own packing test ran before
+ * this was lifted -- `workspacePackages` already resolves to just that one
+ * directory for a flat root, so the loop below costs one invocation there and
+ * the batched call keeps its one-invocation cost everywhere the workspace
+ * exists.
+ *
+ * @param {string} root
+ * @returns {Map<string, Set<string>>}
+ */
+export function packedFilesAny(root) {
+  const rootPkg = readJson(join(root, "package.json"));
+  if (rootPkg?.workspaces) return packedFiles(root);
+  const out = new Map();
+  for (const [name, dir] of workspacePackages(root)) {
+    const npm = npmSpawn(["pack", "--dry-run", "--json"]);
+    const raw = execFileSync(npm.file, npm.args, {
+      shell: npm.shell,
+      cwd: dir,
+      encoding: "utf8",
+      maxBuffer: 256 * 1024 * 1024,
+      stdio: ["ignore", "pipe", "ignore"],
+    });
+    for (const entry of JSON.parse(raw)) {
+      if (entry?.name === name) out.set(name, new Set((entry.files ?? []).map((f) => f.path)));
+    }
+  }
+  return out;
+}
+
+/**
  * Every file a package's own manifest names, as the package sees it.
  *
  * Deliberately narrow. The Playwright guide is required only when it is already
@@ -185,6 +223,152 @@ export function checkPacking(root, packed) {
     if (missing.length > 0) findings.push({ package: name, missing });
   }
   return findings;
+}
+
+// Governance content a package must never ship: the gates, the vendor
+// instruction files, and the tests that prove the content rather than being
+// the content. `checkPacking` above asks "does the manifest's own promise
+// ship"; this asks the opposite question, "does something the manifest never
+// promised ship anyway" -- a `files` field that reaches too far (or is absent,
+// so npm defaults to everything not gitignored) leaks it silently, and nothing
+// else in the kit reads a tarball to catch that.
+const GOVERNANCE_PREFIXES = ["tests/", ".husky/", ".github/"];
+const GOVERNANCE_FILES = [
+  "khai-guard.config.json",
+  "AGENTS.md",
+  "CLAUDE.md",
+  "GEMINI.md",
+  "PERPLEXITY.md",
+];
+const isGovernancePath = (path) =>
+  GOVERNANCE_FILES.includes(path) || GOVERNANCE_PREFIXES.some((p) => path.startsWith(p));
+
+/**
+ * Registry completeness held against the box, for every workspace package that
+ * carries a `registry.json` (found by presence, never assumed to be the root --
+ * a flat house and a migrated one are read the same way).
+ *
+ * Two rules. An entry with no `package` field is this package's own to ship, so
+ * its anchor file (whichever file under `<dir>/<id>/` starts with the
+ * collection's anchor prefix -- the same rule the registry build itself uses,
+ * since a de-duplicated registry id does not always repeat in the filename)
+ * must be in the tarball. An entry WITH one has moved to that package, so it
+ * must be a declared dependency here and nothing under its id may still be in
+ * this tarball -- a registry that still names a migrated entry as its own is a
+ * promise nobody reading `dependencies` would find, and a tarball that still
+ * ships it is the same content published twice.
+ *
+ * Governance never ships, checked against every packed package this call was
+ * given regardless of whether it carries a registry.
+ *
+ * Anti-vacuous: a registry.json found with zero entries in its primary
+ * collection is a finding, not a clean pass -- a registry naming nothing is not
+ * proof that nothing needed to ship.
+ *
+ * @param {string} root
+ * @param {Map<string, Set<string>>} packed
+ * @returns {{package: string, path: string, reason: string}[]}
+ */
+export function checkRegistryPacking(root, packed) {
+  const dirs = workspacePackages(root);
+  const findings = [];
+
+  for (const [name, dir] of dirs) {
+    const box = packed.get(name);
+    if (!box) continue; // not asked about -- no verdict, same rule checkPacking follows
+    const pkg = readJson(join(dir, "package.json"));
+    const registryPath = join(dir, "registry.json");
+    if (!pkg || !existsSync(registryPath)) continue;
+
+    const registry = readJson(registryPath);
+    const collection = resolveCollection(pkg);
+    const entries = Array.isArray(registry?.[collection.key]) ? registry[collection.key] : [];
+    if (entries.length === 0) {
+      findings.push({
+        package: name,
+        path: "registry.json",
+        reason: `names 0 "${collection.key}" entries -- a registry with nothing in it is not a clean pack`,
+      });
+      continue;
+    }
+
+    const deps = pkg.dependencies ?? {};
+    for (const entry of entries) {
+      const id = entry?.id;
+      if (typeof id !== "string" || !id) continue;
+      const itemPrefix = `${collection.dir}/${id}/`;
+
+      if (entry.package) {
+        if (!deps[entry.package]) {
+          findings.push({
+            package: name,
+            path: `${itemPrefix}${collection.anchor}${id}.md`,
+            reason: `entry "${id}" names package "${entry.package}", which is not a declared dependency`,
+          });
+        }
+        // Scanned against the BOX, never the disk: a fully migrated entry has
+        // no directory left to read, and the question here is only "did
+        // anything under this id's path make the tarball", not "is there an
+        // anchor file to name".
+        const stray = [...box].find((p) => p.startsWith(itemPrefix));
+        if (stray) {
+          findings.push({
+            package: name,
+            path: stray,
+            reason: `entry "${id}" names package "${entry.package}" and is still shipped from here too`,
+          });
+        }
+        continue;
+      }
+
+      // The anchor is whatever file in the item's own directory starts with
+      // the collection's prefix -- the same rule registry.mjs's own build uses
+      // (`files.find(f => f.startsWith(collection.anchor) ...)`), and not
+      // necessarily `<anchor><id>.md`: a de-duplicated registry id (a house
+      // prefixing a province by its country, `es_andalusia`) commonly names a
+      // directory the anchor file inside it does not repeat (`play_andalusia.md`).
+      // Read from disk, so a registry id with nothing on disk to check is
+      // skipped here rather than misreported -- that gap belongs to whichever
+      // wall proves the registry against the source tree, not this one.
+      let anchorFile;
+      try {
+        anchorFile = readdirSync(join(dir, collection.dir, id)).find(
+          (f) => f.startsWith(collection.anchor) && f.endsWith(".md"),
+        );
+      } catch {
+        continue;
+      }
+      if (!anchorFile) continue;
+      const anchor = `${itemPrefix}${anchorFile}`;
+      if (!box.has(anchor)) {
+        findings.push({
+          package: name,
+          path: anchor,
+          reason: `entry "${id}" carries no "package" field and its anchor file is not in the tarball`,
+        });
+      }
+    }
+  }
+
+  for (const [name, box] of packed) {
+    for (const path of box) {
+      if (isGovernancePath(path)) {
+        findings.push({ package: name, path, reason: "governance content must never ship" });
+      }
+    }
+  }
+
+  return findings;
+}
+
+/** Render registry-packing findings for a terminal. Pure: findings in, text out. */
+export function renderRegistryPacking(findings) {
+  if (findings.length === 0) {
+    return "khai-tests packing: every registry entry is packed correctly, and governance ships nowhere.";
+  }
+  const lines = [`khai-tests packing: ${findings.length} finding(s).`, ""];
+  for (const f of findings) lines.push(`  - ${f.package}: ${f.path} -- ${f.reason}`);
+  return lines.join("\n");
 }
 
 /** Render findings for a terminal. Pure: findings in, text out. */

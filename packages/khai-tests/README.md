@@ -98,6 +98,58 @@ npx khai-tests science surname Miller             # is this surname anywhere in 
 npx khai-tests science namesakes                  # declared surnames left unresolved; exit 1 if any
 ```
 
+### Delivery walls — the manifest, the release, and the box
+
+Three checks a house does not author twice because they are not about content:
+they hold a house's own delivery machinery to what it claims about itself.
+
+**`gates verify-ci`** — the `gates` array in `khai-guard.config.json` and the CI
+workflow's own job ids, held to a one-to-one correspondence. A `gates` array a
+house hand-maintains is a second copy of what the workflow already says, and a
+manifest that quietly falls behind `ci.yml` passes every local `npm run gates`
+right up until CI runs a job nothing local ever checked. The match: strip a
+leading `khai-` and every non-alphanumeric, lowercase, compare — `khai-branch-
+scope` reads as `branchscope` against a gate named `branch-scope`. Where the
+name does not fall out on its own, `ciPolicy` in `khai-guard.config.json` says
+so: `only` for a job with no local equivalent to run (a hosted scan, a release
+step gated on a secret), `split` for one job that runs several gates as steps
+(`{"khai-tests": ["prettier", "suite"]}`), and a gate's own `job` field, which
+wins over the name match. `workflow` overrides the default
+`.github/workflows/ci.yml`.
+
+```bash
+npx khai-tests gates verify-ci   # exit 1 on a job with no gate, or a gate with no job
+```
+
+**`release verify`** — pins the release workflow to the inputs
+`changesets/action@v2` actually reads. A dependabot bump once renamed those
+inputs (`version` → `version-script`, `publish` → `publish-script`); the action
+refuses to run under the old names, `npm test` stays green because the failure
+sits in the last step of a job whose visible work all passes, and the only
+symptom is that a release never appears. Checks the `with:` block names real npm
+scripts under the v2 names, `github-token:` comes from a secret, and no
+`GITHUB_TOKEN` env var sits beside it on that step (the action reads the input;
+an env token there silently wins and is the wrong token).
+
+```bash
+npx khai-tests release verify   # exit 1 if the changesets step is misconfigured
+```
+
+**`packing verify`** — registry.json's promise held against the tarball,
+package by package. An entry with no `package` field is that package's own to
+ship, so its anchor file must be in the box; an entry that names a `package` has
+moved there, so it must be a declared dependency and gone from this tarball.
+Governance never ships from anywhere: `tests/**`, `.husky/**`, `.github/**`,
+`khai-guard.config.json`, and the vendor instruction files. Works whether or not
+a house has taken the workspace shape — a flat house (root package.json IS the
+content package) is packed the one way npm allows a repo with no `workspaces`
+field to be asked. Distinct from `pack`, which packages one conforming engine
+into a zip.
+
+```bash
+npx khai-tests packing verify   # exit 1 on an unshipped anchor, a leak, or an empty registry
+```
+
 ## Library
 
 The CLI is a thin caller over the same functions the test suite uses:
@@ -111,6 +163,13 @@ The CLI is a thin caller over the same functions the test suite uses:
   canon type.
 - `wiringRequirements(manifests)` — derive enforceable requirements from engine
   manifests.
+- `verifyGatesAgainstCi(root)` / `renderCiCheck(findings)` — the gates manifest
+  held against the CI workflow's job ids.
+- `verifyRelease(root, { workflow })` / `renderRelease(findings)` — the release
+  workflow held to the changesets v2 input names.
+- `checkRegistryPacking(root, packed)` / `renderRegistryPacking(findings)` —
+  registry.json held against the tarball; pair with `packedFilesAny(root)`,
+  which packs a flat house the same way `packedFiles` packs a workspace one.
 - `rules`, `parseDoc`, `sectionBody` — the underlying atoms.
 
 ## How wiring works

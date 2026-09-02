@@ -22,8 +22,18 @@ export {
   publishesContent,
   PLAYWRIGHT_INSTRUCTIONS,
 } from "./src/instructions.mjs";
-export { packedFiles, checkPacking, renderPacking, workspacePackages } from "./src/packing.mjs";
+export {
+  packedFiles,
+  packedFilesAny,
+  checkPacking,
+  renderPacking,
+  checkRegistryPacking,
+  renderRegistryPacking,
+  workspacePackages,
+} from "./src/packing.mjs";
 export { loadGates, runGates, renderGates, gateLine, VISIBILITY } from "./src/gates.mjs";
+export { verifyGatesAgainstCi, renderCiCheck } from "./src/ci.mjs";
+export { verifyRelease, renderRelease } from "./src/release.mjs";
 export {
   buildRegistry,
   verifyRegistry,

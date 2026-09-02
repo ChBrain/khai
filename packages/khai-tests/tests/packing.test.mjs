@@ -32,10 +32,11 @@ const here = dirname(fileURLToPath(import.meta.url));
 const SRC = join(here, "..", "src", "packing.mjs");
 const DORMANT = !existsSync(SRC);
 
-let packedFiles, checkPacking;
+let packedFiles, checkPacking, packedFilesAny, checkRegistryPacking, renderRegistryPacking;
 beforeAll(async () => {
   if (DORMANT) return;
-  ({ packedFiles, checkPacking } = await import(SRC));
+  ({ packedFiles, checkPacking, packedFilesAny, checkRegistryPacking, renderRegistryPacking } =
+    await import(SRC));
 });
 
 let tmp;
@@ -189,6 +190,150 @@ describe.skipIf(DORMANT)("checkPacking: the promise held against the delivery", 
       "place_two.md",
       "playwright_instructions.md",
     ]);
+  });
+});
+
+/**
+ * A flat content house (root package.json IS the content package -- the shape
+ * khai-misfits held before its workspace move), for exercising `packedFilesAny`
+ * against a repo with no `workspaces` field and `checkRegistryPacking` against
+ * its registry.
+ */
+function contentHouse({
+  name = "@scope/house",
+  collectionDir = "plays",
+  anchor = "play_",
+  key = "plays",
+  entries = [],
+  filesField = [`${collectionDir}/**`, "registry.json"],
+  dependencies = {},
+  extraTopLevel = {},
+} = {}) {
+  tmp = mkdtempSync(join(tmpdir(), "khai-registry-packing-"));
+  writeFileSync(
+    join(tmp, "package.json"),
+    JSON.stringify({
+      name,
+      version: "1.0.0",
+      dependencies,
+      ...(filesField ? { files: filesField } : {}),
+      khai: { collection: { dir: collectionDir, key, anchor } },
+    }),
+  );
+  for (const e of entries) {
+    if (e.package && !e.forceShip) continue; // moved out: no local file
+    const d = join(tmp, collectionDir, e.id);
+    mkdirSync(d, { recursive: true });
+    writeFileSync(join(d, `${anchor}${e.id}.md`), "# item\n");
+  }
+  writeFileSync(join(tmp, "registry.json"), JSON.stringify({ [key]: entries }));
+  for (const [p, content] of Object.entries(extraTopLevel)) {
+    const full = join(tmp, p);
+    mkdirSync(dirname(full), { recursive: true });
+    writeFileSync(full, content);
+  }
+  return tmp;
+}
+
+describe.skipIf(DORMANT)("packedFilesAny: packs a flat house npm's own -w flag refuses", () => {
+  it("packs the root package by name when there is no workspaces field", () => {
+    const root = contentHouse({ entries: [{ id: "foo" }] });
+    const packed = packedFilesAny(root);
+    expect(packed.get("@scope/house").has("plays/foo/play_foo.md")).toBe(true);
+  });
+});
+
+describe.skipIf(DORMANT)(
+  "checkRegistryPacking: the registry's promise held against the box",
+  () => {
+    it("is clean when every undelegated entry's anchor ships", () => {
+      const root = contentHouse({ entries: [{ id: "foo" }, { id: "bar" }] });
+      expect(checkRegistryPacking(root, packedFilesAny(root))).toEqual([]);
+    });
+
+    it("catches a registry entry whose anchor file never made the tarball", () => {
+      const root = contentHouse({
+        entries: [{ id: "foo" }],
+        filesField: ["registry.json"], // excludes plays/** on purpose
+      });
+      const findings = checkRegistryPacking(root, packedFilesAny(root));
+      expect(findings).toHaveLength(1);
+      expect(findings[0].path).toBe("plays/foo/play_foo.md");
+      expect(findings[0].reason).toMatch(/not in the tarball/);
+    });
+
+    it("catches a delegated entry naming a package that is not a declared dependency", () => {
+      const root = contentHouse({ entries: [{ id: "foo", package: "@scope/foo" }] });
+      const findings = checkRegistryPacking(root, packedFilesAny(root));
+      expect(findings).toHaveLength(1);
+      expect(findings[0].reason).toMatch(/not a declared dependency/);
+    });
+
+    it("is clean when a delegated entry's package IS a declared dependency", () => {
+      const root = contentHouse({
+        entries: [{ id: "foo", package: "@scope/foo" }],
+        dependencies: { "@scope/foo": "^1.0.0" },
+      });
+      expect(checkRegistryPacking(root, packedFilesAny(root))).toEqual([]);
+    });
+
+    it("catches a delegated entry still shipped from the umbrella too", () => {
+      const root = contentHouse({
+        entries: [{ id: "foo", package: "@scope/foo", forceShip: true }],
+        dependencies: { "@scope/foo": "^1.0.0" },
+      });
+      const findings = checkRegistryPacking(root, packedFilesAny(root));
+      expect(findings).toHaveLength(1);
+      expect(findings[0].reason).toMatch(/shipped from here too/);
+    });
+
+    it("refuses to call a registry with zero entries clean (anti-vacuity)", () => {
+      const root = contentHouse({ entries: [] });
+      const findings = checkRegistryPacking(root, packedFilesAny(root));
+      expect(findings).toHaveLength(1);
+      expect(findings[0].path).toBe("registry.json");
+      expect(findings[0].reason).toMatch(/0 "plays" entries/);
+    });
+
+    it("catches governance content that ships when files is not scoped to exclude it", () => {
+      const root = contentHouse({
+        entries: [{ id: "foo" }],
+        filesField: null, // no files field at all -- npm defaults to everything
+        extraTopLevel: {
+          "tests/probe.mjs": "export const x = 1;\n",
+          "khai-guard.config.json": "{}",
+          "AGENTS.md": "# agents\n",
+          ".github/workflows/ci.yml": "name: ci\n",
+          ".husky/pre-push": "#!/bin/sh\n",
+        },
+      });
+      const findings = checkRegistryPacking(root, packedFilesAny(root));
+      const paths = findings.map((f) => f.path);
+      expect(paths).toContain("tests/probe.mjs");
+      expect(paths).toContain("khai-guard.config.json");
+      expect(paths).toContain("AGENTS.md");
+      expect(paths.some((p) => p.startsWith(".github/"))).toBe(true);
+      expect(paths.some((p) => p.startsWith(".husky/"))).toBe(true);
+    });
+
+    it("says nothing about a package the caller never asked npm about", () => {
+      const root = contentHouse({ entries: [{ id: "foo" }] });
+      expect(checkRegistryPacking(root, new Map())).toEqual([]);
+    });
+  },
+);
+
+describe.skipIf(DORMANT)("renderRegistryPacking", () => {
+  it("names a clean run as clean", () => {
+    expect(renderRegistryPacking([])).toMatch(/governance ships nowhere/);
+  });
+
+  it("prints every finding", () => {
+    const text = renderRegistryPacking([
+      { package: "@scope/a", path: "x", reason: "some finding" },
+    ]);
+    expect(text).toMatch(/1 finding/);
+    expect(text).toMatch(/some finding/);
   });
 });
 
