@@ -90,8 +90,12 @@ export function findShadowedForms(policy = {}) {
 export function findSuffixKeys(index) {
   const bad = [];
   for (const r of index) {
-    const bare = r.surname
-      .replace(/\s*\(.*\)$/, "")
+    // A resolved key is `Surname (Form)`; cut at the first paren rather than
+    // matching `\(.*\)$`, which backtracks polynomially on a long run of
+    // parens or spaces (CodeQL js/polynomial-redos).
+    const paren = r.surname.indexOf("(");
+    const bare = (paren >= 0 ? r.surname.slice(0, paren) : r.surname)
+      .trim()
       .replace(/[.,]/g, "")
       .toLowerCase();
     if (SUFFIXES.has(bare)) bad.push({ key: r.surname, unit: r.unit, work: r.keyWork });
