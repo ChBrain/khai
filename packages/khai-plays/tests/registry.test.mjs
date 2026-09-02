@@ -112,7 +112,7 @@ describe("khai-plays: render", () => {
 // house, whose package.json lives in another repository.
 describe("khai-plays: the three kinds", () => {
   it("closes the set at stage, work, and canon", () => {
-    expect(KINDS).toEqual(["stage", "work", "canon"]);
+    expect(KINDS).toEqual(["stage", "work", "canon", "chain"]);
     for (const kind of KINDS) expect(typeof KIND_BLURB[kind]).toBe("string");
   });
 
@@ -165,8 +165,13 @@ describe("khai-plays: the three kinds", () => {
 // "reusable material" instead reads as though a canon house holds something
 // other than a play, which no house does.
 describe("khai-plays: the bill states what the kinds actually differ in", () => {
-  it("describes every kind as holding plays", () => {
-    for (const kind of KINDS) expect(KIND_BLURB[kind]).toMatch(/plays/);
+  it("describes every house kind as holding plays, and the chain kind as the exception", () => {
+    // `chain` holds no plays and says so: it is on the bill by exception, for
+    // the jobs that read the bill as the list of what khai runs.
+    for (const kind of KINDS) {
+      if (kind === "chain") expect(KIND_BLURB[kind]).toMatch(/exception/);
+      else expect(KIND_BLURB[kind]).toMatch(/plays/);
+    }
   });
 
   it("counts the houses rather than leaving a reader to navigate for calibration", () => {

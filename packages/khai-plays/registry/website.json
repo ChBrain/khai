@@ -1,0 +1,8 @@
+{
+  "id": "website",
+  "title": "Website",
+  "kind": "chain",
+  "package": "@chbrain/website",
+  "blurb": "The rendered surface for the kaihacks system: the source of architecture.kaihacks.ai and the surrounding pages, which reads the bill and pulls each house's package.",
+  "repo": "https://github.com/ChBrain/khai-website"
+}
