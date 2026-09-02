@@ -125,6 +125,38 @@ export function npmSpawn(args = [], env = process.env, platform = process.platfo
     : { file: "npm", args: [...args], shell: false, via: "platform-guess" };
 }
 
+/**
+ * `npm pack --dry-run --json` as an array of records, whichever shape the
+ * installed npm printed.
+ *
+ * npm 10 and 11 print an ARRAY of package records; npm 12.0.2 prints an
+ * OBJECT keyed by package name (`{"@scope/name": {...record...}}`). Parsing
+ * the array shape against the object shape (or the reverse) yields zero
+ * records silently, and a check that reads nothing must not pass -- so this
+ * throws rather than returning an empty list, both on a shape that is
+ * neither array nor object and on one that parses clean but names nothing.
+ *
+ * @param {string} raw
+ * @returns {object[]}
+ */
+export function packRecords(raw) {
+  const parsed = JSON.parse(raw);
+  const records = Array.isArray(parsed)
+    ? parsed
+    : parsed && typeof parsed === "object"
+      ? Object.values(parsed)
+      : null;
+  if (records === null)
+    throw new Error(
+      `npm pack --dry-run --json printed neither an array nor an object (got ${typeof parsed}); cannot read pack output`,
+    );
+  if (records.length === 0)
+    throw new Error(
+      "npm pack --dry-run --json named zero packages; a pack that reports nothing is a finding, not a clean pass",
+    );
+  return records;
+}
+
 export function packedFiles(root, { names = null } = {}) {
   const args = ["pack", "--dry-run", "--json"];
   if (names && names.length > 0) for (const n of names) args.push("-w", n);
@@ -138,7 +170,7 @@ export function packedFiles(root, { names = null } = {}) {
     stdio: ["ignore", "pipe", "ignore"],
   });
   const out = new Map();
-  for (const entry of JSON.parse(raw)) {
+  for (const entry of packRecords(raw)) {
     if (!entry?.name) continue;
     out.set(entry.name, new Set((entry.files ?? []).map((f) => f.path)));
   }
@@ -175,7 +207,7 @@ export function packedFilesAny(root) {
       maxBuffer: 256 * 1024 * 1024,
       stdio: ["ignore", "pipe", "ignore"],
     });
-    for (const entry of JSON.parse(raw)) {
+    for (const entry of packRecords(raw)) {
       if (entry?.name === name) out.set(name, new Set((entry.files ?? []).map((f) => f.path)));
     }
   }

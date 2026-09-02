@@ -32,11 +32,22 @@ const here = dirname(fileURLToPath(import.meta.url));
 const SRC = join(here, "..", "src", "packing.mjs");
 const DORMANT = !existsSync(SRC);
 
-let packedFiles, checkPacking, packedFilesAny, checkRegistryPacking, renderRegistryPacking;
+let packedFiles,
+  checkPacking,
+  packedFilesAny,
+  checkRegistryPacking,
+  renderRegistryPacking,
+  packRecords;
 beforeAll(async () => {
   if (DORMANT) return;
-  ({ packedFiles, checkPacking, packedFilesAny, checkRegistryPacking, renderRegistryPacking } =
-    await import(SRC));
+  ({
+    packedFiles,
+    checkPacking,
+    packedFilesAny,
+    checkRegistryPacking,
+    renderRegistryPacking,
+    packRecords,
+  } = await import(SRC));
 });
 
 let tmp;
@@ -90,6 +101,40 @@ function workspace(pkgs) {
   }
   return tmp;
 }
+
+describe.skipIf(DORMANT)("packRecords: the two shapes npm pack --dry-run --json prints", () => {
+  it("reads the array shape npm 10 and 11 print", () => {
+    const raw = JSON.stringify([
+      { name: "@scope/a", files: [{ path: "index.mjs" }] },
+      { name: "@scope/b", files: [{ path: "index.mjs" }] },
+    ]);
+    const records = packRecords(raw);
+    expect(records.map((r) => r.name)).toEqual(["@scope/a", "@scope/b"]);
+  });
+
+  it("reads the object-keyed-by-name shape npm 12.0.2 prints", () => {
+    const raw = JSON.stringify({
+      "@scope/a": { name: "@scope/a", files: [{ path: "index.mjs" }] },
+      "@scope/b": { name: "@scope/b", files: [{ path: "index.mjs" }] },
+    });
+    const records = packRecords(raw);
+    expect(records.map((r) => r.name).sort()).toEqual(["@scope/a", "@scope/b"]);
+  });
+
+  it("throws rather than reading nothing when the array is empty", () => {
+    expect(() => packRecords("[]")).toThrow(/zero packages/);
+  });
+
+  it("throws rather than reading nothing when the object is empty", () => {
+    expect(() => packRecords("{}")).toThrow(/zero packages/);
+  });
+
+  it("throws naming the shape when the top level is neither array nor object", () => {
+    expect(() => packRecords('"just a string"')).toThrow(/neither an array nor an object/);
+    expect(() => packRecords("42")).toThrow(/neither an array nor an object/);
+    expect(() => packRecords("null")).toThrow(/neither an array nor an object/);
+  });
+});
 
 describe.skipIf(DORMANT)("packedFiles: what npm says is in the box", () => {
   it("reports each package's packed paths, keyed by package name", () => {
