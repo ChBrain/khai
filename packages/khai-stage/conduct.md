@@ -102,6 +102,16 @@ template has slots, not as many as it has. You cannot see that in a diff. You se
 it by comparing structure across the whole corpus, which takes a quarter of a
 second and nobody thinks to do.
 
+The cultures house wrote the sharpest version of this rule into one vendor file
+and not into the shared one. Its `CLAUDE.md` tells the agent it must not report
+a test count or a gate result it has not just run, because CI publishes every
+check on the pull request, so a claim about them in the body is either redundant
+or wrong. That is not a quirk of one tool: a rule written into a single vendor
+file is a rule the agents reading a different vendor file never see, so it moves
+here instead. **A count or a verdict is reported only from a run you just made,
+and a claim about CI checks in a pull request body is either redundant or
+wrong.**
+
 ## 3. A check is confirmed only by its failure
 
 A composite reached khai's `main` importing `buildCompositeLoader` from
@@ -156,6 +166,18 @@ at once. Reading the job name as the suite is what makes that cost a cycle.
 
 **A runner that claims to run everything CI runs must be audited for what it
 quietly does not do, and must say so.**
+
+The misfits house met the same shape from the other side, at the level of a
+single step. Its release pull requests run three builders against one tree, and
+two of them, the registry build and the science index build, emit Prettier-clean
+output every time; the third writes its Origin tables compact where Prettier
+wants them column-aligned, so a rebuilt concordance file is unformatted every
+time, and a pass that formats the misfit directory never reaches it, because the
+file it rebuilds is not in the misfit directory. Three builds run, one file comes
+back dirty, and it is the one furthest from what was being authored, so the
+report reads the format-check step red for a fault nobody in the misfit
+directory was looking at. **The job is not the suite; read the step that failed,
+not the job name.**
 
 ## 5. Gate the decidable, instrument the fuzzy, leave taste as guidance
 
@@ -324,6 +346,29 @@ is law 2 pointed at other people's trees, and it is law 3's other half: green on
 nothing is one failure and red on everything is the other, and neither is visible
 from the house the check was written in.
 
+## 12. Adopt a kit wall dormant, and let the bump wake it
+
+The misfits house wrote a science index drift gate before the installed kit
+could run it. The test checks whether the kit exports the function the gate
+needs and wraps the whole suite in that check, so the gate shipped green,
+deciding nothing, on the kit version that predated the export; a later kit bump
+made the export real and the wall woke on its own, on that bump alone, with no
+second pull request to switch it on. The kit itself ships built the same way:
+the rule that source and its tests land as separate pull requests exists because
+a test can be written and committed against code that does not exist yet, and
+the kit's own suites carry the identical guard, dormant on the missing source
+export until the source pull request lands. **A house adopts a kit check by
+probing for the export, never by pinning a version or waiting.**
+
+And the complement, from the same house. It had built a local reader around a
+gap in the kit's own config loader, one that dropped a vocabulary the wall
+needed to honour. When a later kit release closed that gap in the kit itself,
+the house's note on the fix says plainly that its own local re-read of the
+config is retired with it, not kept standing beside the kit's version. **When
+the kit takes over a check the house had built locally, the local copy is
+retired in the bump pull request: two implementations of one rule diverge, and
+only one of them is still read.**
+
 ---
 
 ## Credits
@@ -335,8 +380,11 @@ house's "Working with a second LLM", its reading of three rounds between Claude
 Code and the Gemini CLI, which is the source of the rest of laws 1 to 6 and all
 of section 9. Section 11 came later, from the khai monorepo's khai-tests 0.4.x
 release cycle, also August 2026, and its numbers were measured over the
-khai-misfits corpus. Every number in this file was measured by the house it is
-attributed to.
+khai-misfits corpus. A fourth pass, September 2026, added the closing paragraph
+of law 2 from the khai-cultures house's `CLAUDE.md`, the closing paragraph of
+law 4 and section 12 from the khai-misfits house's Versioning section and its
+science index drift gate. Every number in this file was measured by the house
+it is attributed to.
 
 Content under CC-BY-NC-SA-4.0 (see `LICENSE`); the code this file describes is
 under MIT (see `LICENSE-CODE`).
