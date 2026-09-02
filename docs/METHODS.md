@@ -16,7 +16,7 @@ Every method khai packages, each attributed to its origin and ready to run. 11 m
 
 ### authoring (1)
 
-- [**khai Authoring**](../packages/khai-methods/methods/khai-authoring.md) (`khai-authoring`): KAI HACKS AI (2026). Order: Computed, Harnessed, Instructed. Prompts: Vector · Cut · Fit · Floor.
+- [**khai Authoring**](../packages/khai-methods/methods/khai-authoring.md) (`khai-authoring`): KAI HACKS AI (2026). Order: Computed, Harnessed, Instructed. Prompts: Vector · Cut · Fit · Floor · Dedup · Scan.
 
 ### fix (1)
 
