@@ -1,5 +1,138 @@
 # @chbrain/khai-tests
 
+## 0.4.2
+
+### Patch Changes
+
+- 7269e97: `khai-guard environment` reports what this machine is: platform, node, what npm
+  itself reports, how npm must be spawned here, the path separator, the line
+  ending, whether this process can create a directory symlink, and the shell
+  signals it can see. AGENTS.md asks every agent to run it before its first shell
+  command.
+  
+  `npmSpawn` replaces `npmCommand` and asks in the order that costs least to be
+  wrong about. Under `npm run` and `npx` -- every path this repo uses -- npm sets
+  `npm_execpath` to its own CLI, a plain `.js` file, so `node <npm-cli.js>` is
+  identical on every OS: no shim, no shell, no platform branch. The platform guess
+  remains as a fallback, labelled `platform-guess` so an answer cannot be mistaken
+  for a fact.
+  
+  That fallback is also on a clock. Node 24 deprecates passing args alongside
+  `shell: true` (DEP0190), which is exactly what the Windows guess must do, so the
+  report says so where it applies.
+- fbbb0ae: Add house content walls (`resolveHouse`, `unitsOf`, `touchedUnits`, `isolationErrors`,
+  `filenameErrors`, `ratchet`) and the `khai-tests house check` CLI, lifting the house-built
+  resolver, isolation, ASCII-filename and ratchet mechanics that khai-misfits and khai-cultures
+  each carried locally into the shared kit, house-neutral and provider-neutral, so any collection
+  house gets them by installing the kit rather than re-deriving them per house.
+- 46de294: Three delivery walls existed twice downstream and were about to exist a third
+  time: khai-cultures' preflight re-derived its CI job list against a gates
+  manifest that quietly falls behind `ci.yml`, both khai-cultures and khai-misfits
+  hand-wrote the same test pinning `changesets/action@v2`'s renamed inputs after
+  four dead releases went unnoticed, and khai-cultures and khai-misfits each wrote
+  their own version of "the registry's promise held against the tarball" for two
+  different reasons (a hollow tongues package, a registry naming misfits nobody
+  shipped).
+  
+  The kit now holds all three. `gates verify-ci` matches a house's declared
+  `gates` array to its CI workflow's job ids one-to-one, with `ciPolicy` in
+  `khai-guard.config.json` (`only`, `split`, a gate's own `job`) for where the
+  names do not fall out on their own. `release verify` pins a release workflow to
+  the input names changesets v2 actually reads. `checkRegistryPacking` (paired
+  with the new `packedFilesAny`, which packs a flat house the way `packedFiles`
+  packs a workspace one) holds registry.json's entries against the box and
+  refuses governance content in any tarball.
+  
+  Measured against both houses: `release verify` and `packing verify` are clean
+  on each as they stand. Neither declares `ciPolicy` yet; with one added locally
+  (a `split` for the one job that runs several gates as steps, and for
+  khai-misfits a `job` override where a local gate's own name does not match its
+  job id) `gates verify-ci` clears khai-cultures entirely and leaves khai-misfits
+  with one real finding: `khai-changeset-check` runs in CI with no equivalent in
+  that house's own `npm run gates` -- a genuine gap in that manifest, not an
+  idiom, and left standing rather than routed around.
+- 2751c44: khai-misfits carried a second generation of science-index checks that
+  `@chbrain/khai-tests` never owned: two walls on the index's own key
+  computation (a homonym form declared in a misleading order, an index key that
+  is a generational suffix rather than a person), the axis/opposition wall (a
+  unit's warrant may declare an `axis`/`sign` in frontmatter, and two units on
+  one axis with opposite signs must each name the other), and three probes
+  (undeclared namesakes, the mixed-cell reading list that is their complement,
+  and a hidden compound work behind a semicolon in a Key Work cell). All of it
+  was kit-shape-agnostic in the house's own reading, just never lifted.
+  
+  It is lifted now, as `src/science-walls.mjs`, exported from the kit's public
+  entry point and wired into the `science` CLI as `forms`, `suffixes`,
+  `opposed`, and `probe`. Two of the three lifted walls turn out to be reading
+  this build's OWN keying rather than the older first-match, suffix-keeping
+  build the house's account of them describes: this build already resolves a
+  homonym by longest match and already strips a trailing suffix before taking a
+  surname, so `forms` and `suffixes` catch a misleading declaration order and a
+  genuinely person-less Source cell, never a citation the build actually
+  mis-keys. Measured against khai-misfits, khai-cultures, and this repository's
+  own tree (a homonym house, a house with no Origin tables at all, and an
+  engine monorepo) before shipping, per this kit's own case law on measuring a
+  wall against every house it will judge.
+- 1d27b3c: `lockfile-check` now asks whether the root lockfile still matches the manifests,
+  which is the question CI's `npm ci` asks at install and nobody asked before it.
+  
+  The wall a house declares was already called `lockfile` and only hunted stray
+  nested ones, so a reader saw `ok lockfile` and concluded the lockfile was fine.
+  The check lands inside that command rather than beside it, so every house that
+  already declares the wall gets it with the version and edits nothing.
+  
+  One direction only, and it says so: `npm ci` rejects a manifest dependency the
+  lock does not carry and ACCEPTS an extra lock entry no manifest names. Both were
+  run before this shipped.
+  
+  khai-tests: the runner's standing "Not run" sentence claimed a lockfile mismatch
+  was invisible to the pass. For a house whose lockfile wall now asks, it is not,
+  so the sentence names the gap conditionally and keeps unconditional only what no
+  declared wall can see -- what a real install decides.
+- 6ab42a7: `npmBin` named `npm.cmd` on Windows and stopped there, and that was necessary
+  without being sufficient. Since the CVE-2024-27980 hardening (Node 18.20.2,
+  20.12.2, 21.7.3) `execFileSync` REFUSES to run a `.bat` or `.cmd` without
+  `shell: true` and throws EINVAL before the process starts, so the previous
+  release traded ENOENT for EINVAL and the walls still could not run.
+  
+  `npmCommand(platform)` returns the binary and whether it needs a shell, and the
+  three call sites pass both.
+  
+  The argument made against `shell: true` last time -- that it pushes arguments
+  through an interpreter and makes quoting a problem -- was true and beside the
+  point: without it the call does not execute at all on Windows. These arguments
+  are subcommands, flags and workspace package names, with no spaces and no shell
+  metacharacters.
+  
+  Also: `.husky/pre-push` described `lockfile-check` as rejecting a nested lockfile
+  and nothing else, two releases after it grew the manifest-sync and platform
+  breadth checks. A reader debugging that wall went looking for a stray lockfile
+  that was never there.
+- d34122b: Three checks spawned `npm` by bare name, which is an executable on Linux and a
+  `.cmd` shim on Windows, so `execFileSync` threw ENOENT there: the packing suite,
+  the lockfile sync check and the drift check. On Windows `npm run gates` could not
+  finish, and the whole run read as a broken machine.
+  
+  `npmBin(platform)` names the right binary, and takes the platform as a parameter
+  so both branches are testable from either one. A platform branch exercisable only
+  on the platform it is wrong about is how this lasts.
+  
+  Not `shell: true`: that pushes every argument through a command interpreter and
+  makes quoting a problem this code does not otherwise have.
+  
+  Reported from a Windows house, as an environment quirk. It was ours.
+- Updated dependencies [489244e]
+- Updated dependencies [673b628]
+- Updated dependencies [78e05f0]
+- Updated dependencies [0212931]
+- Updated dependencies [63df3e2]
+- Updated dependencies [a80948f]
+- Updated dependencies [e774ef2]
+- Updated dependencies [5a1b033]
+- Updated dependencies [3182253]
+  - @chbrain/khai-arch@0.1.27
+  - @chbrain/khai-stage@0.0.26
+
 ## 0.4.1
 
 ### Patch Changes

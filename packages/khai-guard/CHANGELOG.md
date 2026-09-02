@@ -1,5 +1,105 @@
 # @chbrain/khai-guard
 
+## 0.3.2
+
+### Patch Changes
+
+- 7269e97: `khai-guard environment` reports what this machine is: platform, node, what npm
+  itself reports, how npm must be spawned here, the path separator, the line
+  ending, whether this process can create a directory symlink, and the shell
+  signals it can see. AGENTS.md asks every agent to run it before its first shell
+  command.
+  
+  `npmSpawn` replaces `npmCommand` and asks in the order that costs least to be
+  wrong about. Under `npm run` and `npx` -- every path this repo uses -- npm sets
+  `npm_execpath` to its own CLI, a plain `.js` file, so `node <npm-cli.js>` is
+  identical on every OS: no shim, no shell, no platform branch. The platform guess
+  remains as a fallback, labelled `platform-guess` so an answer cannot be mistaken
+  for a fact.
+  
+  That fallback is also on a clock. Node 24 deprecates passing args alongside
+  `shell: true` (DEP0190), which is exactly what the Windows guess must do, so the
+  report says so where it applies.
+- d1ba2c0: `npm run gates` now runs the three checks CI required and it did not: the
+  source/test split, `branch-check` and `changeset-check`. The command whose point
+  is "every wall this repo has, in one command" was missing exactly the three that
+  catch structural mistakes, so an author met them only after a push.
+  
+  They could not simply be added. On a clean `main` both `branch-check` and
+  `changeset-check` exited 1, and both were saying something false: `"main" matches
+  no lane` (main is the destination, you cannot be in the wrong lane on it) and
+  "no changeset found" for a PR that does not exist.
+  
+  Both judge a CHANGE, so with no change there is nothing to judge. An empty diff
+  range now ends each check before a branch name or a changeset is weighed,
+  reporting either the dirty-tree case from the previous release or a plain nothing
+  to check. CI is unaffected: there the range is a real PR and is never empty.
+- 6f9fbac: The guard's homonym-growth messages named "CLAUDE.md rule 7". The contract moved
+  to `AGENTS.md` in #1460, so a reader following that pointer landed in a 20-line
+  Claude quirk file that does not contain rule 7. The three references now name the
+  file that holds the rule.
+  
+  Rule 7 is still rule 7: the hard-rules list moved whole, and `AGENTS.md:98` is
+  "One phenomenon, one engine".
+- acfa96b: `branch-check` and the source/test split read a diff range, which is committed
+  history. When that range resolves to zero paths they printed a confident pass over
+  a working tree they never looked at: staging stray files and running the guard
+  returned "0 changed path(s) all in lane", and committing the identical files
+  returned a refusal.
+  
+  Both now say so instead. A range of zero paths over a dirty tree reports NOTHING
+  CHECKED, names what is staged, unstaged or untracked, and says to commit and run
+  again. A clean tree still reports a plain pass, and a non-empty range is
+  unchanged.
+- 1d27b3c: `lockfile-check` now asks whether the root lockfile still matches the manifests,
+  which is the question CI's `npm ci` asks at install and nobody asked before it.
+  
+  The wall a house declares was already called `lockfile` and only hunted stray
+  nested ones, so a reader saw `ok lockfile` and concluded the lockfile was fine.
+  The check lands inside that command rather than beside it, so every house that
+  already declares the wall gets it with the version and edits nothing.
+  
+  One direction only, and it says so: `npm ci` rejects a manifest dependency the
+  lock does not carry and ACCEPTS an extra lock entry no manifest names. Both were
+  run before this shipped.
+  
+  khai-tests: the runner's standing "Not run" sentence claimed a lockfile mismatch
+  was invisible to the pass. For a house whose lockfile wall now asks, it is not,
+  so the sentence names the gap conditionally and keeps unconditional only what no
+  declared wall can see -- what a real install decides.
+- 6ab42a7: `npmBin` named `npm.cmd` on Windows and stopped there, and that was necessary
+  without being sufficient. Since the CVE-2024-27980 hardening (Node 18.20.2,
+  20.12.2, 21.7.3) `execFileSync` REFUSES to run a `.bat` or `.cmd` without
+  `shell: true` and throws EINVAL before the process starts, so the previous
+  release traded ENOENT for EINVAL and the walls still could not run.
+  
+  `npmCommand(platform)` returns the binary and whether it needs a shell, and the
+  three call sites pass both.
+  
+  The argument made against `shell: true` last time -- that it pushes arguments
+  through an interpreter and makes quoting a problem -- was true and beside the
+  point: without it the call does not execute at all on Windows. These arguments
+  are subcommands, flags and workspace package names, with no spaces and no shell
+  metacharacters.
+  
+  Also: `.husky/pre-push` described `lockfile-check` as rejecting a nested lockfile
+  and nothing else, two releases after it grew the manifest-sync and platform
+  breadth checks. A reader debugging that wall went looking for a stray lockfile
+  that was never there.
+- d34122b: Three checks spawned `npm` by bare name, which is an executable on Linux and a
+  `.cmd` shim on Windows, so `execFileSync` threw ENOENT there: the packing suite,
+  the lockfile sync check and the drift check. On Windows `npm run gates` could not
+  finish, and the whole run read as a broken machine.
+  
+  `npmBin(platform)` names the right binary, and takes the platform as a parameter
+  so both branches are testable from either one. A platform branch exercisable only
+  on the platform it is wrong about is how this lasts.
+  
+  Not `shell: true`: that pushes every argument through a command interpreter and
+  makes quoting a problem this code does not otherwise have.
+  
+  Reported from a Windows house, as an environment quirk. It was ours.
+
 ## 0.3.1
 
 ### Patch Changes

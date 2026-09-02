@@ -1,5 +1,30 @@
 # @chbrain/khai-arch
 
+## 0.1.27
+
+### Patch Changes
+
+- 489244e: The README documented `architecture/` and never mentioned `templates/` or
+  `defaults/`, though both ship in `files`. So the package's front door listed the
+  contract and not the thing an author starts from, and `templates` was imported in
+  this repo by exactly two files, both tests, both validating it.
+  
+  It now names both, states the distinction plainly (`templates` starts a file,
+  `types` checks one) with a runnable example, and says that a dependent house
+  already has the templates on disk.
+  
+  The `templates` docstring also claimed `create` swaps the guidance for real
+  content. There is no `create` in this package and there never has been, so the
+  one doc describing the authoring path sent a reader looking for a function that
+  does not exist. Removed, with the reason recorded where it stood.
+- 3182253: A house declared five keys in its warrants' frontmatter (`concept`, `field`,
+  `source`, `axis`, `sign`), built its concordance and its opposition check from
+  them, and recorded why they live there and not in the guard config or the play:
+  the config is on the governance lane, and the canon validator owns the play's
+  frontmatter. The keys were read by tooling and defined by nothing in the canon.
+  The reference standard now names them, all optional, with the rule that `axis`
+  and `sign` come together and that opposed warrants must name each other.
+
 ## 0.1.26
 
 ### Patch Changes
