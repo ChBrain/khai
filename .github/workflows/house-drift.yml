@@ -1,0 +1,115 @@
+name: house-drift
+
+# The other side of khai-drift.yml (packages/khai-stage/blueprint/.github/workflows).
+# That workflow runs inside a house and tells that one house it is behind the
+# kit. Nothing runs inside the kit and tells the kit which houses are behind --
+# each house's own drift check can only see itself, so a house stamped before
+# its drift workflow existed sat many minor versions behind with nothing to say
+# so, and nothing outside that house could have said so either. This is the
+# same alarm read from the other side, aggregated over every house on the bill
+# (packages/khai-plays/registry/*.json) in one pass.
+#
+# `HOUSE_DRIFT_TOKEN` needs read access to every house repository named on the
+# bill. The default `GITHUB_TOKEN` this workflow runs under is scoped to this
+# repository only and cannot read another repository's contents API, so the
+# fetch of a house's package-lock.json needs a token minted for that access
+# (a fine-grained PAT, or an org-level GitHub App installation token) held in
+# this secret. `GITHUB_TOKEN` is the fallback the script reads if the secret is
+# unset, which is enough to prove the wiring locally but cannot read a private
+# house and will report every one of them unreachable in that repo's Actions
+# run -- set the secret for the report to mean anything.
+#
+# Scheduled a different day and hour than the houses' own `0 7 * * 1` (Monday
+# 07:00 UTC) on purpose: this checks the same fact from the kit's side, and
+# running it in the same hour would make a transient GitHub API hiccup look
+# like a correlated finding instead of two independent reads.
+#
+# It reports and never bumps, exactly like `khai-guard drift`: a kit bump in a
+# house is a migration, not a version edit, and this workflow has no standing
+# to start one.
+
+on:
+  schedule:
+    - cron: "0 9 * * 3"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  house-drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: install
+        run: npm ci
+
+      - name: ask every house on the bill
+        id: check
+        env:
+          HOUSE_DRIFT_TOKEN: ${{ secrets.HOUSE_DRIFT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          node scripts/house-drift.mjs --json > drift.json
+          # One invocation, read twice: the script renders this same table
+          # without --json, but it also has nothing to swallow an exit code
+          # from (it always exits 0), so a second call would just repeat the
+          # network trip. Reading the JSON gives the count and the table from
+          # one run.
+          node --input-type=module <<'EOF' > drift.md
+          import { readFileSync, appendFileSync } from "node:fs";
+          const rows = JSON.parse(readFileSync("drift.json", "utf8"));
+          const behind = rows.filter((r) => r.behindBy).length;
+          appendFileSync(process.env.GITHUB_OUTPUT, `behind=${behind}\n`);
+          console.log("| house | package | locked | kit | behind-by |");
+          console.log("| --- | --- | --- | --- | --- |");
+          for (const r of rows) {
+            const mark = r.behindBy ?? "level";
+            console.log(`| ${r.house} | \`${r.package}\` | ${r.locked ?? "unreachable"} | ${r.kit ?? "unreachable"} | ${mark} |`);
+          }
+          EOF
+          cat drift.md
+
+      - name: open or update the drift issue
+        if: steps.check.outputs.behind != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TITLE="houses behind the kit"
+          BODY="$(cat drift.md)
+
+          Reported and not bumped: a kit bump in a house is a migration, not a
+          version edit. It is that house's own pull request to open, once its
+          maintainer has read the new CHANGELOG for gates and rebuilt whatever
+          generated artefacts the pin move touches.
+
+          Raised by \`.github/workflows/house-drift.yml\` via
+          \`scripts/house-drift.mjs\`; it updates this issue rather than
+          opening another."
+
+          NUM="$(gh issue list --state open --search "$TITLE in:title" --json number,title \
+                 --jq ".[] | select(.title == \"$TITLE\") | .number" | head -1)"
+
+          if [ -n "$NUM" ]; then
+            gh issue comment "$NUM" --body "$BODY"
+          else
+            gh issue create --title "$TITLE" --body "$BODY"
+          fi
+
+      - name: close the drift issue when every house is level
+        if: steps.check.outputs.behind == '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TITLE="houses behind the kit"
+          NUM="$(gh issue list --state open --search "$TITLE in:title" --json number,title \
+                 --jq ".[] | select(.title == \"$TITLE\") | .number" | head -1)"
+          if [ -n "$NUM" ]; then
+            gh issue close "$NUM" --comment "Every house on the bill matches the kit again."
+          fi

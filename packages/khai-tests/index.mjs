@@ -74,5 +74,15 @@ export {
   scanSurname,
   findUnresolvedNamesakes,
 } from "./src/overlap.mjs";
+export {
+  findShadowedForms,
+  findSuffixKeys,
+  axesOf,
+  findMalformedAxes,
+  findOpposed,
+  undeclaredNamesakes,
+  mixedCells,
+  compoundWorks,
+} from "./src/science-walls.mjs";
 export * as rules from "@chbrain/khai-rules";
 export { parseDoc, sectionBody } from "@chbrain/khai-rules";

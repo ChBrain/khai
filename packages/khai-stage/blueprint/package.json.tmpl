@@ -31,22 +31,25 @@
     }
   },
   "scripts": {
+    "prepare": "husky",
     "test": "vitest run",
+    "gates": "khai-tests gates . --content-root {{COLLECTION}}/",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "version": "changeset version && khai-tests registry build && npm install --package-lock-only",
     "release": "changeset publish"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.8",
-    "@chbrain/khai-arch": "^0.1.0",
-    "@chbrain/khai-language": "^0.1.0",
-    "@chbrain/khai-tests": "^0.1.0",
-    "@chbrain/khai-guard": "^0.1.0",
-    "@chbrain/khai-review": "^0.1.0",
+    "@changesets/cli": "^3.0.1",
+    "@chbrain/khai-arch": "^0.1.26",
+    "@chbrain/khai-language": "^0.1.25",
+    "@chbrain/khai-tests": "^0.4.1",
+    "@chbrain/khai-guard": "^0.3.1",
+    "@chbrain/khai-review": "^0.1.5",
     "@chbrain/khai-pack": "^0.0.3",
-    "vitest": "^4.1.8",
-    "prettier": "^3.3.0",
+    "@chbrain/khai-stage": "^0.0.25",
+    "vitest": "^4.1.11",
+    "prettier": "^3.9.6",
     "husky": "^9.1.0"
   }
 }
