@@ -51,6 +51,10 @@ import {
 import { checkManagement } from "./management.mjs";
 import { collectInstructions, renderInstructions } from "./instructions.mjs";
 import { loadGates, runGates, renderGates, gateLine } from "./gates.mjs";
+import { verifyGatesAgainstCi, renderCiCheck } from "./ci.mjs";
+import { verifyRelease, renderRelease } from "./release.mjs";
+import { packedFilesAny, checkRegistryPacking, renderRegistryPacking } from "./packing.mjs";
+
 import {
   resolveHouse,
   touchedUnits,
@@ -552,7 +556,25 @@ async function instructionsMode(args) {
 // what the visibility check reads: the default is this workspace's `packages/`,
 // and a house that keeps its productions elsewhere (khai-misfits keeps them in
 // `misfits/`) must say so or the check goes green on it forever.
+// `gates verify-ci [dir]` holds the declared `gates` array against the CI
+// workflow's own job ids -- see ci.mjs for why this is a separate wall from
+// running the gates themselves: a manifest that quietly falls behind ci.yml
+// passes every run of `npm run gates` right up until the day CI runs a job
+// nothing local ever checked.
+function gatesVerifyCiMode(args) {
+  const dirArg = args[2] && !args[2].startsWith("--") ? args[2] : ".";
+  const root = resolve(dirArg);
+  if (!existsSync(root)) {
+    console.error(`khai-tests gates verify-ci: path not found: ${root}`);
+    process.exit(2);
+  }
+  const findings = verifyGatesAgainstCi(root);
+  console.log(renderCiCheck(findings));
+  process.exit(findings.length ? 1 : 0);
+}
+
 function gatesMode(args) {
+  if (args[1] === "verify-ci") return gatesVerifyCiMode(args);
   const dirArg = args[1] && !args[1].startsWith("--") ? args[1] : ".";
   const root = resolve(dirArg);
   if (!existsSync(root)) {
@@ -577,12 +599,62 @@ function gatesMode(args) {
   process.exit(run.ok ? 0 : 1);
 }
 
+// `release verify [dir]` pins the release workflow to the inputs
+// changesets/action v2 actually reads. See release.mjs for the outage this
+// wall stands against: the visible steps of the job all pass under the wrong
+// input names, and the only symptom is that a release never appears.
+function releaseMode(args) {
+  const sub = args[1];
+  const dirArg = args[2] && !args[2].startsWith("--") ? args[2] : ".";
+  const root = resolve(dirArg);
+  if (sub !== "verify") {
+    console.error("khai-tests release verify [dir]");
+    process.exit(2);
+  }
+  if (!existsSync(root)) {
+    console.error(`khai-tests release verify: path not found: ${root}`);
+    process.exit(2);
+  }
+  const findings = verifyRelease(root);
+  console.log(renderRelease(findings));
+  process.exit(findings.length ? 1 : 0);
+}
+
+// `packing verify [dir]` holds registry.json's promise against the tarball and
+// checks governance never ships -- distinct from `pack`, which packages one
+// conforming engine into a zip and is unaffected by this.
+async function packingMode(args) {
+  const sub = args[1];
+  const dirArg = args[2] && !args[2].startsWith("--") ? args[2] : ".";
+  const root = resolve(dirArg);
+  if (sub !== "verify") {
+    console.error("khai-tests packing verify [dir]");
+    process.exit(2);
+  }
+  if (!existsSync(root)) {
+    console.error(`khai-tests packing verify: path not found: ${root}`);
+    process.exit(2);
+  }
+  let packed;
+  try {
+    packed = packedFilesAny(root);
+  } catch (err) {
+    console.error(`✖ packing verify failed: ${err.message}`);
+    process.exit(1);
+  }
+  const findings = checkRegistryPacking(root, packed);
+  console.log(renderRegistryPacking(findings));
+  process.exit(findings.length ? 1 : 0);
+}
+
 if (argv[0] === "instructions") await instructionsMode(argv);
 else if (argv[0] === "house") await houseMode(argv);
 else if (argv[0] === "gates") gatesMode(argv);
 else if (argv[0] === "pack") await packMode(argv);
+else if (argv[0] === "packing") await packingMode(argv);
 else if (argv[0] === "registry") await registryMode(argv);
 else if (argv[0] === "science") await scienceMode(argv);
 else if (argv[0] === "management") managementMode(argv);
+else if (argv[0] === "release") releaseMode(argv);
 else if (argv.includes("--project")) projectMode(argv);
 else await engineMode(argv);
