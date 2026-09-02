@@ -23,14 +23,31 @@ import {
 } from "./validate.mjs";
 import { packEngine } from "./pack.mjs";
 import { buildRegistry, verifyRegistry } from "./registry.mjs";
-import { buildScienceIndex, verifyScienceIndex, SCIENCE_INDEX_PATH } from "./science.mjs";
+import {
+  buildScienceIndex,
+  verifyScienceIndex,
+  SCIENCE_INDEX_PATH,
+  scholarPolicy,
+} from "./science.mjs";
 import {
   findOverlaps,
   pairsOf,
   checkCandidate,
   scanSurname,
   findUnresolvedNamesakes,
+  collectUnits,
+  loadWorkPolicy,
 } from "./overlap.mjs";
+import {
+  findShadowedForms,
+  findSuffixKeys,
+  axesOf,
+  findMalformedAxes,
+  findOpposed,
+  undeclaredNamesakes,
+  mixedCells,
+  compoundWorks,
+} from "./science-walls.mjs";
 import { checkManagement } from "./management.mjs";
 import { collectInstructions, renderInstructions } from "./instructions.mjs";
 import { loadGates, runGates, renderGates, gateLine } from "./gates.mjs";
@@ -178,9 +195,14 @@ async function registryMode(args) {
   }
 }
 
-// `science [build|verify|overlap|check|surname|namesakes] [...] [dir]`:
-// build or drift-check the science index, and run the cross-unit keying
-// instruments (src/overlap.mjs) that answer off the same collector.
+// `science [build|verify|overlap|check|surname|namesakes|forms|suffixes|opposed|probe] [...] [dir]`:
+// build or drift-check the science index, run the cross-unit keying
+// instruments (src/overlap.mjs) that answer off the same collector, and run
+// the walls/probes on the index's OWN key computation (src/science-walls.mjs):
+// forms and suffixes are walls over the keying itself; opposed is the
+// axis/opposition wall; probe runs the three read-only instruments (an
+// undeclared namesake, a mixed-cell reading list, a hidden compound work) and
+// always exits 0.
 async function scienceMode(args) {
   const sub = args[1];
   // `check` and `surname` take a positional argument before the optional dir.
@@ -253,6 +275,95 @@ async function scienceMode(args) {
         `  ${r.scholar}  <- ${r.unit}\n     declared: ${r.forms.join(", ")}\n     cited as: ${r.source}`,
       );
     process.exit(loose.length ? 1 : 0);
+  } else if (sub === "forms") {
+    const policy = scholarPolicy(root);
+    const shadowed = findShadowedForms(policy);
+    console.log(
+      `science forms: ${Object.keys(policy.homonyms ?? {}).length} declared surname(s); ` +
+        `${shadowed.length} shadowed form(s).`,
+    );
+    for (const s of shadowed)
+      console.log(
+        `  ${s.surname} (${s.form}) is listed after "${s.shadowedBy}", which reads as ` +
+          `first-match order.\n     move "${s.form}" before "${s.shadowedBy}" (longest form first).`,
+      );
+    process.exit(shadowed.length ? 1 : 0);
+  } else if (sub === "suffixes") {
+    const { records } = collectUnits(root);
+    const bad = findSuffixKeys(records);
+    console.log(`science suffixes: ${bad.length} index key(s) are a generational suffix.`);
+    for (const b of bad)
+      console.log(
+        `  "${b.key}"  <- ${b.unit}: ${b.work}\n` +
+          "     the Source cell names a suffix and no person; drop the suffix and add the name.",
+      );
+    process.exit(bad.length ? 1 : 0);
+  } else if (sub === "opposed") {
+    const axes = axesOf(root);
+    const malformed = findMalformedAxes(axes);
+    const opposed = findOpposed(axes);
+    console.log(
+      `science opposed: ${axes.length} unit(s) declare an axis; ${malformed.length} malformed, ` +
+        `${opposed.length} opposed pair(s) not naming each other.`,
+    );
+    for (const m of malformed) console.log(`  MALFORMED  ${m}`);
+    for (const o of opposed) {
+      const missing = [
+        !o.aNamesB ? `${o.a} does not name ${o.b}` : null,
+        !o.bNamesA ? `${o.b} does not name ${o.a}` : null,
+      ]
+        .filter(Boolean)
+        .join("; ");
+      console.log(`  [${o.axis}]  ${o.a} vs ${o.b}  (${missing})`);
+    }
+    process.exit(malformed.length || opposed.length ? 1 : 0);
+  } else if (sub === "probe") {
+    const policy = scholarPolicy(root);
+    const workPolicy = loadWorkPolicy(root);
+    const { records } = collectUnits(root);
+
+    const undeclared = undeclaredNamesakes(records, policy);
+    console.log(
+      `science probe: ${undeclared.length} undeclared surname(s) whose own cells name ` +
+        "more than one person.",
+    );
+    for (const f of undeclared) {
+      console.log(`  UNDECLARED  ${f.surname} names ${f.people.length} people.`);
+      for (const p of f.people)
+        console.log(
+          `     ${p.given} ${f.surname}: ${[...new Set(p.rows.map((r) => r.unit))].join(", ")}`,
+        );
+    }
+
+    const mixed = mixedCells(records, policy);
+    console.log(
+      `\nscience probe: ${mixed.length} undeclared surname(s) mixing a named cell with a bare one.`,
+    );
+    for (const f of mixed)
+      console.log(
+        `  MIXED  ${f.surname}: named [${f.named.join(" / ")}]  bare in ${f.bare.join(", ")}`,
+      );
+
+    const compound = compoundWorks(root, workPolicy);
+    const open = compound.filter((f) => !f.canon && !f.contrast && !f.supporting);
+    console.log(
+      `\nscience probe: ${compound.length} hidden work(s) behind a semicolon collide with ` +
+        `an indexed work; ${open.length} carry no exemption.`,
+    );
+    for (const f of compound) {
+      const why = f.canon
+        ? " [canon: exempt]"
+        : f.contrast
+          ? " [contrast: exempt]"
+          : f.supporting
+            ? " [background: exempt]"
+            : "";
+      console.log(
+        `  COMPOUND  ${f.unit}${why}\n     hidden after the semicolon: ${f.hidden}\n` +
+          `     already indexed to: ${f.holders.join(", ")}`,
+      );
+    }
+    process.exit(0);
   } else if (sub === "build") {
     try {
       buildScienceIndex(root);
@@ -281,7 +392,7 @@ async function scienceMode(args) {
     console.log(`khai-tests science verify: ${SCIENCE_INDEX_PATH} at ${root} conforms.`);
   } else {
     console.error(
-      "khai-tests science [build|verify|overlap|namesakes] [dir]\n" +
+      "khai-tests science [build|verify|overlap|namesakes|forms|suffixes|opposed|probe] [dir]\n" +
         'khai-tests science check "<Scholar> :: <Key Work>" [dir]\n' +
         "khai-tests science surname <Surname> [dir]",
     );

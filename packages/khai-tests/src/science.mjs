@@ -289,7 +289,10 @@ const stripQualifier = (s) =>
 // stripped from the END of a part, where it cannot be a name; a part that is
 // nothing but a suffix keeps it, so the uppercase-initial rule still sees a
 // token and the row is not silently dropped.
-const SUFFIXES = new Set(["jr", "jnr", "sr", "snr", "ii", "iii", "iv"]);
+// Exported (not just used internally) so a cross-unit check on the index --
+// findSuffixKeys in science-walls.mjs -- reads the same closed list this
+// module strips, rather than carrying a second one that could drift from it.
+export const SUFFIXES = new Set(["jr", "jnr", "sr", "snr", "ii", "iii", "iv"]);
 
 /**
  * The surname inside one author part, carrying any particle that belongs to it
@@ -758,8 +761,13 @@ export function renderScienceIndex({ records, byEngine }) {
 // per-item warrants carry, and a staged item missing from the index is caught by
 // the drift gate rather than by a human noticing months later.
 
-/** Content unit dirs under <root>/<collection.dir>/*, each a warrant-bearing item. */
-function unitDirs(root, collection) {
+/**
+ * Content unit dirs under <root>/<collection.dir>/*, each a warrant-bearing
+ * item. Exported so a caller that needs the same per-unit walk this build runs
+ * -- the axis/opposition wall in science-walls.mjs -- reads it rather than
+ * inventing a second one that could drift from it.
+ */
+export function unitDirs(root, collection) {
   const base = join(root, collection.dir);
   if (!existsSync(base)) return [];
   return readdirSync(base)
@@ -769,8 +777,11 @@ function unitDirs(root, collection) {
     .filter((u) => statSync(u.dir).isDirectory());
 }
 
-/** A unit's warrant file: REFERENCE.md, or REFERENCES.md as a fallback. */
-function unitWarrant(dir) {
+/**
+ * A unit's warrant file: REFERENCE.md, or REFERENCES.md as a fallback.
+ * Exported for the same reason as unitDirs above.
+ */
+export function unitWarrant(dir) {
   for (const name of ["REFERENCE.md", "REFERENCES.md"]) {
     const p = join(dir, name);
     if (existsSync(p)) return p;
