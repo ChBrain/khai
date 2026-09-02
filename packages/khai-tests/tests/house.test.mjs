@@ -17,7 +17,9 @@ import { fileURLToPath } from "node:url";
 import {
   resolveHouse,
   unitsOf,
+  emptyUnitDirs,
   touchedUnits,
+  authoredFiles,
   defaultRelink,
   isolationErrors,
   loadIsolationPolicy,
@@ -166,7 +168,7 @@ describe("unitsOf: content-dir units plus each production", () => {
     expect(unitsOf(house).map((u) => u.id)).toEqual(["alpha", "beta", "gamma"]);
   });
 
-  it("throws when a unit is in two places at once", () => {
+  it("throws when a unit is in two places at once, both carrying an anchor", () => {
     const root = workspaceHouse({ monolith: ["delta"], migrated: [] });
     mkdirSync(join(root, "packages", "some-house-delta"), { recursive: true });
     writeJson(join(root, "packages", "some-house-delta", "package.json"), {
@@ -176,12 +178,61 @@ describe("unitsOf: content-dir units plus each production", () => {
     const house = resolveHouse(root);
     expect(() => unitsOf(house)).toThrow(/two places at once/);
   });
+
+  it("resolves to one unit when a migration's git mv leaves the old dir behind, empty", () => {
+    // git tracks no empty directories, but the filesystem does: `git mv` moved
+    // `epsilon`'s anchor file into its own production package and the source
+    // directory it came from was never pruned. The leftover carries no anchor
+    // file at all, so it is not a second copy of the unit -- it is nothing.
+    const root = workspaceHouse({ monolith: ["epsilon"], migrated: [] });
+    const leftover = join(root, "packages", "house", "plays", "epsilon");
+    rmSync(join(leftover, "play_epsilon.md"));
+    writeJson(join(root, "packages", "some-house-epsilon", "package.json"), {
+      name: "@chbrain/some-house-epsilon",
+      khai: { class: "house", production: "epsilon" },
+    });
+    writeFileSync(
+      join(root, "packages", "some-house-epsilon", "play_epsilon.md"),
+      "---\nkhai: play\n---\n",
+    );
+    const house = resolveHouse(root);
+    const units = unitsOf(house);
+    expect(units.map((u) => u.id)).toEqual(["epsilon"]);
+    expect(units[0].dir).toBe(join(root, "packages", "some-house-epsilon"));
+  });
+
+  it("reports a unit's own leftover, empty directory only through the explicit call", () => {
+    const root = workspaceHouse({ monolith: ["epsilon"], migrated: [] });
+    const leftover = join(root, "packages", "house", "plays", "epsilon");
+    rmSync(join(leftover, "play_epsilon.md"));
+    writeJson(join(root, "packages", "some-house-epsilon", "package.json"), {
+      name: "@chbrain/some-house-epsilon",
+      khai: { class: "house", production: "epsilon" },
+    });
+    writeFileSync(
+      join(root, "packages", "some-house-epsilon", "play_epsilon.md"),
+      "---\nkhai: play\n---\n",
+    );
+    const house = resolveHouse(root);
+    expect(unitsOf(house).map((u) => u.id)).toEqual(["epsilon"]);
+    expect(emptyUnitDirs(house)).toEqual([{ id: "epsilon", dir: leftover }]);
+  });
 });
 
 // Real commits, because the interesting half of the relink rule (one word of
 // prose is NOT a relink) needs an actual diff, and no fixture can fake one.
+//
+// GIT_DIR / GIT_WORK_TREE / GIT_INDEX_FILE are stripped from every call: a
+// suite run from a git hook (the pre-push hook this kit's own gates run under)
+// inherits those from the repository the hook fired in, and git honours the
+// environment over `cwd` -- every "init" and "commit" below would silently
+// operate on the real repo's index instead of the scratch one built here.
+const SCRATCH_GIT_ENV = { ...process.env };
+delete SCRATCH_GIT_ENV.GIT_DIR;
+delete SCRATCH_GIT_ENV.GIT_WORK_TREE;
+delete SCRATCH_GIT_ENV.GIT_INDEX_FILE;
 function git(repo, ...args) {
-  return execFileSync("git", args, { cwd: repo, encoding: "utf8" });
+  return execFileSync("git", args, { cwd: repo, encoding: "utf8", env: SCRATCH_GIT_ENV });
 }
 function initRepo(repo) {
   git(repo, "init", "-q", "-b", "main");
@@ -240,7 +291,7 @@ describe("touchedUnits: anti-blindness across both homes", () => {
         dir: join(root, "plays", "alpha"),
         authored: false,
         relinkOnly: true,
-        files: ["plays/alpha/persona_a.md"],
+        files: [{ path: "plays/alpha/persona_a.md", authored: false }],
       },
     ]);
 
@@ -316,6 +367,69 @@ describe("touchedUnits: anti-blindness across both homes", () => {
     const root = flatHouse();
     const house = resolveHouse(root);
     expect(() => touchedUnits(house, { base: "HEAD" })).toThrow(/base and head/);
+  });
+});
+
+describe("authoredFiles: which files a unit's own authored verdict is about", () => {
+  it("marks a relinked file and an authored file in the same unit, each on its own", () => {
+    const root = flatHouse({ units: ["alpha"] });
+    initRepo(root);
+    const plot = join(root, "plays", "alpha", "plot_origin.md");
+    const persona = join(root, "plays", "alpha", "persona_a.md");
+    writeFileSync(
+      plot,
+      "---\nkhai: plot\n---\n\nSees [a position](../beta/position_language_x.md).\n",
+    );
+    writeFileSync(persona, "---\nkhai: persona\n---\n\nHolds the old line.\n");
+    const base = commit(root, "base");
+
+    // The plot is only relinked: its one change is a link retarget. The
+    // persona is authored: real prose changed. Both land in the same unit and
+    // in the same commit, exactly the shape a walk-wide relink plus one real
+    // edit produces.
+    writeFileSync(
+      plot,
+      "---\nkhai: plot\n---\n\nSees [a position](@scope/pkg/position_language_x.md).\n",
+    );
+    writeFileSync(persona, "---\nkhai: persona\n---\n\nHolds the new line instead.\n");
+    const head = commit(root, "relink the plot, rewrite the persona");
+
+    const house = resolveHouse(root);
+    const touched = touchedUnits(house, { base, head });
+    expect(touched).toHaveLength(1);
+    expect(touched[0].id).toBe("alpha");
+    expect(touched[0].authored).toBe(true); // the unit as a whole: the persona carries it
+    expect(touched[0].files).toEqual([
+      { path: "plays/alpha/persona_a.md", authored: true },
+      { path: "plays/alpha/plot_origin.md", authored: false },
+    ]);
+
+    // A wall reading only plot files off the unit-level `authored` flag would
+    // charge the plot for the persona's edit. authoredFiles answers the
+    // file-level question directly: the persona is in it, the plot is not.
+    const authored = authoredFiles(house, { base, head });
+    expect(authored.get("alpha")).toEqual(["plays/alpha/persona_a.md"]);
+    expect(authored.get("alpha")).not.toContain("plays/alpha/plot_origin.md");
+  });
+
+  it("carries no entry for a unit that was only relinked", () => {
+    const root = flatHouse({ units: ["alpha"] });
+    initRepo(root);
+    const file = join(root, "plays", "alpha", "persona_a.md");
+    writeFileSync(
+      file,
+      "---\nkhai: persona\n---\n\nShe holds [the tongue](../beta/position_language_x.md).\n",
+    );
+    const base = commit(root, "base");
+    writeFileSync(
+      file,
+      "---\nkhai: persona\n---\n\nShe holds [the tongue](@scope/pkg/position_language_x.md).\n",
+    );
+    const head = commit(root, "relink");
+
+    const house = resolveHouse(root);
+    const authored = authoredFiles(house, { base, head });
+    expect(authored.has("alpha")).toBe(false);
   });
 });
 

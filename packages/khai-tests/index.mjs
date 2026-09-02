@@ -77,7 +77,9 @@ export {
 export {
   resolveHouse,
   unitsOf,
+  emptyUnitDirs,
   touchedUnits,
+  authoredFiles,
   defaultRelink,
   isolationErrors,
   loadIsolationPolicy,

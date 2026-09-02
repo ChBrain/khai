@@ -114,25 +114,58 @@ export function resolveHouse(root, { name: wantName } = {}) {
   return { root: at, packageDir, name, collection, contentDir, productions };
 }
 
+/** Whether `dir` holds the collection's own anchor file (`<anchor>*.md`) --
+ * the same rule {@link resolveHouse}'s productions and every registry reader
+ * use to tell a real item from a directory that merely exists. */
+function hasAnchor(dir, anchor) {
+  if (!existsSync(dir)) return false;
+  return readdirSync(dir).some((f) => f.startsWith(anchor) && f.endsWith(".md"));
+}
+
 /**
- * Every unit in a house: the directories under `contentDir` plus each
- * production. `{ id, dir }`, sorted by id.
+ * The content dir's own subdirectories, split into real units (carry the
+ * collection's anchor file) and empty leftovers (do not). A migration's
+ * `git mv` moves a unit's anchor file into its own production package but can
+ * leave the directory it came from present on disk, empty -- git tracks no
+ * empty directories, but the filesystem does, and a checkout that ran the
+ * migration and never pruned it keeps that directory until something removes
+ * it. Split here once so both {@link unitsOf} and {@link emptyUnitDirs} read
+ * the same walk.
+ */
+function contentDirEntries(house) {
+  const units = [];
+  const empty = [];
+  if (existsSync(house.contentDir)) {
+    for (const e of readdirSync(house.contentDir, { withFileTypes: true })) {
+      if (!e.isDirectory() || e.name.startsWith(".")) continue;
+      const dir = join(house.contentDir, e.name);
+      (hasAnchor(dir, house.collection.anchor) ? units : empty).push({ id: e.name, dir });
+    }
+  }
+  return { units, empty };
+}
+
+/**
+ * Every unit in a house: the content-dir directories that hold an anchor file
+ * plus each production. `{ id, dir }`, sorted by id.
  *
- * Throws on a duplicate id (a content directory and a production sharing one
- * name) rather than silently picking one -- a migration moves a unit, it never
- * copies it, and a reader that averaged the two would be wrong about both.
+ * A content-dir directory with no anchor file is not counted as a unit at all
+ * (see {@link contentDirEntries}) -- a migration in progress can leave one
+ * behind, and pairing it with the production the unit moved to would report a
+ * false duplicate for a unit that was moved, not copied. Ask
+ * {@link emptyUnitDirs} for those directories explicitly; `unitsOf` only
+ * ignores them.
+ *
+ * Throws on a genuine duplicate id -- two places that BOTH carry an anchor
+ * (two content directories, two productions, or one of each) -- rather than
+ * silently picking one: a migration moves a unit, it never copies it, and a
+ * reader that averaged the two would be wrong about both.
  *
  * @param {ReturnType<typeof resolveHouse>} house
  * @returns {{ id: string, dir: string }[]}
  */
 export function unitsOf(house) {
-  const out = [];
-  if (existsSync(house.contentDir)) {
-    for (const e of readdirSync(house.contentDir, { withFileTypes: true })) {
-      if (!e.isDirectory() || e.name.startsWith(".")) continue;
-      out.push({ id: e.name, dir: join(house.contentDir, e.name) });
-    }
-  }
+  const out = [...contentDirEntries(house).units];
   for (const p of house.productions) out.push({ id: p.id, dir: p.dir });
 
   const seen = new Map();
@@ -146,6 +179,22 @@ export function unitsOf(house) {
     seen.set(u.id, u.dir);
   }
   return out.sort((a, b) => a.id.localeCompare(b.id));
+}
+
+/**
+ * Content-dir directories that hold no anchor file for the house's
+ * collection: the leftover a migration's `git mv` can strand once a unit's
+ * anchor moved into its own production package and the now-empty source
+ * directory was never pruned. `unitsOf` ignores these silently -- one is not a
+ * second copy of the unit it used to hold, it is nothing -- but a caller that
+ * wants to flag the debris (a cleanliness check, say) asks here rather than
+ * re-walking `contentDir` itself.
+ *
+ * @param {ReturnType<typeof resolveHouse>} house
+ * @returns {{ id: string, dir: string }[]}
+ */
+export function emptyUnitDirs(house) {
+  return contentDirEntries(house).empty.sort((a, b) => a.id.localeCompare(b.id));
 }
 
 // ---------------------------------------------------------------------------
@@ -242,7 +291,11 @@ function unitFor(path, units, root) {
 /**
  * The units a diff range touches, each flagged for whether it was AUTHORED (at
  * least one change the relink rule does not exempt) or merely RELINKED (every
- * change exempt). An untouched unit does not appear.
+ * change exempt). An untouched unit does not appear. Each entry in `files`
+ * carries the same `authored` verdict for that one file, so a caller that
+ * classifies the unit as a whole (`authored`/`relinkOnly`) can still tell which
+ * of its files earned that verdict and which merely rode along -- see
+ * {@link authoredFiles} for the caller that wants exactly that.
  *
  * Pass `isRelink` to use a house's own rule in place of {@link defaultRelink};
  * it is called once per changed file as `isRelink(change, base, head, root)`.
@@ -261,9 +314,19 @@ function unitFor(path, units, root) {
  * ratchet({ name: "isolation", findings, baseline: 0 });
  * ```
  *
+ * A wall that reads only ONE kind of file inside a unit (a house's plot-zero
+ * gate, reading only `plot_*.md`, say) must not stop at the unit-level flag: a
+ * unit is `authored` the moment ANY of its files earns that verdict, so a
+ * relinked plot sitting beside an unrelated authored persona reads `authored:
+ * true` at the unit level though the plot itself was never touched by a human.
+ * Read `files[].authored` (or call {@link authoredFiles}) to charge the file
+ * that actually earned the verdict, not the unit it happens to share a
+ * directory with.
+ *
  * @param {ReturnType<typeof resolveHouse>} house
  * @param {{ base: string, head: string, isRelink?: typeof defaultRelink }} range
- * @returns {{ id: string, dir: string, authored: boolean, relinkOnly: boolean, files: string[] }[]}
+ * @returns {{ id: string, dir: string, authored: boolean, relinkOnly: boolean,
+ *   files: { path: string, authored: boolean }[] }[]}
  */
 export function touchedUnits(house, { base, head, isRelink = defaultRelink }) {
   if (!base || !head) throw new Error("touchedUnits: both base and head are required");
@@ -283,16 +346,47 @@ export function touchedUnits(house, { base, head, isRelink = defaultRelink }) {
 
   const out = [];
   for (const { unit, changes } of byUnit.values()) {
-    const authoredChanges = changes.filter((c) => !isRelink(c, base, head, house.root));
+    const files = changes
+      .map((c) => ({ path: c.to ?? c.from, authored: !isRelink(c, base, head, house.root) }))
+      .sort((a, b) => a.path.localeCompare(b.path));
     out.push({
       id: unit.id,
       dir: unit.dir,
-      authored: authoredChanges.length > 0,
-      relinkOnly: authoredChanges.length === 0,
-      files: changes.map((c) => c.to ?? c.from).sort(),
+      authored: files.some((f) => f.authored),
+      relinkOnly: !files.some((f) => f.authored),
+      files,
     });
   }
   return out.sort((a, b) => a.id.localeCompare(b.id));
+}
+
+/**
+ * The file-level complement to {@link touchedUnits}: which files a diff range
+ * actually authored, per unit, rather than which units it touched.
+ *
+ * A wall scoped to `touchedUnits`'s unit-level `authored` cannot tell a unit's
+ * own change from a change belonging to a file it never reads (the plot-zero
+ * case in `touchedUnits`'s own doc): it either charges the whole unit for one
+ * authored file among many relinked ones, or -- scoped the other way -- misses
+ * an authored file sitting in a unit some OTHER file merely relinked. Reading
+ * `files[].authored` off `touchedUnits` answers this already; `authoredFiles`
+ * is the same answer reshaped for a caller that wants a lookup by unit id
+ * instead of a rescan of the array.
+ *
+ * @param {ReturnType<typeof resolveHouse>} house
+ * @param {{ base: string, head: string, relink?: typeof defaultRelink }} range
+ * @returns {Map<string, string[]>} unit id -> its authored file paths (sorted).
+ *   A unit with no authored file (relink-only, or untouched) carries no entry
+ *   at all -- an empty array and a missing key would read the same to a
+ *   caller, so there is only one of them.
+ */
+export function authoredFiles(house, { base, head, relink = defaultRelink }) {
+  const out = new Map();
+  for (const unit of touchedUnits(house, { base, head, isRelink: relink })) {
+    const files = unit.files.filter((f) => f.authored).map((f) => f.path);
+    if (files.length) out.set(unit.id, files);
+  }
+  return out;
 }
 
 // ---------------------------------------------------------------------------
