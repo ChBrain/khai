@@ -64,5 +64,15 @@ export {
   scanSurname,
   findUnresolvedNamesakes,
 } from "./src/overlap.mjs";
+export {
+  resolveHouse,
+  unitsOf,
+  touchedUnits,
+  defaultRelink,
+  isolationErrors,
+  loadIsolationPolicy,
+  filenameErrors,
+  ratchet,
+} from "./src/house.mjs";
 export * as rules from "@chbrain/khai-rules";
 export { parseDoc, sectionBody } from "@chbrain/khai-rules";
