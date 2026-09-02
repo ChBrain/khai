@@ -29,7 +29,7 @@ name: release-token
 # opened or updated when the token cannot be read, is close to expiring, or
 # cannot reach this repository, closed when the report reads clean.
 #
-# Scheduled weekly, Monday 08:00 UTC, because the tokens are cut for a month
+# Scheduled weekly, in the night from Sunday to Monday at 02:00 UTC, because the tokens are cut for a month
 # at a time. The warning threshold is fourteen days, the cadence plus a week:
 # on a weekly run a seven-day threshold can be skipped entirely, since a token
 # with eight days left at one run is dead before the next. Under seven days the
@@ -37,7 +37,7 @@ name: release-token
 
 on:
   schedule:
-    - cron: "0 8 * * 1"
+    - cron: "0 2 * * 1"
   workflow_dispatch:
 
 permissions:
