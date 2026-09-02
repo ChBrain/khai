@@ -135,7 +135,15 @@ function renderRepoRow(r) {
 /** @param {{login:string, expiresAt:string|null, daysLeft:number|null}} auth */
 function renderHeader(auth) {
   if (!auth.expiresAt) return `Authenticated as \`${auth.login}\`. Token does not expire.`;
-  const warn = auth.daysLeft !== null && auth.daysLeft < 30 ? " (warning: under 30 days left)" : "";
+  // Fourteen days is the weekly cadence plus a week: a seven-day threshold on a
+  // weekly run can be skipped entirely, since a token with eight days left at
+  // one run is dead before the next.
+  const warn =
+    auth.daysLeft !== null && auth.daysLeft < 7
+      ? " (warning: will not survive to the next weekly run)"
+      : auth.daysLeft !== null && auth.daysLeft < 14
+        ? " (warning: under 14 days left)"
+        : "";
   return `Authenticated as \`${auth.login}\`. Expires ${auth.expiresAt} (${auth.daysLeft} days left)${warn}.`;
 }
 
