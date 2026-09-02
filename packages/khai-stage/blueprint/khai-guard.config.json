@@ -2,6 +2,32 @@
   "source": ["plays/**"],
   "test": ["tests/**", ".github/workflows/**", ".husky/**"],
   "exemptRenames": true,
+  "gates": [
+    {
+      "name": "prettier",
+      "command": "npx prettier --check .",
+      "fix": "npx prettier --write ."
+    },
+    {
+      "name": "suite",
+      "command": "npx vitest run"
+    },
+    {
+      "name": "khai-guard",
+      "command": "npx khai-guard"
+    },
+    {
+      "name": "branch-check",
+      "command": "npx khai-guard branch-check"
+    },
+    {
+      "name": "changeset-check",
+      "command": "npx khai-guard changeset-check"
+    }
+  ],
+  "changesetPolicy": {
+    "countDrivenAdd": ["plays/*/play_*.md"]
+  },
   "driftPolicy": {
     "scopes": ["@chbrain/"]
   },
@@ -11,13 +37,13 @@
   },
   "branchScope": {
     "shared": [
-      ".changeset/**",
       "package.json",
       "package-lock.json",
       "CHANGELOG.md",
       ".prettierrc",
       ".prettierignore",
       ".gitignore",
+      ".gitattributes",
       ".npmrc",
       ".nvmrc",
       "LICENSE",
@@ -26,6 +52,10 @@
       "registry.json"
     ],
     "riders": [
+      {
+        "pattern": ".changeset/**",
+        "fallback": "governance"
+      },
       {
         "pattern": "management/orders/**",
         "fallback": "governance"

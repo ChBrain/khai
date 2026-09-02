@@ -64,6 +64,29 @@ Never in the mechanism; each house's own:
   chain that names the rungs is the house's local config.
 - **The canon and content** of the house.
 
+## Where a per-unit declaration lives
+
+A rule of this same shape recurs one level down, inside a house rather than
+between houses, and it deserves its own line because the reasoning is
+identical: a per-unit declaration lives in the unit, never in governance
+config. Governance config sits on the governance lane; a unit's own pull
+request cannot write it, and a mechanism that could only read the fact from
+config would be asking the wrong PR to state it. So the mechanism that reads
+the declaration is global, one copy, computed; the declaration it reads is
+local, written beside the thing it describes.
+
+Two shapes carry this, stated in the abstract because both already exist and
+neither is the only way to do it: a declaration in the unit's own warrant
+frontmatter, the way an axis and its sign are declared beside the content they
+govern rather than in a central list; and an exemption file sitting beside the
+unit's content, the way a coverage waiver is declared where the shortfall is
+rather than filed centrally. Either shape keeps the write inside the one pull
+request that has standing to make it.
+
+The corollary is the general form, and it is worth carrying past this one
+case: a house rule that cannot be obeyed from the lane it is read on is a rule
+about the lane, not about the author.
+
 ## The classification rule, computed not argued
 
 For any future check, ask three questions in order:

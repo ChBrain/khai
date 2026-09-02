@@ -143,6 +143,62 @@ or that the range never touched, owes nothing. The library exposes the pieces
 separately for a house's own gate to hold to a baseline (`ratchet`) rather than
 demand the whole house at zero on day one.
 
+### Science keying walls: checks on the index's OWN key computation
+
+The instruments above ask whether a piece of science is shared. These ask a
+narrower question: did the index compute the right key at all? Two are walls
+(exit 1 on a computed defect, never on nothing); three are probes (report and
+always exit 0, because what they find is a reading list for a person, not a
+verdict a script can make).
+
+- **`forms`**: a declared `scholarPolicy.homonyms` form that is a
+  space-prefix of a LATER form in the same array (`["David", "David L"]`)
+  reads, to a maintainer, as unreachable first-match order, though the build
+  itself resolves by longest match, order-independently, so this is a
+  declaration hygiene wall, not a live-defect one. The fix is always a
+  reorder, longest form first.
+- **`suffixes`**: an index key whose whole surname is a generational suffix
+  (Jr, Sr, II, III, IV). The build already strips a trailing suffix before
+  taking the surname, so this only ever catches a Source cell that names a
+  suffix and no person at all; drop the suffix and add the name.
+- **`opposed`**: the axis/opposition wall. A unit's warrant (its
+  `REFERENCE.md` or `REFERENCES.md`) may declare, in YAML frontmatter, the
+  quantity it acts on and the sign of the outcome's response to an increase in
+  it:
+
+  ```yaml
+  ---
+  axis: population-density
+  sign: negative # how the outcome moves as that quantity rises
+  ---
+  ```
+
+  Two units on one axis with opposite signs are in conflict and must each name
+  the other (by title) somewhere in their own warrant text. `opposed` fails on
+  a malformed declaration (an axis without a sign, a sign without an axis, or
+  a sign that is neither `positive` nor `negative`, never grandfathered, since
+  a half-written declaration reads as covered and checks nothing) and on an
+  opposed pair that does not name each other both ways. Unit discovery reads
+  the same collection a house declares in `khai.collection` (default
+  `plays/`); a root with no such collection reports zero units, cleanly.
+
+- **`probe`**: three read-only instruments in one pass: an **undeclared
+  namesake** (a surname not yet in `scholarPolicy.homonyms` whose own Source
+  cells already name more than one given name), **mixed cells** (the
+  complement, an undeclared surname mixing a named cell with a bare one,
+  where a namesake the first probe cannot see would be hiding), and
+  **compound works** (a Key Work cell hiding a second work behind a
+  semicolon, since the index only ever reads the first, that collides with a
+  work another unit already holds as its first work, minus the same
+  `canon`/`contrastMarkers`/`supportingMarkers` exemptions `overlap` reads).
+
+```bash
+npx khai-tests science forms      # declared homonym forms in a misleading order; exit 1 on findings
+npx khai-tests science suffixes   # index keys that are a generational suffix; exit 1 on findings
+npx khai-tests science opposed    # the axis/opposition wall; exit 1 on a malformed or silent pair
+npx khai-tests science probe      # undeclared namesakes, mixed cells, hidden compound works; exits 0
+```
+
 ## Library
 
 The CLI is a thin caller over the same functions the test suite uses:

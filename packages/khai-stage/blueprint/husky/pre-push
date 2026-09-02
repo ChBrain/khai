@@ -1,3 +1,20 @@
 #!/usr/bin/env sh
-npx khai-guard
-npx khai-guard branch-check
+# The last gate before a push, and the one CI cannot repeat in time to help.
+#
+# It used to run the guard alone, which checks the lane and the source/test
+# split and nothing else. A house pushed branches past that hook failing six of
+# its eleven walls, announced as validated, because the only things that had
+# run were a builder and an advisory reporter, neither of which can fail.
+#
+# `npm run gates` runs every wall this house declares in khai-guard.config.json,
+# one pass, one exit code. It takes a couple of minutes, most of it the suite.
+# That is the price of not spending a CI round and a review on something the
+# author could have seen. Never `--no-verify`: the house forbids it, and this is
+# the hook it defeats.
+
+# The gates run against the installed node_modules and say so themselves. A
+# stale lockfile is invisible to them and fatal in CI, which installs with
+# `npm ci` and fails every job at the install step.
+npx khai-guard lockfile-check --sync || exit 1
+
+npm run gates

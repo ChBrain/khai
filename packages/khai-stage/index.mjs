@@ -65,7 +65,7 @@ function housePath(
   if (collection && collection !== "plays" && p.startsWith("plays/")) {
     p = `${collection}/${p.slice("plays/".length)}`;
   }
-  if (p === "npmrc" || p === "gitignore" || p === "nvmrc") return "." + p;
+  if (p === "npmrc" || p === "gitignore" || p === "nvmrc" || p === "gitattributes") return "." + p;
   if (p.startsWith("github/") || p.startsWith("husky/") || p.startsWith("changeset/"))
     return "." + p;
   if (managerSlug && p === "management/persona_theatre_manager.md") {

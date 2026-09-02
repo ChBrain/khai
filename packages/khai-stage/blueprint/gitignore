@@ -3,3 +3,6 @@ dist/
 *.log
 .DS_Store
 scenarios/
+
+# Subagent worktrees and other tooling state, never content.
+.claude/
