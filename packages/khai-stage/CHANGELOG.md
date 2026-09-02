@@ -1,5 +1,107 @@
 # @chbrain/khai-stage
 
+## 0.0.26
+
+### Patch Changes
+
+- 673b628: The blueprint disagreed with the guard it ships. Its contract said a play add
+  takes no changeset while `khai-guard changeset-check` requires a `minor` on any
+  count-driven add, and both content houses had converged on `minor` independently,
+  each documenting the `0.<count>.1` drift. Its manifest template had no `prepare`
+  script, so the pre-push hook it stamps was never installed by `npm ci`. Its
+  release workflow was still on changesets/action v1 with the old input names, the
+  failure two houses had already repaired with the same test. And every house it
+  raised points at `node_modules/@chbrain/khai-stage/conduct.md` without depending
+  on khai-stage, so the case law was unreachable from every house.
+  
+  All four are repaired in the stamp, and the stamp now carries what the houses
+  built beside them: a declared `gates` list run by one script and by the pre-push
+  hook after a lockfile check, a `countDrivenAdd` policy with the CI job that reads
+  it, `.changeset/**` as a rider, `.gitattributes` forcing LF, `.claude/` ignored,
+  current pins, and a stamped test that holds `registry.json` to a fresh build and
+  the management core to the installed blueprint. Two kit house checks are wired
+  dormant and wake on the kit bump that exports them.
+- 78e05f0: The blueprint gains a vendor-agnostic contract, and tells a house where a file
+  starts.
+  
+  `AGENTS.md` is now the coding contract. `CLAUDE.md`, `GEMINI.md` and
+  `.github/copilot-instructions.md` point at it and carry only their own tool's
+  quirks; none points at another. Previously the contract lived in `CLAUDE.md` and
+  the other two pointed there, which made one vendor the owner of rules that
+  belong to the house -- and it showed: the Copilot file carried a rule about
+  `claude/*` branch names, a quirk of a different tool entirely. That rule now
+  lives in `CLAUDE.md`, and the Copilot file drops from 50 lines of duplicated
+  contract to 11 lines of pointer.
+  
+  `AGENTS.md` also gains "Starting a file". Every house khai-stage raises already
+  devDepends on `@chbrain/khai-arch`, so the nine authoring templates are installed
+  on day one, complete and valid -- and nothing in the blueprint named them. It
+  states the trap too: a stamped template validates, which is what makes it a safe
+  start and what makes an unedited one shippable.
+  
+  The governance lane allows `AGENTS.md`.
+- 0212931: The blueprint's voice layer said the coding rules live in the tool files. #1463
+  fixed exactly this in khai's own voice layer and missed the blueprint's, so every
+  house stamped since would have inherited the defect the parent had already
+  repaired.
+  
+  Reworded rather than renamed, matching #1463: the per-tool files carry only that
+  tool's own quirks and point back at the contract, so none of them is where a
+  coding rule lives.
+- 63df3e2: conduct.md gains law 11: a kit wall is measured against every house it will
+  judge, before it ships.
+  
+  The lesson lived only in pull request bodies, which law 6 already forbids. Two
+  cases from the khai-tests 0.4.x cycle carry it. `originRowErrors` shipped in
+  0.4.0 measured against khai alone, where six non-author Origin rows are declared
+  as strings; measured against khai-misfits after release it raised 499 errors over
+  352 distinct Source values in 268 misfits, all of them that house's standing
+  idiom rather than defects, and declaring 352 strings is what that house's own
+  ruling forbids. Adoption stalled until 0.4.1 made an entry declarable as a
+  pattern. The near miss runs the other way: the gates runner defaults its content
+  root to `packages/` and khai-misfits keeps its content in `misfits/`, so a
+  packages-only visibility check would report clean on a tree it cannot see, which
+  was answered at design time with `--content-root`.
+  
+  Numbering is stable: the new law is appended as 11 rather than placed
+  thematically, because other houses cite these laws by number. Law 3 gains a
+  one-sentence forward pointer, and Credits attributes section 11.
+- a80948f: Three lessons lifted into shared case law from houses that had already learned
+  them on their own. Law 2 gains the cultures house's rule that a count or a
+  verdict is reported only from a run just made, lifted out of one vendor file so
+  every agent carries it. Law 4 gains the misfits house's case for why one built
+  file comes back unformatted after every rebuild, and what that says about
+  reading the step that failed rather than the job name. A new law 12 records
+  adopting a kit wall dormant, behind a probe for the export it needs, and
+  retiring a house's local workaround the moment the kit takes the check over.
+- e774ef2: Three argument-parsing bugs in `khai-stage`, all of which reported success.
+  
+  `--help` was unhandled, so it became the source name and raised a 54-file house
+  called `khai-plays---help` in the working directory. A generator whose help flag
+  generates is the one flag a stranger tries first.
+  
+  `--anchor` was in the usage line and the file's own header and was never in the
+  flag map, so `khai-stage buechner --anchor process_` stamped the house into a
+  directory literally named `--anchor` and called the Theatre Manager `process_`.
+  It now reaches the manifest: a canon house stamped with `--anchor culture_`
+  declares `anchor: "culture_"` instead of the `play_` default.
+  
+  An unknown flag fell through to the positional list and became the target
+  directory, so a typo stamped a house into a folder named after the typo. It is
+  now an error naming the option.
+  
+  Every error path writes nothing.
+- 5a1b033: conduct.md's prescriptive references to `CLAUDE.md` name `AGENTS.md`, and say
+  where quirks live rather than folding them into the contract. The one historical
+  reference (`GEMINI.md` was 31 lines against `CLAUDE.md`'s 308) is untouched:
+  repointing it would falsify a measurement.
+  
+  The README names what the stamper actually lays now, and `stage.test.mjs` gains a
+  wall for the shape rather than the file names: every vendor file must point at
+  `AGENTS.md` and at no other vendor, and `README.md` must carry the pointer too.
+  Presence was already asserted; the direction of the pointers was not, and the
+  direction is the property that keeps one tool from owning the house's contract.
+
 ## 0.0.25
 
 ### Patch Changes
