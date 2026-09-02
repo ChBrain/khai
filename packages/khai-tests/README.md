@@ -98,6 +98,51 @@ npx khai-tests science surname Miller             # is this surname anywhere in 
 npx khai-tests science namesakes                  # declared surnames left unresolved; exit 1 if any
 ```
 
+### House content walls -- a house in either layout, one resolver
+
+A collection house is not always one directory: a house may migrate its
+collection into a workspace, one unit at a time, so a unit can be a directory
+under the collection or a package standing beside it (`khai.class === "house"`).
+`resolveHouse(root)` finds the house by what a manifest DECLARES, in either
+shape, and every wall below reads through it, so a house mid-migration never
+looks empty to a check that has not caught up.
+
+```bash
+npx khai-tests house check .                                 # the whole house
+npx khai-tests house check . --base <sha> --head <sha>       # only what the range authored
+```
+
+Prints the resolved house (its package, its collection, its production count)
+and runs two walls:
+
+- **isolation**: a relative markdown link inside a unit must resolve inside
+  that unit's own directory (`path.resolve`, never a string prefix test, so a
+  link nesting deeper into the same unit is not confused with one that
+  escapes it). Runs only when the house declares `isolationPolicy` in its
+  `khai-guard.config.json` -- a house with a real cross-unit idiom (one
+  unit's position held one way and cited by name from another) is red on
+  every such link until it says what it means to allow, and a wall that is
+  red on content a house wrote on purpose is not yet a wall:
+
+  ```jsonc
+  "isolationPolicy": { "allow": ["position_language_*.md", "position_culture_*.md"] }
+  ```
+
+  `allow` matches a link's target by basename glob (`*` only); a package
+  specifier (`@scope/pkg/...`) is never a finding here at all, since a unit
+  reaching another PACKAGE by name is npm's question, not this one's.
+
+- **filenames**: any path component under a unit's own directory carrying a
+  non-ASCII character. macOS stores a path decomposed (NFD) and Linux composed
+  (NFC), so the same accented name is different bytes on each and a link
+  written against one stops matching a checkout on the other.
+
+With `--base`/`--head`, both walls scope to the units the range **authored**
+(`touchedUnits`): a unit whose only change was a link's target being rewritten,
+or that the range never touched, owes nothing. The library exposes the pieces
+separately for a house's own gate to hold to a baseline (`ratchet`) rather than
+demand the whole house at zero on day one.
+
 ### Science keying walls: checks on the index's OWN key computation
 
 The instruments above ask whether a piece of science is shared. These ask a
@@ -168,6 +213,11 @@ The CLI is a thin caller over the same functions the test suite uses:
 - `wiringRequirements(manifests)` — derive enforceable requirements from engine
   manifests.
 - `rules`, `parseDoc`, `sectionBody` — the underlying atoms.
+- `resolveHouse(root)`, `unitsOf(house)`, `touchedUnits(house, { base, head })`,
+  `isolationErrors(house, { allow })`, `loadIsolationPolicy(root)`,
+  `filenameErrors(house)`, `ratchet({ name, findings, baseline })`: the house
+  content walls behind `house check` (see above), for a house's own gate to
+  call directly.
 
 ## How wiring works
 
