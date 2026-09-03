@@ -32,7 +32,7 @@
   "dependencies": {
     "@chbrain/khai-arch": "^0.1.25",
     "franc-all": "^7.2.0",
-    "js-yaml": "^5.3.0",
+    "js-yaml": "^5.4.1",
     "languagedetect": "^2.0.0"
   },
   "devDependencies": {

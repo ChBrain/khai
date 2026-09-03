@@ -139,33 +139,19 @@ describe("science overlap wall: the live corpus against the declared canon", () 
 // would hide it. Regenerate with:
 //   node -e 'import("./packages/khai-tests/src/overlap.mjs").then(({findUnresolvedNamesakes})=>console.log(JSON.stringify(findUnresolvedNamesakes(".").map(r=>`${r.scholar} :: ${r.unit}`).sort())))'
 const NAMESAKE_BASELINE = [
-  "Brehm :: swaying",
   "Campbell :: bidding",
   "Davis :: dealing",
   "Davis :: trust",
-  "Gollwitzer :: reprisal",
   "Johnson :: search-space",
   "Klein :: transference",
-  "Lennon :: carrying",
   "Miller :: anger",
   "Park :: role-exit",
-  "Quinn :: org",
-  "Robinson :: desire",
-  "Ross :: assent",
-  "Ross :: belief",
   "Snyder :: hope",
   "Snyder :: prospection",
-  "Solomon :: attachment",
   "Solomon :: mortality",
   "Stone :: clime",
   "Thompson :: meridian",
   "Thompson :: social-time",
-  "Turner :: bias",
-  "Turner :: identity",
-  "Wang :: deserving",
-  "Watson :: joy",
-  "Watson :: mood",
-  "Wilson :: praise",
 ].sort();
 
 // Once per file, for the same reason as OVERLAP_KEYS above.
