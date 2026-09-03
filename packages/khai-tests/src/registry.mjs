@@ -1,8 +1,9 @@
 import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
-import { join, dirname, resolve, relative, isAbsolute } from "node:path";
+import { join } from "node:path";
 import { parseDoc, sectionBody } from "@chbrain/khai-rules";
 import { validateCollectionRegistry } from "./validate.mjs";
 import { resolveCollection, resolveCollectionAt, resolveCollections } from "./collection.mjs";
+import { castIds } from "./links.mjs";
 
 export { resolveCollection, resolveCollections };
 
@@ -91,33 +92,10 @@ function readGeoIso(itemSubdir) {
   return undefined;
 }
 
-/**
- * The item ids a referencing entry casts: the build-derived `references`. Every
- * inline link in the anchor file that resolves under `referencedDir` contributes
- * its item id (the first path segment beneath that dir). Derived, never authored —
- * and since those links are the same casts `checkLinks` gates, a reference can
- * never point at a member that does not exist.
- * @param {string} anchorFile  absolute path to the referencing item's anchor
- * @param {string} referencedDir  absolute path to the referenced collection's dir
- * @returns {string[]} unique ids, sorted
- */
-function referencedIds(anchorFile, referencedDir) {
-  const text = readFileSync(anchorFile, "utf8");
-  const anchorDir = dirname(anchorFile);
-  const refRoot = resolve(referencedDir);
-  const ids = new Set();
-  const re = /\]\(([^()\s]+)\)/g;
-  let m;
-  while ((m = re.exec(text))) {
-    const target = m[1].split("#")[0];
-    if (!target || /^[a-z]+:\/\//i.test(target)) continue;
-    const rel = relative(refRoot, resolve(anchorDir, target));
-    if (rel.startsWith("..") || isAbsolute(rel)) continue; // not under the referenced dir
-    const id = rel.split(/[/\\]/)[0];
-    if (id) ids.add(id);
-  }
-  return [...ids].sort((a, b) => a.localeCompare(b));
-}
+// `referencedIds` lived here and resolved the relative link shape only, which
+// is why a group whose members had migrated into packages derived the empty set
+// instead of its three members. The rule now lives in `links.mjs`, reads both
+// shapes, and is the same one a consumer reading the published house uses.
 
 /**
  * The kinds a member filename may declare: the prefix before its first
@@ -206,9 +184,11 @@ function buildMembers(itemSubdir) {
  * @param {string} root
  * @param {{ dir: string, key: string, anchor: string, kind: string, references?: string }} collection
  * @param {{ key: string, dir: string }[]} allCollections  for resolving `references` targets
+ * @param {Map<string,string>} [packageIds]  npm name -> unit id, for casts that
+ *   have become package specifiers (see links.mjs)
  * @returns {object[]}
  */
-function buildItems(root, collection, allCollections) {
+function buildItems(root, collection, allCollections, packageIds) {
   const itemsDir = join(root, collection.dir);
   if (!existsSync(itemsDir)) return [];
 
@@ -275,8 +255,22 @@ function buildItems(root, collection, allCollections) {
     if (iso) entry.iso = iso;
 
     if (referencedDir) {
-      const refs = referencedIds(anchorFile, join(root, referencedDir));
-      if (refs.length) entry.references = refs;
+      // Derived, never authored -- and never allowed to derive nothing. An
+      // entry in a referencing collection IS what it references; one that
+      // references nothing is a derivation that has lost its members, not a
+      // group that is empty. Omitting the field on empty is how a house
+      // published a hollow group and found out from a consumer months later.
+      const refs = castIds(anchorFile, join(root, referencedDir), packageIds);
+      if (!refs.length) {
+        throw new Error(
+          `${collection.dir}/${id}/${anchorFileName} casts no item of ` +
+            `\`${collection.references}\`: a ${collection.kind} is defined by what it ` +
+            `references, so deriving none is a build failure, not an empty ` +
+            `${collection.kind}. Either the casts are missing, or they are package ` +
+            `specifiers this build was given no packageIds map for.`,
+        );
+      }
+      entry.references = refs;
     }
 
     // members last: the catalog is derived from the whole directory, not just
@@ -298,10 +292,13 @@ function buildItems(root, collection, allCollections) {
  * provably the single writer of `registry.json` and a hand edit is caught, not
  * shipped.
  * @param {string} root
+ * @param {{ packageIds?: Map<string,string> }} [opts] `packageIds` maps an npm name
+ *   to the unit id that package ships, for a house mid-migration whose casts
+ *   have become package specifiers. A house that has migrated nothing needs none.
  * @returns {{ registryData: object, version: string, packageJson: object,
  *   packageJsonPath: string, registryPath: string }}
  */
-export function computeRegistry(root) {
+export function computeRegistry(root, { packageIds } = {}) {
   const packageJsonPath = join(root, "package.json");
   if (!existsSync(packageJsonPath)) {
     throw new Error(`missing package.json at ${root}`);
@@ -321,7 +318,7 @@ export function computeRegistry(root) {
   // collections ride alongside; only the primary feeds the version count below.
   const arrays = {};
   for (const collection of collections) {
-    arrays[collection.key] = buildItems(root, collection, collections);
+    arrays[collection.key] = buildItems(root, collection, collections, packageIds);
   }
   const primaryItems = arrays[primary.key];
 
@@ -398,9 +395,11 @@ export function healChangelogHeading(root, staleVersion, version) {
   return true;
 }
 
-export function buildRegistry(root) {
-  const { registryData, version, packageJson, packageJsonPath, registryPath } =
-    computeRegistry(root);
+export function buildRegistry(root, { packageIds } = {}) {
+  const { registryData, version, packageJson, packageJsonPath, registryPath } = computeRegistry(
+    root,
+    { packageIds },
+  );
 
   // Reconcile package.json (the published artifact; registry.json is not in the
   // package files) so the build is the single writer of the minor -- and heal

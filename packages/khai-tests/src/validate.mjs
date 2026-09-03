@@ -305,7 +305,7 @@ export function validateContentFile(
 function readManifest(pkgDir) {
   const pkg = readJsonOr(join(pkgDir, "package.json"));
   if (pkg === null) return { manifest: null, name: null, unreadable: true };
-  return { manifest: pkg.khai, name: pkg.name };
+  return { manifest: pkg.khai, name: pkg.name, pkg };
 }
 
 /** Every `.md` in the dir that declares `khai:` frontmatter (a content instance).
@@ -607,7 +607,7 @@ function markdownFiles(pkgDir) {
 export function validateProductionPackage(pkgDir) {
   const results = [];
   const push = (file, errors) => results.push({ file, errors, warnings: [], audit: [] });
-  const { manifest, unreadable } = readManifest(pkgDir);
+  const { manifest, unreadable, pkg: pkgJson } = readManifest(pkgDir);
   if (unreadable) {
     push("package.json", ["cannot read or parse package.json"]);
     return results;
@@ -654,6 +654,36 @@ export function validateProductionPackage(pkgDir) {
     push("package.json", [
       `a production is one play; this package ships ${plays.length} (${plays.join(", ")})`,
     ]);
+
+  // The subpath invariant, and it is the quiet one.
+  //
+  // Everything downstream of a production reaches INTO it by subpath: a sibling
+  // casts `@chbrain/khai-cultures-germany/play_germany.md`, and a consumer
+  // reading the house asks its resolver for `<name>/package.json` to find where
+  // npm put it. Both work today only because these packages declare no
+  // `exports`, which makes every subpath resolvable by default. The day one
+  // declares `exports` for any reason, both stop resolving -- for installed
+  // consumers only, silently, while this workspace keeps passing, because a
+  // workspace resolves through the directory and never consults the field.
+  //
+  // khai-tests and khai-pack learned this already and both export
+  // `./package.json` explicitly. A production is held to the same rule, before
+  // the first one has an `exports` field to get wrong.
+  const exportsField = pkgJson?.exports;
+  if (exportsField !== undefined) {
+    const ok =
+      typeof exportsField === "object" &&
+      exportsField !== null &&
+      !Array.isArray(exportsField) &&
+      Object.prototype.hasOwnProperty.call(exportsField, "./package.json");
+    if (!ok)
+      push("package.json", [
+        `a production that declares \`exports\` must export "./package.json": every ` +
+          `consumer finds this package by resolving that subpath, and every sibling ` +
+          `casts its content by subpath too. An \`exports\` field without it resolves ` +
+          `here (a workspace reads the directory) and fails for everyone who installs it`,
+      ]);
+  }
 
   // The publish invariant.
   for (const file of markdownFiles(pkgDir)) {

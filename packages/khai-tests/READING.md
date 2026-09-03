@@ -186,8 +186,27 @@ recognising them the moment they became specifiers. Teach `referencedIds` the
 package-specifier shape via `linkTarget` and DACH derives
 `["austria", "germany", "switzerland"]` again, wherever those three live.
 
-The second half matters more than the fix. **A referencing entry that derives
-zero references becomes a build error**, not an omitted field:
+**And DACH is not the only casualty — it is only the visible one.** Run the
+corrected derivation over the published 0.316.0 registry and five of the
+nineteen groups are wrong, not one:
+
+| group          | memberships the published registry is missing |
+| -------------- | --------------------------------------------- |
+| `anglosphere`  | `united_kingdom`                              |
+| `dach`         | `austria`, `germany`, `switzerland`           |
+| `eu`           | `austria`, `germany`                          |
+| `francophonie` | `switzerland`                                 |
+| `nato`         | `germany`, `united_kingdom`                   |
+
+Nine memberships, silently dropped. DACH was noticed only because it happened to
+lose _all_ of its members and went to zero; the other four lost some and kept
+looking like groups. That is the house's own stated failure — a gate that still
+sees 289 of 290 looks exactly like a gate that sees all of them — reproduced
+exactly, in published data, four times over.
+
+It also settles which of the two changes is load-bearing. A referencing entry
+that derives zero references **should** become a build error, and it would have
+stopped DACH:
 
 ```
 groups/dach: play_dach.md casts no member of `cultures`. A group is defined by
@@ -195,8 +214,11 @@ what it references; one that references nothing is a derivation that has lost
 its members, not a group that is empty.
 ```
 
-One line, and 0.316.0 does not publish. This is the single highest-value change
-in the document: it would have caught this before the website ever looked.
+But it would have let `anglosphere`, `eu`, `francophonie` and `nato` through
+untouched, because a partial group is a plausible group. **Only the derivation
+fix catches all five.** The zero-check earns its place as the backstop for a
+house that forgets the `packageIds` map, not as the primary guard — and the
+primary guard is that the rule reads both link shapes.
 
 Group-as-one-zip stays where [REGISTRY.md](REGISTRY.md) left it — website-side,
 deferred. Once references derive again, the website's existing group loop packs
