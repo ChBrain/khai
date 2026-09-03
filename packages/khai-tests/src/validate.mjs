@@ -1092,9 +1092,18 @@ function stableStringify(value) {
  * is validated exactly as before.
  *
  * @param {string} root house root containing `registry.json` and the collection dir
+ * @param {{ packageIds?: Map<string,string> }} [opts] `packageIds` maps an npm
+ *   name to the unit id that package ships, for a house whose casts have become
+ *   package specifiers. Forwarded to the rebuild below, which is otherwise blind
+ *   to them: a group whose members have all migrated then derives nothing and
+ *   stops the rebuild on the kit's own empty-group rule, so a verify that was
+ *   handed the map and a build that was not disagree about the same house. The
+ *   kit never builds this map - the npm name of a unit follows a rule that
+ *   belongs to the house, and a kit that guessed it would be wrong for the next
+ *   house to migrate.
  * @returns {{ file: string, errors: string[], warnings: string[], audit: string[] }[]}
  */
-export function validateCollectionRegistry(root) {
+export function validateCollectionRegistry(root, { packageIds } = {}) {
   const collections = resolveCollections(safePackageJson(root));
   const primary = collections[0];
   const errors = [];
@@ -1497,7 +1506,7 @@ export function validateCollectionRegistry(root) {
   // than double-report. A partial fixture that lacks them simply skips this check.
   if (existsSync(join(root, "package.json"))) {
     try {
-      const expected = computeRegistry(root).registryData;
+      const expected = computeRegistry(root, { packageIds }).registryData;
       if (stableStringify(expected) !== stableStringify(registry)) {
         errors.push(
           "registry.json is out of date with its source; run `khai-tests registry build` " +
@@ -1520,8 +1529,8 @@ export function validateCollectionRegistry(root) {
  * from when the only collection was plays; downstream importers may still use it.
  * @param {string} root
  */
-export function validatePlayhouseRegistry(root) {
-  return validateCollectionRegistry(root);
+export function validatePlayhouseRegistry(root, { packageIds } = {}) {
+  return validateCollectionRegistry(root, { packageIds });
 }
 
 /**
