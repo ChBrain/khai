@@ -41,7 +41,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "picomatch": "^4.0.2"
+    "picomatch": "^4.0.7"
   },
   "devDependencies": {
     "vitest": "^4.1.11"
