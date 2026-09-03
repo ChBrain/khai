@@ -158,6 +158,68 @@ not a convention. **Read the canon before attributing a rule to the house, and
 test a proxy against the case it would flag worst, not the case it was derived
 from.** Both proxies above looked correct on the file they came from.
 
+## A worked refusal: the second work in a Key Work cell
+
+The question: `normaliseWork` truncates a `Key Work` cell at the first `;`, so a
+cell naming two papers keys only one. The second is invisible to the overlap
+wall -- two engines could rest on the same second work and nothing would say so.
+Real defect, and it looks like a parsing bug. It is not, and the record of trying
+is worth more than a partial fix.
+
+**How much is hidden.** 845 of 2926 science records carry a `;`; 793 still carry
+one after the parenthesis strip that already removes `(1993; revisited 2016)`.
+So roughly a quarter of the corpus has content after the first work that nothing
+reads.
+
+**Three candidate rules, all measured, none shippable.**
+
+1. **Split on `;` and key every part.** The wall reports 17 overlaps today; this
+   produces 200 shared keys. The extra are not findings. A tail is as often a
+   theory name (`affective disposition theory`), a co-author note
+   (`with Kleinberger`), or a topic gloss (`the hostile attribution bias`) as it
+   is a work. Keying those makes every engine that mentions a concept collide
+   with every other, which is a wall that fires constantly and is therefore read
+   by nobody.
+2. **Quoted, or starting Title Case.** 453 tails. Three of the first ten sampled
+   are wrong: `Dollard et al.` is a citation, `Buss & Perry, the Aggression
+Questionnaire` is an instrument, and `"fear of the unknown" as a fundamental
+fear` is a quoted phrase inside prose that the quote test mistakes for a
+   title. A rule wrong on three in ten is not a rule.
+3. **Fully quoted, opening and closing.** 176 tails, and the tightest of the
+   three -- 25 sampled, 25 genuine paper titles. It fails the other way. The
+   house quotes papers and leaves books plain, so this silently drops
+   `Totem and Taboo`, `Mourning and Melancholia`, `The Achievement Motive`,
+   `Aggression: Its Causes, Consequences, and Control`, `Fire Country`. Shipping
+   it would key some second works and not others, on a distinction (paper versus
+   book) that has nothing to do with whether two engines share a spine -- and
+   would leave the corpus looking inspected.
+
+**And a fourth shape no rule reaches.** Some tails name their own author:
+`Thaler, Sunstein & Balz, "Choice Architecture"`, `Flematti et al., "A compound
+from smoke that promotes seed germination"`. The wall's key is
+`Scholar :: work-stem`, and the scholar for those is a subset of the row's Source
+(`asking`: Flynn & Bohns, tail Bohns), a superset of it (`choice-architecture`),
+or a different team entirely (`combustion`: the Source is Lamont et al., the tail
+is Flematti et al.). There is no single right answer for what to key them under,
+so the question is not "which regex" but "whose work is this".
+
+**The ruling.** The cell is doing four jobs -- naming the work, naming a second
+work, crediting a co-author, and glossing the theory -- and no measure of the
+text separates them, which is question 2 of the classification rule. A parser
+here would encode a guess and present it as an index.
+
+**What would move it down.** Not a better regex; the failure is about what the
+cell means, not how it is punctuated. It descends the moment a second work stops
+being a tail: its own Origin row, with its own Source cell, which is a shape the
+wall already reads correctly and needs no new code at all. Until the data says
+which of the four jobs a tail is doing, there is nothing for a wall to read.
+
+**The standing lesson.** A defect being real does not make the fix computable,
+and a precise rule is not a correct one: candidate 3 is right about everything it
+matches and wrong about everything it drops. Measure a proxy's misses as well as
+its hits before shipping it, because a wall that inspects part of a corpus while
+looking like it inspected all of it is worse than the gap it replaced.
+
 ## Where this corrects the order's first draft
 
 The order named this boundary before the work settled it. Four things landed
