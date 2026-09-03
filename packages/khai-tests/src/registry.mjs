@@ -3,7 +3,7 @@ import { join } from "node:path";
 import { parseDoc, sectionBody } from "@chbrain/khai-rules";
 import { validateCollectionRegistry } from "./validate.mjs";
 import { resolveCollection, resolveCollectionAt, resolveCollections } from "./collection.mjs";
-import { castIds } from "./links.mjs";
+import { castIds } from "@chbrain/khai-foyer";
 
 export { resolveCollection, resolveCollections };
 
@@ -94,8 +94,12 @@ function readGeoIso(itemSubdir) {
 
 // `referencedIds` lived here and resolved the relative link shape only, which
 // is why a group whose members had migrated into packages derived the empty set
-// instead of its three members. The rule now lives in `links.mjs`, reads both
-// shapes, and is the same one a consumer reading the published house uses.
+// instead of its three members. The rule now lives in `@chbrain/khai-foyer`,
+// reads both shapes, and is BYTE-IDENTICAL to the one a consumer reading the
+// published house uses -- because it is the same function. It sits in the
+// consumer's package rather than this one for the direction of the dependency:
+// the reader must stay free of the validator toolchain, so the kit reaches down
+// to it and never the reverse.
 
 /**
  * The kinds a member filename may declare: the prefix before its first
@@ -184,11 +188,13 @@ function buildMembers(itemSubdir) {
  * @param {string} root
  * @param {{ dir: string, key: string, anchor: string, kind: string, references?: string }} collection
  * @param {{ key: string, dir: string }[]} allCollections  for resolving `references` targets
- * @param {Map<string,string>} [packageIds]  npm name -> unit id, for casts that
- *   have become package specifiers (see links.mjs)
+ * @param {{ packageIds?: Map<string,string>, houseName?: string }} [opts]
+ *   `packageIds` maps an npm name to the unit id that package ships, for casts
+ *   that have become package specifiers (see links.mjs). `houseName` is the
+ *   declaring package's own name, stamped into each entry's `source`.
  * @returns {object[]}
  */
-function buildItems(root, collection, allCollections, packageIds) {
+function buildItems(root, collection, allCollections, { packageIds, houseName } = {}) {
   const itemsDir = join(root, collection.dir);
   if (!existsSync(itemsDir)) return [];
 
@@ -250,6 +256,23 @@ function buildItems(root, collection, allCollections, packageIds) {
 
     // kind first: the discriminator the website reads, explicit on every entry.
     const entry = { kind: collection.kind, id, title, description };
+
+    // Where a reader outside this repository finds the files: the npm package
+    // that ships them, and the path below its root. Stamped on EVERY entry,
+    // never only on the interesting ones.
+    //
+    // A house that migrates its units into their own packages knows which is
+    // which; a consumer holding only the tarball does not, and until this field
+    // existed it was left to infer "the collection directory" from the ABSENCE
+    // of a marker. That inference was true for 269 of 316 cultures and silently
+    // false for the rest, and a reader cannot tell an entry it understood from
+    // one it merely defaulted. So the answer is written down for all of them,
+    // and a reader that does not find it is entitled to refuse rather than
+    // guess. The house overwrites `source` for a unit it has let go; what is
+    // stamped here is the truth for a unit still under this root.
+    if (houseName) {
+      entry.source = { package: houseName, path: `${collection.dir}/${id}` };
+    }
 
     const iso = readGeoIso(itemSubdir);
     if (iso) entry.iso = iso;
@@ -318,7 +341,10 @@ export function computeRegistry(root, { packageIds } = {}) {
   // collections ride alongside; only the primary feeds the version count below.
   const arrays = {};
   for (const collection of collections) {
-    arrays[collection.key] = buildItems(root, collection, collections, packageIds);
+    arrays[collection.key] = buildItems(root, collection, collections, {
+      packageIds,
+      houseName: name,
+    });
   }
   const primaryItems = arrays[primary.key];
 

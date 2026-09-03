@@ -1260,6 +1260,39 @@ export function validateCollectionRegistry(root) {
         );
       }
 
+      // source: where a reader outside the repository finds this entry's files.
+      // Shape-checked when present, on the same phase-in the `kind`
+      // discriminator took above -- the build stamps it on every entry, and a
+      // registry built before it existed still verifies until it is rebuilt.
+      //
+      // The strictness lives at the far end instead, and deliberately: a READER
+      // must refuse an entry with no `source` rather than fall back to the
+      // collection directory, because that fallback is exactly what shipped 269
+      // of 316 units and reported success. A lenient validator only tolerates a
+      // stale registry; a lenient reader ships a hole.
+      if (item.source !== undefined) {
+        const src = item.source;
+        if (typeof src !== "object" || src === null || Array.isArray(src)) {
+          errors.push(`${noun} "${item.id}" source, when present, must be an object`);
+        } else {
+          if (typeof src.package !== "string" || !src.package.trim())
+            errors.push(
+              `${noun} "${item.id}" source.package must be the non-empty npm name of the ` +
+                `package that ships this ${noun}`,
+            );
+          if (typeof src.path !== "string")
+            errors.push(
+              `${noun} "${item.id}" source.path must be a string: the path below that ` +
+                `package's root, or "" for the package root itself`,
+            );
+          else if (src.path.startsWith("/") || src.path.split("/").includes(".."))
+            errors.push(
+              `${noun} "${item.id}" source.path must be relative and stay inside the ` +
+                `package (got ${JSON.stringify(src.path)})`,
+            );
+        }
+      }
+
       // iso is optional; when present it must be a non-empty string (ISO 3166 /
       // 3166-2). Absent means the entry is non-mappable.
       if (item.iso !== undefined && (typeof item.iso !== "string" || !item.iso.trim())) {

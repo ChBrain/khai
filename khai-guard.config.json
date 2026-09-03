@@ -106,6 +106,7 @@
         "allow": [
           "packages/khai-guard/**",
           "packages/khai-tests/**",
+          "packages/khai-foyer/**",
           "packages/khai-rules/**",
           "packages/khai-pack/**",
           "packages/khai-language/**",
