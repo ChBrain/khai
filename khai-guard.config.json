@@ -60,7 +60,8 @@
     {
       "name": "suite",
       "command": "npx vitest run",
-      "count": "Tests\\s+([^\\n(]+)"
+      "count": "Tests\\s+([^\\n(]+)",
+      "warn": "^.*prune in a governance sweep.*$"
     }
   ],
   "bumpScope": {
