@@ -34,13 +34,7 @@ const REPO = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
 // Prune an entry here in a governance sweep once the package's own lane has
 // landed its tests. Never add one to make a red main green: a new package
 // without tests is the debt this file exists to stop.
-const BASELINE = [
-  "composites/depression",
-  "composites/grapevine",
-  "composites/neighborhood-cycle",
-  "engines/anhedonia",
-  "engines/disability",
-].sort();
+const BASELINE = [].sort();
 
 /** Every package that declares a khai engine, and whether it carries its own tests. */
 function packages() {
