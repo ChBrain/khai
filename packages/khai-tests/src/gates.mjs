@@ -74,6 +74,11 @@ const STANDING_SKIP =
 const EXCERPT_LINES = 4;
 const EXCERPT_WIDTH = 160;
 
+/** How many notices from a PASSING wall reach the block. A notice is a line a
+ * person must eventually act on, not a log: more than a handful at once is
+ * itself the finding, and the wall's own output is still on screen. */
+const NOTICE_LINES = 8;
+
 /**
  * The walls a house declares, from the `gates` key of its khai-guard.config.json.
  *
@@ -129,6 +134,48 @@ function measure(out, count, ok) {
   return String(m[1] ?? m[0]).trim();
 }
 
+/** Lines of a wall's output the house asked to be carried up, matched against
+ * the wall's declared `warn` regex.
+ *
+ * A wall that PASSES relays only its count today, so anything it said on the way
+ * is captured and dropped. That is not a cosmetic loss. The stale-BASELINE
+ * warnings are the designated way a ratchet says one of its entries can be
+ * pruned -- deliberately a warning rather than a failure, because the branch that
+ * earns the prune rides a package lane and cannot edit the governance file that
+ * holds the list. Made inaudible here, the list can only ever grow.
+ *
+ * Matched with `gm` so the declaration is a line pattern rather than a search:
+ * a wall says its piece on its own line, and the record carries whole lines.
+ *
+ * @param {string} out - the wall's combined stdout and stderr
+ * @param {string|undefined} warn - regex source, from the gate's declaration
+ * @returns {string[]} matched lines, trimmed and capped
+ */
+function notices(out, warn) {
+  if (typeof warn !== "string" || !warn) return [];
+  let re;
+  try {
+    re = new RegExp(warn, "gm");
+  } catch {
+    // Same posture as measure(): a malformed declaration is said out loud, never
+    // thrown. A house that mistyped a pattern should read that, not a stack.
+    return ["warn declaration is not a regex"];
+  }
+  const seen = [];
+  for (const m of out.matchAll(re)) {
+    const raw = String(m[1] ?? m[0]).trim();
+    // Capped like a failure excerpt, and for the same reason: this is the
+    // reader's way in, not the record itself. A stale list can name a dozen
+    // entries, and whoever runs the sweep runs the wall to get all of them.
+    const line = raw.length > EXCERPT_WIDTH ? `${raw.slice(0, EXCERPT_WIDTH - 3)}...` : raw;
+    // A wall that repeats itself across projects (one vitest run, several
+    // workers) should not repeat itself in the block.
+    if (line && !seen.includes(line)) seen.push(line);
+    if (seen.length === NOTICE_LINES) break;
+  }
+  return seen;
+}
+
 /** What the walls can even see. Untracked content is invisible to member-check
  * (it reads git-tracked paths) and, without an install, to the science and
  * conformance passes; both report success on the tree they can see, which is
@@ -180,10 +227,12 @@ function runWall(root, gate) {
   if (r.error) return { name, ok: false, detail: "", error: r.error.message, ...fix };
   const out = `${r.stdout ?? ""}\n${r.stderr ?? ""}`;
   const ok = r.status === 0;
+  const notice = notices(out, gate.warn);
   return {
     name,
     ok,
     detail: measure(out, gate.count, ok),
+    ...(notice.length ? { notices: notice } : {}),
     ...fix,
     ...(ok ? {} : { output: excerpt(out.split("\n")) }),
   };
@@ -271,6 +320,9 @@ export function renderGates(results, { skips = [] } = {}) {
     // answer. Dropping it leaves a block whose gate count is short by one and
     // whose reader has no way to notice.
     if (r.error) lines.push(`      unreadable: ${r.error}`);
+    // Before the failure excerpt: a notice is what the wall asked a person to
+    // read, and on a passing wall it is the only thing it said beyond its count.
+    for (const l of r.notices ?? []) lines.push(`      note: ${l}`);
     for (const l of r.output ?? []) lines.push(`        ${l}`);
     if (!r.ok && r.fix) lines.push(`      fix: ${r.fix}`);
   }
