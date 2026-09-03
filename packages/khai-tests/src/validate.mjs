@@ -305,7 +305,7 @@ export function validateContentFile(
 function readManifest(pkgDir) {
   const pkg = readJsonOr(join(pkgDir, "package.json"));
   if (pkg === null) return { manifest: null, name: null, unreadable: true };
-  return { manifest: pkg.khai, name: pkg.name };
+  return { manifest: pkg.khai, name: pkg.name, pkg };
 }
 
 /** Every `.md` in the dir that declares `khai:` frontmatter (a content instance).
@@ -607,7 +607,7 @@ function markdownFiles(pkgDir) {
 export function validateProductionPackage(pkgDir) {
   const results = [];
   const push = (file, errors) => results.push({ file, errors, warnings: [], audit: [] });
-  const { manifest, unreadable } = readManifest(pkgDir);
+  const { manifest, unreadable, pkg: pkgJson } = readManifest(pkgDir);
   if (unreadable) {
     push("package.json", ["cannot read or parse package.json"]);
     return results;
@@ -654,6 +654,36 @@ export function validateProductionPackage(pkgDir) {
     push("package.json", [
       `a production is one play; this package ships ${plays.length} (${plays.join(", ")})`,
     ]);
+
+  // The subpath invariant, and it is the quiet one.
+  //
+  // Everything downstream of a production reaches INTO it by subpath: a sibling
+  // casts `@chbrain/khai-cultures-germany/play_germany.md`, and a consumer
+  // reading the house asks its resolver for `<name>/package.json` to find where
+  // npm put it. Both work today only because these packages declare no
+  // `exports`, which makes every subpath resolvable by default. The day one
+  // declares `exports` for any reason, both stop resolving -- for installed
+  // consumers only, silently, while this workspace keeps passing, because a
+  // workspace resolves through the directory and never consults the field.
+  //
+  // khai-tests and khai-pack learned this already and both export
+  // `./package.json` explicitly. A production is held to the same rule, before
+  // the first one has an `exports` field to get wrong.
+  const exportsField = pkgJson?.exports;
+  if (exportsField !== undefined) {
+    const ok =
+      typeof exportsField === "object" &&
+      exportsField !== null &&
+      !Array.isArray(exportsField) &&
+      Object.prototype.hasOwnProperty.call(exportsField, "./package.json");
+    if (!ok)
+      push("package.json", [
+        `a production that declares \`exports\` must export "./package.json": every ` +
+          `consumer finds this package by resolving that subpath, and every sibling ` +
+          `casts its content by subpath too. An \`exports\` field without it resolves ` +
+          `here (a workspace reads the directory) and fails for everyone who installs it`,
+      ]);
+  }
 
   // The publish invariant.
   for (const file of markdownFiles(pkgDir)) {
@@ -1228,6 +1258,39 @@ export function validateCollectionRegistry(root) {
         errors.push(
           `${noun} "${item.id}" must declare kind "${collection.kind}" (got ${JSON.stringify(item.kind)})`,
         );
+      }
+
+      // source: where a reader outside the repository finds this entry's files.
+      // Shape-checked when present, on the same phase-in the `kind`
+      // discriminator took above -- the build stamps it on every entry, and a
+      // registry built before it existed still verifies until it is rebuilt.
+      //
+      // The strictness lives at the far end instead, and deliberately: a READER
+      // must refuse an entry with no `source` rather than fall back to the
+      // collection directory, because that fallback is exactly what shipped 269
+      // of 316 units and reported success. A lenient validator only tolerates a
+      // stale registry; a lenient reader ships a hole.
+      if (item.source !== undefined) {
+        const src = item.source;
+        if (typeof src !== "object" || src === null || Array.isArray(src)) {
+          errors.push(`${noun} "${item.id}" source, when present, must be an object`);
+        } else {
+          if (typeof src.package !== "string" || !src.package.trim())
+            errors.push(
+              `${noun} "${item.id}" source.package must be the non-empty npm name of the ` +
+                `package that ships this ${noun}`,
+            );
+          if (typeof src.path !== "string")
+            errors.push(
+              `${noun} "${item.id}" source.path must be a string: the path below that ` +
+                `package's root, or "" for the package root itself`,
+            );
+          else if (src.path.startsWith("/") || src.path.split("/").includes(".."))
+            errors.push(
+              `${noun} "${item.id}" source.path must be relative and stay inside the ` +
+                `package (got ${JSON.stringify(src.path)})`,
+            );
+        }
       }
 
       // iso is optional; when present it must be a non-empty string (ISO 3166 /
