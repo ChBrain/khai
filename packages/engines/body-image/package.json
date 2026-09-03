@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-body-image",
+  "version": "0.1.0",
+  "description": "khai engine content, the body-image domain: perceived-vs-ideal body and appearance-contingent self-worth -- the engine that owns the gap between how the body is seen and what the self needs it to be.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/body-image"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "body-image",
+    "tagline": "Body image as position: the gap between how a persona perceives their body and the ideal they hold it against, amplified when self-worth is staked on closing that gap -- across the internalized ideal, the habitual self-surveillance, and the appearance-contingent self-worth that makes the gap a self-threat.",
+    "type": "position",
+    "members": [
+      {
+        "file": "position_body_image.md",
+        "type": "position",
+        "parent": null
+      },
+      {
+        "file": "position_thin_ideal_internalization.md",
+        "type": "position",
+        "parent": "position_body_image.md"
+      },
+      {
+        "file": "position_body_surveillance.md",
+        "type": "position",
+        "parent": "position_body_image.md"
+      },
+      {
+        "file": "position_appearance_contingency.md",
+        "type": "position",
+        "parent": "position_body_image.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "fail"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Position. The root (position_body_image.md) declares the perceived-vs-ideal body gap and the appearance-contingent self-worth that makes it a self-threat. It is a trait a persona holds -- a standing orientation toward their own body -- not an act they commit; the acts it reaches for belong to the behaviour engines.",
+      "issue": "Three movements the root resolves into: thin-ideal internalization (a socioculturally transmitted size-and-shape standard taken in as personally binding), body surveillance (the habitual posture of monitoring the body's exterior from an imagined observer's viewpoint), and appearance-contingency (self-worth staked on whether the body meets the standard). Each is a distinct standing shape of the same perceived-vs-ideal orientation.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link: each persona links, under Projection, the body-image movement it rests on -- and therefore what the gap costs it and what it drives toward.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and each persona links a real body-image movement. Whether the movement is true to the scene is semantic, taught and reviewed, never failed by the suite.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its movement under Projection. Read it in what the persona does when the body is evaluated -- the ideal measured against, the gaze turned inward, the self-worth riding on the result -- and route the act itself through shame, self-esteem, or regulation, which own the distress this disposition inclines toward."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.26"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.4.0",
+    "vitest": "^4.1.11"
+  }
+}
