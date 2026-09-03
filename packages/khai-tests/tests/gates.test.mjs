@@ -65,6 +65,18 @@ const touch = (path) =>
  * re-count them. */
 const COUNT_LINE = "node -e \"console.log('7 widgets, 3 gadgets')\"";
 
+/** A PASSING command that also says something a person must act on. The whole
+ * point of `warn`: this wall exits 0, so nothing but a declared pattern carries
+ * its line up, and before that pattern existed the line was captured and
+ * dropped. The repeat is deliberate -- one vitest run says its piece once per
+ * worker, and the block must not. */
+const WARN_LINES = [
+  "the-wall: stale BASELINE entry (prune in a governance sweep): Nobody :: a work",
+  "noise nobody asked to be carried",
+  "the-wall: stale BASELINE entry (prune in a governance sweep): Nobody :: a work",
+].join("\\n");
+const WARN_LINE = `node -e "console.log('${WARN_LINES}')"`;
+
 /** A real git repository, because the visibility check reads git and a fake one
  * would pin the fake. Content lives under packages/ by default, which is the
  * content root this workspace and every house shaped like it uses; `content`
@@ -352,6 +364,86 @@ describe.skipIf(DORMANT)("runGates: the count a wall prints", () => {
     expect(run.ok).toBe(true);
     const wall = run.results.find((r) => r.name === "inventory");
     expect(wall.detail).toBe("count not found in the output");
+  });
+});
+
+describe.skipIf(DORMANT)("runGates: the notes a PASSING wall asks to be carried", () => {
+  const STALE = "^.*prune in a governance sweep.*$";
+
+  it("carries the matching lines of a wall that exited clean", () => {
+    // The gap this closes: a passing wall relays only its count, so anything it
+    // said on the way was captured and dropped. The stale-baseline warnings are
+    // deliberately warnings -- the branch that earns a prune rides a package lane
+    // and cannot edit the governance file holding the list -- so inaudible here,
+    // the list can only ever grow.
+    const root = repo();
+    const run = runGates(root, {
+      gates: [{ name: "suite", command: WARN_LINE, warn: STALE }],
+    });
+    expect(run.ok).toBe(true);
+    const wall = run.results.find((r) => r.name === "suite");
+    expect(wall.notices).toEqual([
+      "the-wall: stale BASELINE entry (prune in a governance sweep): Nobody :: a work",
+    ]);
+  });
+
+  it("carries only what the pattern asked for", () => {
+    // A wall's output is a log. `warn` is the house saying which line of it is
+    // addressed to a person, and a pattern that swept up the rest would make the
+    // block unreadable and the notice worthless.
+    const root = repo();
+    const run = runGates(root, { gates: [{ name: "suite", command: WARN_LINE, warn: STALE }] });
+    const wall = run.results.find((r) => r.name === "suite");
+    expect(wall.notices).not.toContain("noise nobody asked to be carried");
+  });
+
+  it("says the same thing once, however many workers said it", () => {
+    // WARN_LINE prints the line twice on purpose: one vitest run is several
+    // workers, and a wall repeating itself must not make the block repeat itself.
+    const root = repo();
+    const run = runGates(root, { gates: [{ name: "suite", command: WARN_LINE, warn: STALE }] });
+    expect(run.results.find((r) => r.name === "suite").notices).toHaveLength(1);
+  });
+
+  it("leaves the record alone when a wall says nothing to carry", () => {
+    // Absent, not empty: a `notices: []` on every quiet wall would put an empty
+    // affordance in every record and teach a reader to skim past the ones that
+    // are not empty.
+    const root = repo();
+    const run = runGates(root, { gates: [{ name: "suite", command: PASS, warn: STALE }] });
+    expect(run.results.find((r) => r.name === "suite").notices).toBeUndefined();
+  });
+
+  it("carries nothing when the house declared no pattern", () => {
+    // Opt-in. A wall that was never asked to speak up stays as quiet as it was
+    // before `warn` existed, which is what every other house's config relies on.
+    const root = repo();
+    const run = runGates(root, { gates: [{ name: "suite", command: WARN_LINE }] });
+    expect(run.results.find((r) => r.name === "suite").notices).toBeUndefined();
+  });
+
+  it("says a malformed pattern out loud rather than throwing", () => {
+    // The same posture measure() takes on a bad `count`: a house that mistyped a
+    // regex should read that in the block, not a stack trace, and the rest of
+    // the pass must still run.
+    const root = repo();
+    const run = runGates(root, { gates: [{ name: "suite", command: WARN_LINE, warn: "([" }] });
+    expect(run.ok).toBe(true);
+    expect(run.results.find((r) => r.name === "suite").notices).toEqual([
+      "warn declaration is not a regex",
+    ]);
+  });
+
+  it("renders a note under the gate line, above a failure's excerpt", () => {
+    // Placement is the claim: on a passing wall the note is the only thing the
+    // wall said beyond its count, so it must not be buried under output the
+    // reader skims.
+    const block = renderGates([
+      { name: "suite", ok: true, detail: "6374 passed", notices: ["the-wall: stale entry"] },
+    ]);
+    const lines = block.split("\n");
+    const gate = lines.findIndex((l) => l.startsWith("ok    suite"));
+    expect(lines[gate + 1]).toBe("      note: the-wall: stale entry");
   });
 });
 
