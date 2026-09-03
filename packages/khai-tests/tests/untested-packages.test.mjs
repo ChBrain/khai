@@ -1,29 +1,31 @@
-// Rule 3's second half, computed.
+// Rule 3's second half, computed -- and computed at the altitude the lanes allow.
 //
 // AGENTS.md: "Source and tests are separate PRs. Land source first; tests are
-// dormant until it does." The first half is enforced -- khai-guard refuses a
-// branch that mixes the two, and a push that tries is rejected. Nothing has ever
-// checked that the second PR arrived.
+// dormant until it does." The first half is enforced. The second was not checked
+// at all until #1508, and five packages had drifted, the oldest by a month.
 //
-// So it stopped arriving. Five packages are in the tree with no test file of
-// their own, the oldest for a month:
+// #1508's answer was a BASELINE list, and that answer was structurally wrong. A
+// new package's source PR rides `engine/<name>` or `composite/<name>`; this file
+// is governance. The lane wall forbids the reach -- correctly -- so the PR that
+// creates a package can neither ship its tests (source and test cannot share a
+// branch) nor baseline itself. Every new package was unlandable. The list only
+// ever worked for debt that already existed, which is the one case it was
+// written against.
 //
-//   2026-08-04  composites/neighborhood-cycle   (#1087)
-//   2026-08-10  composites/grapevine            (#1170)
-//   2026-08-25  engines/disability              (#1378)
-//   2026-08-30  composites/depression           (#1439)
-//   2026-08-30  engines/anhedonia               (#1436)
+// So the exemption is computed instead of listed, and the line it computes is
+// publication:
 //
-// depression is published at 0.1.1. package-loads.test.mjs imports and composes
-// every package centrally, so none of the five is unwitnessed -- but each is
-// missing the per-package conformance test its 376 siblings carry, the one that
-// asserts the manifest's own claims: the root, the movement set, the counts a
-// quiet merge would erode.
+//   released (a CHANGELOG.md exists), no tests  -> FAIL. Nothing reaches the
+//       registry unwitnessed. This is irreversible in a way a branch is not.
+//   unreleased, no tests                        -> NOTE. Rule 3's window, and
+//       no wider: the note fires on every `npm run gates` until the tests land.
 //
-// BASELINE is a ratchet, in the shape science-overlap-wall.test.mjs already
-// uses: the known five pass, a sixth fails, and a package that gains its tests
-// is warned about rather than failed, because the PR that writes those tests
-// rides the package's own lane and cannot edit this governance file.
+// The note is the load-bearing half, and it only works now. When the five drifted
+// there was no audible warning anywhere: vitest's reporter dropped a passing
+// test's console (#1507) and the gates runner dropped a passing wall's output
+// (#1514). Two of those five were released and would fail here; the other three
+// were unreleased and would have been nagged about on every run instead of
+// sitting silent for weeks.
 import { describe, it, expect } from "vitest";
 import { readdirSync, existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -31,12 +33,11 @@ import { fileURLToPath } from "node:url";
 
 const REPO = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
 
-// Prune an entry here in a governance sweep once the package's own lane has
-// landed its tests. Never add one to make a red main green: a new package
-// without tests is the debt this file exists to stop.
-const BASELINE = [].sort();
-
-/** Every package that declares a khai engine, and whether it carries its own tests. */
+/** Every package that declares a khai engine, with whether it ships tests and
+ * whether it has ever been released. changesets writes CHANGELOG.md on the first
+ * publish and never before it, so its presence is the publication line -- and it
+ * is readable in a shallow checkout, which a git-history probe is not: CI's test
+ * job checks out at depth 1. */
 function packages() {
   const out = [];
   for (const kind of ["engines", "composites"]) {
@@ -53,14 +54,18 @@ function packages() {
       // directory at all, and reads as coverage to anyone listing the tree.
       const tested =
         existsSync(testDir) && readdirSync(testDir).some((f) => f.endsWith(".test.mjs"));
-      out.push({ id: `${kind}/${d.name}`, tested });
+      out.push({
+        id: `${kind}/${d.name}`,
+        tested,
+        released: existsSync(join(dir, "CHANGELOG.md")),
+      });
     }
   }
   return out.sort((a, b) => a.id.localeCompare(b.id));
 }
 
 const PACKAGES = packages();
-const UNTESTED = PACKAGES.filter((p) => !p.tested).map((p) => p.id);
+const UNTESTED = PACKAGES.filter((p) => !p.tested);
 
 describe("every published package is witnessed by its own tests", () => {
   // Green on an empty collection is how a wall stops being a wall: with no
@@ -68,30 +73,34 @@ describe("every published package is witnessed by its own tests", () => {
   it("finds the packages, so an empty result means no debt and not no data", () => {
     expect(PACKAGES.length).toBeGreaterThan(300);
     expect(PACKAGES.filter((p) => p.tested).length).toBeGreaterThan(300);
+    // Both sides of the publication line must be populated, or the split is
+    // measuring nothing and the fail tier could be empty for the wrong reason.
+    expect(PACKAGES.filter((p) => p.released).length).toBeGreaterThan(100);
+    expect(PACKAGES.filter((p) => !p.released).length).toBeGreaterThan(10);
   });
 
-  it("carries no package without a test file outside BASELINE", () => {
-    const unbaselined = UNTESTED.filter((id) => !BASELINE.includes(id));
+  it("ships no RELEASED package without a test file", () => {
+    const offenders = UNTESTED.filter((p) => p.released).map((p) => p.id);
     expect(
-      unbaselined,
-      unbaselined.length
-        ? `Package(s) with no tests/*.test.mjs: ${unbaselined.join(", ")}. ` +
-            "Rule 3 lands source first and tests second -- this is the second " +
-            "PR, on the package's own lane. Do not add the package to BASELINE: " +
-            "that list only shrinks."
+      offenders,
+      offenders.length
+        ? `Released package(s) with no tests/*.test.mjs: ${offenders.join(", ")}. ` +
+            "These are on the registry. Rule 3's window closed at publish -- write " +
+            "the tests on the package's own lane."
         : undefined,
     ).toEqual([]);
   });
 
-  it("warns on stale BASELINE entries (pruned by a governance sweep, never a wall)", () => {
-    const stale = BASELINE.filter((id) => !UNTESTED.includes(id));
-    // A warning, not a failure: the PR that writes a package's tests rides that
-    // package's lane, and the lane wall forbids it touching this file. Failing
-    // here would demand a change the fixing branch is not allowed to carry.
-    if (stale.length)
+  it("notes an unreleased package still inside rule 3's window", () => {
+    const pending = UNTESTED.filter((p) => !p.released).map((p) => p.id);
+    // A note, not a failure: the PR that creates a package cannot carry its
+    // tests, so failing here would make every new package unlandable -- which is
+    // exactly the bug this file replaces. It fires on every run until the second
+    // PR lands, and it is audible (#1507, #1514) in a way it was not before.
+    if (pending.length)
       console.warn(
-        `untested-packages: stale BASELINE entr${stale.length === 1 ? "y" : "ies"} ` +
-          `(now tested -- prune in a governance sweep): ${stale.join(", ")}`,
+        `untested-packages: ${pending.length} package(s) awaiting their rule 3 tests PR: ` +
+          `${pending.join(", ")}`,
       );
     expect(true).toBe(true);
   });

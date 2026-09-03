@@ -61,7 +61,7 @@
       "name": "suite",
       "command": "npx vitest run",
       "count": "Tests\\s+([^\\n(]+)",
-      "warn": "^.*prune in a governance sweep.*$"
+      "warn": "^.*(prune in a governance sweep|awaiting their rule 3 tests PR).*$"
     }
   ],
   "bumpScope": {
