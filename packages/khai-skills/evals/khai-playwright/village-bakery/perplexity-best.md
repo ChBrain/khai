@@ -12,6 +12,12 @@ verdict: flag
 
 # Output
 
+We will build this as Mode A: the play container only, with the four named people as its closed Company.
+
+> Which title and overall tone do you want for the play: warm comic crisis, quiet social drama, or something darker?
+
+Author: something darker.
+
 A darker register makes the failed oven more than a business disaster: it can expose a village already frightened by scarcity, debt, and what it is willing to sacrifice for the appearance of abundance.[[thedarkmagazine](https://www.thedarkmagazine.com/summer-ended-not-saved/)]
 Estate
 Who holds the whole run and answers for it: Kai Schlüter, as author and production holder.
