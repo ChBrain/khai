@@ -14,7 +14,9 @@ arc binds them into a single telling. You build it two ways:
 - **Mode B, a full play** : the play file plus every plot it chains, plus every
   element those plots draw on.
 
-Decide the mode first. Mode B always builds Mode A as its first step.
+Decide the mode first. Mode B always builds Mode A as its first step. Say the
+mode in the first line of your answer, and what it means you will write and
+will not: in Mode A, one play file and no plot, persona, plan or pitch file.
 
 ## The play file (both modes start here)
 
@@ -34,19 +36,25 @@ with the YAML frontmatter the template carries (at minimum `khai: play` and the
 stamp, plus an optional play-specific `voice` override brief). Use the six `## `
 headers exactly, in order: the H2 sequence must spell ENACTS. Interview one
 chapter at a time; stop when there is enough. Link each Company member and each
-stake where a file exists; where it does not, name it.
+stake where a file exists; where it does not, name it. The Company is closed at
+what the author named and what the plots cannot run without: a second place, a
+plan or a pitch the author never mentioned is a question to the author, not an
+entry. Where the ask is silent on something a chapter needs, ask, in at most two
+questions after the file; do not fill the silence with invention.
 
 **Self-check the play file:**
 
 ```
 - [ ] Frontmatter declares khai: play and carries the stamp
 - [ ] Frontmatter declares the play-specific voice (optional, overriding the house voice)
+- [ ] The mode is said in the first line, and what it will and will not write
 - [ ] Six chapters, in ENACTS order, no generic Owner/Title chapter added
 - [ ] Estate names who answers for the whole run
 - [ ] Arc is a bend, not a list: reordering the plots would lose something
 - [ ] Company is a closed cast (the set every plot draws from)
 - [ ] Triggers chain: each plot's close is the next plot's cue
 - [ ] Stakes are something every plot can move
+- [ ] Nothing the author did not name unless a plot cannot run without it; the rest is a question
 ```
 
 If the mode is A, deliver `play_[name].md` and stop here.

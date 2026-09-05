@@ -16,7 +16,7 @@
 - The Stakes move: what is lost or won across the run is stated, not left
   where the ask found it.
 - The Estate names who answers for the run (the author), and the Name is
-  the run's billing name, distinct from the H1.
+  the title the run is billed under, as a work.
 - No em-dash or en-dash anywhere in the output; colons, ellipses (...) or
   line breaks instead.
 - Nothing beyond the ask: no fifth character, no plot files, no pitch, no
