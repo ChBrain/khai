@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-mania",
+  "version": "0.1.0",
+  "description": "khai engine content, the mania domain: the elevated, expansive or irritable activation episode -- reward-driven goal ascent, an appraisal that drops risk out of the picture, and a forfeited need for rest that keeps both running.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/mania"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "mania",
+    "tagline": "Mania as process: the activation episode that rises rather than arrives -- a goal ascent that accelerates on its own success, an appraisal from which risk has quietly dropped out, and a forfeited need for rest that removes the brake on both.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_mania.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_goal_activation.md",
+        "type": "process",
+        "parent": "process_mania.md"
+      },
+      {
+        "file": "process_expansive_appraisal.md",
+        "type": "process",
+        "parent": "process_mania.md"
+      },
+      {
+        "file": "process_rest_forfeit.md",
+        "type": "process",
+        "parent": "process_mania.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_mania.md) models an activation episode as a rising system rather than a mood that arrives: each movement supplies what the next one needs, so the episode accelerates on its own output. It is authored persona-architecture for a play, never a diagnosis of a real person.",
+      "issue": "Three movements, and the order between them is the mechanism. Goal activation (S. Johnson's reward dysregulation): an attainment success raises the estimate of what is attainable, and pursuit escalates on the evidence of its own early wins. Expansive appraisal (Depue & Iacono's behavioral facilitation system): the same rise strips risk out of the reckoning, so the persona is not ignoring the downside but no longer computing one. Rest forfeit: sleep stops registering as a demand, which removes the nightly interruption that would otherwise end the ascent.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link, advisory: a persona running goal activation, expansive appraisal or rest forfeit may link the movement under Projection, and the audit surfaces the ones left unnamed.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and the composite's own members conform. The boundary: `joy` owns the appraisal node that answers a good outcome, `flow` owns absorption in a matched task, and `sleep` owns rest and its architecture. This engine owns only the sustained rise and what it costs -- and it is character architecture for authoring, never a clinical assessment.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its movement under Projection. Stage the ascent as persuasive from inside and legible as damage from outside: the plans are genuinely good until they are not, and the room notices before the persona does."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.26"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.4.0",
+    "vitest": "^4.1.11"
+  }
+}
