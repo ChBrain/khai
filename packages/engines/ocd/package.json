@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-ocd",
+  "version": "0.1.0",
+  "description": "khai engine content, the OCD domain: an intrusive thought the persona cannot disown, a responsibility they cannot decline, and an act that discharges both -- and by discharging them, keeps them true.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/ocd"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "ocd",
+    "tagline": "OCD as process: a thought that arrives unbidden and is read as evidence of what the persona is, a responsibility for preventing harm that cannot be handed to anybody else, and a neutralizing act whose success is exactly what stops the fear from ever being disproved.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_ocd.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_thought_action_fusion.md",
+        "type": "process",
+        "parent": "process_ocd.md"
+      },
+      {
+        "file": "process_inflated_responsibility.md",
+        "type": "process",
+        "parent": "process_ocd.md"
+      },
+      {
+        "file": "process_neutralizing.md",
+        "type": "process",
+        "parent": "process_ocd.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_ocd.md) models a loop that is sealed by its own relief: the act that ends the distress is the reason the distress returns. It is authored persona-architecture for a play, never a diagnosis of a real person.",
+      "issue": "Three movements, and the loop closes only when all three run. Thought-action fusion (Rachman): an intrusion that everybody has is read as evidence about the person having it, so the content cannot be dismissed as noise. Inflated responsibility (Salkovskis): the persona holds a pivotal duty to prevent a harm nobody has assigned them, so the intrusion becomes theirs to answer. Neutralizing (Gillan): an act discharges the demand -- and because it works, the feared outcome never arrives to be disproved, while the act itself drifts from the belief that started it into something run for its own sake.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link, advisory: a persona running thought-action fusion, inflated responsibility or neutralizing may link the movement under Projection, and the audit surfaces the ones left unnamed.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and the engine's own members conform. The boundary: `superstition` owns the magical causality a whole culture may share, `ritual` owns collective action that marks or transforms, `habit` owns automatized repetition acquired by reinforcement, and `disgust` owns contamination and its avoidance. This engine owns only the private loop that seals itself -- character architecture for authoring, never a clinical assessment.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its movement under Projection. Stage the relief as real and the cost as compounding: the act works every time, which is precisely the trap, and the persona knows the belief is disproportionate while remaining unable to act as though it were."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.26"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.4.0",
+    "vitest": "^4.1.11"
+  }
+}
