@@ -1,0 +1,73 @@
+{
+  "name": "@chbrain/khai-engine-social-anxiety",
+  "version": "0.1.0",
+  "description": "khai engine content, the social anxiety domain: the chronic fear of negative evaluation by others -- driven by anticipatory processing before social exposure, self-focused attention and the self as a social object during interaction, and post-event processing consolidating perceived failure (Clark & Wells; Rapee & Heimberg; Leary; Hofmann).",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/social-anxiety"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "social-anxiety",
+    "tagline": "Social anxiety as process: the chronic fear of negative evaluation by others -- driven by anticipatory processing before social exposure, self-focused attention and the self as a social object during interaction, and post-event processing consolidating perceived failure (Clark & Wells; Rapee & Heimberg; Leary; Hofmann).",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_social_anxiety.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_anticipatory_processing.md",
+        "type": "process",
+        "parent": "process_social_anxiety.md"
+      },
+      {
+        "file": "process_self_focused_attention.md",
+        "type": "process",
+        "parent": "process_social_anxiety.md"
+      },
+      {
+        "file": "process_post_event_processing.md",
+        "type": "process",
+        "parent": "process_social_anxiety.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_social_anxiety.md) models social anxiety as the chronic fear of negative evaluation by others: the perceived hazard is social scrutiny, rejection, or loss of standing, driven by a self-appraisal of inadequacy before an audience. Three movements carry the cycle: anticipatory processing, where the encounter is rehearsed and dreaded in advance; self-focused attention, where the persona monitors the self as a social object and deploys safety behaviors that prevent genuine contact; and post-event processing, where the finished interaction is reviewed through a biased lens that confirms the feared inadequacy.",
+      "issue": "Three movements carry the maintenance loop. Anticipatory processing: the persona reviews the upcoming event, predicting humiliation and activating negative self-beliefs (Clark & Wells). Self-focused attention: during exposure, attention turns inward onto interoceptive sensations and an observer-perspective self-image, taking felt anxiety as evidence of visible failure (Rapee & Heimberg). Post-event processing: after leaving the situation, a ruminative post-mortem selects perceived flaws and cements the narrative of catastrophe, priming the next anticipatory cycle.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root, so the evaluative threat model governs wherever the engine is cast. The link, advisory: a persona holding a movement may link it under Projection, and the audit surfaces the ones left unnamed.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and the engine's own members conform. Whether a production earns the read -- an ongoing surveillance of negative evaluation rather than acute embarrassment or general phobic fear -- is semantic, taught and reviewed, never failed by the suite. Hold the honest limit: social anxiety is character architecture for authoring, never a clinical assessment or diagnosis of a real person.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Stage the discrepancy between external social safety and internal catastrophic surveillance: the persona assumes the room is critical and monitoring, while the room is mostly indifferent or benign. Cast one or more movements deliberately: an encounter can be ruined days before it happens, crippled during by self-monitoring safety behaviors, or reconstructed into disaster hours afterward. Keep the boundaries: conditioned object-fear belongs to fear/phobia, acute transient mortification to embarrassment, and global self-defectiveness to shame -- this engine owns only the chronic fear of negative evaluation."
+    }
+  }
+}
