@@ -448,7 +448,7 @@ export function buildRegistry(root, { packageIds } = {}) {
 
   // build extracts blurbs best-effort; surface (without failing) anything the
   // verify gate will later reject so the author can fix it before committing.
-  const check = verifyRegistry(root);
+  const check = verifyRegistry(root, { packageIds });
   if (!check.ok) {
     console.warn("Warning: built registry.json does not yet pass verification:");
     for (const err of check.errors) {
@@ -457,8 +457,8 @@ export function buildRegistry(root, { packageIds } = {}) {
   }
 }
 
-export function verifyRegistry(root) {
-  const results = validateCollectionRegistry(root);
+export function verifyRegistry(root, { packageIds } = {}) {
+  const results = validateCollectionRegistry(root, { packageIds });
   if (results.length > 0) {
     return {
       ok: false,

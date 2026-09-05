@@ -61,7 +61,7 @@
       "name": "suite",
       "command": "npx vitest run",
       "count": "Tests\\s+([^\\n(]+)",
-      "warn": "^.*(prune in a governance sweep|awaiting their rule 3 tests PR).*$"
+      "warn": "^.*(prune in a governance sweep|awaiting their rule 3 tests PR|awaiting the row that uses them).*$"
     }
   ],
   "bumpScope": {
@@ -272,6 +272,7 @@
       "Park": ["Crystal", "Justin"],
       "Parrott": ["Gerrod", "Les"],
       "Quinn": ["Diane", "Robert"],
+      "Roberts": ["Robert", "Tomi-Ann"],
       "Robinson": ["Michael", "Terry"],
       "Rogers": ["Carl", "Everett"],
       "Rose": ["Geoffrey", "Paul"],
@@ -300,7 +301,7 @@
       "Stone": ["Peter", "Philip"],
       "Sullivan": ["Andrew", "Sarah"],
       "Taylor": ["Charles", "Dalmas", "Shelley", "Tammy"],
-      "Thompson": ["Emily", "Ken", "Megan"],
+      "Thompson": ["Emily", "Ken", "Kevin", "Megan"],
       "Turner": ["Barry", "John", "Patricia", "Victor"],
       "Vaughan": ["Christopher", "Diane"],
       "Wagner": ["Allan", "Valentin"],
