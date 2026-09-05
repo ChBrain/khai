@@ -10,8 +10,9 @@
   plots it foreshadows could not be reordered without loss. A list of
   scenes is not an Arc.
 - The Company is closed: the baker, the apprentice, the miller and the mayor
-  are named with what each carries, the oven and the bakery are placed,
-  and nothing appears in Triggers or Stakes that the Company does not name.
+  are named with what each carries, the oven and the bakery are placed, the
+  dark key the ask names is the Company's pitch without a file, and nothing
+  appears in Triggers or Stakes that the Company does not name.
 - Triggers chain: each names what cues the next, and the run has a close.
 - The Stakes move: what is lost or won across the run is stated, not left
   where the ask found it.
