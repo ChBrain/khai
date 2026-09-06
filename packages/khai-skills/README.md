@@ -22,7 +22,9 @@ khai-arch (templates)  ──pull──▶  build  ──▶  dist/<skill>/  +  
 - **Build (`npm run build`)** composes each `src/<skill>/` into a self-contained
   bundle by pulling the canon at build time. The skill carries no hand copy:
   duplication exists only in the build output. The zip loads into any
-  agentskills.io-compatible engine.
+  agentskills.io-compatible engine. A skill may also ship a check under
+  `scripts/`, pulled verbatim from the canon's `checks/` (`check:play`), so a
+  runtime with node runs the same bytes the hook and CI run before it delivers.
 - **Guard**, pure Node, two tiers:
   - **Tier 1 — standard conformance**: a mirror of the agentskills.io SKILL.md
     rules (frontmatter fields + limits, name rules, reference depth, body

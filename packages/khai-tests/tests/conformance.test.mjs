@@ -17,7 +17,7 @@ import {
   engineDocChecks,
   findEnginePackageFor,
 } from "../index.mjs";
-import { renderEngineReadme, planVerdicts, templates } from "@chbrain/khai-arch";
+import { renderEngineReadme, planVerdicts, templates, checkPlay } from "@chbrain/khai-arch";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
 const pkgs = discoverEnginePackages(root);
@@ -779,6 +779,30 @@ stakes
     const brokenPlay = `${validPlay}\n## Synopsis\nSynopsis content\n`;
     const errors = validateContentFile(brokenPlay, { type: "play" });
     expect(errors.some((e) => e.includes("play (ENACTS):"))).toBe(true);
+  });
+
+  // The play's shape is checked by the canon's own file, the one the playwright
+  // skill ships, so the kit's verdict on a play is that file's verdict: a
+  // finding the generic atoms never made (a frontmatter line beyond the play's
+  // subset) comes through, and a finding both would make comes through once.
+  it("a play's shape is the canon's check_play verdict, not a restatement", () => {
+    const beyond = validPlay.replace("license:", "tags:\n  - one\nlicense:");
+    const errors = validateContentFile(beyond, { type: "play" });
+    expect(errors.some((e) => e.includes("beyond a play's subset"))).toBe(true);
+    const dashed = validPlay.replace("company", "the cast — closed");
+    const dashErrors = validateContentFile(dashed, { type: "play" }).filter((e) =>
+      e.includes("en/em-dash present"),
+    );
+    expect(dashErrors).toHaveLength(1);
+    const broken = validPlay
+      .replace("## Stakes\nstakes\n", "")
+      .replace("title: Woyzeck", "title: Wozzeck");
+    expect(validateContentFile(broken, { type: "play" })).toEqual(
+      checkPlay(broken).map((e) =>
+        /^(play chapters |chapter ")/.test(e) ? `play (ENACTS): ${e}` : e,
+      ),
+    );
+    expect(checkPlay(broken)).toHaveLength(2);
   });
 });
 
