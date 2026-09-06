@@ -38,6 +38,7 @@ export const PIN = JSON.parse(
   readFileSync(join(pkgRoot, "standards", "agentskills.pin.json"), "utf8"),
 );
 const ARCH_VERSION = require("@chbrain/khai-arch/package.json").version;
+const ARCH_DIR = dirname(require.resolve("@chbrain/khai-arch/package.json"));
 
 /** Resolve a build directive `from` token to its canon text. */
 function resolveCanon(from) {
@@ -52,7 +53,19 @@ function resolveCanon(from) {
     if (!d) throw new Error(`unknown canon defaults "${arg}" (defaults:${arg})`);
     return d.text;
   }
-  throw new Error(`unknown canon resolver "${from}" (expected template:<type> or defaults:<type>)`);
+  // A check: the canon's checks/check_<type>.mjs, a file that imports nothing
+  // but node, shipped verbatim under the skill's scripts/ so a runtime runs the
+  // same bytes the hook and CI run. Read from the installed canon package, the
+  // way the templates are.
+  if (kind === "check") {
+    const file = join(ARCH_DIR, "checks", `check_${arg}.mjs`);
+    if (!existsSync(file))
+      throw new Error(`unknown canon check "${arg}" (check:${arg}); no ${file}`);
+    return readFileSync(file, "utf8");
+  }
+  throw new Error(
+    `unknown canon resolver "${from}" (expected template:<type>, defaults:<type> or check:<type>)`,
+  );
 }
 
 /** All files under a dir as { rel (posix), data:Buffer }, excluding given names. */
@@ -148,13 +161,13 @@ export function composeSkill(srcDir) {
   errors.push(...validateProvenance(injected));
 
   // The cultures layout (and the agentskills "references one level from
-  // SKILL.md" rule) represents only SKILL.md plus one content subfolder of flat
-  // files. A file nested deeper (e.g. references/sub/x.md) cannot be packed, so
-  // error here rather than let culturesLayout silently flatten it.
+  // SKILL.md" rule) represents SKILL.md plus flat content subfolders. A file
+  // nested deeper (e.g. references/sub/x.md) cannot be packed, so error here
+  // rather than let culturesLayout silently flatten it.
   for (const f of files)
     if (f.name.split("/").length > 2)
       errors.push(
-        `${name}: "${f.name}" is more than one level deep; the cultures layout supports SKILL.md plus one flat content subfolder`,
+        `${name}: "${f.name}" is more than one level deep; the cultures layout supports SKILL.md plus flat content subfolders`,
       );
 
   return { name, files, errors, warnings, injected };
@@ -162,24 +175,24 @@ export function composeSkill(srcDir) {
 
 /**
  * Split a composed file set into the cultures layout khai-pack expects: root
- * files are overhead, files under one subfolder are the content. An agentskills
- * skill is SKILL.md (root) + references/ (the one content dir); more than one
- * content subfolder is not representable in the cultures layout yet.
+ * files are overhead, files under a subfolder are the content. An agentskills
+ * skill is SKILL.md (root) + references/ and, where it ships a check, scripts/;
+ * one subfolder packs as one object, several as a list, and the manifest
+ * mirrors the shape.
  */
 function culturesLayout(name, files) {
   const overhead = files
     .filter((f) => !f.name.includes("/"))
     .map((f) => ({ path: f.name, data: f.data }));
   const subFiles = files.filter((f) => f.name.includes("/"));
-  const dirs = new Set(subFiles.map((f) => f.name.split("/")[0]));
-  if (dirs.size > 1)
-    throw new Error(
-      `${name}: bundle has multiple content subfolders [${[...dirs].join(", ")}]; the cultures layout expects one`,
-    );
-  const dir = [...dirs][0];
-  const content = dir
-    ? { dir, files: subFiles.map((f) => ({ path: f.name.slice(dir.length + 1), data: f.data })) }
-    : undefined;
+  const dirs = [...new Set(subFiles.map((f) => f.name.split("/")[0]))].sort();
+  const one = (dir) => ({
+    dir,
+    files: subFiles
+      .filter((f) => f.name.startsWith(`${dir}/`))
+      .map((f) => ({ path: f.name.slice(dir.length + 1), data: f.data })),
+  });
+  const content = dirs.length === 0 ? undefined : dirs.length === 1 ? one(dirs[0]) : dirs.map(one);
   return { overhead, content };
 }
 
