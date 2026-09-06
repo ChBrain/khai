@@ -135,6 +135,10 @@ export const playbook = groupsBlock
  * @type {string|null}
  */
 import pkg from "./package.json" with { type: "json" };
+// The play's mechanical shape lives once, in a file that imports nothing but
+// node, so the kit, the hook, CI and the playwright skill run the same bytes.
+import { PLAY_CHAPTERS, checkPlay } from "./checks/check_play.mjs";
+export { checkPlay };
 export const playbookTagline = pkg.tagline ?? null;
 
 /** Required `## ` section headers for a type id, in canonical order. */
@@ -224,7 +228,7 @@ export const referenceChapters = ["Line of Work", "Origin", "Restrictions", "Enc
  * conform to the ENACTS mnemonic, in order.
  * @type {string[]}
  */
-export const playChapters = ["Estate", "Name", "Arc", "Company", "Triggers", "Stakes"];
+export const playChapters = PLAY_CHAPTERS;
 
 /**
  * TO DO IT: the management plan standard chapters (excluding Taxonomy/Owner prefix).
