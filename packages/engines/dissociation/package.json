@@ -1,0 +1,84 @@
+{
+  "name": "@chbrain/khai-engine-dissociation",
+  "version": "0.1.0",
+  "description": "khai engine content, the dissociation domain: disconnection from thought, feeling, memory, identity or surroundings under overwhelm -- not material pushed down, but a self that stops arriving as one piece.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chbrain/khai.git",
+    "directory": "packages/engines/dissociation"
+  },
+  "license": "SEE LICENSE IN LICENSE and LICENSE-CODE",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "index.mjs",
+    "*.md"
+  ],
+  "khai": {
+    "engine": "dissociation",
+    "tagline": "Dissociation as process: what the mind does when an experience cannot be held and cannot be left -- distance taken from the self that is living it, a barrier drawn across what it remembers, and, under long enough pressure, a division into parts that do not share a first person.",
+    "type": "process",
+    "members": [
+      {
+        "file": "process_dissociation.md",
+        "type": "process",
+        "parent": null
+      },
+      {
+        "file": "process_depersonalization.md",
+        "type": "process",
+        "parent": "process_dissociation.md"
+      },
+      {
+        "file": "process_amnesic_barrier.md",
+        "type": "process",
+        "parent": "process_dissociation.md"
+      },
+      {
+        "file": "process_structural_split.md",
+        "type": "process",
+        "parent": "process_dissociation.md"
+      }
+    ],
+    "requires": [
+      {
+        "on": "instructions",
+        "section": "Knowledge",
+        "link": "anchor",
+        "level": "fail"
+      },
+      {
+        "on": "persona",
+        "section": "Projection",
+        "link": "expression",
+        "level": "audit"
+      }
+    ],
+    "card": {
+      "wire": "Attaches at Process. The root (process_dissociation.md) models a failure of integration rather than an act of avoidance: nothing is pushed anywhere, the pieces simply stop arriving together. The three movements are depths of the same failure, not stages of one episode -- a persona may run only the shallowest for a lifetime. It is authored persona-architecture for a play, never a diagnosis of a real person.",
+      "issue": "Three depths. Depersonalization: the persona is present, accurate and fully aware, and is watching themselves from somewhere slightly outside -- which is why they can report the event in detail and feel they were not in it. Amnesic barrier (Putnam's discrete behavioral states): a stretch of experience is not forgotten but unavailable, walled from the state that could reach it, so time goes missing rather than memory going vague. Structural split (van der Hart et al.): under pressure that starts early and does not stop, the division holds, and what results is not one persona with gaps but parts that do not share a first person.",
+      "require": "Two altitudes hold the engine. The law: declared once in the project's Instructions Knowledge chapter, linking the root. The link, advisory: a persona running depersonalization, an amnesic barrier or a structural split may link the movement under Projection, and the audit surfaces the ones left unnamed.",
+      "enforce": "Structure is checked; coherence is judged. The kit verifies the floor: the law is declared and the engine's own members conform. The boundary: `the-unconscious` owns material kept from awareness by repression, `ptsd` owns the numbing and estrangement that follow a trauma, `defense` owns the category of defensive operations, and `absorption` owns attention narrowed onto something engrossing. This engine owns only the failure of integration -- character architecture for authoring, never a clinical assessment.",
+      "setup": "Declare the law in the Instructions Knowledge chapter, linking the root. Then give the persona its movement under Projection. Stage it from inside, where it is not frightening but flat, and let the alarm belong to whoever is watching: the persona's own account of the worst hour will be calm, complete, and told as though about somebody else."
+    }
+  },
+  "scripts": {
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@chbrain/khai-arch": "^0.1.26"
+  },
+  "devDependencies": {
+    "@chbrain/khai-tests": "^0.4.0",
+    "vitest": "^4.1.11"
+  }
+}
