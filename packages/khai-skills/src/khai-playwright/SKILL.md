@@ -39,7 +39,11 @@ chapter at a time; stop when there is enough. Link each Company member and each
 stake where a file exists; where it does not, name it. The Company is closed at
 what the author named and what the plots cannot run without: a second place, a
 plan or a pitch the author never mentioned is a question to the author, not an
-entry. Where the ask is silent on something a chapter needs, ask, in at most two
+entry. Name each persona with what it carries into the run: the want, the
+office or the debt that makes it a force; a bare name in the Company is not yet
+cast. Write the Stakes as what is lost or won across the run, from the first
+cue to the last close; a list of what is at risk restates the ask and moves
+nothing. Where the ask is silent on something a chapter needs, ask, in at most two
 questions after the file; do not fill the silence with invention.
 
 **Self-check the play file:**
@@ -52,8 +56,9 @@ questions after the file; do not fill the silence with invention.
 - [ ] Estate names who answers for the whole run
 - [ ] Arc is a bend, not a list: reordering the plots would lose something
 - [ ] Company is a closed cast (the set every plot draws from)
+- [ ] Each persona in the Company carries something: a want, an office, a debt
 - [ ] Triggers chain: each plot's close is the next plot's cue
-- [ ] Stakes are something every plot can move
+- [ ] Stakes say what is lost or won across the run, not what is at risk
 - [ ] Nothing the author did not name unless a plot cannot run without it; the rest is a question
 ```
 
