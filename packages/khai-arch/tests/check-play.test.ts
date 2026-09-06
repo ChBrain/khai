@@ -83,6 +83,20 @@ describe("check_play: the frontmatter subset", () => {
     expect(data.stamp).toEqual({ owner: "KAI HACKS AI", version: "v0.0.1", date: "2026-06-05" });
   });
 
+  it("a key that would reach a prototype is left unread, and the maps carry no prototype", () => {
+    const evil = validPlay.replace(
+      "khai: play",
+      "khai: play\n__proto__: x\nstamp2:\n  constructor: y",
+    );
+    const { data, unread } = readFrontmatter(evil);
+    expect(unread).toEqual(["__proto__: x", "  constructor: y"]);
+    expect(Object.getPrototypeOf(data)).toBeNull();
+    expect(({} as Record<string, unknown>).x).toBeUndefined();
+    expect(
+      checkPlay(evil).some((e) => /beyond a play's subset/.test(e) && /__proto__/.test(e)),
+    ).toBe(true);
+  });
+
   it("names a line it cannot read instead of guessing", () => {
     const beyond = validPlay.replace(
       "license: CC-BY-NC-SA-4.0",

@@ -35,6 +35,8 @@ export const PLAY_KEYS = [
 export const STAMP_KEYS = ["owner", "version", "date"];
 export const PROVENANCE_VALUES = ["sourced", "free", "unverified"];
 
+const safeKey = (k) => k !== "__proto__" && k !== "constructor" && k !== "prototype";
+
 const unquote = (raw) => {
   const v = raw.trim();
   if (/^".*"$/.test(v)) return v.slice(1, -1).replace(/\\"/g, '"');
@@ -53,19 +55,23 @@ export function readFrontmatter(text) {
   if (str.charCodeAt(0) === 0xfeff) str = str.slice(1);
   const m = /^---[ \t]*\r?\n([\s\S]*?)\r?\n---[ \t]*(?:\r?\n|$)/.exec(str);
   if (!m) return { present: false, data: {}, body: str, unread: [] };
-  const data = {};
+  // Null-prototype maps, and the three names that would reach a prototype are
+  // not keys a play has, so they stay unread rather than land anywhere.
+  const data = Object.create(null);
   const unread = [];
   let open = null;
   for (const raw of m[1].split(/\r?\n/)) {
     if (!raw.trim() || /^\s*#/.test(raw)) continue;
-    const sub = /^[ \t]+([A-Za-z_][\w-]*):[ \t]*(.*)$/.exec(raw);
-    if (sub && open) {
-      if (typeof data[open] !== "object") data[open] = {};
-      data[open][sub[1]] = unquote(sub[2]);
+    // One bounded quantifier per regex and the trimming in JS: no overlap
+    // between a whitespace run and the value, so no polynomial backtracking.
+    const sub = /^([ \t]+)([A-Za-z_][\w-]*):(.*)$/.exec(raw);
+    if (sub && open && safeKey(sub[2])) {
+      if (typeof data[open] !== "object") data[open] = Object.create(null);
+      data[open][sub[2]] = unquote(sub[3]);
       continue;
     }
-    const kv = /^([A-Za-z_][\w-]*):[ \t]*(.*)$/.exec(raw);
-    if (!kv) {
+    const kv = /^([A-Za-z_][\w-]*):(.*)$/.exec(raw);
+    if (!kv || !safeKey(kv[1])) {
       unread.push(raw);
       continue;
     }
