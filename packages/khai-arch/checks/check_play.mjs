@@ -165,7 +165,9 @@ export function checkPlay(text, opts = {}) {
   // The bytes.
   if (text.charCodeAt(0) === 0xfeff) e.push("BOM present");
   if (/\r\n/.test(text)) e.push("CRLF present");
-  if (/[–—]/.test(text)) e.push("en/em-dash present (use ' - ')");
+  // The two dash characters as escapes, never raw: the file ships inside a skill
+  // bundle whose guard bans them in every file, code included.
+  if (/[\u2013\u2014]/.test(text)) e.push("en/em-dash present (use ' - ')");
   if (/�/.test(text))
     e.push("U+FFFD replacement character present (a bad decode lost a character)");
   if (/\\u[0-9a-fA-F]{4}/.test(text))
