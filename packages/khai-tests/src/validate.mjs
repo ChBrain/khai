@@ -215,12 +215,26 @@ export function validateContentFile(
   // alone -- no migration tolerance for the legacy "Title" spelling.
   const h2Errors = checkH2SetAndOrder(doc, { expected: [...prefix, ...contract.chapters] });
 
-  const errors = [
-    ...checkEncoding(text),
-    ...checkFrontmatter(doc, { typeIds, extra }),
-    ...h2Errors,
-    ...checkExtensions(doc, { allowed: new Set(allowed ?? []) }),
-  ];
+  // A play's mechanical shape (bytes, frontmatter, H1 and title, the ENACTS
+  // chapters) lives once, in the canon's checks/check_play.mjs, the same file
+  // the playwright skill ships and runs before it delivers. The kit calls it
+  // rather than restating it with the generic atoms, so the hook, CI and the
+  // skill agree byte for byte. Guarded so this kit keeps working against a
+  // canon that has not yet shipped the check; then the atoms below apply.
+  const viaCanon = type === "play" && typeof khaiArch.checkPlay === "function";
+  const playFinding = (m) => (/^(play chapters |chapter ")/.test(m) ? `play (ENACTS): ${m}` : m);
+
+  const errors = viaCanon
+    ? [
+        ...khaiArch.checkPlay(text, { resolvedLanguage }).map(playFinding),
+        ...checkExtensions(doc, { allowed: new Set(allowed ?? []) }),
+      ]
+    : [
+        ...checkEncoding(text),
+        ...checkFrontmatter(doc, { typeIds, extra }),
+        ...h2Errors,
+        ...checkExtensions(doc, { allowed: new Set(allowed ?? []) }),
+      ];
   // The licence is part of the frontmatter contract when the caller pins an
   // expectation (validateInstanceFile pins the canon's): a missing field leaves
   // the content unprotected, a different one re-licenses it on the quiet.
@@ -231,7 +245,7 @@ export function validateContentFile(
     else if (declared !== license)
       errors.push(`frontmatter license "${declared}" != canon licence "${license}"`);
   }
-  if (type === "play") {
+  if (type === "play" && !viaCanon) {
     try {
       playCard(text);
     } catch (err) {
@@ -283,11 +297,13 @@ export function validateContentFile(
       errors.push(`order (DO IT): ${err.message}`);
     }
   }
-  errors.push(...checkH1(doc, { type }).errors);
-  // The frontmatter `title` must be present and echo the body's name (the H1,
-  // or `## Name` for a play). One pattern for every instance -- including the
-  // content surfaces will generate downstream.
-  errors.push(...checkTitle(doc, { type, resolvedLanguage }));
+  if (!viaCanon) {
+    errors.push(...checkH1(doc, { type }).errors);
+    // The frontmatter `title` must be present and echo the body's name (the H1,
+    // or `## Name` for a play). One pattern for every instance -- including the
+    // content surfaces will generate downstream.
+    errors.push(...checkTitle(doc, { type, resolvedLanguage }));
+  }
   // Owner (the "O") is the origin stamp; pin its value only when the caller
   // asserts whose the content is (engine content). The T slot carries no value
   // check -- it is the group above, enforced solely by the H2 set.
