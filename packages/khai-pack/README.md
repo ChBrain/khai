@@ -7,16 +7,19 @@ package content the same way instead of each rolling its own zip builder.
 ## The cultures layout
 
 Every bundle is one root folder: **overhead at the root, flat content in a
-subfolder**.
+subfolder**, or in several subfolders side by side when the kind has more
+than one (a skill's `references/` and `scripts/`).
 
 ```
 <name>/
   README.md  REFERENCES.md  LICENSE     ← overhead (root)
   <content-dir>/                        ← flat download stuff
      …the consumable files…
+  <another-content-dir>/                ← optional; a list of dirs, each flat
 ```
 
-- A **skills** bundle: overhead = `SKILL.md`; content dir = `references/`.
+- A **skills** bundle: overhead = `SKILL.md`; content dirs = `references/`
+  and, where the skill ships a check, `scripts/`.
 - An **engine** bundle: overhead = `README.md`, `REFERENCES.md`, `LICENSE`,
   card; content dir = `engine/` with the member files.
 
@@ -42,6 +45,9 @@ const { zip, zipSha256, manifest, ok, errors } = packBundle({
 });
 // write `zip` to disk; `manifest` records the layout + content hash.
 ```
+
+`content` takes one `{ dir, files }` or a list of them; the manifest mirrors
+the shape it was given (an object for one, a list for several).
 
 `packBundle` is pure (buffers in, result out). The zip is byte-for-byte
 reproducible (store method, fixed 1980 timestamp), so `zipSha256` is a stable
