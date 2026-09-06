@@ -46,7 +46,13 @@ cue to the last close; a list of what is at risk restates the ask and moves
 nothing. Where the ask is silent on something a chapter needs, ask, in at most two
 questions after the file; do not fill the silence with invention.
 
-**Self-check the play file:**
+**Self-check the play file.** The shape (frontmatter, the H1, six chapters in
+ENACTS order and none empty, no dash) is decided by a script this skill ships:
+where the runtime can run node, run `node scripts/check_play.mjs play_[name].md`
+before delivering and fix every line it prints; it is the same check the house's
+hook and CI run, so a file it accepts arrives at the repository already green.
+Running solo, walk the list by hand. The judgement lines (the Arc bends, the
+Stakes move, the Company carries) no script settles; check them and say so.
 
 ```
 - [ ] Frontmatter declares khai: play and carries the stamp
