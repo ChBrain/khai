@@ -220,6 +220,90 @@ matches and wrong about everything it drops. Measure a proxy's misses as well as
 its hits before shipping it, because a wall that inspects part of a corpus while
 looking like it inspected all of it is worse than the gap it replaced.
 
+## A worked relocation: the science canon is a per-citation fact in governance config
+
+The question: `workPolicy.canon` in `khai-guard.config.json` is a list of
+foundational works exempt from the shared-work overlap wall. 63 entries. It
+works, and it is on the wrong side of this ruling.
+
+**What it hides.** The wall reports 17 findings today. Removed, canon reports
+101 -- so 63 config lines are switching off 84 live findings, in one move, on
+exactly the works most likely to carry a duplicate. An allowlist cannot be
+wrong; that is the problem with it. Nothing in the corpus contradicts an
+entry, so nothing ever forces one out.
+
+**Why it is on the wrong side.** "Where a per-unit declaration lives" above
+already rules this: a per-unit declaration lives in the unit, never in
+governance config. Whether a citation duplicates another engine's spine is a
+fact about that citation, and it is written where no engine PR can reach it.
+The corollary bites too -- a house rule that cannot be obeyed from the lane it
+is read on is a rule about the lane. An engine author citing a foundational
+work cannot get green from `engine/*/*`; they must open a governance PR. That
+is the same cycle `scholarPolicy.homonyms` produced (#1526, where `advise`
+answered SPLIT REQUIRED), second instance, same root.
+
+**The obvious fix, measured, and it does not pay.** 970 of 2951 Scope cells
+already open with a lead phrase -- "The root:", "The twist.", "The joining." --
+512 distinct. Reading those as the claim a citation takes retires **8 of the
+101**. Free text scored for sameness is the trap `docs/BOUNDARY.md` already
+recorded for composite restatement: it catches copy-paste and passes
+paraphrase, and here it does not even catch much. Worse, it fails permissively:
+two authors wording one claim differently would buy an exemption by writing
+badly. That is a weaker wall than the allowlist it replaced.
+
+**And the wall is already leaking, independently of canon.** `normaliseWork`
+caps a stem at six words, so `the great good place` and `the great good place
+cafes coffee` key as two works. 84 same-scholar pairs in the corpus have one
+stem a word-prefix of another; unifying them takes live findings from 17 to
+**34**. Bowlby, Milgram, Hochschild, Aristotle (twice), Cialdini, Deci & Ryan,
+Douglas. Canon hides 84 on purpose; the title stem hides 17 by accident, and in
+the same direction. Any replacement has to be measured against the fixed stem,
+not today's.
+
+**The ruling.** One config switch is standing in for three different facts,
+each of which the citing row can state and the kit can check:
+
+1. **Delegation.** 23 of the 101 are one unit naming another as the owner --
+   "Owned by the third-place engine", "Used here, owned by the gift engine".
+   That is a role, not a spine, and unlike an allowlist entry it is falsifiable:
+   the named unit must exist and must itself hold that (scholar, work) as a
+   spine. 17 rows write the phrase today and **6 do not verify**.
+2. **Locus.** A work is a container; a citation takes a claim from it.
+   _Judgment under Uncertainty_ grounds six engines on six different heuristics.
+   The key becomes `Scholar :: work :: locus`, with the locus declared as an
+   argument to the existing role prefix (`Spine (anchoring and adjustment).`),
+   riding the Scope cell so the `| Source | Key Work | Scope |` table is
+   unchanged across 300+ files. An undeclared row carries an empty locus and
+   still collides, so nothing changes for the 2936 rows that declare nothing.
+3. **The wall/probe split.** Same (scholar, work, locus) in two units is a
+   **wall**. Different loci is a **probe** line, printed side by side for a
+   person. Whether two declared loci are honestly different is a judgement
+   about meaning -- question 2 of the classification rule -- so it escalates
+   and never computes a clear.
+
+**Canon retires as a ratchet, not a deletion.** Dropping 63 entries turns 84
+findings red at once. Two gates instead: canon **may only shrink**, and **no
+dead entry** -- every remaining entry must still be hiding a finding, so an
+entry whose rows have all been declared is forced out by the gate rather than
+remembered by a person. The backlog is computed, which is the point; there is
+no second list to maintain.
+
+**The phasing, because order matters.** The stem fix alone turns the wall red,
+so it cannot land first. Mechanism (1 and 2, no behaviour change -- nothing is
+declared yet, findings stay at 17); then declare the 17; then the stem fix,
+surfacing 17 more; then declare the 84 family by family, each on its own engine
+lane, with the ratchet retiring canon underneath. Steps two onward are roughly
+230 Scope cells needing someone who knows the science. That is a corpus job,
+not a code change, and it belongs on the lanes that have standing to make the
+claim.
+
+**The standing lesson.** An allowlist is not a shortcut to a rule, it is the
+absence of one, and it is invisible in the direction that matters: every entry
+reads as a decision made once and none of them can ever be shown to be wrong.
+Measure what an exemption hides before defending it, and prefer a declaration
+that can fail -- 6 of 17 delegation claims already do -- over a list that
+cannot.
+
 ## Where this corrects the order's first draft
 
 The order named this boundary before the work settled it. Four things landed
