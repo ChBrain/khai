@@ -1918,6 +1918,58 @@ than from a field's canon inward. `disability` is the strongest row in the file
 by the signal that produced Tier 1's best rows — an existing engine handing the
 territory away in its own prose.
 
+## Separate track -- motor cognition (surfaced 2026-09-09, by a reader's question)
+
+Recorded because a reader asked whether handwriting-as-a-thinking-aid had a home, and
+proposed `body`. It does not, and `body` is not it. The check is worth keeping because
+the two nearest engines both run the **opposite direction** to the phenomenon, which is
+why a search finds them and a reading rejects them.
+
+- **`embodied-metaphor`** runs sensory input -> abstract judgement: a warm cup makes a
+  person seem warmer, a heavy clipboard makes a decision seem weightier. Its five
+  expressions are perceptual dimensions the persona _receives_ (temperature, verticality,
+  weight, cleanliness, brightness). It is also deliberately **scoped**: Tier 3's closing
+  note records it as built over five primary-metaphor families with the general mapping
+  mechanism delegated to `analogy`, the maintainer's call on that row's "diffuse
+  mechanism" flag. Widening it to carry motor cognition reopens exactly that flag.
+- **`body`** is interoception and nothing else -- its five members are hunger, fatigue,
+  pain, arousal, sickness, every one an inward signal from the viscera. There is no motor
+  output anywhere in it.
+- **`touch`** is the haptic field of a _place_: what the skin reads off a surface. Input
+  again.
+- **`habit`** owns automatized repetition acquired by reinforcement, which is a motor
+  claim but not this one.
+
+The phenomenon is the reverse arrow: **the motor act as a constituent of the thought
+rather than its output.** Longcamp's finding is not that forming a letter _feels like_
+recognising it; it is that the hand's motor act recruits the recognition network. That is
+neither a metaphor nor a perceptual prime, and nothing on the board owns it.
+
+**Measured absence.** Longcamp, Mueller & Oppenheimer, Goldin-Meadow, Gallese, Barsalou,
+Noe, Kirsh & Maglio and Hutchins are all absent from the corpus; no member stem anywhere
+carries the concept.
+
+| #   | Candidate           | Phenomenon                                                    | Warrant                                                                                                                                                                                                          | Nearest / boundary                                                                                                                                                                                                                                   | E/C              | Status                       |
+| --- | ------------------- | ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ---------------------------- |
+| 82  | **motor-cognition** | the motor act as a constituent of the thought, not its output | Longcamp et al. (handwriting recruits recognition); Mueller & Oppenheimer (2014, longhand vs laptop); Goldin-Meadow (gesture carries what speech does not); Kirsh & Maglio (1994, epistemic vs pragmatic action) | `embodied-metaphor` (perceptual -> abstract mapping, the opposite arrow, and scoped by maintainer call); `body` (interoception only); `touch` (haptic field of a place); `habit` (automatized repetition); `analogy` (the general mapping mechanism) | Engine (process) | proposed (maintainer's call) |
+
+**Shape, if it is built.** Three movements, each with a blocking experiment -- which is a
+_tighter_ mechanism than #36's, not a looser one: handwriting (longhand vs typing, where
+the slower channel forces reformulation rather than transcription), gesture (blocking the
+hands degrades the reasoning, not merely its expression), epistemic action (moving the
+thing in the world because it is cheaper than moving it in the head).
+
+**Naming, checked.** Free as slugs: `enaction`, `gesture`, `epistemic-action`,
+`motor-cognition`. Free as stems: `handwriting`, `gesture_thought`, `epistemic_action`.
+Taken, so unavailable bare: `inscription` (owned by `document`) and `epistemic` (owned by
+`curiosity`).
+
+**The open question for the maintainer**, and the reason this is a row rather than a
+branch: whether this is an engine or a member. Row 5 (`metabolism`) is the precedent for
+"recommended NOT an engine", and #36 is the precedent for a diffuse-mechanism row being
+built scoped. This one has a tighter mechanism than #36 but a narrower domain than most
+engines, and that trade is the call.
+
 ## Tier 4 — The 2026-08 Extension (New Candidates)
 
 A supplemental research pass (August 2026) surfaced candidates across group
