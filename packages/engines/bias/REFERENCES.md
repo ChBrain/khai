@@ -12,16 +12,16 @@ Bias as **position**: the resting tilt a persona brings to judgment before any e
 
 The heuristics-and-biases tradition in cognitive and social psychology, and the motivational accounts of why judgment tilts.
 
-| Source                     | Key Work                                                             | Scope                                                                                     |
-| :------------------------- | :------------------------------------------------------------------- | :---------------------------------------------------------------------------------------- |
-| **Tversky & Kahneman**     | _"Judgment under Uncertainty: Heuristics and Biases"_ (1974)         | Availability, anchoring, and representativeness: the cheap-reading family (ease).         |
-| **Kahneman & Tversky**     | _"Prospect Theory: An Analysis of Decision under Risk"_ (1979)       | Loss aversion and the reference point: the stake family.                                  |
-| **Festinger**              | _A Theory of Cognitive Dissonance_ (1957)                            | The drive to keep the standing model consistent: the coherence family.                    |
-| **Nickerson**              | _"Confirmation Bias: A Ubiquitous Phenomenon in Many Guises"_ (1998) | Confirmation as a general tilt in seeking and weighing evidence (coherence).              |
-| **Kunda**                  | _"The Case for Motivated Reasoning"_ (1990)                          | Reasoning steered by what the self wants to conclude: the self family.                    |
-| **Tajfel & John Turner**   | _"An Integrative Theory of Intergroup Conflict"_ (1979)              | Social identity and in-group favoritism: the belonging family.                            |
-| **Jost & Banaji**          | _"The Role of Stereotyping in System-Justification"_ (1994)          | The tilt to read the existing arrangement as just (belonging).                            |
-| **Benson & Manoogian III** | _Cognitive Bias Codex / "Cognitive bias cheat sheet"_ (2016)         | The comprehensive catalogue the five families map, organized by stage rather than motive. |
+| Source                     | Key Work                                                             | Scope                                                                                                                           |
+| :------------------------- | :------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------ |
+| **Tversky & Kahneman**     | _"Judgment under Uncertainty: Heuristics and Biases"_ (1974)         | **Spine (the three heuristics as a family).** Availability, anchoring, and representativeness: the cheap-reading family (ease). |
+| **Kahneman & Tversky**     | _"Prospect Theory: An Analysis of Decision under Risk"_ (1979)       | Loss aversion and the reference point: the stake family.                                                                        |
+| **Festinger**              | _A Theory of Cognitive Dissonance_ (1957)                            | The drive to keep the standing model consistent: the coherence family.                                                          |
+| **Nickerson**              | _"Confirmation Bias: A Ubiquitous Phenomenon in Many Guises"_ (1998) | Confirmation as a general tilt in seeking and weighing evidence (coherence).                                                    |
+| **Kunda**                  | _"The Case for Motivated Reasoning"_ (1990)                          | Reasoning steered by what the self wants to conclude: the self family.                                                          |
+| **Tajfel & John Turner**   | _"An Integrative Theory of Intergroup Conflict"_ (1979)              | Social identity and in-group favoritism: the belonging family.                                                                  |
+| **Jost & Banaji**          | _"The Role of Stereotyping in System-Justification"_ (1994)          | The tilt to read the existing arrangement as just (belonging).                                                                  |
+| **Benson & Manoogian III** | _Cognitive Bias Codex / "Cognitive bias cheat sheet"_ (2016)         | The comprehensive catalogue the five families map, organized by stage rather than motive.                                       |
 
 ## Restrictions
 
