@@ -49,6 +49,7 @@ import {
   undeclaredNamesakes,
   mixedCells,
   compoundWorks,
+  findWorkVariants,
 } from "./science-walls.mjs";
 import { checkManagement } from "./management.mjs";
 import { collectInstructions, renderInstructions } from "./instructions.mjs";
@@ -390,6 +391,19 @@ async function scienceMode(args) {
       console.log(
         `  UNVERIFIED  ${d.unit} names ${d.owner} as the owner of ${d.scholar}: ${d.stem}\n` +
           `     ${d.owner} does not cite it as a spine -- wrong owner, or the owner's citation moved.`,
+      );
+
+    const variants = findWorkVariants(root);
+    const turns = variants.filter((v) => v.consequential);
+    console.log(
+      `\nscience probe: ${variants.length} work(s) reaching the index under two spellings; ` +
+        `${turns.length} of them hide a collision.`,
+    );
+    for (const v of turns)
+      console.log(
+        `  VARIANT  ${v.scholar}${v.canon ? " [canon: exempt anyway]" : ""}\n` +
+          `     "${v.short}"  [${v.shortUnits.join(", ")}]\n` +
+          `     "${v.long}"  [${v.longUnits.join(", ")}]`,
       );
 
     const shared = findSharedLoci(root);
