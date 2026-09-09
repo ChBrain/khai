@@ -31,6 +31,8 @@ import {
 } from "./science.mjs";
 import {
   findOverlaps,
+  findUnverifiedDelegations,
+  findSharedLoci,
   pairsOf,
   checkCandidate,
   scanSurname,
@@ -373,6 +375,31 @@ async function scienceMode(args) {
         `  COMPOUND  ${f.unit}${why}\n     hidden after the semicolon: ${f.hidden}\n` +
           `     already indexed to: ${f.holders.join(", ")}`,
       );
+    }
+
+    // The two halves of the delegation/locus split (docs/BOUNDARY.md, "A worked
+    // relocation"). Both report here rather than gating: the first is a wall
+    // waiting for its count to reach zero, the second is a judgement a script
+    // must never make.
+    const unverified = findUnverifiedDelegations(root);
+    console.log(
+      `\nscience probe: ${unverified.length} delegation(s) naming an owner that does not ` +
+        "hold the work as a spine.",
+    );
+    for (const d of unverified)
+      console.log(
+        `  UNVERIFIED  ${d.unit} names ${d.owner} as the owner of ${d.scholar}: ${d.stem}\n` +
+          `     ${d.owner} does not cite it as a spine -- wrong owner, or the owner's citation moved.`,
+      );
+
+    const shared = findSharedLoci(root);
+    console.log(
+      `\nscience probe: ${shared.length} work(s) spining more than one unit under DIFFERENT ` +
+        "declared loci -- a reading list, never a verdict.",
+    );
+    for (const w of shared) {
+      console.log(`  LOCI  ${w.key}`);
+      for (const l of w.loci) console.log(`     ${l.unit}: ${l.locus}`);
     }
     process.exit(0);
   } else if (sub === "build") {
