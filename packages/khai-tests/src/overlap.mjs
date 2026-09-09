@@ -22,6 +22,16 @@
 //                        background rather than its spine ("cited as
 //                        background"). The rule is about a work carrying TWO
 //                        spines, so one side declaring it is not one answers it.
+//   delegateMarkers   -- the vocabulary that names another unit as the owner of
+//                        this work's spine ("owned by the third-place engine").
+//                        Unlike the three above, this one is CHECKED against the
+//                        corpus, so it is the only exit that can be refuted.
+//
+// `canon` is the odd one out and is on its way out: it exempts a work rather
+// than describing a citation, which `docs/BOUNDARY.md` ("A worked relocation")
+// rules is a per-citation fact written where no unit's own PR can reach it. It
+// hides 84 findings that the three declarations above are meant to replace, and
+// it retires as those land -- may only shrink, and no entry that hides nothing.
 //
 // Source of truth is the collector the science build itself runs on
 // (collectScience / collectCollectionScience), NOT the rendered docs/SCIENCE.md
@@ -46,6 +56,13 @@
 //   findUnresolvedNamesakes(root)   a surname declared in
 //                                   scholarPolicy.homonyms may not appear in
 //                                   the index unresolved.
+//   findUnverifiedDelegations(root) a delegation naming an owner that does not
+//                                   hold the work. A wall in waiting: reported
+//                                   while the corpus still carries known-bad
+//                                   rows, walled when the count reaches zero.
+//   findSharedLoci(root)            the reading list the wall refuses to
+//                                   decide: one work spining several units
+//                                   under different declared loci.
 import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { collectScience, collectCollectionScience, scholarHomonyms } from "./science.mjs";
@@ -95,27 +112,83 @@ const DEFAULT_SUPPORTING_MARKERS = [
 // engine that leans on one pushes the honest author toward a weaker citation to
 // get green -- which is worse for the corpus than the duplication the rule was
 // written to stop.
+//
+// A fourth role, and the only one whose declaration can be WRONG -- which is
+// the whole reason it exists. `docs/BOUNDARY.md` ("A worked relocation") rules
+// that whether a citation duplicates another unit's spine is a fact about that
+// citation, not a line in governance config, and an exemption nothing can
+// contradict is not a rule. A delegation says "this work's spine is held by
+// <unit>, and this row points at it"; the kit then CHECKS that the named unit
+// exists and holds the same (scholar, work) as a spine. A claim that does not
+// hold is not silently exempt -- the row stays a spine and collides, and
+// `findUnverifiedDelegations` names it.
+//
+// The prose form exists for the same reason the support markers do: the house
+// was already writing this ("Owned by the third-place engine", "Used here,
+// owned by the gift engine") in cells written long before there was a term for
+// it. A root extends or replaces the list in workPolicy.delegateMarkers; each
+// entry is a source string compiled case-insensitively, and its FIRST capture
+// group is the owning unit's stem.
+const DEFAULT_DELEGATE_MARKERS = ["owned by (?:the )?([a-z0-9-]+) (?:engine|composite)"];
+
+// Compiled once per source string rather than per row: the wall reads ~3000
+// records and would otherwise recompile the same pattern for every one.
+const DELEGATE_RX = new Map();
+const delegateRx = (src) => {
+  if (!DELEGATE_RX.has(src)) DELEGATE_RX.set(src, new RegExp(src, "i"));
+  return DELEGATE_RX.get(src);
+};
+
 // Matched against the PARSED cell, which is why the pattern carries no
 // asterisks: the Origin reader strips emphasis, so `**Contrast.**` reaches this
 // function as `Contrast.`. The token must lead, and must be closed by a period
 // or a colon, so a cell that merely opens with the word -- "Support for the
 // model is broad" -- is prose and stays a spine.
-const ROLE_PREFIX = /^\**\s*(contrast|support)\s*\**\s*[.:]/i;
+//
+// The optional parenthesis is the ARGUMENT a role can carry, and two roles take
+// one. `Spine (anchoring and adjustment).` declares the LOCUS -- which claim in
+// the work this unit takes, so a volume of chapters stops being one key; see
+// `locusOf`. `Delegate (third-place).` declares the owning unit. `contrast` and
+// `support` take none, and an argument on them is read and ignored rather than
+// refused, because a role that is already not a spine has nothing to key.
+//
+// `spine` is listed even though it is the default: a row declaring a locus must
+// name the role it is declaring it for, and a cell reading `Spine (x).` should
+// mean the same thing whether or not the reader knows spine is the default.
+// Nothing in the corpus opens with either new token today, so adding them
+// migrates nothing.
+const ROLE_PREFIX =
+  /^\**\s*(contrast|support|spine|delegate)\s*\**\s*(?:\(\s*([^)]{1,80}?)\s*\)\s*)?\**\s*[.:]/i;
 
 /**
- * The role a citation declares: "contrast", "support", or "spine".
+ * The declaration a Scope cell opens with: `{role, arg}` with `arg` the raw
+ * text between the parentheses (`""` when the role carries none), or null when
+ * the cell declares nothing. One parse, read by roleOf, locusOf and
+ * delegateOwner, so the three can never disagree about what a cell says.
+ */
+function roleArgument(row) {
+  const declared = ROLE_PREFIX.exec(String(row?.scope ?? "").trimStart());
+  return declared ? { role: declared[1].toLowerCase(), arg: (declared[2] ?? "").trim() } : null;
+}
+
+/**
+ * The role a citation declares: "contrast", "support", "delegate", or "spine".
  *
  * A declared prefix wins. Failing that the marker vocabularies read -- contrast
- * first, then support -- so rows written before the prefixes keep the meaning
- * they had, and a house that writes its roles as phrases rather than prefixes is
- * held by the same wall as one that writes them as prefixes. Both
+ * first, then support, then delegate -- so rows written before the prefixes keep
+ * the meaning they had, and a house that writes its roles as phrases rather than
+ * prefixes is held by the same wall as one that writes them as prefixes. Both
  * are deliberately generous about the reading and strict about the default:
  * anything unmarked is a spine, so a role is something an author claims, never
  * something the checker infers on their behalf.
+ *
+ * "delegate" is the role a wall must not take on trust: it says another unit
+ * holds the spine, and only `findOverlaps` can see whether that unit does. This
+ * function reports what the cell CLAIMS; the checking is downstream.
  */
 export function roleOf(row, policy = {}) {
-  const declared = ROLE_PREFIX.exec(String(row?.scope ?? "").trimStart());
-  if (declared) return declared[1].toLowerCase();
+  const declared = roleArgument(row);
+  if (declared) return declared.role;
   if (isContrast(row, policy.contrastMarkers ?? DEFAULT_CONTRAST_MARKERS)) return "contrast";
   // Symmetric with contrast, and the asymmetry it closes was the whole defect: a
   // house could declare its contrast vocabulary and had no way to declare its
@@ -123,7 +196,59 @@ export function roleOf(row, policy = {}) {
   // instrument read and this wall did not. Two checks reading the same policy and
   // disagreeing is worse than either answer.
   if (isContrast(row, policy.supportingMarkers ?? DEFAULT_SUPPORTING_MARKERS)) return "support";
+  if (delegateOwner(row, policy)) return "delegate";
   return "spine";
+}
+
+/**
+ * The unit a citation names as the owner of this work's spine, or null.
+ *
+ * Declared (`Delegate (third-place).`) or written in prose ("Owned by the
+ * third-place engine"), reduced to the bare stem so it can be compared against
+ * a unit name. Unlike every other exit from the wall this one is a claim about
+ * something else in the corpus, so it can be checked -- and six of the
+ * seventeen rows writing it in prose today do not hold.
+ */
+export function delegateOwner(row, policy = {}) {
+  const declared = roleArgument(row);
+  if (declared) return declared.role === "delegate" ? declared.arg.toLowerCase() || null : null;
+  const hay = String(row?.scope ?? "");
+  for (const src of policy.delegateMarkers ?? DEFAULT_DELEGATE_MARKERS) {
+    const m = delegateRx(src).exec(hay);
+    if (m?.[1]) return m[1].toLowerCase();
+  }
+  return null;
+}
+
+/**
+ * The locus a spine declares: WHICH claim in the work this unit takes, or ""
+ * when it declares none.
+ *
+ * The chapter case is why this exists. `Judgment under Uncertainty` grounds six
+ * engines on six different heuristics; keyed by the work alone they are one
+ * key, and the only answer the wall had was to exempt the work entirely -- one
+ * switch that also stopped it seeing a real duplicate on the same volume.
+ * Keyed by `Scholar :: work :: locus` they are six keys and need no exemption.
+ *
+ * Two decisions worth stating, because the obvious versions of both are wrong.
+ *
+ * It is DECLARED, never read out of the surrounding prose. 970 of the corpus's
+ * Scope cells already open with a lead phrase and 512 of them are distinct;
+ * matching on that text retires 8 of 101 findings, and it fails in the
+ * permissive direction -- two authors wording one claim differently would buy
+ * an exemption by writing badly. A locus is a claim an author makes, and a
+ * reviewer can disagree with it.
+ *
+ * An UNDECLARED spine keys exactly as it did before (`Scholar :: work`, no
+ * third segment), so nothing migrates and declaring is what buys the
+ * separation. Normalised like a work stem -- lowercased, punctuation swept,
+ * capped at six words -- so `Anchoring and adjustment` and `anchoring and
+ * adjustment.` are one locus and not two.
+ */
+export function locusOf(row, policy = {}) {
+  const declared = roleArgument(row);
+  if (!declared || declared.role !== "spine" || !declared.arg) return "";
+  return normaliseWork(declared.arg, policy.aliases ?? {});
 }
 
 /** The declared work policy for a root: workPolicy in khai-guard.config.json. */
@@ -263,25 +388,89 @@ export function unitDeps(root) {
 }
 
 /**
- * Every (scholar, work) carrying a spine in more than one unit -- canon,
- * contrast and support citations removed. A house's wall is
+ * Where every spine sits before any exemption is applied: `Scholar :: stem` ->
+ * Set<unit>. Built from the same records the wall keys, and read only to answer
+ * "does the unit this row delegates to actually hold this work?" -- so a
+ * delegation is checked against the corpus, never taken on trust.
+ */
+function spineIndex(records, policy) {
+  const held = new Map();
+  for (const r of records) {
+    if (roleOf(r, policy) !== "spine") continue;
+    const key = r.surname + " :: " + normaliseWork(r.keyWork, policy.aliases);
+    if (!held.has(key)) held.set(key, new Set());
+    held.get(key).add(r.unit);
+  }
+  return held;
+}
+
+/**
+ * Does the unit this row names as owner hold the same work as a spine?
+ *
+ * Matched loosely rather than by stem equality, deliberately, and this is the
+ * one place in the wall where loose is the safe direction. The stem caps a
+ * title at six words, so one work reaches the index under two spellings (`the
+ * great good place` and `the great good place cafes coffee`); strict equality
+ * reported five true delegations as broken and would have sent authors to fix
+ * citations that are correct. A false CLEAR here costs one unchecked pointer; a
+ * false ALARM costs a corpus edit that makes things worse.
+ *
+ * `workMatches` supplies the rule and one extension is added on top of it: it
+ * refuses a single-word short side, because it is also the advisory matcher for
+ * an author-supplied query where a bare word would hit everything. Here both
+ * sides are corpus stems under an already-exact scholar match, so a one-word
+ * prefix is `Goffman :: asylums` against `Goffman :: asylums essays on the
+ * social situation` -- the same book, and the case the guard was never about.
+ */
+const sameWorkLoosely = (a, b) =>
+  Boolean(workMatches(a, b)) || a.startsWith(b + " ") || b.startsWith(a + " ");
+
+function delegationHolds(row, policy, held) {
+  const owner = delegateOwner(row, policy);
+  if (!owner) return false;
+  const stem = normaliseWork(row.keyWork, policy.aliases);
+  for (const [key, units] of held) {
+    const [scholar, keyStem] = key.split(" :: ");
+    if (scholar !== row.surname || !sameWorkLoosely(stem, keyStem)) continue;
+    if (units.has(owner)) return true;
+  }
+  return false;
+}
+
+/**
+ * Every (scholar, work, locus) carrying a spine in more than one unit -- canon,
+ * contrast, support and VERIFIED delegations removed. A house's wall is
  * `expect(findOverlaps(root)).toEqual([])`; the kit computes, the house holds
  * the line.
  *
  * Spine-in-two is the failure the rule exists for: two engines taking one
  * mechanism from one work. Everything else a work can be doing in a second
- * engine -- marking a boundary, corroborating -- is a legitimate second use and
- * always was; the wall could not previously say so, so it refused them all.
+ * engine -- marking a boundary, corroborating, pointing at the unit that owns
+ * it -- is a legitimate second use and always was; the wall could not
+ * previously say so, so it refused them all.
+ *
+ * The key carries a third segment only when a spine declares a locus (see
+ * `locusOf`), so an undeclared row keys exactly as it did before and no
+ * existing key moves. Declaring is what separates two engines on one volume.
+ *
+ * A delegation that does not hold is NOT an exemption: the row falls through
+ * and is keyed as the spine it claimed not to be, so a wrong pointer collides
+ * rather than passing quietly. `findUnverifiedDelegations` names it.
  */
 export function findOverlaps(root) {
   const policy = loadWorkPolicy(root);
   const { records, deps } = collectUnits(root);
+  const held = spineIndex(records, policy);
   const byKey = new Map();
   for (const r of records) {
-    if (roleOf(r, policy) !== "spine") continue;
+    const role = roleOf(r, policy);
+    if (role === "delegate") {
+      if (delegationHolds(r, policy, held)) continue;
+    } else if (role !== "spine") continue;
     const stem = normaliseWork(r.keyWork, policy.aliases);
     if (policy.canon.includes(stem)) continue;
-    const key = r.surname + " :: " + stem;
+    const locus = locusOf(r, policy);
+    const key = r.surname + " :: " + stem + (locus ? " :: " + locus : "");
     if (!byKey.has(key)) byKey.set(key, new Map());
     byKey.get(key).set(r.unit, r.keyWork);
   }
@@ -298,13 +487,17 @@ export function findOverlaps(root) {
   }
   return [...byKey.entries()]
     .filter(([, units]) => units.size > 1)
-    .map(([key, units]) => ({
-      key,
-      scholar: key.split(" :: ")[0],
-      stem: key.split(" :: ")[1],
-      units: [...units.keys()].sort(),
-      forms: [...new Set(units.values())],
-    }))
+    .map(([key, units]) => {
+      const [scholar, stem, locus = ""] = key.split(" :: ");
+      return {
+        key,
+        scholar,
+        stem,
+        locus,
+        units: [...units.keys()].sort(),
+        forms: [...new Set(units.values())],
+      };
+    })
     .sort((a, b) => a.key.localeCompare(b.key));
 }
 
@@ -327,6 +520,88 @@ export function pairsOf(overlaps) {
   return [...pairs.entries()]
     .map(([pair, stems]) => ({ pair, stems: [...new Set(stems)] }))
     .sort((a, b) => b.stems.length - a.stems.length || a.pair.localeCompare(b.pair));
+}
+
+/**
+ * Every delegation whose claim does not hold: the row says another unit owns
+ * this work's spine, and that unit does not cite it as one.
+ *
+ * This is the instrument the canon allowlist could never be. An allowlist entry
+ * makes an assertion nothing in the corpus can contradict, so it is never
+ * wrong and never retires; a delegation makes an assertion ABOUT the corpus, so
+ * the corpus can refute it -- and does, for two rows today. Either the owner
+ * named is the wrong unit, or the owner's own citation moved out from under a
+ * pointer nobody re-read.
+ *
+ * Reported rather than walled while the corpus still carries known-bad rows:
+ * each fix is a Scope cell inside one engine's own lane, and a wall in the
+ * governance lane that goes red on pre-existing debt fails the branch that
+ * cannot pay it. It becomes a wall when the count reaches zero.
+ */
+export function findUnverifiedDelegations(root) {
+  const policy = loadWorkPolicy(root);
+  const { records } = collectUnits(root);
+  const held = spineIndex(records, policy);
+  return records
+    .filter((r) => roleOf(r, policy) === "delegate" && !delegationHolds(r, policy, held))
+    .map((r) => ({
+      unit: r.unit,
+      owner: delegateOwner(r, policy),
+      scholar: r.surname,
+      work: r.keyWork,
+      stem: normaliseWork(r.keyWork, policy.aliases),
+    }))
+    .sort((a, b) => a.unit.localeCompare(b.unit) || a.scholar.localeCompare(b.scholar));
+}
+
+/**
+ * The reading list the wall deliberately does not decide: every (scholar, work)
+ * spining more than one unit where the units declare DIFFERENT loci.
+ *
+ * The wall's half of the split is mechanical -- two units on one locus is a
+ * duplicate, full stop. This half is not: whether "anchoring and adjustment"
+ * and "availability" are honestly two claims in one volume, or two paraphrases
+ * of one claim wearing different words, is a judgement about what a cell means,
+ * which `docs/BOUNDARY.md`'s classification rule sends to a person and never to
+ * a script. So the loci are printed side by side and a reader decides. A wall
+ * here would either refuse the chapter case (which is what canon was invented
+ * to escape) or clear a duplicate that reworded itself.
+ *
+ * Empty until spines start declaring loci, which is the honest reading: nothing
+ * has been separated yet, so there is nothing to review.
+ */
+export function findSharedLoci(root) {
+  const policy = loadWorkPolicy(root);
+  const { records, deps } = collectUnits(root);
+  const byWork = new Map();
+  for (const r of records) {
+    if (roleOf(r, policy) !== "spine") continue;
+    const locus = locusOf(r, policy);
+    if (!locus) continue;
+    const key = r.surname + " :: " + normaliseWork(r.keyWork, policy.aliases);
+    if (!byWork.has(key)) byWork.set(key, new Map());
+    byWork.get(key).set(r.unit, locus);
+  }
+  // The same structural exit the wall takes: a composite reading its member's
+  // science composes over it, whatever locus either declares.
+  for (const [, units] of byWork) {
+    const names = [...units.keys()];
+    for (const unit of names) {
+      const on = deps.get(unit);
+      if (on && names.some((other) => other !== unit && on.has(other))) units.delete(unit);
+    }
+  }
+  return [...byWork.entries()]
+    .filter(([, units]) => units.size > 1 && new Set(units.values()).size > 1)
+    .map(([key, units]) => ({
+      key,
+      scholar: key.split(" :: ")[0],
+      stem: key.split(" :: ")[1],
+      loci: [...units.entries()]
+        .map(([unit, locus]) => ({ unit, locus }))
+        .sort((a, b) => a.unit.localeCompare(b.unit)),
+    }))
+    .sort((a, b) => a.key.localeCompare(b.key));
 }
 
 // Pre-authoring advisory matching. The wall above must never cry wolf, so it
