@@ -33,7 +33,15 @@ import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { parseDoc } from "@chbrain/khai-rules";
 import { SUFFIXES, unitDirs, unitWarrant } from "./science.mjs";
-import { collectUnits, normaliseWork, isContrast, roleOf, workMatches } from "./overlap.mjs";
+import {
+  collectUnits,
+  normaliseWork,
+  isContrast,
+  roleOf,
+  workMatches,
+  loadWorkPolicy,
+  findOverlaps,
+} from "./overlap.mjs";
 import { resolveCollectionAt } from "./collection.mjs";
 
 // --- 1. findShadowedForms: a homonym declaration order that misleads --------
@@ -342,6 +350,89 @@ export function mixedCells(index, policy = {}) {
     });
   }
   return found.sort((a, b) => b.bare.length - a.bare.length || a.surname.localeCompare(b.surname));
+}
+
+/**
+ * One work reaching the index under two spellings: a same-scholar pair of stems
+ * where one is a word-prefix of the other.
+ *
+ * `normaliseWork` caps a stem at six words, so a cell naming the subtitle and a
+ * cell naming only the title key as two works and never collide. `Goffman ::
+ * asylums` and `Goffman :: asylums essays on the social situation` are one
+ * book; `Milgram :: behavioral study of obedience` and the same with the
+ * journal appended are one paper. The wall clears both, truthfully, on a
+ * question nobody asked.
+ *
+ * This is a probe and not a fold, and the measurement is the reason. Folding
+ * every prefix pair to the shorter stem surfaces real findings -- and merges
+ * `Bowlby :: attachment and loss vol 1 attachment` with `vol 3`, which are two
+ * books of a trilogy and not one work, recording a false finding as debt. Three
+ * of the consequential pairs are that shape, and two of them (`Nicomachean
+ * Ethics Book III`, `Poetics: the definition of tragedy`) are a LOCUS written
+ * into the Key Work column, which is a different repair from a spelling
+ * mismatch. No measure of the two strings separates a subtitle from a volume
+ * number, which is question 2 of the classification rule in docs/BOUNDARY.md.
+ *
+ * So each pair is reported with what turns on it, and a person picks the
+ * repair: make the two Key Work cells spell the work the same way (the common
+ * case), declare `workPolicy.aliases` where they cannot be made to agree, or --
+ * where the longer cell is naming a part rather than a title -- move that part
+ * into a declared locus (`Spine (book iii).`) and leave the work alone.
+ *
+ * `consequential` is the ranking that matters: true when folding the pair would
+ * put two units that do not already collide onto one key, i.e. when the
+ * spelling is hiding something. Most pairs are one unit citing one work twice
+ * and turn nothing.
+ */
+export function findWorkVariants(root) {
+  const policy = loadWorkPolicy(root);
+  const { records, deps } = collectUnits(root);
+  const canon = new Set((policy.canon || []).map((c) => normaliseWork(c)));
+  const live = new Set(findOverlaps(root).map((o) => `${o.scholar} :: ${o.stem}`));
+
+  const byScholar = new Map(); // surname -> stem -> Map<unit, keyWork>
+  for (const r of records) {
+    if (roleOf(r, policy) !== "spine") continue;
+    const stem = normaliseWork(r.keyWork, policy.aliases);
+    if (!byScholar.has(r.surname)) byScholar.set(r.surname, new Map());
+    const stems = byScholar.get(r.surname);
+    if (!stems.has(stem)) stems.set(stem, new Map());
+    stems.get(stem).set(r.unit, r.keyWork);
+  }
+
+  const found = [];
+  for (const [scholar, stems] of byScholar) {
+    for (const short of stems.keys()) {
+      for (const long of stems.keys()) {
+        if (!long.startsWith(short + " ")) continue;
+        const merged = new Set([...stems.get(short).keys(), ...stems.get(long).keys()]);
+        // The same structural exit the wall takes: a composite reading its
+        // member's science composes over it rather than duplicating it, so a
+        // pair that only merges those turns nothing.
+        for (const unit of [...merged]) {
+          const on = deps.get(unit);
+          if (on && [...merged].some((other) => other !== unit && on.has(other)))
+            merged.delete(unit);
+        }
+        const already = live.has(`${scholar} :: ${short}`) || live.has(`${scholar} :: ${long}`);
+        found.push({
+          scholar,
+          short,
+          long,
+          shortUnits: [...stems.get(short).keys()].sort(),
+          longUnits: [...stems.get(long).keys()].sort(),
+          consequential: merged.size > 1 && !already,
+          canon: canon.has(short) || canon.has(long),
+        });
+      }
+    }
+  }
+  return found.sort(
+    (a, b) =>
+      Number(b.consequential) - Number(a.consequential) ||
+      a.scholar.localeCompare(b.scholar) ||
+      a.short.localeCompare(b.short),
+  );
 }
 
 /**
