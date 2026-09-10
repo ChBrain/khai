@@ -1,5 +1,60 @@
 # @chbrain/khai-tests
 
+## 0.5.0
+
+### Minor Changes
+
+- ee52e36: Give a citation two more things it can declare, and check one of them.
+  
+  `Delegate (third-place).` -- or the prose the corpus already writes, "owned by
+  the third-place engine" -- names the unit that holds a work's spine. Unlike
+  canon, contrast and support, this exit is verified: the named unit must cite the
+  same (scholar, work) as a spine, and a claim that does not hold leaves the row a
+  spine so it still collides. `findUnverifiedDelegations` reports the ones that do
+  not hold.
+  
+  `Spine (anchoring and adjustment).` declares a **locus** -- which claim in the
+  work this unit takes -- and the overlap key becomes `Scholar :: work :: locus`,
+  so a volume of chapters stops being one key. An undeclared spine keys exactly as
+  before, so nothing migrates; `findSharedLoci` prints one work spining several
+  units under different loci as a reading list, because whether two loci are
+  honestly different is a judgement and not a computation.
+- 18cf4b5: Report one work reaching the index under two spellings. `normaliseWork` caps a
+  stem at six words, so a cell naming the subtitle and a cell naming only the
+  title key as two works and never collide -- 82 same-scholar prefix pairs in this
+  corpus, 31 of them hiding a collision the wall clears truthfully on a question
+  nobody asked. `findWorkVariants` reports each pair with what turns on it and
+  leaves the repair to a person: no fold, because folding also merges
+  `Attachment and Loss Vol 1` with `Vol 3`, and no measure of the two strings
+  separates a subtitle from a volume number.
+
+### Patch Changes
+
+- 23ed522: A play's shape (bytes, frontmatter, H1 and title, the ENACTS chapters) is the canon's check_play verdict: the kit calls the one file the playwright skill ships instead of restating it with the generic atoms, so the hook, CI and the skill agree byte for byte. Guarded: against a canon without the check, the atoms apply as before.
+- f317596: `buildRegistry` was taught to take a `packageIds` map so a house mid-migration
+  can have its casts read in both shapes. Its own verify was not: `verifyRegistry`
+  and `validateCollectionRegistry` rebuild through `computeRegistry` to compare
+  against, and called it without the map. So a build that was handed the map and
+  the verify of that same build disagreed about the same house — the rebuild
+  derived no references for a group whose members had all migrated, and stopped on
+  the empty-group rule the same release introduced.
+  
+  The map now threads the whole way: `buildRegistry` → `verifyRegistry` →
+  `validateCollectionRegistry` → `computeRegistry`, with `validatePlayhouseRegistry`
+  forwarding too. Every signature takes it optionally, so a flat house and every
+  existing caller are untouched.
+  
+  The kit still never builds this map. The npm name of a unit follows a rule that
+  belongs to the house, and a kit that guessed it would be wrong for the next house
+  to migrate. Whether the kit should stop needing to be handed it at all — by
+  building the registry from `unitsOf` rather than a directory listing — is
+  a separate RFC (`packages/khai-tests/WALKING.md`), and this is not that.
+- Updated dependencies [ebc47ef]
+- Updated dependencies [dca4385]
+- Updated dependencies [85e210a]
+  - @chbrain/khai-arch@0.1.28
+  - @chbrain/khai-pack@0.0.4
+
 ## 0.4.6
 
 ### Patch Changes

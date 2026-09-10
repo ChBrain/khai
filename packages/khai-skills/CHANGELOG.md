@@ -1,5 +1,18 @@
 # @chbrain/khai-skills
 
+## 0.0.34
+
+### Patch Changes
+
+- dd223e5: khai-playwright names each persona with what it carries into the run and writes the Stakes as what is lost or won across it; two self-check lines to match. Learned from the third eval record on village-bakery, whose ask now names the play's key.
+- f16866a: khai-playwright ships the canon's check_play.mjs under scripts/, pulled verbatim at build like the templates, and says to run it before delivering; the build packs references/ and scripts/ side by side.
+- c1a0cd7: khai-playwright says the mode in its first line, closes the Company at what the author named, and asks the author where the ask is silent instead of inventing; two self-check lines to match. Learned from the first two eval records on village-bakery.
+- Updated dependencies [ebc47ef]
+- Updated dependencies [dca4385]
+- Updated dependencies [85e210a]
+  - @chbrain/khai-arch@0.1.28
+  - @chbrain/khai-pack@0.0.4
+
 ## 0.0.33
 
 ### Patch Changes

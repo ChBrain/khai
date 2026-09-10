@@ -1,5 +1,12 @@
 # @chbrain/khai-arch
 
+## 0.1.28
+
+### Patch Changes
+
+- ebc47ef: check_play.mjs names the two dash characters as escapes in its own source, so the file passes the skill bundle's guard, which bans them raw in every file.
+- dca4385: checks/check_play.mjs: the play's mechanical shape (frontmatter subset, H1, the six ENACTS chapters in order and none empty, the house bytes) in one file that imports nothing but node, runnable on a file with an exit code. The canon re-exports its chapter list from it and exports checkPlay, so the kit, the hook, CI and the playwright skill can run the same bytes.
+
 ## 0.1.27
 
 ### Patch Changes
