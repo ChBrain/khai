@@ -9,8 +9,15 @@ no other file, this is your file._
 > **First, ask the machine what it is.** Before your first shell command:
 >
 > ```
-> npx khai-guard environment
+> node packages/khai-guard/environment.mjs
 > ```
+>
+> That path, and not `npx khai-guard environment`, because this is asked on a
+> fresh clone: `npx` would resolve the UNSCOPED name and npmjs answers 404 (the
+> package is `@chbrain/khai-guard`), and the CLI's own entry point imports
+> `picomatch`, so node cannot load it before `npm ci` either. `environment.mjs`
+> imports nothing outside node for exactly this reason. Once the repo is
+> installed, `npx khai-guard environment` prints the same report.
 >
 > It prints the platform, what npm reports, how npm must be spawned here, the
 > path separator, the line ending, whether this process can create a directory

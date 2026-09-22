@@ -45,18 +45,8 @@
 // enforce mode), 2 = config/usage error.
 
 import { execFileSync } from "node:child_process";
-import {
-  readFileSync,
-  readdirSync,
-  existsSync,
-  appendFileSync,
-  mkdtempSync,
-  mkdirSync,
-  symlinkSync,
-  rmSync,
-} from "node:fs";
-import { resolve, join, sep } from "node:path";
-import { tmpdir, EOL } from "node:os";
+import { readFileSync, readdirSync, existsSync, appendFileSync } from "node:fs";
+import { resolve, join } from "node:path";
 import {
   classify,
   classifyBranch,
@@ -70,7 +60,7 @@ import {
   checkLockfiles,
   unseenByRange,
   npmSpawn,
-  renderEnvironment,
+  reportEnvironment,
   lockfileMismatch,
   checkMembers,
   deadExemptions,
@@ -1081,57 +1071,11 @@ function endOnEmptyRange(label, changedCount) {
   process.exit(0);
 }
 
-// `environment`: what this machine is, asked once, so nothing after it has to
-// guess. Every agent that works in a repository rediscovers its own shell by
-// failing at it -- reaching for grep on Windows, for a PowerShell cmdlet on
-// Linux -- and spends turns on a question that has nothing to do with the task.
-// This repo watched it happen twice in one week, from two machines.
-//
-// Three tiers, in the order that costs least to be wrong about: what the
-// environment already DECLARED (npm sets npm_execpath and a user agent naming the
-// OS), then what can be TESTED (try a directory symlink and see), and only then
-// what must be ASSUMED from the platform. Every fix this kit shipped for Windows
-// started at the third tier and never looked at the first.
+// `environment` lives in ../environment.mjs, a leaf that imports nothing outside
+// node so the report can run on a fresh clone before `npm ci` -- which is when it
+// is asked for, and when this entry point cannot load (it imports picomatch).
 function runEnvironment() {
-  const ua = process.env.npm_config_user_agent ?? null;
-  const npm = npmSpawn([]);
-
-  // Tier 2, and it must be a probe rather than a platform branch: Windows WITH
-  // Developer Mode or an elevated shell can create a directory symlink, so
-  // "win32 cannot" is an assertion the machine may contradict.
-  let dirSymlink = "untested";
-  try {
-    const dir = mkdtempSync(join(tmpdir(), "khai-env-"));
-    try {
-      mkdirSync(join(dir, "src"));
-      symlinkSync(join(dir, "src"), join(dir, "link"), "dir");
-      dirSymlink = "yes";
-    } catch (err) {
-      dirSymlink = `no (${err.code ?? "failed"}) -- use "junction" on this machine`;
-    }
-    rmSync(dir, { recursive: true, force: true });
-  } catch {
-    // no temp dir is a finding about the machine, not about symlinks
-  }
-
-  const signals = [];
-  for (const k of ["SHELL", "ComSpec", "PSModulePath", "MSYSTEM", "TERM_PROGRAM"])
-    if (process.env[k]) signals.push(`${k}=${k === "PSModulePath" ? "(set)" : process.env[k]}`);
-
-  console.log("KHAI-Guard environment:\n");
-  for (const line of renderEnvironment({
-    platform: process.platform,
-    arch: process.arch,
-    userAgent: ua,
-    npmVia: npm.via,
-    npmFile: npm.via === "npm_execpath" ? `${npm.file} ${npm.args[0]}` : npm.file,
-    nodeVersion: process.version,
-    shellSignals: signals,
-    pathSep: sep,
-    eol: EOL,
-    dirSymlink,
-  }))
-    console.log(line ? `  ${line}` : "");
+  reportEnvironment();
   process.exit(0);
 }
 
