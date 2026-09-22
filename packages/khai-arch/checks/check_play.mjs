@@ -46,19 +46,35 @@ const unquote = (raw) => {
 
 /**
  * Read the play's frontmatter subset. Returns the data, the body after the
- * fence, and the lines the subset cannot read (each is a finding).
+ * fence, the lines the subset cannot read, and the keys given twice (each of
+ * the last two is a finding).
+ *
+ * `dupes` exists because assignment is last-wins and YAML is not. The kit's own
+ * loader is js-yaml, which THROWS on a duplicated mapping key -- so without
+ * this, a play carrying `license:` twice passes here and fails the validator
+ * every house actually runs, and the portable checker that is supposed to give
+ * a stranger's workspace the same answer gives a different one. A checker whose
+ * clear is not the real clear is worse than no checker, because it is trusted.
+ * A duplicated sub-key under the stamp counts the same and is reported by its
+ * path (`stamp.owner`).
+ *
  * @param {string} text
- * @returns {{ present: boolean, data: Record<string, string | Record<string, string>>, body: string, unread: string[] }}
+ * @returns {{ present: boolean, data: Record<string, string | Record<string, string>>, body: string, unread: string[], dupes: string[] }}
  */
 export function readFrontmatter(text) {
   let str = String(text);
   if (str.charCodeAt(0) === 0xfeff) str = str.slice(1);
   const m = /^---[ \t]*\r?\n([\s\S]*?)\r?\n---[ \t]*(?:\r?\n|$)/.exec(str);
-  if (!m) return { present: false, data: {}, body: str, unread: [] };
+  if (!m) return { present: false, data: {}, body: str, unread: [], dupes: [] };
   // Null-prototype maps, and the three names that would reach a prototype are
   // not keys a play has, so they stay unread rather than land anywhere.
   const data = Object.create(null);
   const unread = [];
+  // Seen paths rather than `key in data`: a null-prototype map answers `in`
+  // correctly, but the stamp's sub-keys need their own namespace and a second
+  // `stamp:` line must be caught as well as a second `stamp.owner`.
+  const seen = new Set();
+  const dupes = [];
   let open = null;
   for (const raw of m[1].split(/\r?\n/)) {
     if (!raw.trim() || /^\s*#/.test(raw)) continue;
@@ -67,6 +83,9 @@ export function readFrontmatter(text) {
     const sub = /^([ \t]+)([A-Za-z_][\w-]*):(.*)$/.exec(raw);
     if (sub && open && safeKey(sub[2])) {
       if (typeof data[open] !== "object") data[open] = Object.create(null);
+      const path = `${open}.${sub[2]}`;
+      if (seen.has(path)) dupes.push(path);
+      seen.add(path);
       data[open][sub[2]] = unquote(sub[3]);
       continue;
     }
@@ -75,11 +94,13 @@ export function readFrontmatter(text) {
       unread.push(raw);
       continue;
     }
+    if (seen.has(kv[1])) dupes.push(kv[1]);
+    seen.add(kv[1]);
     const value = unquote(kv[2]);
     data[kv[1]] = value;
     open = value === "" ? kv[1] : null;
   }
-  return { present: true, data, body: str.slice(m[0].length), unread };
+  return { present: true, data, body: str.slice(m[0].length), unread, dupes };
 }
 
 /** Which body lines sit inside a fenced code block; the fence lines count as inside. */
@@ -114,9 +135,23 @@ function headerText(rest) {
 }
 
 /**
- * The headers of a body in order, fence-aware, and the chapters with whether
- * each carries content (prose or a `###` subchapter). A trailing `---` rule
- * with no chapter after it opens a coda (a builder note) that is not a chapter.
+ * The headers of a body in order, fence-aware, the chapters with whether each
+ * carries content (prose or a `###` subchapter), and the coda.
+ *
+ * A `---` rule with no `## ` chapter after it opens a coda (a builder note):
+ * everything past it leaves the chapters. Markdown gives no way to tell that
+ * rule apart from a thematic break an author meant to keep inside the final
+ * chapter, and the difference is what the rule MEANS, so nothing here can
+ * decide it -- but the consequence was invisible, which is the part that could
+ * be fixed. The coda comes back so the command can say how much text left the
+ * chapters, and an author who meant a thematic break has the escape that
+ * already worked and was never written down: `***` and `___` are thematic
+ * breaks too, and only a bare `---` opens a coda.
+ *
+ * Measured before choosing to report rather than refuse: no play or plan in
+ * this repository carries a coda; the two that do are the templates, whose
+ * builder notes are exactly what the device is for. Refusing a coda would fail
+ * them for using the feature correctly.
  */
 export function readBody(body) {
   const lines = body.split("\n");
@@ -137,6 +172,13 @@ export function readBody(body) {
       break;
     }
   }
+  const coda =
+    end < lines.length
+      ? lines
+          .slice(end + 1)
+          .join("\n")
+          .trim()
+      : "";
   const h2s = headers.filter((h) => h.level === 2 && h.line <= end);
   const chapters = h2s.map((h, k) => {
     const from = h.line;
@@ -149,7 +191,7 @@ export function readBody(body) {
       .trim();
     return { name: h.text, filled: Boolean(prose) || hasSub };
   });
-  return { headers, chapters };
+  return { headers, chapters, coda };
 }
 
 /**
@@ -179,6 +221,10 @@ export function checkPlay(text, opts = {}) {
   if (!fm.present) e.push("frontmatter missing: a play opens with a `---` block");
   for (const line of fm.unread)
     e.push(`frontmatter beyond a play's subset (key: value, one level of map): "${line.trim()}"`);
+  // Parity with the loader every house runs: js-yaml throws on a duplicated
+  // mapping key, so a play that passed here and failed there was the checker
+  // lying about a clear.
+  for (const key of fm.dupes) e.push(`duplicate frontmatter key: ${key}`);
   const d = fm.data;
   for (const k of Object.keys(d))
     if (!PLAY_KEYS.includes(k)) e.push(`unknown frontmatter key: ${k}`);
@@ -250,6 +296,19 @@ export function main(argv, { log = console.log, error = console.error } = {}) {
       error(`${file}: ${err.message}`);
       red++;
       continue;
+    }
+    // Not a finding, and not on stdout: a coda is legal (the templates use one)
+    // and `ok <file>` is this command's machine-readable contract. But a `---`
+    // meant as a thematic break inside the last chapter silently moves its text
+    // out of the chapters, and silence is the part that could be fixed -- so the
+    // note goes to stderr beside the findings, where a reader already looks.
+    const { coda } = readBody(readFrontmatter(text).body);
+    if (coda) {
+      const n = coda.split("\n").length;
+      error(
+        `${file}: note: ${n} line${n === 1 ? "" : "s"} after a \`---\` rule read as a coda and ` +
+          `${n === 1 ? "sits" : "sit"} outside the chapters; use \`***\` for a thematic break inside one`,
+      );
     }
     const findings = checkPlay(text);
     if (findings.length === 0) log(`ok ${file}`);
