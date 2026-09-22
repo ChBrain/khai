@@ -11,9 +11,9 @@ same (scholar, work) as a spine, and a claim that does not hold leaves the row a
 spine so it still collides. `findUnverifiedDelegations` reports the ones that do
 not hold.
 
-`Spine (anchoring and adjustment).` declares a **locus** -- which claim in the
-work this unit takes -- and the overlap key becomes `Scholar :: work :: locus`,
+`Spine (anchoring and adjustment).` declares a **claim** -- which of the work's
+claims this unit takes -- and the overlap key becomes `Scholar :: work :: claim`,
 so a volume of chapters stops being one key. An undeclared spine keys exactly as
-before, so nothing migrates; `findSharedLoci` prints one work spining several
-units under different loci as a reading list, because whether two loci are
+before, so nothing migrates; `findSharedClaims` prints one work spining several
+units under different claims as a reading list, because whether two claims are
 honestly different is a judgement and not a computation.

@@ -268,16 +268,26 @@ each of which the citing row can state and the kit can check:
    That is a role, not a spine, and unlike an allowlist entry it is falsifiable:
    the named unit must exist and must itself hold that (scholar, work) as a
    spine. 17 rows write the phrase today and **6 do not verify**.
-2. **Locus.** A work is a container; a citation takes a claim from it.
+2. **Claim.** A work is a container; a citation takes one of its claims.
    _Judgment under Uncertainty_ grounds six engines on six different heuristics.
-   The key becomes `Scholar :: work :: locus`, with the locus declared as an
+   The key becomes `Scholar :: work :: claim`, with the claim declared as an
    argument to the existing role prefix (`Spine (anchoring and adjustment).`),
    riding the Scope cell so the `| Source | Key Work | Scope |` table is
-   unchanged across 300+ files. An undeclared row carries an empty locus and
+   unchanged across 300+ files. An undeclared row carries an empty claim and
    still collides, so nothing changes for the 2936 rows that declare nothing.
-3. **The wall/probe split.** Same (scholar, work, locus) in two units is a
-   **wall**. Different loci is a **probe** line, printed side by side for a
-   person. Whether two declared loci are honestly different is a judgement
+
+   The word is the field's own at this granularity, and it was picked over
+   `locus` deliberately: the Citation Style Language's `locator` names a PLACE
+   in a work -- page, chapter, volume, section -- which is the adjacent concept
+   and not this one, and this house already spends `locus` on Rotter's
+   locus-of-control engine. What a unit takes is a claim the work makes, not a
+   position in it: Cannon's _The Wisdom of the Body_ gives `body` homeostasis
+   and `stress` the coinage of fight-or-flight, and those are not two places in
+   the book.
+
+3. **The wall/probe split.** Same (scholar, work, claim) in two units is a
+   **wall**. Different claims is a **probe** line, printed side by side for a
+   person. Whether two declared claims are honestly different is a judgement
    about meaning -- question 2 of the classification rule -- so it escalates
    and never computes a clear.
 

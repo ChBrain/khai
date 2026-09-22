@@ -377,7 +377,8 @@ export function mixedCells(index, policy = {}) {
  * repair: make the two Key Work cells spell the work the same way (the common
  * case), declare `workPolicy.aliases` where they cannot be made to agree, or --
  * where the longer cell is naming a part rather than a title -- move that part
- * into a declared locus (`Spine (book iii).`) and leave the work alone.
+ * into the declared claim it belongs to and leave the work alone (what `courage`
+ * takes from Book III is the account of courage as a mean, not the book number).
  *
  * `consequential` is the ranking that matters: true when folding the pair would
  * put two units that do not already collide onto one key, i.e. when the
