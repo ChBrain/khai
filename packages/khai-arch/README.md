@@ -3,7 +3,7 @@
 The khai architecture spec - type definitions, mnemonics, and chapter rules
 for the kaihacks system.
 
-This package ships the canonical architecture as 12 markdown files in
+This package ships the canonical architecture as 17 markdown files in
 `architecture/`. The rendered version lives at
 [architecture.kaihacks.ai](https://architecture.kaihacks.ai).
 
@@ -25,22 +25,28 @@ Configure `.npmrc`:
 - `architecture/architecture.md` - the meta type (GROW: the extension seam)
 - `architecture/engines.md` - the meta type (WIRE: the engine contract)
 - `architecture/instructions.md` - the meta type (HACKS method)
+- `architecture/order.md`, `plan.md`, `repertoire.md` - the remaining meta types (the order, the plan, the shelf)
 - `architecture/play.md`, `plot.md` - the house types (the production and its scenes)
-- `architecture/process.md`, `position.md`, `piece.md`, `place.md`, `persona.md` - the element types
+- `architecture/process.md`, `position.md`, `piece.md`, `place.md`, `persona.md`, `pitch.md`, `performance.md` - the element types
 - `architecture/model.md` - the companion overview (KAI HACKS AI canon), no frontmatter
 - `architecture/reference.md` - the companion standard for a component's REFERENCES.md (LORE), no frontmatter
 - `architecture/_schema.yml` - JSON Schema for the spec frontmatter
-- `templates/template_<type>.md` - one fillable skeleton per type, exported as `templates`
+- `templates/template_<type>.md` - fillable skeletons, exported as `templates`
 - `defaults/<type>.md` - filled, ready-to-tune starting sets, exported as `defaults` (today: `pitch`, the standard registers)
 
 ## Starting a file, and checking one
 
 Two exports, and the difference is the whole point:
 
-- **`templates`** starts a file. One complete skeleton per type, right chapters in
-  the right order with the right frontmatter, and the kit proves each one valid
+- **`templates`** starts a file. A complete skeleton with the right chapters in
+  the right order and the right frontmatter, and the kit proves each one valid
   against its own type contract (`khai-tests/tests/templates.test.mjs`). Stamp one
-  and fill it in; do not write a khai file from memory of its chapters.
+  and fill it in; do not write a khai file from memory of its chapters. Every
+  **element** and **house** type ships one, and `plan` does too. The meta types
+  that describe the architecture rather than being instantiated from it
+  (`architecture`, `engines`, `instructions`, `order`, `repertoire`) ship none --
+  `instructions` and `order` do have authored instances in the wild, so those two
+  are a real gap rather than a deliberate omission.
 - **`types`** checks a file. The chapter contract a written file validates against.
 
 ```js
