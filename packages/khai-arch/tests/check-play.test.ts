@@ -212,7 +212,11 @@ describe("check_play: the command", () => {
     const template = join(pkgRoot, "templates", "template_play.md");
     const r = spawnSync(process.execPath, [script, template], { encoding: "utf8" });
     expect(r.status).toBe(0);
+    // stdout is the machine-readable contract and stays exactly one `ok <file>`
+    // per clean file. The template carries a builder-note coda, so the advisory
+    // about it goes to stderr, beside the findings -- never onto this line.
     expect(r.stdout.trim()).toBe(`ok ${template}`);
+    expect(r.stderr).toMatch(/read as a coda/);
     const bad = join(here, "fixtures", "invalid", "bad-encoding-em-dash.md");
     const b = spawnSync(process.execPath, [script, template, bad], { encoding: "utf8" });
     expect(b.status).toBe(1);
@@ -233,6 +237,8 @@ describe("check_play: the command", () => {
     });
     expect(code).toBe(1);
     expect(logs).toHaveLength(1);
-    expect(errs[0]).toMatch(/nope\.md: /);
+    // The template's coda note comes first because its file does; the unreadable
+    // file's error is still there, and is still the only thing that reddens.
+    expect(errs.some((x) => /nope\.md: /.test(x))).toBe(true);
   });
 });
