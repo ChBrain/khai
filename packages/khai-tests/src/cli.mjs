@@ -32,7 +32,7 @@ import {
 import {
   findOverlaps,
   findUnverifiedDelegations,
-  findSharedLoci,
+  findSharedClaims,
   pairsOf,
   checkCandidate,
   scanSurname,
@@ -378,7 +378,7 @@ async function scienceMode(args) {
       );
     }
 
-    // The two halves of the delegation/locus split (docs/BOUNDARY.md, "A worked
+    // The two halves of the delegation/claim split (docs/BOUNDARY.md, "A worked
     // relocation"). Both report here rather than gating: the first is a wall
     // waiting for its count to reach zero, the second is a judgement a script
     // must never make.
@@ -406,14 +406,14 @@ async function scienceMode(args) {
           `     "${v.long}"  [${v.longUnits.join(", ")}]`,
       );
 
-    const shared = findSharedLoci(root);
+    const shared = findSharedClaims(root);
     console.log(
       `\nscience probe: ${shared.length} work(s) spining more than one unit under DIFFERENT ` +
-        "declared loci -- a reading list, never a verdict.",
+        "declared claims -- a reading list, never a verdict.",
     );
     for (const w of shared) {
-      console.log(`  LOCI  ${w.key}`);
-      for (const l of w.loci) console.log(`     ${l.unit}: ${l.locus}`);
+      console.log(`  CLAIMS  ${w.key}`);
+      for (const c of w.claims) console.log(`     ${c.unit}: ${c.claim}`);
     }
     process.exit(0);
   } else if (sub === "build") {
