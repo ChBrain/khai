@@ -65,12 +65,12 @@ export {
   normaliseWork,
   isContrast,
   roleOf,
-  locusOf,
+  claimOf,
   delegateOwner,
   collectUnits,
   findOverlaps,
   findUnverifiedDelegations,
-  findSharedLoci,
+  findSharedClaims,
   pairsOf,
   scholarMatches,
   workMatches,
@@ -99,6 +99,7 @@ export {
   undeclaredNamesakes,
   mixedCells,
   compoundWorks,
+  findWorkVariants,
 } from "./src/science-walls.mjs";
 export * as rules from "@chbrain/khai-rules";
 export { parseDoc, sectionBody } from "@chbrain/khai-rules";

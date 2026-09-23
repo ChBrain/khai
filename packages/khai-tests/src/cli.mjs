@@ -32,7 +32,7 @@ import {
 import {
   findOverlaps,
   findUnverifiedDelegations,
-  findSharedLoci,
+  findSharedClaims,
   pairsOf,
   checkCandidate,
   scanSurname,
@@ -49,6 +49,7 @@ import {
   undeclaredNamesakes,
   mixedCells,
   compoundWorks,
+  findWorkVariants,
 } from "./science-walls.mjs";
 import { checkManagement } from "./management.mjs";
 import { collectInstructions, renderInstructions } from "./instructions.mjs";
@@ -377,7 +378,7 @@ async function scienceMode(args) {
       );
     }
 
-    // The two halves of the delegation/locus split (docs/BOUNDARY.md, "A worked
+    // The two halves of the delegation/claim split (docs/BOUNDARY.md, "A worked
     // relocation"). Both report here rather than gating: the first is a wall
     // waiting for its count to reach zero, the second is a judgement a script
     // must never make.
@@ -392,14 +393,27 @@ async function scienceMode(args) {
           `     ${d.owner} does not cite it as a spine -- wrong owner, or the owner's citation moved.`,
       );
 
-    const shared = findSharedLoci(root);
+    const variants = findWorkVariants(root);
+    const turns = variants.filter((v) => v.consequential);
+    console.log(
+      `\nscience probe: ${variants.length} work(s) reaching the index under two spellings; ` +
+        `${turns.length} of them hide a collision.`,
+    );
+    for (const v of turns)
+      console.log(
+        `  VARIANT  ${v.scholar}${v.canon ? " [canon: exempt anyway]" : ""}\n` +
+          `     "${v.short}"  [${v.shortUnits.join(", ")}]\n` +
+          `     "${v.long}"  [${v.longUnits.join(", ")}]`,
+      );
+
+    const shared = findSharedClaims(root);
     console.log(
       `\nscience probe: ${shared.length} work(s) spining more than one unit under DIFFERENT ` +
-        "declared loci -- a reading list, never a verdict.",
+        "declared claims -- a reading list, never a verdict.",
     );
     for (const w of shared) {
-      console.log(`  LOCI  ${w.key}`);
-      for (const l of w.loci) console.log(`     ${l.unit}: ${l.locus}`);
+      console.log(`  CLAIMS  ${w.key}`);
+      for (const c of w.claims) console.log(`     ${c.unit}: ${c.claim}`);
     }
     process.exit(0);
   } else if (sub === "build") {

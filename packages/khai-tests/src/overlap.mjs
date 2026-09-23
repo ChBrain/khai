@@ -60,9 +60,9 @@
 //                                   hold the work. A wall in waiting: reported
 //                                   while the corpus still carries known-bad
 //                                   rows, walled when the count reaches zero.
-//   findSharedLoci(root)            the reading list the wall refuses to
+//   findSharedClaims(root)          the reading list the wall refuses to
 //                                   decide: one work spining several units
-//                                   under different declared loci.
+//                                   under different declared claims.
 import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { collectScience, collectCollectionScience, scholarHomonyms } from "./science.mjs";
@@ -146,13 +146,13 @@ const delegateRx = (src) => {
 // model is broad" -- is prose and stays a spine.
 //
 // The optional parenthesis is the ARGUMENT a role can carry, and two roles take
-// one. `Spine (anchoring and adjustment).` declares the LOCUS -- which claim in
+// one. `Spine (anchoring and adjustment).` declares the CLAIM -- which claim in
 // the work this unit takes, so a volume of chapters stops being one key; see
-// `locusOf`. `Delegate (third-place).` declares the owning unit. `contrast` and
+// `claimOf`. `Delegate (third-place).` declares the owning unit. `contrast` and
 // `support` take none, and an argument on them is read and ignored rather than
 // refused, because a role that is already not a spine has nothing to key.
 //
-// `spine` is listed even though it is the default: a row declaring a locus must
+// `spine` is listed even though it is the default: a row declaring a claim must
 // name the role it is declaring it for, and a cell reading `Spine (x).` should
 // mean the same thing whether or not the reader knows spine is the default.
 // Nothing in the corpus opens with either new token today, so adding them
@@ -163,7 +163,7 @@ const ROLE_PREFIX =
 /**
  * The declaration a Scope cell opens with: `{role, arg}` with `arg` the raw
  * text between the parentheses (`""` when the role carries none), or null when
- * the cell declares nothing. One parse, read by roleOf, locusOf and
+ * the cell declares nothing. One parse, read by roleOf, claimOf and
  * delegateOwner, so the three can never disagree about what a cell says.
  */
 function roleArgument(row) {
@@ -221,14 +221,23 @@ export function delegateOwner(row, policy = {}) {
 }
 
 /**
- * The locus a spine declares: WHICH claim in the work this unit takes, or ""
+ * The claim a spine declares: WHICH of a work's claims this unit takes, or ""
  * when it declares none.
+ *
+ * Named for the word the field already uses at this granularity -- the
+ * nanopublication literature cites "in the granularity of individual claims" --
+ * and renamed from `locus` for a reason worth keeping: `locator` is the
+ * Citation Style Language's term for a PLACE in a work (page, chapter, volume),
+ * which is the neighbouring concept and not this one. What a unit takes is a
+ * claim the work makes, not a position in it. Cannon's `The Wisdom of the Body`
+ * is the case that settles it: `body` takes homeostasis and `stress` takes the
+ * coinage of fight-or-flight, and those are not two places in the book.
  *
  * The chapter case is why this exists. `Judgment under Uncertainty` grounds six
  * engines on six different heuristics; keyed by the work alone they are one
  * key, and the only answer the wall had was to exempt the work entirely -- one
  * switch that also stopped it seeing a real duplicate on the same volume.
- * Keyed by `Scholar :: work :: locus` they are six keys and need no exemption.
+ * Keyed by `Scholar :: work :: claim` they are six keys and need no exemption.
  *
  * Two decisions worth stating, because the obvious versions of both are wrong.
  *
@@ -236,16 +245,16 @@ export function delegateOwner(row, policy = {}) {
  * Scope cells already open with a lead phrase and 512 of them are distinct;
  * matching on that text retires 8 of 101 findings, and it fails in the
  * permissive direction -- two authors wording one claim differently would buy
- * an exemption by writing badly. A locus is a claim an author makes, and a
- * reviewer can disagree with it.
+ * an exemption by writing badly. A declared claim is something an author
+ * asserts, and a reviewer can disagree with it.
  *
  * An UNDECLARED spine keys exactly as it did before (`Scholar :: work`, no
  * third segment), so nothing migrates and declaring is what buys the
  * separation. Normalised like a work stem -- lowercased, punctuation swept,
  * capped at six words -- so `Anchoring and adjustment` and `anchoring and
- * adjustment.` are one locus and not two.
+ * adjustment.` are one claim and not two.
  */
-export function locusOf(row, policy = {}) {
+export function claimOf(row, policy = {}) {
   const declared = roleArgument(row);
   if (!declared || declared.role !== "spine" || !declared.arg) return "";
   return normaliseWork(declared.arg, policy.aliases ?? {});
@@ -438,7 +447,7 @@ function delegationHolds(row, policy, held) {
 }
 
 /**
- * Every (scholar, work, locus) carrying a spine in more than one unit -- canon,
+ * Every (scholar, work, claim) carrying a spine in more than one unit -- canon,
  * contrast, support and VERIFIED delegations removed. A house's wall is
  * `expect(findOverlaps(root)).toEqual([])`; the kit computes, the house holds
  * the line.
@@ -449,8 +458,8 @@ function delegationHolds(row, policy, held) {
  * it -- is a legitimate second use and always was; the wall could not
  * previously say so, so it refused them all.
  *
- * The key carries a third segment only when a spine declares a locus (see
- * `locusOf`), so an undeclared row keys exactly as it did before and no
+ * The key carries a third segment only when a spine declares a claim (see
+ * `claimOf`), so an undeclared row keys exactly as it did before and no
  * existing key moves. Declaring is what separates two engines on one volume.
  *
  * A delegation that does not hold is NOT an exemption: the row falls through
@@ -469,8 +478,8 @@ export function findOverlaps(root) {
     } else if (role !== "spine") continue;
     const stem = normaliseWork(r.keyWork, policy.aliases);
     if (policy.canon.includes(stem)) continue;
-    const locus = locusOf(r, policy);
-    const key = r.surname + " :: " + stem + (locus ? " :: " + locus : "");
+    const claim = claimOf(r, policy);
+    const key = r.surname + " :: " + stem + (claim ? " :: " + claim : "");
     if (!byKey.has(key)) byKey.set(key, new Map());
     byKey.get(key).set(r.unit, r.keyWork);
   }
@@ -488,12 +497,12 @@ export function findOverlaps(root) {
   return [...byKey.entries()]
     .filter(([, units]) => units.size > 1)
     .map(([key, units]) => {
-      const [scholar, stem, locus = ""] = key.split(" :: ");
+      const [scholar, stem, claim = ""] = key.split(" :: ");
       return {
         key,
         scholar,
         stem,
-        locus,
+        claim,
         units: [...units.keys()].sort(),
         forms: [...new Set(units.values())],
       };
@@ -556,34 +565,34 @@ export function findUnverifiedDelegations(root) {
 
 /**
  * The reading list the wall deliberately does not decide: every (scholar, work)
- * spining more than one unit where the units declare DIFFERENT loci.
+ * spining more than one unit where the units declare DIFFERENT claims.
  *
- * The wall's half of the split is mechanical -- two units on one locus is a
+ * The wall's half of the split is mechanical -- two units on one claim is a
  * duplicate, full stop. This half is not: whether "anchoring and adjustment"
  * and "availability" are honestly two claims in one volume, or two paraphrases
  * of one claim wearing different words, is a judgement about what a cell means,
  * which `docs/BOUNDARY.md`'s classification rule sends to a person and never to
- * a script. So the loci are printed side by side and a reader decides. A wall
+ * a script. So the claims are printed side by side and a reader decides. A wall
  * here would either refuse the chapter case (which is what canon was invented
  * to escape) or clear a duplicate that reworded itself.
  *
- * Empty until spines start declaring loci, which is the honest reading: nothing
+ * Empty until spines start declaring claims, which is the honest reading: nothing
  * has been separated yet, so there is nothing to review.
  */
-export function findSharedLoci(root) {
+export function findSharedClaims(root) {
   const policy = loadWorkPolicy(root);
   const { records, deps } = collectUnits(root);
   const byWork = new Map();
   for (const r of records) {
     if (roleOf(r, policy) !== "spine") continue;
-    const locus = locusOf(r, policy);
-    if (!locus) continue;
+    const claim = claimOf(r, policy);
+    if (!claim) continue;
     const key = r.surname + " :: " + normaliseWork(r.keyWork, policy.aliases);
     if (!byWork.has(key)) byWork.set(key, new Map());
-    byWork.get(key).set(r.unit, locus);
+    byWork.get(key).set(r.unit, claim);
   }
   // The same structural exit the wall takes: a composite reading its member's
-  // science composes over it, whatever locus either declares.
+  // science composes over it, whatever claim either declares.
   for (const [, units] of byWork) {
     const names = [...units.keys()];
     for (const unit of names) {
@@ -597,8 +606,8 @@ export function findSharedLoci(root) {
       key,
       scholar: key.split(" :: ")[0],
       stem: key.split(" :: ")[1],
-      loci: [...units.entries()]
-        .map(([unit, locus]) => ({ unit, locus }))
+      claims: [...units.entries()]
+        .map(([unit, claim]) => ({ unit, claim }))
         .sort((a, b) => a.unit.localeCompare(b.unit)),
     }))
     .sort((a, b) => a.key.localeCompare(b.key));
