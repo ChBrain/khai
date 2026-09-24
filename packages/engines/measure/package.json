@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-measure",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the measure domain: the operation of turning a judgement into a number and everything that follows -- what goes on the scale and what is discarded, why a number is reached for rather than an opinion, what measuring does to the thing measured, and the map that ends up rebuilding the ground.",
   "type": "module",
   "main": "./index.mjs",
@@ -140,10 +140,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-expertise",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the expertise domain: how a capacity moves out of deliberation and into the hands -- the five-stage climb from rule-following to perception, what actually builds skill and what only accumulates hours, and the tacit part that travels by proximity because it has left words.",
   "type": "module",
   "main": "./index.mjs",
@@ -130,10 +130,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

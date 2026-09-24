@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-kairos",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the kairos domain: the qualitative, opportune moment cut from the flow of time -- the window that opens and shuts, the decisive juncture, the skill of timing, and the twist of the pressing moment read as ripe -- the fitting time to act, wired multi-cargo on a plot's beat, a plan's execution, and a process's threshold.",
   "type": "module",
   "main": "./index.mjs",
@@ -92,10 +92,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

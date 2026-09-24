@@ -1,5 +1,36 @@
 # @chbrain/khai-arch
 
+## 0.2.0
+
+### Minor Changes
+
+- 1130323: Ship the missing `performance` template, and make the README describe what is
+  actually in the package. `performance` was the only **element** type with no
+  fillable skeleton -- every other element and house type has one -- so authoring
+  one meant working from the architecture doc rather than from a stamped file the
+  kit proves valid. The README claimed 12 architecture markdown files (there are
+  17, and its Contents list omitted `order`, `performance`, `pitch`, `plan` and
+  `repertoire`) and "one skeleton per type", which was never true of the meta
+  types.
+
+### Patch Changes
+
+- ebc47ef: check_play.mjs names the two dash characters as escapes in its own source, so the file passes the skill bundle's guard, which bans them raw in every file.
+- dca4385: checks/check_play.mjs: the play's mechanical shape (frontmatter subset, H1, the six ENACTS chapters in order and none empty, the house bytes) in one file that imports nothing but node, runnable on a file with an exit code. The canon re-exports its chapter list from it and exports checkPlay, so the kit, the hook, CI and the playwright skill can run the same bytes.
+- c4a7220: Close two divergences in the portable play checker.
+  
+  A duplicated frontmatter key was last-wins here and a thrown
+  `duplicated mapping key` in js-yaml, the loader every house actually runs, so a
+  play could pass `checkPlay` and fail the validator. `readFrontmatter` now
+  returns `dupes` (stamp sub-keys by path) and `checkPlay` reports each.
+  
+  A `---` rule with no chapter after it opens a coda, and a thematic break an
+  author meant to keep inside the final chapter is spelled the same way -- so its
+  text silently left `sections.Stakes` while `checkPlay` reported clean. Markdown
+  cannot tell the two apart, so this reports rather than refuses: `readBody`
+  returns the coda, and the command notes on stderr how many lines sit outside the
+  chapters and that `***` is a thematic break that does not open one.
+
 ## 0.1.27
 
 ### Patch Changes

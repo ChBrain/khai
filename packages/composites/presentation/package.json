@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-presentation",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the presentation domain: the self performed before an audience -- the face claimed and held on the frontstage, the watching and tuning that fits it to the room, and the feeling managed to sustain it -- a wiring of the face, backstage, self-monitoring, and emotional-labor engines, staged as the front, the tuning, and the cost.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,14 +75,14 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26",
-    "@chbrain/khai-engine-face": "^0.1.0",
+    "@chbrain/khai-arch": "^0.2.0",
+    "@chbrain/khai-engine-face": "^0.1.2",
     "@chbrain/khai-engine-backstage": "^0.1.0",
-    "@chbrain/khai-engine-self-monitoring": "^0.1.0",
-    "@chbrain/khai-engine-emotional-labor": "^0.1.0"
+    "@chbrain/khai-engine-self-monitoring": "^0.1.2",
+    "@chbrain/khai-engine-emotional-labor": "^0.1.2"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

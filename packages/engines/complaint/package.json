@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-complaint",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the complaint domain: a grievance taken through an institution's own procedure -- the filing that converts what happened into what can be alleged, the procedure that is fair in each of its parts, the cost carried on one side, and the outcome that closes the matter.",
   "type": "module",
   "main": "./index.mjs",
@@ -140,10 +140,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

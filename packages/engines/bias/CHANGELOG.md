@@ -1,5 +1,20 @@
 # @chbrain/khai-engine-bias
 
+## 0.2.1
+
+### Patch Changes
+
+- df2087c: Declare the claim this engine takes from _Judgment under Uncertainty_: the three
+  heuristics as a family. This engine does not take any one heuristic as its
+  mechanism -- `anchoring`, `availability` and `representativeness` each do that --
+  it takes the trio as one family of the bias catalogue, read by ease. Saying so
+  is what lets the wall key the five citations apart without exempting the volume.
+- Updated dependencies [ebc47ef]
+- Updated dependencies [dca4385]
+- Updated dependencies [1130323]
+- Updated dependencies [c4a7220]
+  - @chbrain/khai-arch@0.2.0
+
 ## 0.2.0
 
 ### Minor Changes

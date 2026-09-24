@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-construal",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "khai engine content, the construal domain: the process through which psychological distance sets the level at which a persona mentally represents a thing -- far lifting to the abstract, near dropping to the concrete -- across the abstraction, concreteness, and traversal forms.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

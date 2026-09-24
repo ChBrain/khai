@@ -1,5 +1,19 @@
 # @chbrain/khai-composite-standing
 
+## 0.1.4
+
+### Patch Changes
+
+- Updated dependencies [ebc47ef]
+- Updated dependencies [dca4385]
+- Updated dependencies [1130323]
+- Updated dependencies [c4a7220]
+  - @chbrain/khai-arch@0.2.0
+  - @chbrain/khai-engine-capital@0.1.3
+  - @chbrain/khai-engine-hierarchy@0.2.1
+  - @chbrain/khai-engine-power@0.2.1
+  - @chbrain/khai-engine-status@0.2.1
+
 ## 0.1.3
 
 ### Patch Changes

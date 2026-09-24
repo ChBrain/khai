@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-advice",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the advice domain: a second judgement placed next to a first -- the approach that sets what it will mean, the weighing that moves almost nothing, the return that tells the adviser otherwise, and the keeping, which is a second name on the decision.",
   "type": "module",
   "main": "./index.mjs",
@@ -140,10 +140,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-raising",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the raising domain: what happens to somebody who says a harm is coming and can be doubted -- the standing that sets the alarm quietest where the hazard is first visible, the substitution of an answerable question for an unanswerable one, and the scrutiny that scales with the implication.",
   "type": "module",
   "main": "./index.mjs",
@@ -27,12 +27,12 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26",
-    "@chbrain/khai-engine-credibility": "^0.1.0",
-    "@chbrain/khai-engine-warning": "^0.1.0"
+    "@chbrain/khai-arch": "^0.2.0",
+    "@chbrain/khai-engine-credibility": "^0.1.1",
+    "@chbrain/khai-engine-warning": "^0.1.1"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   },
   "khai": {

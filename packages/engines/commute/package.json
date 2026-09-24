@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-commute",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the commute domain: a cost agreed once and incurred every morning -- the trade struck on unequal information, the passage that costs most on its ordinary days, the settling that erases one side of the bargain, and the ledger that cannot be audited from inside.",
   "type": "module",
   "main": "./index.mjs",
@@ -140,10 +140,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

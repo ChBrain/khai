@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-geomorphology",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the geomorphology domain: the ground's own violence, the landform made and broken by forces from within and below -- the place's floor raised, ruptured, poured new, or dropped away, the sudden endogenic counterpart to erosion's slow wearing.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

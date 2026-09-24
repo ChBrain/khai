@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-captology",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the captology domain: the object designed to shape behavior and form habits -- the engineered reinforcement loop that conditions the user over time to return.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

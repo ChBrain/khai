@@ -1,0 +1,14 @@
+# @chbrain/khai-composite-neighborhood-cycle
+
+## 0.1.1
+
+### Patch Changes
+
+- Updated dependencies [ebc47ef]
+- Updated dependencies [dca4385]
+- Updated dependencies [1130323]
+- Updated dependencies [c4a7220]
+  - @chbrain/khai-arch@0.2.0
+  - @chbrain/khai-engine-dereliction@0.1.1
+  - @chbrain/khai-engine-gentrification@0.1.1
+  - @chbrain/khai-engine-reclamation@0.1.1

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-tipping-point",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the tipping-point domain: the dynamic in which a process absorbs accumulating load while appearing stable, crosses a critical threshold, and shifts discontinuously and irreversibly to a new state -- the loading that fills unseen, the criticality where a trivial trigger decides everything, the snap out of all proportion to it, and the ratchet that will not let the old state return.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

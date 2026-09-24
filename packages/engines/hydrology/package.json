@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-hydrology",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the hydrology domain: the water regime of a place -- the water it has in excess, in deficit, in hidden store, and as its own life -- flood and drought and the aquifer and the wellspring, the water that makes and unmakes the place from the surface and below.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

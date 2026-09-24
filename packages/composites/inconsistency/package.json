@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-inconsistency",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the inconsistency domain: an account that must be believed and cannot be delivered by the person giving it -- what the rendering strips out, the document that replaces the event, and the gap between two tellings read as a fact about the teller, a wiring of the interpreting and credibility engines.",
   "type": "module",
   "main": "./index.mjs",
@@ -27,12 +27,12 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26",
-    "@chbrain/khai-engine-credibility": "^0.1.0",
-    "@chbrain/khai-engine-interpreting": "^0.1.0"
+    "@chbrain/khai-arch": "^0.2.0",
+    "@chbrain/khai-engine-credibility": "^0.1.1",
+    "@chbrain/khai-engine-interpreting": "^0.1.1"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   },
   "khai": {

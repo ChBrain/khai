@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-pilgrimage",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the pilgrimage domain: what happens to a death when strangers start coming to the place of it -- the arrival that adds visitors and no hands, the custody that buys the object a future and prices it in decisions, and the claim that settles the meaning outside the family.",
   "type": "module",
   "main": "./index.mjs",
@@ -27,12 +27,12 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26",
-    "@chbrain/khai-engine-grave": "^0.1.0",
-    "@chbrain/khai-engine-tourism": "^0.1.0"
+    "@chbrain/khai-arch": "^0.2.0",
+    "@chbrain/khai-engine-grave": "^0.1.1",
+    "@chbrain/khai-engine-tourism": "^0.1.1"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   },
   "khai": {

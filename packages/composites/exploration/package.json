@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-exploration",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "khai composite content, the exploration domain: the transition Hutt drew between exploration and play -- the curiosity-driven investigation of the novel (what does this do?) giving way to the play made of it (what can I do with this?) -- and the two states where the transition stalls, the investigation that never becomes play and the play with no investigation under it, read whole across the atom engines it depends on.",
   "type": "module",
   "main": "./index.mjs",
@@ -70,12 +70,12 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26",
-    "@chbrain/khai-engine-curiosity": "^0.1.1",
+    "@chbrain/khai-arch": "^0.2.0",
+    "@chbrain/khai-engine-curiosity": "^0.1.2",
     "@chbrain/khai-engine-play-mode": "^0.1.2"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

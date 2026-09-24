@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-warning",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the warning domain: a harm signalled before it arrives, to somebody who would have to act -- the threshold that decides which error to make, the confirmation-seeking that spends the lead time, the discounting that is correct, and the success that cannot be recorded.",
   "type": "module",
   "main": "./index.mjs",
@@ -140,10 +140,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

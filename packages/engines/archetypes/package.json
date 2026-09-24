@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-archetypes",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "khai engine content, the archetypes domain: Jung's principal archetypes as personas -- the inherited, collective figures that pattern how a persona is seen and behaves.",
   "type": "module",
   "main": "./index.mjs",
@@ -95,10 +95,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-unbecoming",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the unbecoming domain: what a room does to a persona whose role and whose read do not agree -- the two expectations both in place before anybody acts, the shortfall found before any conduct, and the penalty that arrives for meeting the role rather than for failing it.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,12 +75,12 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26",
-    "@chbrain/khai-engine-gender": "^0.1.7",
-    "@chbrain/khai-engine-role": "^0.1.1"
+    "@chbrain/khai-arch": "^0.2.0",
+    "@chbrain/khai-engine-gender": "^0.1.8",
+    "@chbrain/khai-engine-role": "^0.1.2"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

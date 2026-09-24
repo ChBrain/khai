@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-lasting",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the lasting domain: whether anything of a good thing survives its arrival -- the attention that makes it fuller and longer, the reception it meets when it is told, and the baseline that reclaims it whatever anyone does -- a wiring of the savoring, capitalization, and hedonic-adaptation engines, staged as the attending, the telling, and the fading.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,13 +75,13 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26",
-    "@chbrain/khai-engine-savoring": "^0.1.0",
-    "@chbrain/khai-engine-capitalization": "^0.1.0",
-    "@chbrain/khai-engine-hedonic-adaptation": "^0.1.0"
+    "@chbrain/khai-arch": "^0.2.0",
+    "@chbrain/khai-engine-savoring": "^0.1.2",
+    "@chbrain/khai-engine-capitalization": "^0.1.2",
+    "@chbrain/khai-engine-hedonic-adaptation": "^0.1.2"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

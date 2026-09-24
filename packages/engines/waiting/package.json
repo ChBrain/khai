@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-waiting",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the waiting domain: time placed at somebody else's disposal, read as a relation rather than a feeling -- how the wait is set and whether it has an edge, what makes the interval feel as long as it does, who goes before whom, and what a long habit of waiting makes of the persona who does it.",
   "type": "module",
   "main": "./index.mjs",
@@ -140,10 +140,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

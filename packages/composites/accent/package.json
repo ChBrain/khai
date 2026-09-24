@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-accent",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the accent domain: what it costs a persona to be understood in a room, and who the room charges for it -- the width at which they hold the tongue, the specialist code layered on top of it, and the discount the listener applies for their own effort.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,12 +75,12 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26",
-    "@chbrain/khai-engine-language": "^0.1.5",
-    "@chbrain/khai-engine-register": "^0.1.1"
+    "@chbrain/khai-arch": "^0.2.0",
+    "@chbrain/khai-engine-language": "^0.1.6",
+    "@chbrain/khai-engine-register": "^0.1.2"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

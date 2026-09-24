@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-bystander-effect",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "khai engine content, the bystander-effect domain: how the presence of other witnesses inhibits a persona from helping in an emergency -- the more who could act, the less any one does -- across the diffusion, pluralism, and audience forms.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-blaze",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the blaze domain: a fire read as a living actor across its whole life -- how it takes, how it runs at full cry, and how it ends into persistence or renewal -- a wiring of the fire and combustion engines that braids a place's burn regime with the named phenomenon it becomes, staged as kindling, run, and renewal.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,12 +75,12 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26",
-    "@chbrain/khai-engine-fire": "^0.1.0",
-    "@chbrain/khai-engine-combustion": "^0.1.0"
+    "@chbrain/khai-arch": "^0.2.0",
+    "@chbrain/khai-engine-fire": "^0.1.1",
+    "@chbrain/khai-engine-combustion": "^0.1.1"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

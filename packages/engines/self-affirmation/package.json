@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-self-affirmation",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "khai engine content, the self-affirmation domain: restoring a persona's global sense of self-integrity by affirming a valued domain unrelated to a threat, so the threat need not be defended -- across the affirming move, the fluid adequacy it restores, and the buffering of defensiveness it produces (Steele; Sherman & Cohen).",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

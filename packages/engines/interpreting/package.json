@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-interpreting",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the interpreting domain: a conversation conducted through a third person -- how the interpreter is summoned, what survives the rendering, the turn-by-turn management nobody counts as work, and the invisibility that protects the exchange by refusing to describe it.",
   "type": "module",
   "main": "./index.mjs",
@@ -140,10 +140,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-discipline",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the discipline domain: Foucault's disciplinary power -- the productive, continuous, impersonal power that makes subjects by watching, measuring, and training them, so a persona holds themselves to the norm even unwatched. The surveillance that sees without being seen, the norm that measures and penalizes deviation, the examination that makes each subject a documented case, and the twist of the docile body read as capable rather than only subjected.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

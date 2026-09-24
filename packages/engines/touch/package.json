@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-touch",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the touch domain: the haptic field of a place -- the surface grain the skin reads (texture), the warmth or chill it holds against the body (thermal), the give and resistance the body meets in it (press), and the twist of the touch it withholds read as a presence rather than a lack, the place composed as much by what it feels like as by what it looks like.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

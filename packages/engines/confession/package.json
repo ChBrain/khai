@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-confession",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the confession domain: telling under a relation of authority -- how the account is required, how it is produced rather than retrieved, who receives it and what receiving is, and the relief that is real and that hides the requirement.",
   "type": "module",
   "main": "./index.mjs",
@@ -140,10 +140,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

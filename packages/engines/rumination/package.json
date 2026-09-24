@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-rumination",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "khai engine content, the rumination domain: the persona's repetitive, passive dwelling on its own distress and its causes, circling without resolving -- across the brooding, replaying, and reflection forms.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

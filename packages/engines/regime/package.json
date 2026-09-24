@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-regime",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the regime domain: the standing arrangement under which a persona's polity decides -- a catalogue of political systems routed through six axes (the count, the claim, the constraint, the holder, the architecture, and the substitute), each type read for what it gives, what it demands, and the one thing it structurally cannot do.",
   "type": "module",
   "main": "./index.mjs",
@@ -255,10 +255,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

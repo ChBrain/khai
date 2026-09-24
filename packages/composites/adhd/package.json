@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-adhd",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the adhd domain: attention-deficit/hyperactivity disorder as the compound of a failing pause (executive-function), a delay the persona cannot sit in (self-control), a default-mode drift that intrudes on the task (mind-wandering, attention), and an attention that will not release once caught (attention) -- across its behavioral-inhibition, delay-aversion, default-intrusion, and hyperfocus movements (Barkley; Sonuga-Barke; Nigg; Castellanos & Proal).",
   "type": "module",
   "main": "./index.mjs",
@@ -23,11 +23,11 @@
     "*.md"
   ],
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.25",
-    "@chbrain/khai-engine-attention": "^0.1.1",
-    "@chbrain/khai-engine-executive-function": "^0.1.1",
-    "@chbrain/khai-engine-mind-wandering": "^0.1.1",
-    "@chbrain/khai-engine-self-control": "^0.1.1"
+    "@chbrain/khai-arch": "^0.2.0",
+    "@chbrain/khai-engine-attention": "^0.1.2",
+    "@chbrain/khai-engine-executive-function": "^0.1.2",
+    "@chbrain/khai-engine-mind-wandering": "^0.1.2",
+    "@chbrain/khai-engine-self-control": "^0.1.2"
   },
   "khai": {
     "engine": "adhd",

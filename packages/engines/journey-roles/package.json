@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-journey-roles",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "khai engine content, the journey-roles domain: the recurring character roles of the hero's journey as personas -- functions defined by their relation to the hero.",
   "type": "module",
   "main": "./index.mjs",
@@ -100,10 +100,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

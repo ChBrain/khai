@@ -1,5 +1,21 @@
 # @chbrain/khai-composite-freud
 
+## 0.1.2
+
+### Patch Changes
+
+- Updated dependencies [ebc47ef]
+- Updated dependencies [dca4385]
+- Updated dependencies [1130323]
+- Updated dependencies [c4a7220]
+  - @chbrain/khai-arch@0.2.0
+  - @chbrain/khai-engine-anxiety@0.1.2
+  - @chbrain/khai-engine-attachment@0.1.4
+  - @chbrain/khai-engine-defense@0.1.2
+  - @chbrain/khai-engine-structural-model@0.1.2
+  - @chbrain/khai-engine-the-unconscious@0.1.2
+  - @chbrain/khai-engine-transference@0.1.2
+
 ## 0.1.1
 
 ### Patch Changes

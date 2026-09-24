@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-curiosity",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "khai engine content, the curiosity domain: curiosity as position, the resting inclination toward the unknown -- the posture at the edge of what is already understood, before any particular gap has appeared.",
   "type": "module",
   "main": "./index.mjs",
@@ -60,10 +60,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-divergent-thinking",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the divergent-thinking domain: the deliberate generation of many varied, novel, useful ideas from one open prompt -- the sheer count (fluency), the spread across categories (flexibility), the rarity of the ideas (originality), and their working-out (elaboration) -- the generative act creativity turns on, distinct from the sudden aha and from the convergent choosing that selects among what it produces.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

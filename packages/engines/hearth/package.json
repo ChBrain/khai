@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-hearth",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the hearth domain: the kept flame as an institution of a place -- a fire that is tended daily by a keeper, banked to survive the night, rekindled when lost, extinguished as loss or sanction, and perpetuated across centuries in sanctuary and temple, shown in the place's warmth and the keeper's life.",
   "type": "module",
   "main": "./index.mjs",
@@ -85,10 +85,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

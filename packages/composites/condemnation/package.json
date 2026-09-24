@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-condemnation",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "khai composite content, the condemnation domain: one condemnation of another's violation, split by which moral code was broken -- community, autonomy, or divinity -- into contempt, anger, and disgust, read whole across the atom engines it depends on.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,13 +75,13 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26",
-    "@chbrain/khai-engine-anger": "^0.1.1",
-    "@chbrain/khai-engine-contempt": "^0.1.1",
-    "@chbrain/khai-engine-disgust": "^0.1.1"
+    "@chbrain/khai-arch": "^0.2.0",
+    "@chbrain/khai-engine-anger": "^0.1.3",
+    "@chbrain/khai-engine-contempt": "^0.1.2",
+    "@chbrain/khai-engine-disgust": "^0.1.2"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

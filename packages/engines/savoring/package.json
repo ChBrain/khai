@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-savoring",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "khai engine content, the savoring domain: how a persona attends to and prolongs a positive experience -- turning toward a good moment to make it fuller and last, the mirror of coping -- across the sharpening, sharing, keeping, and dampening ways.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }
