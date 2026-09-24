@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-asking",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the asking domain: a request for discretionary help put to somebody free to refuse -- the reluctance that does most of the work, the misestimate that runs one way, the act and its form, and what a request does to the person who receives it.",
   "type": "module",
   "main": "./index.mjs",
@@ -140,10 +140,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

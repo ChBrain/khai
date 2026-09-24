@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-heirloom",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "khai engine content, the heirloom domain: an object kept out of exchange that carries a lineage's identity and authority across generations -- the possession you keep even while you give others away.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

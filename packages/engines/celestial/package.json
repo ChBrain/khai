@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-celestial",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the celestial domain: the sky's bodies as the place's own Shown -- the sun as governor of day and season, the eclipse as day broken, the comet as visitor on a lifetime's clock, the meteor as fire from above, the aurora as the sky alight with solar wind, the starfield as the place's fixed ceiling -- showing what the place stands beneath and the apparition that marks it.",
   "type": "module",
   "main": "./index.mjs",
@@ -90,10 +90,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

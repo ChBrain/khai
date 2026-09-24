@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-wear",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the wear domain: the degradation an object undergoes through use -- the tool worn, the part fatigued, the consumable spent, and the surface seasoned by handling, the object used up rather than merely left to time.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

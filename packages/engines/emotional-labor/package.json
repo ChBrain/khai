@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-emotional-labor",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "khai engine content, the emotional-labor domain: the effort a persona spends to feel or feign the emotion a role demands they display -- managing the heart for a wage or a part -- across the masking, method, and genuine forms.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

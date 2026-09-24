@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-smellscape",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the smellscape domain: the olfactory field of a place -- the base smell it sits in (ground), the drifting episodic smells that carry meaning (plume), the signature smell that binds it to memory and marks it as itself (redolence), and the twist of its scentlessness read as a presence rather than a void, the place composed as much by what it smells like as by what it looks like.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

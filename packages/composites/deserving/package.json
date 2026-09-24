@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-deserving",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "khai composite content, the deserving domain: what a persona holds another to have coming -- the foundation that fires and names the conduct right or wrong, the price the persona will pay out of pocket to make the breaker answer, and the small lift felt when the fall arrives -- a wiring of the moral-judgment, altruistic-punishment, and schadenfreude engines, staged as the lens, the price, and the lift.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,13 +75,13 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26",
-    "@chbrain/khai-engine-moral-judgment": "^0.1.0",
-    "@chbrain/khai-engine-altruistic-punishment": "^0.1.0",
-    "@chbrain/khai-engine-schadenfreude": "^0.1.0"
+    "@chbrain/khai-arch": "^0.2.0",
+    "@chbrain/khai-engine-moral-judgment": "^0.1.2",
+    "@chbrain/khai-engine-altruistic-punishment": "^0.1.2",
+    "@chbrain/khai-engine-schadenfreude": "^0.1.2"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

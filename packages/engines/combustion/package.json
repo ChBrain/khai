@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-combustion",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the combustion domain: a catalog of the named phenomena of fire -- each a distinct way something burns, with its own fuel and chemistry, its physical dynamics, its sensory signature, and the paradox by which the obvious way to fight it fails or feeds it. Where the fire engine reads a place's burn regime, combustion reads the specific phenomenon, across the wildland, the compartment, the industrial plant, the made fire, and the conveyance.",
   "type": "module",
   "main": "./index.mjs",
@@ -365,10 +365,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

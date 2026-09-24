@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-reclamation",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the reclamation domain: the deliberate intervention -- restoration and conservation -- that arrests a place's decay and takes the fallen place back, and the stance it takes toward the age it inherits.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

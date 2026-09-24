@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-ocd",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the OCD domain: an intrusive thought the persona cannot disown, a responsibility they cannot decline, and an act that discharges both -- and by discharging them, keeps them true.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

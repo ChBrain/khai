@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-law",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the law domain: legality as the standing condition a persona's conduct is judged under -- what turns a rule into law (the making), the eight ways a rule system stops being law without anybody repealing anything (the failing), the three stances a persona takes toward legality (the standing), and the distance between the rule declared and the rule as it operates (the gap).",
   "type": "module",
   "main": "./index.mjs",
@@ -180,10 +180,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

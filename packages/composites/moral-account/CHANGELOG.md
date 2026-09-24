@@ -1,5 +1,19 @@
 # @chbrain/khai-composite-moral-account
 
+## 0.1.3
+
+### Patch Changes
+
+- Updated dependencies [ebc47ef]
+- Updated dependencies [dca4385]
+- Updated dependencies [1130323]
+- Updated dependencies [c4a7220]
+  - @chbrain/khai-arch@0.2.0
+  - @chbrain/khai-engine-betrayal@0.1.3
+  - @chbrain/khai-engine-forgiveness@0.2.1
+  - @chbrain/khai-engine-guilt@0.1.3
+  - @chbrain/khai-engine-repair@0.1.3
+
 ## 0.1.2
 
 ### Patch Changes

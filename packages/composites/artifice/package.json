@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-artifice",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the artifice domain: the designed object read whole -- the settlement a made thing strikes among the six design forces (usability, agency, ergonomics, guile, captology, choice-architecture), and whether that settlement serves the user, extracts for the maker, or fails to cohere at all.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,16 +75,16 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26",
-    "@chbrain/khai-engine-usability": "^0.1.0",
-    "@chbrain/khai-engine-agency": "^0.1.0",
-    "@chbrain/khai-engine-ergonomics": "^0.1.0",
-    "@chbrain/khai-engine-guile": "^0.1.0",
-    "@chbrain/khai-engine-captology": "^0.1.0",
-    "@chbrain/khai-engine-choice-architecture": "^0.1.0"
+    "@chbrain/khai-arch": "^0.2.0",
+    "@chbrain/khai-engine-usability": "^0.1.1",
+    "@chbrain/khai-engine-agency": "^0.1.1",
+    "@chbrain/khai-engine-ergonomics": "^0.1.1",
+    "@chbrain/khai-engine-guile": "^0.1.1",
+    "@chbrain/khai-engine-captology": "^0.1.1",
+    "@chbrain/khai-engine-choice-architecture": "^0.1.1"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

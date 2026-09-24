@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-striving",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the striving domain: the standing character a persona brings to any pursuit -- why it strives, how it strives, and how long it stays -- a wiring of the achievement-motive, regulatory-focus, and grit engines, staged as the pull, the stance, and the stay.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,13 +75,13 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26",
-    "@chbrain/khai-engine-achievement-motive": "^0.1.0",
-    "@chbrain/khai-engine-regulatory-focus": "^0.1.0",
-    "@chbrain/khai-engine-grit": "^0.1.0"
+    "@chbrain/khai-arch": "^0.2.0",
+    "@chbrain/khai-engine-achievement-motive": "^0.1.2",
+    "@chbrain/khai-engine-regulatory-focus": "^0.1.2",
+    "@chbrain/khai-engine-grit": "^0.1.2"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

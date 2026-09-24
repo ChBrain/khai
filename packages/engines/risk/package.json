@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-risk",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the risk domain: the size a hazard has for a persona, which is not its death rate -- read on the dread axis (how terrible the harm would be and how little can be done about it), the unknown axis (how far it lies outside what can be seen, felt, or settled), and the divergence axis (why the sizing parts company with the count, and what happens when somebody tries to close the distance).",
   "type": "module",
   "main": "./index.mjs",
@@ -155,10 +155,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

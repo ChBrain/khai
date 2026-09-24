@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-airing",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "khai composite content, the airing domain: what a working collective can hear about itself -- the stage its shared pattern has reached, the stance it is organised to value, and the climate that decides what a persona can risk saying -- a wiring of the group, org, and psychological-safety engines, staged as the stage, the stance, and the silence.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,13 +75,13 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26",
-    "@chbrain/khai-engine-group": "^0.1.0",
-    "@chbrain/khai-engine-org": "^0.1.0",
+    "@chbrain/khai-arch": "^0.2.0",
+    "@chbrain/khai-engine-group": "^0.1.2",
+    "@chbrain/khai-engine-org": "^0.1.3",
     "@chbrain/khai-engine-psychological-safety": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

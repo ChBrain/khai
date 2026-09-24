@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-hospitality",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the hospitality domain: the conversion of a stranger into a guest and the terms it carries -- the taking in at the door, the obligations neither side negotiated, the unstated term the arrangement runs on, and the breaches every society treats as unusually grave.",
   "type": "module",
   "main": "./index.mjs",
@@ -140,10 +140,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

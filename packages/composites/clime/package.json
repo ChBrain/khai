@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-clime",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "khai composite content, the clime domain: a place read as both what its air does today and what its air can do at all -- one draw against the odds it came from, and the run of days that is the only thing anyone ever actually has.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,12 +75,12 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26",
-    "@chbrain/khai-engine-weather": "^0.1.0",
-    "@chbrain/khai-engine-climate": "^0.1.0"
+    "@chbrain/khai-arch": "^0.2.0",
+    "@chbrain/khai-engine-weather": "^0.1.1",
+    "@chbrain/khai-engine-climate": "^0.1.1"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

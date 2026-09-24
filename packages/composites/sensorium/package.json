@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-sensorium",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the sensorium domain: the place as the body meets it apart from the eye -- the constant field it sits in, the figure that rises from that field, and the withheld sense that registers hardest of all -- a wiring of the smellscape, soundscape, and touch engines, staged as the ground, the figure, and the absence.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,13 +75,13 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26",
-    "@chbrain/khai-engine-smellscape": "^0.1.0",
-    "@chbrain/khai-engine-soundscape": "^0.1.0",
-    "@chbrain/khai-engine-touch": "^0.1.0"
+    "@chbrain/khai-arch": "^0.2.0",
+    "@chbrain/khai-engine-smellscape": "^0.1.1",
+    "@chbrain/khai-engine-soundscape": "^0.1.1",
+    "@chbrain/khai-engine-touch": "^0.1.1"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-imagination",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the imagination domain: the deliberate forming and manipulation of mental representations of what is not present -- summoning a sensory image to the mind's eye (conjuring), entertaining a proposition as if it held (supposition), and building and running a novel scenario (simulation) -- the voluntary construction of the non-present, apart from the spontaneous drift, the future self, the counterfactual past, and the pretend stance that neighbor it.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

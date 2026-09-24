@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-erosion",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the erosion domain: the slow wearing of a place's surface from outside -- rock and soil detached and carried off by water, wind, and ice, grain by grain over time -- and laid down elsewhere as new ground; the exogenic counterpart to geomorphology's sudden violence.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

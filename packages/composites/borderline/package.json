@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-borderline",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the borderline domain: borderline personality organisation as the compound of an emotional vulnerability that will not settle (regulation), an interpersonal hypersensitivity that reads availability moment to moment (attachment), a self that reorganises around whoever is present (identity, self-esteem), and a behavioural dyscontrol that regulates affect by other means (self-control) -- across its emotional-vulnerability, interpersonal-hypersensitivity, identity-diffusion, and dyscontrol movements (Linehan; Gunderson; Kernberg; Zanarini).",
   "type": "module",
   "main": "./index.mjs",
@@ -23,12 +23,12 @@
     "*.md"
   ],
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.25",
-    "@chbrain/khai-engine-attachment": "^0.1.2",
-    "@chbrain/khai-engine-identity": "^0.1.1",
-    "@chbrain/khai-engine-regulation": "^0.1.1",
-    "@chbrain/khai-engine-self-control": "^0.1.1",
-    "@chbrain/khai-engine-self-esteem": "^0.2.0"
+    "@chbrain/khai-arch": "^0.2.0",
+    "@chbrain/khai-engine-attachment": "^0.1.4",
+    "@chbrain/khai-engine-identity": "^0.1.3",
+    "@chbrain/khai-engine-regulation": "^0.1.2",
+    "@chbrain/khai-engine-self-control": "^0.1.2",
+    "@chbrain/khai-engine-self-esteem": "^0.2.1"
   },
   "khai": {
     "engine": "borderline",

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-virtue",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "khai engine content, the virtue domain: virtue as the active firing under pressure -- seven sin/virtue axes, two poles each, read by the room through behaviour.",
   "type": "module",
   "main": "./index.mjs",
@@ -130,10 +130,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

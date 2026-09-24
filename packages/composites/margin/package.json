@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-margin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the margin domain: what a running process has left before it cannot come back -- spent by a baseline that slides with the yardstick that would measure it, or by a load that shows in nothing until it shows in everything.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,12 +75,12 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26",
-    "@chbrain/khai-engine-drift": "^0.1.0",
-    "@chbrain/khai-engine-tipping-point": "^0.1.0"
+    "@chbrain/khai-arch": "^0.2.0",
+    "@chbrain/khai-engine-drift": "^0.1.1",
+    "@chbrain/khai-engine-tipping-point": "^0.1.1"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-schadenfreude",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "khai engine content, the schadenfreude domain: the pleasure a persona takes in another's misfortune -- the fall of the deserving, the envied, or the disliked felt as a small private joy -- across the comeuppance, leveling, and grudge forms.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,10 +75,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

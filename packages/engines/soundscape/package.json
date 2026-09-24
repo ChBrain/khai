@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-soundscape",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the soundscape domain: the auditory field of a place -- the constant ground sound it is heard against (keynote), the foreground sounds that carry meaning (signal), the unique sound that marks it as itself (soundmark), and the twist of its silence read as a presence, the place composed as much by what it sounds like as by what it looks like.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

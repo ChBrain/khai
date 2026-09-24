@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-forgoing",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the forgoing domain: help that exists, is available, and is not asked for -- the request whose price is paid in identity, the category declined rather than the service, and the undercount the declining produces.",
   "type": "module",
   "main": "./index.mjs",
@@ -27,12 +27,12 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26",
-    "@chbrain/khai-engine-asking": "^0.1.0",
-    "@chbrain/khai-engine-stigma": "^0.1.1"
+    "@chbrain/khai-arch": "^0.2.0",
+    "@chbrain/khai-engine-asking": "^0.1.1",
+    "@chbrain/khai-engine-stigma": "^0.1.2"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   },
   "khai": {

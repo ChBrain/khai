@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-collection",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the collection domain: a series of objects withdrawn from use, held to a criterion only its keeper can state -- the collector, the hunting that is the actual activity, the completing that never completes, and the dispersal that takes nothing and ends everything.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

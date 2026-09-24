@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-sleep",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the sleep domain: the one need effort cannot serve -- the ceasing of vigilance and what it costs to afford, the deficit that accumulates behind a gauge that has stopped registering it, the attempt that is the documented mechanism of insomnia, and the social clock imposed on a body that keeps its own.",
   "type": "module",
   "main": "./index.mjs",
@@ -140,10 +140,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

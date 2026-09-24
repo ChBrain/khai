@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-fire",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the fire domain: the burn regime of a place -- its combustibility and the fire it carries, sparked to ignition, held low as creep, run to conflagration, sunk into flameless smoulder, fought to exclusion, and the twist of the renewal fire brings, the force that both destroys a place and is required to make it new.",
   "type": "module",
   "main": "./index.mjs",
@@ -90,10 +90,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

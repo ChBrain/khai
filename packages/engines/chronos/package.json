@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-chronos",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the chronos domain: the measured, sequential passage of time as it bears on a made thing -- the age it gathers from its origin, the ordered history it carries, the years it has endured, and the fullness that only elapsed time confers -- the object dated and aged, read at its Yearbook.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

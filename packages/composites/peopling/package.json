@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-peopling",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai composite content, the peopling domain: a place read by the presence in it -- who is crossing because they must, who returns on a rhythm, and who is there for no reason at all -- with the informativeness of presence running inverse to how much the place compelled it.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,13 +75,13 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26",
-    "@chbrain/khai-engine-legibility": "^0.1.0",
-    "@chbrain/khai-engine-social-time": "^0.1.0",
-    "@chbrain/khai-engine-street-life": "^0.1.0"
+    "@chbrain/khai-arch": "^0.2.0",
+    "@chbrain/khai-engine-legibility": "^0.1.1",
+    "@chbrain/khai-engine-social-time": "^0.1.1",
+    "@chbrain/khai-engine-street-life": "^0.1.1"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

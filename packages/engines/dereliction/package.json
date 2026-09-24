@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-dereliction",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the dereliction domain: the decline a place undergoes when an authority stops maintaining it -- the withdrawal of care that hands the place to decay, from deferred upkeep to full ruin.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

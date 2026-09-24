@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-politics",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the politics domain: how a persona gets an outcome out of a body that decides collectively, where the rule for deciding is itself in play -- across the three faces a contest can sit at, the seven levers that work on the situation rather than on anybody's mind, and the five footings that make a lever bite.",
   "type": "module",
   "main": "./index.mjs",
@@ -135,10 +135,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

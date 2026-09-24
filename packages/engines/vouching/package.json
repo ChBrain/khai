@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-vouching",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the vouching domain: standing lent to somebody else's claim -- a request drawing on a list fixed years earlier, a text that cannot be negative, a stake nobody names, and a reading that correctly discounts all of it.",
   "type": "module",
   "main": "./index.mjs",
@@ -140,10 +140,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

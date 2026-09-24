@@ -1,0 +1,14 @@
+# @chbrain/khai-composite-sensorium
+
+## 0.1.1
+
+### Patch Changes
+
+- Updated dependencies [ebc47ef]
+- Updated dependencies [dca4385]
+- Updated dependencies [1130323]
+- Updated dependencies [c4a7220]
+  - @chbrain/khai-arch@0.2.0
+  - @chbrain/khai-engine-smellscape@0.1.1
+  - @chbrain/khai-engine-soundscape@0.1.1
+  - @chbrain/khai-engine-touch@0.1.1

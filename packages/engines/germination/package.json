@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-germination",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the germination domain: a whole organism held in suspension and the conditions under which it stops being held -- a pack provisioned once, a hold that is the seed's principal activity, a cue that certifies something adjacent, and a commit with no way back.",
   "type": "module",
   "main": "./index.mjs",
@@ -146,10 +146,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

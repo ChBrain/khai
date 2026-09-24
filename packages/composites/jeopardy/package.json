@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-composite-jeopardy",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "khai composite content, the jeopardy domain: a persona under a threat that has not yet fallen, meeting it at once with the baseline they bring, the anticipatory hold on what might happen, and the response to a demand that exceeds resources -- across the onset, mounting, and release bridges over apprehension, suspense, and stress.",
   "type": "module",
   "main": "./index.mjs",
@@ -75,13 +75,13 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26",
-    "@chbrain/khai-engine-apprehension": "^0.2.0",
-    "@chbrain/khai-engine-stress": "^0.1.4",
-    "@chbrain/khai-engine-suspense": "^0.1.1"
+    "@chbrain/khai-arch": "^0.2.0",
+    "@chbrain/khai-engine-apprehension": "^0.2.1",
+    "@chbrain/khai-engine-stress": "^0.1.5",
+    "@chbrain/khai-engine-suspense": "^0.1.2"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

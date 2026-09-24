@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-street-life",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the street-life domain: the place as a social stage -- the people out and using it (presence), the casual exchange between strangers (mingling), the eyes on the street that watch it (watch), and the twist of the idle lingering read not as waste but as the proof of a place worth being in.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

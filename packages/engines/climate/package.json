@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-climate",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the climate domain: the standing, long-run atmospheric regime a place is set in -- what it expects rather than what it gets on the day -- its baseline type, its reliable seasonal structure, the extreme it is defined by, and the slow shift of the regime itself, the force that governs which of a place's other forces dominate.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

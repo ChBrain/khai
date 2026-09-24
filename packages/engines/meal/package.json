@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-meal",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the meal domain: eating together as an instrument -- who is at the table and who is not, the co-ingestion that does the work, the form the eating is required to take, and the bond it leaves behind.",
   "type": "module",
   "main": "./index.mjs",
@@ -140,10 +140,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@chbrain/khai-engine-succession",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "khai engine content, the succession domain: the biological reclaiming of a place -- life returning in an ordered sequence once the ground is bared or the human hand withdraws, from the first pioneers through the progression to a mature community, and the twist of the wild taking back what was human.",
   "type": "module",
   "main": "./index.mjs",
@@ -80,10 +80,10 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@chbrain/khai-arch": "^0.1.26"
+    "@chbrain/khai-arch": "^0.2.0"
   },
   "devDependencies": {
-    "@chbrain/khai-tests": "^0.4.0",
+    "@chbrain/khai-tests": "^0.5.0",
     "vitest": "^5.0.0"
   }
 }
