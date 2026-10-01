@@ -46,6 +46,6 @@
     "ajv": "^8.17.1",
     "markdown-it": "^15.0.2",
     "typescript": "^7.0.2",
-    "vitest": "^5.0.0"
+    "vitest": "^5.0.1"
   }
 }
